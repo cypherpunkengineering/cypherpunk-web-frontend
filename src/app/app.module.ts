@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { RootComponent } from './app-root.component';
 import { HomeComponent } from './layouts/public/home/home.component';
+import { DownloadComponent } from './layouts/public/download/download.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,6 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     RootComponent,
     HomeComponent,
+    DownloadComponent,
     NotFoundComponent,
     NavigationComponent,
     FooterComponent
