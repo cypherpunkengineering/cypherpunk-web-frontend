@@ -1,0 +1,54 @@
+.masthead {
+  width: 100%;
+  height: 430px;
+  background-image: linear-gradient(290deg, #034698, #548cd2);
+  border-bottom: 16px solid #034698;
+}
+
+.cta-container { position: relative; }
+.call-to-action {
+  font-family: Dosis;
+  font-size: 22px;
+  font-weight: 500;
+  color: #333333;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 344px;
+  height: 200px;
+  text-align: center;
+}
+
+button {
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 0 2px 0 #d19e12;
+  width: 341px;
+  height: 80px;
+  border-radius: 5px;
+  background-color: #ffc933;
+  box-shadow: 0 4px 0 0 #d19e12;
+  border: 0px;
+  cursor: pointer;
+}
+
+button.start {
+  margin-bottom: 10px;
+}
+button.get {
+  margin-top: 10px;
+}
+
+.grey-content {
+  height: 117px;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+.content {
+  width: 100%;
+  min-height: 50vh;
+}
