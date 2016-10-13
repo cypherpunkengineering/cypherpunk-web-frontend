@@ -1,0 +1,35 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <div class="masthead-image-container">
+    <div class="masthead-image"></div>
+  </div>
+  <div class="masthead-header">Create Account</div>
+</div>
+
+<form>
+  <p>
+    <label for="username">Username</label><br>
+    <input type="text" name="username" placeholder="Username">
+  </p>
+
+  <p>
+    <label for="email">Email</label><br>
+    <input type="text" name="email" placeholder="User@example.com">
+  </p>
+
+  <p>
+    <label for="password">Password</label><br>
+    <input type="text" name="password" placeholder="Password">
+  </p>
+
+  <p class="center">
+    <button>Create Account</button>
+  </p>
+
+  <p class="center">
+    <a class="login-link" routerLink="/login">Have an account already?</a>
+  </p>
+</form>
+
+<app-footer></app-footer>

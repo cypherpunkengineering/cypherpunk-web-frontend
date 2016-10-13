@@ -1,0 +1,32 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <div class="masthead-image-container">
+    <div class="masthead-image"></div>
+  </div>
+  <div class="masthead-header">Log In</div>
+</div>
+
+<form>
+  <p>
+    <label for="username">Username / Email</label><br>
+    <input type="text" name="username" placeholder="Username / Email">
+  </p>
+
+  <p>
+    <label for="password">Password</label><br>
+    <input type="text" name="password" placeholder="Password">
+  </p>
+
+  <p class="center">
+    <button>Log In</button>
+  </p>
+
+  <p class="center">
+    <a class="login-link" routerLink="/reset">Forgot Password?</a>
+    <br><br>
+    <a class="login-link" routerLink="/signup">Don't have an account yet?</a>
+  </p>
+</form>
+
+<app-footer></app-footer>
