@@ -10,6 +10,7 @@ import { DownloadComponent } from './layouts/public/download/download.component'
 import { SignupComponent } from './layouts/public/signup/signup.component';
 import { LoginComponent } from './layouts/public/login/login.component';
 import { ResetComponent } from './layouts/public/reset/reset.component';
+import { LearnComponent } from './layouts/public/learn/learn.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -23,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SignupComponent,
     LoginComponent,
     ResetComponent,
+    LearnComponent,
     NotFoundComponent,
     NavigationComponent,
     FooterComponent

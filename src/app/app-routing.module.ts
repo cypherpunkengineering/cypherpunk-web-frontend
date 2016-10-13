@@ -6,6 +6,7 @@ import { DownloadComponent } from './layouts/public/download/download.component'
 import { SignupComponent } from './layouts/public/signup/signup.component';
 import { LoginComponent } from './layouts/public/login/login.component';
 import { ResetComponent } from './layouts/public/reset/reset.component';
+import { LearnComponent } from './layouts/public/learn/learn.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'reset', component: ResetComponent },
+  { path: 'learn', component: LearnComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
