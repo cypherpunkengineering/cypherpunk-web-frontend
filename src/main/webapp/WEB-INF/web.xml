@@ -12,6 +12,17 @@
 		</user-data-constraint>
 	</security-constraint>
 
+	<servlet-mapping>
+		<servlet-name>ControlPanelProxy</servlet-name>
+		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControlPanelProxy</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.ControlPanelProxy</servlet-class>
+	</servlet>
+
 	<servlet>
 		<servlet-name>acme-challenge</servlet-name>
 		<servlet-class>com.cypherpunk.appengine.AcmeChallenge</servlet-class>
