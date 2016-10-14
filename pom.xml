@@ -9,7 +9,7 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<groupId>com.cypherpunk.appengine</groupId>
-	<artifactId>cypherpunk-www</artifactId>
+	<artifactId>cypherpunk-dev</artifactId>
 
 	<properties>
 		<appengine.app.version>1</appengine.app.version>
