@@ -12,6 +12,15 @@
 		</user-data-constraint>
 	</security-constraint>
 
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</transport-guarantee>
+		</auth-constraint>
+	</security-constraint>
+
 	<servlet-mapping>
 		<servlet-name>ControlPanelProxy</servlet-name>
 		<url-pattern>/</url-pattern>
