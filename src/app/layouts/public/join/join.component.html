@@ -1,0 +1,189 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <div class="masthead-header">Choose your Cypherpunk</div>
+</div>
+
+<div class="page">
+
+  <div class="page-left">
+    <div class="pricing">
+      <div class="price-box" *ngFor="let model of priceModels; let i = index" (click)="selectPricing(model)" [ngClass]="{ 'active': model.selected }">
+        <div class="checkmark">
+          <div class="check" [ngClass]="{'active': model.selected}">&#10003;</div>
+        </div>
+        <div class="period" [ngClass]="{'active': model.selected}">{{model.months}} Months</div>
+        <div class="price-area">
+          <span class="price" [ngClass]="{'active': model.selected}">$ {{model.price}}</span>
+          <span class="price-time"> / month</span>
+        </div>
+        <div class="yearly" [ngClass]="{'active': model.selected}" [innerHTML]="model.yearly"></div>
+        <div class="blimp-container" *ngIf="i === 1">
+          <div class="blimp">Best Value!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="break-down">
+      <div class="bd-row">
+        <div class="bd-cell grey">price per month</div>
+        <div class="bd-cell grey">{{selectedModel.price}}</div>
+      </div>
+      <div class="bd-row">
+        <div class="bd-cell grey">months in package</div>
+        <div class="bd-cell grey">{{selectedModel.months + ' MONTHS'}}</div>
+      </div>
+      <hr>
+      <div class="bd-row">
+        <div class="bd-cell">order total</div>
+        <div class="bd-cell">{{selectedModel.total}}</div>
+      </div>
+    </div>
+
+    <div class="payment-container">
+      <div class="payment-bg">
+        <div class="type-container" (click)="selectOption(paymentOptions[0])" [ngClass]="{'active': paymentOptions[0].selected}">
+          <div class="icon-container">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+          </div>
+          <div class="type-title">Credit Card</div>
+        </div>
+
+        <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
+          <div class="icon-container">
+            <i class="fa fa-paypal" aria-hidden="true"></i>
+          </div>
+          <div class="type-title">PayPal</div>
+        </div>
+
+        <div class="type-container" (click)="selectOption(paymentOptions[2])" [ngClass]="{'active': paymentOptions[2].selected}">
+          <div class="icon-container">
+            <i class="fa fa-bitcoin" aria-hidden="true"></i>
+          </div>
+          <div class="type-title">BitCoin</div>
+        </div>
+
+        <div class="type-container">
+          <div class="other-icon">
+            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+          </div>
+          <div class="type-title">Other</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-info">
+
+      <div class="info">
+        <p>
+          <label for="email">Email</label><br>
+          <input type="email" placeholder="you@example.com" [(ngModel)]="customerInfo.email">
+        </p>
+      </div>
+
+      <div class="separator">Card Details</div>
+      <div class="clear"></div>
+
+      <div class="info">
+        <p>
+          <label for="name">Name</label><br>
+          <input type="text" placeholder="John Smith" [(ngModel)]="customerInfo.name">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="cc">Card Number</label><br>
+          <input type="text" [(ngModel)]="billingInfo.ccNumber">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="expiration">Expiration Date</label><br>
+          <input type="text" placeholder="mm/yy" [(ngModel)]="billingInfo.expiration">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="cvv">CVV/CSC Code</label><br>
+          <input type="number" [(ngModel)]="billingInfo.ccCode">
+        </p>
+      </div>
+
+      <div class="separator">Billing Address</div>
+      <div class="clear"></div>
+
+      <div class="info">
+        <p>
+          <label for="country">Country</label><br>
+          <input type="text" [(ngModel)]="billingInfo.country">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="address">Address</label><br>
+          <input type="text" placeholder="your address" [(ngModel)]="billingInfo.address">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="zip">Zip Code</label><br>
+          <input type="text" [(ngModel)]="billingInfo.zipCode">
+        </p>
+      </div>
+
+      <button (click)="charge()">Join Cypherpunk Now</button>
+    </div>
+
+  </div>
+
+  <div class="page-right">
+    <div class="featured-item"></div>
+    <div class="featured-text">feature text feature text</div>
+
+    <div class="featured-item"></div>
+    <div class="featured-text">feature text feature text</div>
+
+    <div class="featured-item"></div>
+    <div class="featured-text">feature text feature text</div>
+
+    <div class="featured-item"></div>
+    <div class="featured-text">feature text feature text</div>
+
+    <div class="server-locations">
+      <div class="server-header">Our Server Locations</div>
+      <div class="server-item-container">
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+        <div class="server-item"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="clear"></div>
+
+<app-footer></app-footer>
