@@ -59,7 +59,7 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
-							<directory>${basedir}/site</directory>
+							<directory>${basedir}/../dist</directory>
 							<filtering>false</filtering>
 							<targetPath>site</targetPath>
 						</resource>
