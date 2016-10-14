@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+for i in dbip-chunks/dbip-chunk-*
+do
+	id=`echo $i|cut -d '-' -f4`
+	echo "init slice ${id}"
+	curl "https://www.btc.org/api/listing/secretGeoDatabaseInit?chunk=${id}" &
+	sleep 1
+done

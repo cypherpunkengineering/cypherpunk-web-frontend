@@ -1,0 +1,1 @@
+mkdir -p dbip-chunks && cd dbip-chunks && split -l 400 ../dbip-country-2015-05.csv dbip-chunk-
