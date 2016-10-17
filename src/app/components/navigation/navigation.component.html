@@ -1,35 +1,81 @@
 <div class="nav">
   <div class="nav-left">
-    <div class="nav-logo" routerLink="/"></div>
-  </div>
-  <div class="nav-left">
-    <div class="nav-title" routerLink="/">Cypherpunk VPN</div>
+    <a routerLink="/">
+      <img src="/assets/logo-wh.png" alt="CypherPunk">
+    </a>
   </div>
 
-  <div class="nav-right">
+  <nav class="nav-right">
     <ul>
       <li>
         <a class="nav-link" routerLink="/download" routerLinkActive="active">download</a>
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/learn" routerLinkActive="active">learn more</a>
+        <ul>
+          <li class="header">for your Computer</li>
+          <li><a routerLink="/download" fragment="windows">Windows</a></li>
+          <li><a routerLink="/download" fragment="mac">Mac</a></li>
+          <li><a routerLink="/download" fragment="linux">Linux</a></li>
+          <li class="header">for your Browser</li>
+          <li><a routerLink="/download" fragment="chrome">Chrome</a></li>
+          <li><a routerLink="/download" fragment="firefox">Firefox</a></li>
+          <li><a routerLink="/download" fragment="opera">Opera</a></li>
+          <li class="header">for your Mobile Device</li>
+          <li><a routerLink="/download" fragment="ios">iOS</a></li>
+          <li><a routerLink="/download" fragment="android">Android</a></li>
+        </ul>
       </li>
       <li>
         <a class="nav-link" routerLink="/join" routerLinkActive="active">get cypherpunk now</a>
       </li>
       <li>
+        <a class="nav-link" routerLink="/learn" routerLinkActive="active">learn more</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">about us</a>
+      </li>
+      <li>
+        <button class="nav-link start" routerLink="/signup">start free</button>
+      </li>
+      <li>
         <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
       </li>
     </ul>
+  </nav>
+  <div class="clear"></div>
 
-    <button class="nav-link start" routerLink="/signup">start free</button>
+</div>
 
-    <div class="nav-link language">
-      <span class="world-icon"></span>
-      <a class="language">Language</a>
-      <span class="down-arrow"></span>
-    </div>
+<div class="mobile-nav">
+  <div class="mobile-nav-left">
+    <a routerLink="/">
+      <img src="/assets/logo-wh.png" alt="CypherPunk">
+    </a>
   </div>
 
+  <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
+    <img src="/assets/icon-menu.png" alt="Menu">
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="mobile-drop-down" [style.display]="showDropDown ? 'block' : 'none'">
+    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
+      download
+    </div>
+    <div class="mobile-dd-item" routerLink="/join" routerLinkActive="active">
+      get cypherpunk now
+    </div>
+    <div class="mobile-dd-item" routerLink="/learn" routerLinkActive="active">
+      learn more
+    </div>
+    <div class="mobile-dd-item" routerLink="/about" routerLinkActive="active">
+      about us
+    </div>
+    <div class="mobile-dd-item" routerLink="/signup" routerLinkActive="active">
+      <div class="button">start free</div>
+    </div>
+    <div class="mobile-dd-item" routerLink="/login" routerLinkActive="active">
+      log in
+    </div>
+  </div>
   <div class="clear"></div>
 </div>

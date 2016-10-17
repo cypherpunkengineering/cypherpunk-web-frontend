@@ -1,43 +1,56 @@
 .nav {
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding-top: 15px;
 }
 
 .nav-left {
   float: left;
-  padding-left: 0.5rem;
-}
-
-.nav-logo {
-  width: 29px;
-  height: 29px;
-  border-radius: 50px;
-  background-color: #f2f2f2;
-  cursor: pointer;
-}
-
-.nav-title {
-  color: white;
-  font-size: 21px;
-  cursor: pointer;
+  padding-left: 1rem;
 }
 
 .nav-right {
   float: right;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
   padding-top: 5px;
 }
 
 .nav-right ul {
   list-style-type: none;
-  display: inline;
+  position: relative;
   margin: 0;
   padding: 0;
 }
 
-.nav-right ul li { float: left; }
+.nav-right ul li { position: relative; float: left; }
+
+.nav-right ul ul {
+	display: none;
+	position: absolute;
+  left: -50%;
+	background: #fff;
+	padding: 0;
+}
+
+.nav-right ul ul li {
+	float: none;
+	width: 234px;
+}
+
+.nav-right ul ul a { color: #4e5e72; text-decoration: none; }
+.nav-right ul ul a:hover { text-decoration: underline; }
+.nav-right ul li:hover > ul { display: block; }
+.nav-right ul ul { padding: 10px; border-radius: 5px; z-index: 50; }
+.nav-right ul li ul li { padding: 5px; }
+
+.header {
+  border-top: 2px solid #cad8eb;
+  border-bottom: 2px solid #cad8eb;
+  font-size: 13px;
+  font-weight: 600;
+  color: #314d70;
+}
 
 .nav-link {
   color: white;
@@ -60,12 +73,61 @@
   cursor: pointer;
 }
 
-.nav-link.language {
-  display: inline;
-  text-transform: capitalize;
-  margin-right: 0;
-}
-
 .clear { clear: both; }
 
 .active { color: #ffc933; }
+
+.mobile-nav {
+  display: none;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 15px;
+
+  .mobile-nav-left {
+    float: left;
+    padding-left: 1rem;
+  }
+
+  .mobile-nav-right {
+    float: right;
+    padding-right: 1rem;
+    padding-top: 15px;
+    padding-bottom: 25px;
+  }
+
+  .mobile-drop-down {
+    background-color: #cad8eb;
+    position: relative;
+    z-index: 100;
+
+    .mobile-dd-item {
+      border-bottom: 1px solid #f2f2f2;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 2.78;
+      color: #034698;
+      &:last-child { border: 0; }
+    }
+    .button {
+      color: white;
+      font-weight: bold;
+      background-color: #ffc933;
+      text-shadow: 0 2px 0 #d19e12;
+      width: 153.8px;
+      height: 43px;
+      border-radius: 5px;
+      border: 0px;
+      line-height: 2.5;
+      box-shadow: 0 4px 0 0 #d19e12;
+      cursor: pointer;
+      margin: 10px auto 14px;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .nav { display: none; }
+  .mobile-nav { display: block; }
+}
