@@ -10,6 +10,7 @@ import { LearnComponent } from './layouts/public/learn/learn.component';
 import { JoinComponent } from './layouts/public/join/join.component';
 import { DashboardComponent } from './layouts/account/dashboard/dashboard.component';
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
+import { ChangePasswordComponent } from './layouts/account/password/password.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'join', component: JoinComponent },
   { path: 'account', component: DashboardComponent },
   { path: 'account/email', component: ChangeEmailComponent },
+  { path: 'account/password', component: ChangePasswordComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
