@@ -1,0 +1,121 @@
+.masthead {
+  width: 100%;
+  height: 341px;
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 48px 0;
+
+  .account {
+    width: 782px;
+    margin: auto;
+    height: 245px;
+    background-color: #ffffff;
+    padding: 0 20px;
+    box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+
+    .account-header {
+      padding: 23px 0;
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .account-container {
+      width: 632px;
+      padding-top: 25px;
+      margin: auto;
+
+      .left {
+        width: 50%;
+        float: left;
+        text-align: left;
+
+        .email {
+          font-size: 24px;
+          font-weight: 500px;
+          color: #034698;
+        }
+
+        .status {
+          font-size: 14px;
+          color: #666666;
+          text-transform: uppercase;
+
+          &.active { color: #71d900; }
+        }
+      }
+
+      .right {
+        width: 50%;
+        float: right;
+        text-align: right;
+
+        .period {
+          font-size: 24px;
+          font-weight: 500;
+          color: #034698;
+        }
+        .renewal {
+          font-weight: 500;
+          line-height: 2.5;
+          color: #999999;
+        }
+      }
+    }
+
+  }
+}
+
+button {
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 0 2px 0 #034698;
+  width: 341px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #5590da;
+  box-shadow: 0 4px 0 0 #034698;
+  border: 0px;
+  cursor: pointer;
+}
+
+.content {
+  width: 980px;
+  margin: auto;
+  padding: 50px 0;
+
+  .content-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    position: relative;
+    margin-bottom: 25px;
+    &:before {
+      content: "";
+      width: 71px;
+      position: absolute;
+      border-bottom: 1px solid black;
+      top: 15px;
+      right: 100%;
+      margin-right: 15px;
+    }
+  }
+
+  .content-row {
+    margin: 0 auto;
+    padding: 15px;
+    width: 90%;
+    border-bottom: 1px solid #cccccc;
+    overflow: auto;
+    font-size: 20px;
+    a { color: #034698; }
+    .left { float: left; padding-left: 25px; }
+    .right { float: right; padding-right: 25px; }
+    &:first-child { border-top: 1px solid #cccccc; }
+    &:last-child { margin-bottom: 25px; }
+  }
+
+  .user-email { color: #666666; }
+}
+
+.center { text-align: center; margin-bottom: 25px; }
+.clear { clear: both; }

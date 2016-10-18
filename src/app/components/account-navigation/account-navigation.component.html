@@ -1,0 +1,38 @@
+<div class="nav">
+  <div class="nav-left">
+    <a routerLink="/">
+      <img src="/assets/logo-bl.png" alt="CypherPunk">
+    </a>
+  </div>
+
+  <nav class="nav-right">
+    <ul>
+      <li>
+        <a class="nav-link" routerLink="/logout">Log out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="clear"></div>
+
+</div>
+
+<div class="mobile-nav">
+  <div class="mobile-nav-left">
+    <a routerLink="/">
+      <img src="/assets/logo-wh.png" alt="CypherPunk">
+    </a>
+  </div>
+
+  <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
+    <img src="/assets/icon-menu.png" alt="Menu">
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="mobile-drop-down" [style.display]="showDropDown ? 'block' : 'none'">
+    <div class="mobile-dd-item" routerLink="/logout">
+      log out
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
