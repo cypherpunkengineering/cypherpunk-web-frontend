@@ -13,6 +13,7 @@ import { ResetComponent } from './layouts/public/reset/reset.component';
 import { LearnComponent } from './layouts/public/learn/learn.component';
 import { JoinComponent } from './layouts/public/join/join.component';
 import { DashboardComponent } from './layouts/account/dashboard/dashboard.component';
+import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AccountNavigationComponent } from './components/account-navigation/account-navigation.component';
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LearnComponent,
     JoinComponent,
     DashboardComponent,
+    ChangeEmailComponent,
     NotFoundComponent,
     NavigationComponent,
     AccountNavigationComponent,

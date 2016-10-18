@@ -1,0 +1,37 @@
+<app-acc-nav></app-acc-nav>
+
+<div class="masthead">
+  <div class="masthead-subheader">Account Info</div>
+  <div class="masthead-header">Change Email</div>
+</div>
+
+<div class="content">
+
+  <div class="row">
+    <label for="currentEmail">
+      Current Email
+    </label>
+    <br>
+    <span class="currentEmail">
+      {{user.email}}
+    </span>
+  </div>
+
+  <div class="row">
+    <label for="newEmail">New Email</label><br>
+    <input type="email">
+  </div>
+
+  <div class="row border"></div>
+
+  <div class="row center">
+    <button>Change</button>
+  </div>
+
+  <div class="row center">
+    <a routerLink="/account">Cancel</a>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
