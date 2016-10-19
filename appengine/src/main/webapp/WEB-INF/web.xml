@@ -61,8 +61,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<!-- disabled because messes with tuckey rewrite filter -->
-		<!-- <welcome-file>index.html</welcome-file> -->
+		<welcome-file>no-welcome-file</welcome-file>
 	</welcome-file-list>
 
 </web-app>
