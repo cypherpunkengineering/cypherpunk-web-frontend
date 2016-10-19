@@ -13,6 +13,10 @@
 		<from>^/api/(.*)</from>
 		<to last="true">/api/$1</to>
 	</rule>
+	<rule>
+		<from>^/account/(.*)</from>
+		<to last="true">/account/$1</to>
+	</rule>
 
 	<!-- spider crawler robots -->
 	<rule>
