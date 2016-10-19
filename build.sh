@@ -5,6 +5,6 @@ nvm use v6.7.0
 npm install
 ng build --prod
 cd appengine
-mvn build
+mvn install
 mvn appengine:update || true
 exit 0
