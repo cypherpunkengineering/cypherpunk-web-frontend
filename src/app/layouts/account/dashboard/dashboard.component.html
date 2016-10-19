@@ -18,7 +18,7 @@
         <span class="renewal">
           Renews on {{user.renewalDate | date: 'MM/dd/yyyy'}}, {{daysLeft}} days left
         </span><br>
-        <a href="/account/upgrade" class="upgrade">Upgrade</a>
+        <a routerLink="/account/upgrade" class="upgrade">Upgrade</a>
       </div>
 
       <div class="clear"></div>
@@ -34,7 +34,7 @@
   <div>
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/email">Change Email</a>
+        <a routerLink="/account/email">Change Email</a>
       </div>
       <div class="right">
         <span class="user-email">{{user.email}}</span>
@@ -43,19 +43,19 @@
 
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/password">Change Password</a>
+        <a routerLink="/account/password">Change Password</a>
       </div>
     </div>
 
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/transactions">Transaction History</a>
+        <a routerLink="/account/transactions">Transaction History</a>
       </div>
     </div>
 
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/credit">Add credit to account</a>
+        <a routerLink="/account/credit">Add credit to account</a>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
   <div>
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/transactions">
+        <a routerLink="/account/billing">
           Transaction history with receipts / Invoice overdue with pay option
         </a>
       </div>
@@ -85,13 +85,13 @@
   <div>
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/tickets">Ticket system</a>
+        <a routerLink="/account/tickets">Ticket system</a>
       </div>
     </div>
 
     <div class="content-row">
       <div class="left">
-        <a routerLink="/accounts/suggestions">Suggestions</a>
+        <a routerLink="/account/suggestions">Suggestions</a>
       </div>
     </div>
   </div>

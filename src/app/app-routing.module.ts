@@ -11,6 +11,7 @@ import { JoinComponent } from './layouts/public/join/join.component';
 import { DashboardComponent } from './layouts/account/dashboard/dashboard.component';
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { ChangePasswordComponent } from './layouts/account/password/password.component';
+import { BillingComponent } from './layouts/account/billing/billing.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'account', component: DashboardComponent },
   { path: 'account/email', component: ChangeEmailComponent },
   { path: 'account/password', component: ChangePasswordComponent },
+  { path: 'account/billing', component: BillingComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
