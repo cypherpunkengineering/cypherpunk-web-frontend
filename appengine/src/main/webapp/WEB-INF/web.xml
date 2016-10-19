@@ -43,6 +43,7 @@
 	<servlet-mapping>
 		<servlet-name>ControlPanelProxy</servlet-name>
 		<url-pattern>/api/*</url-pattern>
+		<url-pattern>/account/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
