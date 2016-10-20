@@ -98,8 +98,10 @@
 
   .mobile-drop-down {
     background-color: #cad8eb;
-    position: relative;
-    z-index: 100;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 0.5s ease;
+    &.open { max-height: 330px; }
 
     .mobile-dd-item {
       border-bottom: 1px solid #f2f2f2;
