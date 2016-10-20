@@ -1,4 +1,4 @@
-<div class="nav">
+<div id="nav" class="nav">
   <div class="nav-left">
     <a routerLink="/">
       <img src="/assets/logo-wh.png" alt="CypherPunk">
@@ -42,6 +42,54 @@
   </nav>
   <div class="clear"></div>
 
+</div>
+
+<div id="scrolled-nav" class="scrolled-nav-container">
+  <div class="nav">
+    <div class="nav-left">
+      <a routerLink="/">
+        <img src="/assets/logo-wh.png" alt="CypherPunk">
+      </a>
+    </div>
+
+    <nav class="nav-right">
+      <ul>
+        <li>
+          <a class="nav-link" routerLink="/download" routerLinkActive="active">download</a>
+          <ul>
+            <li class="header">for your Computer</li>
+            <li><a routerLink="/download" fragment="windows">Windows</a></li>
+            <li><a routerLink="/download" fragment="mac">Mac</a></li>
+            <li><a routerLink="/download" fragment="linux">Linux</a></li>
+            <li class="header">for your Browser</li>
+            <li><a routerLink="/download" fragment="chrome">Chrome</a></li>
+            <li><a routerLink="/download" fragment="firefox">Firefox</a></li>
+            <li><a routerLink="/download" fragment="opera">Opera</a></li>
+            <li class="header">for your Mobile Device</li>
+            <li><a routerLink="/download" fragment="ios">iOS</a></li>
+            <li><a routerLink="/download" fragment="android">Android</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/join" routerLinkActive="active">get cypherpunk now</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/learn" routerLinkActive="active">learn more</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">about us</a>
+        </li>
+        <li>
+          <button class="nav-link start" routerLink="/signup">start free</button>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="clear"></div>
+
+  </div>
 </div>
 
 <div class="mobile-nav">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
   showDropDown = false;
+  scrolledNavElement: HTMLElement;
+
+  // on scroll,
+  @HostListener('window:scroll', ['$event'])
+  handleScrollEvent(event) {
+    this.scrolledNavElement = document.getElementById('scrolled-nav');
+
+    // we round here to reduce a little workload
+    let currentPosition = Math.round(window.scrollY);
+
+    if (currentPosition > 60 && this.scrolledNavElement) {
+      this.scrolledNavElement.style.opacity = '1';
+    } else {
+      this.scrolledNavElement.style.opacity = '0';
+    }
+  }
 }
