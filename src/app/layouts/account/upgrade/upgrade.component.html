@@ -77,7 +77,7 @@
       <div class="info">
         <p>
           <label for="email">Email</label><br>
-          <input type="email" placeholder="you@example.com" [(ngModel)]="customerInfo.email">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email">
         </p>
       </div>
 
@@ -87,28 +87,35 @@
       <div class="info">
         <p>
           <label for="name">Name</label><br>
-          <input type="text" placeholder="John Smith" [(ngModel)]="customerInfo.name">
+          <input type="text" placeholder="John Smith" [(ngModel)]="name">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label for="cc">Card Number</label><br>
-          <input type="text" [(ngModel)]="billingInfo.ccNumber">
+          <input type="text" name="card-number" [(ngModel)]="cardNumber" size="20" data-stripe="number">
         </p>
       </div>
 
       <div class="info">
         <p>
-          <label for="expiration">Expiration Date</label><br>
-          <input type="text" placeholder="mm/yy" [(ngModel)]="billingInfo.expiration">
+          <label for="expiration">Expiration Month</label><br>
+          <input type="text" name="expiry-month" placeholder="mm" [(ngModel)]="expiryMonth" size="2" data-stripe="exp_month">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label for="expiration">Expiration Year</label><br>
+          <input type="text" name="expiry-year" placeholder="yy" [(ngModel)]="expiryYear" size="2" data-stripe="exp_year">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label for="cvv">CVV/CSC Code</label><br>
-          <input type="number" [(ngModel)]="billingInfo.ccCode">
+          <input type="number" name="cvc" [(ngModel)]="cvc" size="4" data-stripe="cvc">
         </p>
       </div>
 
@@ -118,25 +125,26 @@
       <div class="info">
         <p>
           <label for="country">Country</label><br>
-          <input type="text" [(ngModel)]="billingInfo.country">
+          <input type="text" [(ngModel)]="country">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label for="address">Address</label><br>
-          <input type="text" placeholder="your address" [(ngModel)]="billingInfo.address">
+          <input type="text" placeholder="your address" [(ngModel)]="address">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label for="zip">Zip Code</label><br>
-          <input type="text" [(ngModel)]="billingInfo.zipCode">
+          <input type="text" [(ngModel)]="zipCode">
         </p>
       </div>
 
-      <button class="btn blue" (click)="charge()">Join Cypherpunk Now</button>
+      <button class="btn blue" (click)="getToken()">Join Cypherpunk Now</button>
+      <div class="stripe-message">{{message}}</div>
     </div>
 
   </div>

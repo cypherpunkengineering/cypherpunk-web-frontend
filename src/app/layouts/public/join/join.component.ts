@@ -1,4 +1,6 @@
 import { Component, NgZone } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: './join.component.html',
@@ -12,9 +14,9 @@ export class JoinComponent {
   cvc: string;
   message: string;
 
+  // user variables
   email: string;
   name: string;
-
   country: string;
   address: string;
   zipCode: string;
@@ -66,7 +68,7 @@ export class JoinComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private _zone: NgZone) {}
+  constructor(private _zone: NgZone, private http: Http) {}
 
   getToken() {
     // show user we're charging the card
@@ -83,19 +85,45 @@ export class JoinComponent {
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
       let token = response.card.id;
+      this.message = 'Success!';
       console.log(token);
-
-      // probably calls server at this point
-
-      this._zone.run(() => {
-        if (status === 200) { this.message = `Success! Card token created.`; }
-        else { this.message = response.error.message; }
-      });
+      return this.saveToServer(token);
     };
 
     // load up stripe and create token
     let stripe = (<any>window).Stripe;
     stripe.card.createToken(stripeParams, stripeCallback);
+  }
+
+  saveToServer(token: string) {
+    let serverParams = {
+      token: token,
+      email: this.email,
+      name: this.name,
+      country: this.country,
+      address: this.address,
+      zipCode: this.zipCode
+    };
+
+    // call server at this point (using promises)
+    let url = 'http://localhost';
+    let body = JSON.stringify(serverParams);
+    let headers = new Headers({});
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(url, body, options).toPromise()
+    // extract data from response
+    .then(function(res: Response) {
+      let resBody = res.json();
+      return resBody.data || {};
+    })
+    // update view
+    .then(function(data) {
+      this._zone.run(() => {
+        this.message = `Success! Card token created.`;
+      });
+    })
+    // handle errors
+    .catch(function(error) { this.message = error.message; });
   }
 
   // pricing functions
