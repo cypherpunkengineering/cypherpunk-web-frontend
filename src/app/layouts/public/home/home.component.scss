@@ -17,32 +17,21 @@
 
 .cta-container { position: relative; }
 .call-to-action {
-  font-size: 22px;
-  font-weight: 500;
-  color: #333333;
   position: absolute;
   top: -50px;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   width: 344px;
   height: 90px;
   text-align: center;
   z-index: 2;
 }
 
-button {
+.btn {
   font-size: 24px;
-  color: #ffffff;
-  text-shadow: 0 2px 0 #d19e12;
   width: 341px;
   height: 80px;
-  border-radius: 5px;
-  background-color: #ffc933;
-  box-shadow: 0 4px 0 0 #d19e12;
-  border: 0px;
-  cursor: pointer;
 }
 
 .grey-content {

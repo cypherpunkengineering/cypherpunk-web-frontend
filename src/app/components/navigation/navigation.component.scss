@@ -58,17 +58,10 @@
   margin-right: 25px;
 }
 
-.nav-link.start {
-  background-color: #ffc933;
-  text-align: center;
-  text-shadow: 0 2px 0 #d19e12;
+.btn {
   width: 114px;
   height: 38px;
-  border-radius: 5px;
-  border: 0px;
-  box-shadow: 0 4px 0 0 #d19e12;
-  margin-top: -10px;
-  cursor: pointer;
+  margin: -10px 25px 0 0;
 }
 
 .clear { clear: both; }
@@ -122,18 +115,10 @@
       color: #034698;
       &:last-child { border: 0; }
     }
-    .button {
-      color: white;
-      font-weight: bold;
-      background-color: #ffc933;
-      text-shadow: 0 2px 0 #d19e12;
+    .btn {
       width: 153.8px;
       height: 43px;
-      border-radius: 5px;
-      border: 0px;
       line-height: 2.5;
-      box-shadow: 0 4px 0 0 #d19e12;
-      cursor: pointer;
       margin: 10px auto 14px;
     }
   }

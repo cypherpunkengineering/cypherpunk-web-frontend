@@ -19,8 +19,7 @@ export class NavigationComponent {
 
     if (currentPosition > 60 && this.scrolledNavElement) {
       this.scrolledNavElement.style.opacity = '1';
-    } else {
-      this.scrolledNavElement.style.opacity = '0';
     }
+    else { this.scrolledNavElement.style.opacity = '0'; }
   }
 }
