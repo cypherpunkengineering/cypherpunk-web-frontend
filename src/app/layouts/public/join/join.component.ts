@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './join.component.html',
   styleUrls: ['./join.component.scss']
 })
 export class JoinComponent {
+  // Stripe variables
+  cardNumber: string;
+  expiryMonth: string;
+  expiryYear: string;
+  cvc: string;
+  message: string;
+
+  email: string;
+  name: string;
+
+  country: string;
+  address: string;
+  zipCode: string;
+
   // pricing model
 
   priceModels = [
@@ -52,21 +66,37 @@ export class JoinComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  // customer information
+  constructor(private _zone: NgZone) {}
 
-  customerInfo = {
-    email: '',
-    name: ''
-  };
+  getToken() {
+    // show user we're charging the card
+    this.message = 'Loading...';
 
-  billingInfo = {
-    ccNumber: '',
-    expiration: '',
-    ccCode: '',
-    country: '',
-    address: '',
-    zipCode: ''
-  };
+    // stripe params
+    let stripeParams = {
+      number: this.cardNumber,
+      exp_month: this.expiryMonth,
+      exp_year: this.expiryYear,
+      cvc: this.cvc
+    };
+
+    // stripe callback
+    let stripeCallback = (status: number, response: any) => {
+      let token = response.card.id;
+      console.log(token);
+
+      // probably calls server at this point
+
+      this._zone.run(() => {
+        if (status === 200) { this.message = `Success! Card token created.`; }
+        else { this.message = response.error.message; }
+      });
+    };
+
+    // load up stripe and create token
+    let stripe = (<any>window).Stripe;
+    stripe.card.createToken(stripeParams, stripeCallback);
+  }
 
   // pricing functions
 
@@ -86,15 +116,6 @@ export class JoinComponent {
       item.selected = false;
     });
     option.selected = true;
-  }
-
-  // submit function
-
-  charge() {
-    console.log(this.customerInfo);
-    console.log(this.billingInfo);
-    console.log(this.selectedModel);
-    console.log(this.selectedOption);
   }
 
 }

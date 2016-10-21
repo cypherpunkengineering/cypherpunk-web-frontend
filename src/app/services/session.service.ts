@@ -4,12 +4,8 @@ import { Injectable } from '@angular/core';
 export class SessionService {
   user = {
     username: '',
-    email: ''
+    email: '',
+    priceModel: 0,
+    payOption: 0
   };
-
-  getUser() { return this.user; }
-  setUser(user) {
-    this.user.username = user.username;
-    this.user.email = user.email;
-  }
 }
