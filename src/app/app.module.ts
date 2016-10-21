@@ -16,6 +16,7 @@ import { DashboardComponent } from './layouts/account/dashboard/dashboard.compon
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { ChangePasswordComponent } from './layouts/account/password/password.component';
 import { BillingComponent } from './layouts/account/billing/billing.component';
+import { UpgradeComponent } from './layouts/account/upgrade/upgrade.component';
 import { NotFoundComponent } from './layouts/404/404.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AccountNavigationComponent } from './components/account-navigation/account-navigation.component';
@@ -40,6 +41,7 @@ import { SessionService } from './services/session.service';
     ChangeEmailComponent,
     ChangePasswordComponent,
     BillingComponent,
+    UpgradeComponent,
     NotFoundComponent,
     NavigationComponent,
     AccountNavigationComponent,

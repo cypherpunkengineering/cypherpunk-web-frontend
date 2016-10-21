@@ -13,6 +13,7 @@ import { DashboardComponent } from './layouts/account/dashboard/dashboard.compon
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { ChangePasswordComponent } from './layouts/account/password/password.component';
 import { BillingComponent } from './layouts/account/billing/billing.component';
+import { UpgradeComponent } from './layouts/account/upgrade/upgrade.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'account/email', component: ChangeEmailComponent, canActivate: [AuthGuard] },
   { path: 'account/password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
   { path: 'account/billing', component: BillingComponent, canActivate: [AuthGuard] },
+  { path: 'account/upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' }
 ];
 

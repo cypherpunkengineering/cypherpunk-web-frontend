@@ -3,8 +3,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  templateUrl: './join.component.html',
-  styleUrls: ['./join.component.scss']
+  templateUrl: './upgrade.component.html',
+  styleUrls: ['./upgrade.component.scss']
 })
 export class UpgradeComponent {
   // Stripe variables
