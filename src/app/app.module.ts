@@ -21,6 +21,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { AccountNavigationComponent } from './components/account-navigation/account-navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { SessionService } from './services/session.service';
+
 @NgModule({
   // all components must be declared here
   declarations: [
@@ -47,7 +51,11 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+    SessionService
+  ],
   bootstrap: [RootComponent]
 })
 export class AppModule { }
