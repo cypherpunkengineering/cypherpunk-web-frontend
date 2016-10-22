@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  user = {
-    email: 'test@example.com',
-    status: 'active',
-    period: '6 months',
-    renewalDate: '2017-03-03T03:24:00'
-  };
+export class DashboardComponent {
+  user: any;
+  daysLeft: number = 0;
 
-  daysLeft = 0;
+  constructor(private session: SessionService) {
+    this.user = session.user;
 
-  ngOnInit() {
     let now = new Date();
     let renewalDate = new Date(this.user.renewalDate);
     let oneDay = 24 * 60 * 60 * 1000;

@@ -8,7 +8,13 @@
   <nav class="nav-right">
     <ul>
       <li>
-        <a class="nav-link" routerLink="/logout">Log out</a>
+        <a class="nav-link" routerLink="/account">Account</a>
+      </li>
+      <li>
+        <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
+      </li>
+      <li class="border" (click)="logOff()">
+        <a class="nav-link">Log out</a>
       </li>
     </ul>
   </nav>

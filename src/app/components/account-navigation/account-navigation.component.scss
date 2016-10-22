@@ -1,20 +1,17 @@
 .nav {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 0;
+  margin: auto;
 }
 
 .nav-left {
   float: left;
-  padding-left: 1rem;
+  padding: 8px 0 8px 16px;
 }
 
 .nav-right {
   float: right;
-  padding-right: 1rem;
-  padding-top: 10px;
-  color: #034698;
+  padding: 18px 16px 0 0;
 }
 
 .nav-right ul {
@@ -27,9 +24,29 @@
 .nav-right ul li { position: relative; float: left; }
 
 .nav-link {
+  color: #034698;
   font-weight: bold;
   text-decoration: none;
+  text-transform: uppercase;
   margin-right: 25px;
+}
+
+.border {
+  width: 113.8px;
+  height: 38px;
+  border: 1px solid #034698;
+  border-radius: 5px;
+  margin-top: -7px;
+  padding-top: 8px;
+  text-align: center;
+  cursor: pointer;
+  & a { margin-right: 0; }
+}
+
+.btn {
+  width: 113.8px;
+  height: 35px;
+  margin:-10px 25px 0 0;
 }
 
 .clear { clear: both; }
