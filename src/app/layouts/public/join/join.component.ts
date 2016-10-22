@@ -106,7 +106,7 @@ export class JoinComponent {
     };
 
     // call server at this point (using promises)
-    let url = 'http://localhost';
+    let url = 'https://cypherpunk.engineering/api/subscription/purchase';
     let body = JSON.stringify(serverParams);
     let headers = new Headers({});
     let options = new RequestOptions({ headers: headers });
