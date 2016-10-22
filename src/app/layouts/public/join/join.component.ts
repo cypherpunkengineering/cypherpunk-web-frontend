@@ -25,6 +25,7 @@ export class JoinComponent {
 
   priceModels = [
     {
+      id: 'monthly999',
       price: 9.99,
       months: 1,
       total: 9.99,
@@ -32,6 +33,7 @@ export class JoinComponent {
       selected: false
     },
     {
+      id: 'yearly8004',
       price: 6.25,
       months: 12,
       total: 75.00,
@@ -39,6 +41,7 @@ export class JoinComponent {
       selected: true
     },
     {
+      id: 'semiannually4998',
       price: 8.33,
       months: 6,
       total: 49.98,
@@ -84,7 +87,7 @@ export class JoinComponent {
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
-      let token = response.card.id;
+      let token = response.id;
       this.message = 'Success!';
       console.log(token);
       return this.saveToServer(token);
@@ -98,18 +101,16 @@ export class JoinComponent {
   saveToServer(token: string) {
     let serverParams = {
       token: token,
-      email: this.email,
-      name: this.name,
-      country: this.country,
-      address: this.address,
-      zipCode: this.zipCode
+      plan: this.selectedModel.id,
+      email: this.email
     };
 
     // call server at this point (using promises)
-    let url = 'https://cypherpunk.engineering/api/subscription/purchase';
-    let body = JSON.stringify(serverParams);
-    let headers = new Headers({});
-    let options = new RequestOptions({ headers: headers });
+    let url = '/api/subscription/purchase';
+    //url = 'http://192.168.32.128:11080/api/subscription/purchase';
+    //let body = JSON.stringify(serverParams);
+    let body = serverParams;
+    let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
     .then(function(res: Response) {
