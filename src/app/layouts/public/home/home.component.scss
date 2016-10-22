@@ -3,16 +3,23 @@
   background-image: linear-gradient(290deg, #034698, #548cd2);
   border-bottom: 16px solid #034698;
 
+  .masthead-image {
+    position: relative;
+    width: 1200px;
+    height: 264px;
+    background: url('/assets/web-top.png') bottom no-repeat;
+    margin: auto;
+  }
+
   .masthead-header {
     width: 100%;
     text-align: center;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 500;
     text-align: center;
     color: #ffffff;
-    margin: 45px auto 0;
+    margin: 40px auto 0;
   }
-  .carousel { height: 273px; }
 }
 
 .cta-container { position: relative; }
