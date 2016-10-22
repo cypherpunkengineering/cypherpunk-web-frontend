@@ -28,21 +28,21 @@ export class JoinComponent {
       price: 9.99,
       months: 1,
       total: 9.99,
-      yearly: '&nbsp;',
+      yearly: '$ 9.99 billed monthly',
       selected: false
     },
     {
-      price: 6.67,
+      price: 6.25,
       months: 12,
-      total: 80.04,
-      yearly: '$ 80.04 billed yearly',
+      total: 75.00,
+      yearly: '$ 75 billed annually',
       selected: true
     },
     {
       price: 8.33,
       months: 6,
       total: 49.98,
-      yearly: '$ 49.98 billed per half year',
+      yearly: '$ 49.98 billed semiannually',
       selected: false
     }
   ];
