@@ -19,7 +19,11 @@ export class NavigationComponent {
 
     if (currentPosition > 60 && this.scrolledNavElement) {
       this.scrolledNavElement.style.opacity = '1';
+      this.scrolledNavElement.style.visibility = 'visible';
     }
-    else { this.scrolledNavElement.style.opacity = '0'; }
+    else {
+      this.scrolledNavElement.style.opacity = '0';
+      this.scrolledNavElement.style.visibility = 'hidden';
+    }
   }
 }

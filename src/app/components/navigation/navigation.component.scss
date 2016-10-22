@@ -75,7 +75,7 @@
   z-index: 100;
   background-color: #cad8eb;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: all 0.5s ease;
   .nav-link { color: #034698; }
 }
 
@@ -104,7 +104,7 @@
     max-height: 0;
     overflow-y: hidden;
     transition: max-height 0.5s ease;
-    &.open { max-height: 330px; }
+    &.open { max-height: 210px; }
 
     .mobile-dd-item {
       border-bottom: 1px solid #f2f2f2;
@@ -114,12 +114,14 @@
       font-weight: bold;
       line-height: 2.78;
       color: #034698;
+      cursor: pointer;
       &:last-child { border: 0; }
     }
     .btn {
       width: 153.8px;
       height: 43px;
-      line-height: 2.5;
+      line-height: 1.5;
+      font-size: 18px;
       margin: 10px auto 14px;
     }
   }

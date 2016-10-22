@@ -8,6 +8,12 @@
   <nav class="nav-right">
     <ul>
       <li>
+        <a class="nav-link" routerLink="/premium" routerLinkActive="active">premium</a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/help" routerLinkActive="active">help</a>
+      </li>
+      <li>
         <a class="nav-link" routerLink="/download" routerLinkActive="active">download</a>
         <ul>
           <li class="header">for your Computer</li>
@@ -22,18 +28,6 @@
           <li><a routerLink="/download" fragment="ios">iOS</a></li>
           <li><a routerLink="/download" fragment="android">Android</a></li>
         </ul>
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/join" routerLinkActive="active">get cypherpunk now</a>
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/learn" routerLinkActive="active">learn more</a>
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/about" routerLinkActive="active">about us</a>
-      </li>
-      <li>
-        <button class="btn gold" routerLink="/signup">start free</button>
       </li>
       <li>
         <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
@@ -55,6 +49,12 @@
     <nav class="nav-right">
       <ul>
         <li>
+          <a class="nav-link" routerLink="/premium" routerLinkActive="active">premium</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/help" routerLinkActive="active">help</a>
+        </li>
+        <li>
           <a class="nav-link" routerLink="/download" routerLinkActive="active">download</a>
           <ul>
             <li class="header">for your Computer</li>
@@ -69,18 +69,6 @@
             <li><a routerLink="/download" fragment="ios">iOS</a></li>
             <li><a routerLink="/download" fragment="android">Android</a></li>
           </ul>
-        </li>
-        <li>
-          <a class="nav-link" routerLink="/join" routerLinkActive="active">get cypherpunk now</a>
-        </li>
-        <li>
-          <a class="nav-link" routerLink="/learn" routerLinkActive="active">learn more</a>
-        </li>
-        <li>
-          <a class="nav-link" routerLink="/about" routerLinkActive="active">about us</a>
-        </li>
-        <li>
-          <button class="btn gold" routerLink="/signup">start free</button>
         </li>
         <li>
           <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
@@ -106,20 +94,14 @@
   <div class="clear"></div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
-    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
-      download
-    </div>
     <div class="mobile-dd-item" routerLink="/join" routerLinkActive="active">
-      get cypherpunk now
+      premium
     </div>
     <div class="mobile-dd-item" routerLink="/learn" routerLinkActive="active">
-      learn more
+      help
     </div>
-    <div class="mobile-dd-item" routerLink="/about" routerLinkActive="active">
-      about us
-    </div>
-    <div class="mobile-dd-item" routerLink="/signup" routerLinkActive="active">
-      <button class="btn gold">start free</button>
+    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
+      download
     </div>
     <div class="mobile-dd-item" routerLink="/login" routerLinkActive="active">
       log in
