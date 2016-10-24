@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth-guard.service';
+import { ConfirmationGuard } from './services/confirmation-guard.service';
 
 import { HomeComponent } from './layouts/public/home/home.component';
 import { DownloadComponent } from './layouts/public/download/download.component';
@@ -9,6 +10,7 @@ import { LoginComponent } from './layouts/public/login/login.component';
 import { ResetComponent } from './layouts/public/reset/reset.component';
 import { LearnComponent } from './layouts/public/learn/learn.component';
 import { JoinComponent } from './layouts/public/join/join.component';
+import { ConfirmationComponent } from './layouts/public/confirmation/confirmation.component';
 import { DashboardComponent } from './layouts/account/dashboard/dashboard.component';
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { ChangePasswordComponent } from './layouts/account/password/password.component';
@@ -23,6 +25,7 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent },
   { path: 'learn', component: LearnComponent },
   { path: 'join', component: JoinComponent },
+  { path: 'confirmation/:token', component: ConfirmationComponent, canActivate: [ConfirmationGuard] },
   { path: 'account', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'account/email', component: ChangeEmailComponent, canActivate: [AuthGuard] },
   { path: 'account/password', component: ChangePasswordComponent, canActivate: [AuthGuard] },

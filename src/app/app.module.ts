@@ -12,6 +12,7 @@ import { LoginComponent } from './layouts/public/login/login.component';
 import { ResetComponent } from './layouts/public/reset/reset.component';
 import { LearnComponent } from './layouts/public/learn/learn.component';
 import { JoinComponent } from './layouts/public/join/join.component';
+import { ConfirmationComponent } from './layouts/public/confirmation/confirmation.component';
 import { DashboardComponent } from './layouts/account/dashboard/dashboard.component';
 import { ChangeEmailComponent } from './layouts/account/email/email.component';
 import { ChangePasswordComponent } from './layouts/account/password/password.component';
@@ -23,6 +24,7 @@ import { AccountNavigationComponent } from './components/account-navigation/acco
 import { FooterComponent } from './components/footer/footer.component';
 
 import { AuthGuard } from './services/auth-guard.service';
+import { ConfirmationGuard } from './services/confirmation-guard.service';
 import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
 
@@ -37,6 +39,7 @@ import { SessionService } from './services/session.service';
     ResetComponent,
     LearnComponent,
     JoinComponent,
+    ConfirmationComponent,
     DashboardComponent,
     ChangeEmailComponent,
     ChangePasswordComponent,
@@ -55,6 +58,7 @@ import { SessionService } from './services/session.service';
   ],
   providers: [
     AuthGuard,
+    ConfirmationGuard,
     AuthService,
     SessionService
   ],
