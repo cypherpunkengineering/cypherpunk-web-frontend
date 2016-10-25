@@ -116,7 +116,7 @@ export class UpgradeComponent {
     let session = this.session;
 
     // call server at this point (using promises)
-    let url = '/api/subscription/purchase';
+    let url = '/api/subscription/upgrade';
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
