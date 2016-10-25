@@ -73,7 +73,9 @@ export class UpgradeComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private session: SessionService, private router: Router, private _zone: NgZone, private http: Http) {}
+  constructor(private session: SessionService, private router: Router, private _zone: NgZone, private http: Http) {
+    this.email = session.user.email;
+  }
 
   getToken() {
     // show user we're charging the card

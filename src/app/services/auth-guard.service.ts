@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 
     let user = route.queryParams['user'];
     let secret = route.queryParams['secret'];
-    console.log(user, secret);
     if (user && secret) { return true; }
 
     this.auth.redirectUrl = url;

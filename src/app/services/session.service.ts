@@ -17,8 +17,8 @@ export class SessionService {
   };
 
   constructor(private http: Http) {
-    this.user.username = localStorage.getItem('username') || '';
-    this.user.email = localStorage.getItem('email') || '';
+    this.user.username = localStorage.getItem('username') || 'tester';
+    this.user.email = localStorage.getItem('email') || 'test@example.com';
   }
 
   pullSessionData() {
@@ -26,7 +26,6 @@ export class SessionService {
     return this.http.get(url).toPromise()
     .then(function(res: Response) {
       let body = res.json();
-      console.log(body);
 
       this.user.type = body.type;
       this.user.confirmed = body.confirmed;
