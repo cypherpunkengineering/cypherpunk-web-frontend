@@ -21,8 +21,9 @@ export class ConfirmationGuard implements CanActivate {
       let valid = data['valid'];
       if (valid) {
         auth.authed = true;
-        session.user.email = data['email'];
+        session.user.email = data['acct']['email'];
         session.user.secret = data['secret'];
+        session.pullSessionData();
         return true;
       }
       else {

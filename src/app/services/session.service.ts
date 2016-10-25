@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class SessionService {
@@ -13,4 +14,14 @@ export class SessionService {
     payOption: 0,
     secret: ''
   };
+
+  constructor(private http: Http) {}
+
+  pullSessionData() {
+    let url = '/api/subscription/status';
+    return this.http.get(url).toPromise()
+    .then(function(res: Response) {
+      console.log(res);
+    });
+  }
 }
