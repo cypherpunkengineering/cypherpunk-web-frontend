@@ -123,7 +123,13 @@ export class UpgradeComponent {
       });
     })
     // handle errors
-    .catch(function(error) { this.message = error.message; });
+    .catch(function(error) {
+      this._zone.run(() => {
+        this.message = error.message;
+        console.log(error);
+        // error 409 -> redirect to login page
+      });
+    });
   }
 
   // pricing functions

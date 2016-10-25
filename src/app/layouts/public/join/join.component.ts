@@ -128,6 +128,7 @@ export class JoinComponent {
       this._zone.run(() => {
         this.message = error.message;
         console.log(error);
+        // 409 - > redict to login page
       });
     });
   }
