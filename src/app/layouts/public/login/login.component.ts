@@ -17,7 +17,7 @@ export class LoginComponent {
   login() {
     this.auth.login(this.user)
     .then((val) => {
-      this.router.navigate(['account']);
+      this.router.navigate(['user']);
     });
   }
 }

@@ -126,7 +126,7 @@ export class JoinComponent {
     .then(function(data) {
       _zone.run(() => {
         message = `Success!.`;
-        router.navigate(['/account']);
+        router.navigate(['/user']);
       });
     })
     // handle errors

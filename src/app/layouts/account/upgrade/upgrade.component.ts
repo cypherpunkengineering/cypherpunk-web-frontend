@@ -125,7 +125,7 @@ export class UpgradeComponent {
     .then(function(data) {
       _zone.run(() => {
         message = `Success!`;
-        router.navigate(['/account']);
+        router.navigate(['/user']);
       });
     })
     // handle errors
@@ -134,7 +134,7 @@ export class UpgradeComponent {
         message = error.message;
         console.log(error);
         // error 409 -> redirect to login page
-        router.navigate(['/account']);
+        router.navigate(['/user']);
       });
     });
   }

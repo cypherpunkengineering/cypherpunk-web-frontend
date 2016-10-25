@@ -26,11 +26,11 @@ const routes: Routes = [
   { path: 'learn', component: LearnComponent },
   { path: 'join', component: JoinComponent },
   { path: 'confirmation/:accountId', component: ConfirmationComponent, canActivate: [ConfirmationGuard] },
-  { path: 'account', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'account/email', component: ChangeEmailComponent, canActivate: [AuthGuard] },
-  { path: 'account/password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
-  { path: 'account/billing', component: BillingComponent, canActivate: [AuthGuard] },
-  { path: 'account/upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'user/email', component: ChangeEmailComponent, canActivate: [AuthGuard] },
+  { path: 'user/password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'user/billing', component: BillingComponent, canActivate: [AuthGuard] },
+  { path: 'user/upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/' }
 ];
 
