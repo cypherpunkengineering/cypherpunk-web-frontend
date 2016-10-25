@@ -14,6 +14,7 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string, route: ActivatedRouteSnapshot): boolean {
     return true;
+	/*
     if (this.auth.authed) { return true; }
 
     let user = route.queryParams['user'];
@@ -23,5 +24,6 @@ export class AuthGuard implements CanActivate {
     this.auth.redirectUrl = url;
     this.router.navigate(['/login']);
     return false;
+	*/
   }
 }
