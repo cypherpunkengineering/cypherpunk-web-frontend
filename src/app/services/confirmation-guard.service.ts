@@ -26,7 +26,7 @@ export class ConfirmationGuard implements CanActivate {
   }
 
   checkToken(accountId: string, confToken: string): Promise<boolean> {
-    let url = `https://cypherpunk.engineering/api/account/confirm/${accountId}?confirmationToken=${confToken}`;
+    let url = `https://cypherpunk.engineering/account/confirm/${accountId}?confirmationToken=${confToken}`;
     return this.http.get(url).toPromise()
     .then(function(res: Response) {
       if (res.status === 200) { return true; }
