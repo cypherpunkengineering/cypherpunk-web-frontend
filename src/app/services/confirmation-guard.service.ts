@@ -19,14 +19,21 @@ export class ConfirmationGuard implements CanActivate {
     return this.checkToken(accountId, confToken)
     .then(function(data) {
       let valid = data['valid'];
+
+      console.log(valid);
+
       if (valid) {
+        console.log('confirmed');
         auth.authed = true;
+
+        console.log(data);
         session.user.email = data['acct']['email'];
         session.user.secret = data['secret'];
-        session.pullSessionData();
+        // session.pullSessionData();
         return true;
       }
       else {
+        console.log('navigate home: not confirmed');
         router.navigate(['/']);
         return false;
       }
@@ -43,7 +50,7 @@ export class ConfirmationGuard implements CanActivate {
       return res;
     })
     .then(function(res: Response) {
-      retVal = res.json().data || {};
+      retVal = res.json().data || { valid: false };
       return retVal;
     })
     .catch(function() { return retVal; });

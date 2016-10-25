@@ -1,5 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -71,7 +72,7 @@ export class JoinComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private _zone: NgZone, private http: Http) {}
+  constructor(private router: Router, private _zone: NgZone, private http: Http) {}
 
   getToken() {
     // show user we're charging the card
@@ -107,8 +108,6 @@ export class JoinComponent {
 
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
-    //url = 'http://192.168.32.128:11080/api/subscription/purchase';
-    //let body = JSON.stringify(serverParams);
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
@@ -120,7 +119,8 @@ export class JoinComponent {
     // update view
     .then(function(data) {
       this._zone.run(() => {
-        this.message = `Success! Card token created.`;
+        this.message = `Success!.`;
+        this.router.navigate(['/download']);
       });
     })
     // handle errors
