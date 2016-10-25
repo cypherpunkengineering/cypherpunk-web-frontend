@@ -11,22 +11,24 @@ export class ConfirmationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     let accountId = route.params['accountId'];
     let confToken = route.queryParams['confirmationToken'];
+    let auth = this.auth;
+    let router = this.router;
 
     return this.checkToken(accountId, confToken)
     .then(function(valid) {
       if (valid) {
-        this.auth.authed = true;
+        auth.authed = true;
         return true;
       }
       else {
-        this.router.navigate(['/']);
+        router.navigate(['/']);
         return false;
       }
     });
   }
 
   checkToken(accountId: string, confToken: string): Promise<boolean> {
-    let url = `https://cypherpunk.engineering/account/confirm/${accountId}?confirmationToken=${confToken}`;
+    let url = `/account/confirm/${accountId}?confirmationToken=${confToken}`;
     return this.http.get(url).toPromise()
     .then(function(res: Response) {
       if (res.status === 200) { return true; }
