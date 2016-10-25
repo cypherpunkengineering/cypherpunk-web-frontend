@@ -24,6 +24,7 @@ export class ConfirmationGuard implements CanActivate {
         auth.authed = true;
         session.user.email = data['acct']['email'];
         session.user.secret = data['secret'];
+        localStorage.setItem('email', session.user.email);
         session.pullSessionData();
         return true;
       }

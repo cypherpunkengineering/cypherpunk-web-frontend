@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -72,7 +73,7 @@ export class JoinComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private router: Router, private _zone: NgZone, private http: Http) {}
+  constructor(private auth: AuthService, private router: Router, private _zone: NgZone, private http: Http) {}
 
   getToken() {
     // show user we're charging the card
@@ -108,6 +109,7 @@ export class JoinComponent {
     let _zone = this._zone;
     let message = this.message;
     let router = this.router;
+    let auth = this.auth;
 
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
@@ -119,11 +121,12 @@ export class JoinComponent {
       let resBody = res.json();
       return resBody || {};
     })
+    .then(function() { auth.authed = true; })
     // update view
     .then(function(data) {
       _zone.run(() => {
         message = `Success!.`;
-        router.navigate(['/download']);
+        router.navigate(['/account']);
       });
     })
     // handle errors

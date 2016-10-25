@@ -16,7 +16,10 @@ export class SessionService {
     secret: ''
   };
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    this.user.username = localStorage.getItem('username') || '';
+    this.user.email = localStorage.getItem('email') || '';
+  }
 
   pullSessionData() {
     let url = '/api/subscription/status';
