@@ -10,6 +10,7 @@ export class SessionService {
     period: '6 months',
     renewalDate: '2017-03-03T03:24:00',
     priceModel: 0,
-    payOption: 0
+    payOption: 0,
+    secret: ''
   };
 }
