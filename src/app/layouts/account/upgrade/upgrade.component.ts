@@ -125,7 +125,7 @@ export class UpgradeComponent {
       return res.json() || {};
     })
     .then(function() { session.pullSessionData(); })
-    .then(function() { auth.authed = true; }
+    .then(function() { auth.authed = true; })
     // update view
     .then(function(data) {
       _zone.run(() => {
