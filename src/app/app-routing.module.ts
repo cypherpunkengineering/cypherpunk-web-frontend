@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent },
   { path: 'learn', component: LearnComponent },
   { path: 'join', component: JoinComponent },
-  { path: 'confirmation/:token', component: ConfirmationComponent, canActivate: [ConfirmationGuard] },
+  { path: 'confirmation/:accountId', component: ConfirmationComponent, canActivate: [ConfirmationGuard] },
   { path: 'account', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'account/email', component: ChangeEmailComponent, canActivate: [AuthGuard] },
   { path: 'account/password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
