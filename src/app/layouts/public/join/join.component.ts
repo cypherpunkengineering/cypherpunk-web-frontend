@@ -124,7 +124,12 @@ export class JoinComponent {
       });
     })
     // handle errors
-    .catch(function(error) { this.message = error.message; });
+    .catch(function(error) {
+      this._zone.run(() => {
+        this.message = error.message;
+        console.log(error);
+      });
+    });
   }
 
   // pricing functions

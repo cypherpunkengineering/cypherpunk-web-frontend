@@ -46,12 +46,18 @@ export class ConfirmationGuard implements CanActivate {
 
     return this.http.get(url).toPromise()
     .then(function(res: Response) {
+      console.log(res);
+
       if (res.status === 200) { retVal.valid = true; }
       return res;
     })
     .then(function(res: Response) {
       retVal = res.json().data || { valid: false };
       return retVal;
+    })
+    .then(function(data) {
+      console.log(data);
+      return data;
     })
     .catch(function() { return retVal; });
   }
