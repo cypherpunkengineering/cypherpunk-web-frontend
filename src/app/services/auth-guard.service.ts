@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
   checkLogin(url: string, route: ActivatedRouteSnapshot): boolean {
     if (this.auth.authed) { return true; }
 
-    let user = route.params['user'];
-    let secret = route.params['secret'];
+    let user = route.queryParams['user'];
+    let secret = route.queryParams['secret'];
     console.log(user, secret);
     if (user && secret) { return true; }
 
