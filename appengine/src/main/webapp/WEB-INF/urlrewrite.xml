@@ -33,8 +33,10 @@
 
 	<!-- angular routes -->
 	<rule>
-		<condition type="remote-addr" next="or">^208\.111\.48\.</condition>
-		<condition type="remote-addr" next="or">^208\.111\.52\.</condition>
+		<condition type="remote-addr" next="or">^208\.111\.48\.</condition><!-- wiz hnl -->
+		<condition type="remote-addr" next="or">^208\.111\.52\.</condition><!-- wiz tokyo -->
+		<condition type="remote-addr" next="or">^43\.233\.13\.</condition><!-- jmaurice -->
+		<condition type="remote-addr" next="or">^76\.173\.255\.</condition><!-- ed -->
 		<condition type="remote-addr">^127\.</condition>
 		<from>^(.*)</from>
 		<to last="true">/index.html</to>
