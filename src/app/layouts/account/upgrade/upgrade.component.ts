@@ -92,7 +92,7 @@ export class UpgradeComponent {
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
-      let token = response.card.id;
+      let token = response.id;
       this.message = 'Success!';
       return this.saveToServer(token);
     };
