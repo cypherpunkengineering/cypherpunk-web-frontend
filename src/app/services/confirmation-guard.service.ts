@@ -52,7 +52,16 @@ export class ConfirmationGuard implements CanActivate {
       return res;
     })
     .then(function(res: Response) {
+      console.log('before json ' + retVal);
+      console.log(res.json());
+
+      let resBody = res.json();
+      let resBodyData = resBody.data;
+      console.log(resBodyData);
+
+
       retVal = res.json().data || { valid: false };
+      console.log('after json ' + retVal);
       return retVal;
     })
     .then(function(data) {
