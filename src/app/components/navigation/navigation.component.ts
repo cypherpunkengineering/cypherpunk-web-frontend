@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,16 @@ import { Component, HostListener } from '@angular/core';
 export class NavigationComponent {
   showDropDown = false;
   scrolledNavElement: HTMLElement;
+  isAuthed: boolean = false;
+
+  constructor(private auth: AuthService) {
+    this.isAuthed = this.auth.authed;
+  }
+
+  logout(): void {
+    this.auth.authed = false;
+    this.isAuthed = false;
+  }
 
   // on scroll,
   @HostListener('window:scroll', ['$event'])

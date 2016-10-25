@@ -29,8 +29,11 @@
           <li><a routerLink="/download" fragment="android">Android</a></li>
         </ul>
       </li>
-      <li class="border">
+      <li class="border" *ngIf="!isAuthed">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
+      </li>
+      <li class="border" *ngIf="isAuthed" >
+        <a class="nav-link" (click)="logout()">log out</a>
       </li>
     </ul>
   </nav>
@@ -70,8 +73,11 @@
             <li><a routerLink="/download" fragment="android">Android</a></li>
           </ul>
         </li>
-        <li class="border">
+        <li class="border" *ngIf="!isAuthed">
           <a class="nav-link" routerLink="/login" routerLinkActive="active">log in</a>
+        </li>
+        <li class="border" *ngIf="isAuthed" (click)="logout()">
+          <a class="nav-link">log out</a>
         </li>
       </ul>
     </nav>
@@ -97,13 +103,16 @@
     <div class="mobile-dd-item" routerLink="/join" routerLinkActive="active">
       premium
     </div>
-    <div class="mobile-dd-item" routerLink="/learn" routerLinkActive="active">
+    <div class="mobile-dd-item" href="https://support.cypherpunk.com/">
       help
     </div>
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
       download
     </div>
-    <div class="mobile-dd-item" routerLink="/login" routerLinkActive="active">
+    <div class="mobile-dd-item" *ngIf="!isAuthed" routerLink="/login" routerLinkActive="active">
+      log in
+    </div>
+    <div class="mobile-dd-item" *ngIf="isAuthed" (click)="logout()">
       log in
     </div>
   </div>
