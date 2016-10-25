@@ -35,7 +35,7 @@ export class UpgradeComponent {
       selected: false
     },
     {
-      id: 'yearly8004',
+      id: 'annually8004',
       price: 6.25,
       months: 12,
       total: 75.00,
@@ -107,6 +107,8 @@ export class UpgradeComponent {
     };
 
     let _zone = this._zone;
+    let message = this.message;
+    let router = this.router;
     let session = this.session;
 
     // call server at this point (using promises)
@@ -122,17 +124,17 @@ export class UpgradeComponent {
     // update view
     .then(function(data) {
       _zone.run(() => {
-        this.message = `Success!`;
-        this.router.navigate(['/account']);
+        message = `Success!`;
+        router.navigate(['/account']);
       });
     })
     // handle errors
     .catch(function(error) {
       _zone.run(() => {
-        this.message = error.message;
+        message = error.message;
         console.log(error);
         // error 409 -> redirect to login page
-        this.router.navigate(['/account']);
+        router.navigate(['/account']);
       });
     });
   }

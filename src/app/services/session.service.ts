@@ -7,9 +7,10 @@ export class SessionService {
     username: '',
     email: 'test@example.com',
     status: 'active',
-    plan: 'free',
+    type: 'free',
     period: '6 months',
     renewalDate: '2017-03-03T03:24:00',
+    confirmed: false,
     priceModel: 0,
     payOption: 0,
     secret: ''
@@ -24,7 +25,8 @@ export class SessionService {
       let body = res.json();
       console.log(body);
 
-      this.user.plan = body.type;
+      this.user.type = body.type;
+      this.user.confirmed = body.confirmed;
       this.user.renewalDate = body.expiration;
       this.user.period = body.renewal.toUpperCase();
     });

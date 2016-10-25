@@ -34,7 +34,7 @@ export class JoinComponent {
       selected: false
     },
     {
-      id: 'yearly8004',
+      id: 'annually8004',
       price: 6.25,
       months: 12,
       total: 75.00,
@@ -106,6 +106,8 @@ export class JoinComponent {
     };
 
     let _zone = this._zone;
+    let message = this.message;
+    let router = this.router;
 
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
@@ -120,17 +122,17 @@ export class JoinComponent {
     // update view
     .then(function(data) {
       _zone.run(() => {
-        this.message = `Success!.`;
-        this.router.navigate(['/download']);
+        message = `Success!.`;
+        router.navigate(['/download']);
       });
     })
     // handle errors
     .catch(function(error) {
       _zone.run(() => {
-        this.message = error.message;
+        message = error.message;
         console.log(error);
         // 409 - > redict to login page
-        this.router.navigate(['/']);
+        router.navigate(['/']);
       });
     });
   }
