@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class SessionService {
@@ -21,7 +21,12 @@ export class SessionService {
     let url = '/api/subscription/status';
     return this.http.get(url).toPromise()
     .then(function(res: Response) {
-      console.log(res);
+      let body = res.json();
+      console.log(body);
+
+      this.user.plan = body.type;
+      this.user.renewalDate = body.expiration;
+      this.user.period = body.renewal.toUpperCase();
     });
   }
 }

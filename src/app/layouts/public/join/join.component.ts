@@ -90,7 +90,6 @@ export class JoinComponent {
     let stripeCallback = (status: number, response: any) => {
       let token = response.id;
       this.message = 'Success!';
-      console.log(token);
       return this.saveToServer(token);
     };
 
@@ -106,6 +105,8 @@ export class JoinComponent {
       email: this.email
     };
 
+    let _zone = this._zone;
+
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
     let body = serverParams;
@@ -118,17 +119,18 @@ export class JoinComponent {
     })
     // update view
     .then(function(data) {
-      this._zone.run(() => {
+      _zone.run(() => {
         this.message = `Success!.`;
         this.router.navigate(['/download']);
       });
     })
     // handle errors
     .catch(function(error) {
-      this._zone.run(() => {
+      _zone.run(() => {
         this.message = error.message;
         console.log(error);
         // 409 - > redict to login page
+        this.router.navigate(['/']);
       });
     });
   }

@@ -1,5 +1,7 @@
 import { Component, NgZone } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
+import { Router } from '@angular/router';
+import { SessionService } from '../../../services/session.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -25,24 +27,27 @@ export class UpgradeComponent {
 
   priceModels = [
     {
+      id: 'monthly999',
       price: 9.99,
       months: 1,
       total: 9.99,
-      yearly: '&nbsp;',
+      yearly: '$ 9.99 billed monthly',
       selected: false
     },
     {
-      price: 6.67,
+      id: 'yearly8004',
+      price: 6.25,
       months: 12,
-      total: 80.04,
-      yearly: '$ 80.04 billed yearly',
+      total: 75.00,
+      yearly: '$ 75 billed annually',
       selected: true
     },
     {
+      id: 'semiannually4998',
       price: 8.33,
       months: 6,
       total: 49.98,
-      yearly: '$ 49.98 billed per half year',
+      yearly: '$ 49.98 billed semiannually',
       selected: false
     }
   ];
@@ -68,7 +73,7 @@ export class UpgradeComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private _zone: NgZone, private http: Http) {}
+  constructor(private session: SessionService, private router: Router, private _zone: NgZone, private http: Http) {}
 
   getToken() {
     // show user we're charging the card
@@ -86,7 +91,6 @@ export class UpgradeComponent {
     let stripeCallback = (status: number, response: any) => {
       let token = response.card.id;
       this.message = 'Success!';
-      console.log(token);
       return this.saveToServer(token);
     };
 
@@ -98,36 +102,37 @@ export class UpgradeComponent {
   saveToServer(token: string) {
     let serverParams = {
       token: token,
-      email: this.email,
-      name: this.name,
-      country: this.country,
-      address: this.address,
-      zipCode: this.zipCode
+      plan: this.selectedModel.id,
+      email: this.email
     };
 
+    let _zone = this._zone;
+    let session = this.session;
+
     // call server at this point (using promises)
-    let url = 'http://localhost';
-    let body = JSON.stringify(serverParams);
-    let headers = new Headers({});
-    let options = new RequestOptions({ headers: headers });
+    let url = '/api/subscription/purchase';
+    let body = serverParams;
+    let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
     .then(function(res: Response) {
-      let resBody = res.json();
-      return resBody || {};
+      return res.json() || {};
     })
+    .then(function() { session.pullSessionData(); })
     // update view
     .then(function(data) {
-      this._zone.run(() => {
-        this.message = `Success! Card token created.`;
+      _zone.run(() => {
+        this.message = `Success!`;
+        this.router.navigate(['/account']);
       });
     })
     // handle errors
     .catch(function(error) {
-      this._zone.run(() => {
+      _zone.run(() => {
         this.message = error.message;
         console.log(error);
         // error 409 -> redirect to login page
+        this.router.navigate(['/account']);
       });
     });
   }
