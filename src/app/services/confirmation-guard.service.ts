@@ -50,11 +50,9 @@ export class ConfirmationGuard implements CanActivate {
       return res;
     })
     .then(function(res: Response) {
-      retVal = res.json() || { valid: false };
+      retVal = res.json();
+      retVal.valid = true;
       return retVal;
-    })
-    .then(function(data) {
-      return data;
     })
     .catch(function() { return retVal; });
   }

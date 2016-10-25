@@ -114,7 +114,7 @@ export class JoinComponent {
     // extract data from response
     .then(function(res: Response) {
       let resBody = res.json();
-      return resBody.data || {};
+      return resBody || {};
     })
     // update view
     .then(function(data) {
