@@ -20,11 +20,11 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(url, body, options).toPromise()
-    .then(function(res: Response) {
+    .then((res: Response) => {
       console.log(res);
       return res.json();
     })
-    .then(function(data) {
+    .then((data) => {
       console.log(data);
       this.session.user.email = data.acct.email;
       this.session.user.secret = data.secret;
