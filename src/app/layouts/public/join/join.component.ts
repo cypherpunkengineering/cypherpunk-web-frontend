@@ -124,13 +124,11 @@ export class JoinComponent {
     .then(() => { this.auth.authed = true; })
     // update view
     .then(() => {
-      this.message = `Success!.`;
       this.alertService.success('You account was created!');
       this.router.navigate(['/user']);
     })
     // handle errors
     .catch((error) => {
-      this.message = error.message;
       console.log(error);
       this.alertService.error('Could not create an account');
       // 409 - > redict to login page

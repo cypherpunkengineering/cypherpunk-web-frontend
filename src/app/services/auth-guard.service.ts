@@ -6,7 +6,11 @@ import { SessionService } from './session.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private session: SessionService, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private session: SessionService,
+    private router: Router
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;

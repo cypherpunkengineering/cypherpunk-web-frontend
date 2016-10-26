@@ -7,29 +7,31 @@ import { SessionService } from './session.service';
 @Injectable()
 export class ConfirmationGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private session: SessionService, private router: Router, private http: Http) { }
+  constructor(
+    private auth: AuthService,
+    private session: SessionService,
+    private router: Router,
+    private http: Http
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     let accountId = route.params['accountId'];
     let confToken = route.queryParams['confirmationToken'];
-    let auth = this.auth;
-    let router = this.router;
-    let session = this.session;
 
     return this.checkToken(accountId, confToken)
-    .then(function(data) {
+    .then((data) => {
       let valid = data['valid'];
 
       if (valid) {
-        auth.authed = true;
-        session.user.email = data['acct']['email'];
-        session.user.secret = data['secret'];
-        localStorage.setItem('email', session.user.email);
-        session.pullSessionData();
+        this.auth.authed = true;
+        this.session.user.email = data['acct']['email'];
+        this.session.user.secret = data['secret'];
+        localStorage.setItem('email', this.session.user.email);
+        this.session.pullSessionData();
         return true;
       }
       else {
-        router.navigate(['/']);
+        this.router.navigate(['/']);
         return false;
       }
     });
@@ -40,15 +42,15 @@ export class ConfirmationGuard implements CanActivate {
     let retVal = { valid: false };
 
     return this.http.get(url).toPromise()
-    .then(function(res: Response) {
+    .then((res: Response) => {
       if (res.status === 200) { retVal.valid = true; }
       return res;
     })
-    .then(function(res: Response) {
+    .then((res: Response) => {
       retVal = res.json();
       retVal.valid = true;
       return retVal;
     })
-    .catch(function() { return retVal; });
+    .catch(() => { return retVal; });
   }
 }

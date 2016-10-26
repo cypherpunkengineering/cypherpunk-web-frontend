@@ -119,18 +119,15 @@ export class UpgradeComponent {
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
-    .then((res: Response) => { return res.json() || {}; })
     .then(() => { this.session.pullSessionData(); })
     .then(() => { this.auth.authed = true; })
     // update view
     .then(() => {
-      this.message = `Success!`;
       this.alertService.success('You have upgraded your account');
       this.router.navigate(['/user']);
     })
     // handle errors
     .catch((error) => {
-      this.message = error.message;
       console.log(error);
       this.alertService.success('You account could not be upgraded');
       // error 409 -> redirect to login page
