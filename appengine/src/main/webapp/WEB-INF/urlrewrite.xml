@@ -36,6 +36,7 @@
 		<condition type="remote-addr" next="or">^219\.164\.103\.</condition><!-- nikuhodai -->
 		<condition type="remote-addr" next="or">^77\.145\.35\.</condition><!-- paris demo -->
 		<condition type="remote-addr" next="or">^73\.148\.56\.</condition><!-- chris -->
+		<condition type="remote-addr" next="or">^2601:5cc:0:41f8:10d0:b19c:ec39:1d6f</condition><!-- chris -->
 		<condition type="remote-addr">^127\.</condition>
 		<from>^(.*)</from>
 		<to last="true">/index.html</to>
