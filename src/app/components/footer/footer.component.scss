@@ -19,7 +19,7 @@
 
 .footer-column.logo {
   padding-top: 45px;
-  margin-left: 130px;
+  margin-left: 75px;
   width: 250px;
 }
 
@@ -88,15 +88,25 @@
   .footer-column {
     width: 50%;
     margin: 0;
-    padding: 25px;
+    padding: 50px 0 0 0;
     text-align: center
   }
   .footer-column.logo {
     width: 100%;
     margin-left: 0;
+    padding-bottom: 25px;
   }
   .footer-column.social {
-    width: 100%;
+    width: 50%;
+    margin: 0;
+    text-align: center;
+
+    .footer-listing {
+      .inline {
+        display: block;
+        margin-right: 0;
+      }
+    }
   }
   .feedback {
     margin: 16px auto;
