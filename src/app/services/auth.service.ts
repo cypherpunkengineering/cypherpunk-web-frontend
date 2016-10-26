@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
@@ -12,12 +13,14 @@ export class AuthService {
     private http: Http
   ) {}
 
-  login(user) {
+  login(user): Promise<void> {
     let session = this.session;
+
     let url = '/account/authenticate/userpasswd';
     let body = { login: user.login, password: user.password};
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
+
     return this.http.post(url, body, options).toPromise()
     .then(function(res: Response) {
       console.log(res);

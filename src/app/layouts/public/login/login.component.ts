@@ -21,9 +21,13 @@ export class LoginComponent {
 
   login() {
     let alertService = this.alertService;
+    let router = this.router;
 
     this.auth.login(this.user)
-    .then(() => { this.router.navigate(['user']); })
-    .catch(function() { alertService.error('Could not log in'); });
+    .then(() => { router.navigate(['user']); })
+    .catch(function(err) {
+      console.log(err);
+      alertService.error('Could not log in');
+    });
   }
 }
