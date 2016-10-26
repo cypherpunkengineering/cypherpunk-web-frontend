@@ -23,11 +23,13 @@ export class ConfirmationGuard implements CanActivate {
       let valid = data['valid'];
 
       if (valid) {
+        // set user session data
+        this.session.setUserData({
+          email: data['acct']['email'],
+          secret: data['secret']
+        });
+        // turn auth on
         this.auth.authed = true;
-        this.session.user.email = data['acct']['email'];
-        this.session.user.secret = data['secret'];
-        localStorage.setItem('email', this.session.user.email);
-        this.session.pullSessionData();
         return true;
       }
       else {
@@ -41,13 +43,14 @@ export class ConfirmationGuard implements CanActivate {
     let url = `/account/confirm/${accountId}?confirmationToken=${confToken}`;
     let retVal = { valid: false };
 
+    // this will set cookie
     return this.http.get(url).toPromise()
     .then((res: Response) => {
       if (res.status === 200) { retVal.valid = true; }
       return res;
     })
     .then((res: Response) => {
-      retVal = res.json();
+      retVal = res.json() || {};
       retVal.valid = true;
       return retVal;
     })

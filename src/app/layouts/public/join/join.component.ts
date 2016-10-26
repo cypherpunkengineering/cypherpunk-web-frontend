@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -119,7 +119,17 @@ export class JoinComponent {
     let url = '/api/subscription/purchase';
     let body = serverParams;
     let options = new RequestOptions({});
+    // sets cookie
     return this.http.post(url, body, options).toPromise()
+    // set user session
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.session.setUserData({
+        email: resData.acct.email,
+        secret: resData.secret
+      });
+    })
+    // turn on authed
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {

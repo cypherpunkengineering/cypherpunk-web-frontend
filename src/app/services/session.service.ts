@@ -5,15 +5,15 @@ import { Http, Response } from '@angular/http';
 export class SessionService {
   user = {
     username: '',
-    email: 'test@example.com',
+    email: '',
+    secret: '',
     status: 'active',
     type: 'free',
     period: '6 months',
-    renewalDate: '2017-03-03T03:24:00',
+    renewalDate: '1970-01-01T00:00:00Z',
     confirmed: false,
     priceModel: 0,
-    payOption: 0,
-    secret: ''
+    payOption: 0
   };
 
   constructor(private http: Http, private zone: NgZone) {
@@ -22,7 +22,14 @@ export class SessionService {
     this.user.secret = localStorage.getItem('secret') || '';
   }
 
-  pullSessionData() {
+  setUserData(user) {
+    this.user.email = user.email;
+    this.user.secret = user.secret;
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('secret', user.secret);
+  }
+
+  pullPlanData() {
     let url = '/api/subscription/status';
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
@@ -31,8 +38,22 @@ export class SessionService {
         this.user.type = data.type;
         this.user.confirmed = data.confirmed;
         this.user.renewalDate = data.expiration;
-        this.user.period = data.renewal.toUpperCase();
+        this.user.period = data.renewal;
       });
     });
+  }
+
+  clearUserData() {
+    this.user.email = '';
+    this.user.secret = '';
+    localStorage.removeItem('email');
+    localStorage.removeItem('secret');
+  }
+
+  clearPlanData() {
+    this.user.type = 'free';
+    this.user.confirmed = false;
+    this.user.renewalDate = Date.now().toString();
+    this.user.period = 'none';
   }
 }

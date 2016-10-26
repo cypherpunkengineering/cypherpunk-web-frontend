@@ -18,18 +18,20 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string, route: ActivatedRouteSnapshot): boolean {
+    // Case 1: Already authed
     if (this.auth.authed) { return true; }
 
+    // Case 2: Enter with email and secret
     let routePath = route.url.join('/');
     let email = route.queryParams['user'];
     let secret = route.queryParams['secret'];
     if (routePath === 'user/upgrade' && email && secret) {
-      this.session.user.email = email;
-      this.session.user.secret = secret;
-      this.session.pullSessionData();
+      this.session.setUserData({ email: email, secret: secret });
+      this.session.pullPlanData(); // need secret integration
       return true;
     }
 
+    // Case 3: not authed, redirect to login
     this.auth.redirectUrl = url;
     this.router.navigate(['/login']);
     return false;

@@ -10,7 +10,7 @@ export class DashboardComponent {
   daysLeft: number = 0;
 
   constructor(private session: SessionService) {
-    session.pullSessionData();
+    session.pullPlanData();
     this.user = session.user;
 
     let now = new Date();

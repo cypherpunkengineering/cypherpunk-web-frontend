@@ -117,6 +117,7 @@ export class UpgradeComponent {
     let url = '/api/subscription/upgrade';
     let body = serverParams;
     let options = new RequestOptions({});
+    // set cookie?
     return this.http.post(url, body, options).toPromise()
     .then(() => { this.auth.authed = true; })
     // alert and redirect

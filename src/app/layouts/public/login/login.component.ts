@@ -8,10 +8,7 @@ import { AlertService } from '../../../services/alert.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  user = {
-    login: '',
-    password: ''
-  };
+  user = { login: '', password: '' };
 
   constructor(
     private router: Router,
@@ -21,7 +18,11 @@ export class LoginComponent {
 
   login() {
     this.auth.login(this.user)
-    .then(() => { this.router.navigate(['user']); })
+    .then(() => {
+      let redirectUrl = this.auth.redirectUrl;
+      if (redirectUrl) { this.router.navigate([redirectUrl]); }
+      else { this.router.navigate(['user']); }
+    })
     .catch((err) => {
       console.log(err);
       this.alertService.error('Could not log in');
