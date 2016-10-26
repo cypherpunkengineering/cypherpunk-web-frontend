@@ -15,6 +15,7 @@ export class AuthService {
 
   login(user): Promise<void> {
     let session = this.session;
+    let authed = this.authed;
 
     let url = '/account/authenticate/userpasswd';
     let body = { login: user.login, password: user.password};
@@ -30,7 +31,7 @@ export class AuthService {
       console.log(data);
       session.user.email = data.acct.email;
       session.user.secret = data.secret;
-      this.authed = true;
+      authed = true;
     });
   }
 
