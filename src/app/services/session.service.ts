@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class SessionService {
     secret: ''
   };
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private zone: NgZone) {
     this.user.username = localStorage.getItem('username') || 'tester';
     this.user.email = localStorage.getItem('email') || 'test@example.com';
     this.user.secret = localStorage.getItem('secret') || '';
@@ -25,12 +25,14 @@ export class SessionService {
   pullSessionData() {
     let url = '/api/subscription/status';
     return this.http.get(url).toPromise()
-    .then((res: Response) => {
-      let body = res.json();
-      this.user.type = body.type;
-      this.user.confirmed = body.confirmed;
-      this.user.renewalDate = body.expiration;
-      this.user.period = body.renewal.toUpperCase();
+    .then((res: Response) => { return res.json() || {}; })
+    .then((data) => {
+      this.zone.run(() => {
+        this.user.type = data.type;
+        this.user.confirmed = data.confirmed;
+        this.user.renewalDate = data.expiration;
+        this.user.period = data.renewal.toUpperCase();
+      });
     });
   }
 }

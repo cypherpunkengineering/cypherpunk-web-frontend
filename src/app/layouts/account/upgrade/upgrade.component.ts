@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
 import { AuthService } from '../../../services/auth.service';
@@ -118,10 +118,8 @@ export class UpgradeComponent {
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
-    // extract data from response
-    .then(() => { this.session.pullSessionData(); })
     .then(() => { this.auth.authed = true; })
-    // update view
+    // alert and redirect
     .then(() => {
       this.alertService.success('You have upgraded your account');
       this.router.navigate(['/user']);

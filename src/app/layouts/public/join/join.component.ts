@@ -118,11 +118,8 @@ export class JoinComponent {
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
-    // extract data from response
-    .then((res: Response) => { return res.json() || {}; })
-    .then(() => { this.session.pullSessionData(); })
     .then(() => { this.auth.authed = true; })
-    // update view
+    // alert and redirect
     .then(() => {
       this.alertService.success('You account was created!');
       this.router.navigate(['/user']);
