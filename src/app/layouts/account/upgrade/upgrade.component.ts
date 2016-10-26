@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
@@ -80,11 +80,8 @@ export class UpgradeComponent {
     private session: SessionService,
     private alertService: AlertService,
     private router: Router,
-    private _zone: NgZone,
     private http: Http
-  ) {
-    this.email = session.user.email;
-  }
+  ) { this.email = session.user.email; }
 
   getToken() {
     // show user we're charging the card
@@ -101,7 +98,6 @@ export class UpgradeComponent {
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
       let token = response.id;
-      this.message = 'Success!';
       return this.saveToServer(token);
     };
 
@@ -117,41 +113,28 @@ export class UpgradeComponent {
       email: this.email
     };
 
-    let _zone = this._zone;
-    let message = this.message;
-    let router = this.router;
-    let auth = this.auth;
-    let session = this.session;
-    let alertService = this.alertService;
-
     // call server at this point (using promises)
     let url = '/api/subscription/upgrade';
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
-    .then(function(res: Response) {
-      return res.json() || {};
-    })
-    .then(function() { session.pullSessionData(); })
-    .then(function() { auth.authed = true; })
+    .then((res: Response) => { return res.json() || {}; })
+    .then(() => { this.session.pullSessionData(); })
+    .then(() => { this.auth.authed = true; })
     // update view
-    .then(function(data) {
-      _zone.run(() => {
-        message = `Success!`;
-        alertService.success('You have upgraded your account');
-        router.navigate(['/user']);
-      });
+    .then(() => {
+      this.message = `Success!`;
+      this.alertService.success('You have upgraded your account');
+      this.router.navigate(['/user']);
     })
     // handle errors
-    .catch(function(error) {
-      _zone.run(() => {
-        message = error.message;
-        console.log(error);
-        alertService.success('You account could not be upgraded');
-        // error 409 -> redirect to login page
-        router.navigate(['/user']);
-      });
+    .catch((error) => {
+      this.message = error.message;
+      console.log(error);
+      this.alertService.success('You account could not be upgraded');
+      // error 409 -> redirect to login page
+      this.router.navigate(['/user']);
     });
   }
 

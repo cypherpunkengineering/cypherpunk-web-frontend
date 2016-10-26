@@ -25,7 +25,7 @@ export class SessionService {
   pullSessionData() {
     let url = '/api/subscription/status';
     return this.http.get(url).toPromise()
-    .then(function(res: Response) {
+    .then((res: Response) => {
       let body = res.json();
       this.user.type = body.type;
       this.user.confirmed = body.confirmed;

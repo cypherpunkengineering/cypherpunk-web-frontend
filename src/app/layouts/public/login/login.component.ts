@@ -21,9 +21,6 @@ export class LoginComponent {
 
   login() {
     this.auth.login(this.user)
-    .then(() => {
-      console.log(this.auth.authed);
-    })
     .then(() => { this.router.navigate(['user']); })
     .catch((err) => {
       console.log(err);

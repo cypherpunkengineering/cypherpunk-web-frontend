@@ -1,8 +1,9 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
+import { SessionService } from '../../../services/session.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -77,8 +78,8 @@ export class JoinComponent {
   constructor(
     private alertService: AlertService,
     private auth: AuthService,
+    private session: SessionService,
     private router: Router,
-    private _zone: NgZone,
     private http: Http
   ) {}
 
@@ -97,7 +98,6 @@ export class JoinComponent {
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
       let token = response.id;
-      this.message = 'Success!';
       return this.saveToServer(token);
     };
 
@@ -113,40 +113,31 @@ export class JoinComponent {
       email: this.email
     };
 
-    let _zone = this._zone;
-    let message = this.message;
-    let router = this.router;
-    let auth = this.auth;
-    let alertService = this.alertService;
-
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
-    .then(function(res: Response) {
+    .then((res: Response) => {
       let resBody = res.json();
       return resBody || {};
     })
-    .then(function() { auth.authed = true; })
+    .then(() => { this.session.pullSessionData(); })
+    .then(() => { this.auth.authed = true; })
     // update view
-    .then(function(data) {
-      _zone.run(() => {
-        message = `Success!.`;
-        alertService.success('You account was created!');
-        router.navigate(['/user']);
-      });
+    .then(() => {
+      this.message = `Success!.`;
+      this.alertService.success('You account was created!');
+      this.router.navigate(['/user']);
     })
     // handle errors
-    .catch(function(error) {
-      _zone.run(() => {
-        message = error.message;
-        console.log(error);
-        alertService.error('Could not create an account');
-        // 409 - > redict to login page
-        router.navigate(['/']);
-      });
+    .catch((error) => {
+      this.message = error.message;
+      console.log(error);
+      this.alertService.error('Could not create an account');
+      // 409 - > redict to login page
+      this.router.navigate(['/']);
     });
   }
 

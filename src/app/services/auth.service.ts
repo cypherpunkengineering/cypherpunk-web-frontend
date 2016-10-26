@@ -20,12 +20,8 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(url, body, options).toPromise()
-    .then((res: Response) => {
-      console.log(res);
-      return res.json();
-    })
+    .then((res: Response) => { return res.json(); })
     .then((data) => {
-      console.log(data);
       this.session.user.email = data.acct.email;
       this.session.user.secret = data.secret;
       this.authed = true;
