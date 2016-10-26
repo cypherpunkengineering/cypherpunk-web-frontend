@@ -119,10 +119,7 @@ export class JoinComponent {
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
     // extract data from response
-    .then((res: Response) => {
-      let resBody = res.json();
-      return resBody || {};
-    })
+    .then((res: Response) => { return res.json() || {}; })
     .then(() => { this.session.pullSessionData(); })
     .then(() => { this.auth.authed = true; })
     // update view
@@ -145,9 +142,7 @@ export class JoinComponent {
 
   selectPricing(model) {
     this.selectedModel = model;
-    this.priceModels.map(function(item) {
-      item.selected = false;
-    });
+    this.priceModels.map((item) => { item.selected = false; });
     model.selected = true;
   }
 
@@ -155,9 +150,7 @@ export class JoinComponent {
 
   selectOption(option) {
     this.selectedOption = option;
-    this.paymentOptions.map(function(item) {
-      item.selected = false;
-    });
+    this.paymentOptions.map((item) => { item.selected = false; });
     option.selected = true;
   }
 

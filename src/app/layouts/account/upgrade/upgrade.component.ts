@@ -142,9 +142,7 @@ export class UpgradeComponent {
 
   selectPricing(model) {
     this.selectedModel = model;
-    this.priceModels.map(function(item) {
-      item.selected = false;
-    });
+    this.priceModels.map((item) => { item.selected = false; });
     model.selected = true;
   }
 
@@ -152,9 +150,7 @@ export class UpgradeComponent {
 
   selectOption(option) {
     this.selectedOption = option;
-    this.paymentOptions.map(function(item) {
-      item.selected = false;
-    });
+    this.paymentOptions.map((item) => { item.selected = false; });
     option.selected = true;
   }
 
