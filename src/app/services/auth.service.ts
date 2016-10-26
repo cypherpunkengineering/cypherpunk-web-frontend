@@ -14,9 +14,6 @@ export class AuthService {
   ) {}
 
   login(user): Promise<void> {
-    let session = this.session;
-    let authed = this.authed;
-
     let url = '/account/authenticate/userpasswd';
     let body = { login: user.login, password: user.password};
     let headers = new Headers({'Content-Type': 'application/json'});
@@ -29,9 +26,9 @@ export class AuthService {
     })
     .then(function(data) {
       console.log(data);
-      session.user.email = data.acct.email;
-      session.user.secret = data.secret;
-      authed = true;
+      this.session.user.email = data.acct.email;
+      this.session.user.secret = data.secret;
+      this.authed = true;
     });
   }
 

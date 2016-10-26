@@ -20,14 +20,14 @@ export class LoginComponent {
   ) {}
 
   login() {
-    let alertService = this.alertService;
-    let router = this.router;
-
     this.auth.login(this.user)
-    .then(() => { router.navigate(['user']); })
-    .catch(function(err) {
+    .then(() => {
+      console.log(this.auth.authed);
+    })
+    .then(() => { this.router.navigate(['user']); })
+    .catch((err) => {
       console.log(err);
-      alertService.error('Could not log in');
+      this.alertService.error('Could not log in');
     });
   }
 }
