@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -73,7 +74,13 @@ export class JoinComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private auth: AuthService, private router: Router, private _zone: NgZone, private http: Http) {}
+  constructor(
+    private alertService: AlertService,
+    private auth: AuthService,
+    private router: Router,
+    private _zone: NgZone,
+    private http: Http
+  ) {}
 
   getToken() {
     // show user we're charging the card
@@ -110,6 +117,7 @@ export class JoinComponent {
     let message = this.message;
     let router = this.router;
     let auth = this.auth;
+    let alertService = this.alertService;
 
     // call server at this point (using promises)
     let url = '/api/subscription/purchase';
@@ -126,6 +134,7 @@ export class JoinComponent {
     .then(function(data) {
       _zone.run(() => {
         message = `Success!.`;
+        alertService.success('You account was created!');
         router.navigate(['/user']);
       });
     })
@@ -134,6 +143,7 @@ export class JoinComponent {
       _zone.run(() => {
         message = error.message;
         console.log(error);
+        alertService.error('Could not create an account');
         // 409 - > redict to login page
         router.navigate(['/']);
       });

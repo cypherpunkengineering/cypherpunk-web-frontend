@@ -3,6 +3,7 @@ import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
 import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -74,7 +75,14 @@ export class UpgradeComponent {
 
   selectedOption = this.paymentOptions[0];
 
-  constructor(private auth: AuthService, private session: SessionService, private router: Router, private _zone: NgZone, private http: Http) {
+  constructor(
+    private auth: AuthService,
+    private session: SessionService,
+    private alertService: AlertService,
+    private router: Router,
+    private _zone: NgZone,
+    private http: Http
+  ) {
     this.email = session.user.email;
   }
 
@@ -114,6 +122,7 @@ export class UpgradeComponent {
     let router = this.router;
     let auth = this.auth;
     let session = this.session;
+    let alertService = this.alertService;
 
     // call server at this point (using promises)
     let url = '/api/subscription/upgrade';
@@ -130,6 +139,7 @@ export class UpgradeComponent {
     .then(function(data) {
       _zone.run(() => {
         message = `Success!`;
+        alertService.success('You have upgraded your account');
         router.navigate(['/user']);
       });
     })
@@ -138,6 +148,7 @@ export class UpgradeComponent {
       _zone.run(() => {
         message = error.message;
         console.log(error);
+        alertService.success('You account could not be upgraded');
         // error 409 -> redirect to login page
         router.navigate(['/user']);
       });

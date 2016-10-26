@@ -16,8 +16,8 @@ export class NavigationComponent {
   }
 
   logout(): void {
-    this.auth.authed = false;
     this.isAuthed = false;
+    this.auth.logout();
   }
 
   // on scroll,

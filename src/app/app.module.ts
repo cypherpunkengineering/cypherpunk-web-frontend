@@ -22,11 +22,13 @@ import { NotFoundComponent } from './layouts/404/404.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AccountNavigationComponent } from './components/account-navigation/account-navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 import { AuthGuard } from './services/auth-guard.service';
 import { ConfirmationGuard } from './services/confirmation-guard.service';
 import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   // all components must be declared here
@@ -48,7 +50,8 @@ import { SessionService } from './services/session.service';
     NotFoundComponent,
     NavigationComponent,
     AccountNavigationComponent,
-    FooterComponent
+    FooterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { SessionService } from './services/session.service';
     AuthGuard,
     ConfirmationGuard,
     AuthService,
-    SessionService
+    SessionService,
+    AlertService
   ],
   bootstrap: [RootComponent]
 })

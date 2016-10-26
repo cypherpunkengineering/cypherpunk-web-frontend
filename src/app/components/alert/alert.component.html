@@ -1,0 +1,6 @@
+<div class="alerts-container">
+  <div class="alert" [ngClass]="alert.type" *ngFor="let alert of alerts; let i = index">
+    <div class="message">{{alert.message}}</div>
+    <div class="cancel" (click)="dismiss(i)">X</div>
+  </div>
+</div>
