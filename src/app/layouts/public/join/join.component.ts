@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -20,6 +20,7 @@ export class JoinComponent {
 
   // user variables
   email: string;
+  password: string;
   name: string;
   country: string;
   address: string;
@@ -110,7 +111,8 @@ export class JoinComponent {
     let serverParams = {
       token: token,
       plan: this.selectedModel.id,
-      email: this.email
+      email: this.email,
+      password: this.password
     };
 
     // call server at this point (using promises)

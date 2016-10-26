@@ -127,7 +127,7 @@ export class UpgradeComponent {
     // handle errors
     .catch((error) => {
       console.log(error);
-      this.alertService.success('You account could not be upgraded');
+      this.alertService.error('You account could not be upgraded');
       // error 409 -> redirect to login page
       this.router.navigate(['/user']);
     });
