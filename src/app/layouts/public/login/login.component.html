@@ -8,12 +8,12 @@
 <form>
   <p>
     <label for="username">Username / Email</label><br>
-    <input type="text" name="username" placeholder="Username / Email">
+    <input type="text" name="username" [(ngModel)]="user.login" placeholder="Username / Email">
   </p>
 
   <p>
     <label for="password">Password</label><br>
-    <input type="text" name="password" placeholder="Password">
+    <input type="text" name="password" [(ngModel)]="user.password" placeholder="Password">
   </p>
 
   <p class="center">
