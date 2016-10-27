@@ -11,20 +11,18 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./join.component.scss']
 })
 export class JoinComponent {
+  message: string;
+  messageClass: string = '';
+
   // Stripe variables
   cardNumber: string;
-  expiryMonth: string;
-  expiryYear: string;
+  expiryDate: string;
   cvc: string;
-  message: string;
 
   // user variables
   email: string;
   password: string;
   name: string;
-  country: string;
-  address: string;
-  zipCode: string;
 
   // pricing model
 
@@ -41,8 +39,8 @@ export class JoinComponent {
       id: 'annually8004',
       price: 6.25,
       months: 12,
-      total: 75.00,
-      yearly: '$ 75 billed annually',
+      total: 80.04,
+      yearly: '$ 80.04 billed annually',
       selected: true
     },
     {
@@ -71,6 +69,10 @@ export class JoinComponent {
     {
       type: 'bc',
       selected: false
+    },
+    {
+      type: 'o',
+      selected: false
     }
   ];
 
@@ -82,17 +84,25 @@ export class JoinComponent {
     private session: SessionService,
     private router: Router,
     private http: Http
-  ) {}
+  ) { }
 
   getToken() {
+    if (!this.validateCC()) { return; }
+
     // show user we're charging the card
     this.message = 'Loading...';
+
+    let month: number;
+    let year: number;
+
+    month = Number(this.expiryDate.split('/')[0]);
+    year = Number(this.expiryDate.split('/')[1]);
 
     // stripe params
     let stripeParams = {
       number: this.cardNumber,
-      exp_month: this.expiryMonth,
-      exp_year: this.expiryYear,
+      exp_month: month,
+      exp_year: year,
       cvc: this.cvc
     };
 
@@ -143,6 +153,73 @@ export class JoinComponent {
       // 409 - > redict to login page
       this.router.navigate(['/']);
     });
+  }
+
+  goToPaypal() { console.log('not implemented yet'); }
+
+  goToBitPay() { console.log('not implemented yet'); }
+
+  goToPaymentwall() { console.log('not implemented yet'); }
+
+  validateCC() {
+    if (!this.email) {
+      this.message = 'Email is required';
+      this.messageClass = 'error';
+      return false;
+    }
+
+    if (!this.password) {
+      this.message = 'Password is required';
+      this.messageClass = 'error';
+      return false;
+    }
+
+    if (!this.name) {
+      this.message = 'Name is required';
+      this.messageClass = 'error';
+      return false;
+    }
+
+    if (!this.cardNumber) {
+      this.message = 'Credit Card is required';
+      this.messageClass = 'error';
+      return false;
+    }
+
+    if (!this.expiryDate) {
+      this.message = 'Expiration is required';
+      this.messageClass = 'error';
+      return false;
+    }
+    else if (this.expiryDate) {
+      let month = this.expiryDate.split('/')[0];
+      let year = this.expiryDate.split('/')[1];
+
+      if (!this.isNumber(month)) {
+        this.message = 'Month is not a number';
+        this.messageClass = 'error';
+        return false;
+      }
+      if (!this.isNumber(year)) {
+        this.message = 'Year is not a number';
+        this.messageClass = 'error';
+        return false;
+      }
+    }
+
+    if (!this.cvc) {
+      this.message = 'CVC/CVV number is required';
+      this.messageClass = 'error';
+      return false;
+    }
+
+    this.message = '';
+    this.messageClass = '';
+    return true;
+  }
+
+  isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
   }
 
   // pricing functions
