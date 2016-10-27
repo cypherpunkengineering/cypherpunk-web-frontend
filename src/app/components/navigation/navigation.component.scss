@@ -45,7 +45,8 @@
 .nav-right ul ul a:hover { text-decoration: underline; }
 .nav-right ul li:hover > ul { display: block; }
 .nav-right ul ul { padding: 10px; border-radius: 5px; z-index: 50; }
-.nav-right ul li ul li { padding: 5px; }
+.nav-right ul li ul li { padding: 5px; cursor: pointer; }
+.nav-right ul li ul li:not(.header):hover { background-color: #cad8eb; }
 
 .header {
   border-top: 2px solid #cad8eb;
