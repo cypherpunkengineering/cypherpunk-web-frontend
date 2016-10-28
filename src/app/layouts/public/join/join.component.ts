@@ -150,8 +150,6 @@ export class JoinComponent {
     .catch((error) => {
       console.log(error);
       this.alertService.error('Could not create an account');
-      // 409 - > redict to login page
-      this.router.navigate(['/']);
     });
   }
 

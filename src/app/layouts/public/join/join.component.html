@@ -7,21 +7,54 @@
 <div class="page">
 
   <div class="page-left">
+
+    <div class="mobile-header">
+      Select your plan
+    </div>
+
     <div class="pricing">
       <div class="blimp-container">
         <div class="blimp">Best Value!</div>
       </div>
 
-      <div class="price-box" *ngFor="let model of priceModels; let i = index" (click)="selectPricing(model)" [ngClass]="{ 'active': model.selected }">
+      <div class="price-box" (click)="selectPricing(priceModels[0])" [ngClass]="{ 'active': priceModels[0].selected }">
         <div class="checkmark">
-          <div class="check" [ngClass]="{'active': model.selected}">&#10003;</div>
+          <div class="check" [ngClass]="{'active': priceModels[0].selected}">&#10003;</div>
         </div>
-        <div class="period" [ngClass]="{'active': model.selected}">{{model.months}} Months</div>
+        <div class="period" [ngClass]="{'active': priceModels[0].selected}">{{priceModels[0].months}} Months</div>
         <div class="price-area">
-          <span class="price" [ngClass]="{'active': model.selected}">$ {{model.price}}</span>
+          <span class="price" [ngClass]="{'active': priceModels[0].selected}">$ {{priceModels[0].price}}</span>
           <span class="price-time"> / month</span>
         </div>
-        <div class="yearly" [ngClass]="{'active': model.selected}" [innerHTML]="model.yearly"></div>
+        <div class="yearly" [ngClass]="{'active': priceModels[0].selected}" [innerHTML]="priceModels[0].yearly"></div>
+      </div>
+
+      <div class="mobile-blimp-container">
+        <div class="blimp">Best Value!</div>
+      </div>
+
+      <div class="price-box" (click)="selectPricing(priceModels[1])" [ngClass]="{ 'active': priceModels[1].selected }">
+        <div class="checkmark">
+          <div class="check" [ngClass]="{'active': priceModels[1].selected}">&#10003;</div>
+        </div>
+        <div class="period" [ngClass]="{'active': priceModels[1].selected}">{{priceModels[1].months}} Months</div>
+        <div class="price-area">
+          <span class="price" [ngClass]="{'active': priceModels[1].selected}">$ {{priceModels[1].price}}</span>
+          <span class="price-time"> / month</span>
+        </div>
+        <div class="yearly" [ngClass]="{'active': priceModels[1].selected}" [innerHTML]="priceModels[1].yearly"></div>
+      </div>
+
+      <div class="price-box" (click)="selectPricing(priceModels[2])" [ngClass]="{ 'active': priceModels[2].selected }">
+        <div class="checkmark">
+          <div class="check" [ngClass]="{'active': priceModels[2].selected}">&#10003;</div>
+        </div>
+        <div class="period" [ngClass]="{'active': priceModels[2].selected}">{{priceModels[2].months}} Months</div>
+        <div class="price-area">
+          <span class="price" [ngClass]="{'active': priceModels[2].selected}">$ {{priceModels[2].price}}</span>
+          <span class="price-time"> / month</span>
+        </div>
+        <div class="yearly" [ngClass]="{'active': priceModels[2].selected}" [innerHTML]="priceModels[2].yearly"></div>
       </div>
     </div>
 

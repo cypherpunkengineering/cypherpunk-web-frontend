@@ -140,7 +140,6 @@ export class UpgradeComponent {
       console.log(error);
       this.alertService.error('You account could not be upgraded');
       // error 409 -> redirect to login page
-      this.router.navigate(['/user']);
     });
   }
 

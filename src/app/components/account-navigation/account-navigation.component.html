@@ -25,15 +25,13 @@
 <div class="mobile-nav">
   <div class="mobile-nav-left">
     <a routerLink="/">
-      <img src="/assets/logo-bl@2x.png" alt="Cypherpunk Privacy">
+      <img src="/assets/logo-bl.png" alt="Cypherpunk Privacy">
     </a>
-  </div>
 
-  <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
-    <img src="/assets/icon-menu.png" alt="Menu">
+    <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
+      <img src="/assets/icon-menu.png" alt="Menu">
+    </div>
   </div>
-
-  <div class="clear"></div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
     <div class="mobile-dd-item" routerLink="/user">

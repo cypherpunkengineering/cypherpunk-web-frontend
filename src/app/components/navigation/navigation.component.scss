@@ -99,23 +99,18 @@
   .border { border-color: #034698; }
 }
 
-
 .mobile-nav {
   display: none;
   width: 100%;
-  margin: 0 auto;
-  padding-top: 15px;
 
   .mobile-nav-left {
-    float: left;
-    padding-left: 1rem;
+    text-align: center;
+    padding: 10px 0 8px;
   }
 
   .mobile-nav-right {
     float: right;
-    padding-right: 1rem;
-    padding-top: 15px;
-    padding-bottom: 25px;
+    padding: 12px 16px 20px 0;
     cursor: pointer;
   }
 
