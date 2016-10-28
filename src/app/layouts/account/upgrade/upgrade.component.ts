@@ -94,8 +94,13 @@ export class UpgradeComponent {
     let month: number;
     let year: number;
 
-    month = Number(this.expiryDate.split('/'))[0];
-    year = Number(this.expiryDate.split('/'))[1];
+    console.log(this.expiryDate);
+
+    month = Number(this.expiryDate.split('/')[0]);
+    year = Number(this.expiryDate.split('/')[1]);
+
+    console.log(month);
+    console.log(year);
 
     // stripe params
     let stripeParams = {
