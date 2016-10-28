@@ -32,7 +32,6 @@
   }
 }
 
-
 .blimp-container {
   position: relative;
   .blimp {
@@ -82,7 +81,7 @@
         top: -20px;
         right: -20px;
         border-radius: 50px;
-        color: #ffffff;
+        color: #fff;
         padding-top: 8px;
         font-size: 26px;
         &.active { display: block; }
@@ -93,22 +92,22 @@
       margin-top: 15px;
       font-size: 26px;
       font-weight: 500;
-      color: #666666;
+      color: #666;
       &.active { color: #034698; }
     }
 
     .price-area {
-      color: #666666;
+      color: #666;
       .price {
         font-size: 40px;
         font-weight: bold;
         &.active { color: #034698; }
       }
-      .price-time { color: #666666; }
+      .price-time { color: #666; }
     }
 
     .yearly {
-      color: #666666;
+      color: #666;
       &.active { color: #76a8e7; }
     }
   }
@@ -129,7 +128,7 @@
     .type-container {
       display: inline-block;
       margin-right: 125px;
-      color: #666666;
+      color: #666;
       &:last-child { margin-right: 0; }
       &.active { color: #034698; }
       .short { margin-bottom: 7px; }
@@ -167,7 +166,7 @@
     margin: 15px 100px;
     float: left;
     font-size: 24px;
-    color: #000000;
+    color: #000;
     font-weight: 600;
   }
   .separator:before {

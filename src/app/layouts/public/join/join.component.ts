@@ -79,11 +79,11 @@ export class JoinComponent {
   selectedOption = this.paymentOptions[0];
 
   constructor(
-    private alertService: AlertService,
+    private http: Http,
+    private router: Router,
     private auth: AuthService,
     private session: SessionService,
-    private router: Router,
-    private http: Http
+    private alertService: AlertService
   ) { }
 
   getToken() {
