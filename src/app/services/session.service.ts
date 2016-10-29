@@ -10,8 +10,7 @@ export class SessionService {
     status: 'active',
     type: 'free',
     period: '6 months',
-    renewalDate: '1970-01-01T00:00:00Z',
-    daysLeft: 0,
+    renewal: '',
     confirmed: false,
     priceModel: 0,
     payOption: 0
@@ -38,13 +37,24 @@ export class SessionService {
       this.zone.run(() => {
         this.user.type = data.type;
         this.user.confirmed = data.confirmed;
-        this.user.renewalDate = data.expiration;
-        this.user.period = data.renewal;
 
+        // handle user period/renewal
+        if (data.renewal === 'none') { this.user.period = 'no subscription'; }
+        else { this.user.period = data.renewal; }
+
+        // hanlde renewal/expiration
         let now = new Date();
-        let renewalDate = new Date(this.user.renewalDate);
-        let oneDay = 24 * 60 * 60 * 1000;
-        this.user.daysLeft = Math.round(now.getTime() - renewalDate.getTime() / (oneDay));
+        let expiration = new Date(data.expiration);
+        if (data.expiration === 'none') { this.user.renewal = ''; }
+        else if (expiration > now) {
+          let oneDay = 24 * 60 * 60 * 1000;
+          let daysLeft = Math.round(now.getTime() - expiration.getTime() / (oneDay));
+          let month = expiration.getMonth() + 1;
+          let day = expiration.getDate();
+          let year = expiration.getFullYear();
+          this.user.renewal = `Renews on ${month}/${day}/${year}, ${daysLeft} days left`;
+        }
+        else { this.user.renewal = 'Expired'; }
       });
     });
   }
@@ -59,7 +69,7 @@ export class SessionService {
   clearPlanData() {
     this.user.type = 'free';
     this.user.confirmed = false;
-    this.user.renewalDate = Date.now().toString();
+    this.user.renewal = '';
     this.user.period = 'none';
   }
 }
