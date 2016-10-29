@@ -7,15 +7,9 @@ import { SessionService } from '../../../services/session.service';
 })
 export class DashboardComponent {
   user: any;
-  daysLeft: number = 0;
 
   constructor(private session: SessionService) {
     session.pullPlanData();
     this.user = session.user;
-
-    let now = new Date();
-    let renewalDate = new Date(this.user.renewalDate);
-    let oneDay = 24 * 60 * 60 * 1000;
-    this.daysLeft = Math.round(Math.abs(now.getTime() - renewalDate.getTime()) / (oneDay));
   }
 }

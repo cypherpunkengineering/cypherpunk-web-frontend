@@ -11,6 +11,7 @@ export class SessionService {
     type: 'free',
     period: '6 months',
     renewalDate: '1970-01-01T00:00:00Z',
+    daysLeft: 0,
     confirmed: false,
     priceModel: 0,
     payOption: 0
@@ -39,6 +40,11 @@ export class SessionService {
         this.user.confirmed = data.confirmed;
         this.user.renewalDate = data.expiration;
         this.user.period = data.renewal;
+
+        let now = new Date();
+        let renewalDate = new Date(this.user.renewalDate);
+        let oneDay = 24 * 60 * 60 * 1000;
+        this.user.daysLeft = Math.round(now.getTime() - renewalDate.getTime() / (oneDay));
       });
     });
   }

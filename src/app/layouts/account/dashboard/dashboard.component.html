@@ -15,9 +15,18 @@
 
       <div class="right">
         <span class="period">{{user.period}}</span><br>
-        <span class="renewal">
-          Renews on {{user.renewalDate | date: 'MM/dd/yyyy'}}, {{daysLeft}} days left
-        </span><br>
+        <span *ngIf="user.daysLeft > 0" class="renewal">
+          Renews on {{user.renewalDate | date: 'MM/dd/yyyy'}}
+        </span>
+        <span *ngIf="user.daysLeft > 0" class="renewal">
+          , {{user.daysLeft}} days left
+        </span>
+        <span *ngIf="user.daysLeft === 0" class="renewal">
+          Today
+        </span>
+        <span *ngIf="user.daysLeft < 0" class="renewal">
+          Expired
+        </span>
       </div>
 
       <div class="clear"></div>
