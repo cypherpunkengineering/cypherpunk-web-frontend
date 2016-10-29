@@ -9,7 +9,7 @@ export class SessionService {
     secret: '',
     status: 'active',
     type: 'free',
-    period: '6 months',
+    period: 'semiannually',
     renewal: '',
     confirmed: false,
     priceModel: 0,
@@ -48,7 +48,7 @@ export class SessionService {
         if (data.expiration === 'none') { this.user.renewal = ''; }
         else if (expiration > now) {
           let oneDay = 24 * 60 * 60 * 1000;
-          let daysLeft = Math.round(now.getTime() - expiration.getTime() / (oneDay));
+          let daysLeft = Math.round((expiration.getTime() - now.getTime()) / (oneDay));
           let month = expiration.getMonth() + 1;
           let day = expiration.getDate();
           let year = expiration.getFullYear();
