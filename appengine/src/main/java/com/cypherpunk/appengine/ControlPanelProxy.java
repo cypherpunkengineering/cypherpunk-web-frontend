@@ -48,6 +48,7 @@ public class ControlPanelProxy extends HttpServlet {
 		String path = req.getRequestURI().substring(req.getContextPath().length());
 		String queryString = req.getQueryString();
 		String domain = req.getHeader("Host");
+		String reqIP = req.getRemoteAddr();
 
 		URL backendURL;
 		backendURL = new URL("https://" + backend + path + "?" + queryString);
@@ -104,6 +105,9 @@ public class ControlPanelProxy extends HttpServlet {
 				request.setHeader(header);
 			}
 		}
+
+		HTTPHeader headerForwarded = new HTTPHeader("X-Forwarded-For", reqIP);
+		request.setHeader(headerForwarded);
 
 		// Fetch the data form backend
 		HTTPResponse response = urlFetchService.fetch(request);
