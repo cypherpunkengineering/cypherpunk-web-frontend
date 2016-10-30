@@ -106,8 +106,8 @@ public class ControlPanelProxy extends HttpServlet {
 			}
 		}
 
-		HTTPHeader headerForwarded = new HTTPHeader("X-Forwarded-For", reqIP);
-		request.setHeader(headerForwarded);
+		HTTPHeader headerOriginalIP = new HTTPHeader("X-Original-IP", reqIP);
+		request.setHeader(headerOriginalIP);
 
 		// Fetch the data form backend
 		HTTPResponse response = urlFetchService.fetch(request);
