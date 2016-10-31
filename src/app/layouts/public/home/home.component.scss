@@ -139,3 +139,25 @@
 }
 
 .clear { clear: both; }
+
+@media (max-width: 1060px) {
+  .masthead {
+    .masthead-image {
+      width: 100%;
+      background-size: url('/assets/web-top.png') bottom no-repeat cover;
+    }
+    .masthead-header { font-size: 20px; }
+  }
+
+  .content {
+    .content-header { font-size: 20px; margin-bottom: 25px; }
+    .column-header { font-size: 20px; }
+    .row .large-column { width: 100%; margin-bottom: 25px; }
+    .row .large-column:last-child { margin-bottom: 0px; }
+    .column-image { margin: 0 0 10px; width: 100%; }
+    .narrow {
+      width: 100%;
+      .column-image { width: 100%; }
+    }
+  }
+}
