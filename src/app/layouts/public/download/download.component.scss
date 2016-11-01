@@ -79,10 +79,30 @@
     margin: 0 auto 30px;
 
     .group {
+      position: relative;
       display: inline-block;
       text-align: center;
       margin: 0 50px 0 0;
       &:last-child { margin-right: 0; }
+      &:hover > a > .download {
+        display: block;
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        right: 10%;
+        margin: auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .download {
+        display: none;
+        &.btn.blue {
+          width: auto;
+          height: auto;
+        }
+      }
+
+      a { text-decoration: none; }
 
       .group-header {
         color: #333333;
