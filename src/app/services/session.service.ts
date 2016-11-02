@@ -39,7 +39,7 @@ export class SessionService {
         this.user.confirmed = data.confirmed;
 
         // handle user period/renewal
-        if (data.renewal === 'none') { this.user.period = 'no subscription'; }
+        if (data.renewal === 'none') { this.user.period = 'free account'; }
         else { this.user.period = data.renewal; }
 
         // hanlde renewal/expiration

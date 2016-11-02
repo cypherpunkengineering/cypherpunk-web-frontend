@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -152,8 +152,6 @@ export class JoinComponent {
       this.alertService.error('Could not create an account');
     });
   }
-
-  goToPaypal() { console.log('not implemented yet'); }
 
   goToBitPay() { console.log('not implemented yet'); }
 
