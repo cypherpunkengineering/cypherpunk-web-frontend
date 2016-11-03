@@ -6,12 +6,14 @@
 
 <div class="cta-container">
   <div class="call-to-action">
-    <button class="btn gold" onclick="window.location.href='https://builds.cypherpunk.engineering/';">Download for Mac OSX</button>
+    <button class="btn gold" onclick="window.location.href='https://builds.cypherpunk.engineering/';">
+      Download for {{ headerBuild.name }}
+    </button>
   </div>
 </div>
 
 <div class="subheader-content">
-  <div class="subheader-version">10.8 - 10.11</div>
+  <div class="subheader-version">{{ headerBuild.versions }}</div>
 
   <div class="subheader-slogan">
     Are you a cypherpunk?
@@ -23,10 +25,10 @@
 
   <div class="grouping">
     <div id="windows" class="group">
-      <a href="">
+      <a href="{{ builds.windows.link }}">
         <img src="/assets/icon-desktop--windows.png"><br>
-        <div class="group-header">Windows</div>
-        <div class="group-subheader">XP, Vista, 7, 8, 10</div>
+        <div class="group-header">{{ builds.windows.name }}</div>
+        <div class="group-subheader">{{ builds.windows.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -34,10 +36,10 @@
     </div>
 
     <div id="mac" class="group">
-      <a href="">
+      <a href="{{ builds.mac.link }}">
         <img src="/assets/icon-desktop--mac.png"><br>
-        <div class="group-header">Mac</div>
-        <div class="group-subheader">10.8 - 10.11</div>
+        <div class="group-header">{{ builds.mac.name }}</div>
+        <div class="group-subheader">{{ builds.mac.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -45,10 +47,10 @@
     </div>
 
     <div id="linux" class="group">
-      <a href="">
+      <a href="{{ builds.linux.link }}">
         <img src="/assets/icon-desktop--linux.png"><br>
-        <div class="group-header">Linux</div>
-        <div class="group-subheader">xx - xx</div>
+        <div class="group-header">{{ builds.linux.name }}</div>
+        <div class="group-subheader">{{ builds.linux.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -62,10 +64,10 @@
 
   <div class="grouping">
     <div id="chrome" class="group">
-      <a href="">
+      <a href="{{ builds.chrome.link }}">
         <img src="/assets/icon-browser--chrome.png"><br>
-        <div class="group-header">Chrome</div>
-        <div class="group-subheader">xx - xx</div>
+        <div class="group-header">{{ builds.chrome.name }}</div>
+        <div class="group-subheader">{{ builds.chrome.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -73,10 +75,10 @@
     </div>
 
     <div id="firefox" class="group">
-      <a href="">
+      <a href="{{ builds.firefox.link }}">
         <img src="/assets/icon-browser--ff.png"><br>
-        <div class="group-header">Firefox</div>
-        <div class="group-subheader">xx - xx</div>
+        <div class="group-header">{{ builds.firefox.name }}</div>
+        <div class="group-subheader">{{ builds.firefox.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -84,10 +86,10 @@
     </div>
 
     <div id="opera" class="group">
-      <a href="">
+      <a href="{{ builds.opera.link }}">
         <img src="/assets/icon-browser--opera.png"><br>
-        <div class="group-header">Opera</div>
-        <div class="group-subheader">xx - xx</div>
+        <div class="group-header">{{ builds.opera.name }}</div>
+        <div class="group-subheader">{{ builds.opera.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -101,10 +103,10 @@
 
   <div class="grouping">
     <div id="ios" class="group">
-      <a href="">
+      <a href="{{ builds.ios.link }}">
         <img src="/assets/icon-mobile--ios.png"><br>
-        <div class="group-header">iOS</div>
-        <div class="group-subheader">iOS 8+</div>
+        <div class="group-header">{{ builds.ios.name }}</div>
+        <div class="group-subheader">{{ builds.ios.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -112,10 +114,10 @@
     </div>
 
     <div id="android" class="group">
-      <a href="">
+      <a href="{{ builds.android.link }}">
         <img src="/assets/icon-mobile--android.png"><br>
-        <div class="group-header">Andriod</div>
-        <div class="group-subheader">4.0.3+</div>
+        <div class="group-header">{{ builds.android.name }}</div>
+        <div class="group-subheader">{{ builds.android.versions }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
