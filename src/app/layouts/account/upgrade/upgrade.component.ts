@@ -62,6 +62,8 @@ export class UpgradeComponent {
     private plansService: PlansService
   ) { this.email = session.user.email; }
 
+  // pay with credit card
+
   getToken() {
     if (!this.validateCC()) { return; }
 
@@ -125,7 +127,19 @@ export class UpgradeComponent {
     });
   }
 
-  goToPaypal() { console.log('not implemented yet'); }
+  // pay with paypal
+
+  payWithPaypal() {
+    if (this.selectedPlan.id === 'monthly999') {
+      document.getElementById('paypalMonthly').click();
+    }
+    else if (this.selectedPlan.id === 'annually8004') {
+      document.getElementById('paypalAnnual').click();
+    }
+    else if (this.selectedPlan.id === 'semiannually4998') {
+      document.getElementById('paypalSemiannual').click();
+    }
+  }
 
   goToBitPay() { console.log('not implemented yet'); }
 

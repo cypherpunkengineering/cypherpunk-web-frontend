@@ -153,13 +153,56 @@
     </div>
 
     <div class="paypal" *ngIf="paymentOptions[1].selected">
+      <div class="info">
+        <p>
+          <label>Email</label><br>
+          <input type="email" placeholder="you@example.com" disabled [(ngModel)]="email">
+        </p>
+      </div>
+
       <div class="total">
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="goToPaypal()">
-        Continue to Paypal
+      <button class="btn blue" (click)="payWithPaypal()">
+        Join Cypherpunk
       </button>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="XKNN842WGTDFS">
+        <input type="hidden" name="item_number" value="monthly999">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalMonthly" class="btn blue" name="submit">
+          Monthly
+        </button>
+      </form>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="HMGW328J6EN7N">
+        <input type="hidden" name="item_number" value="annually8004">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalAnnual" class="btn blue" name="submit">
+          Annually
+        </button>
+      </form>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="KBUPJRS6WGBA2">
+        <input type="hidden" name="item_number" value="semiannually4998">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalSemiannual" class="btn blue" name="submit">
+          Semiannually
+        </button>
+      </form>
     </div>
 
     <div class="bitcoin" *ngIf="paymentOptions[2].selected">

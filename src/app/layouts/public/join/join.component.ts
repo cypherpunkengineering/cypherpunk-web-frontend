@@ -172,23 +172,11 @@ export class JoinComponent {
       else if (this.selectedPlan.id === 'semiannually4998') {
         document.getElementById('paypalSemiannual').click();
       }
-      else { console.log('wtf mate'); }
     })
     // handle errors
     .catch((error) => {
       console.log(error);
       this.alertService.error('Could not create an account');
-
-      if (this.selectedPlan.id === 'monthly999') {
-        document.getElementById('paypalMonthly').click();
-      }
-      else if (this.selectedPlan.id === 'annually8004') {
-        document.getElementById('paypalAnnual').click();
-      }
-      else if (this.selectedPlan.id === 'semiannually4998') {
-        document.getElementById('paypalSemiannual').click();
-      }
-      else { console.log('wtf mate'); }
     });
   }
 
