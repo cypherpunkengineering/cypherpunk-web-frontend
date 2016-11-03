@@ -7,7 +7,7 @@
     {
       "root": "src",
       "outDir": "dist",
-      "assets": ["assets", "favicons"],
+      "assets": ["assets", "favicons", "robots.txt", "sitemap.xml"],
       "index": "cypherpunk-public.html",
       "main": "main.ts",
       "test": "test.ts",
