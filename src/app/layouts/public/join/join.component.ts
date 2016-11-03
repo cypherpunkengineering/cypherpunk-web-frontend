@@ -47,7 +47,7 @@ export class JoinComponent {
       selected: false
     },
     {
-      type: 'o',
+      type: 'a',
       selected: false
     }
   ];
