@@ -4,6 +4,10 @@
   <div class="masthead-header">Billing Info</div>
 </div>
 
+<div class="breadcrumb">
+  <a routerLink="/user">Account</a> > Billing Info
+</div>
+
 <div class="content">
 
   <div class="content-header">Transaction History with Receipt</div>
@@ -14,7 +18,7 @@
         <th>Date</th>
         <th>Plan</th>
         <th>Total</th>
-        <th>Method</th>
+        <th class="method">Method</th>
         <th>Receipt</th>
       </tr>
     </thead>
@@ -24,7 +28,7 @@
         <td>{{tran.date}}</td>
         <td>{{tran.plan}}</td>
         <td>{{tran.total}}</td>
-        <td>{{tran.method}}</td>
+        <td class="method">{{tran.method}}</td>
         <td><a [href]="tran.receiptUrl">Print</a></td>
       </tr>
     </tbody>
@@ -47,7 +51,7 @@
         <th>Date</th>
         <th>Plan</th>
         <th>Total</th>
-        <th>Method</th>
+        <th class="method">Method</th>
         <th>Receipt</th>
       </tr>
     </thead>
@@ -58,7 +62,7 @@
         <td>{{invoice.date}}</td>
         <td>{{invoice.plan}}</td>
         <td>{{invoice.total}}</td>
-        <td>{{invoice.method}}</td>
+        <td class="method">{{invoice.method}}</td>
         <td><a [href]="invoice.receiptUrl">Print</a></td>
       </tr>
     </tbody>
@@ -72,6 +76,10 @@
     </tfoot>
   </table>
 
+</div>
+
+<div class="return">
+  <a routerLink="/user">Back to Account</a>
 </div>
 
 <app-footer></app-footer>
