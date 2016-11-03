@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: /user
-Sitemap: https://cypherpunk.engineering/sitemap.xml
+Sitemap: https://cypherpunk.com/sitemap.xml
