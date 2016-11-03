@@ -63,6 +63,8 @@ export class JoinComponent {
     private plansService: PlansService
   ) { }
 
+  // pay with credit card
+
   getToken() {
     if (!this.validateCC()) { return; }
 
@@ -130,6 +132,68 @@ export class JoinComponent {
     });
   }
 
+  // pay with paypal
+
+  payWithPaypal() {
+    if (!this.validatePP()) { return; }
+
+    let serverParams = {
+      email: this.email,
+      password: this.password
+    };
+
+    // call server at this point (using promises)
+    let url = '/account/register/signup';
+    let body = serverParams;
+    let options = new RequestOptions({});
+    // sets cookie
+    return this.http.post(url, body, options).toPromise()
+    // set user session
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.session.setUserData({
+        email: resData.acct.email,
+        secret: resData.secret
+      });
+    })
+    // turn on authed
+    .then(() => { this.auth.authed = true; })
+    // alert and redirect to paypal
+    .then(() => {
+      this.alertService.success('You account was created!');
+    })
+    .then(() => {
+      if (this.selectedPlan.id === 'monthly999') {
+        document.getElementById('paypalMonthly').click();
+      }
+      else if (this.selectedPlan.id === 'annually8004') {
+        document.getElementById('paypalAnnual').click();
+      }
+      else if (this.selectedPlan.id === 'semiannually4998') {
+        document.getElementById('paypalSemiannual').click();
+      }
+      else { console.log('wtf mate'); }
+    })
+    // handle errors
+    .catch((error) => {
+      console.log(error);
+      this.alertService.error('Could not create an account');
+
+      if (this.selectedPlan.id === 'monthly999') {
+        document.getElementById('paypalMonthly').click();
+      }
+      else if (this.selectedPlan.id === 'annually8004') {
+        document.getElementById('paypalAnnual').click();
+      }
+      else if (this.selectedPlan.id === 'semiannually4998') {
+        document.getElementById('paypalSemiannual').click();
+      }
+      else { console.log('wtf mate'); }
+    });
+  }
+
+  // pay with amazon
+
   goToBitPay() { console.log('not implemented yet'); }
 
   goToPaymentwall() { console.log('not implemented yet'); }
@@ -189,6 +253,11 @@ export class JoinComponent {
     this.message = '';
     this.messageClass = '';
     return true;
+  }
+
+  validatePP() {
+    if (!this.email || !this.password) { return false; }
+    else { return true; }
   }
 
   isNumber(n) {
