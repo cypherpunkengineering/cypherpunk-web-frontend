@@ -12,6 +12,9 @@ export class DashboardComponent {
   plans: Plan[] = this.plansService.plans;
   selectPlan = this.plansService.selectPlan;
 
+  showEmailModal: boolean = false;
+  showPasswordModal: boolean = false; 
+
   constructor(private session: SessionService, private plansService: PlansService) {
     session.pullPlanData();
     this.user = session.user;

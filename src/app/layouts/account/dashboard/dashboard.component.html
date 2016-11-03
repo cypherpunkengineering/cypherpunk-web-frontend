@@ -101,7 +101,7 @@
   <div>
     <div class="content-row">
       <div class="left">
-        <a routerLink="/user/email">Change Email</a>
+        <a (click)="showEmailModal = true">Change Email</a>
       </div>
       <div class="right">
         <span class="user-email">{{user.email}}</span>
@@ -110,7 +110,7 @@
 
     <div class="content-row">
       <div class="left">
-        <a routerLink="/user/password">Change Password</a>
+        <a (click)="showPasswordModal = true">Change Password</a>
       </div>
     </div>
   </div>
@@ -148,3 +148,65 @@
 </div>
 
 <app-footer></app-footer>
+
+<div class="modal" *ngIf="showEmailModal">
+  <div class="background" (click)="showEmailModal = false"></div>
+  <div class="modal-content">
+    <div class="modal-header">Change Email</div>
+
+    <hr>
+
+    <div class="modal-body">
+      <div class="row">
+        <label>Current Email</label><br>
+        <span class="currentEmail">{{user.email}}</span>
+      </div>
+
+      <div class="row">
+        <label for="newEmail">New Email</label><br>
+        <input type="email" name="newEmail">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button class="btn blue">Change</button>
+      </div>
+
+      <div class="row">
+        <a (click)="showEmailModal = false">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showPasswordModal">
+  <div class="background" (click)="showPasswordModal = false"></div>
+  <div class="modal-content">
+    <div class="modal-header">Change Password</div>
+
+    <hr>
+
+    <div class="modal-body">
+      <div class="row">
+        <label for="password">New Password</label><br>
+        <input type="password" name="password">
+      </div>
+
+      <div class="row">
+        <label for="newPassword">Confirm Password</label><br>
+        <input type="password" name="newPassword">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button class="btn blue">Change</button>
+      </div>
+
+      <div class="row">
+        <a (click)="showPasswordModal = false">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
