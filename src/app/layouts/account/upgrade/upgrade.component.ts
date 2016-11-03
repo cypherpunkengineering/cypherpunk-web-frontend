@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
+import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -25,34 +26,9 @@ export class UpgradeComponent {
 
   // pricing model
 
-  priceModels = [
-    {
-      id: 'monthly999',
-      price: 9.99,
-      months: 1,
-      total: 9.99,
-      yearly: '$ 9.99 billed monthly',
-      selected: false
-    },
-    {
-      id: 'annually8004',
-      price: 6.25,
-      months: 12,
-      total: 80.04,
-      yearly: '$ 80.04 billed annually',
-      selected: true
-    },
-    {
-      id: 'semiannually4998',
-      price: 8.33,
-      months: 6,
-      total: 49.98,
-      yearly: '$ 49.98 billed semiannually',
-      selected: false
-    }
-  ];
-
-  selectedModel = this.priceModels[1];
+  plans = this.plansService.plans;
+  selectPlan = this.plansService.selectPlan;
+  selectedPlan = this.plansService.selectedPlan;
 
   // payment options
 
@@ -82,7 +58,8 @@ export class UpgradeComponent {
     private router: Router,
     private auth: AuthService,
     private session: SessionService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private plansService: PlansService
   ) { this.email = session.user.email; }
 
   getToken() {
@@ -124,7 +101,7 @@ export class UpgradeComponent {
   saveToServer(token: string) {
     let serverParams = {
       token: token,
-      plan: this.selectedModel.id,
+      plan: this.selectedPlan.id,
       email: this.email
     };
 
@@ -207,14 +184,6 @@ export class UpgradeComponent {
 
   isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
-  // pricing functions
-
-  selectPricing(model) {
-    this.selectedModel = model;
-    this.priceModels.map((item) => { item.selected = false; });
-    model.selected = true;
   }
 
   // option functions

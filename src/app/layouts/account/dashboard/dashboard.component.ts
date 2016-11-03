@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
+import { Plan, PlansService } from '../../../services/plans.service';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -8,8 +9,12 @@ import { SessionService } from '../../../services/session.service';
 export class DashboardComponent {
   user: any;
 
-  constructor(private session: SessionService) {
+  plans: Plan[] = this.plansService.plans;
+  selectPlan = this.plansService.selectPlan;
+
+  constructor(private session: SessionService, private plansService: PlansService) {
     session.pullPlanData();
     this.user = session.user;
   }
+
 }

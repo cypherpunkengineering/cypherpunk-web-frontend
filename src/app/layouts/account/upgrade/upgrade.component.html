@@ -11,44 +11,56 @@
       <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="price-box" (click)="selectPricing(priceModels[0])" [ngClass]="{ 'active': priceModels[0].selected }">
+    <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected }">
       <div class="checkmark">
-        <div class="check" [ngClass]="{'active': priceModels[0].selected}">&#10003;</div>
+        <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
       </div>
-      <div class="period" [ngClass]="{'active': priceModels[0].selected}">{{priceModels[0].months}} Months</div>
+      <div class="period" [ngClass]="{'active': plans[0].selected}">
+        {{plans[0].period}}
+      </div>
       <div class="price-area">
-        <span class="price" [ngClass]="{'active': priceModels[0].selected}">$ {{priceModels[0].price}}</span>
+        <span class="price" [ngClass]="{'active': plans[0].selected}">
+          $ {{plans[0].price}}
+        </span>
         <span class="price-time"> / month</span>
       </div>
-      <div class="yearly" [ngClass]="{'active': priceModels[0].selected}" [innerHTML]="priceModels[0].yearly"></div>
+      <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
     </div>
 
     <div class="mobile-blimp-container">
       <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="price-box" (click)="selectPricing(priceModels[1])" [ngClass]="{ 'active': priceModels[1].selected }">
+    <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected }">
       <div class="checkmark">
-        <div class="check" [ngClass]="{'active': priceModels[1].selected}">&#10003;</div>
+        <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
       </div>
-      <div class="period" [ngClass]="{'active': priceModels[1].selected}">{{priceModels[1].months}} Months</div>
+      <div class="period" [ngClass]="{'active': plans[1].selected}">
+        {{plans[1].period}}
+      </div>
       <div class="price-area">
-        <span class="price" [ngClass]="{'active': priceModels[1].selected}">$ {{priceModels[1].price}}</span>
+        <span class="price" [ngClass]="{'active': plans[1].selected}">
+          $ {{plans[1].price}}
+        </span>
         <span class="price-time"> / month</span>
       </div>
-      <div class="yearly" [ngClass]="{'active': priceModels[1].selected}" [innerHTML]="priceModels[1].yearly"></div>
+      <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
     </div>
 
-    <div class="price-box" (click)="selectPricing(priceModels[2])" [ngClass]="{ 'active': priceModels[2].selected }">
+    <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected }">
       <div class="checkmark">
-        <div class="check" [ngClass]="{'active': priceModels[2].selected}">&#10003;</div>
+        <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
       </div>
-      <div class="period" [ngClass]="{'active': priceModels[2].selected}">{{priceModels[2].months}} Months</div>
+      <div class="period" [ngClass]="{'active': plans[2].selected}">
+        {{plans[2].period}}
+      </div>
       <div class="price-area">
-        <span class="price" [ngClass]="{'active': priceModels[2].selected}">$ {{priceModels[2].price}}</span>
+        <span class="price" [ngClass]="{'active': plans[2].selected}">
+          $ {{plans[2].price}}
+        </span>
         <span class="price-time"> / month</span>
       </div>
-      <div class="yearly" [ngClass]="{'active': priceModels[2].selected}" [innerHTML]="priceModels[2].yearly"></div>
+      <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
     </div>
   </div>
 
@@ -131,16 +143,18 @@
       </div>
 
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedModel.total }}</span>
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" [ngClass]="{'disabled': !validateCC()}" (click)="getToken()">Upgrade Now</button>
+      <button class="btn blue" [ngClass]="{'disabled': !validateCC()}" (click)="getToken()">
+        Upgrade Now
+      </button>
       <div class="stripe-message" [ngClass]="messageClass">{{message}}</div>
     </div>
 
     <div class="paypal" *ngIf="paymentOptions[1].selected">
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedModel.total }}</span>
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
       <button class="btn blue" (click)="goToPaypal()">
@@ -150,7 +164,7 @@
 
     <div class="bitcoin" *ngIf="paymentOptions[2].selected">
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedModel.total }}</span>
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
       <button class="btn blue" (click)="goToBitPay()">
@@ -160,7 +174,7 @@
 
     <div class="other" *ngIf="paymentOptions[3].selected">
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedModel.total }}</span>
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
       <button class="btn blue" (click)="goToPaymentwall()">

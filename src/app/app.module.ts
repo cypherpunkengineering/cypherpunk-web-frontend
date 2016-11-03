@@ -29,6 +29,7 @@ import { ConfirmationGuard } from './services/confirmation-guard.service';
 import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
 import { AlertService } from './services/alert.service';
+import { PlansService } from './services/plans.service';
 
 @NgModule({
   // all components must be declared here
@@ -64,7 +65,8 @@ import { AlertService } from './services/alert.service';
     ConfirmationGuard,
     AuthService,
     SessionService,
-    AlertService
+    AlertService,
+    PlansService
   ],
   bootstrap: [RootComponent]
 })
