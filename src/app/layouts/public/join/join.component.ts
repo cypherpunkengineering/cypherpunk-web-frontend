@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -184,7 +184,83 @@ export class JoinComponent {
 
   goToBitPay() { console.log('not implemented yet'); }
 
-  goToPaymentwall() { console.log('not implemented yet'); }
+  amazon() {
+    let authRequest;
+    let wallet = this.createWallet;
+    let recur = this.createRecurring;
+    OffAmazonPayments.Button(
+      'AmazonPayButton',
+      'A3SJRQ5XVLYGMV', {
+        type:  'PwA',
+        color: 'Gold',
+        size:  'medium',
+        authorization: function() {
+          let loginOptions = {
+            scope: 'profile',
+            popup: 'true'
+          };
+          authRequest = amazon.Login.authorize(loginOptions);
+          console.log(authRequest);
+          wallet(recur);
+        },
+        onError: function(error) { console.log(error); }
+      }
+    );
+  }
+
+  createWallet(recur) {
+    let billingAgreementId;
+
+    new OffAmazonPayments.Widgets.Wallet({
+      sellerId: 'A3SJRQ5XVLYGMV',
+      onReady: function(billingAgreement) {
+        billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+      },
+      agreementType: 'BillingAgreement',
+      design: { designMode: 'responsive' },
+      onPaymentSelect: function(billingAgreement) {
+         // Replace this code with the action that you want to perform
+         // after the payment method is selected.
+         console.log(billingAgreement);
+         recur(billingAgreementId);
+      },
+      onError: function(error) { console.log(error); }
+    }).bind('walletWidgetDiv');
+  }
+
+  createRecurring(billingAgreementId) {
+    let buyerBillingAgreementConsentStatus;
+    new OffAmazonPayments.Widgets.Consent({
+      sellerId: 'A3SJRQ5XVLYGMV',
+      // amazonBillingAgreementId obtained from the Amazon Address Book widget.
+      amazonBillingAgreementId: billingAgreementId,
+      design: { designMode: 'responsive' },
+      onReady: function(billingAgreementConsentStatus){
+        // Called after widget renders
+        buyerBillingAgreementConsentStatus =
+          billingAgreementConsentStatus.getConsentStatus();
+        // getConsentStatus returns true or false
+        // true – checkbox is selected
+        // false – checkbox is unselected - default
+      },
+      onConsent: function(billingAgreementConsentStatus) {
+        buyerBillingAgreementConsentStatus =
+          billingAgreementConsentStatus.getConsentStatus();
+        // getConsentStatus returns true or false
+        // true – checkbox is selected – buyer has consented
+        // false – checkbox is unselected – buyer has not consented
+
+        // Replace this code with the action that you want to perform
+        // after the consent checkbox is selected/unselected.
+        console.log(buyerBillingAgreementConsentStatus);
+      },
+      onError: function(error) { console.log(error); }
+    }).bind('consentWidgetDiv');
+  }
+
+  setBilling() {
+    
+  }
 
   validateCC() {
     if (!this.email) {
