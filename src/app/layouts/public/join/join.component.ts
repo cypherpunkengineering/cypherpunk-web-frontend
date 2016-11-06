@@ -105,7 +105,7 @@ export class JoinComponent {
     };
 
     // call server at this point (using promises)
-    let url = '/api/subscription/purchase';
+    let url = '/api/v0/subscription/purchase';
     let body = serverParams;
     let options = new RequestOptions({});
     // sets cookie
@@ -114,7 +114,7 @@ export class JoinComponent {
     .then((res: Response) => {
       let resData = res.json() || {};
       this.session.setUserData({
-        email: resData.acct.email,
+        email: resData.account.email,
         secret: resData.secret
       });
     })
@@ -143,7 +143,7 @@ export class JoinComponent {
     };
 
     // call server at this point (using promises)
-    let url = '/account/register/signup';
+    let url = '/api/v0/account/register/signup';
     let body = serverParams;
     let options = new RequestOptions({});
     // sets cookie
@@ -152,7 +152,7 @@ export class JoinComponent {
     .then((res: Response) => {
       let resData = res.json() || {};
       this.session.setUserData({
-        email: resData.acct.email,
+        email: resData.account.email,
         secret: resData.secret
       });
     })

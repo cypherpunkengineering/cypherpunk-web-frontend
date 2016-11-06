@@ -25,7 +25,7 @@ export class ConfirmationGuard implements CanActivate {
       if (valid) {
         // set user session data
         this.session.setUserData({
-          email: data['acct']['email'],
+          email: data['account']['email'],
           secret: data['secret']
         });
         // turn auth on
@@ -40,7 +40,7 @@ export class ConfirmationGuard implements CanActivate {
   }
 
   checkToken(accountId: string, confToken: string): Promise<Object> {
-    let url = `/account/confirm/${accountId}?confirmationToken=${confToken}`;
+    let url = `/api/v0/account/confirm/${accountId}?confirmationToken=${confToken}`;
     let retVal = { valid: false };
 
     // this will set cookie

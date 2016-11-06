@@ -30,7 +30,7 @@ export class SessionService {
   }
 
   pullPlanData() {
-    let url = '/api/subscription/status';
+    let url = '/api/v0/subscription/status';
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
     .then((data) => {

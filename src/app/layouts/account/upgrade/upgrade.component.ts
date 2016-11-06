@@ -108,7 +108,7 @@ export class UpgradeComponent {
     };
 
     // call server at this point (using promises)
-    let url = '/api/subscription/upgrade';
+    let url = '/api/v0/subscription/upgrade';
     let body = serverParams;
     let options = new RequestOptions({});
     // set cookie?

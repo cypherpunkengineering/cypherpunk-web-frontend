@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
   authed: boolean = false;
   redirectUrl: string;
-  private loginUrl: string = '/account/authenticate/userpasswd';
+  private loginUrl: string = '/api/v0/account/authenticate/userpasswd';
 
   constructor(
     private session: SessionService,
@@ -25,7 +25,7 @@ export class AuthService {
     // set user session data
     .then((data) => {
       this.session.setUserData({
-        email: data.acct.email,
+        email: data.account.email,
         secret: data.secret
       });
     })
