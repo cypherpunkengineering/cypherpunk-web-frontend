@@ -10,12 +10,12 @@
 
 	<!-- rewrite api paths exactly as requested -->
 	<rule>
-		<from>^/api/(.*)</from>
-		<to last="true">/api/$1</to>
+		<from>^/api/v0/(.*)</from>
+		<to last="true">/api/v0/$1</to>
 	</rule>
 	<rule>
-		<from>^/account/(.*)</from>
-		<to last="true">/account/$1</to>
+		<from>^/api/v1/(.*)</from>
+		<to last="true">/api/v1/$1</to>
 	</rule>
 
 	<!-- spider crawler robots -->
