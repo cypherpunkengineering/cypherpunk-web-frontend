@@ -4,7 +4,7 @@ const fs = require('fs');
 const baseRoute = 'http://localhost:3000/';
 const baseDir = './build/';
 const routes = [
-  { url: baseRoute, dirPath: baseDir + 'cypherpunk-index.html' },
+  { url: baseRoute, dirPath: baseDir + 'cypherpunk-public.html' },
   { url: baseRoute + 'join', dirPath: baseDir + 'join.html' },
   { url: baseRoute + 'download', dirPath: baseDir + 'download.html' },
   { url: baseRoute + 'confirmation', dirPath: baseDir + 'confirmation.html' },
