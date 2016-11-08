@@ -7,7 +7,7 @@ import { DownloadComponent } from './download.component';
   imports: [
     RouterModule.forChild([
       { path: 'download', component: DownloadComponent },
-      { path: 'download.html', redirectTo: '/download' }
+      { path: 'download.html', redirectTo: '/download', pathMatch: 'full' }
     ])
   ]
 })

@@ -41,7 +41,7 @@
 		<condition type="remote-addr" next="or">^24\.224\.221\.</condition><!-- reg -->
 		<condition type="remote-addr">^127\.</condition>
 		<from>^(.*)</from>
-		<to last="true">/index.html</to>
+		<to last="true">/cypherpunk-public.html</to>
 	</rule>
 
 	<!-- catchall handler -->
