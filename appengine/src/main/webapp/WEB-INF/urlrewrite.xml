@@ -48,7 +48,7 @@
 		<to last="true">/cypherpunk-public.html$1</to>
 	</rule>
 	<rule>
-		<from>^/confirmation(.*)</from>
+		<from>^/confirm(.*)</from>
 		<to last="true">/confirmation.html$1</to>
 	</rule>
 	<rule>

@@ -18,7 +18,7 @@ export class ConfirmationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     if (scraping) { return Promise.resolve(true); }
 
-    let accountId = route.params['accountId'];
+    let accountId = route.queryParams['accountId'];
     let confToken = route.queryParams['confirmationToken'];
 
     return this.checkToken(accountId, confToken)

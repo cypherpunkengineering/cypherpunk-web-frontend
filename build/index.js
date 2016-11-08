@@ -52884,7 +52884,7 @@ var ConfirmationGuard = (function () {
         if (scraping_1.scraping) {
             return Promise.resolve(true);
         }
-        var accountId = route.params['accountId'];
+        var accountId = route.queryParams['accountId'];
         var confToken = route.queryParams['confirmationToken'];
         return this.checkToken(accountId, confToken)
             .then(function (data) {
