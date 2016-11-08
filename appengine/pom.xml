@@ -64,7 +64,7 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
-							<directory>${basedir}/../dist</directory>
+							<directory>${basedir}/../build</directory>
 							<filtering>false</filtering>
 							<targetPath>site</targetPath>
 						</resource>

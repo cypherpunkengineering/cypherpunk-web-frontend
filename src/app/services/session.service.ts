@@ -1,5 +1,6 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, Inject, NgZone } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { LocalStorage } from './local-storage';
 
 @Injectable()
 export class SessionService {
@@ -16,7 +17,11 @@ export class SessionService {
     payOption: 0
   };
 
-  constructor(private http: Http, private zone: NgZone) {
+  constructor(
+    private http: Http,
+    private zone: NgZone,
+    @Inject(LocalStorage) private localStorage
+  ) {
     this.user.username = localStorage.getItem('username') || 'tester';
     this.user.email = localStorage.getItem('email') || 'test@example.com';
     this.user.secret = localStorage.getItem('secret') || '';

@@ -3,6 +3,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { Http, Response } from '@angular/http';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
+import { scraping } from './scraping';
 
 @Injectable()
 export class ConfirmationGuard implements CanActivate {
@@ -15,6 +16,8 @@ export class ConfirmationGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    if (scraping) { return Promise.resolve(true); }
+
     let accountId = route.params['accountId'];
     let confToken = route.queryParams['confirmationToken'];
 
