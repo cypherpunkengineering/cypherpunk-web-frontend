@@ -40,7 +40,7 @@
 		<condition type="remote-addr" next="or">^72\.83\.163\.</condition><!-- paul -->
 		<condition type="remote-addr" next="or">^24\.224\.221\.</condition><!-- reg -->
 		<condition type="remote-addr">^127\.</condition>
-		<from>^$</from>
+		<from>^/$</from>
 		<to last="true">/cypherpunk-public.html</to>
 	</rule>
 	<rule>
