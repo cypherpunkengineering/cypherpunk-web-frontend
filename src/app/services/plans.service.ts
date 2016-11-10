@@ -14,27 +14,27 @@ export class Plan {
 export class PlansService {
   plans: Plan[] = [
     {
-      id: 'monthly999',
-      price: 9.99,
+      id: 'monthly899',
+      price: 8.99,
       period: '1 Month',
-      total: 9.99,
-      yearly: '$ 9.99 billed monthly',
+      total: 8.99,
+      yearly: '$ 8.99 billed monthly',
       selected: false
     },
     {
-      id: 'annually8004',
-      price: 6.25,
+      id: 'annually5999',
+      price: 4.99,
       period: '12 Months',
-      total: 80.04,
-      yearly: '$ 80.04 billed annually',
+      total: 59.99,
+      yearly: '$ 59.99 billed annually',
       selected: true
     },
     {
-      id: 'semiannually4998',
-      price: 8.33,
+      id: 'semiannually4499',
+      price: 7.49,
       period: '6 Months',
-      total: 49.98,
-      yearly: '$ 49.98 billed semiannually',
+      total: 44.99,
+      yearly: '$ 44.99 billed semiannually',
       selected: false
     }
   ];
