@@ -22,31 +22,40 @@
 	<rule>
 		<method>GET</method>
 		<condition name="user-agent">(bot|spider|snippet|pinterest|crawler|archiver|flipboardproxy|mediapartners|facebookexternalhit|quora|disqus)</condition>
-		<from>^(.*)</from>
+		<from>.*</from>
 		<set type="status">404</set>
 		<to last="true">null</to>
 	</rule>
 
 	<!-- angular routes -->
 	<rule>
-		<condition type="remote-addr" next="or">^208\.111\.48\.</condition><!-- wiz hnl -->
-		<condition type="remote-addr" next="or">^208\.111\.52\.</condition><!-- wiz tokyo -->
-		<condition type="remote-addr" next="or">^43\.233\.13\.</condition><!-- tokyo office -->
-		<condition type="remote-addr" next="or">^76\.173\.255\.</condition><!-- taesup -->
-		<condition type="remote-addr" next="or">^219\.164\.103\.</condition><!-- nikuhodai -->
-		<condition type="remote-addr" next="or">^77\.145\.35\.</condition><!-- paris demo -->
-		<condition type="remote-addr" next="or">^73\.148\.56\.</condition><!-- chris -->
-		<condition type="remote-addr" next="or">^2601:5cc:0:41f8:</condition><!-- chris -->
-		<condition type="remote-addr" next="or">^72\.83\.163\.</condition><!-- paul -->
-		<condition type="remote-addr" next="or">^24\.224\.221\.</condition><!-- reg -->
-		<condition type="remote-addr">^127\.</condition>
-		<from>^/$</from>
-		<to last="true">/cypherpunk-public.html</to>
+		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.48\.</condition><!-- wiz hnl -->
+		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
+		<condition type="remote-addr" operator="notequal" next="and">^43\.233\.13\.</condition><!-- tokyo office -->
+		<condition type="remote-addr" operator="notequal" next="and">^76\.173\.255\.</condition><!-- taesup -->
+		<condition type="remote-addr" operator="notequal" next="and">^219\.164\.103\.</condition><!-- nikuhodai -->
+		<condition type="remote-addr" operator="notequal" next="and">^77\.145\.35\.</condition><!-- paris demo -->
+		<condition type="remote-addr" operator="notequal" next="and">^73\.148\.56\.</condition><!-- chris -->
+		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:0:41f8:</condition><!-- chris -->
+		<condition type="remote-addr" operator="notequal" next="and">^72\.83\.163\.</condition><!-- paul -->
+		<condition type="remote-addr" operator="notequal" next="and">^24\.224\.221\.</condition><!-- reg -->
+		<condition type="remote-addr" operator="notequal">^127\.</condition>
+		<from>.*</from>
+		<set type="status">403</set>
+		<to last="true">null</to>
+	</rule>
+
+	<!-- customer control panel, requires valid session -->
+	<rule>
+		<from>^/user/upgrade(.*)</from>
+		<to last="true">/user/upgrade.html$1</to>
 	</rule>
 	<rule>
-		<from>^/home(.*)</from>
-		<to last="true">/cypherpunk-public.html$1</to>
+		<from>^/user(.*)</from>
+		<to last="true">/user/user.html$1</to>
 	</rule>
+
+	<!-- public marketing content -->
 	<rule>
 		<from>^/confirm(.*)</from>
 		<to last="true">/confirmation.html$1</to>
@@ -72,17 +81,19 @@
 		<to last="true">/signup.html$1</to>
 	</rule>
 	<rule>
-		<from>^/user(.*)</from>
-		<to last="true">/user/user.html$1</to>
+		<from>^/home(.*)</from>
+		<to last="true">/cypherpunk-public.html$1</to>
 	</rule>
+
+	<!-- public root -->
 	<rule>
-		<from>^/user/upgrade(.*)</from>
-		<to last="true">/user/upgrade.html$1</to>
+		<from>^/$</from>
+		<to last="true">/cypherpunk-public.html</to>
 	</rule>
 
 	<!-- catchall handler -->
 	<rule>
-		<from>^(.*)</from>
+		<from>.*</from>
 		<set type="status">404</set>
 		<to last="true">null</to>
 	</rule>
