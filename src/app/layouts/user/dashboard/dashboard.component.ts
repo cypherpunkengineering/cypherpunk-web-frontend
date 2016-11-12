@@ -13,7 +13,7 @@ export class DashboardComponent {
   selectPlan = this.plansService.selectPlan;
 
   showEmailModal: boolean = false;
-  showPasswordModal: boolean = false; 
+  showPasswordModal: boolean = false;
 
   constructor(private session: SessionService, private plansService: PlansService) {
     session.pullPlanData();

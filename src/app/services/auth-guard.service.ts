@@ -18,12 +18,6 @@ export class AuthGuard implements CanActivate {
 
     let url: string = state.url;
 
-    let backdoor: string = route.queryParams['backdoor'];
-    if (backdoor) {
-      this.auth.authed = true;
-      return true;
-    }
-
     return this.checkLogin(url, route);
   }
 
