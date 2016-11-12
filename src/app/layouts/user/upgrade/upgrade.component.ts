@@ -46,7 +46,7 @@ export class UpgradeComponent {
       selected: false
     },
     {
-      type: 'o',
+      type: 'a',
       selected: false
     }
   ];
@@ -143,7 +143,21 @@ export class UpgradeComponent {
 
   goToBitPay() { console.log('not implemented yet'); }
 
-  goToPaymentwall() { console.log('not implemented yet'); }
+  // pay with amazon
+
+  amazonInit(callback) {
+    let amazonPayments = (<any>window).amazonPayments;
+    amazonPayments.init(callback);
+  }
+
+  amazonCallback(billingAgreement) {
+    console.log('back in angular');
+    console.log(billingAgreement);
+  }
+
+  amazonButton() {
+    console.log('paid with amazon');
+  }
 
   validateCC() {
     if (!this.email) {
@@ -206,6 +220,11 @@ export class UpgradeComponent {
     this.selectedOption = option;
     this.paymentOptions.map((item) => { item.selected = false; });
     option.selected = true;
+
+    // launch amazon payments
+    if (option.type === 'a') {
+      setTimeout(() => { this.amazonInit(this.amazonCallback); }, 100);
+    }
   }
 
 }

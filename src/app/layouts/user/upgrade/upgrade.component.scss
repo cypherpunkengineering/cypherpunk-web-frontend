@@ -132,6 +132,7 @@
 }
 
 .payment-info {
+  min-height: 300px;
   margin: 0 auto 0;
   padding: 0 50px 0;
   text-align: center;
@@ -217,6 +218,9 @@
     text-shadow: 0 2px 0 #ccc;
   }
 }
+
+#walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
+#consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
 
 @media (max-width: 1060px) {
   .page { padding: 0; }

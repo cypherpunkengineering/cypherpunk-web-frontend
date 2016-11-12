@@ -14,7 +14,6 @@ import 'rxjs/add/operator/toPromise';
 export class JoinComponent {
   message: string;
   messageClass: string = '';
-  showAmazon: boolean = false;
 
   // Stripe variables
   cardNumber: string;

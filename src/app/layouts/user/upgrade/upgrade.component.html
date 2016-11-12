@@ -95,7 +95,7 @@
           <img class="short" src="/assets/payment/icon-payment-other.png" *ngIf="paymentOptions[3].selected">
           <img class="short" src="/assets/payment/icon-payment-other-gray.png" *ngIf="!paymentOptions[3].selected">
         </div>
-        <div class="type-title">Other</div>
+        <div class="type-title">Amazon</div>
       </div>
     </div>
   </div>
@@ -220,8 +220,14 @@
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="goToPaymentwall()">
-        Continue to Paymentwall
+      <div id="AmazonPayButton"></div>
+
+      <div id="walletWidgetDiv"></div>
+
+      <div id="consentWidgetDiv"></div>
+
+      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
+        Pay Now
       </button>
     </div>
 
