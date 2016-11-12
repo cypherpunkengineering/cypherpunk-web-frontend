@@ -245,8 +245,14 @@
           ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
         </div>
 
-        <button class="btn blue" (click)="goToPaymentwall()">
-          Continue to Amazon
+        <div id="AmazonPayButton"></div>
+
+        <div id="walletWidgetDiv"></div>
+
+        <div id="consentWidgetDiv"></div>
+
+        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
+          Pay Now
         </button>
       </div>
 

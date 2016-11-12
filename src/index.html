@@ -16,6 +16,18 @@
   <meta name="theme-color" content="#ffffff">
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+
+  <script async='async' type='text/javascript'
+  src='https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js'></script>
+  <script type='text/javascript'>
+    window.onAmazonLoginReady = function() {
+      var cid = 'amzn1.application-oa2-client.3b4ef4e00d884937bd353d9afee02937';
+      amazon.Login.setClientId(cid);
+    };
+  </script>
+  <script type='text/javascript' src='/amazon.js'></script>
+  <script src="/index.js"></script>
+
   <style>
     html, body {
       margin: 0;
@@ -60,7 +72,6 @@
       text-shadow: 0 2px 0 #ccc;
     }
   </style>
-
 </head>
 <body>
 
@@ -103,7 +114,5 @@
     ga('send', 'pageview');
   </script>
   <!-- end GA -->
-
-  <script src="/index.js"></script>
 </body>
 </html>

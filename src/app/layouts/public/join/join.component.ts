@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
 export class JoinComponent {
   message: string;
   messageClass: string = '';
+  showAmazon: boolean = false;
 
   // Stripe variables
   cardNumber: string;
@@ -182,9 +183,21 @@ export class JoinComponent {
 
   // pay with amazon
 
-  goToBitPay() { console.log('not implemented yet'); }
+  amazonInit(callback) {
+    let amazonPayments = (<any>window).amazonPayments;
+    amazonPayments.init(callback);
+  }
 
-  goToPaymentwall() { console.log('not implemented yet'); }
+  amazonCallback(billingAgreement) {
+    console.log('back in angular');
+    console.log(billingAgreement);
+  }
+
+  amazonButton() {
+    console.log('paid with amazon');
+  }
+
+  goToBitPay() { console.log('not implemented yet'); }
 
   validateCC() {
     if (!this.email) {
@@ -258,6 +271,11 @@ export class JoinComponent {
     this.selectedOption = option;
     this.paymentOptions.map((item) => { item.selected = false; });
     option.selected = true;
+
+    // launch amazon payments
+    if (option.type === 'a') {
+      setTimeout(() => { this.amazonInit(this.amazonCallback); }, 100);
+    }
   }
 
 }

@@ -44,7 +44,7 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 
 * set the scraping boolean to true in /src/app/services/scraping.ts
 * `npm start` to build your client app and start a web server
-* `npm run build` to prepare a distributable bundle
+* `npm run build:prod` to prepare a distributable bundle
 * `npm run scrape` to scrape all the web pages into the build folder
 * set the scraping boolean back to false
 
