@@ -75,6 +75,10 @@
 		<from>^/user(.*)</from>
 		<to last="true">/user/user.html$1</to>
 	</rule>
+	<rule>
+		<from>^/user/upgrade(.*)</from>
+		<to last="true">/user/upgrade.html$1</to>
+	</rule>
 
 	<!-- catchall handler -->
 	<rule>
