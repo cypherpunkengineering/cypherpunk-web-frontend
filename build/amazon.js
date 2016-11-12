@@ -63,7 +63,6 @@ window.amazonPayments = {
           window.amazonPayments.callback(window.amazonPayments.billingAgreement);
           document.getElementById('payWithAmazon').style.display = 'inline';
         }
-        else { window.alert('Please allow for future payments to join Cypherpunk.'); }
       },
       onConsent: function(billingAgreementConsentStatus) {
         buyerBillingAgreementConsentStatus =
@@ -78,7 +77,10 @@ window.amazonPayments = {
           window.amazonPayments.callback(window.amazonPayments.billingAgreement);
           document.getElementById('payWithAmazon').style.display = 'inline';
         }
-        else { window.alert('Please allow for future payments to join Cypherpunk.'); }
+        else {
+          window.alert('Please allow for future payments to join Cypherpunk.');
+          document.getElementById('payWithAmazon').style.display = 'none';
+        }
       },
       onError: function(error) { console.log(error); }
     }).bind('consentWidgetDiv');
