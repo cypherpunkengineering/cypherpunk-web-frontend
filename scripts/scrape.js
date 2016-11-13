@@ -11,9 +11,9 @@ const routes = [
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'reset', dirPath: baseDir +'reset.html' },
   { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
-  { url: baseRoute + 'user', dirPath: baseDir + 'user/user.html' },
-  { url: baseRoute + 'user/upgrade', dirPath: baseDir + 'user/upgrade.html' },
-  { url: baseRoute + 'user/billing', dirPath: baseDir + 'user/billing.html' }
+  // { url: baseRoute + 'user', dirPath: baseDir + 'user/user.html' },
+  // { url: baseRoute + 'user/upgrade', dirPath: baseDir + 'user/upgrade.html' },
+  // { url: baseRoute + 'user/billing', dirPath: baseDir + 'user/billing.html' }
 ];
 
 // get all routes starting with index

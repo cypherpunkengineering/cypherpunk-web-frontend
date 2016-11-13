@@ -15,7 +15,7 @@
 
   <p>
     <label for="password">Password</label><br>
-    <input type="password" name="password" [(ngModel)]="user.password">
+    <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="login()">
   </p>
 
   <p class="center">
