@@ -78,6 +78,7 @@ app.get('/reset', ngApp);
 app.get('/signup', ngApp);
 app.get('/download', ngApp);
 app.get('/confirmation', ngApp);
+app.get('/whyus', ngApp);
 
 
 app.get('*', function(req, res) {
