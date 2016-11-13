@@ -13,17 +13,25 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (scraping) { return true; }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    if (scraping) { return Promise.resolve(true); }
 
     let url: string = state.url;
+
+    if (url === '/user') {
+      return this.session.pullPlanData()
+      .then((valid) => {
+        if (valid) { return true; }
+        else { this.router.navigate(['/login']); }
+      });
+    }
 
     return this.checkLogin(url, route);
   }
 
-  checkLogin(url: string, route: ActivatedRouteSnapshot): boolean {
+  checkLogin(url: string, route: ActivatedRouteSnapshot): Promise<boolean> {
     // Case 1: Already authed
-    if (this.auth.authed) { return true; }
+    if (this.auth.authed) { return Promise.resolve(true); }
 
     // Case 2: Enter with email and secret
     let routePath = route.url.join('/');
@@ -32,12 +40,12 @@ export class AuthGuard implements CanActivate {
     if (routePath === 'user/upgrade' && email && secret) {
       this.session.setUserData({ email: email, secret: secret });
       this.session.pullPlanData(); // need secret integration
-      return true;
+      return Promise.resolve(true);
     }
 
     // Case 3: not authed, redirect to login
     this.auth.redirectUrl = url;
     this.router.navigate(['/login']);
-    return false;
+    return Promise.resolve(false);
   }
 }

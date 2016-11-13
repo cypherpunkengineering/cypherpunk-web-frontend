@@ -16,7 +16,6 @@ export class DashboardComponent {
   showPasswordModal: boolean = false;
 
   constructor(private session: SessionService, private plansService: PlansService) {
-    session.pullPlanData();
     this.user = session.user;
   }
 

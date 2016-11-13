@@ -34,7 +34,7 @@ export class SessionService {
     localStorage.setItem('secret', user.secret);
   }
 
-  pullPlanData() {
+  pullPlanData(): Promise<boolean> {
     let url = '/api/v0/subscription/status';
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
@@ -61,7 +61,9 @@ export class SessionService {
         }
         else { this.user.renewal = 'Expired'; }
       });
-    });
+    })
+    .then(() => { return true; })
+    .catch(() => { return false; });
   }
 
   clearUserData() {

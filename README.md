@@ -50,6 +50,7 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 * `npm run build:prod` to prepare a dist without scraping enabled
 * modify /scripts/scraping.js and comment out the /user routes
 * `npm run scrape` again to pull public pages again
+* unmodify the /scripts/scraping.js page
 
 ## Development
 * run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
