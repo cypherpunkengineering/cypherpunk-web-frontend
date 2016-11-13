@@ -9,7 +9,7 @@ export class SessionService {
     email: '',
     secret: '',
     status: '',
-    type: 'free',
+    type: '',
     period: '',
     renewal: '',
     confirmed: false,
@@ -45,7 +45,7 @@ export class SessionService {
         this.user.status = 'active';
 
         // handle user period/renewal
-        if (data.renewal === 'none') { this.user.period = 'free account'; }
+        if (data.renewal === 'none') { this.user.period = 'free'; }
         else { this.user.period = data.renewal; }
 
         // hanlde renewal/expiration
@@ -53,12 +53,11 @@ export class SessionService {
         let expiration = new Date(data.expiration);
         if (data.expiration === 'none') { this.user.renewal = ''; }
         else if (expiration > now) {
-          let oneDay = 24 * 60 * 60 * 1000;
-          let daysLeft = Math.round((expiration.getTime() - now.getTime()) / (oneDay));
+          let period = this.user.period;
           let month = expiration.getMonth() + 1;
           let day = expiration.getDate();
           let year = expiration.getFullYear();
-          this.user.renewal = `Renews on ${month}/${day}/${year}, ${daysLeft} days left`;
+          this.user.renewal = `Renews ${period} on ${month}/${day}/${year}`;
         }
         else { this.user.renewal = 'Expired'; }
       });
