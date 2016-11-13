@@ -8,6 +8,7 @@ export class AuthService {
   authed: boolean = false;
   redirectUrl: string;
   private loginUrl: string = '/api/v0/account/authenticate/userpasswd';
+  private logoutUrl: string = '/api/v0/account/logout';
 
   constructor(
     private session: SessionService,
@@ -34,11 +35,18 @@ export class AuthService {
   }
 
   logout() {
+    let body = { };
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.logoutUrl, body, options).toPromise()
+    .then((res: Response) => { return res.json() || {}; })
     // clear session data and secret
-    this.session.clearUserData();
-    this.session.clearPlanData();
+    .then((data) => {
+      this.session.clearUserData();
+      this.session.clearPlanData();
+    })
     // turn off authed
-    this.authed = false;
-    // cookie remains
+    .then(() => { this.authed = false; });
   }
 }
