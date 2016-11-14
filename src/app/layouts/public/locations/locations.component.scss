@@ -15,7 +15,7 @@
     width: 100%;
     max-width: 700px;
     margin: auto;
-    padding-bottom: 37px;
+    padding-bottom: 59px;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
@@ -32,64 +32,40 @@
 
 .content {
   width: 100%;
-  text-align: center;
-  padding: 30px 0 60px;
-  &.gray { background-color: #f2f2f2; }
+  max-width: 750px;
+  margin: auto;
+  padding: 45px 0 60px;
 
   .header {
     font-size: 26px;
     font-weight: 500;
     color: #034698;
-    margin-bottom: 35px;
+    text-align: center;
+    margin-bottom: 45px;
   }
 
-  .body {
-    width: 100%;
-    max-width: 900px;
+  table {
     margin: auto;
-    overflow: auto;
+    width: 100%;
+    max-width: 725px;
+    text-align: center;
+    color: #666;
+    line-height: 2.41;
+    border-collapse: collapse;
 
-    .left, .right {
-      float: left;
-      display: inline-block;
-      width: 100%;
-      max-width: 450px;
-      padding: 0 20px;
+    thead {
+      color: #034698;
+      border-bottom: 1px solid #ccc;
     }
-
-    .mobile-image, .image {
-      width: 280px;
-      height: 160px;
-      max-width: 280px;
-      margin: auto;
-      background-color: #d8d8d8;
-    }
-
-    .text {
-      text-align: left;
-      width: 100%;
-      max-width: 686px;
-
-      .text-header {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-        margin-top: 15px;
-        text-align: center;
-      }
-    }
-
-    .mobile-image {
-      display: none;
-      width: 100%;
-      max-width: 100%;
-      float: left;
-    }
+    td { border-bottom: 1px solid #ccc; }
+    .city { text-align: left; padding-left: 20px; }
+    .area { text-align: left; padding-left: 10px; }
   }
 }
 
 .content.bottom {
   padding: 0;
+  max-width: 100%;
 
   .cta-container {
     position: relative;
@@ -138,14 +114,11 @@
   }
 }
 
-@media (max-width: 1016px) {
+@media (max-width: 800px) {
   .content { padding: 30px 10px 60px; }
-  .content .body .text { text-align: center; }
-  .content .body .left { margin-bottom: 30px; }
-  .content .body .left, .content .body .right {
-    max-width: 100%;
-    .text { margin: auto; }
-  }
+  .content table { font-size: 14px; line-height: 2.14; }
+  .content table thead th:last-child { display: none; }
+  .content table td:last-child { display: none; }
 
   .content.bottom {
     .upper { padding: 35px 10px 0; }

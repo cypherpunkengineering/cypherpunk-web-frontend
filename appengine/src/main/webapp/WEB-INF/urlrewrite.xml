@@ -81,6 +81,18 @@
 		<to last="true">/signup.html$1</to>
 	</rule>
 	<rule>
+		<from>^/whyus(.*)</from>
+		<to last="true">/whyus.html$1</to>
+	</rule>
+	<rule>
+		<from>^/howitworks(.*)</from>
+		<to last="true">/howitworks.html$1</to>
+	</rule>
+	<rule>
+		<from>^/locations(.*)</from>
+		<to last="true">/locations.html$1</to>
+	</rule>
+	<rule>
 		<from>^/home(.*)</from>
 		<to last="true">/cypherpunk-public.html$1</to>
 	</rule>

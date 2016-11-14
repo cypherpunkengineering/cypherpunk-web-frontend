@@ -15,6 +15,7 @@ import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmationModule } from './layouts/public/confirmation/confirmation.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { HowitworksModule } from './layouts/public/howitworks/howitworks.module';
+import { LocationsModule } from './layouts/public/locations/locations.module';
 
 import { DashboardModule } from './layouts/user/dashboard/dashboard.module';
 import { BillingModule } from './layouts/user/billing/billing.module';
@@ -52,6 +53,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     ConfirmationModule,
     WhyusModule,
     HowitworksModule,
+    LocationsModule,
 
     DashboardModule,
     BillingModule,
