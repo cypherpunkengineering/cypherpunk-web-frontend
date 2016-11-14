@@ -65,6 +65,7 @@ function ngApp(req, res) {
     originUrl: 'http://localhost:3000'
   });
 }
+
 // Routes with html5pushstate
 // ensure routes match client-side-app
 app.get('/', ngApp);
@@ -79,7 +80,7 @@ app.get('/signup', ngApp);
 app.get('/download', ngApp);
 app.get('/confirmation', ngApp);
 app.get('/whyus', ngApp);
-
+app.get('/howitworks', ngApp);
 
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
