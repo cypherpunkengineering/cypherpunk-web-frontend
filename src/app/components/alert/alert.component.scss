@@ -1,4 +1,9 @@
-.alert-container { width: 100%; }
+.alerts-container {
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  padding: 10px 0 0;
+}
 
 .alert {
   max-width: 1200px;
@@ -42,4 +47,8 @@
   background-color: #f2dede;
   border: 1px solid #ebccd1;
   border-radius: 5px;
+}
+
+@media (max-width: 1250px) {
+  .alerts-container { padding: 10px 15px; }
 }
