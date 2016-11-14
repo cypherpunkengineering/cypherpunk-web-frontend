@@ -2,6 +2,13 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN" "http://www.tuckey.org/res/dtds/urlrewrite2.6.dtd">
 <urlrewrite>
 
+	<!-- redirect typo domains to main domain -->
+	<rule>
+		<condition type="server-name" operator="notequal" next="and">cypherpunk.com</condition> 
+		<condition type="server-name" operator="notequal" next="and">cypherpunk.engineering</condition> 
+		<condition type="server-name" operator="notequal">localhost</condition> 
+	</rule>
+
 	<!-- rewrite appengine paths exactly as requested -->
 	<rule>
 		<from>^/_ah/(.*)</from>
