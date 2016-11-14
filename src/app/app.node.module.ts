@@ -23,6 +23,7 @@ import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { HowitworksModule } from './layouts/public/howitworks/howitworks.module';
 import { LocationsModule } from './layouts/public/locations/locations.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
+import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 
 import { DashboardModule } from './layouts/user/dashboard/dashboard.module';
 import { BillingModule } from './layouts/user/billing/billing.module';
@@ -59,6 +60,7 @@ import { LocalStorage } from './services/local-storage';
     HowitworksModule,
     LocationsModule,
     PrivacyModule,
+    AboutusModule,
 
     DashboardModule,
     BillingModule,

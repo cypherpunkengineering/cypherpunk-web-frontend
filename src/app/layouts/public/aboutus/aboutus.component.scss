@@ -1,0 +1,80 @@
+.masthead {
+  width: 100%;
+  background-image: linear-gradient(290deg, #034698, #548cd2);
+
+  .masthead-header {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 45px auto 0;
+    padding-bottom: 96px;
+  }
+}
+
+.sub-masthead {
+  width: 100%;
+  background-color: rgba(202, 216, 235, 0.3);
+  color: #666;
+
+  .content {
+    max-width: 650px;
+    text-align: center;
+  }
+  .header { color: #034698; }
+}
+
+.content {
+  width: 100%;
+  margin: auto;
+  padding: 50px 0 60px;
+  color: #666;
+
+  .header {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 45px;
+    color: #000;
+  }
+
+  .grouping {
+    max-width: 900px;
+    margin: auto;
+
+    .teammate {
+      display: inline-block;
+      width: 150px;
+      margin: 0 95px 50px 0;
+      max-width: 150px;
+      text-align: center;
+      &:last-child { margin-right: 0; }
+
+      .image {
+        width: 120px;
+        height: 120px;
+        margin: auto;
+        border-radius: 65px;
+        background-color: #ccc;
+      }
+
+      .name {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000;
+      }
+
+      .role {
+        font-weight: 500;
+        color: #666;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 1016px) {
+  .content { padding: 30px 10px 60px; }
+  .content .grouping .teammate { margin-right: 30px; }
+}
