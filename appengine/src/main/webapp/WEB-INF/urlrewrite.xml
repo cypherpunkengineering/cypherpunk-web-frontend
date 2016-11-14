@@ -7,6 +7,8 @@
 		<condition type="server-name" operator="notequal" next="and">cypherpunk.com</condition> 
 		<condition type="server-name" operator="notequal" next="and">cypherpunk.engineering</condition> 
 		<condition type="server-name" operator="notequal">localhost</condition> 
+		<from>/(.*)</from>
+		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
 	</rule>
 
 	<!-- rewrite appengine paths exactly as requested -->
@@ -29,7 +31,7 @@
 	<rule>
 		<method>GET</method>
 		<condition name="user-agent">(bot|spider|snippet|pinterest|crawler|archiver|flipboardproxy|mediapartners|facebookexternalhit|quora|disqus)</condition>
-		<from>.*</from>
+		<from>/.*</from>
 		<set type="status">404</set>
 		<to last="true">null</to>
 	</rule>
@@ -47,7 +49,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^72\.83\.163\.</condition><!-- paul -->
 		<condition type="remote-addr" operator="notequal" next="and">^24\.224\.221\.</condition><!-- reg -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
-		<from>.*</from>
+		<from>/.*</from>
 		<set type="status">403</set>
 		<to last="true">null</to>
 	</rule>
@@ -120,7 +122,7 @@
 
 	<!-- catchall handler -->
 	<rule>
-		<from>.*</from>
+		<from>^/.*</from>
 		<set type="status">404</set>
 		<to last="true">null</to>
 	</rule>
