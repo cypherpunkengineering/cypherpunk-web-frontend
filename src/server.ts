@@ -82,6 +82,7 @@ app.get('/confirmation', ngApp);
 app.get('/whyus', ngApp);
 app.get('/howitworks', ngApp);
 app.get('/locations', ngApp);
+app.get('/privacy', ngApp);
 
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'application/json');

@@ -93,6 +93,10 @@
 		<to last="true">/locations.html$1</to>
 	</rule>
 	<rule>
+		<from>^/privacy(.*)</from>
+		<to last="true">/privacy.html$1</to>
+	</rule>
+	<rule>
 		<from>^/home(.*)</from>
 		<to last="true">/cypherpunk-public.html$1</to>
 	</rule>
