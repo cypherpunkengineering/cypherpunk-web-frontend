@@ -16,8 +16,10 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     if (scraping) { return Promise.resolve(true); }
 
-    let url: string = state.url;
+    // Return if Already authed
+    if (this.auth.authed) { return Promise.resolve(true); }
 
+    let url: string = state.url;
     if (url === '/user') {
       return this.session.pullPlanData()
       .then((valid) => {
@@ -30,10 +32,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(url: string, route: ActivatedRouteSnapshot): Promise<boolean> {
-    // Case 1: Already authed
-    if (this.auth.authed) { return Promise.resolve(true); }
-
-    // Case 2: Enter with email and secret
+    // Case 1: Enter with email and secret
     let routePath = route.url.join('/');
     let email = route.queryParams['user'];
     let secret = route.queryParams['secret'];
@@ -43,7 +42,7 @@ export class AuthGuard implements CanActivate {
       return Promise.resolve(true);
     }
 
-    // Case 3: not authed, redirect to login
+    // Case 2: not authed, redirect to login
     this.auth.redirectUrl = url;
     this.router.navigate(['/login']);
     return Promise.resolve(false);
