@@ -38,15 +38,15 @@ export class UpgradeComponent {
       selected: true
     },
     {
+      type: 'a',
+      selected: false
+    },
+    {
       type: 'pp',
       selected: false
     },
     {
       type: 'bc',
-      selected: false
-    },
-    {
-      type: 'a',
       selected: false
     }
   ];
@@ -73,13 +73,8 @@ export class UpgradeComponent {
     let month: number;
     let year: number;
 
-    console.log(this.expiryDate);
-
     month = Number(this.expiryDate.split('/')[0]);
     year = Number(this.expiryDate.split('/')[1]);
-
-    console.log(month);
-    console.log(year);
 
     // stripe params
     let stripeParams = {

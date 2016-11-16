@@ -39,15 +39,15 @@ export class JoinComponent {
       selected: true
     },
     {
+      type: 'a',
+      selected: false
+    },
+    {
       type: 'pp',
       selected: false
     },
     {
       type: 'bc',
-      selected: false
-    },
-    {
-      type: 'a',
       selected: false
     }
   ];

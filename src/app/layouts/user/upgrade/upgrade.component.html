@@ -75,27 +75,27 @@
       </div>
 
       <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
-        <div class="icon-container">
-          <img src="/assets/payment/icon-payment-paypal.png" *ngIf="paymentOptions[1].selected">
-          <img src="/assets/payment/icon-payment-paypal-gray.png" *ngIf="!paymentOptions[1].selected">
+        <div class="other-icon">
+          <img src="/assets/payment/icon-payment-amazon.png" *ngIf="paymentOptions[1].selected">
+          <img src="/assets/payment/icon-payment-amazon-gray.png" *ngIf="!paymentOptions[1].selected">
         </div>
-        <div class="type-title">PayPal</div>
+        <div class="type-title">Amazon</div>
       </div>
 
       <div class="type-container" (click)="selectOption(paymentOptions[2])" [ngClass]="{'active': paymentOptions[2].selected}">
         <div class="icon-container">
-          <img src="/assets/payment/icon-payment-bitcoin.png" *ngIf="paymentOptions[2].selected">
-          <img src="/assets/payment/icon-payment-bitcoin-gray.png" *ngIf="!paymentOptions[2].selected">
+          <img src="/assets/payment/icon-payment-paypal.png" *ngIf="paymentOptions[2].selected">
+          <img src="/assets/payment/icon-payment-paypal-gray.png" *ngIf="!paymentOptions[2].selected">
         </div>
-        <div class="type-title">BitCoin</div>
+        <div class="type-title">PayPal</div>
       </div>
 
       <div class="type-container" (click)="selectOption(paymentOptions[3])" [ngClass]="{'active': paymentOptions[3].selected}">
-        <div class="other-icon">
-          <img class="short" src="/assets/payment/icon-payment-other.png" *ngIf="paymentOptions[3].selected">
-          <img class="short" src="/assets/payment/icon-payment-other-gray.png" *ngIf="!paymentOptions[3].selected">
+        <div class="icon-container">
+          <img src="/assets/payment/icon-payment-bitcoin.png" *ngIf="paymentOptions[3].selected">
+          <img src="/assets/payment/icon-payment-bitcoin-gray.png" *ngIf="!paymentOptions[3].selected">
         </div>
-        <div class="type-title">Amazon</div>
+        <div class="type-title">BitCoin</div>
       </div>
     </div>
   </div>
@@ -152,7 +152,23 @@
       <div class="stripe-message" [ngClass]="messageClass">{{message}}</div>
     </div>
 
-    <div class="paypal" *ngIf="paymentOptions[1].selected">
+    <div class="other" *ngIf="paymentOptions[1].selected">
+      <div class="total">
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+      </div>
+
+      <div id="AmazonPayButton"></div>
+
+      <div id="walletWidgetDiv"></div>
+
+      <div id="consentWidgetDiv"></div>
+
+      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
+        Pay Now
+      </button>
+    </div>
+
+    <div class="paypal" *ngIf="paymentOptions[2].selected">
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -205,29 +221,13 @@
       </form>
     </div>
 
-    <div class="bitcoin" *ngIf="paymentOptions[2].selected">
+    <div class="bitcoin" *ngIf="paymentOptions[3].selected">
       <div class="total">
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
       <button class="btn blue" (click)="goToBitPay()">
         Continue to BitPay
-      </button>
-    </div>
-
-    <div class="other" *ngIf="paymentOptions[3].selected">
-      <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
-      </div>
-
-      <div id="AmazonPayButton"></div>
-
-      <div id="walletWidgetDiv"></div>
-
-      <div id="consentWidgetDiv"></div>
-
-      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
-        Pay Now
       </button>
     </div>
 
