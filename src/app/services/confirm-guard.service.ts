@@ -6,7 +6,7 @@ import { SessionService } from './session.service';
 import { scraping } from './scraping';
 
 @Injectable()
-export class ConfirmationGuard implements CanActivate {
+export class ConfirmGuard implements CanActivate {
 
   constructor(
     private auth: AuthService,

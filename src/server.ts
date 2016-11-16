@@ -78,7 +78,7 @@ app.get('/login', ngApp);
 app.get('/reset', ngApp);
 app.get('/signup', ngApp);
 app.get('/download', ngApp);
-app.get('/confirmation', ngApp);
+app.get('/confirm', ngApp);
 app.get('/whyus', ngApp);
 app.get('/howitworks', ngApp);
 app.get('/locations', ngApp);

@@ -18,7 +18,7 @@ import { LoginModule } from './layouts/public/login/login.module';
 import { ResetModule } from './layouts/public/reset/reset.module';
 import { SignupModule } from './layouts/public/signup/signup.module';
 import { DownloadModule } from './layouts/public/download/download.module';
-import { ConfirmationModule } from './layouts/public/confirmation/confirmation.module';
+import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { HowitworksModule } from './layouts/public/howitworks/howitworks.module';
 import { LocationsModule } from './layouts/public/locations/locations.module';
@@ -34,7 +34,7 @@ import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
 import { AuthGuard } from './services/auth-guard.service';
-import { ConfirmationGuard } from './services/confirmation-guard.service';
+import { ConfirmGuard } from './services/confirm-guard.service';
 import { PlansService } from './services/plans.service';
 
 import { LocalStorage } from './services/local-storage';
@@ -55,7 +55,7 @@ import { LocalStorage } from './services/local-storage';
     ResetModule,
     SignupModule,
     DownloadModule,
-    ConfirmationModule,
+    ConfirmModule,
     WhyusModule,
     HowitworksModule,
     LocationsModule,
@@ -75,7 +75,7 @@ import { LocalStorage } from './services/local-storage';
     AuthService,
     AlertService,
     AuthGuard,
-    ConfirmationGuard,
+    ConfirmGuard,
     PlansService
   ]
 })
