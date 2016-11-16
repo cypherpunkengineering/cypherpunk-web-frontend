@@ -95,4 +95,8 @@ $(document).ready(function() {
     this.form.submit();
   });
 
+  $('#live-chat-button').on('click', function() {
+    $('#SnapABug_bImg').click();
+  });
+
 });
