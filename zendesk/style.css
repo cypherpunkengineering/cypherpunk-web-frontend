@@ -644,7 +644,7 @@ main, .header-inner {
 }
 
 .header-boxes {
-  padding-bottom: 35px;
+  padding: 10px 0 20px;
   overflow: auto;
   max-width: 825px;
   margin: auto;
@@ -652,7 +652,7 @@ main, .header-inner {
 
 .header-box {
   width: 235px;
-  height: 200px;
+  height: 80px;
   font-family: 'Dosis', sans-serif;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
@@ -670,7 +670,7 @@ main, .header-inner {
 .chat-image { padding-top: 23.8px; }
 .email-image { padding-top: 35.3px; }
 .ticket-button {
-  margin: 15.5px auto 0;
+  margin: 15px auto 15px;
   width: 204.7px;
   height: 48px;
   border: 0;
@@ -683,7 +683,7 @@ main, .header-inner {
   text-shadow: 0 2px 0 #d19e12;
 }
 .chat-button {
-  margin: 11.5px auto 0;
+  margin: 15px auto 15px;
   width: 204.7px;
   height: 48px;
   border: 0;
@@ -696,7 +696,7 @@ main, .header-inner {
   text-shadow: 0 2px 0 #187f00;
 }
 .email-text {
-  margin-top: 25px;
+  margin: 15px 0 0;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
