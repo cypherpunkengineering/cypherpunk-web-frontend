@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
 export class JoinComponent {
   message: string;
   messageClass: string = '';
+  posData: string = '';
 
   // Stripe variables
   cardNumber: string;
@@ -194,6 +195,61 @@ export class JoinComponent {
 
   amazonButton() {
     console.log('paid with amazon');
+  }
+
+  // pay with bitpay
+
+  payWithBitpay() {
+    if (!this.validatePP()) { return; }
+
+    let serverParams = {
+      email: this.email,
+      password: this.password
+    };
+
+    // call server at this point (using promises)
+    let url = '/api/v0/account/register/signup';
+    let body = serverParams;
+    let options = new RequestOptions({});
+    // sets cookie
+    return this.http.post(url, body, options).toPromise()
+    // set user session
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.session.setUserData({
+        email: resData.account.email,
+        secret: resData.secret
+      });
+    })
+    // turn on authed
+    .then(() => { this.auth.authed = true; })
+    // alert and redirect to paypal
+    .then(() => {
+      this.alertService.success('You account was created!');
+    })
+    .then(() => {
+      let posId = {
+        email: this.email,
+        planId: this.selectedPlan.id
+      };
+      this.posData = JSON.stringify(posId);
+    })
+    .then(() => {
+      if (this.selectedPlan.id === 'monthly999') {
+        document.getElementById('bitpayMonthly').click();
+      }
+      else if (this.selectedPlan.id === 'annually8004') {
+        document.getElementById('bitpayAnnual').click();
+      }
+      else if (this.selectedPlan.id === 'semiannually4998') {
+        document.getElementById('bitpaySemiannual').click();
+      }
+    })
+    // handle errors
+    .catch((error) => {
+      console.log(error);
+      this.alertService.error('Could not create an account');
+    });
   }
 
   goToBitPay() { console.log('not implemented yet'); }

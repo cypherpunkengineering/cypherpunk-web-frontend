@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
 export class UpgradeComponent {
   message: string;
   messageClass: string = '';
+  posData: string = '';
 
   // Stripe variables
   cardNumber: string;
@@ -136,8 +137,6 @@ export class UpgradeComponent {
     }
   }
 
-  goToBitPay() { console.log('not implemented yet'); }
-
   // pay with amazon
 
   amazonInit(callback) {
@@ -152,6 +151,26 @@ export class UpgradeComponent {
 
   amazonButton() {
     console.log('paid with amazon');
+  }
+
+  // pay with bitpay
+
+  payWithBitpay() {
+    let posId = {
+      email: this.email,
+      planId: this.selectedPlan.id
+    };
+    this.posData = JSON.stringify(posId);
+
+    if (this.selectedPlan.id === 'monthly999') {
+      document.getElementById('bitpayMonthly').click();
+    }
+    else if (this.selectedPlan.id === 'annually8004') {
+      document.getElementById('bitpayAnnual').click();
+    }
+    else if (this.selectedPlan.id === 'semiannually4998') {
+      document.getElementById('bitpaySemiannual').click();
+    }
   }
 
   validateCC() {
