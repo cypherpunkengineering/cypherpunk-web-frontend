@@ -43,8 +43,11 @@ export class ConfirmGuard implements CanActivate {
   }
 
   checkToken(accountId: string, confToken: string): Promise<Object> {
-    let url = `/api/v0/account/confirm/email?accountId=${accountId}&confirmationToken=${confToken}`;
-    let body = {};
+    let url = `/api/v0/account/confirm/email`;
+    let body = {
+      accountId: accountId,
+      confirmationToken: confToken
+    };
     let options = new RequestOptions({});
     let retVal = { valid: false };
 
