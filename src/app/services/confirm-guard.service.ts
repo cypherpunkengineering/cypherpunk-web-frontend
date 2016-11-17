@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
 import { scraping } from './scraping';
@@ -43,11 +43,13 @@ export class ConfirmGuard implements CanActivate {
   }
 
   checkToken(accountId: string, confToken: string): Promise<Object> {
-    let url = `/api/v0/account/confirm/${accountId}?confirmationToken=${confToken}`;
+    let url = `/api/v0/account/confirm?accountId=${accountId}&confirmationToken=${confToken}`;
+    let body = {};
+    let options = new RequestOptions({});
     let retVal = { valid: false };
 
     // this will set cookie
-    return this.http.get(url).toPromise()
+    return this.http.post(url, body, options).toPromise()
     .then((res: Response) => {
       if (res.status === 200) { retVal.valid = true; }
       return res;
