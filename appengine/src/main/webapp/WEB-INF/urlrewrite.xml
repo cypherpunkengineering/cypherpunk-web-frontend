@@ -51,6 +51,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^2605:e000:849e:db00:</condition><!-- cyphercat -->
 		<condition type="remote-addr" operator="notequal" next="and">^79\.118\.57\.</condition><!-- andrei -->
 		<condition type="remote-addr" operator="notequal" next="and">^2a02:2f08:</condition><!-- andrei -->
+		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:100</condition><!-- reg virginia -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
 		<set type="status">403</set>
