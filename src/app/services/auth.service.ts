@@ -8,7 +8,7 @@ export class AuthService {
   authed: boolean = false;
   redirectUrl: string;
   private loginUrl: string = '/api/v0/account/authenticate/userpasswd';
-  private logoutUrl: string = '/api/v1/account/logout';
+  private logoutUrl: string = '/api/v0/account/logout';
 
   constructor(
     private session: SessionService,
