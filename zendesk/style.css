@@ -65,6 +65,7 @@ td, th {
   border-color: #eee;
   border-style: solid;
   padding: 12px;
+  width: 100%;
 }
 
 th {
@@ -614,7 +615,8 @@ main { min-height: 100vh; }
 main, .header-inner {
   margin: 0 auto;
   padding: 0 20px;
-  width: 940px;
+  width: 100%;
+  max-width: 940px;
 }
 
 .header {
@@ -623,8 +625,7 @@ main, .header-inner {
 }
 
 .header-inner {
-  display: table;
-  height: 60px;
+  overflow: auto;
 }
 
 .header-inner .user-nav #user #user-name { color: #fff; }
@@ -646,7 +647,8 @@ main, .header-inner {
 .header-boxes {
   padding: 10px 0 20px;
   overflow: auto;
-  max-width: 825px;
+  width: 100%;
+  max-width: 805px;
   margin: auto;
 }
 
@@ -709,9 +711,10 @@ main, .header-inner {
   text-decoration: underline;
 }
 
-.logo, .user-nav {
-  display: table-cell;
-  vertical-align: middle;
+.logo {
+  height: 60px;
+  float: left;
+  padding-top: 15px;
 }
 
 .logo img {
@@ -719,7 +722,9 @@ main, .header-inner {
 }
 
 .user-nav {
-  text-align: right;
+  height: 60px;
+  float: right;
+  padding-top: 15px;
 }
 
 .user-nav > * {
@@ -1151,7 +1156,9 @@ main, .header-inner {
 
 /* Article */
 .article-column {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 25px;
 }
 
 h1 .visibility-internal-icon::before {
@@ -2926,4 +2933,55 @@ body.community-enabled .search-results-column + .search-results-column {
   font-weight: 500;
   line-height: 1.93;
   color: #999;
+}
+
+/* Media Queries */
+@media (max-width: 950px) {
+	.search-box {
+    background: none;
+    margin-bottom: 0;
+  }
+  .search-box:before {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 850px) {
+  .header-box {
+    margin: 0 auto 25px ;
+    display: block;
+    float: none;
+  }
+  .header-box:last-child {
+    margin: 0 auto 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .category-tree .category { width: 100%; }
+  .section-tree .section { width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    float: none;
+    text-align: center;
+  }
+
+  .user-nav {
+    float: none;
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+	.footer-left {
+    text-align: center;
+    float: none;
+    padding-top: 15px;
+  }
+  .footer-right {
+    text-align: center;
+    float: none;
+    padding-top: 0;
 }
