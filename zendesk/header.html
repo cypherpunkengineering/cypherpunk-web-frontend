@@ -1,8 +1,11 @@
 <header class="header">
   <div class="header-inner clearfix">
-    <div class="logo">{{#link 'help_center'}}
-      <img src="//p6.zdassets.com/hc/theme_assets/1240717/200387187/logo-wh.png" alt="Cypherpunk Privacy">
-    {{/link}}</div>
+    <div class="logo">
+			<a href="https://cypherpunk.engineering">
+	      <img alt="Cypherpunk Privacy" src="//p6.zdassets.com/hc/theme_assets/1240717/200387187/logo-wh.png">
+      </a>
+    </div>
+
     <nav class="user-nav">
       {{#if alternative_locales}}
         <div class="dropdown language-selector" aria-haspopup="true">
@@ -23,9 +26,16 @@
     </nav>
   </div>
 
+  <div class="header-title">
+    {{#link 'help_center'}}
+	    Cypherpunk Support
+    {{/link}}
+  </div>
+
   <div class="header-boxes">
 
     <div class="header-box">
+      <img class="ticket-image" src="//p6.zdassets.com/hc/theme_assets/1240717/200387187/panel-ticket.png">
       <a href="https://cypherpunk.zendesk.com/tickets/new">
 	      <button class="ticket-button">
 	        Create Ticket
@@ -34,12 +44,14 @@
     </div>
 
     <div class="header-box">
+      <img class="chat-image" src="//p6.zdassets.com/hc/theme_assets/1240717/200387187/panel-chat.png">
       <button id="live-chat-button" class="chat-button">
         Live Chat
       </button>
     </div>
 
     <div class="header-box">
+      <img class="email-image" src="//p6.zdassets.com/hc/theme_assets/1240717/200387187/panel-mail.png">
       <div class="email-text">
         Email
       </div>

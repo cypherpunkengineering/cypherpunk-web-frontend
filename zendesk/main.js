@@ -4,6 +4,12 @@
 
 $(document).ready(function() {
 
+  var pathname = window.location.pathname;
+  var paths = pathname.split('/').length;
+  if (paths === 3) {
+    $('.header-box').addClass('large');
+  }
+
   // toggle categories and sections on the home page
   $(".category-tree").on("click", "h2 a, h3 a", function() {
     $(this).parent().nextAll().toggle();
