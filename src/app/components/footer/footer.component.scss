@@ -5,7 +5,7 @@
 }
 
 .footer {
-  max-width: 1200px;
+  max-width: 1000px;
   height: 367px;
   margin: auto;
 }
@@ -13,13 +13,13 @@
 .footer-column {
   height: 100%;
   padding-top: 50px;
-  margin-left: 75px;
+  margin-left: 50px;
   float: left;
 }
 
 .footer-column.logo {
   padding-top: 45px;
-  margin-left: 75px;
+  margin-left: 15px;
   width: 250px;
 }
 
@@ -83,7 +83,7 @@
   width: 108px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1000px) {
   .footer { height: inherit; }
   .footer-column {
     width: 50%;

@@ -16,18 +16,18 @@
 
 .page {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   padding: 0 15px 0;
   margin: auto;
 
   .page-left {
     float: left;
-    width: 75%;
+    width: 80%;
     margin-top: 30px;
   }
   .page-right {
     float: left;
-    width: 25%;
+    width: 20%;
     text-align: center;
     background-color: #f2f2f2;
   }
@@ -267,7 +267,7 @@
   }
 
   .server-item-container {
-    width: 60%;
+    width: 80%;
     margin: auto;
     text-align: center;
   }
@@ -275,7 +275,7 @@
   .server-item {
     display: inline;
     float: left;
-    width: 37px;
+    width: 25px;
     height: 26px;
     background-color: #d8d8d8;
     border: solid 1px #979797;
