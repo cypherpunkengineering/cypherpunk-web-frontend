@@ -4,9 +4,9 @@
 
 	<!-- redirect typo domains to main domain -->
 	<rule>
-		<condition type="server-name" operator="notequal" next="and">cypherpunk.com</condition>
-		<condition type="server-name" operator="notequal" next="and">cypherpunk.engineering</condition>
-		<condition type="server-name" operator="notequal">localhost</condition>
+		<condition name="host" operator="notequal" next="and">^cypherpunk.com$</condition>
+		<condition name="host" operator="notequal" next="and">^cypherpunk.engineering$</condition>
+		<condition name="host" operator="notequal">^localhost$</condition>
 		<from>/(.*)</from>
 		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
 	</rule>
