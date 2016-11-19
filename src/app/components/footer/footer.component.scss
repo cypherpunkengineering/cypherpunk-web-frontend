@@ -13,7 +13,7 @@
 .footer-column {
   height: 100%;
   padding-top: 50px;
-  margin-left: 50px;
+  margin-left: 45px;
   float: left;
 }
 
@@ -83,6 +83,13 @@
   width: 108px;
 }
 
+.safari-column-fix {
+  display: none;
+  height: 10px;
+  width: 100%;
+  overflow: auto;
+}
+
 @media (max-width: 1000px) {
   .footer { height: inherit; }
   .footer-column {
@@ -100,14 +107,20 @@
     width: 50%;
     margin: 0;
     text-align: center;
+    padding: 50px 0 0 0;
 
     .footer-listing {
       .inline {
         display: block;
-        margin-right: 0;
+        margin: 0;
       }
     }
   }
   .feedback { margin: 16px auto; }
   .footer-column.logo .btn { width: 341px; height: 80px; font-size: 24px; }
+}
+
+@media (max-width: 375px) {
+  .safari-column-fix { display: block; }
+  .footer-column.logo .btn { width: 300px; }
 }

@@ -70,3 +70,8 @@ form {
     }
   }
 }
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+  form input { width: 290px; }
+}

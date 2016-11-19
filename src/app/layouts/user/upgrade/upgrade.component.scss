@@ -123,6 +123,7 @@
     .type-title {
       font-size: 18px;
       font-weight: 500;
+      &.mobile { display: none; }
     }
     .icon-container {
       font-size: 32px;
@@ -243,4 +244,14 @@
       &:before { display: none; }
     }
   }
+}
+
+@media (max-width: 399px) {
+  .payment-selection .payment-bg .type-title.desktop { display: none; }
+  .payment-selection .payment-bg .type-title.mobile { display: block; }
+}
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+  .payment-info input { width: 290px; }
 }

@@ -157,7 +157,7 @@
 
 .btn {
   font-size: 24px;
-  width: 341px;
+  width: 280px;
   height: 80px;
   &.blueText { color: #034698; }
 }
@@ -209,4 +209,11 @@
     max-width: 300px;
   }
   .content .discover .arrow { width: 30px; }
+}
+
+@media (max-width: 375px) {
+  .btn { width: 290px; font-size: 22px; }
+  .content .content-inner .row .cell { width: 280px; }
+  .cta-container .call-to-action { width: 100%; max-width: 300px; }
+  .content .discover .text { max-width: 215px; }
 }

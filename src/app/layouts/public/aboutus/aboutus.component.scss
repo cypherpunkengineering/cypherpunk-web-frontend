@@ -76,5 +76,16 @@
 
 @media (max-width: 1016px) {
   .content { padding: 30px 10px 60px; }
-  .content .grouping .teammate { margin-right: 30px; }
+  .content .grouping .teammate { width: 48%; max-width: 48%; margin: 0 0 50px 0; }
+}
+
+@media (max-width: 375px) {
+  .content .grouping .teammate {
+    display: block;
+    width: 100%;
+    margin: 25px auto;
+  }
+  .content .grouping .teammate:last-child {
+    margin: 25px auto;
+  }
 }

@@ -127,3 +127,8 @@
   .content { padding: 0 10px; }
   .grey-content { padding: 0 10px; }
 }
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+  .cta-container .call-to-action { width: 100%; max-width: 300px; }
+}

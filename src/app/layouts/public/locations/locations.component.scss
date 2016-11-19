@@ -125,3 +125,8 @@
     .subheader-content { padding: 0 10px 0; }
   }
 }
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+  .content.bottom .cta-container .call-to-action { width: 100%; max-width: 300px; }
+}

@@ -71,7 +71,8 @@
           <img src="/assets/payment/icon-payment-card.png" *ngIf="paymentOptions[0].selected">
           <img src="/assets/payment/icon-payment-card-gray.png" *ngIf="!paymentOptions[0].selected">
         </div>
-        <div class="type-title">Credit Card</div>
+        <div class="type-title desktop">Credit Card</div>
+        <div class="type-title mobile">CC</div>
       </div>
 
       <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
@@ -103,9 +104,6 @@
   <div class="payment-info">
 
     <div class="credit-card" *ngIf="paymentOptions[0].selected">
-      <div class="separator">Create Account</div>
-      <div class="clear"></div>
-
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -222,20 +220,10 @@
     </div>
 
     <div class="bitcoin" *ngIf="paymentOptions[3].selected">
-      <div class="separator">Create Account</div>
-      <div class="clear"></div>
-
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
-        </p>
-      </div>
-
-      <div class="info">
-        <p>
-          <label>Password</label><br>
-          <input type="password" [(ngModel)]="password" required>
+          <input type="email" placeholder="you@example.com" disabled [(ngModel)]="email">
         </p>
       </div>
 

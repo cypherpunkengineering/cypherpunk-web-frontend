@@ -160,6 +160,7 @@
 }
 
 .payment-info {
+  min-height: 300px;
   margin: 0 auto 0;
   padding: 0 50px 0;
   text-align: center;
@@ -312,4 +313,14 @@
       &:before { display: none; }
     }
   }
+}
+
+@media (max-width: 399px) {
+  .payment-selection .payment-bg .type-title.desktop { display: none; }
+  .payment-selection .payment-bg .type-title.mobile { display: block; }
+}
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+  .payment-info input { width: 290px; }
 }
