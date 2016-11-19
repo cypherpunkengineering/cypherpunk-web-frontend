@@ -11,7 +11,7 @@ $(document).ready(function() {
   }
 
   // toggle categories and sections on the home page
-  $(".category-tree").on("click", "h2 a, h3 a", function() {
+  $(".category-tree").on("click", "h3 a", function() {
     $(this).parent().nextAll().toggle();
     return false;
   });

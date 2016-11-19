@@ -624,8 +624,6 @@ main, .header-inner {
   background-image: linear-gradient(291deg, #034698, #2261ae 38%, #548cd2)
 }
 
-.header-inner { overflow: auto; }
-
 .header-inner .user-nav #user #user-name { color: #fff; }
 
 .header-title { text-align: center; }
@@ -682,6 +680,10 @@ main, .header-inner {
   color: #fff;
   text-shadow: 0 2px 0 #d19e12;
 }
+.ticket-button:hover {
+  background-color: #d19e12;
+}
+
 .chat-button {
   margin: 15px auto 15px;
   width: 204.7px;
@@ -695,6 +697,10 @@ main, .header-inner {
   color: #fff;
   text-shadow: 0 2px 0 #187f00;
 }
+.chat-button:hover {
+  background-color: #187f00;
+}
+
 .email-text {
   padding: 15px 0 0;
   text-align: center;
@@ -804,7 +810,7 @@ main, .header-inner {
   border-radius: 72px;
   background: #fff;
   font-size: 20px;
-  padding: 25px 100px 25px 30px;
+  padding: 15px 100px 15px 30px;
   width: 100%;
 }
 
@@ -892,7 +898,7 @@ main, .header-inner {
   padding: 20px 30px;
 }
 
-.category-tree h2 ~ *, .category-tree h3 ~ * {
+.category-tree h3 ~ * {
   display: none;
 }
 
@@ -906,6 +912,9 @@ main, .header-inner {
 .category-tree .category h2 {
   margin: 12px 0;
 }
+.category-tree .category h2:hover {
+  background-color: rgba(202,216,235, 0.4);
+}
 
 .category-tree .category h2 a {
   color: inherit;
@@ -916,10 +925,22 @@ main, .header-inner {
   margin: 0;
 }
 
+.category-tree .section h3:hover {
+  background-color: rgba(202,216,235, 0.4);
+}
+
 .category-tree .section h3 a {
   color: inherit;
   font-weight: bold;
   font-size: 14px;
+}
+
+.category-tree .section ul li:hover {
+  background-color: rgba(202,216,235, 0.4);
+}
+
+.category-tree .section a:hover {
+  background-color: rgba(202,216,235, 0.4);
 }
 
 .category-tree .section {
