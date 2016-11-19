@@ -46,7 +46,7 @@
 		<to last="true">/tos.html$1</to>
 	</rule>
 
-	<!-- deny if not on access list -->
+	<!-- route to deny page if not on access list -->
 	<rule>
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.48\.</condition><!-- wiz hnl -->
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
@@ -64,8 +64,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:100</condition><!-- reg virginia -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
-		<set type="status">403</set>
-		<to last="true">null</to>
+		<to last="true">/cypherpunk.txt</to>
 	</rule>
 
 	<!-- customer control panel, requires valid session -->
