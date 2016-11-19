@@ -36,7 +36,17 @@
 		<to last="true">null</to>
 	</rule>
 
-	<!-- angular routes -->
+	<!-- publicly accessible routes, for itunes app review guys -->
+	<rule>
+		<from>^/privacy(.*)</from>
+		<to last="true">/privacy.html$1</to>
+	</rule>
+	<rule>
+		<from>^/tos(.*)</from>
+		<to last="true">/tos.html$1</to>
+	</rule>
+
+	<!-- deny if not on access list -->
 	<rule>
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.48\.</condition><!-- wiz hnl -->
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
@@ -104,10 +114,6 @@
 	<rule>
 		<from>^/locations(.*)</from>
 		<to last="true">/locations.html$1</to>
-	</rule>
-	<rule>
-		<from>^/privacy(.*)</from>
-		<to last="true">/privacy.html$1</to>
 	</rule>
 	<rule>
 		<from>^/aboutus(.*)</from>
