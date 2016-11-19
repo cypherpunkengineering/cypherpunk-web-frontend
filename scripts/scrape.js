@@ -16,6 +16,7 @@ const routes = [
   { url: baseRoute + 'locations', dirPath: baseDir + 'locations.html' },
   { url: baseRoute + 'privacy', dirPath: baseDir + 'privacy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
+  { url: baseRoute + 'tos', dirPath: baseDir + 'tos.html' },
   { url: baseRoute + 'user', dirPath: baseDir + 'user/user.html' },
   { url: baseRoute + 'user/upgrade', dirPath: baseDir + 'user/upgrade.html' },
   { url: baseRoute + 'user/billing', dirPath: baseDir + 'user/billing.html' }
