@@ -22,3 +22,22 @@ export function serverApi(req, res) {
     })
     .then(data => res.json(data));
 }
+
+export function subs(req, res) {
+  let body = {
+    type: '',
+    renewal: '',
+    expiration: undefined,
+    confirmed: false
+  };
+  return res.json(body);
+}
+
+export function confirm(req, res) {
+  let body = {
+    valid: true,
+    account: { email: '' },
+    secret: ''
+  };
+  return res.json(body);
+}

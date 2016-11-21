@@ -71,7 +71,7 @@ import { LocalStorage } from './services/local-storage';
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
-    { provide: LocalStorage, useValue: { getItem() {} } },
+    { provide: LocalStorage, useValue: { getItem: function() {}, setItem: function() {} } },
     CacheService,
     SessionService,
     AuthService,

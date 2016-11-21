@@ -10,3 +10,7 @@ npm-debug.log
 .idea
 
 .DS_Store
+
+/build/user/*.html
+/build/index.js
+/build/*.html

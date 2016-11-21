@@ -51,9 +51,11 @@ app.use(express.static(path.join(ROOT, 'build'), {index: false}));
 app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { serverApi } from './backend/api';
+import { serverApi, subs, confirm } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
+app.get('/api/v0/subscription/status', subs);
+app.post('/api/v0/account/confirm/email', confirm);
 
 function ngApp(req, res) {
   res.render('index', {

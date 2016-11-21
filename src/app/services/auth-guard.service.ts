@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
-import { scraping } from './scraping';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -14,13 +13,11 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    if (scraping) { return Promise.resolve(true); }
-
     // Return if Already authed
     if (this.auth.authed) { return Promise.resolve(true); }
 
     let url: string = state.url;
-    if (url === '/user') {
+    if (url.startsWith('/user')) {
       return this.session.pullPlanData()
       .then((valid) => {
         if (valid) { return true; }

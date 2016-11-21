@@ -30,8 +30,8 @@ export class SessionService {
   setUserData(user) {
     this.user.email = user.email;
     this.user.secret = user.secret;
-    localStorage.setItem('email', user.email);
-    localStorage.setItem('secret', user.secret);
+    this.localStorage.setItem('email', user.email);
+    this.localStorage.setItem('secret', user.secret);
   }
 
   pullPlanData(): Promise<boolean> {
@@ -42,7 +42,7 @@ export class SessionService {
       this.zone.run(() => {
         this.user.type = data.type;
         this.user.confirmed = data.confirmed;
-        this.user.status = 'active';
+        if (data.confirmed) { this.user.status = 'active'; }
 
         // handle user period/renewal
         if (data.renewal === 'none') { this.user.period = 'free'; }
@@ -59,7 +59,6 @@ export class SessionService {
           let year = expiration.getFullYear();
           this.user.renewal = `Renews ${period} on ${month}/${day}/${year}`;
         }
-        else { this.user.renewal = 'Expired'; }
       });
     })
     .then(() => { return true; })
@@ -69,8 +68,8 @@ export class SessionService {
   clearUserData() {
     this.user.email = '';
     this.user.secret = '';
-    localStorage.removeItem('email');
-    localStorage.removeItem('secret');
+    this.localStorage.removeItem('email');
+    this.localStorage.removeItem('secret');
   }
 
   clearPlanData() {
