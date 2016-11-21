@@ -2,6 +2,7 @@
 set -e
 source $HOME/.nvm/nvm.sh
 nvm use v6.7.0
+npm install
 npm start &
 npm run build:prod
 sleep 5
