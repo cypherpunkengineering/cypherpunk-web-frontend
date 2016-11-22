@@ -24,12 +24,24 @@ export function serverApi(req, res) {
 }
 
 export function subs(req, res) {
-  let body = {
-    type: 'premium',
-    renewal: 'forever',
-    expiration: '0',
-    confirmed: true
-  };
+  let body = {};
+
+  if (req.query.secret) {
+    body = {
+      type: 'developer',
+      renewal: 'forever',
+      expiration: '0',
+      confirmed: true
+    };
+  }
+  else {
+    body = {
+      type: 'premium',
+      renewal: 'forever',
+      expiration: '0',
+      confirmed: true
+    };
+  }
 
   return res.json(body);
 }

@@ -102,21 +102,26 @@ export class SessionService {
     }
   }
 
-  pullPlanData(): Promise<boolean> {
-    let url = '/api/v0/subscription/status';
+  pullPlanData(email?: string, secret?: string): Promise<boolean> {
+    let url = '';
+    if (secret) { url = `/api/v0/subscription/status?secret=${secret}`; }
+    else { url = '/api/v0/subscription/status'; }
+
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
     .then((data) => {
-      this.user.account.type = data.type;
-      this.user.account.confirmed = data.confirmed;
-      if (data.confirmed) { this.user.status = 'active'; }
+      let user = {
+        secret: secret,
+        status: '',
+        account: { email: email, type: data.type, confirmed: data.confirmed },
+        subscription: { renewal: data.renewal, expiration: data.expiration }
+      };
+      if (data.confirmed) { user.status = 'active'; }
+      this.setUserData(user);
       return data;
     })
     .then((data) => {
       this.zone.run(() => {
-        // handle user renewal
-        this.user.subscription.renewal = data.renewal;
-
         // hanlde expiration
         let now = new Date();
         let expiration = new Date(data.expiration);

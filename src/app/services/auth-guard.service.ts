@@ -13,8 +13,6 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    // if (this.auth.authed) { return Promise.resolve(true); }
-
     let url: string = state.url;
 
     if (url.startsWith('/user/upgrade')) {
@@ -44,15 +42,9 @@ export class AuthGuard implements CanActivate {
     let email = route.queryParams['user'];
     let secret = route.queryParams['secret'];
     if (email && secret) {
-      return this.session.pullPlanData() // need secret integration
+      return this.session.pullPlanData(email, secret)
       .then((valid) => {
-        if (valid) {
-          this.session.setUserData({
-            account: { email: email },
-            secret: secret
-          });
-          return true;
-        }
+        if (valid) { return true; }
         else {
           this.auth.redirectUrl = url;
           this.router.navigate(['/login']);
