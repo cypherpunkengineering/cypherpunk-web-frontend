@@ -60,6 +60,7 @@
     .header { font-size: 20px; }
     .subheader { font-size: 18px; }
     table thead th:first-child { padding: 0 15px 0 0; }
-    table td:first-child { padding: 0 15px 0 0; }
+    table td:first-child { padding: 10px 15px 10px 0; }
+    table td { padding: 10px 0 10px 0; line-height: 1.3; }
   }
 }
