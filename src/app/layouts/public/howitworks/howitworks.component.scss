@@ -57,7 +57,7 @@
       padding: 0 20px;
     }
 
-    .mobile-image, .image {
+    .image {
       width: 280px;
       height: 160px;
       max-width: 280px;
@@ -77,13 +77,6 @@
         margin-top: 15px;
         text-align: center;
       }
-    }
-
-    .mobile-image {
-      display: none;
-      width: 100%;
-      max-width: 100%;
-      float: left;
     }
   }
 }

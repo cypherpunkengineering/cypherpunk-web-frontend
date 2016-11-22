@@ -89,13 +89,7 @@ app.get('/locations', ngApp);
 app.get('/privacy', ngApp);
 app.get('/aboutus', ngApp);
 app.get('/tos', ngApp);
-
-app.get('*', function(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  var pojo = { status: 404, message: 'No Content' };
-  var json = JSON.stringify(pojo, null, 2);
-  res.status(404).send(json);
-});
+app.get('*', ngApp);
 
 // Server
 let server = app.listen(app.get('port'), () => {

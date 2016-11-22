@@ -1,0 +1,109 @@
+.masthead {
+  width: 100%;
+  background-image: linear-gradient(290deg, #034698, #548cd2);
+
+  .masthead-header {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #ffffff;
+    margin: 45px auto 0;
+    padding-bottom: 15px;
+  }
+  .masthead-subheader {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-size: 84px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .masthead-image {
+    width: 100%;
+    max-width: 540px;
+    height: 358px;
+    margin: auto;
+    text-align: center;
+    img { height: 100%; }
+  }
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+  padding: 30px 0 60px;
+
+  .header {
+    font-size: 30px;
+    font-weight: 500;
+    color: #034698;
+    margin-bottom: 35px;
+  }
+
+  .body {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    overflow: auto;
+
+    .column {
+      float: left;
+      display: inline-block;
+      width: 250px;
+      margin-right: 50px;
+      text-align: center;
+      &:last-child { margin-right: 0; }
+    }
+
+    .image {
+      width: 102px;
+      height: 102px;
+      margin: auto;
+      background-color: #d8d8d8;
+      border-radius: 52px;
+    }
+
+    .text {
+      width: 250px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #666;
+
+      .text-header {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+        margin-top: 15px;
+      }
+    }
+
+    .jump { text-decoration: none; }
+    .link {
+      width: 250px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #034698;
+      height: 38px;
+      padding-top: 6px;
+      position: relative;
+
+      border: solid 2px #034698;
+      border-radius: 82px;
+    }
+    .link:after {
+      content: '>';
+      position: absolute;
+      right: 10px;
+      top: -5px;
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .content { padding: 30px 10px 60px; }
+  .content .body .column { width: 100%; margin: 0 0 50px 0; }
+  .content .body .text { margin: auto; }
+  .content .body .link { margin: auto; }
+}
