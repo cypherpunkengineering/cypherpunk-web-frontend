@@ -45,6 +45,10 @@
 		<from>^/tos(.*)</from>
 		<to last="true">/tos.html$1</to>
 	</rule>
+	<rule>
+		<from>^/confirm(.*)</from>
+		<to last="true">/confirm.html$1</to>
+	</rule>
 
 	<!-- route to deny page if not on access list -->
 	<rule>
@@ -79,10 +83,6 @@
 	</rule>
 
 	<!-- public marketing content -->
-	<rule>
-		<from>^/confirm(.*)</from>
-		<to last="true">/confirm.html$1</to>
-	</rule>
 	<rule>
 		<from>^/download(.*)</from>
 		<to last="true">/download.html$1</to>
