@@ -25,7 +25,7 @@ export class ConfirmGuard implements CanActivate {
       if (valid) {
         // set user session data
         this.session.setUserData({
-          email: data['account']['email'],
+          account: { email: data['account']['email'] },
           secret: data['secret']
         });
         // turn auth on

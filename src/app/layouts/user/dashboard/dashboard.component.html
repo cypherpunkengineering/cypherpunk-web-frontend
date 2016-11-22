@@ -9,13 +9,13 @@
 
     <div class="account-container">
       <div class="left">
-        <span class="email">{{user.email}}</span><br>
+        <span class="email">{{user.account.email}}</span><br>
         <span class="status active">{{user.status}}</span>
       </div>
 
       <div class="right">
-        <span class="period">{{user.type}}</span><br>
-        <span class="renewal">{{ user.renewal }}</span>
+        <span class="period">{{user.account.type}}</span><br>
+        <span class="renewal">{{ user.subscription.expiration }}</span>
       </div>
     </div>
   </div>
@@ -23,13 +23,13 @@
   <div class="mobile-header">Cypherpunk Account</div>
 
   <div class="mobile-account">
-    <span class="email">{{user.email}}</span><br>
+    <span class="email">{{user.account.email}}</span><br>
     <span class="status active">{{user.status}}</span>
 
     <hr>
 
-    <span class="period">{{user.period}}</span><br>
-    <span class="renewal">{{ user.renewal }}</span>
+    <span class="period">{{user.subscription.type}}</span><br>
+    <span class="renewal">{{ user.subscription.expiration }}</span>
   </div>
 
 </div>

@@ -12,8 +12,8 @@ export class AccountNavigationComponent {
 
   constructor(private router: Router, private auth: AuthService) { }
 
-  logOff() {
-    this.auth.logout();
-    this.router.navigate(['/']);
+  logout() {
+    this.auth.logout()
+    .then(() => { this.router.navigate(['/']); });
   }
 }

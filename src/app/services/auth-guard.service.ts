@@ -13,35 +13,63 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    // Return if Already authed
-    if (this.auth.authed) { return Promise.resolve(true); }
+    // if (this.auth.authed) { return Promise.resolve(true); }
 
     let url: string = state.url;
+
+    if (url.startsWith('/user/upgrade')) {
+      if (this.auth.authed) { return Promise.resolve(true); }
+      return this.checkLogin(url, route);
+    }
+
     if (url.startsWith('/user')) {
       return this.session.pullPlanData()
       .then((valid) => {
         if (valid) { return true; }
-        else { this.router.navigate(['/login']); }
+        else {
+          this.auth.redirectUrl = url;
+          this.router.navigate(['/login']);
+          return false;
+        }
       });
     }
 
-    return this.checkLogin(url, route);
+    // non user route protected?
+    this.router.navigate(['/login']);
+    return Promise.resolve(false);
   }
 
   checkLogin(url: string, route: ActivatedRouteSnapshot): Promise<boolean> {
     // Case 1: Enter with email and secret
-    let routePath = route.url.join('/');
     let email = route.queryParams['user'];
     let secret = route.queryParams['secret'];
-    if (routePath === 'user/upgrade' && email && secret) {
-      this.session.setUserData({ email: email, secret: secret });
-      this.session.pullPlanData(); // need secret integration
-      return Promise.resolve(true);
+    if (email && secret) {
+      return this.session.pullPlanData() // need secret integration
+      .then((valid) => {
+        if (valid) {
+          this.session.setUserData({
+            account: { email: email },
+            secret: secret
+          });
+          return true;
+        }
+        else {
+          this.auth.redirectUrl = url;
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
     }
-
-    // Case 2: not authed, redirect to login
-    this.auth.redirectUrl = url;
-    this.router.navigate(['/login']);
-    return Promise.resolve(false);
+    else {
+      return this.session.pullPlanData()
+      .then((valid) => {
+        if (valid) { return true; }
+        else {
+          this.auth.redirectUrl = url;
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
+    }
   }
 }

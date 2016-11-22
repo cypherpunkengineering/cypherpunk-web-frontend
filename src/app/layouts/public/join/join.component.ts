@@ -115,7 +115,7 @@ export class JoinComponent {
     .then((res: Response) => {
       let resData = res.json() || {};
       this.session.setUserData({
-        email: resData.account.email,
+        account: { email: resData.account.email },
         secret: resData.secret
       });
     })
@@ -153,7 +153,7 @@ export class JoinComponent {
     .then((res: Response) => {
       let resData = res.json() || {};
       this.session.setUserData({
-        email: resData.account.email,
+        account: { email: resData.account.email },
         secret: resData.secret
       });
     })
@@ -217,7 +217,7 @@ export class JoinComponent {
     .then((res: Response) => {
       let resData = res.json() || {};
       this.session.setUserData({
-        email: resData.account.email,
+        account: { email: resData.account.email },
         secret: resData.secret
       });
     })

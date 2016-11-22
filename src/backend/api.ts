@@ -25,11 +25,12 @@ export function serverApi(req, res) {
 
 export function subs(req, res) {
   let body = {
-    type: '',
-    renewal: '',
-    expiration: undefined,
-    confirmed: false
+    type: 'premium',
+    renewal: 'forever',
+    expiration: '0',
+    confirmed: true
   };
+
   return res.json(body);
 }
 
@@ -40,4 +41,18 @@ export function confirm(req, res) {
     secret: ''
   };
   return res.json(body);
+}
+
+export function login(req, res) {
+  let body = {
+    secret: 'abcd',
+    privacy: { username: 'username', password: 'password' },
+    account: { id: 'id', email: 'test@test.test', confirmed: true, type: 'premium' },
+    subscription: { renewal: 'forever', expiration: '0' }
+  };
+  return res.json(body);
+}
+
+export function logout(req, res) {
+  return res.json({});
 }

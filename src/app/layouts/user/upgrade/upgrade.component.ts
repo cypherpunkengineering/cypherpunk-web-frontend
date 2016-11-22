@@ -61,7 +61,7 @@ export class UpgradeComponent {
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService
-  ) { this.email = session.user.email; }
+  ) { this.email = session.user.account.email; }
 
   // pay with credit card
 

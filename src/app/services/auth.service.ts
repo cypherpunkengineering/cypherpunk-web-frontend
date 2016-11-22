@@ -24,12 +24,7 @@ export class AuthService {
     return this.http.post(this.loginUrl, body, options).toPromise()
     .then((res: Response) => { return res.json() || {}; })
     // set user session data
-    .then((data) => {
-      this.session.setUserData({
-        email: data.account.email,
-        secret: data.secret
-      });
-    })
+    .then((data) => { this.session.setUserData(data); })
     // turn authed on
     .then(() => { this.authed = true; });
   }
@@ -41,11 +36,8 @@ export class AuthService {
 
     return this.http.post(this.logoutUrl, body, options).toPromise()
     .then((res: Response) => { return res.json() || {}; })
-    // clear session data and secret
-    .then((data) => {
-      this.session.clearUserData();
-      this.session.clearPlanData();
-    })
+    // clear session
+    .then((data) => { this.session.clearUserData(); })
     // turn off authed
     .then(() => { this.authed = false; });
   }
