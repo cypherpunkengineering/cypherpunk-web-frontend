@@ -2,9 +2,10 @@
 set -e
 
 # prepare node/npm
-source $HOME/.nvm/nvm.sh v7.1.0
-nvm install v7.1.0
-nvm use v7.1.0
+#source "$(brew --prefix nvm)/nvm.sh" v6.9.1
+source $HOME/.nvm/nvm.sh v6.9.1
+nvm install v6.9.1
+nvm use v6.9.1
 
 # prepare global deps
 npm uninstall -g angular-cli
