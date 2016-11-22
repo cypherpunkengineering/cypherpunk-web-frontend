@@ -62,6 +62,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^79\.118\.57\.</condition><!-- andrei -->
 		<condition type="remote-addr" operator="notequal" next="and">^2a02:2f08:</condition><!-- andrei -->
 		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:100</condition><!-- reg virginia -->
+		<condition type="remote-addr" operator="notequal" next="and">^73\.177\.222\.</condition><!-- virginia office -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
 		<to last="true">/cypherpunk.txt</to>
