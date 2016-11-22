@@ -48,7 +48,6 @@ import { LocalStorage } from './services/local-storage';
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
 
-    AppRoutingModule,
     SharedModule,
 
     HomeModule,
@@ -68,7 +67,9 @@ import { LocalStorage } from './services/local-storage';
 
     DashboardModule,
     BillingModule,
-    UpgradeModule
+    UpgradeModule,
+
+    AppRoutingModule
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },

@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([])
+    RouterModule.forRoot([
+      { path: '**', redirectTo: '/404', pathMatch: 'full' }
+    ])
   ],
 })
 export class AppRoutingModule { }

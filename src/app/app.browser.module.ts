@@ -45,7 +45,6 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
     FormsModule,
 
-    AppRoutingModule,
     SharedModule,
 
     HomeModule,
@@ -65,7 +64,9 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
     DashboardModule,
     BillingModule,
-    UpgradeModule
+    UpgradeModule,
+
+    AppRoutingModule
   ],
   providers: [
     { provide: 'isBrowser', useValue: isBrowser },

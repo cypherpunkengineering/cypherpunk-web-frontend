@@ -7,13 +7,6 @@ source $HOME/.nvm/nvm.sh v6.9.1
 nvm install v6.9.1
 nvm use v6.9.1
 
-# prepare global deps
-npm uninstall -g angular-cli
-npm cache clean
-npm install -g node-gyp
-npm install -g node-pre-gyp
-npm install -g angular-cli
-
 # prepare local deps
 npm install
 
