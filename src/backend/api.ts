@@ -28,18 +28,18 @@ export function subs(req, res) {
 
   if (req.query.secret) {
     body = {
-      type: 'developer',
+      type: '', /* developer */
       renewal: 'forever',
       expiration: '0',
-      confirmed: true
+      confirmed: false
     };
   }
   else {
     body = {
-      type: 'premium',
+      type: '', /* premium */
       renewal: 'forever',
       expiration: '0',
-      confirmed: true
+      confirmed: false
     };
   }
 
