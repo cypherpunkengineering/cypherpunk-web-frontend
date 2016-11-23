@@ -1,5 +1,6 @@
-const request = require('request');
 const fs = require('fs');
+const path = require('path');
+const request = require('request');
 
 const baseRoute = 'http://localhost:3000/';
 const baseDir = './build/';
@@ -24,9 +25,9 @@ const routes = [
 ];
 
 // get all routes starting with index
-routes.forEach(function(routeObject) {
-  return new Promise(function(resolve, reject) {
-    request(routeObject.url, function(error, response, body) {
+routes.forEach((routeObject) => {
+  return new Promise((resolve, reject) => {
+    request(routeObject.url, (error, response, body) => {
       if (error) { return reject(error, response); }
       fs.writeFileSync(routeObject.dirPath, body);
       console.log(routeObject.url, routeObject.dirPath);
@@ -36,8 +37,24 @@ routes.forEach(function(routeObject) {
 });
 
 return Promise.all(routes)
-.then(function() {
-  let targetFile = './build/index.js';
-  let sourceFile = './dist/client/index.js';
-  fs.writeFileSync(targetFile, fs.readFileSync(sourceFile));
+.then(() => {
+  return new Promise((resolve, reject) => {
+    fs.readdir('./dist/client', (err, list) => {
+      if (err) { return reject(err); }
+      if (list.length === 0) { return reject('No index file found'); }
+      else { return resolve(list); }
+    });
+  });
+})
+.then((list) => {
+  list.forEach((fileName) => {
+    console.log(fileName);
+    let file = path.join('./dist/client', fileName);
+    console.log(file);
+
+    if (file.endsWith('.js')) {
+      let targetFile = './build/' + fileName;
+      fs.writeFileSync(targetFile, fs.readFileSync(file));
+    }
+  });
 });
