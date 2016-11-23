@@ -1,7 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var commonConfig = {
+let extractSCSS = new ExtractTextPlugin('./style.css');
+
+const commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
@@ -10,7 +13,11 @@ var commonConfig = {
       // TypeScript
       { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.scss$/, loader: 'raw-loader!sass-loader' },
+      // { test: /\.scss$/, loader: 'raw-loader!sass-loader' },
+      { test: /\.scss$/, loader: extractSCSS.extract({
+        fallbackLoader: 'raw-loader!sass-loader',
+        loader: 'css-loader!sass-loader'
+      }) },
       { test: /\.json$/, loader: 'json-loader' }
     ],
   },
@@ -35,12 +42,13 @@ var commonConfig = {
     //   threshold: 10240,
     //   minRatio: 0.8
     // })
+    extractSCSS
   ]
 
 };
 
 
-var clientConfig = {
+const clientConfig = {
   target: 'web',
   entry: './src/client',
   output: {
@@ -56,7 +64,7 @@ var clientConfig = {
 };
 
 
-var serverConfig = {
+const serverConfig = {
   target: 'node',
   entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
   output: {
@@ -65,7 +73,7 @@ var serverConfig = {
   },
   module: {
     loaders: [
-      { test: /angular2-material/, loader: "imports-loader?window=>global" }
+      { test: /angular2-material/, loader: 'imports-loader?window=>global' }
     ],
   },
   externals: includeClientPackages([
@@ -113,7 +121,7 @@ var serverConfig = {
 
 
 // Default config
-var defaultConfig = {
+const defaultConfig = {
   context: __dirname,
   output: {
     publicPath: path.resolve(__dirname),
@@ -123,7 +131,7 @@ var defaultConfig = {
 
 
 
-var webpackMerge = require('webpack-merge');
+const webpackMerge = require('webpack-merge');
 module.exports = [
   // Client
   webpackMerge({}, defaultConfig, commonConfig, clientConfig),
