@@ -1,11 +1,22 @@
 #!/bin/bash -x
 set -e
 
+# build vars
+NODE_VERSION=v6.9.1
+
+# load nvm depending on OS
+case `uname -s` in
+	Darwin)
+		source "$(brew --prefix nvm)/nvm.sh" ${NODE_VERSION}
+		;;
+	FreeBSD|Linux)
+		source $HOME/.nvm/nvm.sh ${NODE_VERSION}
+		;;
+esac
+
 # prepare node/npm
-#source "$(brew --prefix nvm)/nvm.sh" v6.9.1
-source $HOME/.nvm/nvm.sh v6.9.1
-nvm install v6.9.1
-nvm use v6.9.1
+nvm install ${NODE_VERSION}
+nvm use ${NODE_VERSION}
 
 # prepare local deps
 npm install
