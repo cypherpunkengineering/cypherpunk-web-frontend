@@ -1,7 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var commonConfig = {
+const commonConfig = {
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
@@ -23,9 +24,12 @@ var commonConfig = {
         // your Angular Async Route paths relative to this root directory
       }
     ),
-
+    new HtmlWebpackPlugin({
+      template: 'src/index.ejs',
+      inject: false
+    })
     // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
-    // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
+    // add 'const CompressionPlugin = require("compression-webpack-plugin");' on the top
     // and comment out below codes
     //
     // new CompressionPlugin({
@@ -40,10 +44,11 @@ var commonConfig = {
 };
 
 
-var clientConfig = {
+const clientConfig = {
   target: 'web',
   entry: './src/client',
   output: {
+    publicPath: '/',
     path: root('dist/client')
   },
   node: {
@@ -56,16 +61,17 @@ var clientConfig = {
 };
 
 
-var serverConfig = {
+const serverConfig = {
   target: 'node',
   entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
   output: {
+    filename: 'index.js',
     path: root('dist/server'),
     libraryTarget: 'commonjs2'
   },
   module: {
     loaders: [
-      { test: /angular2-material/, loader: "imports-loader?window=>global" }
+      { test: /angular2-material/, loader: 'imports-loader?window=>global' }
     ],
   },
   externals: includeClientPackages([
@@ -113,17 +119,17 @@ var serverConfig = {
 
 
 // Default config
-var defaultConfig = {
+const defaultConfig = {
   context: __dirname,
   output: {
     publicPath: path.resolve(__dirname),
-    filename: 'index.js'
+    filename: 'index.[hash].js'
   }
 };
 
 
 
-var webpackMerge = require('webpack-merge');
+const webpackMerge = require('webpack-merge');
 module.exports = [
   // Client
   webpackMerge({}, defaultConfig, commonConfig, clientConfig),

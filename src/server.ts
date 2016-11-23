@@ -40,7 +40,7 @@ app.engine('.html', createEngine({
   ]
 }));
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname);
+app.set('views', path.join(__dirname, '..', 'dist', 'client'));
 app.set('view engine', 'html');
 
 app.use(cookieParser('Angular 2 Universal'));
