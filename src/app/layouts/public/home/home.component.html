@@ -1,19 +1,46 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <div class="masthead-header">Online Privacy & Freedom Made Easy</div>
-  <div class="masthead-image"></div>
+  <div class="masthead-header">
+    Online Privacy & Freedom Made Easy
+  </div>
+
+  <div class="masthead-subheader">
+    Setting you free by bringing back the internet as it was meant to be
+  </div>
+
+  <div class="masthead-banner">
+    <div class="masthead-image">
+      <img src="/assets/web-top-point.png" alt="Start Free Preview">
+    </div>
+
+    <div class="masthead-cta">
+      <button class="btn gold" routerLink="/download">
+        START FREE PREVIEW
+        <span class="arrow">&nbsp;&nbsp;&nbsp;></span>
+      </button>
+
+      <div class="subheader">
+        Available for
+        <a routerLink="/download" fragment="desktop">Desktop</a>,
+        <a routerLink="/download" fragment="browser">Browser</a>,
+        <a routerLink="/download" fragment="android">Android</a>,
+        <a routerLink="/download" fragment="ios">iOS</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="cta-container">
+<div class="cta-container mobile">
   <div class="call-to-action">
     <button class="btn gold" routerLink="/download">
-      START FREE
+      START FREE PREVIEW
+      <span class="arrow">&nbsp;&nbsp;&nbsp;></span>
     </button>
   </div>
 </div>
 
-<div class="available">
+<div class="available mobile">
   <div class="subheader">
     Available for
     <a routerLink="/download" fragment="desktop">Desktop</a>,

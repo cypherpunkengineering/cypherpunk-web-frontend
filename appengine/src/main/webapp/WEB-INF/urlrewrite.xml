@@ -123,6 +123,10 @@
 		<from>^/home(.*)</from>
 		<to last="true">/cypherpunk-public.html$1</to>
 	</rule>
+	<rule>
+		<from>^/404(.*)</from>
+		<to last="true">/404.html$1</to>
+	</rule>
 
 	<!-- public root -->
 	<rule>
