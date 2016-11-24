@@ -74,16 +74,6 @@
 
 	<!-- customer control panel, requires valid session -->
 	<rule>
-		<from>^/user/upgrade(.*)</from>
-		<to last="true">/account/upgrade.html$1</to>
-	</rule>
-	<rule>
-		<from>^/user(.*)</from>
-		<to last="true">/account/account.html$1</to>
-	</rule>
-
-	<!-- customer control panel, requires valid session -->
-	<rule>
 		<from>^/account/upgrade(.*)</from>
 		<to last="true">/account/upgrade.html$1</to>
 	</rule>

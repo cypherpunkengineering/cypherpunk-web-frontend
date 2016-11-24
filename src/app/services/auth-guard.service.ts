@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     let url: string = state.url;
 
-    if (url.startsWith('/account/upgrade') || url.startsWith('/user/upgrade')) {
+    if (url.startsWith('/account/upgrade')) {
       if (this.auth.authed) { return Promise.resolve(true); }
       return this.checkLogin(url, route);
     }
