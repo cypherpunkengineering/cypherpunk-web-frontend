@@ -24,17 +24,14 @@ export class DownloadComponent {
     },
     chrome: {
       name: 'Chrome',
-      versions: 'xx - xx',
       link: ''
     },
     firefox: {
       name: 'FireFox',
-      versions: 'xx - xx',
       link: ''
     },
     opera: {
       name: 'Opera',
-      versions: 'xx - xx',
       link: ''
     },
     android: {
