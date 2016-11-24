@@ -25,6 +25,7 @@ import { LocationsModule } from './layouts/public/locations/locations.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
+import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
@@ -63,6 +64,7 @@ import { LocalStorage } from './services/local-storage';
     PrivacyModule,
     AboutusModule,
     TosModule,
+    BountyModule,
     NotFoundModule,
 
     DashboardModule,

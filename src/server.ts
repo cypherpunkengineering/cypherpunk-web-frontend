@@ -89,6 +89,7 @@ app.get('/locations', ngApp);
 app.get('/privacy', ngApp);
 app.get('/aboutus', ngApp);
 app.get('/tos', ngApp);
+app.get('/bounty', ngApp);
 app.get('*', ngApp);
 
 // Server

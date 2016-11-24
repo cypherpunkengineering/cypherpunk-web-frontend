@@ -84,6 +84,10 @@
 
 	<!-- public marketing content -->
 	<rule>
+		<from>^/bounty(.*)</from>
+		<to last="true">/bounty.html$1</to>
+	</rule>
+	<rule>
 		<from>^/download(.*)</from>
 		<to last="true">/download.html$1</to>
 	</rule>
