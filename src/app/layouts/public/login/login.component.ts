@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -7,14 +7,18 @@ import { AlertService } from '../../../services/alert.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
   user = { login: '', password: '' };
 
   constructor(
     private router: Router,
     private auth: AuthService,
     private alertService: AlertService
-  ) {}
+  ) { }
+
+  ngAfterViewInit() {
+    document.getElementById('login-username').focus();
+  }
 
   login() {
     this.auth.login(this.user)
