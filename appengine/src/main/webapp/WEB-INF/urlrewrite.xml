@@ -138,7 +138,7 @@
 	<rule>
 		<from>^/.*</from>
 		<set type="status">404</set>
-		<to last="true">404.html</to>
+		<to last="true">null</to>
 	</rule>
 
 </urlrewrite>
