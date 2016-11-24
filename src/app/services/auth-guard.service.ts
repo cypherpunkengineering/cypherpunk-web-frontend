@@ -15,12 +15,12 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     let url: string = state.url;
 
-    if (url.startsWith('/user/upgrade')) {
+    if (url.startsWith('/account/upgrade') || url.startsWith('/user/upgrade')) {
       if (this.auth.authed) { return Promise.resolve(true); }
       return this.checkLogin(url, route);
     }
 
-    if (url.startsWith('/user')) {
+    if (url.startsWith('/account')) {
       return this.session.pullPlanData()
       .then((valid) => {
         if (valid) { return true; }

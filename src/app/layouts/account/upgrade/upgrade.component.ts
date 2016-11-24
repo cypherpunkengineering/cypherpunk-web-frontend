@@ -118,7 +118,7 @@ export class UpgradeComponent {
     // alert and redirect
     .then(() => {
       this.alertService.success('You have upgraded your account');
-      this.router.navigate(['/user']);
+      this.router.navigate(['/account']);
     })
     // handle errors
     .catch((error) => {

@@ -11,6 +11,6 @@ npm-debug.log
 
 .DS_Store
 
-/build/user/*.html
+/build/account/*.html
 /build/index*.js
 /build/*.html

@@ -74,9 +74,9 @@ function ngApp(req, res) {
 // ensure routes match client-side-app
 app.get('/', ngApp);
 app.get('/home', ngApp);
-app.get('/user*', ngApp);
-app.get('/user/billing', ngApp);
-app.get('/user/upgrade', ngApp);
+app.get('/account*', ngApp);
+app.get('/account/billing', ngApp);
+app.get('/account/upgrade', ngApp);
 app.get('/join', ngApp);
 app.get('/login', ngApp);
 app.get('/reset', ngApp);

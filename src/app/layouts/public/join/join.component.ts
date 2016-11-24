@@ -129,7 +129,7 @@ export class JoinComponent {
     // alert and redirect
     .then(() => {
       this.alertService.success('You account was created!');
-      this.router.navigate(['/user']);
+      this.router.navigate(['/account']);
     })
     // handle errors
     .catch((error) => {

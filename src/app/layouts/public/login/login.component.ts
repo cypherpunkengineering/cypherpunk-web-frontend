@@ -35,7 +35,7 @@ export class LoginComponent implements AfterViewInit {
     .then(() => {
       let redirectUrl = this.auth.redirectUrl;
       if (redirectUrl) { this.router.navigate([redirectUrl]); }
-      else { this.router.navigate(['user']); }
+      else { this.router.navigate(['account']); }
     })
     .catch((err) => {
       console.log(err);

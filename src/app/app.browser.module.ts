@@ -21,9 +21,9 @@ import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 
-import { DashboardModule } from './layouts/user/dashboard/dashboard.module';
-import { BillingModule } from './layouts/user/billing/billing.module';
-import { UpgradeModule } from './layouts/user/upgrade/upgrade.module';
+import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
+import { BillingModule } from './layouts/account/billing/billing.module';
+import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
 
 import { CacheService } from './universal-cache';
 import { SessionService } from './services/session.service';
