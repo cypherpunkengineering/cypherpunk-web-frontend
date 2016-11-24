@@ -48,10 +48,7 @@ return Promise.all(routes)
 })
 .then((list) => {
   list.forEach((fileName) => {
-    console.log(fileName);
     let file = path.join('./dist/client', fileName);
-    console.log(file);
-
     if (file.endsWith('.js')) {
       let targetFile = './build/' + fileName;
       fs.writeFileSync(targetFile, fs.readFileSync(file));

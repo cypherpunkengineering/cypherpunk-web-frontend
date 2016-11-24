@@ -212,12 +212,6 @@
   margin: 25px 0 25px;
   font-size: 24px;
   text-transform: none;
-  &.disabled {
-    cursor: default;
-    background-color: #ccc;
-    box-shadow: 0 4px 0 0 #ddd;
-    text-shadow: 0 2px 0 #ccc;
-  }
 }
 
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }

@@ -144,10 +144,12 @@
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" [ngClass]="{'disabled': !validateCC()}" (click)="getToken()">
+      <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
         Upgrade Now
       </button>
-      <div class="stripe-message" [ngClass]="messageClass">{{message}}</div>
+      <div class="stripe-message" [ngClass]="messageClass">
+        {{message}}
+      </div>
     </div>
 
     <div class="other" *ngIf="paymentOptions[1].selected">
@@ -161,7 +163,7 @@
 
       <div id="consentWidgetDiv"></div>
 
-      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
+      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
         Pay Now
       </button>
     </div>
@@ -178,7 +180,7 @@
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="payWithPaypal()">
+      <button class="btn blue" (click)="payWithPaypal()" [disabled]="ppButtonDisabled">
         Join Cypherpunk
       </button>
 
@@ -231,7 +233,7 @@
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="payWithBitpay()">
+      <button class="btn blue" (click)="payWithBitpay()" [disabled]="bpButtonDisabled">
         Join Cypherpunk
       </button>
 

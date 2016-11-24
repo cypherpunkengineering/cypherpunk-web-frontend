@@ -160,7 +160,7 @@
           ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
         </div>
 
-        <button class="btn blue" [ngClass]="{'disabled': !validateCC()}" (click)="getToken()">
+        <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
           Join Cypherpunk Now
         </button>
         <div class="stripe-message" [ngClass]="messageClass">
@@ -179,8 +179,8 @@
 
         <div id="consentWidgetDiv"></div>
 
-        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'">
-          Pay Now
+        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
+          Join Cypherpunk
         </button>
       </div>
 
@@ -206,7 +206,7 @@
           ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
         </div>
 
-        <button class="btn blue" (click)="payWithPaypal()" [ngClass]="{'disabled': !validatePP()}">
+        <button class="btn blue" (click)="payWithPaypal()" [disabled]="!validatePP() || ppButtonDisabled">
           Join Cypherpunk
         </button>
 
@@ -269,7 +269,7 @@
           ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
         </div>
 
-        <button class="btn blue" (click)="payWithBitpay()" [ngClass]="{'disabled': !validatePP()}">
+        <button class="btn blue" (click)="payWithBitpay()" [disabled]="!validatePP() || bpButtonDisabled">
           Join Cypherpunk
         </button>
 

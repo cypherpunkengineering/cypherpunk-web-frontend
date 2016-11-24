@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -15,6 +15,10 @@ export class JoinComponent {
   message: string;
   messageClass: string = '';
   posData: string = '';
+  ccButtonDisabled: boolean = false;
+  ppButtonDisabled: boolean = false;
+  amButtonDisabled: boolean = false;
+  bpButtonDisabled: boolean = false;
 
   // Stripe variables
   cardNumber: string;
@@ -57,6 +61,7 @@ export class JoinComponent {
 
   constructor(
     private http: Http,
+    private zone: NgZone,
     private router: Router,
     private auth: AuthService,
     private session: SessionService,
@@ -67,7 +72,7 @@ export class JoinComponent {
   // pay with credit card
 
   getToken() {
-    if (!this.validateCC()) { return; }
+    this.ccButtonDisabled = true;
 
     // show user we're charging the card
     this.message = 'Loading...';
@@ -129,14 +134,17 @@ export class JoinComponent {
     // handle errors
     .catch((error) => {
       console.log(error);
-      this.alertService.error('Could not create an account');
+      this.zone.run(() => {
+        this.ccButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
     });
   }
 
   // pay with paypal
 
   payWithPaypal() {
-    if (!this.validatePP()) { return; }
+    this.ppButtonDisabled = true;
 
     let serverParams = {
       email: this.email,
@@ -164,20 +172,23 @@ export class JoinComponent {
       this.alertService.success('You account was created!');
     })
     .then(() => {
-      if (this.selectedPlan.id === 'monthly999') {
+      if (this.selectedPlan.id === 'monthly899') {
         document.getElementById('paypalMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually8004') {
+      else if (this.selectedPlan.id === 'annually5999') {
         document.getElementById('paypalAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4998') {
+      else if (this.selectedPlan.id === 'semiannually4499') {
         document.getElementById('paypalSemiannual').click();
       }
     })
     // handle errors
     .catch((error) => {
       console.log(error);
-      this.alertService.error('Could not create an account');
+      this.zone.run(() => {
+        this.ppButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
     });
   }
 
@@ -191,16 +202,20 @@ export class JoinComponent {
   amazonCallback(billingAgreement) {
     console.log('back in angular');
     console.log(billingAgreement);
+    /* send billingAgreement to server */
+    /* on return show amazonButton */
   }
 
   amazonButton() {
+    this.amButtonDisabled = true;
     console.log('paid with amazon');
+    this.amButtonDisabled = false;
   }
 
   // pay with bitpay
 
   payWithBitpay() {
-    if (!this.validatePP()) { return; }
+    this.bpButtonDisabled = true;
 
     let serverParams = {
       email: this.email,
@@ -235,24 +250,25 @@ export class JoinComponent {
       this.posData = JSON.stringify(posId);
     })
     .then(() => {
-      if (this.selectedPlan.id === 'monthly999') {
+      if (this.selectedPlan.id === 'monthly899') {
         document.getElementById('bitpayMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually8004') {
+      else if (this.selectedPlan.id === 'annually5999') {
         document.getElementById('bitpayAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4998') {
+      else if (this.selectedPlan.id === 'semiannually4499') {
         document.getElementById('bitpaySemiannual').click();
       }
     })
     // handle errors
     .catch((error) => {
       console.log(error);
-      this.alertService.error('Could not create an account');
+      this.zone.run(() => {
+        this.bpButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
     });
   }
-
-  goToBitPay() { console.log('not implemented yet'); }
 
   validateCC() {
     if (!this.email) {

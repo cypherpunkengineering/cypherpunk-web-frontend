@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -15,6 +15,10 @@ export class UpgradeComponent {
   message: string;
   messageClass: string = '';
   posData: string = '';
+  ccButtonDisabled: boolean = false;
+  ppButtonDisabled: boolean = false;
+  amButtonDisabled: boolean = false;
+  bpButtonDisabled: boolean = false;
 
   // Stripe variables
   cardNumber: string;
@@ -56,6 +60,7 @@ export class UpgradeComponent {
 
   constructor(
     private http: Http,
+    private zone: NgZone,
     private router: Router,
     private auth: AuthService,
     private session: SessionService,
@@ -66,7 +71,7 @@ export class UpgradeComponent {
   // pay with credit card
 
   getToken() {
-    if (!this.validateCC()) { return; }
+    this.ccButtonDisabled = true;
 
     // show user we're charging the card
     this.message = 'Loading...';
@@ -118,7 +123,10 @@ export class UpgradeComponent {
     // handle errors
     .catch((error) => {
       console.log(error);
-      this.alertService.error('You account could not be upgraded');
+      this.zone.run(() => {
+        this.ccButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
       // error 409 -> redirect to login page
     });
   }
@@ -126,13 +134,19 @@ export class UpgradeComponent {
   // pay with paypal
 
   payWithPaypal() {
-    if (this.selectedPlan.id === 'monthly999') {
+    console.log('paypal');
+    this.ppButtonDisabled = true;
+
+    console.log(this.selectedPlan);
+
+    if (this.selectedPlan.id === 'monthly899') {
       document.getElementById('paypalMonthly').click();
     }
-    else if (this.selectedPlan.id === 'annually8004') {
+    else if (this.selectedPlan.id === 'annually5999') {
+      console.log('annual');
       document.getElementById('paypalAnnual').click();
     }
-    else if (this.selectedPlan.id === 'semiannually4998') {
+    else if (this.selectedPlan.id === 'semiannually4499') {
       document.getElementById('paypalSemiannual').click();
     }
   }
@@ -147,28 +161,34 @@ export class UpgradeComponent {
   amazonCallback(billingAgreement) {
     console.log('back in angular');
     console.log(billingAgreement);
+    /* send billingAgreement to server */
+    /* on return show amazonButton */
   }
 
   amazonButton() {
+    this.amButtonDisabled = true;
     console.log('paid with amazon');
+    this.amButtonDisabled = false;
   }
 
   // pay with bitpay
 
   payWithBitpay() {
+    this.bpButtonDisabled = true;
+
     let posId = {
       email: this.email,
       planId: this.selectedPlan.id
     };
     this.posData = JSON.stringify(posId);
 
-    if (this.selectedPlan.id === 'monthly999') {
+    if (this.selectedPlan.id === 'monthly899') {
       document.getElementById('bitpayMonthly').click();
     }
-    else if (this.selectedPlan.id === 'annually8004') {
+    else if (this.selectedPlan.id === 'annually5999') {
       document.getElementById('bitpayAnnual').click();
     }
-    else if (this.selectedPlan.id === 'semiannually4998') {
+    else if (this.selectedPlan.id === 'semiannually4499') {
       document.getElementById('bitpaySemiannual').click();
     }
   }
