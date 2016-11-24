@@ -19,7 +19,9 @@
   </p>
 
   <p class="center">
-    <button class="btn blue" type="button" (click)="login()">Log In</button>
+    <button class="btn blue" type="button" (click)="login()" [disabled]="!validateLogin() || loginButtonDisabled">
+      Log In
+    </button>
   </p>
 
   <p class="center">

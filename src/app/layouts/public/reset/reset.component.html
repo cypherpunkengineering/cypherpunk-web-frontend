@@ -10,11 +10,13 @@
 <form>
   <p>
     <label for="username">Username / Email</label><br>
-    <input id="reset-username" type="text" name="username" placeholder="Username / Email" autofocus>
+    <input id="reset-username" type="text" name="username" [(ngModel)]="email" placeholder="Username / Email" autofocus>
   </p>
 
   <p class="center">
-    <button class="btn blue">Reset Password</button>
+    <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">
+      Reset Password
+    </button>
   </p>
 
   <p class="center">

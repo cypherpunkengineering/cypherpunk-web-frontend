@@ -10,21 +10,23 @@
 <form>
   <p>
     <label for="username">Username</label><br>
-    <input id="signup-username" type="text" name="username" placeholder="Username" autofocus>
+    <input id="signup-username" type="text" name="username" placeholder="Username" autofocus [(ngModel)]="username">
   </p>
 
   <p>
     <label for="email">Email</label><br>
-    <input type="email" name="email" placeholder="User@example.com">
+    <input type="email" name="email" placeholder="User@example.com" [(ngModel)]="email">
   </p>
 
   <p>
     <label for="password">Password</label><br>
-    <input type="password" name="password">
+    <input type="password" name="password" [(ngModel)]="password">
   </p>
 
   <p class="center">
-    <button class="btn blue">Create Account</button>
+    <button class="btn blue" (click)="signup()" [disabled]="!validateSignup() || signupButtonDisabled">
+      Create Account
+    </button>
   </p>
 
   <p class="center">
