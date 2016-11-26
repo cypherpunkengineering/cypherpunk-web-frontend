@@ -35,9 +35,11 @@ export class AuthService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.logoutUrl, body, options).toPromise()
-    .then((res: Response) => { return res.json() || {}; })
+    .then((res: Response) => {
+      try { return res.json(); } catch (e) { return {}; }
+    })
     // clear session
-    .then((data) => { this.session.clearUserData(); })
+    .then(() => { this.session.clearUserData(); })
     // turn off authed
     .then(() => { this.authed = false; });
   }
