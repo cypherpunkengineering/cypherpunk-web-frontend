@@ -24,7 +24,7 @@ export class DownloadComponent {
     },
     chrome: {
       name: 'Chrome',
-      link: ''
+      link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
     },
     firefox: {
       name: 'FireFox',
@@ -37,12 +37,12 @@ export class DownloadComponent {
     android: {
       name: 'Android',
       versions: '4.0.3+',
-      link: ''
+      link: 'https://play.google.com/store/apps/details?id=com.cypherpunk.privacy'
     },
     ios: {
       name: 'iOS',
       versions: 'iOS 8+',
-      link: ''
+      link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
     }
   };
 
@@ -54,13 +54,13 @@ export class DownloadComponent {
     if (os.indexOf('OS X') > -1) {
       this.headerBuild = this.builds.mac;
     }
-    else if (os.indexOf('Window')) {
+    else if (os.indexOf('Window') > -1) {
       this.headerBuild = this.builds.windows;
     }
-    else if (os.indexOf('Android')) {
+    else if (os.indexOf('Android') > -1) {
       this.headerBuild = this.builds.android;
     }
-    else if (os.indexOf('iOS')) {
+    else if (os.indexOf('iOS') > -1) {
       this.headerBuild = this.builds.ios;
     }
     else { this.headerBuild = this.builds.linux; }
