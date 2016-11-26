@@ -37,7 +37,7 @@ export function subs(req, res) {
   else {
     body = {
       type: '', /* premium */
-      renewal: 'forever',
+      renewal: 'none',
       expiration: '0',
       confirmed: false
     };

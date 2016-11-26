@@ -11,7 +11,7 @@
       <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected }">
+    <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected, 'hidden': !plans[0].viewable }">
       <div class="checkmark">
         <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
       </div>
@@ -31,7 +31,7 @@
       <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected }">
+    <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
       <div class="checkmark">
         <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
       </div>
@@ -47,7 +47,7 @@
       <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
     </div>
 
-    <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected }">
+    <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
       <div class="checkmark">
         <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
       </div>

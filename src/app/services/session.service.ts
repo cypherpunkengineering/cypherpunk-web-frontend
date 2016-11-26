@@ -1,5 +1,6 @@
 import { Injectable, Inject, NgZone } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { PlansService } from './plans.service';
 import { LocalStorage } from './local-storage';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class SessionService {
   user = {
     privacy: { username: '', password: '' },
     account: { id: '', email: '', confirmed: false, type: '' },
-    subscription: { renewal: '', expiration: '' },
+    subscription: { renewal: '', expiration: '', expirationString: '' },
     secret: '',
     status: '',
     priceModel: 0,
@@ -17,6 +18,7 @@ export class SessionService {
   constructor(
     private http: Http,
     private zone: NgZone,
+    private plans: PlansService,
     @Inject(LocalStorage) private localStorage
   ) {
     this.user.privacy.username = localStorage.getItem('privacy.username') || '';
@@ -29,6 +31,22 @@ export class SessionService {
     this.user.subscription.expiration = localStorage.getItem('subscription.expiration') || '';
     this.user.secret = localStorage.getItem('secret') || '';
     this.user.status = localStorage.getItem('status') || '';
+    plans.setPlanVisibility(this.user.subscription.renewal);
+    this.setExpirationString(this.user.subscription.expiration);
+  }
+
+  setExpirationString(expiration) {
+    // handle expiration
+    let now = new Date();
+    let expirationDate = new Date(expiration);
+    if (expirationDate > now) {
+      let renewal = this.user.subscription.renewal;
+      let month = expiration.getMonth() + 1;
+      let day = expiration.getDate();
+      let year = expiration.getFullYear();
+      this.user.subscription.expirationString = `Renews ${renewal} on ${month}/${day}/${year}`;
+    }
+    else { this.user.subscription.expirationString = ''; }
   }
 
   setUserData(user) {
@@ -100,6 +118,9 @@ export class SessionService {
       this.user.status = user.status;
       this.localStorage.setItem('status', user.status);
     }
+
+    this.plans.setPlanVisibility(this.user.subscription.renewal);
+    this.setExpirationString(this.user.subscription);
   }
 
   pullPlanData(email?: string, secret?: string): Promise<boolean> {
@@ -119,21 +140,6 @@ export class SessionService {
       if (data.confirmed) { user.status = 'active'; }
       this.setUserData(user);
       return data;
-    })
-    .then((data) => {
-      this.zone.run(() => {
-        // hanlde expiration
-        let now = new Date();
-        let expiration = new Date(data.expiration);
-        this.user.subscription.expiration = '';
-        if (expiration > now) {
-          let renewal = this.user.subscription.renewal;
-          let month = expiration.getMonth() + 1;
-          let day = expiration.getDate();
-          let year = expiration.getFullYear();
-          this.user.subscription.expiration = `Renews ${renewal} on ${month}/${day}/${year}`;
-        }
-      });
     })
     .then(() => { return true; })
     .catch(() => { return false; });
@@ -156,7 +162,7 @@ export class SessionService {
     this.localStorage.removeItem('account.confirmed');
     this.localStorage.removeItem('account.type');
 
-    this.user.subscription = { renewal: '', expiration: '' };
+    this.user.subscription = { renewal: '', expiration: '', expirationString: '' };
     this.localStorage.removeItem('subscription.renewal');
     this.localStorage.removeItem('subscription.expiration');
   }

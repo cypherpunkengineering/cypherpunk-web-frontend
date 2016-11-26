@@ -137,13 +137,10 @@ export class UpgradeComponent {
     console.log('paypal');
     this.ppButtonDisabled = true;
 
-    console.log(this.selectedPlan);
-
     if (this.selectedPlan.id === 'monthly899') {
       document.getElementById('paypalMonthly').click();
     }
     else if (this.selectedPlan.id === 'annually5999') {
-      console.log('annual');
       document.getElementById('paypalAnnual').click();
     }
     else if (this.selectedPlan.id === 'semiannually4499') {

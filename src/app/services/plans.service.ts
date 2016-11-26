@@ -6,6 +6,7 @@ export class Plan {
   period: string;
   total: number;
   yearly: string;
+  viewable: boolean;
   selected: boolean;
   constructor() {}
 }
@@ -19,6 +20,7 @@ export class PlansService {
       period: '1 Month',
       total: 8.99,
       yearly: '$ 8.99 billed monthly',
+      viewable: true,
       selected: false
     },
     {
@@ -27,6 +29,7 @@ export class PlansService {
       period: '12 Months',
       total: 59.99,
       yearly: '$ 59.99 billed annually',
+      viewable: true,
       selected: true
     },
     {
@@ -35,10 +38,38 @@ export class PlansService {
       period: '6 Months',
       total: 44.99,
       yearly: '$ 44.99 billed semiannually',
+      viewable: true,
       selected: false
     }
   ];
+
   selectedPlan: Plan = this.plans[1];
+  currentPlan: Plan = undefined;
+
+  setPlanVisibility (planCode): void {
+    if (planCode === 'free') {
+      this.plans.map((plan) => { plan.viewable = true; });
+    }
+    else if (planCode === 'monthly') {
+      this.plans[0].viewable = false;
+      this.plans[1].viewable = true;
+      this.plans[2].viewable = true;
+    }
+    else if (planCode === 'annually') {
+      this.plans.map((plan) => { plan.viewable = false; });
+    }
+    else if (planCode === 'semiannually') {
+      this.plans[0].viewable = false;
+      this.plans[1].viewable = true;
+      this.plans[2].viewable = false;
+    }
+    else if (planCode === 'forever') {
+      this.plans.map((plan) => { plan.viewable = true; });
+    }
+    else {
+      this.plans.map((plan) => { plan.viewable = true; });
+    }
+  }
 
   selectPlan(id: string): void {
     this.plans.map((plan) => {
