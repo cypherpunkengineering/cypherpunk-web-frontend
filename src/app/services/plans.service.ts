@@ -24,20 +24,20 @@ export class PlansService {
       selected: false
     },
     {
-      id: 'annually5999',
+      id: 'annually5988',
       price: 4.99,
       period: '12 Months',
-      total: 59.99,
-      yearly: '$ 59.99 billed annually',
+      total: 59.88,
+      yearly: '$ 59.88 billed annually',
       viewable: true,
       selected: true
     },
     {
-      id: 'semiannually4499',
+      id: 'semiannually4494',
       price: 7.49,
       period: '6 Months',
-      total: 44.99,
-      yearly: '$ 44.99 billed semiannually',
+      total: 44.94,
+      yearly: '$ 44.94 billed semiannually',
       viewable: true,
       selected: false
     }
