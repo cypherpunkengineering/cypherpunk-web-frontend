@@ -117,26 +117,26 @@
       <div class="info">
         <p>
           <label>Name</label><br>
-          <input type="text" placeholder="John Smith" required [(ngModel)]="name">
+          <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Card Number</label><br>
-          <input type="text" required [(ngModel)]="cardNumber">
+          <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched}">
         </p>
       </div>
 
       <div class="info">
         <p class="half">
           <label>Expiration Date</label><br>
-          <input type="text" placeholder="mm/yy" required [(ngModel)]="expiryDate">
+          <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched}" maxlength="5">
         </p>
 
         <p class="half">
           <label>CVV/CSC Code</label><br>
-          <input type="number" required [(ngModel)]="cvc" size="4">
+          <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched}" maxlength="4">
         </p>
       </div>
 
@@ -147,9 +147,6 @@
       <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
         Upgrade Now
       </button>
-      <div class="stripe-message" [ngClass]="messageClass">
-        {{message}}
-      </div>
     </div>
 
     <div class="other" *ngIf="paymentOptions[1].selected">

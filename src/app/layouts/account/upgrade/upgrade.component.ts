@@ -12,8 +12,6 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./upgrade.component.scss']
 })
 export class UpgradeComponent {
-  message: string;
-  messageClass: string = '';
   posData: string = '';
   ccButtonDisabled: boolean = false;
   ppButtonDisabled: boolean = false;
@@ -29,8 +27,17 @@ export class UpgradeComponent {
   email: string;
   name: string;
 
-  // pricing model
+  // validation variables
+  validCCName: boolean = false;
+  validCCNumber: boolean = false;
+  validCCExpiry: boolean = false;
+  validCCcvc: boolean = false;
+  ccNameTouched: boolean = false;
+  ccNumberTouched: boolean = false;
+  ccExpiryTouched: boolean = false;
+  ccCVCTouched: boolean = false;
 
+  // pricing model
   plans = this.plansService.plans;
   selectPlan = this.plansService.selectPlan;
   selectedPlan = this.plansService.selectedPlan;
@@ -72,9 +79,6 @@ export class UpgradeComponent {
 
   getToken() {
     this.ccButtonDisabled = true;
-
-    // show user we're charging the card
-    this.message = 'Loading...';
 
     let month: number;
     let year: number;
@@ -190,55 +194,48 @@ export class UpgradeComponent {
     }
   }
 
+  // validation functions
+
+  validateCCName() {
+    this.ccNameTouched = true;
+
+    if (!this.name) { this.validCCName = false; }
+    else { this.validCCName = true; }
+    return this.validCCName;
+  }
+
+  validateCCNumber() {
+    this.ccNumberTouched = true;
+
+    let stripe = (<any>window).Stripe;
+    this.validCCNumber = stripe.card.validateCardNumber(this.cardNumber);
+    return this.validCCNumber;
+  }
+
+  validateCCExpiry() {
+    this.ccExpiryTouched = true;
+
+    if (this.expiryDate && this.expiryDate.length === 2) { this.expiryDate += '/'; }
+
+    let stripe = (<any>window).Stripe;
+    this.validCCExpiry = stripe.card.validateExpiry(this.expiryDate);
+    if (this.validCCExpiry) { document.getElementById('cccvc').focus(); }
+    return this.validCCExpiry;
+  }
+
+  validateCCcvc() {
+    this.ccCVCTouched = true;
+
+    let stripe = (<any>window).Stripe;
+    this.validCCcvc = stripe.card.validateCVC(this.cvc);
+    return this.validCCcvc;
+  }
+
   validateCC() {
-    if (!this.email) {
-      this.message = 'Email is required';
-      this.messageClass = 'error';
-      return false;
-    }
-
-    if (!this.name) {
-      this.message = 'Name is required';
-      this.messageClass = 'error';
-      return false;
-    }
-
-    if (!this.cardNumber) {
-      this.message = 'Credit Card is required';
-      this.messageClass = 'error';
-      return false;
-    }
-
-    if (!this.expiryDate) {
-      this.message = 'Expiration is required';
-      this.messageClass = 'error';
-      return false;
-    }
-    else if (this.expiryDate) {
-      let month = this.expiryDate.split('/')[0];
-      let year = this.expiryDate.split('/')[1];
-
-      if (!this.isNumber(month)) {
-        this.message = 'Month is not a number';
-        this.messageClass = 'error';
-        return false;
-      }
-      if (!this.isNumber(year)) {
-        this.message = 'Year is not a number';
-        this.messageClass = 'error';
-        return false;
-      }
-    }
-
-    if (!this.cvc) {
-      this.message = 'CVC/CVV number is required';
-      this.messageClass = 'error';
-      return false;
-    }
-
-    this.message = '';
-    this.messageClass = '';
-    return true;
+    return this.validCCName && this.ccNameTouched &&
+    this.validCCNumber && this.ccNumberTouched &&
+    this.validCCExpiry && this.ccExpiryTouched &&
+    this.validCCcvc && this.ccCVCTouched;
   }
 
   isNumber(n) {

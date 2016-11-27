@@ -43,10 +43,15 @@ export class DownloadComponent {
       name: 'iOS',
       versions: 'iOS 8+',
       link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
+    },
+    blank: {
+      name: '',
+      versions: '',
+      link: '#'
     }
   };
 
-  headerBuild = this.builds.mac;
+  headerBuild = this.builds.blank;
 
   constructor() {
     let os: string = platform.os.family;
@@ -63,6 +68,6 @@ export class DownloadComponent {
     else if (os.indexOf('iOS') > -1) {
       this.headerBuild = this.builds.ios;
     }
-    else { this.headerBuild = this.builds.linux; }
+    else { this.headerBuild = this.builds.blank; }
   }
 }
