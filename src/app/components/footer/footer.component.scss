@@ -1,6 +1,6 @@
 .footerContainer {
   width: 100%;
-  background-color: #cad8eb;
+  background-color: #0e003f;
   overflow: auto;
 }
 
@@ -32,20 +32,22 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.93;
-  color: #999;
+  color: #7972c4;
 }
 
 .btn {
   margin-top: 45px;
-  width: 114px;
-  height: 38px;
+  width: 115px;
+  height: 39px;
+  background-color: #1987bd;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 .footer-header {
   font-size: 18px;
-  font-weight: bold;
-  color: #314d70;
-  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 15px;
 }
 
@@ -61,7 +63,7 @@
   &.inline:last-child { margin-right: 0; }
 }
 .footer-listing li a {
-  color: #666666;
+  color: #7972c4;
   text-decoration: none;
 }
 
@@ -72,12 +74,12 @@
 .fa-google-plus-official { color: #ff0002; }
 
 .feedback {
-  border: 1px solid #4e5e72;
+  border: 1px solid #1f0d67;
   border-radius: 5px;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.93;
-  color: #4e5e72;
+  color: #7972c4;
   text-align: center;
   margin-top: 16px;
   width: 108px;
