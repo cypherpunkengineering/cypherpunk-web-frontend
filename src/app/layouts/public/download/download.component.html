@@ -6,9 +6,11 @@
 
 <div class="cta-container">
   <div class="call-to-action">
-    <button class="btn gold" onclick="window.location.href='https://builds.cypherpunk.engineering/';">
-      Download for {{ headerBuild.name }}
-    </button>
+    <a href="{{headerBuild.link}}">
+      <button class="btn gold">
+        Download for {{ headerBuild.name }}
+      </button>
+    </a>
   </div>
 </div>
 
