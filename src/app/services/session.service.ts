@@ -41,9 +41,9 @@ export class SessionService {
     let expirationDate = new Date(expiration);
     if (expirationDate > now) {
       let renewal = this.user.subscription.renewal;
-      let month = expiration.getMonth() + 1;
-      let day = expiration.getDate();
-      let year = expiration.getFullYear();
+      let month = expirationDate.getMonth() + 1;
+      let day = expirationDate.getDate();
+      let year = expirationDate.getFullYear();
       this.user.subscription.expirationString = `Renews ${renewal} on ${month}/${day}/${year}`;
     }
     else { this.user.subscription.expirationString = ''; }
@@ -120,7 +120,7 @@ export class SessionService {
     }
 
     this.plans.setPlanVisibility(this.user.subscription.renewal);
-    this.setExpirationString(this.user.subscription);
+    this.setExpirationString(this.user.subscription.expiration);
   }
 
   pullPlanData(email?: string, secret?: string): Promise<boolean> {
