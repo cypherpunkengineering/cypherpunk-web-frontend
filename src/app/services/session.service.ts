@@ -21,18 +21,20 @@ export class SessionService {
     private plans: PlansService,
     @Inject(LocalStorage) private localStorage
   ) {
-    this.user.privacy.username = localStorage.getItem('privacy.username') || '';
-    this.user.privacy.password = localStorage.getItem('privacy.password') || '';
-    this.user.account.id = localStorage.getItem('account.id') || '';
-    this.user.account.email = localStorage.getItem('account.email') || '';
-    this.user.account.confirmed = Boolean(localStorage.getItem('account.confirmed')) || false;
-    this.user.account.type = localStorage.getItem('account.type') || '';
-    this.user.subscription.renewal = localStorage.getItem('subscription.renewal') || '';
-    this.user.subscription.expiration = localStorage.getItem('subscription.expiration') || '';
-    this.user.secret = localStorage.getItem('secret') || '';
-    this.user.status = localStorage.getItem('status') || '';
-    plans.setPlanVisibility(this.user.subscription.renewal);
-    this.setExpirationString(this.user.subscription.expiration);
+    try {
+      this.user.privacy.username = localStorage.getItem('privacy.username') || '';
+      this.user.privacy.password = localStorage.getItem('privacy.password') || '';
+      this.user.account.id = localStorage.getItem('account.id') || '';
+      this.user.account.email = localStorage.getItem('account.email') || '';
+      this.user.account.confirmed = Boolean(localStorage.getItem('account.confirmed')) || false;
+      this.user.account.type = localStorage.getItem('account.type') || '';
+      this.user.subscription.renewal = localStorage.getItem('subscription.renewal') || '';
+      this.user.subscription.expiration = localStorage.getItem('subscription.expiration') || '';
+      this.user.secret = localStorage.getItem('secret') || '';
+      this.user.status = localStorage.getItem('status') || '';
+      plans.setPlanVisibility(this.user.subscription.renewal);
+      this.setExpirationString(this.user.subscription.expiration);
+    } catch (e) { console.log(e); };
   }
 
   setExpirationString(expiration) {
