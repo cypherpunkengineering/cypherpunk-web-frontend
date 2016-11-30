@@ -6,7 +6,7 @@
 	<rule>
 		<condition name="host" operator="notequal" next="and">^cypherpunk.com$</condition>
 		<condition name="host" operator="notequal" next="and">^cypherpunk.engineering$</condition>
-		<condition name="host" operator="notequal">^localhost$</condition>
+		<condition name="host" operator="notequal">^localhost:8080$</condition>
 		<from>/(.*)</from>
 		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
 	</rule>
@@ -56,6 +56,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
 		<condition type="remote-addr" operator="notequal" next="and">^43\.233\.13\.</condition><!-- tokyo office -->
 		<condition type="remote-addr" operator="notequal" next="and">^2606:6000:624c:</condition><!-- jon -->
+		<condition type="remote-addr" operator="notequal" next="and">^76\.170\.54</condition><!-- jon -->
 		<condition type="remote-addr" operator="notequal" next="and">^76\.173\.255\.</condition><!-- taesup -->
 		<condition type="remote-addr" operator="notequal" next="and">^219\.164\.103\.</condition><!-- nikuhodai -->
 		<condition type="remote-addr" operator="notequal" next="and">^77\.145\.35\.</condition><!-- paris demo -->
