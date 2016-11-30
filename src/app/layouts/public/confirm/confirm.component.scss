@@ -1,6 +1,6 @@
 .masthead {
   width: 100%;
-  background-image: linear-gradient(286deg, #034698, #0c4d9e 10%, #0c4d9e 10%, #0d4e9f 11%, #548cd2);
+  background-color: #0e003f;
 
   .masthead-image {
     position: relative;
@@ -15,7 +15,7 @@
     position:relative;
     top: 45px;
     width: 100%;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 500;
     text-align: center;
     color: #fff;
@@ -29,25 +29,26 @@
   margin: 110px auto 25px;
   font-size: 24px;
   text-transform: none;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 form {
   display: table;
   margin: 50px auto 50px;
   text-align: center;
+  min-height: 50vh;
 
   .page-header {
     font-size: 22px;
     font-weight: 500;
     line-height: 1.86;
-    color: #666;
+    color: #4a4a4d;
   }
 
   p { display: table-row;  text-align: left; }
   p.center { text-align: center; }
 }
-
-.login-link { color: #034698; }
 
 
 @media (max-width: 375px) {

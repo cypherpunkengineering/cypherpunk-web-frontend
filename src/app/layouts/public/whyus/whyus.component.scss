@@ -1,11 +1,11 @@
 .masthead {
   width: 100%;
-  background-image: linear-gradient(290deg, #034698, #548cd2);
+  background-color: #0e003f;
 
   .masthead-header {
     width: 100%;
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 500;
     color: #ffffff;
     margin: 45px auto 0;
@@ -17,9 +17,9 @@
     margin: auto;
     padding-bottom: 87px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    color: #fff;
+    color: #a5a2eb;
   }
 }
 
@@ -28,13 +28,21 @@
 
   .call-to-action {
     position: absolute;
-    top: -40px;
+    top: -50px;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 344px;
-    text-align: center;
+    margin: auto;
+    width: 341px;
+    z-index: 25;
+
+    button {
+      width: 341px;
+      height: 60px;
+      color: #fff;
+      background-color: #ff7857;
+      box-shadow: none;
+      text-shadow: none;
+    }
   }
 }
 
@@ -45,20 +53,24 @@
   text-transform: none;
 }
 
-.subheader-content {
-  height: 148px;
+.available {
+  height: 115px;
   width: 100%;
-  background-color: #cad8eb;
+  background-color: #040026;
+  position: relative;
   text-align: center;
-  padding: 0;
 
-  .subheader-slogan {
-    color: #666666;
-    font-size: 18px;
-    padding-top: 80px;
-    font-size: 16px;
-    color: #666;
-    a { font-size: 19px; color: #666; }
+  .subheader {
+    padding-top: 46px;
+    color: #fff;
+    font-weight: 500;
+    margin: 0 auto;
+
+    a {
+      color: #fff;
+      font-size: 19px;
+      &:hover { color: #fedf89; }
+    }
   }
 }
 
@@ -68,9 +80,9 @@
   padding: 30px 0 60px;
   &.gray { background-color: #f2f2f2; }
   .header {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 500;
-    color: #034698;
+    color: #1973af;
     margin-bottom: 35px;
   }
 
@@ -79,6 +91,7 @@
     max-width: 1000px;
     margin: auto;
     overflow: auto;
+    color: #4a4a4d;
 
     .mobile-image, .image {
       float: left;
@@ -120,10 +133,6 @@
     background-color: rgba(242, 242, 242, 0.3);
     padding-top: 35px;
   }
-
-  .subheader-content {
-    background-color: rgba(202, 216, 235, 0.5);
-  }
 }
 
 @media (max-width: 1016px) {
@@ -135,7 +144,7 @@
 
   .content.bottom {
     .upper { padding: 35px 10px 0; }
-    .subheader-content { padding: 0 10px 0; }
+    .subheader { padding: 0 10px 0; }
   }
 }
 

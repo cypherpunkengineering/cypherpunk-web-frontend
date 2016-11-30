@@ -1,13 +1,13 @@
 .masthead {
   width: 100%;
-  background-image: linear-gradient(290deg, #034698, #548cd2);
+  background-color: #0e003f;
 
   .masthead-header {
     width: 100%;
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 500;
-    color: #ffffff;
+    color: #fff;
     margin: 45px auto 0;
     padding-bottom: 96px;
   }
@@ -18,33 +18,33 @@
   max-width: 900px;
   margin: auto;
   padding: 60px 0 60px;
-  color: #666;
+  color: #4a4a4d;
 
   .header {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 500;
-    color: #034698;
+    color: #1973af;
   }
 
   .subheader {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 500;
-    color: #034698;
+    color: #1973af;
   }
 
   hr {
     height: 2px;
-    border: solid 1px #034698;
+    border: solid 1px #1973af;
     margin-bottom: 25px;
   }
 
   table {
-    color: #666;
+    color: #4a4a4d;
     line-height: 2.44;
     border-collapse: collapse;
 
     thead {
-      color: #034698;
+      color: #1973af;
       text-align: left;
       th:first-child { padding: 0 40px 0 20px; }
     }

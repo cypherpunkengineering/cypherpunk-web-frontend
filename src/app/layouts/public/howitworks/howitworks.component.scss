@@ -1,11 +1,11 @@
 .masthead {
   width: 100%;
-  background-image: linear-gradient(290deg, #034698, #548cd2);
+  background-color: #0e003f;
 
   .masthead-header {
     width: 100%;
     text-align: center;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 500;
     color: #ffffff;
     margin: 45px auto 0;
@@ -19,7 +19,7 @@
     text-align: center;
     font-size: 18px;
     font-weight: 500;
-    color: #fff;
+    color: #a5a2eb;
   }
 }
 
@@ -37,9 +37,9 @@
   &.gray { background-color: #f2f2f2; }
 
   .header {
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 500;
-    color: #034698;
+    color: #1973af;
     margin-bottom: 35px;
   }
 
