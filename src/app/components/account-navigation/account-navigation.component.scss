@@ -56,6 +56,19 @@
 
 .clear { clear: both; }
 
+.scrolled-nav-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  .nav-link:hover { color: #a5a2eb; }
+  .border { border-color: #311886; }
+}
+
 .mobile-nav {
   display: none;
   width: 100%;
@@ -108,4 +121,5 @@
 @media (max-width: 980px) {
   .nav { display: none; }
   .mobile-nav { display: block; }
+  .scrolled-nav-container { display: none; }
 }
