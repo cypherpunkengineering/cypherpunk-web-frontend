@@ -127,8 +127,8 @@ export class SessionService {
 
   pullPlanData(email?: string, secret?: string): Promise<boolean> {
     let url = '';
-    if (secret) { url = `/api/v0/subscription/status?secret=${secret}`; }
-    else { url = '/api/v0/subscription/status'; }
+    if (secret) { url = `/api/v0/account/status?secret=${secret}`; }
+    else { url = '/api/v0/account/status'; }
 
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
