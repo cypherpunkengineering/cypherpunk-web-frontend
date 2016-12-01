@@ -64,7 +64,7 @@ export class PlansService {
       this.plans[2].viewable = false;
     }
     else if (planCode === 'forever') {
-      this.plans.map((plan) => { plan.viewable = true; });
+      this.plans.map((plan) => { plan.viewable = false; });
     }
     else {
       this.plans.map((plan) => { plan.viewable = true; });

@@ -34,11 +34,11 @@
 
 </div>
 
-<div class="header" [ngClass]="{'hidden': user.subscription.renewal === 'annually' }">
+<div class="header" [ngClass]="{'hidden': user.subscription.renewal === 'annually' || user.subscription.renewal === 'forever' }">
   Upgrade to Premium!
 </div>
 
-<div class="pricing" [ngClass]="{'hidden': user.subscription.renewal === 'annually' }">
+<div class="pricing" [ngClass]="{'hidden': user.subscription.renewal === 'annually' || user.subscription.renewal === 'forever' }">
   <div class="blimp-container" [ngClass]="{ 'hidden': !plans[1].viewable }">
     <div class="blimp">Best Value!</div>
   </div>

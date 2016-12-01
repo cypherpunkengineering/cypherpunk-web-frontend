@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-acc-nav',
@@ -8,10 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./account-navigation.component.scss']
 })
 export class AccountNavigationComponent {
+  user: any;
   showDropDown = false;
   scrolledNavElement: HTMLElement;
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private session: SessionService
+  ) { this.user = session.user; }
 
   logout() {
     this.auth.logout()
