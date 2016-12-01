@@ -94,6 +94,12 @@
         padding: 10px;
         font-size: 16px;
       }
+      .badge {
+        padding: 10px;
+        .google { width: 155px; }
+        .apple { padding: 10px 0; }
+      }
+
       .download {
         display: none;
         &.btn.blue {
