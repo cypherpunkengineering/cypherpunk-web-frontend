@@ -9,17 +9,17 @@ export class DownloadComponent {
   builds = {
     mac: {
       name: 'Mac',
-      versions: '10.8 - 10.11',
+      versions: '',
       link: ''
     },
     windows: {
       name: 'Windows',
-      versions: 'XP, Vista, 7, 8, 10',
+      versions: '',
       link: ''
     },
     linux: {
       name: 'Linux',
-      versions: 'xx - xx',
+      versions: '',
       link: ''
     },
     chrome: {
@@ -68,6 +68,6 @@ export class DownloadComponent {
     else if (os.indexOf('iOS') > -1) {
       this.headerBuild = this.builds.ios;
     }
-    else { this.headerBuild = this.builds.blank; }
+    else { this.headerBuild = this.builds.linux; }
   }
 }
