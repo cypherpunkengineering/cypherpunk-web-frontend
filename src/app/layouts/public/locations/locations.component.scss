@@ -117,8 +117,6 @@
 @media (max-width: 800px) {
   .content { padding: 30px 10px 60px; }
   .content table { font-size: 14px; line-height: 2.14; }
-  .content table thead th:last-child { display: none; }
-  .content table td:last-child { display: none; }
 
   .content.bottom {
     .upper { padding: 35px 10px 0; }
