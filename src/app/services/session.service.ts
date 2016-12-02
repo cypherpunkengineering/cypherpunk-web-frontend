@@ -165,5 +165,7 @@ export class SessionService {
     this.user.subscription = { renewal: '', expiration: '', expirationString: '' };
     this.localStorage.removeItem('subscription.renewal');
     this.localStorage.removeItem('subscription.expiration');
+
+    this.userFound = false;
   }
 }
