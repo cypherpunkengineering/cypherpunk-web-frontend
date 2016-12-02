@@ -10,11 +10,11 @@ export class LocationsComponent implements OnInit {
     NA: { countries : [] },
     SA: { countries: [] },
     CR: { countries: [] },
-    OP: { countries: [] },
     EU: { countries: [] },
     ME: { countries: [] },
     AF: { countries: [] },
-    AS: { countries: [] }
+    AS: { countries: [] },
+    OP: { countries: [] }
   };
 
   naRegionLength = 15;

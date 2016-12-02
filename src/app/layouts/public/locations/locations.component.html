@@ -54,17 +54,6 @@
         <td>{{location.servers}}</td>
       </tr>
 
-      <tr *ngFor="let location of regions.OP.countries; let i = index">
-        <td class="area" [attr.rowspan]="regions.OP.countries.length" *ngIf="i === 0">
-          Oceania & Pacific
-        </td>
-        <td class="city">
-          <img src="/assets/flags/{{location.country}}.png" alt="">
-          {{location.name}}
-        </td>
-        <td>{{location.servers}}</td>
-      </tr>
-
       <tr *ngFor="let location of regions.EU.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.EU.countries.length" *ngIf="i === 0">
           Europe
@@ -101,6 +90,17 @@
       <tr *ngFor="let location of regions.AS.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.AS.countries.length" *ngIf="i === 0">
           Asia & India
+        </td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
+        <td>{{location.servers}}</td>
+      </tr>
+
+      <tr *ngFor="let location of regions.OP.countries; let i = index">
+        <td class="area" [attr.rowspan]="regions.OP.countries.length" *ngIf="i === 0">
+          Oceania & Pacific
         </td>
         <td class="city">
           <img src="/assets/flags/{{location.country}}.png" alt="">
