@@ -32,7 +32,7 @@ export class SessionService {
       this.user.subscription.expiration = localStorage.getItem('subscription.expiration') || '';
       this.user.secret = localStorage.getItem('secret') || '';
       this.user.status = localStorage.getItem('status') || '';
-      plans.setPlanVisibility(this.user.subscription.renewal);
+      plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
       this.setExpirationString(this.user.subscription.expiration);
     } catch (e) { console.log(e); };
   }
@@ -121,7 +121,7 @@ export class SessionService {
       this.localStorage.setItem('status', user.status);
     }
 
-    this.plans.setPlanVisibility(this.user.subscription.renewal);
+    this.plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
     this.setExpirationString(this.user.subscription.expiration);
   }
 
@@ -133,27 +133,8 @@ export class SessionService {
     return this.http.get(url).toPromise()
     .then((res: Response) => { return res.json() || {}; })
     .then((data) => {
-      let user = {
-        status: '',
-        secret: data.secret,
-        privacy: {
-          username: data.privacy.username,
-          password: data.privacy.password
-        },
-        account: {
-          id: data.account.id,
-          email: data.account.email,
-          type: data.account.type,
-          confirmed: data.account.confirmed
-        },
-        subscription: {
-          renewal: data.subscription.renewal,
-          expiration: data.subscription.expiration
-        }
-      };
-      if (data.confirmed) { user.status = 'active'; }
-      this.setUserData(user);
-      return data;
+      if (data.confirmed) { data.status = 'active'; }
+      this.setUserData(data);
     })
     .then(() => { return true; })
     .catch(() => { return false; });

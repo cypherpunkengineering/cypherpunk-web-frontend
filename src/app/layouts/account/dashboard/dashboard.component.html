@@ -34,11 +34,11 @@
 
 </div>
 
-<div class="header" [ngClass]="{'hidden': user.subscription.renewal === 'annually' || user.subscription.renewal === 'forever' }">
+<div class="header" [ngClass]="{'hidden': hidePriceBoxes() }">
   Upgrade to Premium!
 </div>
 
-<div class="pricing" [ngClass]="{'hidden': user.subscription.renewal === 'annually' || user.subscription.renewal === 'forever' }">
+<div class="pricing" [ngClass]="{'hidden': hidePriceBoxes() }">
   <div class="blimp-container" [ngClass]="{ 'hidden': !plans[1].viewable }">
     <div class="blimp">Best Value!</div>
   </div>
@@ -63,7 +63,7 @@
     <div class="blimp">Best Value!</div>
   </div>
 
-  <div class="price-box" (click)="upgrade(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[0].viewable }">
+  <div class="price-box" (click)="upgrade(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
     <div class="checkmark">
       <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
     </div>
@@ -79,7 +79,7 @@
     <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
   </div>
 
-  <div class="price-box" (click)="upgrade(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[0].viewable }">
+  <div class="price-box" (click)="upgrade(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
     <div class="checkmark">
       <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
     </div>

@@ -9,10 +9,7 @@ import { Plan, PlansService } from '../../../services/plans.service';
 })
 export class DashboardComponent {
   user: any;
-
-  plans: Plan[] = this.plansService.plans;
-  selectPlan = this.plansService.selectPlan;
-
+  plans: Plan[];
   showEmailModal: boolean = false;
   showPasswordModal: boolean = false;
 
@@ -20,10 +17,27 @@ export class DashboardComponent {
     private router: Router,
     private session: SessionService,
     private plansService: PlansService
-  ) { this.user = session.user; }
+  ) {
+    this.user = session.user;
+    this.plans = plansService.plans;
+  }
+
+  hidePriceBoxes() {
+    let renewal = this.user.subscription.renewal;
+    let type = this.user.account.type;
+
+    let renewalValid = false;
+    let typeValid = false;
+
+    if (renewal === 'annually' || renewal === 'forever') { renewalValid = true; }
+    if (type === 'premium') { typeValid = true; }
+
+    if (renewalValid && typeValid) { return true; }
+    else { return false; }
+  }
 
   upgrade(planId) {
-    this.selectPlan(planId);
+    this.plansService.selectPlan(planId);
     this.router.navigate(['/account/upgrade']);
   }
 

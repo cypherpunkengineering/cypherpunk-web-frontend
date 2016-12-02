@@ -59,7 +59,7 @@ export function subs(req, res) {
         confirmed: false
       },
       subscription: {
-        renewal: 'none',
+        renewal: 'forever',
         expiration: '0'
       }
     };

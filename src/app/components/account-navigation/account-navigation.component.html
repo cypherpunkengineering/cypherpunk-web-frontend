@@ -10,7 +10,7 @@
       <li>
         <a class="nav-link" routerLink="/account">Account</a>
       </li>
-      <li *ngIf="this.user.subscription.renewal !== 'annually' && this.user.subscription.renewal !== 'forever'">
+      <li *ngIf="!hidePriceBoxes()">
         <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
       </li>
       <li class="border" (click)="logout()">
@@ -34,7 +34,7 @@
         <li>
           <a class="nav-link" routerLink="/account">Account</a>
         </li>
-        <li *ngIf="this.user.subscription.renewal !== 'annually' && this.user.subscription.renewal !== 'forever'">
+        <li *ngIf="!hidePriceBoxes()">
           <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
         </li>
         <li class="border" (click)="logout()">
@@ -61,7 +61,7 @@
     <div class="mobile-dd-item" routerLink="/account">
       Account
     </div>
-    <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="this.user.subscription.renewal !== 'annually' && this.user.subscription.renewal !== 'forever'">
+    <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="!hidePriceBoxes()">
       <button class="btn gold">Upgrade</button>
     </div>
     <div class="mobile-dd-item" (click)="logout()">

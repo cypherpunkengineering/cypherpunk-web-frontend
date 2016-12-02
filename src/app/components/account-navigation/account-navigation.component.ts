@@ -24,6 +24,20 @@ export class AccountNavigationComponent {
     .then(() => { this.router.navigate(['/']); });
   }
 
+  hidePriceBoxes() {
+    let renewal = this.user.subscription.renewal;
+    let type = this.user.account.type;
+
+    let renewalValid = false;
+    let typeValid = false;
+
+    if (renewal === 'annually' || renewal === 'forever') { renewalValid = true; }
+    if (type === 'premium') { typeValid = true; }
+
+    if (renewalValid && typeValid) { return true; }
+    else { return false; }
+  }
+
   // on scroll,
   @HostListener('window:scroll', ['$event'])
   handleScrollEvent(event) {
