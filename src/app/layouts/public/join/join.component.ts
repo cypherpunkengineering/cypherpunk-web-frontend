@@ -182,10 +182,10 @@ export class JoinComponent {
       if (this.selectedPlan.id === 'monthly899') {
         document.getElementById('paypalMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually5988') {
+      else if (this.selectedPlan.id === 'annually5999') {
         document.getElementById('paypalAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4494') {
+      else if (this.selectedPlan.id === 'semiannually4499') {
         document.getElementById('paypalSemiannual').click();
       }
     })
@@ -260,10 +260,10 @@ export class JoinComponent {
       if (this.selectedPlan.id === 'monthly899') {
         document.getElementById('bitpayMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually5988') {
+      else if (this.selectedPlan.id === 'annually5999') {
         document.getElementById('bitpayAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4494') {
+      else if (this.selectedPlan.id === 'semiannually4499') {
         document.getElementById('bitpaySemiannual').click();
       }
     })
