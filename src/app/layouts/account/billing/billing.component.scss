@@ -15,7 +15,7 @@
 
 .breadcrumb {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto 50px;
   padding-left: 20px;
   font-weight: 500;
@@ -24,6 +24,9 @@
 }
 
 .content {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
 
   .content-header {
     text-align: center;
@@ -60,6 +63,31 @@
   }
 
   .overdue { color: #d0021b; }
+
+  .pagination-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 35px;
+    overflow: auto;
+    padding-right: 25px;
+
+    .pagination {
+      float: right;
+      max-width: 300px;
+      & > div { display: inline-block; }
+      .btn {
+        padding: 10px;
+        min-width: 30px;
+        background-color: #1987bd;
+        text-transform: none;
+      }
+      .btn:disabled {
+        background-color: #ccc;
+        text-shadow: none;
+        box-shadow: none;
+      }
+    }
+  }
 }
 
 .return {

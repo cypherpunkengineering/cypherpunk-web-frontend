@@ -42,6 +42,27 @@
     </tfoot>
   </table>
 
+  <div class="pagination-container">
+    <div class="pagination">
+      <div class="previous">
+        <button class="btn" (click)="goToTransactionsPage('previous')" [disabled]="previousTransactionsDisabled()">
+          Previous
+        </button>
+      </div>
+
+      <div class="pages">
+        <button class="btn">{{transactionsCurrentPage}}</button>
+      </div>
+
+      <div class="next">
+        <button class="btn" (click)="goToTransactionsPage('next')" [disabled]="nextTransactionsDisabled()">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+
+
   <div class="content-header">Invoice overdue with pay option</div>
 
   <table>
@@ -76,6 +97,25 @@
     </tfoot>
   </table>
 
+  <div class="pagination-container">
+    <div class="pagination">
+      <div class="previous">
+        <button class="btn" (click)="goToInvoicesPage('previous')" [disabled]="previousInvoicesDisabled()">
+          Previous
+        </button>
+      </div>
+
+      <div class="pages">
+        <button class="btn">{{invoicesCurrentPage}}</button>
+      </div>
+
+      <div class="next">
+        <button class="btn" (click)="goToInvoicesPage('next')" [disabled]="nextInvoicesDisabled()">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="return">

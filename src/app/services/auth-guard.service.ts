@@ -21,10 +21,15 @@ export class AuthGuard implements CanActivate {
     }
 
     if (url.startsWith('/account')) {
+      if (this.auth.authed) { return Promise.resolve(true); }
       return this.session.pullPlanData()
       .then((valid) => {
-        if (valid) { return true; }
+        if (valid) {
+          this.auth.authed = true;
+          return true;
+        }
         else {
+          this.auth.authed = false;
           this.auth.redirectUrl = url;
           this.router.navigate(['/login']);
           return false;
@@ -44,8 +49,12 @@ export class AuthGuard implements CanActivate {
     if (email && secret) {
       return this.session.pullPlanData(email, secret)
       .then((valid) => {
-        if (valid) { return true; }
+        if (valid) {
+          this.auth.authed = true;
+          return true;
+        }
         else {
+          this.auth.authed = false;
           this.auth.redirectUrl = url;
           this.router.navigate(['/login']);
           return false;
@@ -55,8 +64,12 @@ export class AuthGuard implements CanActivate {
     else {
       return this.session.pullPlanData()
       .then((valid) => {
-        if (valid) { return true; }
+        if (valid) {
+          this.auth.authed = true;
+          return true;
+        }
         else {
+          this.auth.authed = false;
           this.auth.redirectUrl = url;
           this.router.navigate(['/login']);
           return false;
