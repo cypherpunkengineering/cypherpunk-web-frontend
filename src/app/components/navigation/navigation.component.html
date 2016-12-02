@@ -34,9 +34,9 @@
           <a class="nav-link">log in</a>
         </li>
       </a>
-      <a (click)="auth.logout()" *ngIf="isLoggedIn()">
+      <a routerLink="/account" *ngIf="isLoggedIn()">
         <li class="border">
-          <a class="nav-link">log out</a>
+          <a class="nav-link">My Account</a>
         </li>
       </a>
     </ul>
@@ -81,9 +81,9 @@
             <a class="nav-link">log in</a>
           </li>
         </a>
-        <a (click)="auth.logout()" *ngIf="isLoggedIn()">
+        <a routerLink="/account" *ngIf="isLoggedIn()">
           <li class="border">
-            <a class="nav-link">log out</a>
+            <a class="nav-link">My Account</a>
           </li>
         </a>
       </ul>
@@ -118,8 +118,8 @@
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
       log in
     </div>
-    <div class="mobile-dd-item" *ngIf="isLoggedIn()" (click)="logout()">
-      log out
+    <div class="mobile-dd-item" *ngIf="isLoggedIn()" routerLink="/account">
+      My Account
     </div>
   </div>
   <div class="clear"></div>
