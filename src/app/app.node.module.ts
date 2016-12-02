@@ -16,7 +16,6 @@ import { HomeModule } from './layouts/public/home/home.module';
 import { JoinModule } from './layouts/public/join/join.module';
 import { LoginModule } from './layouts/public/login/login.module';
 import { ResetModule } from './layouts/public/reset/reset.module';
-import { SignupModule } from './layouts/public/signup/signup.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
@@ -55,7 +54,6 @@ import { LocalStorage } from './services/local-storage';
     JoinModule,
     LoginModule,
     ResetModule,
-    SignupModule,
     DownloadModule,
     ConfirmModule,
     WhyusModule,

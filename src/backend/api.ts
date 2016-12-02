@@ -28,18 +28,40 @@ export function subs(req, res) {
 
   if (req.query.secret) {
     body = {
-      type: '', /* developer */
-      renewal: 'forever',
-      expiration: '0',
-      confirmed: false
+      secret: 'secret',
+      privacy: {
+        username: 'test',
+        password: 'test'
+      },
+      account: {
+        id: '1',
+        email: 'test@test.test',
+        type: 'premium',
+        confirmed: false
+      },
+      subscription: {
+        renewal: 'forever',
+        expiration: '0'
+      }
     };
   }
   else {
     body = {
-      type: '', /* premium */
-      renewal: 'none',
-      expiration: '0',
-      confirmed: false
+      secret: 'secret',
+      privacy: {
+        username: 'test',
+        password: 'test'
+      },
+      account: {
+        id: '1',
+        email: 'test@test.test',
+        type: 'free',
+        confirmed: false
+      },
+      subscription: {
+        renewal: 'none',
+        expiration: '0'
+      }
     };
   }
 
