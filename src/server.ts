@@ -80,7 +80,6 @@ app.get('/account/upgrade', ngApp);
 app.get('/join', ngApp);
 app.get('/login', ngApp);
 app.get('/reset', ngApp);
-app.get('/signup', ngApp);
 app.get('/download', ngApp);
 app.get('/confirm', ngApp);
 app.get('/whyus', ngApp);

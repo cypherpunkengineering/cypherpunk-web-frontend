@@ -107,10 +107,6 @@
 		<to last="true">/reset.html$1</to>
 	</rule>
 	<rule>
-		<from>^/signup(.*)</from>
-		<to last="true">/signup.html$1</to>
-	</rule>
-	<rule>
 		<from>^/whyus(.*)</from>
 		<to last="true">/whyus.html$1</to>
 	</rule>
