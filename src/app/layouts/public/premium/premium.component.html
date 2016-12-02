@@ -5,341 +5,295 @@
 </div>
 
 <div class="page">
+  <div class="mobile-header">
+    Select your plan
+  </div>
 
-  <div class="page-left">
-
-    <div class="mobile-header">
-      Select your plan
+  <div class="pricing">
+    <div class="blimp-container">
+      <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="pricing">
-      <div class="blimp-container">
-        <div class="blimp">Best Value!</div>
+    <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected }">
+      <div class="checkmark">
+        <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
       </div>
-
-      <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected }">
-        <div class="checkmark">
-          <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
-        </div>
-        <div class="period" [ngClass]="{'active': plans[0].selected}">
-          {{plans[0].period}}
-        </div>
-        <div class="price-area">
-          <span class="price" [ngClass]="{'active': plans[0].selected}">
-            $ {{plans[0].price}}
-          </span>
-          <span class="price-time"> / month</span>
-        </div>
-        <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
+      <div class="period" [ngClass]="{'active': plans[0].selected}">
+        {{plans[0].period}}
       </div>
-
-      <div class="mobile-blimp-container">
-        <div class="blimp">Best Value!</div>
+      <div class="price-area">
+        <span class="price" [ngClass]="{'active': plans[0].selected}">
+          $ {{plans[0].price}}
+        </span>
+        <span class="price-time"> / month</span>
       </div>
-
-      <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected }">
-        <div class="checkmark">
-          <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
-        </div>
-        <div class="period" [ngClass]="{'active': plans[1].selected}">
-          {{plans[1].period}}
-        </div>
-        <div class="price-area">
-          <span class="price" [ngClass]="{'active': plans[1].selected}">
-            $ {{plans[1].price}}
-          </span>
-          <span class="price-time"> / month</span>
-        </div>
-        <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
-      </div>
-
-      <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected }">
-        <div class="checkmark">
-          <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
-        </div>
-        <div class="period" [ngClass]="{'active': plans[2].selected}">
-          {{plans[2].period}}
-        </div>
-        <div class="price-area">
-          <span class="price" [ngClass]="{'active': plans[2].selected}">
-            $ {{plans[2].price}}
-          </span>
-          <span class="price-time"> / month</span>
-        </div>
-        <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
-      </div>
+      <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
     </div>
 
-    <div class="payment-selection">
-      <div class="payment-bg">
-        <div class="type-container" (click)="selectOption(paymentOptions[0])" [ngClass]="{'active': paymentOptions[0].selected}">
-          <div class="icon-container">
-            <img src="/assets/payment/icon-payment-card.png" *ngIf="paymentOptions[0].selected">
-            <img src="/assets/payment/icon-payment-card-gray.png" *ngIf="!paymentOptions[0].selected">
-          </div>
-          <div class="type-title desktop">Credit Card</div>
-          <div class="type-title mobile">CC</div>
-        </div>
-
-        <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
-          <div class="other-icon">
-            <img src="/assets/payment/icon-payment-amazon.png" *ngIf="paymentOptions[1].selected">
-            <img src="/assets/payment/icon-payment-amazon-gray.png" *ngIf="!paymentOptions[1].selected">
-          </div>
-          <div class="type-title">Amazon</div>
-        </div>
-
-        <div class="type-container" (click)="selectOption(paymentOptions[2])" [ngClass]="{'active': paymentOptions[2].selected}">
-          <div class="icon-container">
-            <img src="/assets/payment/icon-payment-paypal.png" *ngIf="paymentOptions[2].selected">
-            <img src="/assets/payment/icon-payment-paypal-gray.png" *ngIf="!paymentOptions[2].selected">
-          </div>
-          <div class="type-title">PayPal</div>
-        </div>
-
-        <div class="type-container" (click)="selectOption(paymentOptions[3])" [ngClass]="{'active': paymentOptions[3].selected}">
-          <div class="icon-container">
-            <img src="/assets/payment/icon-payment-bitcoin.png" *ngIf="paymentOptions[3].selected">
-            <img src="/assets/payment/icon-payment-bitcoin-gray.png" *ngIf="!paymentOptions[3].selected">
-          </div>
-          <div class="type-title">Bitcoin</div>
-        </div>
-      </div>
+    <div class="mobile-blimp-container">
+      <div class="blimp">Best Value!</div>
     </div>
 
-    <div class="payment-info">
-
-      <div class="credit-card" *ngIf="paymentOptions[0].selected">
-        <div class="separator">Create Account</div>
-        <div class="clear"></div>
-
-        <div class="info">
-          <p>
-            <label>Email</label><br>
-            <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail()" [ngClass]="{'error': !validCCEmail && ccEmailTouched}">
-          </p>
-        </div>
-
-        <div class="info">
-          <p>
-            <label>Password</label><br>
-            <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched}">
-          </p>
-        </div>
-
-        <div class="separator">Card Details</div>
-        <div class="clear"></div>
-
-        <div class="info">
-          <p>
-            <label>Name</label><br>
-            <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched}">
-          </p>
-        </div>
-
-        <div class="info">
-          <p>
-            <label>Card Number</label><br>
-            <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched}">
-          </p>
-        </div>
-
-        <div class="info">
-          <p class="half">
-            <label>Expiration Date</label><br>
-            <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched}" maxlength="5">
-          </p>
-
-          <p class="half">
-            <label>CVV/CSC Code</label><br>
-            <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched}" maxlength="4">
-          </p>
-        </div>
-
-        <div class="total">
-          ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
-        </div>
-
-        <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
-          Join Cypherpunk Now
-        </button>
+    <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected }">
+      <div class="checkmark">
+        <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
       </div>
-
-      <div class="amazon" *ngIf="paymentOptions[1].selected">
-        <div class="total">
-          ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
-        </div>
-
-        <div id="AmazonPayButton"></div>
-
-        <div id="walletWidgetDiv"></div>
-
-        <div id="consentWidgetDiv"></div>
-
-        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
-          Join Cypherpunk
-        </button>
+      <div class="period" [ngClass]="{'active': plans[1].selected}">
+        {{plans[1].period}}
       </div>
-
-      <div class="paypal" *ngIf="paymentOptions[2].selected">
-        <div class="separator">Create Account</div>
-        <div class="clear"></div>
-
-        <div class="info">
-          <p>
-            <label>Email</label><br>
-            <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
-          </p>
-        </div>
-
-        <div class="info">
-          <p>
-            <label>Password</label><br>
-            <input type="password" [(ngModel)]="password" required>
-          </p>
-        </div>
-
-        <div class="total">
-          ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
-        </div>
-
-        <button class="btn blue" (click)="payWithPaypal()" [disabled]="!validatePP() || ppButtonDisabled">
-          Join Cypherpunk
-        </button>
-
-        <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="XKNN842WGTDFS">
-          <input type="hidden" name="item_number" value="monthly999">
-          <input type="hidden" name="custom" [(ngModel)]="email">
-          <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          <button id="paypalMonthly" class="btn blue" name="submit">
-            Monthly
-          </button>
-        </form>
-
-        <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="HMGW328J6EN7N">
-          <input type="hidden" name="item_number" value="annually8004">
-          <input type="hidden" name="custom" [(ngModel)]="email">
-          <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          <button id="paypalAnnual" class="btn blue" name="submit">
-            Annually
-          </button>
-        </form>
-
-        <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
-          <input type="hidden" name="cmd" value="_s-xclick">
-          <input type="hidden" name="hosted_button_id" value="KBUPJRS6WGBA2">
-          <input type="hidden" name="item_number" value="semiannually4998">
-          <input type="hidden" name="custom" [(ngModel)]="email">
-          <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-          <button id="paypalSemiannual" class="btn blue" name="submit">
-            Semiannually
-          </button>
-        </form>
+      <div class="price-area">
+        <span class="price" [ngClass]="{'active': plans[1].selected}">
+          $ {{plans[1].price}}
+        </span>
+        <span class="price-time"> / month</span>
       </div>
+      <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
+    </div>
 
-      <div class="bitcoin" *ngIf="paymentOptions[3].selected">
-        <div class="separator">Create Account</div>
-        <div class="clear"></div>
-
-        <div class="info">
-          <p>
-            <label>Email</label><br>
-            <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
-          </p>
-        </div>
-
-        <div class="info">
-          <p>
-            <label>Password</label><br>
-            <input type="password" [(ngModel)]="password" required>
-          </p>
-        </div>
-
-        <div class="total">
-          ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
-        </div>
-
-        <button class="btn blue" (click)="payWithBitpay()" [disabled]="!validatePP() || bpButtonDisabled">
-          Join Cypherpunk
-        </button>
-
-        <!-- Monthly -->
-        <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
-          <input type="hidden" name="action" value="checkout" />
-          <input type="hidden" name="posData" [(ngModel)]="posData" />
-          <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlvx8HjYDIdclxinEkmbQI4qsesXEh8lecmvP8n7B23iOsrx0WLcrTRVBPqLzOPxrx/VMFYkp5L97pycL0bH3QAWdkYTwmInSOEac44l2r0N9QOzvXVF2Kzk3KiR5OsA2qZPor6bUq4+DwiDFlm1YwGQ==" />
-          <input id="bitpayMonthly" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
-        </form>
-
-        <!-- annually -->
-        <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
-          <input type="hidden" name="action" value="checkout" />
-          <input type="hidden" name="posData" [(ngModel)]="posData" />
-          <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlNLmueadFzVl2532ynzGK6ge87lO3veYipCASeOzf23QV2NUeiE+uPD+tuaqF9nGXVesHPmsiD7rPebKyQ/XOFiI1oHQ+zLuDhEZqP5SRhkdE5dXvg33KuhC79KzFYddOqV0ZgdLQKzNIAm53/VVRSQ==" />
-          <input id="bitpayAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
-        </form>
-
-        <!-- semiannually -->
-        <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
-          <input type="hidden" name="action" value="checkout" />
-          <input type="hidden" name="posData" [(ngModel)]="posData" />
-          <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlKKQimGtr+nb+30bNjj+k7ZDHn1aRXI+O/wF8phzj/BZSEiLcSZr8fSMp9orvC40UcB/1m7KxCxXi3ugTv/fekgLa2DWtQcMEB0dHqVirSi+5nYY186g1l799m28wngF04LLA2uNd1OT2qn5TFmi30g==" />
-          <input id="bitpaySemiAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
-        </form>
-
+    <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected }">
+      <div class="checkmark">
+        <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
       </div>
-
+      <div class="period" [ngClass]="{'active': plans[2].selected}">
+        {{plans[2].period}}
+      </div>
+      <div class="price-area">
+        <span class="price" [ngClass]="{'active': plans[2].selected}">
+          $ {{plans[2].price}}
+        </span>
+        <span class="price-time"> / month</span>
+      </div>
+      <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
     </div>
   </div>
 
-  <div class="page-right">
-    <div class="featured-item"></div>
-    <div class="featured-text">feature text feature text</div>
-
-    <div class="featured-item"></div>
-    <div class="featured-text">feature text feature text</div>
-
-    <div class="featured-item"></div>
-    <div class="featured-text">feature text feature text</div>
-
-    <div class="featured-item"></div>
-    <div class="featured-text">feature text feature text</div>
-
-    <div class="server-locations">
-      <div class="server-header">Our Server Locations</div>
-      <div class="server-item-container">
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
-        <div class="server-item"></div>
+  <div class="payment-selection">
+    <div class="payment-bg">
+      <div class="type-container" (click)="selectOption(paymentOptions[0])" [ngClass]="{'active': paymentOptions[0].selected}">
+        <div class="icon-container">
+          <img src="/assets/payment/icon-payment-card.png" *ngIf="paymentOptions[0].selected">
+          <img src="/assets/payment/icon-payment-card-gray.png" *ngIf="!paymentOptions[0].selected">
+        </div>
+        <div class="type-title desktop">Credit Card</div>
+        <div class="type-title mobile">CC</div>
       </div>
+
+      <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
+        <div class="other-icon">
+          <img src="/assets/payment/icon-payment-amazon.png" *ngIf="paymentOptions[1].selected">
+          <img src="/assets/payment/icon-payment-amazon-gray.png" *ngIf="!paymentOptions[1].selected">
+        </div>
+        <div class="type-title">Amazon</div>
+      </div>
+
+      <div class="type-container" (click)="selectOption(paymentOptions[2])" [ngClass]="{'active': paymentOptions[2].selected}">
+        <div class="icon-container">
+          <img src="/assets/payment/icon-payment-paypal.png" *ngIf="paymentOptions[2].selected">
+          <img src="/assets/payment/icon-payment-paypal-gray.png" *ngIf="!paymentOptions[2].selected">
+        </div>
+        <div class="type-title">PayPal</div>
+      </div>
+
+      <div class="type-container" (click)="selectOption(paymentOptions[3])" [ngClass]="{'active': paymentOptions[3].selected}">
+        <div class="icon-container">
+          <img src="/assets/payment/icon-payment-bitcoin.png" *ngIf="paymentOptions[3].selected">
+          <img src="/assets/payment/icon-payment-bitcoin-gray.png" *ngIf="!paymentOptions[3].selected">
+        </div>
+        <div class="type-title">Bitcoin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-info">
+
+    <div class="credit-card" *ngIf="paymentOptions[0].selected">
+      <div class="separator">Create Account</div>
       <div class="clear"></div>
-    </div>
-  </div>
 
+      <div class="info">
+        <p>
+          <label>Email</label><br>
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail()" [ngClass]="{'error': !validCCEmail && ccEmailTouched}">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label>Password</label><br>
+          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched}">
+        </p>
+      </div>
+
+      <div class="separator">Card Details</div>
+      <div class="clear"></div>
+
+      <div class="info">
+        <p>
+          <label>Name</label><br>
+          <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched}">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label>Card Number</label><br>
+          <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched}">
+        </p>
+      </div>
+
+      <div class="info">
+        <p class="half">
+          <label>Expiration Date</label><br>
+          <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched}" maxlength="5">
+        </p>
+
+        <p class="half">
+          <label>CVV/CSC Code</label><br>
+          <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched}" maxlength="4">
+        </p>
+      </div>
+
+      <div class="total">
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+      </div>
+
+      <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
+        Join Cypherpunk Now
+      </button>
+    </div>
+
+    <div class="amazon" *ngIf="paymentOptions[1].selected">
+      <div class="total">
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+      </div>
+
+      <div id="AmazonPayButton"></div>
+
+      <div id="walletWidgetDiv"></div>
+
+      <div id="consentWidgetDiv"></div>
+
+      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
+        Join Cypherpunk
+      </button>
+    </div>
+
+    <div class="paypal" *ngIf="paymentOptions[2].selected">
+      <div class="separator">Create Account</div>
+      <div class="clear"></div>
+
+      <div class="info">
+        <p>
+          <label>Email</label><br>
+          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label>Password</label><br>
+          <input type="password" [(ngModel)]="password" required>
+        </p>
+      </div>
+
+      <div class="total">
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+      </div>
+
+      <button class="btn blue" (click)="payWithPaypal()" [disabled]="!validatePP() || ppButtonDisabled">
+        Join Cypherpunk
+      </button>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="XKNN842WGTDFS">
+        <input type="hidden" name="item_number" value="monthly999">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalMonthly" class="btn blue" name="submit">
+          Monthly
+        </button>
+      </form>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="HMGW328J6EN7N">
+        <input type="hidden" name="item_number" value="annually8004">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalAnnual" class="btn blue" name="submit">
+          Annually
+        </button>
+      </form>
+
+      <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="KBUPJRS6WGBA2">
+        <input type="hidden" name="item_number" value="semiannually4998">
+        <input type="hidden" name="custom" [(ngModel)]="email">
+        <input type="hidden" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_subscribe_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        <button id="paypalSemiannual" class="btn blue" name="submit">
+          Semiannually
+        </button>
+      </form>
+    </div>
+
+    <div class="bitcoin" *ngIf="paymentOptions[3].selected">
+      <div class="separator">Create Account</div>
+      <div class="clear"></div>
+
+      <div class="info">
+        <p>
+          <label>Email</label><br>
+          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label>Password</label><br>
+          <input type="password" [(ngModel)]="password" required>
+        </p>
+      </div>
+
+      <div class="total">
+        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+      </div>
+
+      <button class="btn blue" (click)="payWithBitpay()" [disabled]="!validatePP() || bpButtonDisabled">
+        Join Cypherpunk
+      </button>
+
+      <!-- Monthly -->
+      <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
+        <input type="hidden" name="action" value="checkout" />
+        <input type="hidden" name="posData" [(ngModel)]="posData" />
+        <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlvx8HjYDIdclxinEkmbQI4qsesXEh8lecmvP8n7B23iOsrx0WLcrTRVBPqLzOPxrx/VMFYkp5L97pycL0bH3QAWdkYTwmInSOEac44l2r0N9QOzvXVF2Kzk3KiR5OsA2qZPor6bUq4+DwiDFlm1YwGQ==" />
+        <input id="bitpayMonthly" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+      </form>
+
+      <!-- annually -->
+      <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
+        <input type="hidden" name="action" value="checkout" />
+        <input type="hidden" name="posData" [(ngModel)]="posData" />
+        <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlNLmueadFzVl2532ynzGK6ge87lO3veYipCASeOzf23QV2NUeiE+uPD+tuaqF9nGXVesHPmsiD7rPebKyQ/XOFiI1oHQ+zLuDhEZqP5SRhkdE5dXvg33KuhC79KzFYddOqV0ZgdLQKzNIAm53/VVRSQ==" />
+        <input id="bitpayAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+      </form>
+
+      <!-- semiannually -->
+      <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'">
+        <input type="hidden" name="action" value="checkout" />
+        <input type="hidden" name="posData" [(ngModel)]="posData" />
+        <input type="hidden" name="data" value="wYBTqGZEJC3+agfQYMlv95pCVBW6mxj0dd0E7Lyjkp2vlWnxYFoVO9mSEnxGyZKlKKQimGtr+nb+30bNjj+k7ZDHn1aRXI+O/wF8phzj/BZSEiLcSZr8fSMp9orvC40UcB/1m7KxCxXi3ugTv/fekgLa2DWtQcMEB0dHqVirSi+5nYY186g1l799m28wngF04LLA2uNd1OT2qn5TFmi30g==" />
+        <input id="bitpaySemiAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+      </form>
+
+    </div>
+
+  </div>
 </div>
 
 <div class="clear"></div>

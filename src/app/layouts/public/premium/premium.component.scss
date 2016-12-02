@@ -17,20 +17,8 @@
 .page {
   width: 100%;
   max-width: 1000px;
-  padding: 0 15px 0;
+  padding: 50px 15px 0;
   margin: auto;
-
-  .page-left {
-    float: left;
-    width: 80%;
-    margin-top: 30px;
-  }
-  .page-right {
-    float: left;
-    width: 20%;
-    text-align: center;
-    background-color: #f2f2f2;
-  }
 }
 
 .mobile-header {
@@ -238,59 +226,11 @@
   text-transform: none;
 }
 
-.featured-item {
-  margin-top: 40px;
-  display: inline-block;
-  width: 96px;
-  height: 96px;
-  border-radius: 50px;
-  background-color: #d8d8d8;
-}
-.featured-text {
-  color: #666;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.server-locations {
-  margin-top: 60px;
-  margin-bottom: 40px;
-  text-align: center;
-
-  .server-header {
-    font-size: 18px;
-    color: #000;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .server-item-container {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-  }
-
-  .server-item {
-    display: inline;
-    float: left;
-    width: 25px;
-    height: 26px;
-    background-color: #d8d8d8;
-    border: solid 1px #979797;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-}
-
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
 #consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
 
 @media (max-width: 1060px) {
-  .page {
-    padding: 0;
-    .page-right { display: none; }
-    .page-left { width: 100%; float: none; }
-  }
+  .page { padding: 25px 10px 0; }
   .mobile-header { display: block; }
 
   .pricing .price-box {
