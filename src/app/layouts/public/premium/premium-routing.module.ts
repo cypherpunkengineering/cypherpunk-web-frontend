@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { JoinComponent } from './join.component';
+import { PremiumComponent } from './premium.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'join', component: JoinComponent }
+      { path: 'premium', component: PremiumComponent }
     ])
   ]
 })
-export class JoinRoutingModule { }
+export class PremiumRoutingModule { }

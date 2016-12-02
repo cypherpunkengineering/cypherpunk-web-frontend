@@ -95,8 +95,8 @@
 		<to last="true">/download.html$1</to>
 	</rule>
 	<rule>
-		<from>^/join(.*)</from>
-		<to last="true">/join.html$1</to>
+		<from>^/premium(.*)</from>
+		<to last="true">/premium.html$1</to>
 	</rule>
 	<rule>
 		<from>^/login(.*)</from>

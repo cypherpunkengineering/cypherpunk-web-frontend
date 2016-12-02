@@ -8,10 +8,10 @@ import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  templateUrl: './join.component.html',
-  styleUrls: ['./join.component.scss']
+  templateUrl: './premium.component.html',
+  styleUrls: ['./premium.component.scss']
 })
-export class JoinComponent {
+export class PremiumComponent {
   posData: string = '';
   ccButtonDisabled: boolean = false;
   ppButtonDisabled: boolean = false;

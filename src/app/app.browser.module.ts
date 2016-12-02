@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
 
 import { HomeModule } from './layouts/public/home/home.module';
-import { JoinModule } from './layouts/public/join/join.module';
+import { PremiumModule } from './layouts/public/premium/premium.module';
 import { LoginModule } from './layouts/public/login/login.module';
 import { ResetModule } from './layouts/public/reset/reset.module';
 import { DownloadModule } from './layouts/public/download/download.module';
@@ -48,7 +48,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     SharedModule,
 
     HomeModule,
-    JoinModule,
+    PremiumModule,
     LoginModule,
     ResetModule,
     DownloadModule,
