@@ -134,10 +134,22 @@ export class SessionService {
     .then((res: Response) => { return res.json() || {}; })
     .then((data) => {
       let user = {
-        secret: secret,
         status: '',
-        account: { email: email, type: data.type, confirmed: data.confirmed },
-        subscription: { renewal: data.renewal, expiration: data.expiration }
+        secret: data.secret,
+        privacy: {
+          username: data.privacy.username,
+          password: data.privacy.password
+        },
+        account: {
+          id: data.account.id,
+          email: data.account.email,
+          type: data.account.type,
+          confirmed: data.account.confirmed
+        },
+        subscription: {
+          renewal: data.subscription.renewal,
+          expiration: data.subscription.expiration
+        }
       };
       if (data.confirmed) { user.status = 'active'; }
       this.setUserData(user);
