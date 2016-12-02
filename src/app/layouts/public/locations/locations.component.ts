@@ -14,8 +14,7 @@ export class LocationsComponent implements OnInit {
     EU: { countries: [] },
     ME: { countries: [] },
     AF: { countries: [] },
-    AS: { countries: [] },
-    US: { countries: [] }
+    AS: { countries: [] }
   };
 
   naRegionLength = 15;
@@ -34,12 +33,7 @@ export class LocationsComponent implements OnInit {
         let locArray = Object.keys(locations);
         locArray.forEach((key) => {
           let location = locations[key];
-          if (location.country === 'US') {
-            this.regions.US.countries.push(location);
-          }
-          else {
-            this.regions[location.region].countries.push(location);
-          }
+          this.regions[location.region].countries.push(location);
         });
 
         // sort each region
@@ -47,11 +41,6 @@ export class LocationsComponent implements OnInit {
         regionKeys.map((regionKey) => {
           this.regions[regionKey].countries.sort(this.regionSort);
         });
-
-        // put US at top of NA region
-        let us = this.regions.US.countries;
-        let na = this.regions.NA.countries;
-        this.regions.NA.countries = us.concat(na);
       },
       (error: any) => { console.log(error); }
     );
