@@ -29,12 +29,12 @@
           <li routerLink="/download" fragment="android"><a>Android</a></li>
         </ul>
       </li>
-      <a routerLink="/login" routerLinkActive="active" *ngIf="!auth.authed">
+      <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
         <li class="border">
           <a class="nav-link">log in</a>
         </li>
       </a>
-      <a (click)="auth.logout()" *ngIf="auth.authed">
+      <a (click)="auth.logout()" *ngIf="isLoggedIn()">
         <li class="border">
           <a class="nav-link">log out</a>
         </li>
@@ -76,12 +76,12 @@
             <li routerLink="/download" fragment="android"><a>Android</a></li>
           </ul>
         </li>
-        <a routerLink="/login" routerLinkActive="active" *ngIf="!auth.authed">
+        <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
           <li class="border">
             <a class="nav-link">log in</a>
           </li>
         </a>
-        <a (click)="auth.logout()" *ngIf="auth.authed">
+        <a (click)="auth.logout()" *ngIf="isLoggedIn()">
           <li class="border">
             <a class="nav-link">log out</a>
           </li>
@@ -115,10 +115,10 @@
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
       download
     </div>
-    <div class="mobile-dd-item" *ngIf="!auth.authed" routerLink="/login" routerLinkActive="active">
+    <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
       log in
     </div>
-    <div class="mobile-dd-item" *ngIf="auth.authed" (click)="logout()">
+    <div class="mobile-dd-item" *ngIf="isLoggedIn()" (click)="logout()">
       log out
     </div>
   </div>

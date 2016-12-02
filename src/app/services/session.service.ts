@@ -5,6 +5,7 @@ import { LocalStorage } from './local-storage';
 
 @Injectable()
 export class SessionService {
+  userFound: boolean = false;
   user = {
     privacy: { username: '', password: '' },
     account: { id: '', email: '', confirmed: false, type: '' },
@@ -34,7 +35,11 @@ export class SessionService {
       this.user.status = localStorage.getItem('status') || '';
       plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
       this.setExpirationString(this.user.subscription.expiration);
-    } catch (e) { console.log(e); };
+      if (this.user.account.email && this.user.secret) { this.userFound = true; }
+    } catch (e) {
+      this.userFound = false;
+      console.log(e);
+    };
   }
 
   setExpirationString(expiration) {

@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,14 @@ export class NavigationComponent {
   showDropDown = false;
   scrolledNavElement: HTMLElement;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private session: SessionService) {}
+
+  isLoggedIn() {
+    let authLogin = this.auth.authed;
+    let sessionLogin = this.session.userFound;
+    if (authLogin || sessionLogin) { return true; }
+    else { return false; }
+  }
 
   // on scroll,
   @HostListener('window:scroll', ['$event'])

@@ -17,24 +17,18 @@ export class AuthGuard implements CanActivate {
 
     if (url.startsWith('/account/upgrade')) {
       if (this.auth.authed) { return Promise.resolve(true); }
+      let email = route.queryParams['user'];
+      let secret = route.queryParams['secret'];
+      return this.checkLogin(url, route, email, secret);
+    }
+
+    if (url.startsWith('/account/billing')) {
+      if (this.auth.authed) { return Promise.resolve(true); }
       return this.checkLogin(url, route);
     }
 
     if (url.startsWith('/account')) {
-      if (this.auth.authed) { return Promise.resolve(true); }
-      return this.session.pullPlanData()
-      .then((valid) => {
-        if (valid) {
-          this.auth.authed = true;
-          return true;
-        }
-        else {
-          this.auth.authed = false;
-          this.auth.redirectUrl = url;
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
+      return this.checkLogin(url, route);
     }
 
     // non user route protected?
@@ -42,39 +36,24 @@ export class AuthGuard implements CanActivate {
     return Promise.resolve(false);
   }
 
-  checkLogin(url: string, route: ActivatedRouteSnapshot): Promise<boolean> {
-    // Case 1: Enter with email and secret
-    let email = route.queryParams['user'];
-    let secret = route.queryParams['secret'];
-    if (email && secret) {
-      return this.session.pullPlanData(email, secret)
-      .then((valid) => {
-        if (valid) {
-          this.auth.authed = true;
-          return true;
-        }
-        else {
-          this.auth.authed = false;
-          this.auth.redirectUrl = url;
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
-    }
-    else {
-      return this.session.pullPlanData()
-      .then((valid) => {
-        if (valid) {
-          this.auth.authed = true;
-          return true;
-        }
-        else {
-          this.auth.authed = false;
-          this.auth.redirectUrl = url;
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
-    }
+  checkLogin(url: string, route: ActivatedRouteSnapshot, email?: string, secret?: string): Promise<boolean> {
+    let promise;
+    if (email && secret) { promise = this.session.pullPlanData(email, secret); }
+    else { promise = this.session.pullPlanData(); }
+
+    return promise
+    .then((valid) => {
+      if (valid) {
+        this.auth.authed = true;
+        return true;
+      }
+      else {
+        this.auth.authed = false;
+        this.session.userFound = false;
+        this.auth.redirectUrl = url;
+        this.router.navigate(['/login']);
+        return false;
+      }
+    });
   }
 }
