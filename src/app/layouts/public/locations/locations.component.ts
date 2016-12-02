@@ -52,8 +52,6 @@ export class LocationsComponent implements OnInit {
         let us = this.regions.US.countries;
         let na = this.regions.NA.countries;
         this.regions.NA.countries = us.concat(na);
-
-        console.log(this.regions);
       },
       (error: any) => { console.log(error); }
     );

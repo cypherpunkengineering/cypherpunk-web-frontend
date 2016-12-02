@@ -25,7 +25,10 @@
         <td class="area" [attr.rowspan]="regions.NA.countries.length" *ngIf="i === 0">
           North America
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -33,7 +36,10 @@
         <td class="area" [attr.rowspan]="regions.SA.countries.length" *ngIf="i === 0">
           South America
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -41,7 +47,10 @@
         <td class="area" [attr.rowspan]="regions.CR.countries.length" *ngIf="i === 0">
           Caribbean
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -49,7 +58,10 @@
         <td class="area" [attr.rowspan]="regions.OP.countries.length" *ngIf="i === 0">
           Oceania & Pacific
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -57,7 +69,10 @@
         <td class="area" [attr.rowspan]="regions.EU.countries.length" *ngIf="i === 0">
           Europe
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -65,7 +80,10 @@
         <td class="area" [attr.rowspan]="regions.ME.countries.length" *ngIf="i === 0">
           Middle East
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
@@ -73,15 +91,21 @@
         <td class="area" [attr.rowspan]="regions.AF.countries.length" *ngIf="i === 0">
           Africa
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
 
       <tr *ngFor="let location of regions.AS.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.AS.countries.length" *ngIf="i === 0">
-          Asia & Indea
+          Asia & India
         </td>
-        <td class="city">{{location.name}}</td>
+        <td class="city">
+          <img src="/assets/flags/{{location.country}}.png" alt="">
+          {{location.name}}
+        </td>
         <td>{{location.servers}}</td>
       </tr>
     </tbody>
