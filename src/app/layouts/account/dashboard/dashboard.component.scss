@@ -250,24 +250,28 @@
 .center { text-align: center; margin-bottom: 25px; }
 
 .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
   .background {
     position: fixed;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    background-color: #000;
-    opacity: 0.35;
-  }
-  .modal-content {
-    position: fixed;
-    top: 25px;
-    left: 0;
-    right: 0;
-    max-width: 782px;
     width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 782px;
     background-color: #fff;
-    margin: 10px auto;
+    margin: 15% auto;
 
     .modal-header {
       font-size: 24px;
@@ -353,5 +357,5 @@
   }
 
   .modal .modal-content { width: 90%; }
-  .modal .modal-content .modal-footer .btn { max-width: 341px; width: 90%; }
+  .modal .modal-content .modal-footer .row .btn { max-width: 260px; width: 90%; }
 }

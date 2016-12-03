@@ -79,10 +79,47 @@
           </a>
         </li>
       </ul>
-      <div class="feedback">
+      <div class="feedback" (click)="openFeedbackModal()">
         Leave Feedback
       </div>
     </div>
 
+  </div>
+</div>
+
+
+<div class="modal" [ngClass]="{'hidden': !showFeedbackModal}">
+  <div class="background" (click)="closeFeedbackModal()"></div>
+  <div class="modal-content">
+    <div class="modal-header">Leave Feedback</div>
+
+    <hr>
+
+    <div class="modal-body">
+      <div class="row">
+        <label for="name">Name</label><br>
+        <input id="feedbackName" type="text" name="name" [(ngModel)]="name" (ngModelChange)="validateName()" (blur)="validateName()" [ngClass]="{'error': !validName && nameTouched}">
+      </div>
+
+      <div class="row">
+        <label for="email">Email</label><br>
+        <input type="email" name="email" [(ngModel)]="email" (ngModelChange)="validateEmail()" (blur)="validateEmail()" [ngClass]="{'error': !validEmail && emailTouched}">
+      </div>
+
+      <div class="row">
+        <label for="message">Message</label><br>
+        <textarea [(ngModel)]="message" (ngModelChange)="validateMessage()" (blur)="validateMessage()" [ngClass]="{'error': !validMessage && messageTouched}"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button class="btn blue" [disabled]="!validateFeedback() || feedbackButtonDisabled" (click)="sendFeedback()">Send</button>
+      </div>
+
+      <div class="row">
+        <a (click)="closeFeedbackModal()">Cancel</a>
+      </div>
+    </div>
   </div>
 </div>
