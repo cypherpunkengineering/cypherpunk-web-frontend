@@ -60,7 +60,24 @@
     td { border-bottom: 1px solid #ccc; }
     .city { text-align: left; padding-left: 20px; }
     .area { text-align: left; padding-left: 10px; }
-    img { padding: 0 5px 5px 0; vertical-align: middle; }
+    .flag { padding: 0 5px 5px 0; vertical-align: middle; }
+    .premium {
+      background: linear-gradient(329deg, #f8cf1c, #f8e71c, #f8cf1c);
+      border-radius: 5px 0 5px 0;
+      padding: 1px 3px;
+      color: darken(#f8cf1c, 40%) !important;
+      font-weight: 800;
+      position: relative;
+      top: -1px;
+    }
+    .disabled > span[data-tag]:after {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .desktop { display: block; }
+    .mobile { display: none; }
+    .table-row { display: none; }
+    .mobile-location { background-color: rgba(202, 216, 235, 0.5); }
   }
 }
 
@@ -123,6 +140,14 @@
     .upper { padding: 35px 10px 0; }
     .subheader-content { padding: 0 10px 0; }
   }
+}
+
+@media (max-width: 500px) {
+  .area { display: none; }
+  .content table .mobile { display: block; }
+  .content table .mobile.table-row { display: table-row; }
+  .content table .desktop { display: none; }
+  .content table .premium { font-size: 12px; }
 }
 
 @media (max-width: 375px) {
