@@ -51,14 +51,13 @@
   .account {
     width: 782px;
     margin: auto;
-    height: 225px;
     background-color: #fff;
-    padding: 0 20px;
+    padding: 0 20px 20px;
     box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
 
     .account-container {
       width: 632px;
-      padding-top: 25px;
+      padding: 25px 0;
       margin: auto;
       overflow: auto;
 

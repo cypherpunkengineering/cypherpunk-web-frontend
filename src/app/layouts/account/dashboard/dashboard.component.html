@@ -18,6 +18,18 @@
         <span class="renewal">{{ user.subscription.expirationString }}</span>
       </div>
     </div>
+
+    <hr>
+
+    <div class="account-container">
+      <div class="left">
+        Username: {{user.privacy.username}}
+      </div>
+
+      <div class="right">
+        Password: {{user.privacy.password}}
+      </div>
+    </div>
   </div>
 
   <div class="mobile-header">Cypherpunk Account</div>
@@ -30,6 +42,14 @@
 
     <span class="period">{{user.account.type}}</span><br>
     <span class="renewal">{{ user.subscription.expirationString }}</span>
+
+    <hr>
+
+    Username:<br>
+    {{user.privacy.username}}
+    <br><br>
+    Password:<br>
+    {{user.privacy.password}}
   </div>
 
 </div>
