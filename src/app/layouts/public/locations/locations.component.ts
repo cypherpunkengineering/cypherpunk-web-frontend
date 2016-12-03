@@ -41,8 +41,6 @@ export class LocationsComponent implements OnInit {
         regionKeys.map((regionKey) => {
           this.regions[regionKey].countries.sort(this.regionSort);
         });
-
-        console.log(this.regions);
       },
       (error: any) => { console.log(error); }
     );

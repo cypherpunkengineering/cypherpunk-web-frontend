@@ -24,7 +24,7 @@
     <tbody>
 
       <tr class="mobile table-row" *ngIf="regions.NA.countries.length">
-        <td class="mobile-location" colspan="2">North America</td>
+        <td class="mobile-region" colspan="2">North America</td>
       </tr>
       <tr *ngFor="let location of regions.NA.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.NA.countries.length" *ngIf="i === 0">
@@ -38,7 +38,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.SA.countries.length">
-        <td class="mobile-location" colspan="2">South America</td>
+        <td class="mobile-region" colspan="2">South America</td>
       </tr>
       <tr *ngFor="let location of regions.SA.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.SA.countries.length" *ngIf="i === 0">
@@ -52,7 +52,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.CR.countries.length">
-        <td class="mobile-location" colspan="2">Caribbean</td>
+        <td class="mobile-region" colspan="2">Caribbean</td>
       </tr>
       <tr *ngFor="let location of regions.CR.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.CR.countries.length" *ngIf="i === 0">
@@ -66,7 +66,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.EU.countries.length">
-        <td class="mobile-location" colspan="2">Europe</td>
+        <td class="mobile-region" colspan="2">Europe</td>
       </tr>
       <tr *ngFor="let location of regions.EU.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.EU.countries.length" *ngIf="i === 0">
@@ -80,7 +80,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.ME.countries.length">
-        <td class="mobile-location" colspan="2">Middle East</td>
+        <td class="mobile-region" colspan="2">Middle East</td>
       </tr>
       <tr *ngFor="let location of regions.ME.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.ME.countries.length" *ngIf="i === 0">
@@ -94,7 +94,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.AF.countries.length">
-        <td class="mobile-location" colspan="2">Africa</td>
+        <td class="mobile-region" colspan="2">Africa</td>
       </tr>
       <tr *ngFor="let location of regions.AF.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.AF.countries.length" *ngIf="i === 0">
@@ -108,7 +108,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.AS.countries.length">
-        <td class="mobile-location" colspan="2">Asia & India</td>
+        <td class="mobile-region" colspan="2">Asia & India</td>
       </tr>
       <tr *ngFor="let location of regions.AS.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.AS.countries.length" *ngIf="i === 0">
@@ -122,7 +122,7 @@
       </tr>
 
       <tr class="mobile table-row" *ngIf="regions.OP.countries.length">
-        <td class="mobile-location" colspan="2">Oceania & Pacific</td>
+        <td class="mobile-region" colspan="2">Oceania & Pacific</td>
       </tr>
       <tr *ngFor="let location of regions.OP.countries; let i = index">
         <td class="area" [attr.rowspan]="regions.OP.countries.length" *ngIf="i === 0">
@@ -146,14 +146,14 @@
 
   <div class="cta-container">
     <div class="call-to-action">
-      <button class="btn gold" routerLink="/download">
-        GET CYPHERPUNK NOW
+      <button class="btn" routerLink="/download">
+        START MY FREE PREVIEW
       </button>
     </div>
   </div>
 
-  <div class="subheader-content">
-    <div class="subheader-slogan">
+  <div class="available">
+    <div class="subheader">
       Available for
       <a routerLink="/download" fragment="desktop">Desktop</a>,
       <a routerLink="/download" fragment="browser">Browser</a>,

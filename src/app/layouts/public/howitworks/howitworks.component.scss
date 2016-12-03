@@ -23,13 +23,6 @@
   }
 }
 
-.btn {
-  font-size: 24px;
-  width: 341px;
-  height: 80px;
-  text-transform: none;
-}
-
 .content {
   width: 100%;
   text-align: center;
@@ -89,30 +82,41 @@
 
     .call-to-action {
       position: absolute;
-      top: -40px;
+      top: -50px;
       left: 0;
       right: 0;
-      margin-left: auto;
-      margin-right: auto;
-      width: 344px;
-      text-align: center;
+      margin: auto;
+      width: 341px;
+      z-index: 25;
+      .btn {
+        width: 341px;
+        height: 60px;
+        color: #fff;
+        font-size: 24px;
+        background-color: #ff7857;
+        box-shadow: none;
+        text-shadow: none;
+      }
     }
   }
 
-  .subheader-content {
-    height: 148px;
+  .available {
+    height: 115px;
     width: 100%;
-    background-color: #cad8eb;
+    background-color: #040026;
+    position: relative;
     text-align: center;
-    padding: 0;
 
-    .subheader-slogan {
-      color: #666666;
-      font-size: 18px;
-      padding-top: 80px;
-      font-size: 16px;
-      color: #666;
-      a { font-size: 19px; color: #666; }
+    .subheader {
+      padding-top: 46px;
+      color: #fff;
+      font-weight: 500;
+      margin: 0 auto;
+      a {
+        color: #fff;
+        font-size: 19px;
+        &:hover { color: #fedf89; }
+      }
     }
   }
 
@@ -147,7 +151,7 @@
 }
 
 @media (max-width: 375px) {
-  .btn { width: 300px; }
   .content .body .image { width: 260px; }
-  .content.bottom .cta-container .call-to-action { width: 100%; max-width: 300px; }
+  .content.bottom .cta-container .call-to-action { width: 100%; max-width: 280px; top: -25px; }
+  .content.bottom .cta-container .call-to-action .btn { width: 280px; }
 }
