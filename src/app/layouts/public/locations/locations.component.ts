@@ -6,18 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./locations.component.scss']
 })
 export class LocationsComponent implements OnInit {
-  regions = {
-    NA: { countries : [] },
-    SA: { countries: [] },
-    CR: { countries: [] },
-    EU: { countries: [] },
-    ME: { countries: [] },
-    AF: { countries: [] },
-    AS: { countries: [] },
-    OP: { countries: [] }
-  };
-
-  naRegionLength = 15;
+  regionArray = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,23 +16,44 @@ export class LocationsComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: any) => {
-        let locations = data.locations;
+        // parse data
+        let locations = data.locations[0];
+        let regions = data.locations[1];
+
+        // create regionsArray
+        regions.regionOrder.forEach((regionId) => {
+          if (regionId !== 'DEV') {
+            this.regionArray.push({
+              id: regionId,
+              name: regions.region[regionId],
+              countries: []
+            });
+          }
+        });
 
         // drop each location into their region
         let locArray = Object.keys(locations);
         locArray.forEach((key) => {
           let location = locations[key];
-          this.regions[location.region].countries.push(location);
+          let region = this.findRegion(location.region);
+          region.countries.push(location);
         });
 
-        // sort each region
-        let regionKeys = Object.keys(this.regions);
-        regionKeys.map((regionKey) => {
-          this.regions[regionKey].countries.sort(this.regionSort);
+        // sort each region's countries
+        this.regionArray.forEach((region) => {
+          region.countries.sort(this.regionSort);
         });
       },
       (error: any) => { console.log(error); }
     );
+  }
+
+  findRegion(regionId): any {
+    let region;
+    this.regionArray.map((thisRegion) => {
+      if (thisRegion.id === regionId) { region = thisRegion; }
+    });
+    return region;
   }
 
   regionSort(a, b): number {

@@ -49,9 +49,17 @@
     thead {
       color: #034698;
       border-bottom: 1px solid #ccc;
+      th:first-child {
+        text-align: left;
+        padding-left: 20px;
+      }
+    }
+    tbody tr th {
+      font-size: 16px;
+      background-color: rgba(202, 216, 235, 0.5);
+      border-bottom: 1px solid #ccc;
     }
     td { border-bottom: 1px solid #ccc; }
-    .area { text-align: left; padding-left: 10px; }
     .flag { padding: 0 5px 5px 0; vertical-align: middle; }
     .city { text-align: left; padding-left: 20px; }
     .premium {
@@ -63,11 +71,6 @@
       position: relative;
       top: -1px;
     }
-
-    .desktop { display: block; }
-    .mobile { display: none; }
-    .table-row { display: none; }
-    .mobile-region { background-color: rgba(202, 216, 235, 0.5); }
   }
 }
 
@@ -146,10 +149,6 @@
 }
 
 @media (max-width: 500px) {
-  .area { display: none; }
-  .content table .mobile { display: block; }
-  .content table .mobile.table-row { display: table-row; }
-  .content table .desktop { display: none; }
   .content table .premium { font-size: 12px; }
 }
 
