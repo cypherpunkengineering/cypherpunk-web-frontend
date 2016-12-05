@@ -52,6 +52,11 @@
         <li><a routerLink="/privacy">Privacy Policy</a></li>
         <li><a routerLink="/tos">Terms of Service</a></li>
         <li><a routerLink="/bounty">Bounty Program</a></li>
+        <li>
+          <div class="feedback mobile" (click)="openSupportModal()">
+            Contact Support
+          </div>
+        </li>
       </ul>
     </div>
 
@@ -82,6 +87,9 @@
       <div class="feedback" (click)="openFeedbackModal()">
         Send Feedback
       </div>
+      <div class="feedback desktop" (click)="openSupportModal()">
+        Contact Support
+      </div>
     </div>
 
   </div>
@@ -89,9 +97,9 @@
 
 
 <div class="modal" [ngClass]="{'hidden': !showFeedbackModal}">
-  <div class="background" (click)="closeFeedbackModal()"></div>
+  <div class="background" (click)="closeModal()"></div>
   <div class="modal-content">
-    <div class="modal-header">Leave Feedback</div>
+    <div class="modal-header">Send Feedback</div>
 
     <hr>
 
@@ -118,7 +126,43 @@
       </div>
 
       <div class="row">
-        <a (click)="closeFeedbackModal()">Cancel</a>
+        <a (click)="closeModal()">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'hidden': !showSupportModal}">
+  <div class="background" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="modal-header">Contact Support</div>
+
+    <hr>
+
+    <div class="modal-body">
+      <div class="row">
+        <label for="name">Name</label><br>
+        <input id="supportName" type="text" name="name" [(ngModel)]="name" (ngModelChange)="validateName()" (blur)="validateName()" [ngClass]="{'error': !validName && nameTouched}">
+      </div>
+
+      <div class="row">
+        <label for="email">Email</label><br>
+        <input type="email" name="email" [(ngModel)]="email" (ngModelChange)="validateEmail()" (blur)="validateEmail()" [ngClass]="{'error': !validEmail && emailTouched}">
+      </div>
+
+      <div class="row">
+        <label for="message">Message</label><br>
+        <textarea [(ngModel)]="message" (ngModelChange)="validateMessage()" (blur)="validateMessage()" [ngClass]="{'error': !validMessage && messageTouched}"></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button class="btn blue" [disabled]="!validateFeedback() || supportButtonDisabled" (click)="sendSupport()">Send</button>
+      </div>
+
+      <div class="row">
+        <a (click)="closeModal()">Cancel</a>
       </div>
     </div>
   </div>

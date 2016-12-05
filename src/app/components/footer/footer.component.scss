@@ -94,6 +94,9 @@
   overflow: auto;
 }
 
+.mobile { display: none; }
+.desktop { display: block; }
+
 .modal {
   position: fixed;
   top: 0;
@@ -223,6 +226,8 @@
   }
   .feedback { margin: 16px auto; }
   .footer-column.logo .btn { width: 341px; height: 80px; font-size: 24px; }
+  .mobile { display: block; margin-top: 25px; }
+  .desktop { display: none; }
 }
 
 @media (max-width: 1060px) {

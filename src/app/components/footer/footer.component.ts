@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class FooterComponent {
   zendeskToken: string = '';
   showFeedbackModal: boolean = false;
+  showSupportModal: boolean = false;
   validName: boolean = false;
   validEmail: boolean = false;
   validMessage: boolean = false;
@@ -15,6 +16,7 @@ export class FooterComponent {
   emailTouched: boolean = false;
   messageTouched: boolean = false;
   feedbackButtonDisabled: boolean = false;
+  supportButtonDisabled: boolean = false;
 
   name: string = '';
   email: string = '';
@@ -27,8 +29,16 @@ export class FooterComponent {
     }, 100);
   }
 
-  closeFeedbackModal() {
+  openSupportModal() {
+    this.showSupportModal = true;
+    setTimeout(() => {
+      document.getElementById('supportName').focus();
+    }, 100);
+  }
+
+  closeModal() {
     this.showFeedbackModal = false;
+    this.showSupportModal = false;
     this.name = '';
     this.email = '';
     this.message = '';
@@ -74,6 +84,15 @@ export class FooterComponent {
 
 
     this.feedbackButtonDisabled = false;
+    this.closeModal();
+  }
+
+  sendSupport() {
+    this.supportButtonDisabled = true;
+
+
+    this.supportButtonDisabled = false;
+    this.closeModal();
   }
 
 }
