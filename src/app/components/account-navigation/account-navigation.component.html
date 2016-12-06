@@ -10,6 +10,9 @@
       <li>
         <a class="nav-link" routerLink="/account">Account</a>
       </li>
+      <li>
+        <a class="nav-link" routerLink="/account/vpn">Advanced</a>
+      </li>
       <li *ngIf="!hidePriceBoxes()">
         <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
       </li>
@@ -33,6 +36,9 @@
       <ul>
         <li>
           <a class="nav-link" routerLink="/account">Account</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/account/vpn">Advanced</a>
         </li>
         <li *ngIf="!hidePriceBoxes()">
           <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
@@ -60,6 +66,9 @@
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
     <div class="mobile-dd-item" routerLink="/account">
       Account
+    </div>
+    <div class="mobile-dd-item" routerLink="/account/vpn">
+      Advanced
     </div>
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="!hidePriceBoxes()">
       <button class="btn gold">Upgrade</button>

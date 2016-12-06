@@ -1,0 +1,119 @@
+<app-acc-nav></app-acc-nav>
+
+<div class="masthead">
+  <div class="masthead-header">Advanced</div>
+</div>
+
+<div class="breadcrumb">
+  <a routerLink="/account">Account</a> > Advanced
+</div>
+
+<div class="content">
+
+  <div class="header">VPN Settings</div>
+
+  <div class="vpn-select-container">
+    <label for="vpnSelect">Choose a vpn client:</label>
+    <select name="vpnSelect" id="vpn-select" [(ngModel)]="vpnSelect">
+      <option value="openvpn">OpenVPN</option>
+      <option value="ipsec">IPSec VPN</option>
+      <option value="ike">IKEv2 VPN</option>
+      <option value="http">HTTP1 proxy</option>
+      <option value="socks">SOCKS proxy</option>
+    </select>
+  </div>
+
+  <hr>
+
+  <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
+    <div class="subheader">OpenVPN</div>
+
+    <div class="privacy">
+      Username: <br>
+      {{session.user.privacy.username}}
+      <br><br>
+      Password: <br>
+      {{session.user.privacy.password}}
+      <br><br>
+    </div>
+
+    <div class="location-select-container">
+      <label for="locations">Please choose a location: </label>
+      <br>
+      <select name="locations" id="ov-locations" [(ngModel)]="countrySelect" (ngModelChange)="updateProfile()" required>
+        <option value="" disabled hidden>Please choose...</option>
+        <optgroup *ngFor="let region of regionArray" [label]="region.name">
+          <option *ngFor="let country of region.countries" [value]="country.ovHostname">
+            {{country.name}}
+          </option>
+        </optgroup>
+      </select>
+    </div>
+
+    <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
+
+    <div class="download-container">
+      <button class="btn" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled">
+        Download
+      </button>
+    </div>
+  </div>
+
+  <div id="ipsec" class="vpn" [ngClass]="{'show': vpnSelect === 'ipsec'}">
+    <div class="subheader">IPSec VPN</div>
+
+    <div class="privacy">
+      Username: <br>
+      {{session.user.privacy.username}}
+      <br><br>
+      Password: <br>
+      {{session.user.privacy.password}}
+      <br><br>
+    </div>
+  </div>
+
+  <div id="ike" class="vpn" [ngClass]="{'show': vpnSelect === 'ike'}">
+    <div class="subheader">IKEv2 VPN</div>
+
+    <div class="privacy">
+      Username: <br>
+      {{session.user.privacy.username}}
+      <br><br>
+      Password: <br>
+      {{session.user.privacy.password}}
+      <br><br>
+    </div>
+  </div>
+
+  <div id="http" class="vpn" [ngClass]="{'show': vpnSelect === 'http'}">
+    <div class="subheader">HTTP1 proxy</div>
+
+    <div class="privacy">
+      Username: <br>
+      {{session.user.privacy.username}}
+      <br><br>
+      Password: <br>
+      {{session.user.privacy.password}}
+      <br><br>
+    </div>
+  </div>
+
+  <div id="socks" class="vpn" [ngClass]="{'show': vpnSelect === 'socks'}">
+    <div class="subheader">SOCKS proxy</div>
+
+    <div class="privacy">
+      Username: <br>
+      {{session.user.privacy.username}}
+      <br><br>
+      Password: <br>
+      {{session.user.privacy.password}}
+      <br><br>
+    </div>
+  </div>
+</div>
+
+<div class="return">
+  <a routerLink="/account">Back to Account</a>
+</div>
+
+<app-footer></app-footer>

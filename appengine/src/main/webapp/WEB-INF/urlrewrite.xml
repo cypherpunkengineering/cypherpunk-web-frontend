@@ -81,6 +81,10 @@
 		<to last="true">/account/upgrade.html$1</to>
 	</rule>
 	<rule>
+		<from>^/account/vpn(.*)</from>
+		<to last="true">/account/vpn.html$1</to>
+	</rule>
+	<rule>
 		<from>^/account(.*)</from>
 		<to last="true">/account/account.html$1</to>
 	</rule>
