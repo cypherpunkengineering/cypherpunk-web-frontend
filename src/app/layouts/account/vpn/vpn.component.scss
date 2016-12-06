@@ -94,8 +94,5 @@
 
 @media (max-width: 1060px) {
   .content { padding: 0 10px; }
-  .method { display: none; }
-  .return {
-    a { font-size: 14px; }
-  }
+  .return a { font-size: 14px; }
 }
