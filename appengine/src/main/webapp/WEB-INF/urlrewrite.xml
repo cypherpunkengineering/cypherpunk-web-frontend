@@ -70,6 +70,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^2a02:2f08:</condition><!-- andrei -->
 		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:100</condition><!-- reg virginia -->
 		<condition type="remote-addr" operator="notequal" next="and">^73\.177\.222\.</condition><!-- virginia office -->
+		<condition type="remote-addr" operator="notequal" next="and">^173\.14\.113\.</condition><!-- virginia office -->
 		<condition type="remote-addr" operator="notequal" next="and">^72\.235\.162\.</condition><!-- slickage office -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
