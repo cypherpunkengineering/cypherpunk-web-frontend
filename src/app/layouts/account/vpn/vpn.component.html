@@ -1,16 +1,16 @@
 <app-acc-nav></app-acc-nav>
 
 <div class="masthead">
-  <div class="masthead-header">Advanced</div>
+  <div class="masthead-header">Setup</div>
 </div>
 
 <div class="breadcrumb">
-  <a routerLink="/account">Account</a> > Advanced
+  <a routerLink="/account">Account</a> > Setup
 </div>
 
 <div class="content">
 
-  <div class="header">VPN Settings</div>
+  <div class="header">Manual VPN/proxy Setup</div>
 
   <div class="vpn-select-container">
     <label for="vpnSelect">Choose a vpn client:</label>
@@ -30,10 +30,10 @@
     <div class="subheader">OpenVPN 2.3</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
     </div>
@@ -41,10 +41,9 @@
     <div class="location-select-container">
       <label for="locations">Please choose a location: </label>
       <br>
-      <select name="locations" id="ov-locations" [(ngModel)]="country23Select" (ngModelChange)="updateProfile('23')" required>
-        <option value="" disabled hidden>Please choose...</option>
+      <select name="locations" id="ov-locations" [(ngModel)]="country23Select" (ngModelChange)="updateProfile('23')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ovHostname">
+          <option *ngFor="let country of region.countries" [value]="country.ovHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
@@ -64,10 +63,10 @@
     <div class="subheader">OpenVPN 2.4</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
     </div>
@@ -75,10 +74,9 @@
     <div class="location-select-container">
       <label for="locations">Please choose a location: </label>
       <br>
-      <select name="locations" id="ov-locations" [(ngModel)]="country24Select" (ngModelChange)="updateProfile('24')" required>
-        <option value="" disabled hidden>Please choose...</option>
+      <select name="locations" id="ov-locations" [(ngModel)]="country24Select" (ngModelChange)="updateProfile('24')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ovHostname">
+          <option *ngFor="let country of region.countries" [value]="country.ovHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
@@ -98,12 +96,22 @@
     <div class="subheader">IPSec VPN</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
+      <strong>Hostname for </strong>
+      <select name="locations" id="ov-locations" [(ngModel)]="ipsecSelect">
+        <optgroup *ngFor="let region of regionArray" [label]="region.name">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
+            {{country.name}}
+          </option>
+        </optgroup>
+      </select>:
+      <br>
+      {{ipsecSelect}}<br>
     </div>
   </div>
 
@@ -111,12 +119,22 @@
     <div class="subheader">IKEv2 VPN</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
+      <strong>Hostname for </strong>
+      <select name="locations" id="ov-locations" [(ngModel)]="ikeSelect">
+        <optgroup *ngFor="let region of regionArray" [label]="region.name">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
+            {{country.name}}
+          </option>
+        </optgroup>
+      </select>:
+      <br>
+      {{ikeSelect}}<br>
     </div>
   </div>
 
@@ -124,12 +142,22 @@
     <div class="subheader">HTTP1 proxy</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
+      <strong>Hostname for </strong>
+      <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
+        <optgroup *ngFor="let region of regionArray" [label]="region.name">
+          <option *ngFor="let country of region.countries" [value]="country.httpDefault[0]" [attr.selected]="country.default">
+            {{country.name}}
+          </option>
+        </optgroup>
+      </select>:
+      <br>
+      {{httpSelect}}<br>
     </div>
   </div>
 
@@ -137,12 +165,22 @@
     <div class="subheader">SOCKS proxy</div>
 
     <div class="privacy">
-      Username: <br>
+      <strong>Username: </strong><br>
       {{session.user.privacy.username}}
       <br><br>
-      Password: <br>
+      <strong>Password: </strong><br>
       {{session.user.privacy.password}}
       <br><br>
+      <strong>Hostname for </strong>
+      <select name="locations" id="ov-locations" [(ngModel)]="socksSelect">
+        <optgroup *ngFor="let region of regionArray" [label]="region.name">
+          <option *ngFor="let country of region.countries" [value]="country.socksDefault[0]" [attr.selected]="country.default">
+            {{country.name}}
+          </option>
+        </optgroup>
+      </select>:
+      <br>
+      {{socksSelect}}<br>
     </div>
   </div>
 </div>

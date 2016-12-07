@@ -11,12 +11,17 @@ export class VpnComponent implements OnInit {
   vpnSelect: string = 'openvpn2.3';
 
   country23Select: string = '';
-  profile23: string = 'Please select a location above';
+  profile23: string = '';
   download23ButtonEnabled = false;
 
   country24Select: string = '';
-  profile24: string = 'Please select a location above';
+  profile24: string = '';
   download24ButtonEnabled = false;
+
+  ipsecSelect: string = '';
+  ikeSelect: string = '';
+  httpSelect: string = '';
+  socksSelect: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +51,18 @@ export class VpnComponent implements OnInit {
         locArray.forEach((key) => {
           let location = locations[key];
           let region = this.findRegion(location.region);
+          if (location.default) {
+            this.country23Select = location.ovHostname;
+            this.country24Select = location.ovHostname;
+            this.ipsecSelect = location.ipsecHostname;
+            this.ikeSelect = location.ipsecHostname;
+            if (location.httpDefault.length) {
+              this.httpSelect = location.httpDefault[0];
+            }
+            if (location.socksDefault.length) {
+              this.socksSelect = location.socksDefault[0];
+            }
+          }
           region.countries.push(location);
         });
 
@@ -53,6 +70,9 @@ export class VpnComponent implements OnInit {
         this.regionArray.forEach((region) => {
           region.countries.sort(this.regionSort);
         });
+
+        this.updateProfile('23');
+        this.updateProfile('24');
       },
       (error: any) => { console.log(error); }
     );
