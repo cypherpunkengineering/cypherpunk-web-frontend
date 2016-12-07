@@ -47,13 +47,18 @@
     </div>
 
     <div id="linux" class="group">
-      <a href="{{ builds.linux.link }}">
+      <a href="{{ currentLinuxVersion }}">
         <img src="/assets/icon-desktop--linux.png"><br>
         <div class="group-header">{{ builds.linux.name }}</div>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
       </a>
+      <select name="linux-download" id="linux-download" [(ngModel)]="currentLinuxVersion">
+        <option *ngFor="let version of linuxVersions" value="{{version.link}}">
+          {{version.os}} {{version.version}}
+        </option>
+      </select>
     </div>
   </div>
 </div>
@@ -97,7 +102,7 @@
 <div class="content">
   <div class="content-header">Download Cypherpunk for your Mobile Device</div>
 
-  <div class="grouping">
+  <div class="grouping mobile-devices">
     <div id="ios" class="group">
       <a href="{{ builds.ios.link }}">
         <img src="/assets/icon-mobile--ios.png"><br>

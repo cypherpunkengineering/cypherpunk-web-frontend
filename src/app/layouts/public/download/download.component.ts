@@ -20,7 +20,7 @@ export class DownloadComponent {
     linux: {
       name: 'Linux',
       versions: '',
-      link: ''
+      link: '#'
     },
     chrome: {
       name: 'Chrome',
@@ -51,7 +51,31 @@ export class DownloadComponent {
     }
   };
 
+  linuxVersions = [
+    {
+      os: 'Fedora/Redhat/CentOS',
+      version: '32-bit',
+      link: '#f32'
+    },
+    {
+      os: 'Fedora/Redhat/CentOS',
+      version: '64-bit',
+      link: '#f64'
+    },
+    {
+      os: 'Debian/Ubuntu/Mint',
+      version: '32-bit',
+      link: '#d32'
+    },
+    {
+      os: 'Debian/Ubuntu/Mint',
+      version: '64-bit',
+      link: '#d64'
+    }
+  ];
+
   headerBuild = this.builds.blank;
+  currentLinuxVersion: string = this.linuxVersions[0].link;
 
   constructor() {
     let os: string = platform.os.family;
@@ -70,4 +94,5 @@ export class DownloadComponent {
     }
     else { this.headerBuild = this.builds.linux; }
   }
+
 }
