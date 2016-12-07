@@ -8,10 +8,15 @@ import { SessionService } from '../../../services/session.service';
 })
 export class VpnComponent implements OnInit {
   regionArray = [];
-  vpnSelect: string = 'openvpn';
-  countrySelect: string = '';
-  profile: string = 'Please select a location above';
-  downloadButtonEnabled = false;
+  vpnSelect: string = 'openvpn2.3';
+
+  country23Select: string = '';
+  profile23: string = 'Please select a location above';
+  download23ButtonEnabled = false;
+
+  country24Select: string = '';
+  profile24: string = 'Please select a location above';
+  download24ButtonEnabled = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -70,13 +75,16 @@ export class VpnComponent implements OnInit {
     return value;
   }
 
-  updateProfile() {
-    this.generateProfile();
+  updateProfile(version: string) {
+    this.generateProfile(version);
   }
 
-  generateProfile() {
-    let hostname = this.countrySelect;
-    this.profile = `
+  generateProfile(version: string) {
+    let hostname, profileTemp;
+    if (version === '23') { hostname = this.country23Select; }
+    else { hostname = this.country24Select; }
+
+    profileTemp = `
       client
       dev tun
       nobind
@@ -160,13 +168,27 @@ export class VpnComponent implements OnInit {
       -----END CERTIFICATE-----
       </ca>
     `;
-    this.downloadButtonEnabled = true;
+
+    if (version === '23') { this.profile23 = profileTemp; }
+    else { this.profile24 = profileTemp; }
+
+    if (version === '23') { this.download23ButtonEnabled = true; }
+    else { this.download24ButtonEnabled = true; }
   }
 
-  downloadProfile() {
-    this.downloadButtonEnabled = false;
+  downloadProfile(version: string) {
+    let profile;
+    if (version === '23') {
+      this.download23ButtonEnabled = false;
+      profile = this.profile23;
+    }
+    else {
+      this.download24ButtonEnabled = true;
+      profile = this.profile24;
+    }
+
     let filename = 'openvpn.conf';
-    let blob = new Blob([this.profile], {type: 'text/text'});
+    let blob = new Blob([profile], {type: 'text/text'});
     if (window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveBlob(blob, filename);
     }
@@ -178,7 +200,9 @@ export class VpnComponent implements OnInit {
       elem.click();
       document.body.removeChild(elem);
     }
-    this.downloadButtonEnabled = true;
+
+    if (version === '23') { this.download23ButtonEnabled = true; }
+    else { this.download24ButtonEnabled = true; }
   }
 
 }
