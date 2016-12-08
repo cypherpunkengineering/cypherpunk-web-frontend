@@ -10,6 +10,7 @@ import 'rxjs/add/observable/forkJoin';
 })
 export class LocationsComponent implements OnInit {
   regionArray = [];
+  loading: boolean = true;
   totalServers: number = 0;
 
   constructor(
@@ -57,8 +58,13 @@ export class LocationsComponent implements OnInit {
         this.regionArray.forEach((region) => {
           region.countries.sort(this.regionSort);
         });
+
+        this.loading = false;
       },
-      (error: any) => { console.log(error); }
+      (error: any) => {
+        this.loading = false;
+        console.log(error);
+      }
     );
   }
 

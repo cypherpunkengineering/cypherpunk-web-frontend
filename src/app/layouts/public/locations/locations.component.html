@@ -16,6 +16,12 @@
       </tr>
     </thead>
 
+    <tbody *ngIf="loading">
+      <tr>
+        <th colspan="2" scope="col">Loading...</th>
+      </tr>
+    </tbody>
+
     <tbody *ngFor="let region of regionArray">
       <tr *ngIf="region.countries.length">
         <th colspan="2" scope="col">{{region.name}}</th>
