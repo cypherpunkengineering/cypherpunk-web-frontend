@@ -1,5 +1,8 @@
+import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   templateUrl: './locations.component.html',
@@ -11,15 +14,24 @@ export class LocationsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: Http
   ) { }
 
   ngOnInit() {
-    this.route.data.subscribe(
+    let locationsUrl = '/api/v0/location/list/premium';
+    let regionsUrl = '/api/v0/location/world';
+
+    let locationsObs = this.http.get(locationsUrl).map(res => res.json());
+    let regionsObs = this.http.get(regionsUrl).map(res => res.json());
+
+    return Observable.forkJoin([locationsObs, regionsObs])
+    .subscribe(
       (data: any) => {
+        console.log(data);
         // parse data
-        let locations = data.locations[0];
-        let regions = data.locations[1];
+        let locations = data[0];
+        let regions = data[1];
 
         // create regionsArray
         regions.regionOrder.forEach((regionId) => {
