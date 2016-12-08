@@ -28,7 +28,7 @@
         <td>{{location.servers}}</td>
       </tr>
     </tbody>
-    <tfoot>
+    <tfoot *ngIf="totalServers">
       <tr>
         <th colspan="2" scope="col">
           Total Number of Servers: {{totalServers}}
