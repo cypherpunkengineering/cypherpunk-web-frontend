@@ -92,4 +92,13 @@ return new Promise((resolve, reject) => {
     fs.writeFileSync(latestFilename, fs.readFileSync(latestFile));
   }
 })
+// remove all index.*.js files in dist
+.then(() => {
+  return new Promise((resolve, reject) => {
+    rimraf('./dist/client/index.*.js', (err) => {
+      if (err) { return reject(err); }
+      else { return resolve(); }
+    });
+  });
+})
 .catch((err) => { console.log(err); });
