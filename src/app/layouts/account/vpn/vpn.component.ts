@@ -52,16 +52,12 @@ export class VpnComponent implements OnInit {
           let location = locations[key];
           let region = this.findRegion(location.region);
           if (location.default) {
-            this.country23Select = location.ovHostname;
-            this.country24Select = location.ovHostname;
+            this.country23Select = location.ipsecHostname;
+            this.country24Select = location.ipsecHostname;
             this.ipsecSelect = location.ipsecHostname;
             this.ikeSelect = location.ipsecHostname;
-            if (location.httpDefault.length) {
-              this.httpSelect = location.httpDefault[0];
-            }
-            if (location.socksDefault.length) {
-              this.socksSelect = location.socksDefault[0];
-            }
+            this.httpSelect = location.ipsecHostname;
+            this.socksSelect = location.ipsecHostname;
           }
           region.countries.push(location);
         });

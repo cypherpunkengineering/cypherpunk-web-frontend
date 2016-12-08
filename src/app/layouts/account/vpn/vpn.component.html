@@ -43,7 +43,7 @@
       <br>
       <select name="locations" id="ov-locations" [(ngModel)]="country23Select" (ngModelChange)="updateProfile('23')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ovHostname" [attr.selected]="country.default">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
@@ -76,7 +76,7 @@
       <br>
       <select name="locations" id="ov-locations" [(ngModel)]="country24Select" (ngModelChange)="updateProfile('24')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ovHostname" [attr.selected]="country.default">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
@@ -151,7 +151,7 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.httpDefault[0]" [attr.selected]="country.default">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
@@ -174,7 +174,7 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="socksSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.socksDefault[0]" [attr.selected]="country.default">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
             {{country.name}}
           </option>
         </optgroup>
