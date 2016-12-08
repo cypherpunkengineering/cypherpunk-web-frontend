@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LocationsComponent implements OnInit {
   regionArray = [];
+  totalServers: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class LocationsComponent implements OnInit {
         let locArray = Object.keys(locations);
         locArray.forEach((key) => {
           let location = locations[key];
+          this.totalServers += location.servers;
           let region = this.findRegion(location.region);
           region.countries.push(location);
         });

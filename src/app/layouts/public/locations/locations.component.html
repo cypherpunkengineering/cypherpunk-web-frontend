@@ -8,10 +8,6 @@
 </div>
 
 <div class="content">
-  <div class="header">
-    Cypherpunk Privacy Server Locations
-  </div>
-
   <table>
     <thead>
       <tr>
@@ -21,7 +17,7 @@
     </thead>
 
     <tbody *ngFor="let region of regionArray">
-      <tr class="header" *ngIf="region.countries.length">
+      <tr *ngIf="region.countries.length">
         <th colspan="2" scope="col">{{region.name}}</th>
       </tr>
       <tr *ngFor="let location of region.countries; let i = index">
@@ -32,6 +28,13 @@
         <td>{{location.servers}}</td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2" scope="col">
+          Total Number of Servers: {{totalServers}}
+        </th>
+      </tr>
+    </tfoot>
   </table>
 </div>
 

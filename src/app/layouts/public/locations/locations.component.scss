@@ -53,13 +53,19 @@
         text-align: left;
         padding-left: 20px;
       }
+      th:last-child {
+        text-align: right;
+        padding-right: 20px;
+      }
     }
-    tbody tr th {
+    tbody tr th, tfoot tr {
+      color: #1973af;
       font-size: 16px;
       background-color: rgba(202, 216, 235, 0.5);
       border-bottom: 1px solid #ccc;
     }
     td { border-bottom: 1px solid #ccc; }
+    td:last-child { text-align: right; padding-right: 20px; }
     .flag { padding: 0 5px 5px 0; vertical-align: middle; }
     .city { text-align: left; padding-left: 20px; }
     .premium {
