@@ -8,6 +8,7 @@ import { SessionService } from '../../../services/session.service';
 })
 export class SetupComponent implements OnInit {
   regionArray = [];
+  freeAccount: boolean = true;
   vpnSelect: string = 'openvpn2.3';
 
   country23Select: string = '';
@@ -26,7 +27,10 @@ export class SetupComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private session: SessionService
-  ) { }
+  ) {
+    if (session.user.account.type === 'free') { this.freeAccount = true; }
+    else { this.freeAccount = false; }
+  }
 
   ngOnInit() {
     this.route.data.subscribe(

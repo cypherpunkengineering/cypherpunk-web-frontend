@@ -43,8 +43,8 @@
       <br>
       <select name="locations" id="ov-locations" [(ngModel)]="country23Select" (ngModelChange)="updateProfile('23')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>
@@ -76,8 +76,8 @@
       <br>
       <select name="locations" id="ov-locations" [(ngModel)]="country24Select" (ngModelChange)="updateProfile('24')">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>
@@ -105,8 +105,8 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ipsecSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>:
@@ -128,8 +128,8 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ikeSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>:
@@ -151,8 +151,8 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>:
@@ -174,8 +174,8 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="socksSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default">
-            {{country.name}}
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level === 'premium'">
+            {{country.name}} <span *ngIf="freeAccount && country.level === 'premium'">(premium)</span>
           </option>
         </optgroup>
       </select>:
