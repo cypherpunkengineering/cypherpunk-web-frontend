@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 const request = require('request');
 
 const baseRoute = 'http://localhost:3000/';
@@ -25,19 +26,45 @@ const routes = [
   { url: baseRoute + 'account/setup', dirPath: baseDir + 'account/setup.html' }
 ];
 
-// get all routes starting with index
-routes.forEach((routeObject) => {
+// remove index.*.js files
+return new Promise((resolve, reject) => {
+  rimraf('./build/index.*.js', (err) => {
+    if (err) { return reject(err); }
+    else { return resolve(); }
+  });
+})
+// remove all /account/ html files
+.then(() => {
   return new Promise((resolve, reject) => {
-    request(routeObject.url, (error, response, body) => {
-      if (error) { return reject(error, response); }
-      fs.writeFileSync(routeObject.dirPath, body);
-      console.log(routeObject.url, routeObject.dirPath);
-      return resolve();
+    rimraf('./build/account/*.html', (err) => {
+      if (err) { return reject(err); }
+      else { return resolve(); }
     });
   });
-});
-
-return Promise.all(routes)
+})
+// remove all html files
+.then(() => {
+  return new Promise((resolve, reject) => {
+    rimraf('./build/*.html', (err) => {
+      if (err) { return reject(err); }
+      else { return resolve(); }
+    });
+  });
+})
+// copy route request ouput to build dir
+.then(() => {
+  return Promise.all(routes.map((routeObject) => {
+    return new Promise((resolve, reject) => {
+      request(routeObject.url, (error, response, body) => {
+        if (error) { return reject(error, response); }
+        fs.writeFileSync(routeObject.dirPath, body);
+        console.log(routeObject.url, routeObject.dirPath);
+        return resolve();
+      });
+    });
+  }));
+})
+// copy index.#.js file into build dir
 .then(() => {
   return new Promise((resolve, reject) => {
     fs.readdir('./dist/client', (err, list) => {
@@ -48,11 +75,21 @@ return Promise.all(routes)
   });
 })
 .then((list) => {
+  let latestFilename, latestTime, latestFile;
   list.forEach((fileName) => {
     let file = path.join('./dist/client', fileName);
     if (file.endsWith('.js')) {
-      let targetFile = './build/' + fileName;
-      fs.writeFileSync(targetFile, fs.readFileSync(file));
+      let time = fs.statSync(file).ctime;
+      if (!latestTime || time > latestTime) {
+        latestTime = time;
+        latestFilename = './build/' + fileName;
+        latestFile = file;
+      }
     }
   });
-});
+
+  if (latestFilename && latestFile) {
+    fs.writeFileSync(latestFilename, fs.readFileSync(latestFile));
+  }
+})
+.catch((err) => { console.log(err); });
