@@ -30,7 +30,7 @@ import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
 import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
-import { VpnModule } from './layouts/account/vpn/vpn.module';
+import { SetupModule } from './layouts/account/setup/setup.module';
 
 import { CacheService } from './universal-cache';
 import { SessionService } from './services/session.service';
@@ -69,7 +69,7 @@ import { LocalStorage } from './services/local-storage';
     DashboardModule,
     BillingModule,
     UpgradeModule,
-    VpnModule,
+    SetupModule,
 
     AppRoutingModule
   ],

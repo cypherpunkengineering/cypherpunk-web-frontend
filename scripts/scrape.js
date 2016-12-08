@@ -22,7 +22,7 @@ const routes = [
   { url: baseRoute + 'account', dirPath: baseDir + 'account/account.html' },
   { url: baseRoute + 'account/upgrade', dirPath: baseDir + 'account/upgrade.html' },
   { url: baseRoute + 'account/billing', dirPath: baseDir + 'account/billing.html' },
-  { url: baseRoute + 'account/vpn', dirPath: baseDir + 'account/vpn.html' }
+  { url: baseRoute + 'account/setup', dirPath: baseDir + 'account/setup.html' }
 ];
 
 // get all routes starting with index

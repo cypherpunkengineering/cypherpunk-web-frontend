@@ -11,7 +11,7 @@
         <a class="nav-link" routerLink="/account">Account</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/account/vpn">Advanced</a>
+        <a class="nav-link" routerLink="/account/setup">Advanced</a>
       </li>
       <li *ngIf="!hidePriceBoxes()">
         <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
@@ -38,7 +38,7 @@
           <a class="nav-link" routerLink="/account">Account</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/account/vpn">Advanced</a>
+          <a class="nav-link" routerLink="/account/setup">Advanced</a>
         </li>
         <li *ngIf="!hidePriceBoxes()">
           <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
@@ -67,7 +67,7 @@
     <div class="mobile-dd-item" routerLink="/account">
       Account
     </div>
-    <div class="mobile-dd-item" routerLink="/account/vpn">
+    <div class="mobile-dd-item" routerLink="/account/setup">
       Advanced
     </div>
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="!hidePriceBoxes()">

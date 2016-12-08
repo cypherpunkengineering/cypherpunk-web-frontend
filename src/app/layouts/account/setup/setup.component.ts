@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
 
 @Component({
-  templateUrl: './vpn.component.html',
-  styleUrls: ['./vpn.component.scss']
+  templateUrl: './setup.component.html',
+  styleUrls: ['./setup.component.scss']
 })
-export class VpnComponent implements OnInit {
+export class SetupComponent implements OnInit {
   regionArray = [];
   vpnSelect: string = 'openvpn2.3';
 

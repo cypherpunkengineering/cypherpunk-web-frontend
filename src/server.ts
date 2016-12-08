@@ -79,7 +79,7 @@ app.get('/home', ngApp);
 app.get('/account*', ngApp);
 app.get('/account/billing', ngApp);
 app.get('/account/upgrade', ngApp);
-app.get('/account/vpn', ngApp);
+app.get('/account/setup', ngApp);
 app.get('/premium', ngApp);
 app.get('/login', ngApp);
 app.get('/reset', ngApp);

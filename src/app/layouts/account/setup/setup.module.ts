@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../components/shared/shared.module';
-import { VpnComponent } from './vpn.component';
-import { VpnRoutingModule } from './vpn-routing.module';
+import { SetupComponent } from './setup.component';
+import { SetupRoutingModule } from './setup-routing.module';
 import { LocationsResolver } from '../../../resolvers/locations.resolver';
 
 @NgModule({
   imports: [
     SharedModule,
-    VpnRoutingModule
+    SetupRoutingModule
   ],
   declarations: [
-    VpnComponent
+    SetupComponent
   ],
   providers: [
     LocationsResolver
   ]
 })
-export class VpnModule { }
+export class SetupModule { }
