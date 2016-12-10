@@ -1,6 +1,9 @@
+import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   templateUrl: './setup.component.html',
@@ -25,6 +28,7 @@ export class SetupComponent implements OnInit {
   socksSelect: string = '';
 
   constructor(
+    private http: Http,
     private route: ActivatedRoute,
     private session: SessionService
   ) {
@@ -33,11 +37,17 @@ export class SetupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(
-      (data: any) => {
+    let locationsUrl = '/api/v0/location/list/premium';
+    let regionsUrl = '/api/v0/location/world';
+
+    let locationsObs = this.http.get(locationsUrl).map(res => res.json());
+    let regionsObs = this.http.get(regionsUrl).map(res => res.json());
+
+    return Observable.forkJoin([locationsObs, regionsObs])
+    .subscribe((data: any) => {
         // parse data
-        let locations = data.locations[0];
-        let regions = data.locations[1];
+        let locations = data[0];
+        let regions = data[1];
 
         // create regionsArray
         regions.regionOrder.forEach((regionId) => {

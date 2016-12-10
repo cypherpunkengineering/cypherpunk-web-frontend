@@ -27,8 +27,7 @@ export class LocationsComponent implements OnInit {
     let regionsObs = this.http.get(regionsUrl).map(res => res.json());
 
     return Observable.forkJoin([locationsObs, regionsObs])
-    .subscribe(
-      (data: any) => {
+    .subscribe((data: any) => {
         // parse data
         let locations = data[0];
         let regions = data[1];
