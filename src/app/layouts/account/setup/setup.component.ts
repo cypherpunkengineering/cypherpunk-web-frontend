@@ -1,6 +1,7 @@
 import { Http } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
@@ -29,11 +30,17 @@ export class SetupComponent implements OnInit {
 
   constructor(
     private http: Http,
-    private route: ActivatedRoute,
+    private router: Router,
+    private authGuard: AuthGuard,
+    private activatedRoute: ActivatedRoute,
     private session: SessionService
   ) {
     if (session.user.account.type === 'free') { this.freeAccount = true; }
     else { this.freeAccount = false; }
+
+    let route = activatedRoute.snapshot;
+    let state = router.routerState.snapshot;
+    this.authGuard.canActivate(route, state);
   }
 
   ngOnInit() {

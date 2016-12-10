@@ -1,8 +1,9 @@
 import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
+import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
@@ -70,10 +71,18 @@ export class UpgradeComponent {
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
+    private authGuard: AuthGuard,
     private session: SessionService,
     private alertService: AlertService,
-    private plansService: PlansService
-  ) { this.email = session.user.account.email; }
+    private plansService: PlansService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.email = session.user.account.email;
+
+    let route = activatedRoute.snapshot;
+    let state = router.routerState.snapshot;
+    this.authGuard.canActivate(route, state);
+  }
 
   // pay with credit card
 

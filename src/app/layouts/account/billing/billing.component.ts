@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthGuard } from '../../../services/auth-guard.service';
 
 @Component({
   templateUrl: './billing.component.html',
@@ -47,12 +48,17 @@ export class BillingComponent implements OnInit {
   invoicesCurrentPage: number;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private authGuard: AuthGuard,
+    private activatedRoute: ActivatedRoute
+  ) {
+    let route = activatedRoute.snapshot;
+    let state = router.routerState.snapshot;
+    this.authGuard.canActivate(route, state);
+  }
 
   ngOnInit() {
-    this.route.data.subscribe(
+    this.activatedRoute.data.subscribe(
       (data: any) => {
         /*
           Update local vars here
