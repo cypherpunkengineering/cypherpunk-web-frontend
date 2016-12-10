@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { Plan, PlansService } from '../../../services/plans.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './dashboard.component.html',
@@ -15,11 +16,17 @@ export class DashboardComponent {
 
   constructor(
     private router: Router,
+    private authGuard: AuthGuard,
     private session: SessionService,
-    private plansService: PlansService
+    private plansService: PlansService,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.user = session.user;
-    this.plans = plansService.plans;
+    this.user = this.session.user;
+    this.plans = this.plansService.plans;
+
+    let route = activatedRoute.snapshot;
+    let state = router.routerState.snapshot;
+    this.authGuard.canActivate(route, state);
   }
 
   hidePriceBoxes() {
@@ -40,5 +47,4 @@ export class DashboardComponent {
     this.plansService.selectPlan(planId);
     this.router.navigate(['/account/upgrade']);
   }
-
 }
