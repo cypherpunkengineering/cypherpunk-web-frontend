@@ -11,6 +11,7 @@ import 'rxjs/add/observable/forkJoin';
   styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent implements OnInit {
+  loading: boolean = true;
   regionArray = [];
   freeAccount: boolean = true;
   vpnSelect: string = 'openvpn2.3';
@@ -40,7 +41,8 @@ export class SetupComponent implements OnInit {
 
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state);
+    this.authGuard.canActivate(route, state)
+    .then(() => { this.loading = false; });
   }
 
   ngOnInit() {

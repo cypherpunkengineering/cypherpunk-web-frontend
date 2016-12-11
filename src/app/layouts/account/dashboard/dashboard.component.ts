@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class DashboardComponent {
   user: any;
   plans: Plan[];
+  loading: boolean = true;
   showEmailModal: boolean = false;
   showPasswordModal: boolean = false;
 
@@ -26,7 +27,8 @@ export class DashboardComponent {
 
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state);
+    this.authGuard.canActivate(route, state)
+    .then(() => { this.loading = false; });
   }
 
   hidePriceBoxes() {

@@ -13,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./upgrade.component.scss']
 })
 export class UpgradeComponent {
+  loading: boolean = true;
   posData: string = '';
   ccButtonDisabled: boolean = false;
   ppButtonDisabled: boolean = false;
@@ -81,7 +82,8 @@ export class UpgradeComponent {
 
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state);
+    this.authGuard.canActivate(route, state)
+    .then(() => { this.loading = false; });
   }
 
   // pay with credit card

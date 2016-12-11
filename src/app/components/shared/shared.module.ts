@@ -7,6 +7,7 @@ import { AccountNavigationComponent } from '../account-navigation/account-naviga
 import { NavigationComponent } from '../navigation/navigation.component';
 import { AlertComponent } from '../alert/alert.component';
 import { FooterComponent } from '../footer/footer.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -25,7 +26,8 @@ const COMPONENTS = [
   AccountNavigationComponent,
   NavigationComponent,
   AlertComponent,
-  FooterComponent
+  FooterComponent,
+  LoadingComponent
 ];
 
 @NgModule({

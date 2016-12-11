@@ -1,0 +1,20 @@
+.loading-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(238,238,238, 0.8);
+}
+
+.middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 1250px) {
+  .alerts-container { padding: 10px 15px; }
+}
