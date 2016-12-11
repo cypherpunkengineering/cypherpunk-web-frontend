@@ -83,6 +83,19 @@ export class UpgradeComponent {
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
+    .then(() => {
+      let type = session.user.account.type;
+      let renewal = session.user.subscription.renewal;
+      if (type === 'staff' || type === 'dev') {
+        router.navigate(['/account']);
+      }
+      else if (type === 'premium' && renewal === 'annually') {
+        router.navigate(['/account']);
+      }
+      else if (type === 'premium' && renewal === 'forever') {
+        router.navigate(['/account']);
+      }
+    })
     .then(() => { this.loading = false; });
   }
 
