@@ -153,7 +153,7 @@ export class UpgradeComponent {
       console.log(error);
       this.zone.run(() => {
         this.ccButtonDisabled = false;
-        this.alertService.error('Could not create an account');
+        this.alertService.error('Could not upgrade your account');
       });
       // error 409 -> redirect to login page
     });
