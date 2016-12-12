@@ -40,7 +40,7 @@ export function subs(req, res) {
         confirmed: false
       },
       subscription: {
-        renewal: 'forever',
+        renewal: 'monthly',
         expiration: '0'
       }
     };

@@ -17,28 +17,31 @@ export class AuthGuard implements CanActivate {
 
     if (url.startsWith('/account/upgrade')) {
       if (this.auth.authed) { return Promise.resolve(true); }
-      let email = route.queryParams['user'];
       let secret = route.queryParams['secret'];
-      return this.checkLogin(url, route, email, secret);
+      return this.checkLogin(url, route, secret);
     }
-
-    if (url.startsWith('/account/billing')) {
+    else if (url.startsWith('/account/billing')) {
       if (this.auth.authed) { return Promise.resolve(true); }
       return this.checkLogin(url, route);
     }
-
-    if (url.startsWith('/account')) {
+    else if (url.startsWith('/account/setup')) {
       return this.checkLogin(url, route);
     }
-
-    // non user route protected?
-    this.router.navigate(['/login']);
-    return Promise.resolve(false);
+    else if (url.startsWith('/account')) {
+      if (this.auth.authed) { return Promise.resolve(true); }
+      let secret = route.queryParams['secret'];
+      return this.checkLogin(url, route, secret);
+    }
+    else {
+      // non user route protected?
+      this.router.navigate(['/login']);
+      return Promise.resolve(false);
+    }
   }
 
-  checkLogin(url: string, route: ActivatedRouteSnapshot, email?: string, secret?: string): Promise<boolean> {
+  checkLogin(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<boolean> {
     let promise;
-    if (email && secret) { promise = this.session.pullPlanData(email, secret); }
+    if (secret) { promise = this.session.pullPlanData(secret); }
     else { promise = this.session.pullPlanData(); }
 
     return promise

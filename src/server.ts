@@ -47,7 +47,7 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
 // Serve static files
-app.use(express.static(path.join(ROOT, 'build'), {index: false}));
+app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}));
 app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
@@ -74,9 +74,8 @@ function ngApp(req, res) {
 
 // Routes with html5pushstate
 // ensure routes match client-side-app
-app.get('/', ngApp);
 app.get('/home', ngApp);
-app.get('/account*', ngApp);
+app.get('/account', ngApp);
 app.get('/account/billing', ngApp);
 app.get('/account/upgrade', ngApp);
 app.get('/account/setup', ngApp);
@@ -92,6 +91,7 @@ app.get('/privacy', ngApp);
 app.get('/aboutus', ngApp);
 app.get('/tos', ngApp);
 app.get('/bounty', ngApp);
+app.get('/', ngApp);
 app.get('*', ngApp);
 
 // Server

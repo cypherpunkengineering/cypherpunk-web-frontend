@@ -130,7 +130,7 @@ export class SessionService {
     this.setExpirationString(this.user.subscription.expiration);
   }
 
-  pullPlanData(email?: string, secret?: string): Promise<boolean> {
+  pullPlanData(secret?: string): Promise<boolean> {
     let url = '';
     if (secret) { url = `/api/v0/account/status?secret=${secret}`; }
     else { url = '/api/v0/account/status'; }
