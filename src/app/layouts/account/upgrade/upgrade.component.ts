@@ -84,17 +84,13 @@ export class UpgradeComponent {
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
     .then(() => {
+      let redirect = true;
       let type = session.user.account.type;
       let renewal = session.user.subscription.renewal;
-      if (type === 'staff' || type === 'dev') {
-        router.navigate(['/account']);
-      }
-      else if (type === 'premium' && renewal === 'annually') {
-        router.navigate(['/account']);
-      }
-      else if (type === 'premium' && renewal === 'forever') {
-        router.navigate(['/account']);
-      }
+      if (type === 'free') { redirect = false; }
+      else if (type === 'premium' && renewal === 'semiannually') { redirect = false; }
+      else if (type === 'premium' && renewal === 'monthly') { redirect = false; }
+      if (redirect) { router.navigate(['/account']); }
     })
     .then(() => { this.loading = false; });
   }
@@ -162,7 +158,6 @@ export class UpgradeComponent {
   // pay with paypal
 
   payWithPaypal() {
-    console.log('paypal');
     this.ppButtonDisabled = true;
 
     if (this.selectedPlan.id === 'monthly899') {
