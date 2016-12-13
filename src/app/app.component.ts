@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { isBrowser } from 'angular2-universal';
 
 @Component({
   selector: 'app',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    if (isBrowser) {
       this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) { return; }
 
@@ -26,4 +28,5 @@ export class AppComponent implements OnInit {
         else { document.body.scrollTop = 0; }
       });
     }
+  }
 }

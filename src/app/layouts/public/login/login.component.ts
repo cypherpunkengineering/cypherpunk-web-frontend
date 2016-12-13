@@ -2,6 +2,7 @@ import { Component, AfterViewInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
+import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './login.component.html',
@@ -19,7 +20,9 @@ export class LoginComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    document.getElementById('login-username').focus();
+    if (isBrowser) {
+      document.getElementById('login-username').focus();
+    }
   }
 
   validateLogin () {

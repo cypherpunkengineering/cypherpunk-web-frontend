@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, NgZone } from '@angular/core';
+import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './reset.component.html',
@@ -11,7 +12,9 @@ export class ResetComponent implements AfterViewInit {
   constructor(private zone: NgZone) { }
 
   ngAfterViewInit() {
-    document.getElementById('reset-username').focus();
+    if (isBrowser) {
+      document.getElementById('reset-username').focus();
+    }
   }
 
   validateReset () {
