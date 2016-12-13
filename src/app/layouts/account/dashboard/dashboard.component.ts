@@ -32,17 +32,11 @@ export class DashboardComponent {
   }
 
   hidePriceBoxes() {
-    let renewal = this.user.subscription.renewal;
     let type = this.user.account.type;
-
-    let renewalValid = false;
-    let typeValid = false;
-
-    if (renewal === 'annually' || renewal === 'forever') { renewalValid = true; }
-    if (type === 'premium') { typeValid = true; }
-
-    if (renewalValid && typeValid) { return true; }
-    else { return false; }
+    let renewal = this.user.subscription.renewal;
+    if (type === 'free') { return false; }
+    else if (type === 'premium' && renewal !== 'annually') { return false; }
+    return true;
   }
 
   upgrade(planId) {

@@ -88,8 +88,7 @@ export class UpgradeComponent {
       let type = session.user.account.type;
       let renewal = session.user.subscription.renewal;
       if (type === 'free') { redirect = false; }
-      else if (type === 'premium' && renewal === 'semiannually') { redirect = false; }
-      else if (type === 'premium' && renewal === 'monthly') { redirect = false; }
+      else if (type === 'premium' && renewal !== 'annually') { redirect = false; }
       if (redirect) { router.navigate(['/account']); }
     })
     .then(() => { this.loading = false; });
