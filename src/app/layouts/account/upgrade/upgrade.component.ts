@@ -83,6 +83,7 @@ export class UpgradeComponent {
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
+    .then((data) => { this.loading = data || false; })
     .then(() => {
       let redirect = true;
       let type = session.user.account.type;
@@ -90,8 +91,7 @@ export class UpgradeComponent {
       if (type === 'free') { redirect = false; }
       else if (type === 'premium' && renewal !== 'annually') { redirect = false; }
       if (redirect) { router.navigate(['/account']); }
-    })
-    .then(() => { this.loading = false; });
+    });
   }
 
   // pay with credit card

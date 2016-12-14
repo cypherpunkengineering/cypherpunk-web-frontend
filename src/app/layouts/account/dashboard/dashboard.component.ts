@@ -28,7 +28,7 @@ export class DashboardComponent {
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
-    .then(() => { this.loading = false; });
+    .then((data) => { this.loading = data || false; });
   }
 
   hidePriceBoxes() {

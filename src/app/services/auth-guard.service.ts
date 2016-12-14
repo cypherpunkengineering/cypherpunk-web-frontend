@@ -12,50 +12,50 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
     let url: string = state.url;
 
     if (url.startsWith('/account/upgrade')) {
-      if (this.auth.authed) { return Promise.resolve(true); }
+      if (this.auth.authed) { return Promise.resolve({}); }
       let secret = route.queryParams['secret'];
       return this.checkLogin(url, route, secret);
     }
     else if (url.startsWith('/account/billing')) {
-      if (this.auth.authed) { return Promise.resolve(true); }
+      if (this.auth.authed) { return Promise.resolve({}); }
       return this.checkLogin(url, route);
     }
     else if (url.startsWith('/account/setup')) {
+      if (this.auth.authed) { return Promise.resolve({}); }
       return this.checkLogin(url, route);
     }
     else if (url.startsWith('/account')) {
-      if (this.auth.authed) { return Promise.resolve(true); }
       let secret = route.queryParams['secret'];
       return this.checkLogin(url, route, secret);
     }
     else {
       // non user route protected?
       this.router.navigate(['/login']);
-      return Promise.resolve(false);
+      return Promise.resolve({});
     }
   }
 
-  checkLogin(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<boolean> {
+  checkLogin(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<any> {
     let promise;
     if (secret) { promise = this.session.pullPlanData(secret); }
     else { promise = this.session.pullPlanData(); }
 
     return promise
-    .then((valid) => {
-      if (valid) {
+    .then((data) => {
+      if (data.authed) {
         this.auth.authed = true;
-        return true;
+        return data;
       }
       else {
         this.auth.authed = false;
         this.session.userFound = false;
         this.auth.redirectUrl = url;
         this.router.navigate(['/login']);
-        return false;
+        return Promise.reject({});
       }
     });
   }

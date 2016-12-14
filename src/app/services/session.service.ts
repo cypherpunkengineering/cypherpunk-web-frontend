@@ -130,7 +130,7 @@ export class SessionService {
     this.setExpirationString(this.user.subscription.expiration);
   }
 
-  pullPlanData(secret?: string): Promise<boolean> {
+  pullPlanData(secret?: string): Promise<any> {
     let url = '';
     if (secret) { url = `/api/v0/account/status?secret=${secret}`; }
     else { url = '/api/v0/account/status'; }
@@ -140,9 +140,10 @@ export class SessionService {
     .then((data) => {
       if (data.confirmed) { data.status = 'active'; }
       this.setUserData(data);
+      return data;
     })
-    .then(() => { return true; })
-    .catch(() => { return false; });
+    .then((data) => { return { authed: true, loading: data.loading }; })
+    .catch(() => { return { authed: false }; });
   }
 
   clearUserData() {

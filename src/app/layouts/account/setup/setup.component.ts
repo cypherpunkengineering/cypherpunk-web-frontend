@@ -42,7 +42,7 @@ export class SetupComponent implements OnInit {
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
-    .then(() => { this.loading = false; });
+    .then((data) => { this.loading = data || false; });
   }
 
   ngOnInit() {

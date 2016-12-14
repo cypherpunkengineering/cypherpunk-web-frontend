@@ -61,7 +61,8 @@ export function subs(req, res) {
       subscription: {
         renewal: '',
         expiration: '0'
-      }
+      },
+      loading: true
     };
   }
 
