@@ -7,26 +7,28 @@
   </div>
 </div>
 
-<form>
-  <p>
-    <label for="username">Username / Email</label><br>
-    <input id="login-username" type="text" name="username" [(ngModel)]="user.login" placeholder="Username / Email" autofocus>
-  </p>
+<div class="content">
+  <form>
+    <p>
+      <label for="username">Username / Email</label><br>
+      <input id="login-username" type="text" name="username" [(ngModel)]="user.login" placeholder="Username / Email" autofocus>
+    </p>
 
-  <p>
-    <label for="password">Password</label><br>
-    <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="login()">
-  </p>
+    <p>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="login()">
+    </p>
 
-  <p class="center">
-    <button class="btn blue" type="button" (click)="login()" [disabled]="!validateLogin() || loginButtonDisabled">
-      Log In
-    </button>
-  </p>
+    <p class="center">
+      <button class="btn blue" type="button" (click)="login()" [disabled]="!validateLogin() || loginButtonDisabled">
+        Log In
+      </button>
+    </p>
 
-  <p class="center">
-    <a class="login-link" routerLink="/reset">Forgot Password?</a>
-  </p>
-</form>
+    <p class="center">
+      <a class="login-link" routerLink="/reset">Forgot Password?</a>
+    </p>
+  </form>
+</div>
 
 <app-footer></app-footer>

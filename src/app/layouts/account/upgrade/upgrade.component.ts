@@ -115,8 +115,15 @@ export class UpgradeComponent {
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
-      let token = response.id;
-      return this.saveToServer(token);
+      if (response.error) {
+        this.zone.run(() => {
+          this.alertService.error('Could not process payment: ' + response.error.message);
+        });
+      }
+      else {
+        let token = response.id;
+        return this.saveToServer(token);
+      }
     };
 
     // load up stripe and create token

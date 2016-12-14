@@ -29,27 +29,30 @@
   text-transform: none;
 }
 
-form {
-  display: table;
-  margin: 50px auto 50px;
-  text-align: center;
+.content {
+  min-height: 50vh;
+  form {
+    display: table;
+    margin: 50px auto 50px;
+    text-align: center;
 
-  p { display: table-row;  text-align: left; }
-  p.center { text-align: center; }
+    p { display: table-row;  text-align: left; }
+    p.center { text-align: center; }
 
-  label { font-size: 18px; color: #666; }
+    label { font-size: 18px; color: #666; }
 
-  input {
-    display: table-cell;
-    width: 356px;
-    height: 50px;
-    border-radius: 4px;
-    border: solid 1px #999;
-    margin-top: 5px;
-    margin-bottom: 25px;
-    font-size: 18px;
-    padding: 10px;
-    color: #666;
+    input {
+      display: table-cell;
+      width: 356px;
+      height: 50px;
+      border-radius: 4px;
+      border: solid 1px #999;
+      margin-top: 5px;
+      margin-bottom: 25px;
+      font-size: 18px;
+      padding: 10px;
+      color: #666;
+    }
   }
 }
 
