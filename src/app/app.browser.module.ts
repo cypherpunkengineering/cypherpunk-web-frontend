@@ -25,6 +25,7 @@ import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
 import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
 import { SetupModule } from './layouts/account/setup/setup.module';
+import { ResetModule } from './layouts/account/reset/reset.module';
 
 import { CacheService } from './universal-cache';
 import { SessionService } from './services/session.service';
@@ -67,6 +68,7 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     BillingModule,
     UpgradeModule,
     SetupModule,
+    ResetModule,
 
     AppRoutingModule
   ],

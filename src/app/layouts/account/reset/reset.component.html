@@ -1,0 +1,30 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <div class="masthead-header">Reset Password</div>
+  <div class="masthead-image">
+    <img src="/assets/web-hero-login.png" alt="Login">
+  </div>
+</div>
+
+<div class="content">
+  <form>
+    <p>
+      <label for="password">New Password</label><br>
+      <input id="password" type="password" name="password" [(ngModel)]="password" autofocus>
+    </p>
+
+    <p>
+      <label for="username">Confirm Password</label><br>
+      <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" autofocus>
+    </p>
+
+    <p class="center">
+      <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">
+        Reset Password
+      </button>
+    </p>
+  </form>
+</div>
+
+<app-footer></app-footer>

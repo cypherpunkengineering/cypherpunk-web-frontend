@@ -79,6 +79,7 @@ app.get('/account', ngApp);
 app.get('/account/billing', ngApp);
 app.get('/account/upgrade', ngApp);
 app.get('/account/setup', ngApp);
+app.get('/account/reset', ngApp);
 app.get('/premium', ngApp);
 app.get('/login', ngApp);
 app.get('/recover', ngApp);

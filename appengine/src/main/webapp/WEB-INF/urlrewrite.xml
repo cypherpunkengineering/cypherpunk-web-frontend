@@ -87,6 +87,10 @@
 		<to last="true">/account/setup.html$1</to>
 	</rule>
 	<rule>
+		<from>^/account/reset(.*)</from>
+		<to last="true">/account/reset.html$1</to>
+	</rule>
+	<rule>
 		<from>^/account(.*)</from>
 		<to last="true">/account/account.html$1</to>
 	</rule>
