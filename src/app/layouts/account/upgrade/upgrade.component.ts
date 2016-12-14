@@ -83,7 +83,7 @@ export class UpgradeComponent {
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
     this.authGuard.canActivate(route, state)
-    .then((data) => { this.loading = data || false; })
+    .then((data) => { this.loading = data.loading || false; })
     .then(() => {
       let redirect = true;
       let type = session.user.account.type;
