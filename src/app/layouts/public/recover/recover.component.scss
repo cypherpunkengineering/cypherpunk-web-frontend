@@ -1,3 +1,5 @@
+.wrapper {
+
 .masthead {
   width: 100%;
   background-color: #0e003f;
@@ -29,37 +31,36 @@
   text-transform: none;
 }
 
-.content {
-  min-height: 50vh;
-  form {
-    display: table;
-    margin: 50px auto 50px;
-    text-align: center;
+form {
+  display: table;
+  margin: 50px auto 50px;
+  text-align: center;
 
-    p { display: table-row;  text-align: left; }
-    p.center { text-align: center; }
+  p { display: table-row;  text-align: left; }
+  p.center { text-align: center; }
 
-    label { font-size: 18px; color: #666; }
+  label { font-size: 18px; color: #666; }
 
-    input {
-      display: table-cell;
-      width: 356px;
-      height: 50px;
-      border-radius: 4px;
-      border: solid 1px #999;
-      margin-top: 5px;
-      margin-bottom: 25px;
-      font-size: 18px;
-      padding: 10px;
-      color: #666;
-    }
+  input {
+    display: table-cell;
+    width: 356px;
+    height: 50px;
+    border-radius: 4px;
+    border: solid 1px #999;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    padding: 10px;
+    color: #666;
   }
 }
 
 .login-link { color: #034698; }
 
+}
+
 @media (max-width: 1060px) {
-  .masthead {
+  .wrapper .masthead {
     .masthead-header { top: 0; }
     .masthead-image {
       height: 108px;
@@ -75,6 +76,6 @@
 }
 
 @media (max-width: 375px) {
-  .btn { width: 300px; }
-  form input { width: 290px; }
+  .wrapper .btn { width: 300px; }
+  .wrapper form input { width: 290px; }
 }

@@ -1,25 +1,27 @@
-<div class="masthead">
-  <app-nav></app-nav>
+<div class="wrapper">
+  <div class="masthead">
+    <app-nav></app-nav>
 
-  <div class="masthead-header">Recover Password</div>
-  <div class="masthead-image">
-    <img src="/assets/web-hero-login.png" alt="Login">
+    <div class="masthead-header">Recover Password</div>
+    <div class="masthead-image">
+      <img src="/assets/web-hero-login.png" alt="Login">
+    </div>
   </div>
-</div>
 
-<div class="content">
-  <form>
-    <p>
-      <label for="username">Email</label><br>
-      <input id="recover-username" type="text" name="username" [(ngModel)]="email" placeholder="Username / Email" autofocus>
-    </p>
+  <div class="content">
+    <form>
+      <p>
+        <label for="username">Email</label><br>
+        <input id="recover-username" type="text" name="username" [(ngModel)]="email" placeholder="Username / Email" autofocus>
+      </p>
 
-    <p class="center">
-      <button class="btn blue" (click)="recover()" [disabled]="!validateRecover() || recoverButtonDisabled">
-        Recover Password
-      </button>
-    </p>
-  </form>
+      <p class="center">
+        <button class="btn blue" (click)="recover()" [disabled]="!validateRecover() || recoverButtonDisabled">
+          Recover Password
+        </button>
+      </p>
+    </form>
+  </div>
 </div>
 
 <app-footer></app-footer>

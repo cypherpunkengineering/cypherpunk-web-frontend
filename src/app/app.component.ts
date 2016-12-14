@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { isBrowser } from 'angular2-universal';
 
 @Component({
-  selector: 'app',
+  selector: 'app-root',
   template: `<router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit {

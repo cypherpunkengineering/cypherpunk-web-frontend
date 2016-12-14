@@ -21,12 +21,15 @@
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       box-sizing: border-box;
       font-family: Dosis;
       font-size: 16px;
     }
     *, *:before, *:after { box-sizing: inherit; }
-
+    .wrapper { min-height: 100%; margin-bottom: -367px; }
+    .wrapper:after { content: ''; display: block; }
+    .footerContainer, .wrapper:after { height: 367px;}
     button { font-family: Dosis; font-size: 16px; }
 
     .btn {
@@ -63,9 +66,9 @@
 </head>
 <body>
 
-  <app>
+  <app-root>
     Loading Universal ...
-  </app>
+  </app-root>
 
   <!-- begin Stripe code -->
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>

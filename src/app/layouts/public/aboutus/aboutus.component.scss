@@ -1,31 +1,32 @@
-.masthead {
-  width: 100%;
-  background-color: #0e003f;
-
-  .masthead-header {
+.wrapper {
+  .masthead {
     width: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    color: #ffffff;
-    margin: 45px auto 0;
-    padding-bottom: 96px;
-  }
-}
+    background-color: #0e003f;
 
-.sub-masthead {
-  width: 100%;
-  background-color: rgba(202, 216, 235, 0.3);
-  color: #666;
+    .masthead-header {
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 45px auto 0;
+      padding-bottom: 96px;
+    }
+  }
+
+  .sub-masthead {
+    width: 100%;
+    background-color: rgba(202, 216, 235, 0.3);
+    color: #666;
+
+    .content {
+      max-width: 650px;
+      text-align: center;
+    }
+    .header { color: #1973af; }
+  }
 
   .content {
-    max-width: 650px;
-    text-align: center;
-  }
-  .header { color: #1973af; }
-}
-
-.content {
   width: 100%;
   margin: auto;
   padding: 50px 0 60px;
@@ -73,19 +74,22 @@
   }
 
 }
+}
 
 @media (max-width: 1016px) {
-  .content { padding: 30px 10px 60px; }
-  .content .grouping .teammate { width: 48%; max-width: 48%; margin: 0 0 50px 0; }
+  .wrapper .content {
+    padding: 30px 10px 60px;
+    .grouping .teammate { width: 48%; max-width: 48%; margin: 0 0 50px 0; }
+  }
 }
 
 @media (max-width: 375px) {
-  .content .grouping .teammate {
-    display: block;
-    width: 100%;
-    margin: 25px auto;
-  }
-  .content .grouping .teammate:last-child {
-    margin: 25px auto;
+  .wrapper .content .grouping {
+    .teammate {
+      display: block;
+      width: 100%;
+      margin: 25px auto;
+    }
+    .teammate:last-child { margin: 25px auto; }
   }
 }
