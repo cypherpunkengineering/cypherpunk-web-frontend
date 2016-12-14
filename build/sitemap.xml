@@ -16,6 +16,6 @@
     <loc>https://cypherpunk.com/login</loc>
   </url>
   <url>
-    <loc>https://cypherpunk.com/reset</loc>
+    <loc>https://cypherpunk.com/recover</loc>
   </url>
 </urlset>

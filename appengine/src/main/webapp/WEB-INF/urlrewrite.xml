@@ -109,8 +109,8 @@
 		<to last="true">/login.html$1</to>
 	</rule>
 	<rule>
-		<from>^/reset(.*)</from>
-		<to last="true">/reset.html$1</to>
+		<from>^/recover(.*)</from>
+		<to last="true">/recover.html$1</to>
 	</rule>
 	<rule>
 		<from>^/whyus(.*)</from>

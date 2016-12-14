@@ -11,7 +11,7 @@ const routes = [
   { url: baseRoute + 'download', dirPath: baseDir + 'download.html' },
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
-  { url: baseRoute + 'reset', dirPath: baseDir +'reset.html' },
+  { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
   { url: baseRoute + 'whyus', dirPath: baseDir + 'whyus.html' },
   { url: baseRoute + 'howitworks', dirPath: baseDir + 'howitworks.html' },
   { url: baseRoute + 'locations', dirPath: baseDir + 'locations.html' },

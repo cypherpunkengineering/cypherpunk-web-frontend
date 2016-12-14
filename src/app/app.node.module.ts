@@ -15,7 +15,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { HomeModule } from './layouts/public/home/home.module';
 import { PremiumModule } from './layouts/public/premium/premium.module';
 import { LoginModule } from './layouts/public/login/login.module';
-import { ResetModule } from './layouts/public/reset/reset.module';
+import { RecoverModule } from './layouts/public/recover/recover.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
@@ -54,7 +54,7 @@ import { LocalStorage } from './services/local-storage';
     HomeModule,
     PremiumModule,
     LoginModule,
-    ResetModule,
+    RecoverModule,
     DownloadModule,
     ConfirmModule,
     WhyusModule,
