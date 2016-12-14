@@ -11,7 +11,6 @@
 }
 
 .footer-column {
-  height: 100%;
   padding-top: 50px;
   margin-left: 45px;
   float: left;
@@ -198,6 +197,11 @@
   }
 }
 
+@media (max-width: 1060px) {
+  .modal .modal-content { width: 90%; }
+  .modal .modal-content .modal-footer .row .btn { max-width: 260px; width: 90%; }
+}
+
 @media (max-width: 1000px) {
   .footer { height: inherit; }
   .footer-column {
@@ -228,11 +232,6 @@
   .footer-column.logo .btn { width: 341px; height: 80px; font-size: 24px; }
   .mobile { display: block; margin-top: 25px; }
   .desktop { display: none; }
-}
-
-@media (max-width: 1060px) {
-  .modal .modal-content { width: 90%; }
-  .modal .modal-content .modal-footer .row .btn { max-width: 260px; width: 90%; }
 }
 
 @media (max-width: 375px) {
