@@ -1,57 +1,62 @@
 .nav {
   width: 100%;
-  max-width: 1000px;
-  margin: auto;
-}
+  background-color: #0e003f;
 
-.nav-left {
-  float: left;
-  padding: 8px 0 8px 16px;
-}
+  .nav-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
 
-.nav-left img {
-  width: 227px;
-  height: 40px;
-}
+    .nav-left {
+      float: left;
+      padding: 8px 0 8px 16px;
 
-.nav-right {
-  float: right;
-  padding: 18px 16px 0 0;
-}
+      img { width: 227px; height: 40px; }
+    }
 
-.nav-right ul {
-  list-style-type: none;
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
+    .nav-right {
+      float: right;
+      padding: 18px 16px 0 0;
 
-.nav-right ul li { position: relative; float: left; }
+      ul {
+        list-style-type: none;
+        position: relative;
+        margin: 0;
+        padding: 0;
 
-.nav-link {
-  color: #034698;
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
-  margin-right: 25px;
-}
+        li {
+          position: relative;
+          float: left;
 
-.border {
-  width: 113.8px;
-  height: 38px;
-  border: 1px solid #034698;
-  border-radius: 5px;
-  margin-top: -7px;
-  padding-top: 8px;
-  text-align: center;
-  cursor: pointer;
-  & a { margin-right: 0; }
+          .nav-link {
+            color: #a5a2eb;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 25px;
+            &:hover { color: #fff; }
+          }
+        }
+        li.border {
+          width: 113.8px;
+          height: 38px;
+          border: 1px solid #311886;
+          border-radius: 5px;
+          margin-top: -7px;
+          padding-top: 8px;
+          text-align: center;
+          cursor: pointer;
+          & a { margin-right: 0; }
+        }
+      }
+    }
+  }
 }
 
 .btn {
   width: 113.8px;
   height: 35px;
-  margin:-10px 25px 0 0;
+  margin: -10px 25px 0 0;
+  background-color: #1987bd;
 }
 
 .clear { clear: both; }
@@ -61,17 +66,15 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  background-color: #fff;
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s ease;
-  .nav-link:hover { color: #a5a2eb; }
-  .border { border-color: #311886; }
 }
 
 .mobile-nav {
   display: none;
   width: 100%;
+  background-color: #0e003f;
 
   .mobile-nav-left {
     text-align: center;
@@ -95,7 +98,7 @@
     max-height: 0;
     overflow-y: hidden;
     transition: max-height 0.5s ease;
-    &.open { max-height: 175px; }
+    &.open { max-height: 220px; }
 
     .mobile-dd-item {
       border-bottom: 1px solid #f2f2f2;

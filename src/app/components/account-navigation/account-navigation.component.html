@@ -1,50 +1,24 @@
 <div id="nav" class="nav">
-  <div class="nav-left">
-    <a routerLink="/">
-      <img src="/assets/logo-bl@2x.png" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
-    </a>
-  </div>
-
-  <nav class="nav-right">
-    <ul>
-      <li>
-        <a class="nav-link" routerLink="/account">Account</a>
-      </li>
-      <li>
-        <a class="nav-link" routerLink="/account/setup">Advanced</a>
-      </li>
-      <li *ngIf="!hidePriceBoxes()">
-        <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
-      </li>
-      <li class="border" (click)="logout()">
-        <a class="nav-link">Log out</a>
-      </li>
-    </ul>
-  </nav>
-  <div class="clear"></div>
-</div>
-
-<div id="scrolled-nav" class="scrolled-nav-container">
-  <div class="nav">
+  <div class="nav-inner">
     <div class="nav-left">
       <a routerLink="/">
-        <img src="/assets/logo-bl@2x.png" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+        <img src="/assets/logo-wh@2x.png" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
       </a>
     </div>
 
     <nav class="nav-right">
       <ul>
         <li>
-          <a class="nav-link" routerLink="/account">Account</a>
+          <a class="nav-link" routerLink="/account">ACCOUNT</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/account/setup">Advanced</a>
+          <a class="nav-link" routerLink="/account/setup">ADVANCED</a>
         </li>
         <li *ngIf="!hidePriceBoxes()">
-          <button class="btn gold" routerLink="/account/upgrade">Upgrade</button>
+          <button class="btn" routerLink="/account/upgrade">UPGRADE</button>
         </li>
         <li class="border" (click)="logout()">
-          <a class="nav-link">Log out</a>
+          <a class="nav-link">LOG OUT</a>
         </li>
       </ul>
     </nav>
@@ -52,10 +26,40 @@
   </div>
 </div>
 
+<div id="scrolled-nav" class="scrolled-nav-container">
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a routerLink="/">
+          <img src="/assets/logo-wh@2x.png" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+        </a>
+      </div>
+
+      <nav class="nav-right">
+        <ul>
+          <li>
+            <a class="nav-link" routerLink="/account">ACCOUNT</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/account/setup">ADVANCED</a>
+          </li>
+          <li *ngIf="!hidePriceBoxes()">
+            <button class="btn" routerLink="/account/upgrade">UPGRADE</button>
+          </li>
+          <li class="border" (click)="logout()">
+            <a class="nav-link">LOG OUT</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
 <div class="mobile-nav">
   <div class="mobile-nav-left">
     <a routerLink="/">
-      <img src="/assets/logo-bl@2x.png" class="mobile-logo" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+      <img src="/assets/logo-wh@2x.png" class="mobile-logo" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
 
     <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
@@ -65,16 +69,16 @@
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
     <div class="mobile-dd-item" routerLink="/account">
-      Account
+      ACCOUNT
     </div>
     <div class="mobile-dd-item" routerLink="/account/setup">
-      Advanced
+      ADVANCED
     </div>
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="!hidePriceBoxes()">
-      <button class="btn gold">Upgrade</button>
+      <button class="btn">UPGRADE</button>
     </div>
     <div class="mobile-dd-item" (click)="logout()">
-      log out
+      LOG OUT
     </div>
   </div>
   <div class="clear"></div>

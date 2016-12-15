@@ -3,134 +3,52 @@
   <app-acc-nav></app-acc-nav>
 
   <div class="masthead">
-
-    <div class="account">
-      <div class="header">Cypherpunk Account</div>
-
-      <hr>
-
-      <div class="account-container">
-        <div class="left">
-          <span class="email">{{user.account.email}}</span><br>
-          <span class="status active">{{user.status}}</span>
-        </div>
-
-        <div class="right">
-          <span class="period">{{user.account.type}}</span><br>
-          <span class="renewal">{{ user.subscription.expirationString }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="mobile-header">Cypherpunk Account</div>
-
-    <div class="mobile-account">
-      <span class="email">{{user.account.email}}</span><br>
-      <span class="status active">{{user.status}}</span>
-
-      <hr>
-
-      <span class="period">{{user.account.type}}</span><br>
-      <span class="renewal">{{ user.subscription.expirationString }}</span>
-
-      <hr>
-
-      Username:<br>
-      {{user.privacy.username}}
-      <br><br>
-      Password:<br>
-      {{user.privacy.password}}
-    </div>
-
+    <div class="masthead-header">My Account</div>
+    <span class="period">{{user.account.type}}</span><br>
   </div>
 
-  <div class="header" [ngClass]="{'hidden': hidePriceBoxes() }">
-    Upgrade to Premium!
+  <div class="tab-nav">
+    <ul class="nav">
+      <li [ngClass]="{'active': currentTab === 'overview'}" (click)="switch('overview')">
+        Overview
+      </li>
+      <li [ngClass]="{'active': currentTab === 'subscription'}" (click)="switch('subscription')">
+        Subscription
+      </li>
+    </ul>
   </div>
 
-  <div class="pricing" [ngClass]="{'hidden': hidePriceBoxes() }">
-    <div class="blimp-container" [ngClass]="{ 'hidden': !plans[1].viewable }">
-      <div class="blimp">Best Value!</div>
-    </div>
+  <div class="content" *ngIf="currentTab === 'overview'">
+    <div class="content-inner">
+      <div class="content-header">Account Info</div>
 
-    <div class="price-box" (click)="upgrade(plans[0].id)" [ngClass]="{ 'active': plans[0].selected, 'hidden': !plans[0].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[0].selected}">
-        {{plans[0].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[0].selected}">
-          $ {{plans[0].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
-    </div>
+      <section>
+        <div class="content-row">
+          <div class="left">
+            Email: <span class="email">{{user.account.email}}</span>
+          </div>
+          <div class="right">
+            <a (click)="openEmailModal()">Update</a>
+          </div>
+        </div>
 
-    <div class="mobile-blimp-container" [ngClass]="{ 'hidden': !plans[1].viewable }">
-      <div class="blimp">Best Value!</div>
-    </div>
-
-    <div class="price-box" (click)="upgrade(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[1].selected}">
-        {{plans[1].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[1].selected}">
-          $ {{plans[1].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
-    </div>
-
-    <div class="price-box" (click)="upgrade(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[2].selected}">
-        {{plans[2].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[2].selected}">
-          $ {{plans[2].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
+        <div class="content-row">
+          <div class="left">
+            Password: <span class="email">*******</span>
+          </div>
+          <div class="right">
+            <a (click)="openPasswordModal()">Update</a>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 
-  <div class="content">
-
-    <div class="content-header">Account Info</div>
-
-    <div>
-      <div class="content-row">
-        <div class="left">
-          <a (click)="showEmailModal = true">Change Email</a>
-        </div>
-        <div class="right">
-          <span class="user-email">{{user.email}}</span>
-        </div>
-      </div>
-
-      <div class="content-row">
-        <div class="left">
-          <a (click)="showPasswordModal = true">Change Password</a>
-        </div>
-      </div>
-    </div>
-
-    <div>
+  <div class="content" *ngIf="currentTab === 'subscription'">
+    <div class="content-inner">
       <div class="content-header">Manage Subscription</div>
 
-      <div>
+      <section>
         <div class="content-row">
           <div class="left">
             <a routerLink="/account/billing">
@@ -154,56 +72,52 @@
             </a>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-
   </div>
 </div>
 
 <app-footer></app-footer>
 
-<div class="modal" *ngIf="showEmailModal">
-  <div class="background" (click)="showEmailModal = false"></div>
+<div class="modal" [ngClass]="{'open': showEmailModal}">
+  <div class="background" (click)="showEmailModal = false" [ngClass]="{'open': showEmailModal}"></div>
   <div class="modal-content">
     <div class="modal-header">Change Email</div>
-
-    <hr>
+    <div class="modal-line"></div>
 
     <div class="modal-body">
       <div class="row">
-        <label>Current Email</label><br>
-        <span class="currentEmail">{{user.email}}</span>
+        <label>Current Email: {{user.account.email}}</label>
       </div>
 
       <div class="row">
-        <label for="newEmail">New Email</label><br>
+        <label for="newEmail">New Email:</label><br>
+        <input id="dashboardEmail" type="email" name="newEmail" >
+      </div>
+
+      <div class="row">
+        <label for="newEmail">Current Password: </label><br>
         <input type="email" name="newEmail">
       </div>
     </div>
 
     <div class="modal-footer">
-      <div class="row">
-        <button class="btn blue">Change</button>
-      </div>
-
-      <div class="row">
-        <a (click)="showEmailModal = false">Cancel</a>
-      </div>
+      <button class="btn blue cancel" (click)="showEmailModal = false">Cancel</button>
+      <button class="btn blue">Change</button>
     </div>
   </div>
 </div>
 
-<div class="modal" *ngIf="showPasswordModal">
-  <div class="background" (click)="showPasswordModal = false"></div>
+<div class="modal" [ngClass]="{'open': showPasswordModal}">
+  <div class="background" (click)="showPasswordModal = false" [ngClass]="{'open': showPasswordModal}"></div>
   <div class="modal-content">
     <div class="modal-header">Change Password</div>
-
-    <hr>
+    <div class="modal-line"></div>
 
     <div class="modal-body">
       <div class="row">
         <label for="password">New Password</label><br>
-        <input type="password" name="password">
+        <input id="dashboardPassword" type="password" name="password" >
       </div>
 
       <div class="row">
@@ -213,13 +127,8 @@
     </div>
 
     <div class="modal-footer">
-      <div class="row">
-        <button class="btn blue">Change</button>
-      </div>
-
-      <div class="row">
-        <a (click)="showPasswordModal = false">Cancel</a>
-      </div>
+      <button class="btn blue cancel" (click)="showPasswordModal = false">Cancel</button>
+      <button class="btn blue">Change</button>
     </div>
   </div>
 </div>

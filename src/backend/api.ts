@@ -55,7 +55,7 @@ export function subs(req, res) {
       account: {
         id: '1',
         email: '',
-        type: '',
+        type: 'free',
         confirmed: false
       },
       subscription: {

@@ -35,35 +35,21 @@
     .btn {
       color: white;
       font-weight: bold;
-      text-transform: uppercase;
       text-align: center;
       border: 0px;
       border-radius: 5px;
       cursor: pointer;
     }
 
-    .btn.gold {
-      background-color: #ffc933;
-      box-shadow: 0 4px 0 0 #d19e12;
-      text-shadow: 0 2px 0 #d19e12;
-    }
-
-    .btn.blue {
-      background-color: #5590da;
-      box-shadow: 0 4px 0 0 #034698;
-      text-shadow: 0 2px 0 #034698;
-    }
-
     .btn:disabled {
       cursor: default;
       background-color: #ccc;
-      box-shadow: 0 4px 0 0 #ddd;
-      text-shadow: 0 2px 0 #ccc;
     }
 
     input:disabled { background-color: #eee; }
 
     @media (max-width: 1000px) {
+      .wrapper { margin-bottom: -810px; }
       .footerContainer, .wrapper:after { height: 810px;}
     }
   </style>

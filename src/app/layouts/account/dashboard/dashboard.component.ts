@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
-import { Plan, PlansService } from '../../../services/plans.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent {
   user: any;
-  plans: Plan[];
+  currentTab: string = 'overview';
   loading: boolean = true;
   showEmailModal: boolean = false;
   showPasswordModal: boolean = false;
@@ -19,11 +18,9 @@ export class DashboardComponent {
     private router: Router,
     private authGuard: AuthGuard,
     private session: SessionService,
-    private plansService: PlansService,
     private activatedRoute: ActivatedRoute
   ) {
     this.user = this.session.user;
-    this.plans = this.plansService.plans;
 
     let route = activatedRoute.snapshot;
     let state = router.routerState.snapshot;
@@ -31,16 +28,17 @@ export class DashboardComponent {
     .then((data) => { this.loading = data.loading || false; });
   }
 
-  hidePriceBoxes() {
-    let type = this.user.account.type;
-    let renewal = this.user.subscription.renewal;
-    if (type === 'free') { return false; }
-    else if (type === 'premium' && renewal !== 'annually') { return false; }
-    return true;
+  openEmailModal() {
+    this.showEmailModal = true;
+    setTimeout(() => { document.getElementById('dashboardEmail').focus(); }, 510);
   }
 
-  upgrade(planId) {
-    this.plansService.selectPlan(planId);
-    this.router.navigate(['/account/upgrade']);
+  openPasswordModal() {
+    this.showPasswordModal = true;
+    setTimeout(() => { document.getElementById('dashboardPassword').focus(); }, 510);
+  }
+
+  switch(tab: string) {
+    this.currentTab = tab;
   }
 }
