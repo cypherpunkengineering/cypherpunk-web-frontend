@@ -55,6 +55,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.48\.</condition><!-- wiz hnl -->
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.49\.</condition><!-- wiz hnl2 -->
 		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
+		<condition type="remote-addr" operator="notequal" next="and">^185\.176\.52\.</condition><!-- cypherpunk tokyo network -->
 		<condition type="remote-addr" operator="notequal" next="and">^43\.233\.13\.</condition><!-- tokyo office -->
 		<condition type="remote-addr" operator="notequal" next="and">^2606:6000:624c:</condition><!-- jon -->
 		<condition type="remote-addr" operator="notequal" next="and">^76\.170\.54</condition><!-- jon -->
