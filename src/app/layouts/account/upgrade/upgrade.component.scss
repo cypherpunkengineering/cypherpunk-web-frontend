@@ -215,7 +215,8 @@
   height: 60px;
   margin: 25px 0 25px;
   font-size: 24px;
-  text-transform: none;
+  background-color: #1987bd;
+  &:disabled { background-color: #ccc; }
 }
 
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }

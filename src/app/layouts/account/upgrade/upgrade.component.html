@@ -144,7 +144,7 @@
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
+      <button class="btn" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
         Upgrade Now
       </button>
     </div>
