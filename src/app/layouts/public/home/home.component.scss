@@ -40,6 +40,17 @@
       }
     }
   }
+
+  .masthead-mobile-banner {
+    display: none;
+    width: 100%;
+    height: 350px;
+    margin-top: 35px;
+    position: relative;
+    background-image: url('/assets/home-mobile.png');
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 .cta-container {
@@ -263,13 +274,11 @@
 
   .masthead {
     .masthead-banner {
+      display: none;
       width: 100%;
       min-height: 250px;
-      // .masthead-image { width: 100%; }
-      // .masthead-image img { width: 100%; }
-
-      .masthead-image { display: none; }
     }
+    .masthead-mobile-banner { display: block; }
   }
 
   .mobile { display: block; }
