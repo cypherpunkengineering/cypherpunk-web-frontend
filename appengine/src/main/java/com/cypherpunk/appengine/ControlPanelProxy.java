@@ -22,7 +22,7 @@ import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 @SuppressWarnings("serial")
 public class ControlPanelProxy extends HttpServlet {
 
-	private static final String backend = "web-backend.cypherpunk.network";
+	private static final String backend = "red-dragon.cypherpunk.network";
 
 	@Override
 	public final void doGet(final HttpServletRequest req, final HttpServletResponse res) throws IOException
