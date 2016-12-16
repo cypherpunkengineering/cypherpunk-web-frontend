@@ -60,71 +60,48 @@ export class SessionService {
     if (!user) { return; }
 
     if (user.privacy) {
-      let username = user.privacy.username;
-      let password = user.privacy.password;
+      let username = user.privacy.username || '';
+      this.user.privacy.username = username;
+      this.localStorage.setItem('privacy.username', username);
 
-      if (username) {
-        this.user.privacy.username = username;
-        this.localStorage.setItem('privacy.username', username);
-      }
-
-      if (password) {
-        this.user.privacy.password = password;
-        this.localStorage.setItem('privacy.password', password);
-      }
+      let password = user.privacy.password || '';
+      this.user.privacy.password = password;
+      this.localStorage.setItem('privacy.password', password);
     }
 
     if (user.account) {
-      let id = user.account.id;
-      let email = user.account.email;
-      let confirmed = user.account.confirmed;
-      let type = user.account.type;
+      let id = user.account.id || '';
+      this.user.account.id = id;
+      this.localStorage.setItem('account.id', id);
 
-      if (id) {
-        this.user.account.id = id;
-        this.localStorage.setItem('account.id', id);
-      }
+      let email = user.account.email || '';
+      this.user.account.email = email;
+      this.localStorage.setItem('account.email', email);
 
-      if (email) {
-        this.user.account.email = email;
-        this.localStorage.setItem('account.email', email);
-      }
+      let confirmed = user.account.confirmed || false;
+      this.user.account.confirmed = confirmed;
+      this.localStorage.setItem('account.confirmed', confirmed);
 
-      if (confirmed) {
-        this.user.account.confirmed = confirmed;
-        this.localStorage.setItem('account.confirmed', confirmed);
-      }
-
-      if (type) {
-        this.user.account.type = type;
-        this.localStorage.setItem('account.type', type);
-      }
+      let type = user.account.type || '';
+      this.user.account.type = type;
+      this.localStorage.setItem('account.type', type);
     }
 
     if (user.subscription) {
-      let renewal = user.subscription.renewal;
+      let renewal = user.subscription.renewal || '';
+      this.user.subscription.renewal = renewal;
+      this.localStorage.setItem('subscription.renewal', renewal);
+
       let expiration = user.subscription.expiration;
-
-      if (renewal) {
-        this.user.subscription.renewal = renewal;
-        this.localStorage.setItem('subscription.renewal', renewal);
-      }
-
-      if (expiration) {
-        this.user.subscription.expiration = expiration;
-        this.localStorage.setItem('subscription.expiration', expiration);
-      }
+      this.user.subscription.expiration = expiration;
+      this.localStorage.setItem('subscription.expiration', expiration);
     }
 
-    if (user.secret) {
-      this.user.secret = user.secret;
-      this.localStorage.setItem('secret', user.secret);
-    }
+    this.user.secret = user.secret || '';
+    this.localStorage.setItem('secret', this.user.secret);
 
-    if (user.status) {
-      this.user.status = user.status;
-      this.localStorage.setItem('status', user.status);
-    }
+    this.user.status = user.status || '';
+    this.localStorage.setItem('status', this.user.status);
 
     this.plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
     this.setExpirationString(this.user.subscription.expiration);
