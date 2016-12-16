@@ -13,6 +13,27 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://cypherpunk.com/whyus</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/howitworks</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/aboutus</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/locations</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/bounty</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/privacy</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/tos</loc>
+  </url>
+  <url>
     <loc>https://cypherpunk.com/login</loc>
   </url>
   <url>

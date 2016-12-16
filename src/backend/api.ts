@@ -62,7 +62,7 @@ export function subs(req, res) {
         renewal: '',
         expiration: '0'
       },
-      loading: false
+      loading: true
     };
   }
 
