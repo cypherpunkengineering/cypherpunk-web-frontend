@@ -27,7 +27,7 @@
 
   <div class="grouping">
     <div id="windows" class="group">
-      <a href="{{ builds.windows.link }}">
+      <a (click)="launchDownloadModal(builds.windows)">
         <img src="/assets/icon-desktop--windows.png"><br>
         <div class="group-header">{{ builds.windows.name }}</div>
         <div class="download btn blue">
@@ -37,7 +37,7 @@
     </div>
 
     <div id="mac" class="group">
-      <a href="{{ builds.mac.link }}">
+      <a (click)="launchDownloadModal(builds.mac)">
         <img src="/assets/icon-desktop--mac.png"><br>
         <div class="group-header">{{ builds.mac.name }}</div>
         <div class="download btn blue">
@@ -47,7 +47,7 @@
     </div>
 
     <div id="linux" class="group">
-      <a href="{{ currentLinuxVersion }}">
+      <a (click)="launchDownloadModal(builds.linux)">
         <img src="/assets/icon-desktop--linux.png"><br>
         <div class="group-header">{{ builds.linux.name }}</div>
         <div class="download btn blue">
@@ -68,7 +68,7 @@
 
   <div class="grouping">
     <div id="chrome" class="group">
-      <a href="{{ builds.chrome.link }}">
+      <a (click)="launchDownloadModal(builds.chrome)">
         <img src="/assets/icon-browser--chrome.png"><br>
         <div class="group-header">{{ builds.chrome.name }}</div>
         <div class="download btn blue">
@@ -78,7 +78,7 @@
     </div>
 
     <div id="firefox" class="group">
-      <a href="{{ builds.firefox.link }}">
+      <a (click)="launchDownloadModal(builds.firefox)">
         <img src="/assets/icon-browser--ff.png"><br>
         <div class="group-header">{{ builds.firefox.name }}</div>
         <div class="download btn blue">
@@ -88,7 +88,7 @@
     </div>
 
     <div id="opera" class="group">
-      <a href="{{ builds.opera.link }}">
+      <a (click)="launchDownloadModal(builds.opera)">
         <img src="/assets/icon-browser--opera.png"><br>
         <div class="group-header">{{ builds.opera.name }}</div>
         <div class="download btn blue">
@@ -143,3 +143,35 @@
 </div>
 
 <app-footer></app-footer>
+
+<div class="modal" [ngClass]="{'open': showDownloadModal}">
+  <div class="background" (click)="showDownloadModal = false" [ngClass]="{'open': showDownloadModal}"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      Downloading Cypherpunk Privacy for {{ downloadBuildName }}
+    </div>
+
+    <div class="modal-line"></div>
+
+    <div class="modal-body">
+      <div class="row">
+        <label>
+          Staring download in ...
+          <span *ngIf="countdown === 0"> download started. </span>
+        </label>
+        <br>
+        <div class="countdown" *ngIf="countdown">
+          {{ countdown }}
+        </div>
+      </div>
+
+      <div class="row">
+        <label>{{ thanks }}</label>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn blue" (click)="showDownloadModal = false">Close</button>
+    </div>
+  </div>
+</div>
