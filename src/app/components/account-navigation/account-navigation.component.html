@@ -9,10 +9,7 @@
     <nav class="nav-right">
       <ul>
         <li>
-          <a class="nav-link" routerLink="/account">ACCOUNT</a>
-        </li>
-        <li>
-          <a class="nav-link" routerLink="/account/setup">ADVANCED</a>
+          <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
         </li>
         <li *ngIf="!hidePriceBoxes()">
           <button class="btn" routerLink="/account/upgrade">UPGRADE</button>
@@ -38,10 +35,7 @@
       <nav class="nav-right">
         <ul>
           <li>
-            <a class="nav-link" routerLink="/account">ACCOUNT</a>
-          </li>
-          <li>
-            <a class="nav-link" routerLink="/account/setup">ADVANCED</a>
+            <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
           </li>
           <li *ngIf="!hidePriceBoxes()">
             <button class="btn" routerLink="/account/upgrade">UPGRADE</button>
@@ -68,11 +62,8 @@
   </div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
-    <div class="mobile-dd-item" routerLink="/account">
+    <div class="mobile-dd-item" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">
       ACCOUNT
-    </div>
-    <div class="mobile-dd-item" routerLink="/account/setup">
-      ADVANCED
     </div>
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="!hidePriceBoxes()">
       <button class="btn">UPGRADE</button>

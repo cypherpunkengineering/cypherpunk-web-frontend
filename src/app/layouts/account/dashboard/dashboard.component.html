@@ -3,28 +3,87 @@
   <app-acc-nav></app-acc-nav>
 
   <div class="masthead">
-    <div class="masthead-header">My Account</div>
-    <div class="masthead-image">
-      <span class="period">{{user.account.type}}</span><br>
+    <div class="masthead-image"></div>
+  </div>
+
+  <div class="content" *ngIf="!hidePriceBoxes()">
+    <div class="content-inner">
+      <div class="content-header">Upgrade Now!</div>
+
+      <div class="pricing">
+        <div class="blimp-container">
+          <div class="blimp">Best Value!</div>
+        </div>
+
+        <div class="price-box" (click)="upgrade(plans[0].id)" [ngClass]="{ 'active': plans[0].selected, 'hidden': !plans[0].viewable }">
+          <div class="checkmark">
+            <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
+          </div>
+          <div class="period" [ngClass]="{'active': plans[0].selected}">
+            {{plans[0].period}}
+          </div>
+          <div class="price-area">
+            <span class="price" [ngClass]="{'active': plans[0].selected}">
+              $ {{plans[0].price}}
+            </span>
+            <span class="price-time"> / month</span>
+          </div>
+          <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
+        </div>
+
+        <div class="mobile-blimp-container">
+          <div class="blimp">Best Value!</div>
+        </div>
+
+        <div class="price-box" (click)="upgrade(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
+          <div class="checkmark">
+            <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
+          </div>
+          <div class="period" [ngClass]="{'active': plans[1].selected}">
+            {{plans[1].period}}
+          </div>
+          <div class="price-area">
+            <span class="price" [ngClass]="{'active': plans[1].selected}">
+              $ {{plans[1].price}}
+            </span>
+            <span class="price-time"> / month</span>
+          </div>
+          <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
+        </div>
+
+        <div class="price-box" (click)="upgrade(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
+          <div class="checkmark">
+            <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
+          </div>
+          <div class="period" [ngClass]="{'active': plans[2].selected}">
+            {{plans[2].period}}
+          </div>
+          <div class="price-area">
+            <span class="price" [ngClass]="{'active': plans[2].selected}">
+              $ {{plans[2].price}}
+            </span>
+            <span class="price-time"> / month</span>
+          </div>
+          <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="tab-nav">
-    <ul class="nav">
-      <li [ngClass]="{'active': currentTab === 'overview'}" (click)="switch('overview')">
-        Overview
-      </li>
-      <li [ngClass]="{'active': currentTab === 'subscription'}" (click)="switch('subscription')">
-        Subscription
-      </li>
-    </ul>
-  </div>
-
-  <div class="content" *ngIf="currentTab === 'overview'">
+  <div class="content">
     <div class="content-inner">
-      <div class="content-header">Account Info</div>
+      <div class="content-header">Account</div>
 
       <section>
+        <div class="content-row">
+          <div class="left">
+            <span class="email uppercase">{{user.account.type}}</span>
+          </div>
+          <div class="right">
+            <span class="email">{{ user.subscription.expirationString }}</span>
+          </div>
+        </div>
+
         <div class="content-row">
           <div class="left">
             Email: <span class="email">{{user.account.email}}</span>
@@ -42,13 +101,22 @@
             <a (click)="openPasswordModal()">Update</a>
           </div>
         </div>
+
+        <div class="content-row">
+          <div class="left">
+            Manual Setup
+          </div>
+          <div class="right">
+            <a routerLink="/account/setup">Explore</a>
+          </div>
+        </div>
       </section>
     </div>
   </div>
 
-  <div class="content" *ngIf="currentTab === 'subscription'">
+  <div class="content">
     <div class="content-inner">
-      <div class="content-header">Manage Subscription</div>
+      <div class="content-header">Subscription</div>
 
       <section>
         <div class="content-row">
