@@ -11,12 +11,12 @@ export class DownloadComponent {
     mac: {
       name: 'Mac',
       versions: '',
-      link: '#'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-macos-0.3.0-alpha-00350.pkg'
     },
     windows: {
       name: 'Windows',
       versions: '',
-      link: '#'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-windows-0.3.0-alpha-00330.exe'
     },
     linux: {
       name: 'Linux',
@@ -28,12 +28,12 @@ export class DownloadComponent {
       link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
     },
     firefox: {
-      name: 'FireFox',
+      name: 'Firefox',
       link: ''
     },
     opera: {
       name: 'Opera',
-      link: ''
+      link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
     },
     android: {
       name: 'Android',
@@ -53,6 +53,7 @@ export class DownloadComponent {
   };
 
   linuxVersions = [
+    /*
     {
       os: 'Fedora/Redhat/CentOS',
       version: '32-bit',
@@ -68,10 +69,11 @@ export class DownloadComponent {
       version: '32-bit',
       link: '#d32'
     },
+    */
     {
       os: 'Debian/Ubuntu/Mint',
       version: '64-bit',
-      link: '#d64'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-linux-x64_0.3.0-alpha+00034.deb'
     }
   ];
 
