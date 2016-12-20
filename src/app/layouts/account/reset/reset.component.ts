@@ -8,6 +8,7 @@ import { isBrowser } from 'angular2-universal';
 export class ResetComponent implements AfterViewInit {
   password: string = '';
   confirm: string = '';
+  error = { message: '' };
   resetButtonDisabled: boolean = false;
 
   constructor(private zone: NgZone) { }
@@ -23,6 +24,15 @@ export class ResetComponent implements AfterViewInit {
     if (!this.confirm.length) { return false; }
     if (this.password !== this.confirm) { return false; }
     return true;
+  }
+
+  comparePass() {
+    let error = '';
+    if (this.password !== this.confirm) {
+      error = 'Password and Confirmation do not match';
+    }
+
+    this.error.message = error;
   }
 
   reset() {

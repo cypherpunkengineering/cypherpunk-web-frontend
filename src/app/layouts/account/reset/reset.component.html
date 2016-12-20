@@ -16,8 +16,10 @@
 
     <p>
       <label for="username">Confirm Password</label><br>
-      <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" autofocus>
+      <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" (ngModelChange)="comparePass()">
     </p>
+
+    <div class="error">{{ error.message }}</div>
 
     <p class="center">
       <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">
