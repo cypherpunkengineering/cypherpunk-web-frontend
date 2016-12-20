@@ -47,4 +47,14 @@ export class DashboardComponent {
     this.selectPlan(id);
     this.router.navigate(['/account/upgrade']);
   }
+
+  openEmailModal() {
+    this.showEmailModal = true;
+    setTimeout(() => { document.getElementById('dashboardEmail').focus(); }, 510);
+  }
+
+  openPasswordModal() {
+    this.showPasswordModal = true;
+    setTimeout(() => { document.getElementById('dashboardPassword').focus(); }, 510);
+  }
 }

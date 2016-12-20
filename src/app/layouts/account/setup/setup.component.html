@@ -1,7 +1,7 @@
-<app-acc-nav></app-acc-nav>
-
 <div class="masthead">
-  <div class="masthead-header">Setup</div>
+  <app-acc-nav></app-acc-nav>
+
+  <div class="masthead-header header white">Setup</div>
 </div>
 
 <div class="breadcrumb">
@@ -53,7 +53,7 @@
     <textarea class="profile" [(ngModel)]="profile23" readonly></textarea>
 
     <div class="download-container">
-      <button class="btn" (click)="downloadProfile('23')" [disabled]="!download23ButtonEnabled">
+      <button class="btn blue" (click)="downloadProfile('23')" [disabled]="!download23ButtonEnabled">
         Download
       </button>
     </div>
@@ -86,7 +86,7 @@
     <textarea class="profile" [(ngModel)]="profile24" readonly></textarea>
 
     <div class="download-container">
-      <button class="btn" (click)="downloadProfile('24')" [disabled]="!download24ButtonEnabled">
+      <button class="btn blue" (click)="downloadProfile('24')" [disabled]="!download24ButtonEnabled">
         Download
       </button>
     </div>

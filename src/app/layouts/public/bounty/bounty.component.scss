@@ -2,15 +2,7 @@
   width: 100%;
   background-color: #0e003f;
 
-  .masthead-header {
-    width: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    color: #fff;
-    margin: 45px auto 0;
-    padding-bottom: 96px;
-  }
+  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
 }
 
 .content {
@@ -20,11 +12,7 @@
   padding: 60px 0 60px;
   color: #4a4a4d;
 
-  .header {
-    font-size: 32px;
-    font-weight: 500;
-    color: #1973af;
-  }
+  .header { text-align: left; }
 
   .subheader {
     font-size: 28px;

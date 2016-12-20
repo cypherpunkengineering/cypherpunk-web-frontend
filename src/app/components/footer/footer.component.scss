@@ -38,9 +38,6 @@
   margin-top: 45px;
   width: 115px;
   height: 39px;
-  background-color: #1987bd;
-  box-shadow: none;
-  text-shadow: none;
 }
 
 .footer-header {
@@ -187,10 +184,6 @@
           margin-top: 15px;
           max-width: 341px;
           cursor: pointer;
-          &:disabled {
-            cursor: default;
-            background-color: #ccc;
-          }
         }
       }
     }

@@ -2,16 +2,7 @@
   width: 100%;
   background-color: #0e003f;
 
-  .masthead-header {
-    width: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    color: #ffffff;
-    margin: 45px auto 0;
-    padding-bottom: 96px;
-  }
+  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
 }
 
 .page {
@@ -230,9 +221,6 @@
   height: 60px;
   margin: 25px 0 25px;
   font-size: 24px;
-  text-transform: none;
-  &.blue { background-color: #1987bd; }
-  &:disabled { background-color: #eee; }
 }
 
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }

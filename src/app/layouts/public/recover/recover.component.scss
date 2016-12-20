@@ -12,15 +12,6 @@
     text-align: center;
     img { height: 100%; }
   }
-
-  .masthead-header {
-    width: 100%;
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-    color: #fff;
-    margin: auto;
-  }
 }
 
 .btn {
@@ -28,7 +19,6 @@
   height: 60px;
   margin-bottom: 25px;
   font-size: 24px;
-  text-transform: none;
 }
 
 form {
@@ -61,7 +51,6 @@ form {
 
 @media (max-width: 1060px) {
   .wrapper .masthead {
-    .masthead-header { top: 0; }
     .masthead-image {
       height: 108px;
 

@@ -1,7 +1,7 @@
-<app-acc-nav></app-acc-nav>
-
 <div class="masthead">
-  <div class="masthead-header">Billing Info</div>
+  <app-acc-nav></app-acc-nav>
+
+  <div class="masthead-header header white">Billing Info</div>
 </div>
 
 <div class="breadcrumb">
@@ -45,17 +45,17 @@
   <div class="pagination-container">
     <div class="pagination">
       <div class="previous">
-        <button class="btn" (click)="goToTransactionsPage('previous')" [disabled]="previousTransactionsDisabled()">
+        <button class="btn blue" (click)="goToTransactionsPage('previous')" [disabled]="previousTransactionsDisabled()">
           Previous
         </button>
       </div>
 
       <div class="pages">
-        <button class="btn">{{transactionsCurrentPage}}</button>
+        <button class="btn blue">{{transactionsCurrentPage}}</button>
       </div>
 
       <div class="next">
-        <button class="btn" (click)="goToTransactionsPage('next')" [disabled]="nextTransactionsDisabled()">
+        <button class="btn blue" (click)="goToTransactionsPage('next')" [disabled]="nextTransactionsDisabled()">
           Next
         </button>
       </div>
@@ -100,17 +100,17 @@
   <div class="pagination-container">
     <div class="pagination">
       <div class="previous">
-        <button class="btn" (click)="goToInvoicesPage('previous')" [disabled]="previousInvoicesDisabled()">
+        <button class="btn blue" (click)="goToInvoicesPage('previous')" [disabled]="previousInvoicesDisabled()">
           Previous
         </button>
       </div>
 
       <div class="pages">
-        <button class="btn">{{invoicesCurrentPage}}</button>
+        <button class="btn blue">{{invoicesCurrentPage}}</button>
       </div>
 
       <div class="next">
-        <button class="btn" (click)="goToInvoicesPage('next')" [disabled]="nextInvoicesDisabled()">
+        <button class="btn blue" (click)="goToInvoicesPage('next')" [disabled]="nextInvoicesDisabled()">
           Next
         </button>
       </div>

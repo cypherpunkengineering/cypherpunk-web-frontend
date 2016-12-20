@@ -1,7 +1,7 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <div class="masthead-header">Download Cypherpunk Privacy</div>
+  <div class="masthead-header header white">Download Cypherpunk Privacy</div>
 </div>
 
 <div class="cta-container">
@@ -23,7 +23,7 @@
 </div>
 
 <div id="desktop" class="content">
-  <div class="content-header">Download Cypherpunk for your Computer</div>
+  <div class="header blue">Download Cypherpunk for your Computer</div>
 
   <div class="grouping">
     <div id="windows" class="group">
@@ -64,7 +64,7 @@
 </div>
 
 <div id="browser" class="content">
-  <div class="content-header">Download Cypherpunk for your Browser</div>
+  <div class="header blue">Download Cypherpunk for your Browser</div>
 
   <div class="grouping">
     <div id="chrome" class="group">
@@ -100,7 +100,7 @@
 </div>
 
 <div class="content">
-  <div class="content-header">Download Cypherpunk for your Mobile Device</div>
+  <div class="header blue">Download Cypherpunk for your Mobile Device</div>
 
   <div class="grouping mobile-devices">
     <div id="ios" class="group">
@@ -134,7 +134,7 @@
 </div>
 
 <div class="content no-border">
-  <div class="content-header">UPGRADE to Cypherpunk Premium</div>
+  <div class="header blue">UPGRADE to Cypherpunk Premium</div>
 
   <div class="button-group">
     <button class="btn gold" routerLink="/premium">Cypherpunk Premium</button>
@@ -156,7 +156,7 @@
     <div class="modal-body">
       <div class="row">
         <label>
-          Staring download in ...
+          Starting download in ...
           <span *ngIf="countdown === 0"> download started. </span>
         </label>
         <br>
@@ -171,7 +171,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn blue" (click)="showDownloadModal = false">Close</button>
+      <button class="btn cancel" (click)="showDownloadModal = false">Close</button>
     </div>
   </div>
 </div>

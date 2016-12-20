@@ -14,7 +14,6 @@
     }
   }
 
-
   .blimp-container, .mobile-blimp-container {
     position: relative;
     .blimp {
@@ -224,14 +223,9 @@
     .modal-footer {
       margin-top: 25px;
       text-align: right;
-      .btn.blue {
+      .btn.purple, .btn.cancel {
         width: 130px;
         height: 41px;
-        background-color: #29157f;
-        &.cancel { background-color: #7972c4; }
-      }
-      .btn.blue:disabled {
-        background-color: #ccc;
       }
     }
   }
@@ -261,5 +255,6 @@
     .mobile-blimp-container { display: block; }
   }
   .modal .modal-content { width: 90%; }
-  .modal .modal-content .modal-footer .btn.blue { width: 49%; }
+  .modal .modal-content .modal-footer .btn.purple { width: 49%; }
+  .modal .modal-content .modal-footer .btn.cancel { width: 49%; }
 }

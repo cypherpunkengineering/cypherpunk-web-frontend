@@ -2,15 +2,7 @@
   width: 100%;
   background-color: #0e003f;
 
-  .masthead-header {
-    width: 100%;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    color: #ffffff;
-    margin: 45px auto 0;
-    padding-bottom: 96px;
-  }
+  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
 }
 
 .cta-container {
@@ -32,11 +24,8 @@
   font-size: 24px;
   width: 341px;
   height: 60px;
-  text-transform: none;
   margin-top: 10px;
   margin-bottom: 50px;
-  &.gold { background-color: #ffc933; }
-  &.blue { background-color: #1987bd; }
 }
 
 .subheader-content {
@@ -65,12 +54,7 @@
   text-align: center;
   padding: 25px 0;
 
-  .content-header {
-    margin: 30px 0;
-    font-size: 32px;
-    font-weight: 500;
-    color: #1973af;
-  }
+  .header { margin: 30px 0; }
 
   .grouping {
     text-align: center;
@@ -205,22 +189,14 @@
     .modal-footer {
       margin-top: 25px;
       text-align: right;
-      .btn.blue {
-        width: 130px;
-        height: 41px;
-        background-color: #29157f;
-        &.cancel { background-color: #7972c4; }
-      }
-      .btn.blue:disabled {
-        background-color: #ccc;
-      }
+      .btn.cancel { width: 130px; height: 41px; }
     }
   }
 }
 
 @media (max-width: 1060px) {
   .modal .modal-content { width: 90%; }
-  .modal .modal-content .modal-footer .btn.blue { width: 49%; }
+  .modal .modal-content .modal-footer .btn.cancel { width: 49%; }
 }
 
 @media (max-width: 700px) {
