@@ -81,8 +81,6 @@ export class DownloadComponent {
   currentLinuxVersion: string = this.linuxVersions[0].link;
 
   // download
-  thanks: string = '';
-  countdown: number = 3;
   downloadBuildName: string = '';
   downloadBuildLink: string = '';
   showDownloadModal: boolean = false;
@@ -106,8 +104,6 @@ export class DownloadComponent {
   }
 
   launchDownloadModal(build: any): void {
-    this.thanks = '';
-    this.countdown = 3;
     this.downloadBuildName = build.name;
     this.showDownloadModal = true;
 
@@ -116,19 +112,8 @@ export class DownloadComponent {
     if (build.name === 'Linux') { link = this.currentLinuxVersion; }
     this.downloadBuildLink = link;
 
-    // countdown timer
-    let intervalId = setInterval(() => {
-      this.countdown = this.countdown - 1;
-      if (this.countdown === 0) {
-        clearInterval(intervalId);
-        this.thanks = 'Thank you for downloading Cypherpunk Privacy.';
-      }
-    }, 1000);
-
     // download file
-    setTimeout(() => {
-      this.downloadFile(link);
-    }, 3100);
+    this.downloadFile(link);
   }
 
   downloadFile (sUrl: string): boolean {

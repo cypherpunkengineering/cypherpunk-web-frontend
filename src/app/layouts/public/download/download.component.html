@@ -156,16 +156,12 @@
     <div class="modal-body">
       <div class="row">
         <label>
-          Starting download in ...
+          Your download will begin shortly...
           <span *ngIf="countdown === 0"> download started. </span>
           <br>
           Or click here to download now:
-          <a href="{{downloadBuildLink}}" target="_blank"> download</a>
+          <a href="{{downloadBuildLink}}" target="_top"> download</a>
         </label>
-        <br>
-        <div class="countdown" *ngIf="countdown">
-          {{ countdown }}
-        </div>
       </div>
 
       <div class="row">
