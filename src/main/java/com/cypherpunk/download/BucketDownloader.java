@@ -54,15 +54,15 @@ public class BucketDownloader extends HttpServlet
 
 		// create blobstore path as a string
 		String blobstorePath = "/gs/" + filename.getBucketName() + filename.getObjectName();
-		LOG.log(Level.WARNING, "blobstorePath = '" + blobstorePath + "'");
+		//LOG.log(Level.WARNING, "blobstorePath = '" + blobstorePath + "'");
 
 		// generate a blobKey from the blobstorePath
 		BlobKey blobKey = blobstoreService.createGsBlobKey(blobstorePath);
-		LOG.log(Level.WARNING, "blobKey = '" + blobKey + "'");
+		//LOG.log(Level.WARNING, "blobKey = '" + blobKey + "'");
 
 		// query if valid blobkey
 		//Long blobSize;
-		GcsFileMetadata metadata;
+		//GcsFileMetadata metadata;
 		try
 		{
 			// https://code.google.com/p/googleappengine/issues/detail?id=4310
@@ -93,12 +93,12 @@ public class BucketDownloader extends HttpServlet
 			*/
 		}
 		catch (IllegalArgumentException e) // Blob not found
-		//catch (NullPointerException e)
 		{
-			res.setHeader("Location", "https://cypherpunk.com/download");
+			//res.setHeader("Location", "https://cypherpunk.com/download");
 			res.setStatus(404);
 			return;
 		}
+		//catch (NullPointerException e)
 		catch (Exception e)
 		{
 			LOG.log(Level.WARNING, "Unhandled Exception! ", e);
