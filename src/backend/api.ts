@@ -55,14 +55,14 @@ export function subs(req, res) {
       account: {
         id: '1',
         email: '',
-        type: '',
+        type: 'free',
         confirmed: false
       },
       subscription: {
         renewal: '',
         expiration: '0'
       },
-      loading: true
+      loading: false
     };
   }
 
