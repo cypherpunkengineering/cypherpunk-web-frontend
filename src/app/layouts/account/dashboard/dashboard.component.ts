@@ -39,7 +39,9 @@ export class DashboardComponent {
     let renewal = this.user.subscription.renewal;
 
     if (type === 'free') { return false; }
-    else if (type === 'premium' && renewal !== 'annually') { return false; }
+    else if (type === 'premium') {
+      if (renewal !== 'annually' && renewal !== 'forever') { return false; }
+    }
     return true;
   }
 
