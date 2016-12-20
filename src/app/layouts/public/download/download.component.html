@@ -6,7 +6,7 @@
 
 <div class="cta-container">
   <div class="call-to-action">
-    <a href="{{headerBuild.link}}">
+    <a (click)="launchDownloadModal(headerBuild)">
       <button class="btn gold">
         Download for {{ headerBuild.name }}
       </button>
@@ -158,6 +158,9 @@
         <label>
           Starting download in ...
           <span *ngIf="countdown === 0"> download started. </span>
+          <br>
+          Or click here to download now:
+          <a href="{{downloadBuildLink}}" target="_blank"> download</a>
         </label>
         <br>
         <div class="countdown" *ngIf="countdown">

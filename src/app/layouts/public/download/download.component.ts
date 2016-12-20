@@ -84,6 +84,7 @@ export class DownloadComponent {
   thanks: string = '';
   countdown: number = 3;
   downloadBuildName: string = '';
+  downloadBuildLink: string = '';
   showDownloadModal: boolean = false;
   isChrome: boolean = false;
   isSafari: boolean = false;
@@ -95,7 +96,7 @@ export class DownloadComponent {
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
     else if (os.indexOf('Android') > -1) { this.headerBuild = this.builds.android; }
     else if (os.indexOf('iOS') > -1) { this.headerBuild = this.builds.ios; }
-    else { this.headerBuild = this.builds.linux; }
+    else { this.headerBuild = this.builds.blank; }
 
     // download file setup
     if (isBrowser) {
@@ -113,6 +114,7 @@ export class DownloadComponent {
     // figure out correct link
     let link = build.link;
     if (build.name === 'Linux') { link = this.currentLinuxVersion; }
+    this.downloadBuildLink = link;
 
     // countdown timer
     let intervalId = setInterval(() => {
