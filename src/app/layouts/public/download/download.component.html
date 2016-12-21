@@ -54,8 +54,8 @@
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
       </a>
-      <select name="linux-download" id="linux-download" [(ngModel)]="currentLinuxVersion">
-        <option *ngFor="let version of linuxVersions" value="{{version.link}}">
+      <select name="linux-download" id="linux-download" [(ngModel)]="currentLinuxBuild">
+        <option *ngFor="let version of linuxVersions" value="{{version}}">
           {{version.os}} {{version.version}}
         </option>
       </select>

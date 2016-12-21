@@ -78,14 +78,14 @@ export class DownloadComponent {
   ];
 
   headerBuild = this.builds.blank;
-  currentLinuxVersion: string = this.linuxVersions[0].link;
+  currentLinuxBuild = this.linuxVersions[0];
 
   // download
+  isChrome: boolean = false;
+  isSafari: boolean = false;
   downloadBuildName: string = '';
   downloadBuildLink: string = '';
   showDownloadModal: boolean = false;
-  isChrome: boolean = false;
-  isSafari: boolean = false;
 
   constructor() {
     // detect os setup
@@ -94,6 +94,22 @@ export class DownloadComponent {
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
     else if (os.indexOf('Android') > -1) { this.headerBuild = this.builds.android; }
     else if (os.indexOf('iOS') > -1) { this.headerBuild = this.builds.ios; }
+    else if (os.indexOf('Fedora') > -1 ||
+             os.indexOf('Red Hat') > -1 ||
+             os.indexOf('CentOS')) {
+      this.headerBuild = this.builds.linux;
+      if (platform.os.architecture === 32) { this.currentLinuxBuild = this.linuxVersions[0]; }
+      else { this.currentLinuxBuild = this.linuxVersions[1]; }
+    }
+    else if (os.indexOf('Debian') > -1 ||
+             os.indexOf ('Ubuntu') > -1 ||
+             os.indexOf ('Kubuntu') > -1 ||
+             os.indexOf ('Xubuntu') > -1 ||
+             os.indexOf('Mint')) {
+      this.headerBuild = this.builds.linux;
+      if (platform.os.architecture === 32) { this.currentLinuxBuild = this.linuxVersions[2]; }
+      else { this.currentLinuxBuild = this.linuxVersions[3]; }
+    }
     else { this.headerBuild = this.builds.blank; }
 
     // download file setup
@@ -105,15 +121,20 @@ export class DownloadComponent {
 
   launchDownloadModal(build: any): void {
     this.downloadBuildName = build.name;
-    this.showDownloadModal = true;
 
     // figure out correct link
     let link = build.link;
-    if (build.name === 'Linux') { link = this.currentLinuxVersion; }
+    if (build.name === 'Linux') {
+      this.downloadBuildName = this.currentLinuxBuild.os + ' ' + this.currentLinuxBuild.version;
+      link = this.currentLinuxBuild.link;
+    }
     this.downloadBuildLink = link;
 
     // download file
     this.downloadFile(link);
+
+    // show modal
+    this.showDownloadModal = true;
   }
 
   downloadFile (sUrl: string): boolean {
