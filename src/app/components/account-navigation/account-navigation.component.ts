@@ -24,14 +24,15 @@ export class AccountNavigationComponent {
     .then(() => { this.router.navigate(['/']); });
   }
 
-  hidePriceBoxes() {
+  showPriceBoxes() {
     let type = this.user.account.type;
     let renewal = this.user.subscription.renewal;
-    if (type === 'free') { return false; }
+
+    if (type === 'free') { return true; }
     else if (type === 'premium') {
-      if (renewal !== 'annually' && renewal !== 'forever') { return false; }
+      if (renewal !== 'annually' && renewal !== 'forever') { return true; }
     }
-    return true;
+    else { return false; }
   }
 
   // on scroll,
