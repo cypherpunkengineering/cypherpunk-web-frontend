@@ -1,7 +1,7 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <div class="masthead-header header white">Download Cypherpunk Privacy</div>
+  <h1 class="masthead-header header white">Download Cypherpunk Privacy</h1>
 </div>
 
 <div class="cta-container">
@@ -23,13 +23,13 @@
 </div>
 
 <div id="desktop" class="content">
-  <div class="header blue">Download Cypherpunk for your Computer</div>
+  <h2 class="header blue">Download Cypherpunk for your Computer</h2>
 
   <div class="grouping">
     <div id="windows" class="group">
       <a (click)="launchDownloadModal(builds.windows)">
         <img src="/assets/icon-desktop--windows.png"><br>
-        <div class="group-header">{{ builds.windows.name }}</div>
+        <h3 class="group-header">{{ builds.windows.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -39,7 +39,7 @@
     <div id="mac" class="group">
       <a (click)="launchDownloadModal(builds.mac)">
         <img src="/assets/icon-desktop--mac.png"><br>
-        <div class="group-header">{{ builds.mac.name }}</div>
+        <h3 class="group-header">{{ builds.mac.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -49,7 +49,7 @@
     <div id="linux" class="group">
       <a (click)="launchDownloadModal(builds.linux)">
         <img src="/assets/icon-desktop--linux.png"><br>
-        <div class="group-header">{{ builds.linux.name }}</div>
+        <h3 class="group-header">{{ builds.linux.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -64,13 +64,13 @@
 </div>
 
 <div id="browser" class="content">
-  <div class="header blue">Download Cypherpunk for your Browser</div>
+  <h2 class="header blue">Download Cypherpunk for your Browser</h2>
 
   <div class="grouping">
     <div id="chrome" class="group">
       <a (click)="launchDownloadModal(builds.chrome)">
         <img src="/assets/icon-browser--chrome.png"><br>
-        <div class="group-header">{{ builds.chrome.name }}</div>
+        <h3 class="group-header">{{ builds.chrome.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -80,7 +80,7 @@
     <div id="firefox" class="group">
       <a (click)="launchDownloadModal(builds.firefox)">
         <img src="/assets/icon-browser--ff.png"><br>
-        <div class="group-header">{{ builds.firefox.name }}</div>
+        <h3 class="group-header">{{ builds.firefox.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -90,7 +90,7 @@
     <div id="opera" class="group">
       <a (click)="launchDownloadModal(builds.opera)">
         <img src="/assets/icon-browser--opera.png"><br>
-        <div class="group-header">{{ builds.opera.name }}</div>
+        <h3 class="group-header">{{ builds.opera.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>
@@ -100,13 +100,13 @@
 </div>
 
 <div class="content">
-  <div class="header blue">Download Cypherpunk for your Mobile Device</div>
+  <h2 class="header blue">Download Cypherpunk for your Mobile Device</h2>
 
   <div class="grouping mobile-devices">
     <div id="ios" class="group">
       <a href="{{ builds.ios.link }}">
         <img src="/assets/icon-mobile--ios.png"><br>
-        <div class="group-header">{{ builds.ios.name }}</div>
+        <h3 class="group-header">{{ builds.ios.name }}</h3>
         <div class="group-subheader">{{ builds.ios.versions }}</div>
         <div class="badge">
           <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
@@ -120,7 +120,7 @@
     <div id="android" class="group">
       <a href="{{ builds.android.link }}">
         <img src="/assets/icon-mobile--android.png"><br>
-        <div class="group-header">{{ builds.android.name }}</div>
+        <h3 class="group-header">{{ builds.android.name }}</h3>
         <div class="group-subheader">{{ builds.android.versions }}</div>
         <div class="badge">
           <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
