@@ -66,7 +66,7 @@
 <div id="browser" class="content">
   <h2 class="header blue">Download Cypherpunk for your Browser</h2>
 
-  <div class="grouping">
+  <div class="grouping mobile-devices">
     <div id="chrome" class="group">
       <a (click)="launchDownloadModal(builds.chrome)">
         <img src="/assets/icon-browser--chrome.png"><br>
@@ -81,16 +81,6 @@
       <a (click)="launchDownloadModal(builds.firefox)">
         <img src="/assets/icon-browser--ff.png"><br>
         <h3 class="group-header">{{ builds.firefox.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
-      </a>
-    </div>
-
-    <div id="opera" class="group">
-      <a (click)="launchDownloadModal(builds.opera)">
-        <img src="/assets/icon-browser--opera.png"><br>
-        <h3 class="group-header">{{ builds.opera.name }}</h3>
         <div class="download btn blue">
           <i class="fa fa-download"></i>&nbsp;Download
         </div>

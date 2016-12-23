@@ -24,16 +24,12 @@ export class DownloadComponent {
       link: '#'
     },
     chrome: {
-      name: 'Chrome',
+      name: 'Chrome/Opera/Vivaldi',
       link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
     },
     firefox: {
       name: 'Firefox',
       link: ''
-    },
-    opera: {
-      name: 'Opera',
-      link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
     },
     android: {
       name: 'Android',
