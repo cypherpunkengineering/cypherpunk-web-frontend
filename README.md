@@ -38,12 +38,11 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 ## Serve
 
 * `npm start` to build your client app and start a web server
-* `npm run build` to prepare a distributable bundle
 
-## Scrape 
+## Scrape
 
-* `npm start` to build your client app and start a web server
-* `npm run build:prod` to prepare a distributable bundle
+* `npm run build:prod:ngc` to prepare a distributable bundle
+* `npm run server` to start a web server
 * `npm run scrape` to scrape all the web pages into the build folder
 
 ## Development
@@ -51,6 +50,64 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 
 ## Watch files
 * `npm run watch` to build your client app and start a web server
+
+## AoT and Prod
+* `npm run build:prod:ngc` to compile the ngfactory files and build prod
+
+### Brotli Compression Support
+
+To enable Brotli compression for server response with fallback for gzip.  Install the following packages
+```
+npm install --save-dev iltorb accepts @types/accepts express-interceptor memory-cache @types/memory-cache
+```
+and replace the following code from src/server.aot.ts.
+```
+  import * as compression from 'compression';
+
+  app.use(compression());
+```
+with
+```
+import * as mcache from 'memory-cache';
+const { gzipSync } = require('zlib');
+const accepts = require('accepts');
+const { compressSync } = require('iltorb');
+const interceptor = require('express-interceptor');
+
+app.use(interceptor((req, res)=>({
+  // don't compress responses with this request header
+  isInterceptable: () => (!req.headers['x-no-compression']),
+  intercept: ( body, send ) => {
+    const encodings  = new Set(accepts(req).encodings());
+    const bodyBuffer = new Buffer(body);
+    // url specific key for response cache
+    const key = '__response__' + req.originalUrl || req.url;
+    let output = bodyBuffer;
+    // check if cache exists
+    if (mcache.get(key) === null) {
+      // check for encoding support
+      if (encodings.has('br')) {
+        // brotli
+        res.setHeader('Content-Encoding', 'br');
+        output = compressSync(bodyBuffer);
+        mcache.put(key, {output, encoding: 'br'});
+      } else if (encodings.has('gzip')) {
+        // gzip
+        res.setHeader('Content-Encoding', 'gzip');
+        output = gzipSync(bodyBuffer);
+        mcache.put(key, {output, encoding: 'gzip'});
+      }
+    } else {
+      const { output, encoding } = mcache.get(key);
+      res.setHeader('Content-Encoding', encoding);
+      send(output);
+    }
+    send(output);
+  }
+})));
+```
+this will check the support, compress and cache the response.
+
 
 ## Edge case of server compatibility with Promise polyfills
 
@@ -68,21 +125,5 @@ modules before this line.
 ### Documentation
 [Design Doc](https://docs.google.com/document/d/1q6g9UlmEZDXgrkY88AJZ6MUrUxcnwhBGS0EXbVlYicY)
 
-### Videos
-Angular 2 Universal Patterns - ng-conf, May 2016  
-[![Angular 2 Universal Patterns](http://img.youtube.com/vi/TCj_oC3m6_U/0.jpg)](https://www.youtube.com/watch?v=TCj_oC3m6_U)
-
-Angular Universal Source Code - ReadTheSource, January 2016  
-[![Angular Universal Source Code](http://img.youtube.com/vi/qOjtFjXoebY/0.jpg)](https://www.youtube.com/watch?v=qOjtFjXoebY)
-
-Full Stack Angular 2 - AngularConnect, Oct 2015  
-[![Full Stack Angular 2](https://img.youtube.com/vi/MtoHFDfi8FM/0.jpg)](https://www.youtube.com/watch?v=MtoHFDfi8FM)
-
-Angular 2 Server Rendering - Angular U, July 2015  
-[![Angular 2 Server Rendering](http://img.youtube.com/vi/0wvZ7gakqV4/0.jpg)](http://www.youtube.com/watch?v=0wvZ7gakqV4)
-
 ## [preboot.js](https://github.com/angular/preboot)
 > Control server-rendered page and transfer state before client-side web app loads to the client-side-app.
-
-# License
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)

@@ -1,11 +1,12 @@
 import { Injectable, Inject, NgZone } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { PlansService } from './plans.service';
-import { LocalStorage } from './local-storage';
+import { isBrowser } from 'angular2-universal';
 
 @Injectable()
 export class SessionService {
   userFound: boolean = false;
+  localStorage: any;
   user = {
     privacy: { username: '', password: '' },
     account: { id: '', email: '', confirmed: false, type: '' },
@@ -20,22 +21,25 @@ export class SessionService {
     private http: Http,
     private zone: NgZone,
     private plans: PlansService,
-    @Inject(LocalStorage) private localStorage
   ) {
+
     try {
-      this.user.privacy.username = localStorage.getItem('privacy.username') || '';
-      this.user.privacy.password = localStorage.getItem('privacy.password') || '';
-      this.user.account.id = localStorage.getItem('account.id') || '';
-      this.user.account.email = localStorage.getItem('account.email') || '';
-      this.user.account.confirmed = Boolean(localStorage.getItem('account.confirmed')) || false;
-      this.user.account.type = localStorage.getItem('account.type') || '';
-      this.user.subscription.renewal = localStorage.getItem('subscription.renewal') || '';
-      this.user.subscription.expiration = localStorage.getItem('subscription.expiration') || '';
-      this.user.secret = localStorage.getItem('secret') || '';
-      this.user.status = localStorage.getItem('status') || '';
-      plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
-      this.setExpirationString(this.user.subscription.expiration);
-      if (this.user.account.email && this.user.secret) { this.userFound = true; }
+      if (isBrowser) {
+        this.localStorage = window.localStorage;
+        this.user.privacy.username = this.localStorage.getItem('privacy.username') || '';
+        this.user.privacy.password = this.localStorage.getItem('privacy.password') || '';
+        this.user.account.id = this.localStorage.getItem('account.id') || '';
+        this.user.account.email = this.localStorage.getItem('account.email') || '';
+        this.user.account.confirmed = Boolean(this.localStorage.getItem('account.confirmed')) || false;
+        this.user.account.type = this.localStorage.getItem('account.type') || '';
+        this.user.subscription.renewal = this.localStorage.getItem('subscription.renewal') || '';
+        this.user.subscription.expiration = this.localStorage.getItem('subscription.expiration') || '';
+        this.user.secret = this.localStorage.getItem('secret') || '';
+        this.user.status = this.localStorage.getItem('status') || '';
+        plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
+        this.setExpirationString(this.user.subscription.expiration);
+        if (this.user.account.email && this.user.secret) { this.userFound = true; }
+      }
     } catch (e) {
       this.userFound = false;
       console.log(e);

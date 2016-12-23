@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './whyus.component.html',
-  styleUrls: ['./whyus.component.scss']
+  styleUrls: ['./whyus.component.css']
 })
 export class WhyusComponent implements AfterViewInit {
   title: string = 'Why You Need Cypherpunk Privacy';

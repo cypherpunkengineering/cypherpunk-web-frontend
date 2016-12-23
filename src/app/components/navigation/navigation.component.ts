@@ -5,7 +5,7 @@ import { SessionService } from '../../services/session.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
   showDropDown = false;

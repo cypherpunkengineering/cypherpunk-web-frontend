@@ -5,17 +5,19 @@ import './__workaround.browser'; // temporary until 2.1.1 things are patched in 
 
 // Angular 2
 import { enableProdMode } from '@angular/core';
-import { platformUniversalDynamic } from 'angular2-universal/browser';
+import { platformBrowser } from '@angular/platform-browser';
 import { bootloader } from '@angularclass/bootloader';
+// for AoT use platformBrowser
+// import { platformUniversalDynamic } from 'angular2-universal/browser';
 
 import { load as loadWebFont } from 'webfontloader';
 
 // enable prod for faster renders
-// enableProdMode();
+enableProdMode();
 
-import { MainModule } from './browser.module';
+import { MainModuleNgFactory } from './browser.module.ngfactory';
 
-const platformRef = platformUniversalDynamic();
+export const platformRef = platformBrowser();
 
 // on document ready bootstrap Angular 2
 export function main() {
@@ -27,7 +29,7 @@ export function main() {
   //   }
   // });
 
-  return platformRef.bootstrapModule(MainModule);
+  return platformRef.bootstrapModuleFactory(MainModuleNgFactory);
 }
 
 // support async tag or hmr

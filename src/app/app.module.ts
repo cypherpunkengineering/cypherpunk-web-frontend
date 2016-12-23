@@ -1,12 +1,4 @@
-// Fix Material Support
-import { __platform_browser_private__ } from '@angular/platform-browser';
-function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
-__platform_browser_private__.HammerGesturesPlugin.prototype.supports = universalMaterialSupports;
-// End Fix Material Support
-
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +25,7 @@ import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
 import { SetupModule } from './layouts/account/setup/setup.module';
 import { ResetModule } from './layouts/account/reset/reset.module';
 
-import { CacheService } from './universal-cache';
+import { CacheService } from './components/shared/cache.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
@@ -41,15 +33,9 @@ import { AuthGuard } from './services/auth-guard.service';
 import { ConfirmGuard } from './services/confirm-guard.service';
 import { PlansService } from './services/plans.service';
 
-import { LocalStorage } from './services/local-storage';
-
 @NgModule({
-  bootstrap: [ AppComponent ],
   declarations: [ AppComponent ],
   imports: [
-    UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
-    FormsModule,
-
     SharedModule,
 
     HomeModule,
@@ -76,9 +62,6 @@ import { LocalStorage } from './services/local-storage';
     AppRoutingModule
   ],
   providers: [
-    { provide: 'isBrowser', useValue: isBrowser },
-    { provide: 'isNode', useValue: isNode },
-    { provide: LocalStorage, useValue: { getItem: function() {}, setItem: function() {} } },
     CacheService,
     SessionService,
     AuthService,
@@ -88,23 +71,7 @@ import { LocalStorage } from './services/local-storage';
     PlansService
   ]
 })
-export class MainModule {
-  constructor(public cache: CacheService) {
-
-  }
-
-  /**
-   * We need to use the arrow function here to bind the context as this is a gotcha
-   * in Universal for now until it's fixed
-   */
-  universalDoDehydrate = (universalCache) => {
-    universalCache[CacheService.KEY] = JSON.stringify(this.cache.dehydrate());
-  }
-
- /**
-  * Clear the cache after it's rendered
-  */
-  universalAfterDehydrate = () => {
-    this.cache.clear();
-  }
+export class AppModule {
 }
+
+export { AppComponent } from './app.component';

@@ -4,7 +4,7 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss']
+  styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent {
 

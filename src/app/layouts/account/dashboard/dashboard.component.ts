@@ -3,10 +3,11 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlansService } from '../../../services/plans.service';
+import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   user: any;
@@ -28,10 +29,12 @@ export class DashboardComponent {
   ) {
     this.user = this.session.user;
 
-    let route = activatedRoute.snapshot;
-    let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state)
-    .then((data) => { this.loading = data.loading || false; });
+    if (isBrowser) {
+      let route = activatedRoute.snapshot;
+      let state = router.routerState.snapshot;
+      this.authGuard.canActivate(route, state)
+      .then((data) => { this.loading = false; });
+    }
   }
 
   showPriceBoxes() {

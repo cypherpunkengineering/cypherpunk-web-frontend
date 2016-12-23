@@ -3,14 +3,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
+import { isBrowser } from 'angular2-universal';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
   templateUrl: './setup.component.html',
-  styleUrls: ['./setup.component.scss']
+  styleUrls: ['./setup.component.css']
 })
 export class SetupComponent implements OnInit {
+  user: any;
   loading: boolean = true;
   regionArray = [];
   freeAccount: boolean = true;
@@ -36,13 +38,16 @@ export class SetupComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private session: SessionService
   ) {
+    this.user = session.user;
     if (session.user.account.type === 'free') { this.freeAccount = true; }
     else { this.freeAccount = false; }
 
-    let route = activatedRoute.snapshot;
-    let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state)
-    .then((data) => { this.loading = data.loading || false; });
+    if (isBrowser) {
+      let route = activatedRoute.snapshot;
+      let state = router.routerState.snapshot;
+      this.authGuard.canActivate(route, state)
+      .then((data) => { this.loading = false; });
+    }
   }
 
   ngOnInit() {

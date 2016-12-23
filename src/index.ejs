@@ -173,8 +173,8 @@
   </app-root>
 
   <!-- begin Stripe code -->
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript">
+  <script type="text/javascript" src="https://js.stripe.com/v2/" async></script>
+  <script type="text/javascript" async>
     Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
   </script>
   <!-- end Stripe code -->
@@ -182,7 +182,7 @@
   <!-- begin Amazon Payments code -->
   <script async='async' type='text/javascript'
   src='https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js'></script>
-  <script type='text/javascript'>
+  <script type='text/javascript' async>
     window.onAmazonLoginReady = function() {
       var cid = 'amzn1.application-oa2-client.3b4ef4e00d884937bd353d9afee02937';
       amazon.Login.setClientId(cid);
@@ -192,7 +192,7 @@
   <!-- end Amazon Payments code -->
 
   <!-- begin SnapEngage code -->
-  <script type="text/javascript">
+  <script type="text/javascript" async>
     (function() {
       var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
       se.src = '//storage.googleapis.com/code.snapengage.com/js/c87a1134-565f-4670-96f7-0a45cce50e19.js';
@@ -210,7 +210,7 @@
   <!-- end SnapEngage code -->
 
   <!-- begin GA -->
-  <script type="text/javascript">
+  <script type="text/javascript" async>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

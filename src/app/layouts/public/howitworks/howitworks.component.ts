@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './howitworks.component.html',
-  styleUrls: ['./howitworks.component.scss']
+  styleUrls: ['./howitworks.component.css']
 })
 export class HowitworksComponent implements AfterViewInit {
   title: string = 'How Cypherpunk Privacy Protects Your Online Privacy and Freedom';

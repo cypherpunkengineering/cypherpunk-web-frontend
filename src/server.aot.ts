@@ -6,6 +6,7 @@ import 'angular2-universal-polyfills';
 import 'ts-helpers';
 import './__workaround.node'; // temporary until 2.1.1 things are patched in Core
 
+import * as fs from 'fs';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
@@ -19,7 +20,7 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { MainModule } from './node.module';
+import { MainModuleNgFactory } from './node.module.ngfactory';
 
 // Routes
 import { routes } from './server.routes';
@@ -32,7 +33,8 @@ const ROOT = path.join(path.resolve(__dirname, '..'));
 
 // Express View
 app.engine('.html', createEngine({
-  ngModule: MainModule,
+  precompile: false, // this needs to be false when using ngFactory
+  ngModule: MainModuleNgFactory,
   providers: [
     // use only if you have shared state between users
     // { provide: 'LRU', useFactory: () => new LRU(10) }
@@ -48,18 +50,22 @@ app.set('json spaces', 2);
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 app.use(compression());
-app.use(morgan('dev'));
+
+const accessLogStream = fs.createWriteStream(ROOT + '/morgan.log', {flags: 'a'})
+
+app.use(morgan('common', {
+  skip: (req, res) => res.statusCode < 400,
+  stream: accessLogStream
+}));
 
 function cacheControl(req, res, next) {
   // instruct browser to revalidate in 60 seconds
   res.header('Cache-Control', 'max-age=60');
   next();
 }
-
 // Serve static files
 app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}));
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
-
 
 import { serverApi, subs, confirm, login, logout, locations, world } from './backend/api';
 // Our API for demos only
@@ -98,7 +104,6 @@ app.get('*', function(req, res) {
   var json = JSON.stringify(pojo, null, 2);
   res.status(404).send(json);
 });
-
 
 // Server
 let server = app.listen(app.get('port'), () => {

@@ -1,3 +1,4 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: './upgrade.component.html',
-  styleUrls: ['./upgrade.component.scss']
+  styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent {
   loading: boolean = true;
@@ -80,20 +81,22 @@ export class UpgradeComponent {
   ) {
     this.email = session.user.account.email;
 
-    let route = activatedRoute.snapshot;
-    let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state)
-    .then((data) => { this.loading = data.loading || false; })
-    .then(() => {
-      let redirect = true;
-      let type = session.user.account.type;
-      let renewal = session.user.subscription.renewal;
-      if (type === 'free') { redirect = false; }
-      else if (type === 'premium') {
-        if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
-      }
-      if (redirect) { router.navigate(['/account']); }
-    });
+    if (isBrowser) {
+      let route = activatedRoute.snapshot;
+      let state = router.routerState.snapshot;
+      this.authGuard.canActivate(route, state)
+      .then((data) => { this.loading = data.loading || false; })
+      .then(() => {
+        let redirect = true;
+        let type = session.user.account.type;
+        let renewal = session.user.subscription.renewal;
+        if (type === 'free') { redirect = false; }
+        else if (type === 'premium') {
+          if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
+        }
+        if (redirect) { router.navigate(['/account']); }
+      });
+    }
   }
 
   // pay with credit card

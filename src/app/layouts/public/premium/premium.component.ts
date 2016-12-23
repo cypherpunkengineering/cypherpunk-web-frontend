@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: './premium.component.html',
-  styleUrls: ['./premium.component.scss']
+  styleUrls: ['./premium.component.css']
 })
 export class PremiumComponent {
   posData: string = '';

@@ -6,7 +6,7 @@ import 'rxjs/add/observable/forkJoin';
 
 @Component({
   templateUrl: './locations.component.html',
-  styleUrls: ['./locations.component.scss']
+  styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent implements OnInit {
   regionArray = [];

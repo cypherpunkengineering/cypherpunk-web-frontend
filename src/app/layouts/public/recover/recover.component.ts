@@ -3,7 +3,7 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './recover.component.html',
-  styleUrls: ['./recover.component.scss']
+  styleUrls: ['./recover.component.css']
 })
 export class RecoverComponent implements AfterViewInit {
   email: string = '';

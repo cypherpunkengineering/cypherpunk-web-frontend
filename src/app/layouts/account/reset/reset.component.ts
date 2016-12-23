@@ -3,7 +3,7 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.scss']
+  styleUrls: ['./reset.component.css']
 })
 export class ResetComponent implements AfterViewInit {
   password: string = '';

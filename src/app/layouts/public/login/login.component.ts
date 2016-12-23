@@ -6,7 +6,7 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements AfterViewInit {
   user = { login: '', password: '' };

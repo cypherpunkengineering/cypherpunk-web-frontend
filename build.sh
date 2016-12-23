@@ -22,8 +22,8 @@ nvm use ${NODE_VERSION}
 npm install
 
 # start build
-npm start &
-npm run build:prod
+npm run build:prod:ngc
+npm run server &
 sleep 5
 
 # start scrape

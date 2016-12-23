@@ -4,7 +4,7 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   templateUrl: './download.component.html',
-  styleUrls: ['./download.component.scss']
+  styleUrls: ['./download.component.css']
 })
 export class DownloadComponent {
   builds = {

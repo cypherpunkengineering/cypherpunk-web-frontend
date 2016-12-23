@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +30,8 @@ const COMPONENTS = [
   LoadingComponent
 ];
 
+const PROVIDERS = [];
+
 @NgModule({
   imports: [
     ...MODULES
@@ -46,4 +48,13 @@ const COMPONENTS = [
     ...COMPONENTS
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ...PROVIDERS
+      ]
+    };
+  }
+}

@@ -1,10 +1,11 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
 
 @Component({
   templateUrl: './billing.component.html',
-  styleUrls: ['./billing.component.scss']
+  styleUrls: ['./billing.component.css']
 })
 export class BillingComponent implements OnInit {
 
@@ -52,9 +53,11 @@ export class BillingComponent implements OnInit {
     private authGuard: AuthGuard,
     private activatedRoute: ActivatedRoute
   ) {
-    let route = activatedRoute.snapshot;
-    let state = router.routerState.snapshot;
-    this.authGuard.canActivate(route, state);
+    if (isBrowser) {
+      let route = activatedRoute.snapshot;
+      let state = router.routerState.snapshot;
+      this.authGuard.canActivate(route, state);
+    }
   }
 
   ngOnInit() {
@@ -85,7 +88,7 @@ export class BillingComponent implements OnInit {
     return disabled;
   }
 
-  goToTransactionsPage(direction: string, sortPriority: string) {
+  goToTransactionsPage(direction: string, sortPriority?: string) {
     /* copy resolve function from resolver to here */
   }
 
@@ -101,7 +104,7 @@ export class BillingComponent implements OnInit {
     return disabled;
   }
 
-  goToInvoicesPage(direction: string, sortPriority: string) {
+  goToInvoicesPage(direction: string, sortPriority?: string) {
     /* copy resolve function from resolver to here */
   }
 

@@ -8,9 +8,19 @@ npm-debug.log
 /dist/
 
 .idea
+*.ngfactory.ts
+*.css.shim.ts
 
 .DS_Store
+
+webpack.records.json
+
+/npm-debug.log.*
+
+morgan.log
 
 /build/account/*.html
 /build/index*.js
 /build/*.html
+
+/src/app/**/*.css

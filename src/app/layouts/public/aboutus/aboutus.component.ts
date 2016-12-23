@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './aboutus.component.html',
-  styleUrls: ['./aboutus.component.scss']
+  styleUrls: ['./aboutus.component.css']
 })
 export class AboutusComponent { }
