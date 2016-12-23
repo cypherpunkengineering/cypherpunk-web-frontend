@@ -14,51 +14,36 @@ export class ConfirmGuard implements CanActivate {
     private http: Http
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
     let accountId = route.queryParams['accountId'];
     let confToken = route.queryParams['confirmationToken'];
 
     return this.checkToken(accountId, confToken)
     .then((data) => {
-      let valid = data['valid'];
-
-      if (valid) {
-        // set user session data
-        this.session.setUserData({
-          account: { email: data['account']['email'] },
-          secret: data['secret']
-        });
-        // turn auth on
-        this.auth.authed = true;
-        return true;
-      }
-      else {
-        this.router.navigate(['/']);
-        return false;
-      }
-    });
+      // set user session data
+      this.session.setUserData({
+        account: { email: data['account']['email'] },
+        secret: data['secret']
+      });
+      // turn auth on
+      this.auth.authed = true;
+    })
+    .catch((err) => { this.router.navigate(['/']); });
   }
 
-  checkToken(accountId: string, confToken: string): Promise<Object> {
+  checkToken(accountId: string, confToken: string): Promise<any> {
     let url = `/api/v0/account/confirm/email`;
-    let body = {
-      accountId: accountId,
-      confirmationToken: confToken
-    };
+    let body = { accountId: accountId, confirmationToken: confToken };
     let options = new RequestOptions({});
-    let retVal = { valid: false };
 
     // this will set cookie
     return this.http.post(url, body, options).toPromise()
     .then((res: Response) => {
-      if (res.status === 200) { retVal.valid = true; }
-      return res;
-    })
-    .then((res: Response) => {
-      retVal = res.json() || {};
-      retVal.valid = true;
-      return retVal;
-    })
-    .catch(() => { return retVal; });
+      if (res.status === 200) {
+        let retVal = res.json() || {};
+        return retVal;
+      }
+      else { return Promise.reject('Failed Authentication'); }
+    });
   }
 }
