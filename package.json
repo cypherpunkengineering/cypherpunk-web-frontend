@@ -12,6 +12,7 @@
     "clean:dist": "rimraf dist",
     "clean:ngc": "rimraf **/*.ngfactory.ts **/*.css.shim.ts **/*.scss.shim.ts",
     "clean:css": "rimraf src/app/**/*.css",
+    "clean:build": "node scripts/clean-build",
     "prebuild": "npm run clean:dist",
     "build": "npm run sass && webpack --progress",
     "build:prod:ngc": "npm run clean:ngc && npm run sass && npm run ngc && npm run clean:dist && npm run build:prod",
