@@ -216,10 +216,12 @@ export class PremiumComponent {
   amazonCallback(billingAgreement) {
     console.log(billingAgreement);
     /* on return show amazonButton */
+    var token = billingAgreement.getId();
+    console.log(token);
 
     /* send billingAgreement to server */
     let serverParams = {
-      billingAgreementId: billingAgreement,
+      billingAgreementId: token,
       plan: this.selectedPlan.id,
       email: this.email,
       password: this.password
