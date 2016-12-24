@@ -6,7 +6,7 @@ window.amazonPayments = {
     var authRequest;
     window.OffAmazonPayments.Button(
       'AmazonPayButton',
-      'A3SJRQ5XVLYGMV', {
+      'A2FF2JPNM9GYDJ', {
         type:  'PwA',
         color: 'Gold',
         size:  'medium',
@@ -27,7 +27,7 @@ window.amazonPayments = {
     document.getElementById('walletWidgetDiv').style.display = 'block';
 
     new window.OffAmazonPayments.Widgets.Wallet({
-      sellerId: 'A3SJRQ5XVLYGMV',
+      sellerId: 'A2FF2JPNM9GYDJ',
       onReady: function(billingAgreement) {
         billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
       },
@@ -47,7 +47,7 @@ window.amazonPayments = {
     document.getElementById('consentWidgetDiv').style.display = 'block';
 
     new window.OffAmazonPayments.Widgets.Consent({
-      sellerId: 'A3SJRQ5XVLYGMV',
+      sellerId: 'A2FF2JPNM9GYDJ',
       // amazonBillingAgreementId obtained from the Amazon Address Book widget.
       amazonBillingAgreementId: billingAgreementId,
       design: { designMode: 'responsive' },
