@@ -214,10 +214,46 @@ export class PremiumComponent {
   }
 
   amazonCallback(billingAgreement) {
-    console.log('back in angular');
     console.log(billingAgreement);
-    /* send billingAgreement to server */
     /* on return show amazonButton */
+
+    /* send billingAgreement to server */
+    let serverParams = {
+      billingAgreementId: billingAgreement,
+      plan: this.selectedPlan.id,
+      email: this.email,
+      password: this.password
+    };
+
+    // call server at this point (using promises)
+    let url = '/api/v0/payment/amazon/billingAgreement';
+    let body = serverParams;
+    let options = new RequestOptions({});
+    // sets cookie
+    return this.http.post(url, body, options).toPromise()
+    // set user session
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.session.setUserData({
+        account: { email: resData.account.email },
+        secret: resData.secret
+      });
+    })
+    // turn on authed
+    .then(() => { this.auth.authed = true; })
+    // alert and redirect
+    .then(() => {
+      this.alertService.success('You account was created!');
+      this.router.navigate(['/account']);
+    })
+    // handle errors
+    .catch((error) => {
+      console.log(error);
+      this.zone.run(() => {
+        this.ccButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
+    });
   }
 
   amazonButton() {
@@ -252,10 +288,7 @@ export class PremiumComponent {
     })
     // turn on authed
     .then(() => { this.auth.authed = true; })
-    // alert and redirect to paypal
-    .then(() => {
-      this.alertService.success('You account was created!');
-    })
+    .then(() => { this.alertService.success('You account was created!'); })
     .then(() => {
       let posId = {
         email: this.email,
