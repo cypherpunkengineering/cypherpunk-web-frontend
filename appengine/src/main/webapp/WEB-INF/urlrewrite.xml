@@ -26,6 +26,10 @@
 		<from>^/api/v1/(.*)</from>
 		<to last="true">/api/v1/$1</to>
 	</rule>
+	<rule>
+		<from>^/api/blog/(.*)</from>
+		<to last="true">/api/blog/$1</to>
+	</rule>
 
 	<!-- spider crawler robots -->
 	<rule>

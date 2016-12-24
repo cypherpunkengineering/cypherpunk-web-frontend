@@ -51,6 +51,16 @@
 		<servlet-class>com.cypherpunk.appengine.ControlPanelProxy</servlet-class>
 	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>BloggerProxy</servlet-name>
+		<url-pattern>/api/blog/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BloggerProxy</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.BloggerProxy</servlet-class>
+	</servlet>
+
 	<servlet>
 		<servlet-name>acme-challenge</servlet-name>
 		<servlet-class>com.cypherpunk.appengine.AcmeChallenge</servlet-class>
