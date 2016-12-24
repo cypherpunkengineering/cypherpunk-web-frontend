@@ -1,5 +1,7 @@
-import { Component, AfterViewInit, NgZone } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthGuard } from '../../../services/auth-guard.service';
+import { Component, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './reset.component.html',
@@ -11,7 +13,18 @@ export class ResetComponent implements AfterViewInit {
   error = { message: '' };
   resetButtonDisabled: boolean = false;
 
-  constructor(private zone: NgZone) { }
+  constructor(
+    private zone: NgZone,
+    private router: Router,
+    private authGuard: AuthGuard,
+    private activatedRoute: ActivatedRoute
+  ) {
+    if (isBrowser) {
+      let route = activatedRoute.snapshot;
+      let state = router.routerState.snapshot;
+      this.authGuard.canActivate(route, state);
+    }
+  }
 
   ngAfterViewInit() {
     if (isBrowser) {
