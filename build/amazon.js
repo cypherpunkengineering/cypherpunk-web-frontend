@@ -61,7 +61,7 @@ window.amazonPayments = {
         // false – checkbox is unselected - default
 
         if (buyerBillingAgreementConsentStatus === 'true') {
-          window.amazonPayments.callback(window.amazonPayments.billingAgreement);
+          window.amazonPayments.callback(billingAgreementId);
           document.getElementById('payWithAmazon').style.display = 'inline';
         }
       },
