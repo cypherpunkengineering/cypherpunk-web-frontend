@@ -30,6 +30,7 @@ window.amazonPayments = {
       sellerId: 'A2FF2JPNM9GYDJ',
       onReady: function(billingAgreement) {
         billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+        console.log(billingAgreementId);
       },
       agreementType: 'BillingAgreement',
       design: { designMode: 'responsive' },
