@@ -75,7 +75,7 @@ window.amazonPayments = {
         // Replace this code with the action that you want to perform
         // after the consent checkbox is selected/unselected.
         if (buyerBillingAgreementConsentStatus === 'true') {
-          window.amazonPayments.callback(window.amazonPayments.billingAgreement);
+          window.amazonPayments.callback(billingAgreementId);
           document.getElementById('payWithAmazon').style.display = 'inline';
         }
         else {
