@@ -264,7 +264,8 @@ export class PremiumComponent {
         design: { designMode: 'responsive' },
         // Called after widget renders
         onReady: (billingAgreementConsentStatus) => {
-          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+          let getStatus = billingAgreementConsentStatus.getConsentStatus;
+          if (getStatus && getStatus() === 'true') {
             document.getElementById('payWithAmazon').style.display = 'inline';
           }
         },

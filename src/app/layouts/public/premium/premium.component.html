@@ -5,8 +5,9 @@
   <div class="masthead-image"></div>
 </div>
 
+
 <div class="page">
-  <div class="mobile-header">Select your plan</div>
+  <div class="page-divider"></div>
 
   <div class="pricing">
     <div class="blimp-container">
@@ -65,6 +66,8 @@
       <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
     </div>
   </div>
+
+  <div class="page-divider bottom"></div>
 
   <div class="payment-selection">
     <div class="payment-bg">
@@ -162,6 +165,21 @@
     </div>
 
     <div class="amazon" *ngIf="paymentOptions[1].selected">
+
+      <div class="info">
+        <p>
+          <label>Email</label><br>
+          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+        </p>
+      </div>
+
+      <div class="info">
+        <p>
+          <label>Password</label><br>
+          <input type="password" [(ngModel)]="password" required>
+        </p>
+      </div>
+
       <div class="total">
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>
@@ -172,7 +190,7 @@
 
       <div id="consentWidgetDiv"></div>
 
-      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
+      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="!validatePP() || amButtonDisabled">
         Join Cypherpunk
       </button>
     </div>

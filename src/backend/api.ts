@@ -47,7 +47,7 @@ export function subs(req, res) {
   }
   else {
     body = {
-      secret: 'secret',
+      secret: '',
       privacy: {
         username: '',
         password: ''
@@ -67,6 +67,28 @@ export function subs(req, res) {
 
   return res.json(body);
 }
+
+export function amazonPurchase(req, res) {
+  let body = {
+    secret: '',
+    privacy: {
+      username: '',
+      password: ''
+    },
+    account: {
+      id: '1',
+      email: '',
+      type: '',
+      confirmed: false
+    },
+    subscription: {
+      renewal: '',
+      expiration: '0'
+    }
+  };
+  return res.json(body);
+}
+
 
 export function confirm(req, res) {
   let body = {
