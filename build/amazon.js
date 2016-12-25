@@ -1,5 +1,6 @@
 window.amazonPayments = {
   billingAgreement: {},
+  billingAgreementId: '',
   callback: function() {},
   init: function(callback) {
     window.amazonPayments.callback = callback;
@@ -30,7 +31,7 @@ window.amazonPayments = {
       sellerId: 'A2FF2JPNM9GYDJ',
       onReady: function(billingAgreement) {
         billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
-        console.log(billingAgreementId);
+        window.amazonPayments.billingAgreementId = billingAgreementId;
       },
       agreementType: 'BillingAgreement',
       design: { designMode: 'responsive' },

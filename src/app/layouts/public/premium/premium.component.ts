@@ -18,15 +18,18 @@ export class PremiumComponent {
   amButtonDisabled: boolean = false;
   bpButtonDisabled: boolean = false;
 
+  // user variables
+  email: string;
+  password: string;
+  name: string;
+
   // Stripe variables
   cardNumber: string;
   expiryDate: string;
   cvc: string;
 
-  // user variables
-  email: string;
-  password: string;
-  name: string;
+  // Amazon variables
+  billingAgreementId: string;
 
   // validation variables
   validCCEmail: boolean = false;
@@ -208,19 +211,112 @@ export class PremiumComponent {
 
   // pay with amazon
 
-  amazonInit(callback) {
-    let amazonPayments = (<any>window).amazonPayments;
-    amazonPayments.init(callback);
+  amazonInit() {
+    let amazon = (<any>window).amazon;
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+
+    OffAmazonPayments.Button(
+      'AmazonPayButton',
+      'A2FF2JPNM9GYDJ', {
+        type:  'PwA',
+        color: 'Gold',
+        size:  'medium',
+        authorization: () => {
+          let loginOptions = {
+            scope: 'profile',
+            popup: 'true'
+          };
+          this.zone.run(() => { this.amazonCreateWallet(); });
+          amazon.Login.authorize(loginOptions);
+        },
+        onError: (error) => { console.log(error); }
+      }
+    );
   }
 
-  amazonCallback(billingAgreementId) {
-    console.log(billingAgreementId);
+  amazonCreateWallet() {
+    console.log('wallet');
+    console.log(this.selectedPlan);
+
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+    document.getElementById('walletWidgetDiv').style.display = 'block';
+
+    new OffAmazonPayments.Widgets.Wallet({
+      sellerId: 'A2FF2JPNM9GYDJ',
+      onReady: (billingAgreement) => {
+        this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+        console.log(this.billingAgreementId);
+      },
+      agreementType: 'BillingAgreement',
+      design: { designMode: 'responsive' },
+      onPaymentSelect: (billingAgreement) => {
+        // Replace this code with the action that you want to perform
+        // after the payment method is selected.
+        this.zone.run(() => { this.amazonCreateRecurring(); });
+      },
+      onError: (error) => { console.log(error); }
+    }).bind('walletWidgetDiv');
+  }
+
+  amazonCreateRecurring () {
+    console.log('recurring');
+    console.log(this.billingAgreementId);
+
+    let buyerBillingAgreementConsentStatus;
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+
+    document.getElementById('consentWidgetDiv').style.display = 'block';
+
+    new OffAmazonPayments.Widgets.Consent({
+      sellerId: 'A2FF2JPNM9GYDJ',
+      // amazonBillingAgreementId obtained from the Amazon Address Book widget.
+      amazonBillingAgreementId: this.billingAgreementId,
+      design: { designMode: 'responsive' },
+      onReady: (billingAgreementConsentStatus) => {
+        // Called after widget renders
+        buyerBillingAgreementConsentStatus =
+        billingAgreementConsentStatus.getConsentStatus();
+        // getConsentStatus returns true or false
+        // true – checkbox is selected
+        // false – checkbox is unselected - default
+
+        if (buyerBillingAgreementConsentStatus === 'true') {
+          this.zone.run(() => { this.amazonCallback(); });
+          document.getElementById('payWithAmazon').style.display = 'inline';
+        }
+      },
+      onConsent: (billingAgreementConsentStatus) => {
+        buyerBillingAgreementConsentStatus =
+        billingAgreementConsentStatus.getConsentStatus();
+        // getConsentStatus returns true or false
+        // true – checkbox is selected – buyer has consented
+        // false – checkbox is unselected – buyer has not consented
+
+        // Replace this code with the action that you want to perform
+        // after the consent checkbox is selected/unselected.
+        if (buyerBillingAgreementConsentStatus === 'true') {
+          this.zone.run(() => { this.amazonCallback(); });
+          document.getElementById('payWithAmazon').style.display = 'inline';
+        }
+        else {
+          window.alert('Please allow for future payments to join Cypherpunk.');
+          document.getElementById('payWithAmazon').style.display = 'none';
+        }
+      },
+      onError: (error) => { console.log(error); }
+    }).bind('consentWidgetDiv');
+  }
+
+  amazonCallback() {
+    console.log('callback');
+    console.log(this.billingAgreementId);
+    console.log(this.selectedPlan);
     /* on return show amazonButton */
 
     /* send billingAgreement to server */
     this.zone.run(() => {
       let serverParams = {
-        billingAgreementId: billingAgreementId,
+        billingAgreementId: this.billingAgreementId,
         plan: this.selectedPlan.id,
         email: this.email,
         password: this.password
@@ -400,7 +496,7 @@ export class PremiumComponent {
 
     // launch amazon payments
     if (option.type === 'a') {
-      setTimeout(() => { this.amazonInit(this.amazonCallback); }, 100);
+      setTimeout(() => { this.amazonInit(); }, 100);
     }
   }
 
