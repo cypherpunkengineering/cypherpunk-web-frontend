@@ -30,6 +30,8 @@ export class PremiumComponent {
 
   // Amazon variables
   billingAgreementId: string;
+  amazonWallet: any;
+  amazonRecurring: any;
 
   // validation variables
   validCCEmail: boolean = false;
@@ -222,12 +224,8 @@ export class PremiumComponent {
         color: 'Gold',
         size:  'medium',
         authorization: () => {
-          let loginOptions = {
-            scope: 'profile',
-            popup: 'true'
-          };
+          amazon.Login.authorize({ scope: 'profile', popup: 'true' });
           this.zone.run(() => { this.amazonCreateWallet(); });
-          amazon.Login.authorize(loginOptions);
         },
         onError: (error) => { console.log(error); }
       }
@@ -235,129 +233,94 @@ export class PremiumComponent {
   }
 
   amazonCreateWallet() {
-    console.log('wallet');
-    console.log(this.selectedPlan);
-
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
     document.getElementById('walletWidgetDiv').style.display = 'block';
 
-    new OffAmazonPayments.Widgets.Wallet({
-      sellerId: 'A2FF2JPNM9GYDJ',
-      onReady: (billingAgreement) => {
-        this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
-        console.log(this.billingAgreementId);
-      },
-      agreementType: 'BillingAgreement',
-      design: { designMode: 'responsive' },
-      onPaymentSelect: (billingAgreement) => {
-        // Replace this code with the action that you want to perform
-        // after the payment method is selected.
-        this.zone.run(() => { this.amazonCreateRecurring(); });
-      },
-      onError: (error) => { console.log(error); }
-    }).bind('walletWidgetDiv');
+    if (!this.amazonWallet) {
+      new OffAmazonPayments.Widgets.Wallet({
+        sellerId: 'A2FF2JPNM9GYDJ',
+        onReady: (billingAgreement) => {
+          this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+        },
+        agreementType: 'BillingAgreement',
+        design: { designMode: 'responsive' },
+        onPaymentSelect: (billingAgreement) => {
+          this.zone.run(() => { this.amazonCreateRecurring(); });
+        },
+        onError: (error) => { console.log(error); }
+      }).bind('walletWidgetDiv');
+    }
   }
 
   amazonCreateRecurring () {
-    console.log('recurring');
-    console.log(this.billingAgreementId);
-
-    let buyerBillingAgreementConsentStatus;
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
-
     document.getElementById('consentWidgetDiv').style.display = 'block';
 
-    new OffAmazonPayments.Widgets.Consent({
-      sellerId: 'A2FF2JPNM9GYDJ',
-      // amazonBillingAgreementId obtained from the Amazon Address Book widget.
-      amazonBillingAgreementId: this.billingAgreementId,
-      design: { designMode: 'responsive' },
-      onReady: (billingAgreementConsentStatus) => {
+    if (!this.amazonRecurring) {
+      new OffAmazonPayments.Widgets.Consent({
+        sellerId: 'A2FF2JPNM9GYDJ',
+        // amazonBillingAgreementId obtained from the Amazon Address Book widget.
+        amazonBillingAgreementId: this.billingAgreementId,
+        design: { designMode: 'responsive' },
         // Called after widget renders
-        buyerBillingAgreementConsentStatus =
-        billingAgreementConsentStatus.getConsentStatus();
-        // getConsentStatus returns true or false
-        // true – checkbox is selected
-        // false – checkbox is unselected - default
-
-        if (buyerBillingAgreementConsentStatus === 'true') {
-          this.zone.run(() => { this.amazonCallback(); });
-          document.getElementById('payWithAmazon').style.display = 'inline';
-        }
-      },
-      onConsent: (billingAgreementConsentStatus) => {
-        buyerBillingAgreementConsentStatus =
-        billingAgreementConsentStatus.getConsentStatus();
-        // getConsentStatus returns true or false
-        // true – checkbox is selected – buyer has consented
-        // false – checkbox is unselected – buyer has not consented
-
-        // Replace this code with the action that you want to perform
-        // after the consent checkbox is selected/unselected.
-        if (buyerBillingAgreementConsentStatus === 'true') {
-          this.zone.run(() => { this.amazonCallback(); });
-          document.getElementById('payWithAmazon').style.display = 'inline';
-        }
-        else {
-          window.alert('Please allow for future payments to join Cypherpunk.');
-          document.getElementById('payWithAmazon').style.display = 'none';
-        }
-      },
-      onError: (error) => { console.log(error); }
-    }).bind('consentWidgetDiv');
-  }
-
-  amazonCallback() {
-    console.log('callback');
-    console.log(this.billingAgreementId);
-    console.log(this.selectedPlan);
-    /* on return show amazonButton */
-
-    /* send billingAgreement to server */
-    this.zone.run(() => {
-      let serverParams = {
-        billingAgreementId: this.billingAgreementId,
-        plan: this.selectedPlan.id,
-        email: this.email,
-        password: this.password
-      };
-
-      // call server at this point (using promises)
-      let url = '/api/v0/payment/amazon/billingAgreement';
-      let body = serverParams;
-      let options = new RequestOptions({});
-      // sets cookie
-      return this.http.post(url, body, options).toPromise()
-      // set user session
-      .then((res: Response) => {
-        let resData = res.json() || {};
-        this.session.setUserData({
-          account: { email: resData.account.email },
-          secret: resData.secret
-        });
-      })
-      // turn on authed
-      .then(() => { this.auth.authed = true; })
-      // alert and redirect
-      .then(() => {
-        this.alertService.success('You account was created!');
-        this.router.navigate(['/account']);
-      })
-      // handle errors
-      .catch((error) => {
-        console.log(error);
-        this.zone.run(() => {
-          this.ccButtonDisabled = false;
-          this.alertService.error('Could not create an account');
-        });
-      });
-    });
+        onReady: (billingAgreementConsentStatus) => {
+          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+            document.getElementById('payWithAmazon').style.display = 'inline';
+          }
+        },
+        onConsent: (billingAgreementConsentStatus) => {
+          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+            document.getElementById('payWithAmazon').style.display = 'inline';
+          }
+          else {
+            window.alert('Please allow for future payments to join Cypherpunk.');
+            document.getElementById('payWithAmazon').style.display = 'none';
+          }
+        },
+        onError: (error) => { console.log(error); }
+      }).bind('consentWidgetDiv');
+    }
   }
 
   amazonButton() {
     this.amButtonDisabled = true;
-    console.log('paid with amazon');
-    this.amButtonDisabled = false;
+    /* send billingAgreement to server */
+    let serverParams = {
+      billingAgreementId: this.billingAgreementId,
+      plan: this.selectedPlan.id,
+      email: this.email,
+      password: this.password
+    };
+
+    // call server at this point (using promises)
+    let url = '/api/v0/payment/amazon/billingAgreement';
+    let body = serverParams;
+    let options = new RequestOptions({});
+    // sets cookie
+    return this.http.post(url, body, options).toPromise()
+    // set user session
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.session.setUserData({
+        account: { email: resData.account.email },
+        secret: resData.secret
+      });
+    })
+    // turn on authed
+    .then(() => { this.auth.authed = true; })
+    // alert and redirect
+    .then(() => {
+      this.alertService.success('You account was created!');
+      this.router.navigate(['/account']);
+    })
+    // handle errors
+    .catch((error) => {
+      console.log(error);
+      this.zone.run(() => {
+        this.amButtonDisabled = false;
+        this.alertService.error('Could not create an account');
+      });
+    });
   }
 
   // pay with bitpay
