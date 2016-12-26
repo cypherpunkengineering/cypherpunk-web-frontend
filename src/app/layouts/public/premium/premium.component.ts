@@ -158,11 +158,15 @@ export class PremiumComponent {
     })
     // handle errors
     .catch((error) => {
-      console.log(error);
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
-        this.alertService.error('Could not create an account');
+
+        console.log(error);
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
       });
     });
   }
@@ -211,11 +215,15 @@ export class PremiumComponent {
     })
     // handle errors
     .catch((error) => {
-      console.log(error);
       this.zone.run(() => {
         this.loading = false;
         this.ppButtonDisabled = false;
-        this.alertService.error('Could not create an account');
+
+        console.log(error);
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
       });
     });
   }
@@ -327,11 +335,15 @@ export class PremiumComponent {
     })
     // handle errors
     .catch((error) => {
-      console.log(error);
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
-        this.alertService.error('Could not create an account');
+
+        console.log(error);
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
       });
     });
   }
@@ -384,11 +396,15 @@ export class PremiumComponent {
     })
     // handle errors
     .catch((error) => {
-      console.log(error);
       this.zone.run(() => {
         this.loading = false;
         this.bpButtonDisabled = false;
-        this.alertService.error('Could not create an account');
+
+        console.log(error);
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
       });
     });
   }
