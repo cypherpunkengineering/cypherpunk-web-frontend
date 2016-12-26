@@ -204,8 +204,9 @@
   .clear { clear: both; }
 
   label { font-size: 18px; color: #666; }
-  input {
+  input, select {
     display: table-cell;
+    background-color: #fff;
     width: 346px;
     height: 50px;
     border-radius: 4px;
@@ -288,5 +289,5 @@
 @media (max-width: 375px) {
   .btn { width: 300px; }
   .payment-info .info { max-width: 290px; }
-  .payment-info input { width: 280px; }
+  .payment-info input, .payment-info select { width: 280px; }
 }

@@ -155,6 +155,24 @@
         </p>
       </div>
 
+      <div class="info">
+        <p>
+          <label>Country</label><br>
+          <select name="country" id="country" [(ngModel)]="country" (ngModelChange)="changeCountry()" (blur)="validateCountry()" [ngClass]="{'error': !validCountry && countryTouched, 'success': validCountry && countryTouched}">
+            <option *ngFor="let country of countries" [value]="country.name">
+              {{country.name}}
+            </option>
+          </select>
+        </p>
+      </div>
+
+      <div class="info" *ngIf="showZip">
+        <p>
+          <label>Zip Code</label><br>
+          <input type="text" [(ngModel)]="zipCode" (ngModelChange)="validateZipCode()" (blur)="validateZipCode()" [ngClass]="{'error': !validZipCode && zipCodeTouched, 'success': validZipCode && zipCodeTouched}">
+        </p>
+      </div>
+
       <div class="total">
         ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
       </div>

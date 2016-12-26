@@ -6,6 +6,7 @@ import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
+import country_list from './countries';
 
 @Component({
   templateUrl: './premium.component.html',
@@ -19,6 +20,7 @@ export class PremiumComponent {
   bpButtonDisabled: boolean = false;
   loading: boolean = false;
   modal = { show: false, header: '', body: '', link: false };
+  countries = country_list;
 
   // user variables
   email: string;
@@ -29,6 +31,9 @@ export class PremiumComponent {
   cardNumber: string;
   expiryDate: string;
   cvc: string;
+  country: string;
+  zipCode: string;
+  showZip: boolean = false;
 
   // Amazon variables
   billingAgreementId: string;
@@ -42,12 +47,16 @@ export class PremiumComponent {
   validCCNumber: boolean = false;
   validCCExpiry: boolean = false;
   validCCcvc: boolean = false;
+  validCountry: boolean = false;
+  validZipCode: boolean = false;
   ccEmailTouched: boolean = false;
   ccPassTouched: boolean = false;
   ccNameTouched: boolean = false;
   ccNumberTouched: boolean = false;
   ccExpiryTouched: boolean = false;
   ccCVCTouched: boolean = false;
+  countryTouched: boolean = false;
+  zipCodeTouched: boolean = false;
 
   // payment plans
   plans = this.plansService.plans;
@@ -84,9 +93,25 @@ export class PremiumComponent {
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService
-  ) { }
+  ) {
+    // use Geo-IP to preload CC country
+
+  }
 
   // pay with credit card
+
+  changeCountry() {
+    let currentCountry = this.country;
+
+    if (currentCountry === 'United States' ||
+        currentCountry === 'United Kingdom' ||
+        currentCountry === 'Canada') {
+      this.showZip = true;
+    }
+    else { this.showZip = false; }
+
+    return this.validateCountry();
+  }
 
   getToken() {
     // show loading overlay
@@ -105,8 +130,12 @@ export class PremiumComponent {
       number: this.cardNumber,
       exp_month: month,
       exp_year: year,
-      cvc: this.cvc
+      cvc: this.cvc,
+      address_zip: '',
+      adress_country: this.country
     };
+    if (this.zipCode) { stripeParams.address_zip = this.zipCode; }
+    else { delete stripeParams.address_zip; }
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
@@ -483,13 +512,38 @@ export class PremiumComponent {
     return this.validCCcvc;
   }
 
+  validateCountry() {
+    this.countryTouched = true;
+
+    if (!this.country) { this.validCountry = false; }
+    else { this.validCountry = true; }
+    return this.validCountry;
+  }
+
+  validateZipCode() {
+    this.zipCodeTouched = true;
+
+    if (!this.zipCode) { this.validZipCode = false; }
+    else { this.validZipCode = true; }
+    return this.validZipCode;
+  }
+
   validateCC() {
-    return this.validCCEmail && this.ccEmailTouched &&
+    let valid = this.validCCEmail && this.ccEmailTouched &&
     this.validCCPass && this.ccPassTouched &&
     this.validCCName && this.ccNameTouched &&
     this.validCCNumber && this.ccNumberTouched &&
     this.validCCExpiry && this.ccExpiryTouched &&
-    this.validCCcvc && this.ccCVCTouched;
+    this.validCCcvc && this.ccCVCTouched &&
+    this.validCountry && this.countryTouched;
+
+    if (this.country === 'United States' ||
+    this.country === 'United Kingdom' ||
+    this.country === 'Canada') {
+      valid = valid && this.validZipCode && this.zipCodeTouched;
+    }
+
+    return valid;
   }
 
   validatePP() {
