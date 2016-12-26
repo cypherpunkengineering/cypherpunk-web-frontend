@@ -98,6 +98,7 @@ export class PremiumComponent {
 
     // stripe params
     let stripeParams = {
+      name: this.name,
       number: this.cardNumber,
       exp_month: month,
       exp_year: year,
@@ -407,7 +408,8 @@ export class PremiumComponent {
         else { this.validCCEmail = false; }
       });
     }
-    else { return this.validCCEmail; }
+
+    return this.validCCEmail;
   }
 
   validateCCPass() {
