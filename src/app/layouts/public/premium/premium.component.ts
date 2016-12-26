@@ -17,6 +17,7 @@ export class PremiumComponent {
   ppButtonDisabled: boolean = false;
   amButtonDisabled: boolean = false;
   bpButtonDisabled: boolean = false;
+  modal = { show: false, header: '', body: '', link: false };
 
   // user variables
   email: string;
@@ -381,13 +382,32 @@ export class PremiumComponent {
 
   // validation functions
 
-  validateCCEmail() {
+  validateCCEmail(onBlur: boolean) {
     this.ccEmailTouched = true;
 
     if (!this.email) { this.validCCEmail = false; }
     else if (!/^\S+@\S+$/.test(this.email)) { this.validCCEmail = false; }
     else { this.validCCEmail = true; }
-    return this.validCCEmail;
+
+    if (onBlur && this.validCCEmail) {
+      // call server at this point (using promises)
+      let serverParams = { email: this.email };
+      let url = '/api/v0/account/identify/email';
+      let body = serverParams;
+      let options = new RequestOptions({});
+      this.http.post(url, body, options).toPromise()
+      .then(() => {
+        this.modal.header = 'It looks like your already a Cypherpunk!';
+        this.modal.body = `Why not upgrade your account here: `;
+        this.modal.link = true;
+        this.modal.show = true;
+      })
+      .catch((data) => {
+        if (data.status === 401) { this.validCCEmail = true; }
+        else { this.validCCEmail = false; }
+      });
+    }
+    else { return this.validCCEmail; }
   }
 
   validateCCPass() {

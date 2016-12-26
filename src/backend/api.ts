@@ -89,6 +89,11 @@ export function amazonPurchase(req, res) {
   return res.json(body);
 }
 
+export function identify(req, res) {
+  let valid = false;
+  if (valid) { return res.sendStatus(200); }
+  else { return res.sendStatus(401); }
+}
 
 export function confirm(req, res) {
   let body = {

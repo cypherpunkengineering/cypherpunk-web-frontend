@@ -115,7 +115,7 @@
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail()" [ngClass]="{'error': !validCCEmail && ccEmailTouched}">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched}">
         </p>
       </div>
 
@@ -319,3 +319,23 @@
 <div class="clear"></div>
 
 <app-footer></app-footer>
+
+<div class="modal" [ngClass]="{'open': modal.show}">
+  <div class="background" (click)="modal.show = false" [ngClass]="{'open': modal.show}"></div>
+  <div class="modal-content">
+    <div class="modal-header">{{ modal.header}}</div>
+    <div class="modal-line"></div>
+
+    <div class="modal-body">
+      <p>
+        {{ modal.body}}
+      </p>
+
+      <a routerLink="/account" *ngIf="modal.link">My Account</a>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn cancel" (click)="modal.show = false">Close</button>
+    </div>
+  </div>
+</div>
