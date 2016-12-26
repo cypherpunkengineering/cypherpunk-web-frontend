@@ -17,6 +17,7 @@ export class PremiumComponent {
   ppButtonDisabled: boolean = false;
   amButtonDisabled: boolean = false;
   bpButtonDisabled: boolean = false;
+  loading: boolean = false;
   modal = { show: false, header: '', body: '', link: false };
 
   // user variables
@@ -88,6 +89,8 @@ export class PremiumComponent {
   // pay with credit card
 
   getToken() {
+    // show loading overlay
+    this.loading = true;
     this.ccButtonDisabled = true;
 
     let month: number;
@@ -109,6 +112,7 @@ export class PremiumComponent {
     let stripeCallback = (status: number, response: any) => {
       if (response.error) {
         this.zone.run(() => {
+          this.loading = false;
           this.alertService.error('Could not process payment: ' + response.error.message);
         });
       }
@@ -156,6 +160,7 @@ export class PremiumComponent {
     .catch((error) => {
       console.log(error);
       this.zone.run(() => {
+        this.loading = false;
         this.ccButtonDisabled = false;
         this.alertService.error('Could not create an account');
       });
@@ -165,6 +170,7 @@ export class PremiumComponent {
   // pay with paypal
 
   payWithPaypal() {
+    this.loading = true;
     this.ppButtonDisabled = true;
 
     let serverParams = {
@@ -207,6 +213,7 @@ export class PremiumComponent {
     .catch((error) => {
       console.log(error);
       this.zone.run(() => {
+        this.loading = false;
         this.ppButtonDisabled = false;
         this.alertService.error('Could not create an account');
       });
@@ -286,7 +293,9 @@ export class PremiumComponent {
   }
 
   amazonButton() {
+    this.loading = true;
     this.amButtonDisabled = true;
+
     /* send billingAgreement to server */
     let serverParams = {
       billingAgreementId: this.billingAgreementId,
@@ -320,6 +329,7 @@ export class PremiumComponent {
     .catch((error) => {
       console.log(error);
       this.zone.run(() => {
+        this.loading = false;
         this.amButtonDisabled = false;
         this.alertService.error('Could not create an account');
       });
@@ -329,6 +339,7 @@ export class PremiumComponent {
   // pay with bitpay
 
   payWithBitpay() {
+    this.loading = true;
     this.bpButtonDisabled = true;
 
     let serverParams = {
@@ -375,6 +386,7 @@ export class PremiumComponent {
     .catch((error) => {
       console.log(error);
       this.zone.run(() => {
+        this.loading = false;
         this.bpButtonDisabled = false;
         this.alertService.error('Could not create an account');
       });

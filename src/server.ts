@@ -61,7 +61,7 @@ app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { serverApi, subs, confirm, login, logout, locations, world, amazonPurchase, identify } from './backend/api';
+import { serverApi, subs, confirm, login, logout, locations, world, amazonPurchase, stripePurchase, identify } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 app.get('/api/v0/account/status', subs);
@@ -70,8 +70,9 @@ app.get('/api/v0/location/world', world);
 app.post('/api/v0/account/confirm/email', confirm);
 app.post('/api/v0/account/authenticate/userpasswd', login);
 app.post('/api/v0/account/logout', logout);
-app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
 app.post('/api/v0/account/identify/email', identify);
+app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
+app.post('/api/v0/subscription/purchase', stripePurchase);
 
 function ngApp(req, res) {
   res.render('index', {
