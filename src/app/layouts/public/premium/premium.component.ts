@@ -465,8 +465,8 @@ export class PremiumComponent {
   }
 
   validatePP() {
-    if (!this.email || !this.password) { return false; }
-    else { return true; }
+    return this.validCCEmail && this.ccEmailTouched &&
+    this.validCCPass && this.ccPassTouched;
   }
 
   isNumber(n) {

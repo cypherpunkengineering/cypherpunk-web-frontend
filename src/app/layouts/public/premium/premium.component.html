@@ -115,14 +115,14 @@
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched}">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched, 'success': validCCEmail && ccEmailTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Password</label><br>
-          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched}">
+          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched, 'success': validCCPass && ccPassTouched}">
         </p>
       </div>
 
@@ -132,26 +132,26 @@
       <div class="info">
         <p>
           <label>Name</label><br>
-          <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched}">
+          <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched, 'success': validCCName && ccNameTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Card Number</label><br>
-          <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched}">
+          <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched, 'success': validCCNumber && ccNumberTouched}">
         </p>
       </div>
 
       <div class="info">
         <p class="half">
           <label>Expiration Date</label><br>
-          <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched}" maxlength="5">
+          <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched, 'success': validCCExpiry && ccExpiryTouched}" maxlength="5">
         </p>
 
         <p class="half">
           <label>CVV/CSC Code</label><br>
-          <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched}" maxlength="4">
+          <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched, 'success': validCCcvc && ccCVCTouched}" maxlength="4">
         </p>
       </div>
 
@@ -169,14 +169,14 @@
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched, 'success': validCCEmail && ccEmailTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Password</label><br>
-          <input type="password" [(ngModel)]="password" required>
+          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched, 'success': validCCPass && ccPassTouched}">
         </p>
       </div>
 
@@ -202,14 +202,14 @@
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched, 'success': validCCEmail && ccEmailTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Password</label><br>
-          <input type="password" [(ngModel)]="password" required>
+          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched, 'success': validCCPass && ccPassTouched}">
         </p>
       </div>
 
@@ -265,14 +265,14 @@
       <div class="info">
         <p>
           <label>Email</label><br>
-          <input type="email" placeholder="you@example.com" required [(ngModel)]="email">
+          <input type="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="validateCCEmail()" (blur)="validateCCEmail(true)" [ngClass]="{'error': !validCCEmail && ccEmailTouched, 'success': validCCEmail && ccEmailTouched}">
         </p>
       </div>
 
       <div class="info">
         <p>
           <label>Password</label><br>
-          <input type="password" [(ngModel)]="password" required>
+          <input type="password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [ngClass]="{'error': !validCCPass && ccPassTouched, 'success': validCCPass && ccPassTouched}">
         </p>
       </div>
 
