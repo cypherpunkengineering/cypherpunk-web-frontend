@@ -172,17 +172,11 @@
     Loading Universal ...
   </app-root>
 
-  <!-- begin Stripe code -->
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript">
-    Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
-  </script>
-  <!-- end Stripe code -->
 
   <!-- begin Amazon Payments code -->
-  <script async='async' type='text/javascript'
+  <script id="amazon-widget" async='async' type='text/javascript'
   src='https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js'></script>
-  <script type='text/javascript'>
+  <script id="amazon-init" type='text/javascript'>
     window.onAmazonLoginReady = function() {
       var cid = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
       amazon.Login.setClientId(cid);

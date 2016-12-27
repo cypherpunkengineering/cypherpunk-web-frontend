@@ -97,6 +97,30 @@ export class UpgradeComponent {
         if (redirect) { router.navigate(['/account']); }
       });
     }
+
+    // load stripe js files
+    if (isBrowser) {
+      if (!document.getElementById('stripe-init')) {
+        let stripeInit = document.createElement('script');
+        stripeInit.setAttribute('id', 'stripe-init');
+        stripeInit.setAttribute('type', 'text/javascript');
+        stripeInit.innerHTML = `
+        window.stripeOnload = function() {
+          Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
+        }
+        `;
+        document.body.appendChild(stripeInit);
+      }
+
+      if (!document.getElementById('stripe-v2')) {
+        let stripe = document.createElement('script');
+        stripe.setAttribute('id', 'stripe-v2');
+        stripe.setAttribute('type', 'text/javascript');
+        stripe.setAttribute('onload', 'stripeOnload()');
+        stripe.setAttribute('src', 'https://js.stripe.com/v2/');
+        document.body.appendChild(stripe);
+      }
+    }
   }
 
   // pay with credit card
