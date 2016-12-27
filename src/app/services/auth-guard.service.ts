@@ -59,4 +59,19 @@ export class AuthGuard implements CanActivate {
       }
     });
   }
+
+  shouldUpgrade(): Promise<any> {
+    return this.session.pullPlanData()
+    .then((data) => {
+      if (data.authed) {
+        this.auth.authed = true;
+        return data;
+      }
+      else {
+        this.auth.authed = false;
+        this.session.userFound = false;
+        return Promise.reject({});
+      }
+    });
+  }
 }

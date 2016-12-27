@@ -66,6 +66,7 @@ export function subs(req, res) {
   }
 
   return res.json(body);
+  // return res.sendStatus(401);
 }
 
 export function stripePurchase(req, res) {

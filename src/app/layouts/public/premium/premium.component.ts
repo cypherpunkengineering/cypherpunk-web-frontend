@@ -1,7 +1,9 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { AuthGuard } from '../../../services/auth-guard.service';
 import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
@@ -90,10 +92,28 @@ export class PremiumComponent {
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
+    private authGuard: AuthGuard,
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService
   ) {
+    // redirect if user is already logged in
+    if (isBrowser) {
+      this.authGuard.shouldUpgrade()
+      .then(() => {
+        let redirect = true;
+        let type = session.user.account.type;
+        let renewal = session.user.subscription.renewal;
+        if (type === 'free') { redirect = false; }
+        else if (type === 'premium') {
+          if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
+        }
+        if (redirect) { router.navigate(['/account/upgrade']); }
+        else { router.navigate(['/account']); }
+      })
+      .catch(() => { });
+    }
+
     // use Geo-IP to preload CC country
 
   }
