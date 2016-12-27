@@ -30,6 +30,10 @@
 		<from>^/api/blog/(.*)</from>
 		<to last="true">/api/blog/$1</to>
 	</rule>
+	<rule>
+		<from>^/api/frontend/(.*)</from>
+		<to last="true">/api/frontend/$1</to>
+	</rule>
 
 	<!-- spider crawler robots -->
 	<rule>

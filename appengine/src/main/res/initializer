@@ -3,6 +3,6 @@ for i in dbip-chunks/dbip-chunk-*
 do
 	id=`echo $i|cut -d '-' -f4`
 	echo "init slice ${id}"
-	curl "https://www.btc.org/api/listing/secretGeoDatabaseInit?chunk=${id}" &
-	sleep 1
+	curl "https://cypherpunk.engineering/api/frontend/secretGeoDatabaseInit?chunk=${id}" &
+	sleep 10
 done

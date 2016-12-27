@@ -75,6 +75,11 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
+							<directory>${basedir}/src/main/res</directory>
+							<filtering>true</filtering>
+							<targetPath>res</targetPath>
+						</resource>
+						<resource>
 							<directory>${basedir}/../build</directory>
 							<filtering>false</filtering>
 							<targetPath>site</targetPath>

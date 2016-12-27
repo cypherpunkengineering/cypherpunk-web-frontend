@@ -46,6 +46,11 @@
 		<url-pattern>/api/v1/*</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>FrontendAPI</servlet-name>
+		<url-pattern>/api/frontend/*</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>ControlPanelProxy</servlet-name>
 		<servlet-class>com.cypherpunk.appengine.ControlPanelProxy</servlet-class>
@@ -59,6 +64,11 @@
 	<servlet>
 		<servlet-name>BloggerProxy</servlet-name>
 		<servlet-class>com.cypherpunk.appengine.BloggerProxy</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FrontendAPI</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.FrontendAPI</servlet-class>
 	</servlet>
 
 	<servlet>
