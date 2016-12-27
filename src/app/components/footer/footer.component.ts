@@ -6,93 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  zendeskToken: string = '';
   showFeedbackModal: boolean = false;
   showSupportModal: boolean = false;
-  validName: boolean = false;
-  validEmail: boolean = false;
-  validMessage: boolean = false;
-  nameTouched: boolean = false;
-  emailTouched: boolean = false;
-  messageTouched: boolean = false;
-  feedbackButtonDisabled: boolean = false;
-  supportButtonDisabled: boolean = false;
-
-  name: string = '';
-  email: string = '';
-  message: string = '';
 
   openFeedbackModal() {
-    this.showFeedbackModal = true;
-    setTimeout(() => {
-      document.getElementById('feedbackName').focus();
-    }, 100);
+    let ze = (<any>window).zE;
+    ze.activate({hideOnClose: true});
   }
 
   openSupportModal() {
-    this.showSupportModal = true;
-    setTimeout(() => {
-      document.getElementById('supportName').focus();
-    }, 100);
+    let ze = (<any>window).zE;
+    ze.activate({hideOnClose: true});
   }
-
-  closeModal() {
-    this.showFeedbackModal = false;
-    this.showSupportModal = false;
-    this.name = '';
-    this.email = '';
-    this.message = '';
-    this.validName = false;
-    this.validEmail = false;
-    this.validMessage = false;
-    this.nameTouched = false;
-    this.emailTouched = false;
-    this.messageTouched = false;
-  }
-
-  validateName() {
-    this.nameTouched = true;
-    if (!this.name) { this.validName = false; }
-    else { this.validName = true; }
-    return this.validName;
-  }
-
-  validateEmail() {
-    this.emailTouched = true;
-
-    if (!this.email) { this.validEmail = false; }
-    else if (!/^\S+@\S+$/.test(this.email)) { this.validEmail = false; }
-    else { this.validEmail = true; }
-    return this.validEmail;
-  }
-
-  validateMessage() {
-    this.messageTouched = true;
-    if (!this.message) { this.validMessage = false; }
-    else { this.validMessage = true; }
-    return this.validMessage;
-  }
-
-  validateFeedback() {
-    return this.validName && this.emailTouched &&
-    this.validName && this.nameTouched &&
-    this.validMessage && this.messageTouched;
-  }
-
-  sendFeedback() {
-    this.feedbackButtonDisabled = true;
-
-
-    this.feedbackButtonDisabled = false;
-    this.closeModal();
-  }
-
-  sendSupport() {
-    this.supportButtonDisabled = true;
-
-
-    this.supportButtonDisabled = false;
-    this.closeModal();
-  }
-
 }
