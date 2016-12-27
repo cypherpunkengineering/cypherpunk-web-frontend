@@ -121,9 +121,9 @@ export class PremiumComponent {
         stripeInit.setAttribute('id', 'stripe-init');
         stripeInit.setAttribute('type', 'text/javascript');
         stripeInit.innerHTML = `
-        window.stripeOnload = function() {
-          Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
-        }
+          window.stripeOnload = function() {
+            Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
+          }
         `;
         document.body.appendChild(stripeInit);
       }
@@ -135,6 +135,31 @@ export class PremiumComponent {
         stripe.setAttribute('onload', 'stripeOnload()');
         stripe.setAttribute('src', 'https://js.stripe.com/v2/');
         document.body.appendChild(stripe);
+      }
+    }
+
+    // load amazon js files
+    if (isBrowser) {
+      if (!document.getElementById('amazon-init')) {
+        let amazonInit = document.createElement('script');
+        amazonInit.setAttribute('id', 'amazon-init');
+        amazonInit.setAttribute('type', 'text/javascript');
+        amazonInit.innerHTML = `
+          window.onAmazonLoginReady = function() {
+            var cid = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
+            amazon.Login.setClientId(cid);
+          };
+        `;
+        document.body.appendChild(amazonInit);
+      }
+
+      if (!document.getElementById('amazon-widget')) {
+        let amazon = document.createElement('script');
+        amazon.setAttribute('id', 'amazon-widget');
+        amazon.setAttribute('type', 'text/javascript');
+        amazon.setAttribute('async', 'async');
+        amazon.setAttribute('src', 'https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js');
+        document.body.appendChild(amazon);
       }
     }
 
