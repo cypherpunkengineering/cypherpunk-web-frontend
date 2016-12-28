@@ -28,26 +28,6 @@
 
 .nav-right ul li { position: relative; float: left; }
 
-.nav-right ul ul {
-	display: none;
-	position: absolute;
-  left: -50%;
-	background: #fff;
-	padding: 0;
-}
-
-.nav-right ul ul li {
-	float: none;
-	width: 234px;
-}
-
-.nav-right ul ul a { color: #4e5e72; text-decoration: none; }
-.nav-right ul ul a:hover { text-decoration: underline; }
-.nav-right ul li:hover > ul { display: block; }
-.nav-right ul ul { padding: 10px; border-radius: 5px; z-index: 50; }
-.nav-right ul li ul li { padding: 5px; cursor: pointer; }
-.nav-right ul li ul li:not(.header):hover { background-color: #cad8eb; }
-
 .header {
   border-top: 2px solid #cad8eb;
   border-bottom: 2px solid #cad8eb;
