@@ -41,25 +41,50 @@
 	</filter-mapping>
 
 	<servlet-mapping>
-		<servlet-name>ControlPanelProxy</servlet-name>
-		<url-pattern>/api/v0/*</url-pattern>
-		<url-pattern>/api/v1/*</url-pattern>
+		<servlet-name>NetworkAPI</servlet-name>
+
+		<!-- API v0 resources handled by appengine -->
+		<url-pattern>/api/v0/network/*</url-pattern>
+		<url-pattern>/api/v0/app/*</url-pattern>
+
+		<!-- API v1 resources handled by appengine -->
+		<url-pattern>/api/v1/network/*</url-pattern>
+		<url-pattern>/api/v1/app/*</url-pattern>
+
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>FrontendAPI</servlet-name>
-		<url-pattern>/api/frontend/*</url-pattern>
-	</servlet-mapping>
+		<servlet-name>BackendProxy</servlet-name>
 
-	<servlet>
-		<servlet-name>ControlPanelProxy</servlet-name>
-		<servlet-class>com.cypherpunk.appengine.ControlPanelProxy</servlet-class>
-	</servlet>
+		<!-- API v0 resources handled by backend -->
+		<url-pattern>/api/v0/account/*</url-pattern>
+		<url-pattern>/api/v0/location/*</url-pattern>
+		<url-pattern>/api/v0/subscription/*</url-pattern>
+		<url-pattern>/api/v0/vpn/*</url-pattern>
+
+		<!-- API v1 resources handled by backend -->
+		<url-pattern>/api/v1/account/*</url-pattern>
+		<url-pattern>/api/v1/location/*</url-pattern>
+		<url-pattern>/api/v1/subscription/*</url-pattern>
+		<url-pattern>/api/v1/vpn/*</url-pattern>
+
+	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>BloggerProxy</servlet-name>
-		<url-pattern>/api/blog/*</url-pattern>
+
+		<!-- API v0 resources handled by appengine -->
+		<url-pattern>/api/v0/blog/*</url-pattern>
+
+		<!-- API v1 resources handled by appengine -->
+		<url-pattern>/api/v1/blog/*</url-pattern>
+
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BackendProxy</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.BackendProxy</servlet-class>
+	</servlet>
 
 	<servlet>
 		<servlet-name>BloggerProxy</servlet-name>
@@ -67,8 +92,8 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>FrontendAPI</servlet-name>
-		<servlet-class>com.cypherpunk.appengine.FrontendAPI</servlet-class>
+		<servlet-name>NetworkAPI</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.NetworkAPI</servlet-class>
 	</servlet>
 
 	<servlet>

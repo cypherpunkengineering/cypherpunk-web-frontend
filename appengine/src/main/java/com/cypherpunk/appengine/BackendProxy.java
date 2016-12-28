@@ -20,7 +20,7 @@ import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 
 @SuppressWarnings("serial")
-public class ControlPanelProxy extends HttpServlet {
+public class BackendProxy extends HttpServlet {
 
 	private static final String backend = "red-dragon.cypherpunk.network";
 

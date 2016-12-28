@@ -27,11 +27,11 @@ import com.google.gson.GsonBuilder;
 // }}}
 
 @SuppressWarnings("serial")
-public class FrontendAPI extends HttpServlet
+public class NetworkAPI extends HttpServlet
 {
 	// {{{ get appengine API instances
 	private static final DatastoreService DS = DatastoreServiceFactory.getDatastoreService();
-	private static final Logger LOG = Logger.getLogger(FrontendAPI.class.getName());
+	private static final Logger LOG = Logger.getLogger(NetworkAPI.class.getName());
 	// }}}
 
 	@Override
@@ -49,31 +49,14 @@ public class FrontendAPI extends HttpServlet
 		String reqIP = req.getRemoteAddr();
 		String geoCountryCode = null;
 
-		// TODO: Enable if we want the geo-lookup to be cached in the user's browser
-		final boolean cacheGeoLookupInCookie = false;
-
-		if (cacheGeoLookupInCookie) {
-			Map<String, Cookie> cookies = new HashMap<String, Cookie>();
-			if (req.getCookies() != null) {
-				for (Cookie cookie : req.getCookies()) {
-					cookies.put(cookie.getName(), cookie);
-				}
-				Cookie countryCookie = cookies.get("country");
-				if (countryCookie != null) {
-					geoCountryCode = countryCookie.getValue();
-				}
-			}
-		}
-
 		GeoLocationDB ipdb = new GeoLocationDB();
-		if (geoCountryCode == null) {
+		if (geoCountryCode == null)
+		{
 			// get appengine IP based geo-location 2 letter country code
 			geoCountryCode = ipdb.getCountry(reqIP);
 			if (geoCountryCode == null || geoCountryCode == "ZZ")
+			{
 				geoCountryCode = "JP";
-
-			if (cacheGeoLookupInCookie) {
-				res.addCookie(new Cookie("country", geoCountryCode));
 			}
 		}
 
@@ -115,6 +98,12 @@ public class FrontendAPI extends HttpServlet
 
 				// convert to json and output
 				out.println(gson.toJson(countries));
+			}
+			break; // }}}
+
+			case "status": { // {{{
+				String countryCode = ipdb.getCountry(reqIP);
+				out.println("{ip: \"" + reqIP + "\", country: \"" + countryCode + "\"}");
 			}
 			break; // }}}
 

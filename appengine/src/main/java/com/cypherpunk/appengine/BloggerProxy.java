@@ -1,18 +1,29 @@
 package com.cypherpunk.appengine;
 
-import static com.google.appengine.api.urlfetch.FetchOptions.Builder.withDefaults;
-
+// {{{ imports
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.cypherpunk.appengine.beans.BackendResponse;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.cypherpunk.appengine.beans.BackendResponse;
+
+import static com.google.appengine.api.urlfetch.FetchOptions.Builder.withDefaults;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -23,6 +34,15 @@ import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.gson.Gson;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.utils.SystemProperty;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+// }}}
 
 @SuppressWarnings("serial")
 public class BloggerProxy extends HttpServlet
@@ -43,21 +63,33 @@ public class BloggerProxy extends HttpServlet
 
 		try
 		{
-			if (path.equals("/api/blog/posts"))
+			if (path.equals("/api/v0/blog/posts"))
 			{
-				getPosts(req, res);
+				String pageToken = req.getParameter("pageToken");
+
+				if (pageToken != null && !pageToken.isEmpty())
+				{
+					getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader&pageToken=" + pageToken);
+				}
+				else
+				{
+					getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader");
+				}
 			}
-			else if (path.equals("/api/blog/search"))
+			else if (path.equals("/api/v0/blog/search"))
 			{
-				getSearchResults(req, res);
+				String query = req.getParameter("q");
+				getDataFromBlogger(req, res, "https://www.googleapis.com/blogger/v3/blogs/" + blogId + "/posts/search?q="+ query +"&fetchBodies=true&fetchImages=true&key=" + key);
 			}
-			else if (path.startsWith("/api/blog/post/"))
+			else if (path.startsWith("/api/v0/blog/post/"))
 			{
-				getPost(req, res);
+				String postId = path.substring(18);
+				getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts/"+ postId +"?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader");
 			}
-			else if (path.startsWith("/api/blog/comments/"))
+			else if (path.startsWith("/api/v0/blog/comments/"))
 			{
-				getComments(req, res);
+				String postId = path.substring(22);
+				getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts/"+ postId +"/comments?key=" + key);
 			}
 			else
 			{
@@ -76,43 +108,6 @@ public class BloggerProxy extends HttpServlet
 
 			out.close();
 		}
-	}
-
-	private void getPost(HttpServletRequest req, HttpServletResponse res) throws IOException
-	{
-		String path = req.getRequestURI().substring(req.getContextPath().length()).toLowerCase();
-		String postId = path.substring(15);
-
-		getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts/"+ postId +"?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader");
-	}
-
-	private void getComments(HttpServletRequest req, HttpServletResponse res) throws IOException
-	{
-		String path = req.getRequestURI().substring(req.getContextPath().length()).toLowerCase();
-		String postId = path.substring(19);
-
-		getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts/"+ postId +"/comments?key=" + key);
-	}
-
-	private void getSearchResults(HttpServletRequest req, HttpServletResponse res) throws IOException
-	{
-		String query = req.getParameter("q");
-		getDataFromBlogger(req, res, "https://www.googleapis.com/blogger/v3/blogs/" + blogId + "/posts/search?q="+ query +"&fetchBodies=true&fetchImages=true&key=" + key);
-	}
-
-	private void getPosts(HttpServletRequest req, HttpServletResponse res) throws IOException
-	{
-		String pageToken = req.getParameter("pageToken");
-
-		if (pageToken != null && !pageToken.isEmpty())
-		{
-			getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader&pageToken=" + pageToken);
-		}
-		else
-		{
-			getDataFromBlogger(req, res, blogUrl + "/" + blogId + "/posts?key=" + key + "&fetchBodies=true&fetchImages=true&view=reader");
-		}
-
 	}
 
 	private void getDataFromBlogger(HttpServletRequest req, HttpServletResponse res, String backendUrlString) throws IOException, UnsupportedEncodingException

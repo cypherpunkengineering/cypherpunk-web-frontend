@@ -19,20 +19,8 @@
 
 	<!-- rewrite api paths exactly as requested -->
 	<rule>
-		<from>^/api/v0/(.*)</from>
-		<to last="true">/api/v0/$1</to>
-	</rule>
-	<rule>
-		<from>^/api/v1/(.*)</from>
-		<to last="true">/api/v1/$1</to>
-	</rule>
-	<rule>
-		<from>^/api/blog/(.*)</from>
-		<to last="true">/api/blog/$1</to>
-	</rule>
-	<rule>
-		<from>^/api/frontend/(.*)</from>
-		<to last="true">/api/frontend/$1</to>
+		<from>^/api/(.*)</from>
+		<to last="true">/api/$1</to>
 	</rule>
 
 	<!-- spider crawler robots -->
