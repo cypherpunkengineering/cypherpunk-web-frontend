@@ -1,0 +1,160 @@
+<div class="wrapper">
+
+  <div class="masthead">
+    <app-nav></app-nav>
+
+    <h1 class="masthead-header header white">
+      Online Privacy <span>&</span> Freedom Blog
+    </h1>
+  </div>
+
+  <div class="featured-article">
+    <span class="banner">FEATURED ARTICLE</span>
+
+    <div class="article-header header white">{{featured.title}}</div>
+
+    <div class="article-image">
+      <img src="{{featured.images[0].url}}" alt="{{featured.title}}">
+    </div>
+
+    <button class="read-more">
+      Read More...
+    </button>
+  </div>
+
+  <div class="article-navigation">
+    <div class="article-navigation-inner">
+      <div class="navigation">
+        <ul>
+          <li class="active">Most Recent</li>
+          <li>Popular</li>
+          <li>Freedom</li>
+          <li>Privacy</li>
+          <li>Security</li>
+          <li>Products & Apps</li>
+          <li (click)="showSearch = !showSearch">Search</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-search" [ngClass]="{'show': showSearch}">
+    <div class="article-search-inner">
+      <div class="search" >
+        search:
+        <input type="text">
+        <button (click)="showSearch = false">cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="page-inner">
+      <div class="articles">
+        <template ngFor let-post [ngForOf]="posts" let-i="index">
+          <div class="full" *ngIf="i === 0">
+            <div class="header">
+              {{post.title}}
+              <div class="right">{{ post.published | date: "MM/dd/yyyy" }}</div>
+            </div>
+
+            <div class="image">
+              <img src="{{post.images[0].url}}" alt="">
+            </div>
+
+            <div class="footer">{{post.content}}</div>
+          </div>
+
+          <div class="half" *ngIf="i > 0 && i < 5">
+            <div class="image">
+              <img src="{{post.images[0].url}}" alt="{{post.title}}">
+              <div class="read-more">
+                <button class="btn">Read More...</button>
+              </div>
+            </div>
+
+            <div class="text">
+              {{post.title}}
+              <div class="date">{{ post.published | date: "MM/dd/yyyy" }}</div>
+            </div>
+          </div>
+
+          <div class="quarter" *ngIf="i > 4 && i < 11">
+            <div class="image">
+              <img src="{{post.images[0].url}}" alt="{{post.title}}">
+            </div>
+
+            <div class="text">
+              {{post.title}}
+              <div class="date">{{ post.published | date: "MM/dd/yyyy" }}</div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <div class="sidebar">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="header">Stay Informed!</div>
+          </div>
+
+          <div class="panel-body">
+            <p>
+              Subscribe below to get weekly updates from out blog via email, as well as special offers on Cypherpunk Premium Service
+            </p>
+
+            <input type="text">
+
+            <button class="btn blue">Get Privacy News by Email</button>
+            <button class="btn orange">Get Privacy News by RSS</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="header white">
+              Top Posts
+            </div>
+          </div>
+
+          <div class="panel-body no-padding">
+            <ul>
+              <li>post title</li>
+              <li>post title</li>
+              <li>post title</li>
+              <li>post title</li>
+              <li>post title</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="header">Try Cypherpunk Free</div>
+          </div>
+
+          <div class="panel-body">
+            <p>
+              Privacy isn't about hiding, it's sharing on your own terms
+            </p>
+
+            <p>
+              Cypherpunk lets YOU set the terms
+            </p>
+
+            <p>
+              Try it for FREE, and see for yourself!
+            </p>
+
+            <img src="" alt="">
+
+            <button class="btn blue">Start My Free Trial!</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

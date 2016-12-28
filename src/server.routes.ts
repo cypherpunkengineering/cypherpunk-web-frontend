@@ -28,5 +28,6 @@ export const routes: string[] = [
   'aboutus',
   'tos',
   'bounty',
+  'blog',
   '404'
 ];

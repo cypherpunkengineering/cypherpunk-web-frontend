@@ -18,6 +18,7 @@ import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
+import { BlogModule } from './layouts/public/blog/blog.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -52,6 +53,7 @@ import { PlansService } from './services/plans.service';
     TosModule,
     BountyModule,
     NotFoundModule,
+    BlogModule,
 
     DashboardModule,
     BillingModule,
