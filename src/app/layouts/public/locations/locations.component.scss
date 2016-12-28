@@ -34,13 +34,13 @@
       color: #034698;
       border-bottom: 1px solid #ccc;
       th:first-child {
-        text-align: left;
+        text-align: center;
         padding-left: 20px;
       }
-      th:last-child {
-        text-align: right;
-        padding-right: 20px;
-      }
+      // th:last-child {
+      //   text-align: right;
+      //   padding-right: 20px;
+      // }
     }
     tbody tr th, tfoot tr {
       color: #1973af;
@@ -49,7 +49,7 @@
       border-bottom: 1px solid #ccc;
     }
     td { border-bottom: 1px solid #ccc; }
-    td:last-child { text-align: right; padding-right: 20px; }
+    // td:last-child { text-align: right; padding-right: 20px; }
     .flag { padding: 0 5px 5px 0; vertical-align: middle; }
     .city { text-align: left; padding-left: 20px; }
     .premium {

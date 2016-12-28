@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <th>Locations</th>
-        <th>Servers</th>
+        <!-- <th>Servers</th> -->
       </tr>
     </thead>
 
@@ -31,16 +31,16 @@
           <img class="flag" src="/assets/flags/{{location.country}}.png" alt="">
           {{location.name}} <span class="premium" *ngIf="location.level === 'premium'">PREMIUM</span>
         </td>
-        <td>{{location.servers}}</td>
+        <!-- <td>{{location.servers}}</td> -->
       </tr>
     </tbody>
-    <tfoot *ngIf="totalServers">
+    <!-- <tfoot *ngIf="totalServers">
       <tr>
         <th colspan="2" scope="col">
           Total Number of Servers: {{totalServers}}
         </th>
       </tr>
-    </tfoot>
+    </tfoot> -->
   </table>
 </div>
 
