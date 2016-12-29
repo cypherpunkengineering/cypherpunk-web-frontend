@@ -19,6 +19,13 @@ import { TosModule } from './layouts/public/tos/tos.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { BlogModule } from './layouts/public/blog/blog.module';
+import { BrowsersModule } from './layouts/public/available/browsers/browsers.module';
+import { MacModule } from './layouts/public/available/mac/mac.module';
+import { WindowsModule } from './layouts/public/available/windows/windows.module';
+import { IosModule } from './layouts/public/available/ios/ios.module';
+import { AndroidModule } from './layouts/public/available/android/android.module';
+import { LinuxModule } from './layouts/public/available/linux/linux.module';
+import { RoutersModule } from './layouts/public/available/routers/routers.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -54,6 +61,13 @@ import { PlansService } from './services/plans.service';
     BountyModule,
     NotFoundModule,
     BlogModule,
+    BrowsersModule,
+    MacModule,
+    WindowsModule,
+    IosModule,
+    AndroidModule,
+    LinuxModule,
+    RoutersModule,
 
     DashboardModule,
     BillingModule,

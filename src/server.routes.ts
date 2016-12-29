@@ -29,5 +29,12 @@ export const routes: string[] = [
   'tos',
   'bounty',
   'blog',
-  '404'
+  '404',
+  'browsers',
+  'mac',
+  'windows',
+  'ios',
+  'android',
+  'linux',
+  'routers'
 ];

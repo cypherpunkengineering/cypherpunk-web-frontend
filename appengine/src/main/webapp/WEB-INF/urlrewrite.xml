@@ -94,6 +94,34 @@
 
 	<!-- public marketing content -->
 	<rule>
+		<from>^/browsers(.*)</from>
+		<to last="true">/browsers.html$1</to>
+	</rule>
+	<rule>
+		<from>^/mac(.*)</from>
+		<to last="true">/mac.html$1</to>
+	</rule>
+	<rule>
+		<from>^/windows(.*)</from>
+		<to last="true">/windows.html$1</to>
+	</rule>
+	<rule>
+		<from>^/ios(.*)</from>
+		<to last="true">/ios.html$1</to>
+	</rule>
+	<rule>
+		<from>^/android(.*)</from>
+		<to last="true">/android.html$1</to>
+	</rule>
+	<rule>
+		<from>^/linux(.*)</from>
+		<to last="true">/linux.html$1</to>
+	</rule>
+	<rule>
+		<from>^/routers(.*)</from>
+		<to last="true">/routers.html$1</to>
+	</rule>
+	<rule>
 		<from>^/bounty(.*)</from>
 		<to last="true">/bounty.html$1</to>
 	</rule>
