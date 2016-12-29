@@ -1,6 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -8,37 +8,52 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
+import country_list from '../../public/premium/countries';
 
 @Component({
   templateUrl: './upgrade.component.html',
   styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent {
-  loading: boolean = true;
   posData: string = '';
   ccButtonDisabled: boolean = false;
   ppButtonDisabled: boolean = false;
   amButtonDisabled: boolean = false;
   bpButtonDisabled: boolean = false;
+  loading: boolean = true;
+  modal = { show: false, header: '', body: '', link: false };
+  countries = country_list;
+
+  // user variables
+  email: string;
+  name: string;
 
   // Stripe variables
   cardNumber: string;
   expiryDate: string;
   cvc: string;
+  country: string;
+  zipCode: string;
+  showZip: boolean = false;
 
-  // user variables
-  email: string;
-  name: string;
+  // Amazon variables
+  billingAgreementId: string;
+  amazonWallet: any;
+  amazonRecurring: any;
 
   // validation variables
   validCCName: boolean = false;
   validCCNumber: boolean = false;
   validCCExpiry: boolean = false;
   validCCcvc: boolean = false;
+  validCountry: boolean = false;
+  validZipCode: boolean = false;
   ccNameTouched: boolean = false;
   ccNumberTouched: boolean = false;
   ccExpiryTouched: boolean = false;
   ccCVCTouched: boolean = false;
+  countryTouched: boolean = false;
+  zipCodeTouched: boolean = false;
 
   // pricing model
   plans = this.plansService.plans;
@@ -146,11 +161,43 @@ export class UpgradeComponent {
         document.body.appendChild(amazon);
       }
     }
+
+    if (isBrowser) {
+      // use Geo-IP to preload CC country
+      let url = '/api/v0/network/status';
+      http.get(url)
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        if (data.country === 'ZZ') { return; }
+
+        this.countries.map((country) => {
+          if (country.code === data.country) {
+            this.country = country.name;
+            this.changeCountry();
+          }
+        });
+      });
+    }
   }
 
   // pay with credit card
 
+  changeCountry() {
+    let currentCountry = this.country;
+
+    if (currentCountry === 'United States' ||
+        currentCountry === 'United Kingdom' ||
+        currentCountry === 'Canada') {
+      this.showZip = true;
+    }
+    else { this.showZip = false; }
+
+    return this.validateCountry();
+  }
+
   getToken() {
+    // show loading overlay
+    this.loading = true;
     this.ccButtonDisabled = true;
 
     let month: number;
@@ -161,16 +208,22 @@ export class UpgradeComponent {
 
     // stripe params
     let stripeParams = {
+      name: this.name,
       number: this.cardNumber,
       exp_month: month,
       exp_year: year,
-      cvc: this.cvc
+      cvc: this.cvc,
+      address_zip: '',
+      address_country: this.country
     };
+    if (this.zipCode) { stripeParams.address_zip = this.zipCode; }
+    else { delete stripeParams.address_zip; }
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
       if (response.error) {
         this.zone.run(() => {
+          this.loading = false;
           this.alertService.error('Could not process payment: ' + response.error.message);
         });
       }
@@ -196,7 +249,7 @@ export class UpgradeComponent {
     let url = '/api/v0/subscription/upgrade';
     let body = serverParams;
     let options = new RequestOptions({});
-    // set cookie?
+    // set cookie
     return this.http.post(url, body, options).toPromise()
     .then(() => { this.auth.authed = true; })
     // alert and redirect
@@ -206,10 +259,14 @@ export class UpgradeComponent {
     })
     // handle errors
     .catch((error) => {
-      console.log(error);
       this.zone.run(() => {
+        this.loading = false;
         this.ccButtonDisabled = false;
-        this.alertService.error('Could not upgrade your account');
+
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
       });
       // error 409 -> redirect to login page
     });
@@ -218,6 +275,7 @@ export class UpgradeComponent {
   // pay with paypal
 
   payWithPaypal() {
+    this.loading = true;
     this.ppButtonDisabled = true;
 
     if (this.selectedPlan.id === 'monthly899') {
@@ -233,27 +291,115 @@ export class UpgradeComponent {
 
   // pay with amazon
 
-  amazonInit(callback) {
-    let amazonPayments = (<any>window).amazonPayments;
-    amazonPayments.init(callback);
+  amazonInit() {
+    let amazon = (<any>window).amazon;
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+
+    OffAmazonPayments.Button(
+      'AmazonPayButton',
+      'A2FF2JPNM9GYDJ', {
+        type:  'PwA',
+        color: 'Gold',
+        size:  'medium',
+        authorization: () => {
+          amazon.Login.authorize({ scope: 'profile', popup: 'true' });
+          this.zone.run(() => { this.amazonCreateWallet(); });
+        },
+        onError: (error) => { console.log(error); }
+      }
+    );
   }
 
-  amazonCallback(billingAgreement) {
-    console.log('back in angular');
-    console.log(billingAgreement);
-    /* send billingAgreement to server */
-    /* on return show amazonButton */
+  amazonCreateWallet() {
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+    document.getElementById('walletWidgetDiv').style.display = 'block';
+
+    if (!this.amazonWallet) {
+      new OffAmazonPayments.Widgets.Wallet({
+        sellerId: 'A2FF2JPNM9GYDJ',
+        onReady: (billingAgreement) => {
+          this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+        },
+        agreementType: 'BillingAgreement',
+        design: { designMode: 'responsive' },
+        onPaymentSelect: (billingAgreement) => {
+          this.zone.run(() => { this.amazonCreateRecurring(); });
+        },
+        onError: (error) => { console.log(error); }
+      }).bind('walletWidgetDiv');
+    }
+  }
+
+  amazonCreateRecurring () {
+    let OffAmazonPayments = (<any>window).OffAmazonPayments;
+    document.getElementById('consentWidgetDiv').style.display = 'block';
+
+    if (!this.amazonRecurring) {
+      new OffAmazonPayments.Widgets.Consent({
+        sellerId: 'A2FF2JPNM9GYDJ',
+        // amazonBillingAgreementId obtained from the Amazon Address Book widget.
+        amazonBillingAgreementId: this.billingAgreementId,
+        design: { designMode: 'responsive' },
+        // Called after widget renders
+        onReady: (billingAgreementConsentStatus) => {
+          let getStatus = billingAgreementConsentStatus.getConsentStatus;
+          if (getStatus && getStatus() === 'true') {
+            document.getElementById('payWithAmazon').style.display = 'inline';
+          }
+        },
+        onConsent: (billingAgreementConsentStatus) => {
+          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+            document.getElementById('payWithAmazon').style.display = 'inline';
+          }
+          else {
+            window.alert('Please allow for future payments to join Cypherpunk.');
+            document.getElementById('payWithAmazon').style.display = 'none';
+          }
+        },
+        onError: (error) => { console.log(error); }
+      }).bind('consentWidgetDiv');
+    }
   }
 
   amazonButton() {
+    this.loading = true;
     this.amButtonDisabled = true;
-    console.log('paid with amazon');
-    this.amButtonDisabled = false;
+
+    /* send billingAgreement to server */
+    let serverParams = {
+      billingAgreementId: this.billingAgreementId,
+      plan: this.selectedPlan.id,
+      email: this.email
+    };
+
+    // call server at this point (using promises)
+    let url = '/api/v0/payment/amazon/billingAgreement';
+    let body = serverParams;
+    let options = new RequestOptions({});
+    return this.http.post(url, body, options).toPromise()
+    // alert and redirect
+    .then(() => {
+      this.alertService.success('You account was upgraded!');
+      this.router.navigate(['/account']);
+    })
+    // handle errors
+    .catch((error) => {
+      this.zone.run(() => {
+        this.loading = false;
+        this.amButtonDisabled = false;
+
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
+      });
+    });
   }
 
   // pay with bitpay
 
   payWithBitpay() {
+    this.loading = true;
     this.bpButtonDisabled = true;
 
     let posId = {
@@ -310,11 +456,36 @@ export class UpgradeComponent {
     return this.validCCcvc;
   }
 
+  validateCountry() {
+    this.countryTouched = true;
+
+    if (!this.country) { this.validCountry = false; }
+    else { this.validCountry = true; }
+    return this.validCountry;
+  }
+
+  validateZipCode() {
+    this.zipCodeTouched = true;
+
+    if (!this.zipCode) { this.validZipCode = false; }
+    else { this.validZipCode = true; }
+    return this.validZipCode;
+  }
+
   validateCC() {
-    return this.validCCName && this.ccNameTouched &&
+    let valid = this.validCCName && this.ccNameTouched &&
     this.validCCNumber && this.ccNumberTouched &&
     this.validCCExpiry && this.ccExpiryTouched &&
-    this.validCCcvc && this.ccCVCTouched;
+    this.validCCcvc && this.ccCVCTouched &&
+    this.validCountry && this.countryTouched;
+
+    if (this.country === 'United States' ||
+    this.country === 'United Kingdom' ||
+    this.country === 'Canada') {
+      valid = valid && this.validZipCode && this.zipCodeTouched;
+    }
+
+    return valid;
   }
 
   isNumber(n) {
@@ -330,7 +501,7 @@ export class UpgradeComponent {
 
     // launch amazon payments
     if (option.type === 'a') {
-      setTimeout(() => { this.amazonInit(this.amazonCallback); }, 100);
+      setTimeout(() => { this.amazonInit(); }, 100);
     }
   }
 

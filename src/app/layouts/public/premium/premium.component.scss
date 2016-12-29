@@ -13,8 +13,8 @@
     height: 403px;
     position: relative;
     background-image: url('/assets/pay-header.png');
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -179,7 +179,7 @@
       width: 50%;
       float: left;
       padding-right: 5px;
-      &:last-child { padding-left: 5px; padding-right: 0; }
+      &:last-child { padding: 0 0 0 5px; }
     }
   }
 
