@@ -4,35 +4,39 @@
   <h1 class="masthead-header header white">Bug Bounty</h1>
 </div>
 
-    <div class="container">
+<div class="container">
   <h1 class="with-anchor">PGP Key for Bounty Submissions</h1>
+
   <p>The <a href="https://hackerone.com/cypherpunk_privacy">bounty submission form</a> utilizes HTTPS to encrypt your submission in transit to the bug bounty team. We have confidence that this provides the confidentiality required for vulnerability submissions. However, if you want to send us a vulnerability using PGP we still want you to have this option.</p>
 
-<p>Please realize that using PGP will likely slow down our response to your submission. Under normal circumstances, a developer can view security reports and respond immediately, i.e. get a patch going within minutes and even paging people out of bed if it’s critical. If you PGP encrypt your message, only core members of the security team can triage your submission. Please be aware that if we receive an encrypted submission, unless your submission has an significant impact outside of GitHub, we will likely not reply utilizing PGP.</p>
+  <p>Please realize that using PGP will likely slow down our response to your submission. Under normal circumstances, a developer can view security reports and respond immediately, i.e. get a patch going within minutes and even paging people out of bed if it’s critical. If you PGP encrypt your message, only core members of the security team can triage your submission. Please be aware that if we receive an encrypted submission, unless your submission has an significant impact outside of GitHub, we will likely not reply utilizing PGP.</p>
 
-<p>Still, if you feel your vulnerability submission requires the use of PGP, then you can find our <a href="/bounty.asc">public key</a> below.</p>
+  <p>Still, if you feel your vulnerability submission requires the use of PGP, then you can find our <a href="/bounty.asc">public key</a> below.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-pub   ed25519 2016-12-29 [SC]
-      A856 86E6 8C91 8C24 FE21  DCF5 A33F 06C0 9930 60DC
-uid   Cypherpunk Privacy (Security Team) <security@cypherpunk.com>
-sub   cv25519 2016-12-29 [E]
+  <div class="highlighter-rouge">
+    <pre class="highlight">
+      <code>
+        pub   ed25519 2016-12-29 [SC]
+              A856 86E6 8C91 8C24 FE21  DCF5 A33F 06C0 9930 60DC
+        uid   Cypherpunk Privacy (Security Team) &#60;security@cypherpunk.com&#62;
+        sub   cv25519 2016-12-29 [E]
 
------BEGIN PGP PUBLIC KEY BLOCK-----
-mDMEWGSw7RYJKwYBBAHaRw8BAQdADqtWQ2rnOVrTEsbucpRMLKdjw9OkUUm1MSi1
-xCBZ79m0PEN5cGhlcnB1bmsgUHJpdmFjeSAoU2VjdXJpdHkgVGVhbSkgPHNlY3Vy
-aXR5QGN5cGhlcnB1bmsuY29tPoiNBBMWCgA1FiEEqFaG5oyRjCT+Idz1oz8GwJkw
-YNwFAlhksO0CGwMICwkIBw0MCwoFFQoJCAsCHgECF4AACgkQoz8GwJkwYNxiMQEA
-zBOGN7VaDv4cz2lbNE6ChpJri++EgEzuzBYt0NqlpVUA/ij2EqykSRWl2pENlPTf
-0LyPWgC5FZDvIAN0ys3Zu0YAuDgEWGSw7RIKKwYBBAGXVQEFAQEHQBH/zLJ39V0g
-WfNGbKZjodqi+ssS016xStnwVgSLAUcHAwEIB4h4BBgWCgAgFiEEqFaG5oyRjCT+
-Idz1oz8GwJkwYNwFAlhksO0CGwwACgkQoz8GwJkwYNzGKAEAzWESDXhk8ZdZoIVS
-XkmsCjFV6Fyg8/AUiDJRSENR61MBAI/Ux0iXic3VJTXyGGyKH4df439593Ycwxjq
-WdyoQzwF
-=PSFI
------END PGP PUBLIC KEY BLOCK-----
-</code></pre></div>
-
+        -----BEGIN PGP PUBLIC KEY BLOCK-----
+        mDMEWGSw7RYJKwYBBAHaRw8BAQdADqtWQ2rnOVrTEsbucpRMLKdjw9OkUUm1MSi1
+        xCBZ79m0PEN5cGhlcnB1bmsgUHJpdmFjeSAoU2VjdXJpdHkgVGVhbSkgPHNlY3Vy
+        aXR5QGN5cGhlcnB1bmsuY29tPoiNBBMWCgA1FiEEqFaG5oyRjCT+Idz1oz8GwJkw
+        YNwFAlhksO0CGwMICwkIBw0MCwoFFQoJCAsCHgECF4AACgkQoz8GwJkwYNxiMQEA
+        zBOGN7VaDv4cz2lbNE6ChpJri++EgEzuzBYt0NqlpVUA/ij2EqykSRWl2pENlPTf
+        0LyPWgC5FZDvIAN0ys3Zu0YAuDgEWGSw7RIKKwYBBAGXVQEFAQEHQBH/zLJ39V0g
+        WfNGbKZjodqi+ssS016xStnwVgSLAUcHAwEIB4h4BBgWCgAgFiEEqFaG5oyRjCT+
+        Idz1oz8GwJkwYNwFAlhksO0CGwwACgkQoz8GwJkwYNzGKAEAzWESDXhk8ZdZoIVS
+        XkmsCjFV6Fyg8/AUiDJRSENR61MBAI/Ux0iXic3VJTXyGGyKH4df439593Ycwxjq
+        WdyoQzwF
+        =PSFI
+        -----END PGP PUBLIC KEY BLOCK-----
+      </code>
+    </pre>
+  </div>
 </div>
 
 <app-footer></app-footer>
