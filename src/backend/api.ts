@@ -140,6 +140,14 @@ export function logout(req, res) {
   return res.json({});
 }
 
+export function networkStatus(req, res) {
+  let body = {
+    ip: '127.0.0.1',
+    country: 'ZZ'
+  };
+  return res.json(body);
+}
+
 export function blog(req, res) {
   let body = {
     kind: 'blogger#postList',

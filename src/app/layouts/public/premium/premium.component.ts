@@ -164,7 +164,19 @@ export class PremiumComponent {
     }
 
     // use Geo-IP to preload CC country
+    let url = '/api/v0/network/status';
+    http.get(url)
+    .map(res => res.json())
+    .subscribe((data: any) => {
+      if (data.country === 'ZZ') { return; }
 
+      this.countries.map((country) => {
+        if (country.code === data.country) {
+          this.country = country.name;
+          this.changeCountry();
+        }
+      });
+    });
   }
 
   // pay with credit card
