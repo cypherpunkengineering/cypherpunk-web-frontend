@@ -15,7 +15,7 @@ export class Plan {
 export class PlansService {
   plans: Plan[] = [
     {
-      id: 'daily899', // monthly899
+      id: 'monthly899',
       price: 8.99,
       period: '1 Month',
       total: 8.99,
