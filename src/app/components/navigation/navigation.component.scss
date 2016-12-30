@@ -28,16 +28,8 @@
 
 .nav-right ul li { position: relative; float: left; }
 
-.header {
-  border-top: 2px solid #cad8eb;
-  border-bottom: 2px solid #cad8eb;
-  font-size: 13px;
-  font-weight: 600;
-  color: #314d70;
-}
-
 .nav-link {
-  color: #a5a2eb;
+  color: #8DFFFB;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
@@ -48,7 +40,7 @@
 .border {
   width: 113.8px;
   height: 38px;
-  border: 1px solid #311886;
+  border: 1px solid #1A474C;
   border-radius: 5px;
   margin-top: -7px;
   padding-top: 8px;
@@ -75,9 +67,9 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s ease;
-  .nav-link { color: #a5a2eb; }
+  .nav-link { color: #8DFFFB; }
   .nav-link:hover { color: #fff; }
-  .border { border-color: #311886; }
+  .border { border-color: #1A474C; }
 }
 
 .mobile-nav {
