@@ -4,11 +4,23 @@
     width: 100%;
     max-width: 700px;
     margin: auto;
-    padding-bottom: 87px;
+    padding-bottom: 35px;
     text-align: center;
     font-size: 16px;
     font-weight: 500;
-    color: #a5a2eb;
+    line-height: 1.5;
+    color: #8EFFFB;
+  }
+  .banner {
+    background-image: url('/assets/whyus/header-illustration.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: -15px;
+
+    .mascot {
+      text-align: center;
+      img { margin: 0 500px 0 0; }
+    }
   }
 }
 
@@ -36,13 +48,13 @@
 .available {
   height: 115px;
   width: 100%;
-  background-color: #040026;
+  background-color: #010010;
   position: relative;
   text-align: center;
 
   .subheader {
     padding-top: 46px;
-    color: #fff;
+    color: #FFE399;
     font-weight: 500;
     margin: 0 auto;
 
@@ -58,43 +70,56 @@
   width: 100%;
   text-align: center;
   padding: 30px 0 60px;
-  &.gray { background-color: #f2f2f2; }
-  
-  .header { margin-bottom: 35px; }
 
-  .body {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
+  .row {
+    width: 1000px;
     overflow: auto;
-    color: #4a4a4d;
-
-    .mobile-image, .image {
-      float: left;
-      width: 280px;
-      height: 160px;
-      max-width: 280px;
-      margin-right: 34px;
-      background-color: #d8d8d8;
-    }
-
-    .text {
-      float: left;
-      text-align: left;
-      width: 100%;
-      max-width: 686px;
-    }
+    margin: auto;
+    padding: 60px 0 80px;
 
     .mobile-image {
       display: none;
       width: 100%;
-      max-width: 100%;
-      float: left;
+      img { width: 100%; }
     }
 
-    &.reverse .image { margin: 0 0 0 34px; }
-  }
+    .text {
+      width: 49.8%;
+      display: inline-block;
+      vertical-align: middle;
 
+      .header {
+        margin: 0 0 20px;
+      }
+
+      .line {
+        width: 60px;
+        height: 2px;
+        background-color: #5EBBC3;
+      }
+    }
+
+    .text.left {
+      text-align: left;
+      padding-left: 25px;
+      .header { text-align: left; }
+      .line { margin: 0 auto 20px 0;}
+    }
+
+    .text.right {
+      text-align: right;
+      padding-right: 25px;
+      .header { text-align: right; }
+      .line { margin: 0 0 20px auto; }
+    }
+
+    .image {
+      width: 49.8%;
+      display: inline-block;
+      vertical-align: middle;
+      img { width: 100%; }
+    }
+  }
 }
 
 .content.bottom {
@@ -113,17 +138,27 @@
 
 @media (max-width: 1016px) {
   .content { padding: 30px 10px 60px; }
-  .content .body {
-    .image { display: none; }
-    .mobile-image { display: block; }
-  }
+  .content.bottom .upper { padding: 35px 10px 55px; }
 
-  .content.bottom {
-    .upper { padding: 35px 10px 55px; }
+  .content .row {
+    width: 100%;
+    .hide-mobile { display: none; }
+    .mobile-image { display: block; }
+    .image { width: 100%; }
+    .text { width: 100%; padding-top: 25px; }
+    .text.right {
+      text-align: left;
+      padding-left: 0;
+      .header { text-align: left; }
+      .line { margin: 0 auto 20px 0; }
+    }
   }
 }
 
 @media (max-width: 375px) {
+  .masthead .masthead-subheader { padding: 0 10px; }
+  .masthead .banner { padding-top: 20px; }
+  .masthead .banner .mascot img { margin: auto; }
   .cta-container .call-to-action { width: 100%; max-width: 280px; top: -25px; }
   .cta-container .call-to-action .btn { width: 280px; height: 58px; font-size: 20px; }
   .available .subheader { font-size: 12px; padding-top: 66px; a { font-size: 14px; } }
