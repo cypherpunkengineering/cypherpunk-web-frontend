@@ -1,19 +1,13 @@
 .masthead {
   .masthead-header {
-    margin: 40px auto 0;
-    span { color: #7972c4; }
-  }
-
-  .masthead-divider {
-    max-width: 500px;
-    border: 1px solid #220f6d;
-    margin: 30px auto;
+    margin: 40px auto 30px;
+    span { color: #8BFEFA; }
   }
 
   .masthead-subheader {
     text-align: center;
     font-size: 18px;
-    color: #a5a2eb;
+    color: #74D5D4;
   }
 
   .masthead-banner {
@@ -66,13 +60,13 @@
 .available {
   height: 115px;
   width: 100%;
-  background-color: #040026;
+  background-color: #010010;
   position: relative;
   text-align: center;
 
   .subheader {
     padding-top: 46px;
-    color: #fff;
+    color: #ECD490;
     font-weight: 500;
     margin: 0 auto;
 
@@ -111,7 +105,7 @@
   position: relative;
   width: 100%;
   text-align: center;
-  padding: 125px 0;
+  padding: 75px 0;
   &.grey { background-color: #efebeb; }
 
   .content-inner {
@@ -120,7 +114,7 @@
     overflow: auto;
   }
 
-  .header { margin-bottom: 100px; }
+  .header { margin-bottom: 75px; }
 
   .row-divider {
     height: 3px;
@@ -190,14 +184,14 @@
           font-size: 32px;
           font-weight: 500;
           letter-spacing: 0.6px;
-          color: #1e016c;
+          color: #fc6146;
           margin: 0;
         }
         .cell-text-divider {
           margin: 20px 0;
           height: 4px;
           width: 60px;
-          background-color: #ff7857;
+          background-color: #83C8CF;
           display: inline-block;
         }
         .cell-text-content {
@@ -216,7 +210,7 @@
 }
 
 .bottom-callout {
-  padding: 60px 0 90px;
+  padding: 80px 0 120px;
   text-align: center;
 
   .callout-header {
