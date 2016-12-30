@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BrowsersComponent } from './browsers.component';
+import { FirefoxComponent } from './firefox.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'browsers', component: BrowsersComponent }
+      { path: 'firefox', component: FirefoxComponent }
     ])
   ]
 })
-export class BrowsersRoutingModule { }
+export class FirefoxRoutingModule { }

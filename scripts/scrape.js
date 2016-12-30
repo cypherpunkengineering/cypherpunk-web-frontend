@@ -25,13 +25,14 @@ const routes = [
   { url: baseRoute + 'account/billing', dirPath: baseDir + 'account/billing.html' },
   { url: baseRoute + 'account/setup', dirPath: baseDir + 'account/setup.html' },
   { url: baseRoute + 'account/reset', dirPath: baseDir + 'account/reset.html' },
-  { url: baseRoute + 'browsers', dirPath: baseDir + 'browsers.html' },
+  { url: baseRoute + 'chrome', dirPath: baseDir + 'chrome.html' },
   { url: baseRoute + 'mac', dirPath: baseDir + 'mac.html' },
   { url: baseRoute + 'windows', dirPath: baseDir + 'windows.html' },
   { url: baseRoute + 'ios', dirPath: baseDir + 'ios.html' },
   { url: baseRoute + 'android', dirPath: baseDir + 'android.html' },
   { url: baseRoute + 'linux', dirPath: baseDir + 'linux.html' },
-  { url: baseRoute + 'routers', dirPath: baseDir + 'routers.html' }
+  { url: baseRoute + 'routers', dirPath: baseDir + 'routers.html' },
+  { url: baseRoute + 'firefox', dirPath: baseDir + 'firefox.html' }
 ];
 
 // remove index.*.js files

@@ -94,8 +94,12 @@
 
 	<!-- public marketing content -->
 	<rule>
-		<from>^/browsers(.*)</from>
-		<to last="true">/browsers.html$1</to>
+		<from>^/chrome(.*)</from>
+		<to last="true">/chrome.html$1</to>
+	</rule>
+	<rule>
+		<from>^/firefox(.*)</from>
+		<to last="true">/firefox.html$1</to>
 	</rule>
 	<rule>
 		<from>^/mac(.*)</from>

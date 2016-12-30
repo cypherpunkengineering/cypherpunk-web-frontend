@@ -30,11 +30,12 @@ export const routes: string[] = [
   'bounty',
   'blog',
   '404',
-  'browsers',
+  'chrome',
   'mac',
   'windows',
   'ios',
   'android',
   'linux',
-  'routers'
+  'routers',
+  'firefox'
 ];
