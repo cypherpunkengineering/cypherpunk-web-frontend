@@ -69,6 +69,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^73\.177\.222\.</condition><!-- virginia office -->
 		<condition type="remote-addr" operator="notequal" next="and">^173\.14\.113\.</condition><!-- virginia office -->
 		<condition type="remote-addr" operator="notequal" next="and">^72\.235\.162\.</condition><!-- slickage office -->
+		<condition type="remote-addr" operator="notequal" next="and">^74\.203\.89\.</condition><!-- slickage home -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
 		<to last="true">/cypherpunk.txt</to>
