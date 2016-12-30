@@ -24,6 +24,7 @@
     "prestart": "npm run build",
     "sass-watch": "node scripts/sass-watch",
     "sass": "node scripts/sass",
+    "serve": "node dist/server/index.js",
     "server": "nodemon dist/server/index.js",
     "debug:server": "node-nightly --inspect --debug-brk dist/server/index.js",
     "start": "npm run server",
