@@ -1,7 +1,4 @@
 package com.cypherpunk.appengine;
-
-import static com.google.appengine.api.urlfetch.FetchOptions.Builder.withDefaults;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -18,6 +15,8 @@ import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchService;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
+import com.google.appengine.api.urlfetch.FetchOptions;
+import static com.google.appengine.api.urlfetch.FetchOptions.Builder.withDefaults;
 
 @SuppressWarnings("serial")
 public class BackendProxy extends HttpServlet {
@@ -54,7 +53,13 @@ public class BackendProxy extends HttpServlet {
 		backendURL = new URL("https://" + backend + path + "?" + queryString);
 
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
-		HTTPRequest request = new HTTPRequest(backendURL, httpMethod, withDefaults().doNotFollowRedirects().setDeadline(30.0));
+
+		FetchOptions lFetchOptions = FetchOptions.Builder.withDefaults()
+			.validateCertificate()
+			.doNotFollowRedirects()
+			.setDeadline(30.0);
+
+		HTTPRequest request = new HTTPRequest(backendURL, httpMethod, lFetchOptions);
 
 		// Get and set the payload
 		if (httpMethod.toString().equals("POST"))
