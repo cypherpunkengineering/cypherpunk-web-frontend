@@ -69,6 +69,7 @@
   transition: all 0.5s ease;
   .nav-link { color: #8DFFFB; }
   .nav-link:hover { color: #fff; }
+  .nav-link.active { color: #ffc933; }
   .border { border-color: #1A474C; }
 }
 

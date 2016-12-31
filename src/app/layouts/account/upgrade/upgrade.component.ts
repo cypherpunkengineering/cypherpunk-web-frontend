@@ -1,6 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -55,33 +55,8 @@ export class UpgradeComponent {
   countryTouched: boolean = false;
   zipCodeTouched: boolean = false;
 
-  // pricing model
-  plans = this.plansService.plans;
-  selectPlan = this.plansService.selectPlan;
-  selectedPlan = this.plansService.selectedPlan;
-
-  // payment options
-
-  paymentOptions = [
-    {
-      type: 'cc',
-      selected: true
-    },
-    {
-      type: 'a',
-      selected: false
-    },
-    {
-      type: 'pp',
-      selected: false
-    },
-    {
-      type: 'bc',
-      selected: false
-    }
-  ];
-
-  selectedOption = this.paymentOptions[0];
+  // payment options (cc, a, pp, bc)
+  selectedOption = 'cc';
 
   constructor(
     private http: Http,
@@ -110,7 +85,8 @@ export class UpgradeComponent {
           if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
         }
         if (redirect) { router.navigate(['/account']); }
-      });
+      })
+      .catch(() => { /* keep error from showing on console */ });
     }
 
     // load stripe js files
@@ -241,7 +217,7 @@ export class UpgradeComponent {
   saveToServer(token: string) {
     let serverParams = {
       token: token,
-      plan: this.selectedPlan.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.email
     };
 
@@ -278,13 +254,13 @@ export class UpgradeComponent {
     this.loading = true;
     this.ppButtonDisabled = true;
 
-    if (this.selectedPlan.id === 'monthly899') {
+    if (this.plansService.selectedPlan.id === 'monthly899') {
       document.getElementById('paypalMonthly').click();
     }
-    else if (this.selectedPlan.id === 'annually5999') {
+    else if (this.plansService.selectedPlan.id === 'annually5999') {
       document.getElementById('paypalAnnual').click();
     }
-    else if (this.selectedPlan.id === 'semiannually4499') {
+    else if (this.plansService.selectedPlan.id === 'semiannually4499') {
       document.getElementById('paypalSemiannual').click();
     }
   }
@@ -368,7 +344,7 @@ export class UpgradeComponent {
     /* send billingAgreement to server */
     let serverParams = {
       billingAgreementId: this.billingAgreementId,
-      plan: this.selectedPlan.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.email
     };
 
@@ -404,17 +380,17 @@ export class UpgradeComponent {
 
     let posId = {
       email: this.email,
-      planId: this.selectedPlan.id
+      planId: this.plansService.selectedPlan.id
     };
     this.posData = JSON.stringify(posId);
 
-    if (this.selectedPlan.id === 'monthly899') {
+    if (this.plansService.selectedPlan.id === 'monthly899') {
       document.getElementById('bitpayMonthly').click();
     }
-    else if (this.selectedPlan.id === 'annually5999') {
+    else if (this.plansService.selectedPlan.id === 'annually5999') {
       document.getElementById('bitpayAnnual').click();
     }
-    else if (this.selectedPlan.id === 'semiannually4499') {
+    else if (this.plansService.selectedPlan.id === 'semiannually4499') {
       document.getElementById('bitpaySemiannual').click();
     }
   }
@@ -496,11 +472,9 @@ export class UpgradeComponent {
 
   selectOption(option) {
     this.selectedOption = option;
-    this.paymentOptions.map((item) => { item.selected = false; });
-    option.selected = true;
 
     // launch amazon payments
-    if (option.type === 'a') {
+    if (this.selectedOption === 'a') {
       setTimeout(() => { this.amazonInit(); }, 100);
     }
   }

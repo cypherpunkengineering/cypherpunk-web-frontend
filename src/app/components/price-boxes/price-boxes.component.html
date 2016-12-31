@@ -1,0 +1,39 @@
+<div class="price-boxes">
+
+  <div class="price-box" (click)="selectPlan(plans[0])" [ngClass]="{ 'active': selectedPlan.id === plans[0].id }">
+    <div class="period">{{plans[0].period}}</div>
+
+    <div class="box">
+      <div class="price-area">
+        <span class="price">$ {{plans[0].price}}</span>
+        <span class="price-time"> / month</span>
+      </div>
+      <div class="yearly" [innerHTML]="plans[0].yearly"></div>
+    </div>
+  </div>
+
+  <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': selectedPlan.id === plans[1].id }">
+    <div class="period">{{plans[1].period}}</div>
+
+    <div class="box">
+      <div class="best-value">Best Value!</div>
+      <div class="price-area">
+        <span class="price">$ {{plans[1].price}}</span>
+        <span class="price-time"> / month</span>
+      </div>
+      <div class="yearly" [innerHTML]="plans[1].yearly"></div>
+    </div>
+  </div>
+
+  <div class="price-box" (click)="selectPlan(plans[2])" [ngClass]="{ 'active': selectedPlan.id === plans[2].id }">
+    <div class="period">{{plans[2].period}}</div>
+
+    <div class="box">
+      <div class="price-area">
+        <span class="price">$ {{plans[2].price}}</span>
+        <span class="price-time"> / month</span>
+      </div>
+      <div class="yearly" [innerHTML]="plans[2].yearly"></div>
+    </div>
+  </div>
+</div>

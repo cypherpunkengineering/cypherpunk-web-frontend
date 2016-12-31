@@ -60,33 +60,8 @@ export class PremiumComponent {
   countryTouched: boolean = false;
   zipCodeTouched: boolean = false;
 
-  // payment plans
-  plans = this.plansService.plans;
-  selectPlan = this.plansService.selectPlan;
-  selectedPlan = this.plansService.selectedPlan;
-
-  // payment options
-
-  paymentOptions = [
-    {
-      type: 'cc',
-      selected: true
-    },
-    {
-      type: 'a',
-      selected: false
-    },
-    {
-      type: 'pp',
-      selected: false
-    },
-    {
-      type: 'bc',
-      selected: false
-    }
-  ];
-
-  selectedOption = this.paymentOptions[0];
+  // payment options (cc, a, pp, bc)
+  selectedOption = 'cc';
 
   constructor(
     private http: Http,
@@ -243,7 +218,7 @@ export class PremiumComponent {
   saveToServer(token: string) {
     let serverParams = {
       token: token,
-      plan: this.selectedPlan.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
     };
@@ -315,13 +290,13 @@ export class PremiumComponent {
       this.alertService.success('You account was created!');
     })
     .then(() => {
-      if (this.selectedPlan.id === 'monthly899') {
+      if (this.plansService.selectedPlan.id === 'monthly899') {
         document.getElementById('paypalMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually5999') {
+      else if (this.plansService.selectedPlan.id === 'annually5999') {
         document.getElementById('paypalAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4499') {
+      else if (this.plansService.selectedPlan.id === 'semiannually4499') {
         document.getElementById('paypalSemiannual').click();
       }
     })
@@ -418,7 +393,7 @@ export class PremiumComponent {
     /* send billingAgreement to server */
     let serverParams = {
       billingAgreementId: this.billingAgreementId,
-      plan: this.selectedPlan.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
     };
@@ -490,18 +465,18 @@ export class PremiumComponent {
     .then(() => {
       let posId = {
         email: this.email,
-        planId: this.selectedPlan.id
+        planId: this.plansService.selectedPlan.id
       };
       this.posData = JSON.stringify(posId);
     })
     .then(() => {
-      if (this.selectedPlan.id === 'monthly899') {
+      if (this.plansService.selectedPlan.id === 'monthly899') {
         document.getElementById('bitpayMonthly').click();
       }
-      else if (this.selectedPlan.id === 'annually5999') {
+      else if (this.plansService.selectedPlan.id === 'annually5999') {
         document.getElementById('bitpayAnnual').click();
       }
-      else if (this.selectedPlan.id === 'semiannually4499') {
+      else if (this.plansService.selectedPlan.id === 'semiannually4499') {
         document.getElementById('bitpaySemiannual').click();
       }
     })
@@ -641,11 +616,9 @@ export class PremiumComponent {
 
   selectOption(option) {
     this.selectedOption = option;
-    this.paymentOptions.map((item) => { item.selected = false; });
-    option.selected = true;
 
     // launch amazon payments
-    if (option.type === 'a') {
+    if (this.selectedOption === 'a') {
       setTimeout(() => { this.amazonInit(); }, 100);
     }
   }

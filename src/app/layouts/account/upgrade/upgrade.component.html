@@ -9,97 +9,37 @@
 
   <div class="page-divider"></div>
 
-  <div class="pricing">
-    <div class="blimp-container">
-      <div class="blimp">Best Value!</div>
-    </div>
-
-    <div class="price-box" (click)="selectPlan(plans[0].id)" [ngClass]="{ 'active': plans[0].selected, 'hidden': !plans[0].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[0].selected}">
-        {{plans[0].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[0].selected}">
-          $ {{plans[0].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
-    </div>
-
-    <div class="mobile-blimp-container">
-      <div class="blimp">Best Value!</div>
-    </div>
-
-    <div class="price-box" (click)="selectPlan(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[1].selected}">
-        {{plans[1].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[1].selected}">
-          $ {{plans[1].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
-    </div>
-
-    <div class="price-box" (click)="selectPlan(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
-      <div class="checkmark">
-        <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
-      </div>
-      <div class="period" [ngClass]="{'active': plans[2].selected}">
-        {{plans[2].period}}
-      </div>
-      <div class="price-area">
-        <span class="price" [ngClass]="{'active': plans[2].selected}">
-          $ {{plans[2].price}}
-        </span>
-        <span class="price-time"> / month</span>
-      </div>
-      <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
-    </div>
-  </div>
+  <app-price-boxes></app-price-boxes>
 
   <div class="page-divider bottom"></div>
 
   <div class="payment-selection">
     <div class="payment-bg">
-      <div class="type-container" (click)="selectOption(paymentOptions[0])" [ngClass]="{'active': paymentOptions[0].selected}">
+      <div class="type-container" (click)="selectOption('cc')" [ngClass]="{'active': selectedOption === 'cc'}">
         <div class="icon-container">
-          <img src="/assets/payment/icon-payment-card.png" *ngIf="paymentOptions[0].selected">
-          <img src="/assets/payment/icon-payment-card-gray.png" *ngIf="!paymentOptions[0].selected">
+          <img src="/assets/premium/credit-card.png">
         </div>
         <div class="type-title desktop">Credit Card</div>
         <div class="type-title mobile">CC</div>
       </div>
 
-      <div class="type-container" (click)="selectOption(paymentOptions[1])" [ngClass]="{'active': paymentOptions[1].selected}">
-        <div class="other-icon">
-          <img src="/assets/payment/icon-payment-amazon.png" *ngIf="paymentOptions[1].selected">
-          <img src="/assets/payment/icon-payment-amazon-gray.png" *ngIf="!paymentOptions[1].selected">
+      <div class="type-container" (click)="selectOption('a')" [ngClass]="{'active': selectedOption === 'a'}">
+        <div class="icon-container">
+          <img src="/assets/premium/amazon.png">
         </div>
         <div class="type-title">Amazon</div>
       </div>
 
-      <div class="type-container" (click)="selectOption(paymentOptions[2])" [ngClass]="{'active': paymentOptions[2].selected}">
+      <div class="type-container" (click)="selectOption('pp')" [ngClass]="{'active': selectedOption === 'pp'}">
         <div class="icon-container">
-          <img src="/assets/payment/icon-payment-paypal.png" *ngIf="paymentOptions[2].selected">
-          <img src="/assets/payment/icon-payment-paypal-gray.png" *ngIf="!paymentOptions[2].selected">
+          <img src="/assets/premium/paypal.png">
         </div>
         <div class="type-title">PayPal</div>
       </div>
 
-      <div class="type-container" (click)="selectOption(paymentOptions[3])" [ngClass]="{'active': paymentOptions[3].selected}">
+      <div class="type-container" (click)="selectOption('bc')" [ngClass]="{'active': selectedOption === 'bc'}">
         <div class="icon-container">
-          <img src="/assets/payment/icon-payment-bitcoin.png" *ngIf="paymentOptions[3].selected">
-          <img src="/assets/payment/icon-payment-bitcoin-gray.png" *ngIf="!paymentOptions[3].selected">
+          <img src="/assets/premium/bitcoin.png">
         </div>
         <div class="type-title">Bitcoin</div>
       </div>
@@ -108,7 +48,7 @@
 
   <div class="payment-info">
 
-    <div class="credit-card" *ngIf="paymentOptions[0].selected">
+    <div class="credit-card" *ngIf="selectedOption === 'cc'">
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -117,7 +57,7 @@
       </div>
 
       <div class="separator">Card Details</div>
-      <div class="clear"></div>
+      <div class="line"></div>
 
       <div class="info">
         <p>
@@ -164,15 +104,20 @@
       </div>
 
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+        <img src="/assets/premium/total.png" alt="Total">
+        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
-        Upgrade Now
-      </button>
+      <div class="total-line"></div>
+
+      <div class="pay">
+        <button class="btn blue" [disabled]="!validateCC() || ccButtonDisabled" (click)="getToken()">
+          Upgrade Now
+        </button>
+      </div>
     </div>
 
-    <div class="amazon" *ngIf="paymentOptions[1].selected">
+    <div class="amazon" *ngIf="selectedOption === 'a'">
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -181,21 +126,28 @@
       </div>
 
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+        <img src="/assets/premium/total.png" alt="Total">
+        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
-      <div id="AmazonPayButton"></div>
+      <div class="total-line"></div>
 
-      <div id="walletWidgetDiv"></div>
+      <div class="pay">
+        <div id="AmazonPayButton"></div>
 
-      <div id="consentWidgetDiv"></div>
+        <div id="walletWidgetDiv"></div>
 
-      <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
-        Pay Now
-      </button>
+        <div id="consentWidgetDiv"></div>
+      </div>
+
+      <div class="pay">
+        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
+          Upgrade Now
+        </button>
+      </div>
     </div>
 
-    <div class="paypal" *ngIf="paymentOptions[2].selected">
+    <div class="paypal" *ngIf="selectedOption === 'pp'">
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -204,12 +156,17 @@
       </div>
 
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+        <img src="/assets/premium/total.png" alt="Total">
+        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="payWithPaypal()" [disabled]="ppButtonDisabled">
-        Join Cypherpunk
-      </button>
+      <div class="total-line"></div>
+
+      <div class="pay">
+        <button class="btn blue" (click)="payWithPaypal()" [disabled]="ppButtonDisabled">
+          Upgrade Now
+        </button>
+      </div>
 
       <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
         <input type="hidden" name="cmd" value="_s-xclick">
@@ -248,7 +205,7 @@
       </form>
     </div>
 
-    <div class="bitcoin" *ngIf="paymentOptions[3].selected">
+    <div class="bitcoin" *ngIf="selectedOption === 'bc'">
       <div class="info">
         <p>
           <label>Email</label><br>
@@ -257,12 +214,17 @@
       </div>
 
       <div class="total">
-        ORDER TOTAL: <span class="total-price">{{ selectedPlan.total }}</span>
+        <img src="/assets/premium/total.png" alt="Total">
+        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
-      <button class="btn blue" (click)="payWithBitpay()" [disabled]="bpButtonDisabled">
-        Join Cypherpunk
-      </button>
+      <div class="total-line"></div>
+
+      <div class="pay">
+        <button class="btn blue" (click)="payWithBitpay()" [disabled]="bpButtonDisabled">
+          Upgrade Now
+        </button>
+      </div>
 
       <!-- Monthly -->
       <form ngNoForm action="https://bitpay.com/checkout" method="post" [style.display]="'none'">
@@ -290,8 +252,6 @@
     </div>
   </div>
 </div>
-
-<div class="clear"></div>
 
 <app-footer></app-footer>
 

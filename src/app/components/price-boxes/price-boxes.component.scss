@@ -1,0 +1,63 @@
+.price-boxes {
+  padding: 5px 0 25px;
+  text-align: center;
+
+  .price-box {
+    display: inline-block;
+    width: 200px;
+    height: 170px;
+    margin-right: 25px;
+    cursor: pointer;
+    &:last-child { margin-right: 0; }
+    &.active {
+      .period { color: #FF775A; }
+      .box {
+        border-color: #FF775A;
+        .best-value { background-color: #FF775A; }
+        .price-area .price-time { color: #FF775A; }
+        .yearly { color: #FF775A; }
+      }
+    }
+
+    .period {
+      margin: 15px 0;
+      font-size: 22px;
+      font-weight: 500;
+      color: #284451;
+    }
+
+    .box {
+      position: relative;
+      border: solid 2px #1887BE;
+      padding: 10px 0 20px;
+      width: 200px;
+
+      .best-value {
+        position: absolute;
+        bottom: -33px;
+        right: -2px;
+        width: 80px;
+        height: 33px;
+        padding-top: 8px;
+        color: #fff;
+        font-size: 14px;
+        background-color: #1887BE;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+
+      .price-area {
+        .price { color: #294351; font-size: 40px; font-weight: bold; }
+        .price-time { color: #1A84BD; }
+      }
+
+      .yearly { color: #1A84BD; }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
+  .price-boxes .price-box:last-child { margin: 25px 0 25px; }
+  .price-boxes .price-box .box { margin: auto;}
+}

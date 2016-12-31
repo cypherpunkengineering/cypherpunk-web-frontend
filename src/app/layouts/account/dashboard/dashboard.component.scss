@@ -12,92 +12,6 @@
     }
   }
 
-  .blimp-container, .mobile-blimp-container {
-    position: relative;
-    .blimp {
-      position: relative;
-      width: 97.2px;
-      height: 30.9px;
-      background-image: linear-gradient(to bottom, #ffc933, #d19e12);
-      border-radius: 43px;
-      text-align: center;
-      color: #fff;
-      padding-top: 5px;
-      margin: auto;
-      top: -10px;
-      &:after {
-        top: 100%;
-      	left: 50%;
-      	border: solid transparent;
-      	content: " ";
-      	position: absolute;
-      	border-top-color: #d19e12;
-      	border-width: 9px;
-      	margin-left: -9px;
-      }
-    }
-  }
-
-  .mobile-blimp-container { display: none; }
-
-  .pricing {
-    text-align: center;
-    padding-bottom: 50px;
-
-    .price-box {
-      display: inline-block;
-      width: 234px;
-      height: 170px;
-      margin-right: 25px;
-      border: solid 8px #ccc;
-      cursor: pointer;
-      &:last-child { margin-right: 0; }
-      &.active { border: solid 8px #61bb00; }
-      &.hidden { visibility: hidden; }
-
-      .checkmark {
-        position: relative;
-        .check {
-          display: none;
-          position: absolute;
-          background-color: #61bb00;
-          width: 54px;
-          height: 54px;
-          top: -20px;
-          right: -20px;
-          border-radius: 50px;
-          color: #fff;
-          padding-top: 8px;
-          font-size: 26px;
-          &.active { display: block; }
-        }
-      }
-
-      .period {
-        margin-top: 15px;
-        font-size: 26px;
-        font-weight: 500;
-        color: #666;
-        &.active { color: #034698; }
-      }
-
-      .price-area {
-        color: #666;
-        .price {
-          font-size: 40px;
-          font-weight: bold;
-          &.active { color: #034698; }
-        }
-        .price-time { color: #666; }
-      }
-
-      .yearly {
-        color: #666;
-        &.active { color: #76a8e7; }
-      }
-    }
-  }
-
   .content {
     width: 100%;
     border-bottom: 10px solid #efeaea;
@@ -159,13 +73,5 @@
       text-align: right;
       padding: 0;
     }
-
-    .pricing .price-box {
-      margin: 0 0 25px;
-      width: 90%;
-    }
-
-    .blimp-container { display: none; }
-    .mobile-blimp-container { display: block; }
   }
 }

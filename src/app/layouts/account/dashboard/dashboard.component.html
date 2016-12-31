@@ -10,63 +10,7 @@
     <div class="content-inner">
       <h2 class="content-header">Upgrade Now!</h2>
 
-      <div class="pricing">
-        <div class="blimp-container">
-          <div class="blimp">Best Value!</div>
-        </div>
-
-        <div class="price-box" (click)="upgrade(plans[0].id)" [ngClass]="{ 'active': plans[0].selected, 'hidden': !plans[0].viewable }">
-          <div class="checkmark">
-            <div class="check" [ngClass]="{'active': plans[0].selected}">&#10003;</div>
-          </div>
-          <div class="period" [ngClass]="{'active': plans[0].selected}">
-            {{plans[0].period}}
-          </div>
-          <div class="price-area">
-            <span class="price" [ngClass]="{'active': plans[0].selected}">
-              $ {{plans[0].price}}
-            </span>
-            <span class="price-time"> / month</span>
-          </div>
-          <div class="yearly" [ngClass]="{'active': plans[0].selected}" [innerHTML]="plans[0].yearly"></div>
-        </div>
-
-        <div class="mobile-blimp-container">
-          <div class="blimp">Best Value!</div>
-        </div>
-
-        <div class="price-box" (click)="upgrade(plans[1].id)" [ngClass]="{ 'active': plans[1].selected, 'hidden': !plans[1].viewable }">
-          <div class="checkmark">
-            <div class="check" [ngClass]="{'active': plans[1].selected}">&#10003;</div>
-          </div>
-          <div class="period" [ngClass]="{'active': plans[1].selected}">
-            {{plans[1].period}}
-          </div>
-          <div class="price-area">
-            <span class="price" [ngClass]="{'active': plans[1].selected}">
-              $ {{plans[1].price}}
-            </span>
-            <span class="price-time"> / month</span>
-          </div>
-          <div class="yearly" [ngClass]="{'active': plans[1].selected}" [innerHTML]="plans[1].yearly"></div>
-        </div>
-
-        <div class="price-box" (click)="upgrade(plans[2].id)" [ngClass]="{ 'active': plans[2].selected, 'hidden': !plans[2].viewable }">
-          <div class="checkmark">
-            <div class="check" [ngClass]="{'active': plans[2].selected}">&#10003;</div>
-          </div>
-          <div class="period" [ngClass]="{'active': plans[2].selected}">
-            {{plans[2].period}}
-          </div>
-          <div class="price-area">
-            <span class="price" [ngClass]="{'active': plans[2].selected}">
-              $ {{plans[2].price}}
-            </span>
-            <span class="price-time"> / month</span>
-          </div>
-          <div class="yearly" [ngClass]="{'active': plans[2].selected}" [innerHTML]="plans[2].yearly"></div>
-        </div>
-      </div>
+      <app-price-boxes [upgrade]="upgrade"></app-price-boxes>
     </div>
   </div>
 

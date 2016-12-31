@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 export class Plan {
   id: string;
@@ -7,7 +7,6 @@ export class Plan {
   total: number;
   yearly: string;
   viewable: boolean;
-  selected: boolean;
   constructor() {}
 }
 
@@ -19,32 +18,30 @@ export class PlansService {
       price: 8.99,
       period: '1 Month',
       total: 8.99,
-      yearly: '$ 8.99 billed monthly',
-      viewable: true,
-      selected: false
+      yearly: '$ 8.99 / monthly',
+      viewable: true
     },
     {
       id: 'annually5999',
       price: 4.99,
       period: '12 Months',
       total: 59.99,
-      yearly: '$ 59.99 billed annually',
-      viewable: true,
-      selected: true
+      yearly: '$ 59.99 / annually',
+      viewable: true
     },
     {
       id: 'semiannually4499',
       price: 7.49,
       period: '6 Months',
       total: 44.99,
-      yearly: '$ 44.99 billed semiannually',
-      viewable: true,
-      selected: false
+      yearly: '$ 44.99 / semiannually',
+      viewable: true
     }
   ];
 
   selectedPlan: Plan = this.plans[1];
-  currentPlan: Plan = undefined;
+
+  constructor(private zone: NgZone) { }
 
   setPlanVisibility (planCode, userType): void {
     if (userType === 'free') {
@@ -69,15 +66,5 @@ export class PlansService {
     else {
       this.plans.map((plan) => { plan.viewable = true; });
     }
-  }
-
-  selectPlan(id: string): void {
-    this.plans.map((plan) => {
-      if (plan.id === id) {
-        plan.selected = true;
-        this.selectedPlan = plan;
-      }
-      else { plan.selected = false; }
-    });
   }
 }

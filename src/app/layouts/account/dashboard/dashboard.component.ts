@@ -11,20 +11,15 @@ import { isBrowser } from 'angular2-universal';
 })
 export class DashboardComponent {
   user: any;
+  upgrade: boolean = true;
   loading: boolean = true;
   showEmailModal: boolean = false;
   showPasswordModal: boolean = false;
-
-  // payment plans
-  plans = this.plansService.plans;
-  selectPlan = this.plansService.selectPlan;
-  selectedPlan = this.plansService.selectedPlan;
 
   constructor(
     private router: Router,
     private authGuard: AuthGuard,
     private session: SessionService,
-    private plansService: PlansService,
     private activatedRoute: ActivatedRoute
   ) {
     this.user = this.session.user;
@@ -33,7 +28,8 @@ export class DashboardComponent {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
-      .then((data) => { this.loading = false; });
+      .then((data) => { this.loading = false; })
+      .catch(() => { /* keep error from showing up in console */ });
     }
   }
 
@@ -46,11 +42,6 @@ export class DashboardComponent {
       if (renewal !== 'annually' && renewal !== 'forever') { return true; }
     }
     else { return false; }
-  }
-
-  upgrade(id) {
-    this.selectPlan(id);
-    this.router.navigate(['/account/upgrade']);
   }
 
   openEmailModal() {
