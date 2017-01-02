@@ -19,8 +19,7 @@
       <option value="openvpn2.4">OpenVPN 2.4</option>
       <option value="ipsec">IPSec VPN</option>
       <option value="ike">IKEv2 VPN</option>
-      <option value="http">HTTP1 proxy</option>
-      <option value="socks">SOCKS proxy</option>
+      <option value="proxy">Proxy Protocols</option>
     </select>
   </div>
 
@@ -138,8 +137,8 @@
     </div>
   </div>
 
-  <div id="http" class="vpn" [ngClass]="{'show': vpnSelect === 'http'}">
-    <div class="subheader">HTTP1 proxy</div>
+  <div id="http" class="vpn" [ngClass]="{'show': vpnSelect === 'proxy'}">
+    <div class="subheader">Proxy Protocols</div>
 
     <div class="privacy">
       <strong>Username: </strong><br>
@@ -160,34 +159,11 @@
       {{httpSelect}}<br><br>
 
       <span>
-        <strong>Posts to use:</strong> <br>
+        <strong>Ports to use:</strong> <br>
         http:// -> 80<br>
         https:// -> 3128<br>
         socks:// -> 1080
       </span>
-    </div>
-  </div>
-
-  <div id="socks" class="vpn" [ngClass]="{'show': vpnSelect === 'socks'}">
-    <div class="subheader">SOCKS proxy</div>
-
-    <div class="privacy">
-      <strong>Username: </strong><br>
-      {{user.privacy.username}}
-      <br><br>
-      <strong>Password: </strong><br>
-      {{user.privacy.password}}
-      <br><br>
-      <strong>Hostname for </strong>
-      <select name="locations" id="ov-locations" [(ngModel)]="socksSelect">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>:
-      <br>
-      {{socksSelect}}<br>
     </div>
   </div>
 </div>
