@@ -13,7 +13,7 @@ const routes = [
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
   { url: baseRoute + 'whyus', dirPath: baseDir + 'whyus.html' },
-  { url: baseRoute + 'howitworks', dirPath: baseDir + 'howitworks.html' },
+  { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'locations', dirPath: baseDir + 'locations.html' },
   { url: baseRoute + 'privacy', dirPath: baseDir + 'privacy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },

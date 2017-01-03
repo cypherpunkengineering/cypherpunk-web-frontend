@@ -22,7 +22,7 @@ export const routes: string[] = [
   'download',
   'confirm',
   'whyus',
-  'howitworks',
+  'features',
   'locations',
   'privacy',
   'aboutus',

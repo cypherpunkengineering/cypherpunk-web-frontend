@@ -11,7 +11,7 @@ import { RecoverModule } from './layouts/public/recover/recover.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
-import { HowitworksModule } from './layouts/public/howitworks/howitworks.module';
+import { FeaturesModule } from './layouts/public/features/features.module';
 import { LocationsModule } from './layouts/public/locations/locations.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
@@ -54,7 +54,7 @@ import { PlansService } from './services/plans.service';
     DownloadModule,
     ConfirmModule,
     WhyusModule,
-    HowitworksModule,
+    FeaturesModule,
     LocationsModule,
     PrivacyModule,
     AboutusModule,
