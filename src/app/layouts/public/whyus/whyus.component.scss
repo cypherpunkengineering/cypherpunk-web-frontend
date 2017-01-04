@@ -12,14 +12,22 @@
     color: #8EFFFB;
   }
   .banner {
-    background-image: url('/assets/whyus/header-illustration.png');
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
     margin-bottom: -15px;
 
+    .background {
+      width: 100%;
+      height: 281px;
+      img { width: 100%; height: 100%; object-fit: cover; }
+    }
+
     .mascot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       text-align: center;
-      img { margin: 0 500px 0 0; }
+      img { width: 208px; margin: 0 500px 0 0; }
     }
   }
 }
@@ -80,7 +88,8 @@
     .mobile-image {
       display: none;
       width: 100%;
-      img { width: 100%; }
+
+      img { width: 90%; }
     }
 
     .text {
@@ -155,10 +164,13 @@
   }
 }
 
-@media (max-width: 375px) {
-  .masthead .masthead-subheader { padding: 0 10px; }
-  .masthead .banner { padding-top: 20px; }
+@media (max-width: 725px) {
   .masthead .banner .mascot img { margin: auto; }
+}
+
+@media (max-width: 375px) {
+  .masthead .masthead-subheader { padding: 0 10px 20px; }
+  .masthead .banner { padding-top: 20px; }
   .cta-container .call-to-action { width: 100%; max-width: 280px; top: -25px; }
   .cta-container .call-to-action .btn { width: 280px; height: 58px; font-size: 20px; }
   .available .subheader { font-size: 12px; padding-top: 66px; a { font-size: 14px; } }
