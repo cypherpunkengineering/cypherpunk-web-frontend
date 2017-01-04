@@ -48,16 +48,12 @@
       <div class="footer-header">Company</div>
       <ul class="footer-listing">
         <li><a routerLink="/aboutus">About Us</a></li>
+        <li><a routerLink="/community">Community</a></li>
         <!-- <li><a routerLink="/press">Press</a></li> -->
         <!-- <li><a routerLink="/blog">Blog</a></li> -->
         <li><a routerLink="/privacy">Privacy Policy</a></li>
         <li><a routerLink="/tos">Terms of Service</a></li>
-        <li><a routerLink="/bounty">Bounty Program</a></li>
-        <li>
-          <div class="feedback mobile" (click)="openSupportModal()">
-            Contact Support
-          </div>
-        </li>
+        <li><a routerLink="/community" fragment="bounty">Bounty Program</a></li>
       </ul>
     </div>
 
@@ -85,9 +81,6 @@
           </a>
         </li>
       </ul>
-      <div class="feedback" (click)="openFeedbackModal()">
-        Send Feedback
-      </div>
       <div class="feedback desktop" (click)="openSupportModal()">
         Contact Support
       </div>

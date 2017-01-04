@@ -18,7 +18,6 @@ const routes = [
   { url: baseRoute + 'privacy', dirPath: baseDir + 'privacy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
   { url: baseRoute + 'tos', dirPath: baseDir + 'tos.html' },
-  { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
   { url: baseRoute + 'account', dirPath: baseDir + 'account/account.html' },
   { url: baseRoute + 'account/upgrade', dirPath: baseDir + 'account/upgrade.html' },
@@ -32,7 +31,8 @@ const routes = [
   { url: baseRoute + 'android', dirPath: baseDir + 'android.html' },
   { url: baseRoute + 'linux', dirPath: baseDir + 'linux.html' },
   { url: baseRoute + 'routers', dirPath: baseDir + 'routers.html' },
-  { url: baseRoute + 'firefox', dirPath: baseDir + 'firefox.html' }
+  { url: baseRoute + 'firefox', dirPath: baseDir + 'firefox.html' },
+  { url: baseRoute + 'community', dirPath: baseDir + 'community.html' }
 ];
 
 // remove index.*.js files

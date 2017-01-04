@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { BountyComponent } from './bounty.component';
+import { CommunityComponent } from './community.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'bounty', component: BountyComponent }
+      { path: 'community', component: CommunityComponent }
     ])
   ]
 })
-export class BountyRoutingModule { }
+export class CommunityRoutingModule { }

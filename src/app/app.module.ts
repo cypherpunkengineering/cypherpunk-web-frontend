@@ -16,7 +16,6 @@ import { LocationsModule } from './layouts/public/locations/locations.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
-import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { BlogModule } from './layouts/public/blog/blog.module';
 import { ChromeModule } from './layouts/public/available/chrome/chrome.module';
@@ -27,6 +26,7 @@ import { AndroidModule } from './layouts/public/available/android/android.module
 import { LinuxModule } from './layouts/public/available/linux/linux.module';
 import { RoutersModule } from './layouts/public/available/routers/routers.module';
 import { FirefoxModule } from './layouts/public/available/firefox/firefox.module';
+import { CommunityModule } from './layouts/public/community/community.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -59,7 +59,6 @@ import { PlansService } from './services/plans.service';
     PrivacyModule,
     AboutusModule,
     TosModule,
-    BountyModule,
     NotFoundModule,
     BlogModule,
     ChromeModule,
@@ -70,6 +69,7 @@ import { PlansService } from './services/plans.service';
     LinuxModule,
     RoutersModule,
     FirefoxModule,
+    CommunityModule,
 
     DashboardModule,
     BillingModule,

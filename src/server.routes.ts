@@ -27,7 +27,6 @@ export const routes: string[] = [
   'privacy',
   'aboutus',
   'tos',
-  'bounty',
   'blog',
   '404',
   'chrome',
@@ -37,5 +36,6 @@ export const routes: string[] = [
   'android',
   'linux',
   'routers',
-  'firefox'
+  'firefox',
+  'community'
 ];
