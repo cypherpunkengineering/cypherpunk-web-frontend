@@ -90,21 +90,24 @@ export class DownloadComponent {
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
     else if (os.indexOf('Android') > -1) { this.headerBuild = this.builds.android; }
     else if (os.indexOf('iOS') > -1) { this.headerBuild = this.builds.ios; }
-    else if (os.indexOf('Fedora') > -1 ||
-             os.indexOf('Red Hat') > -1 ||
-             os.indexOf('CentOS')) {
-      this.headerBuild = this.builds.linux;
-      if (platform.os.architecture === 32) { this.currentLinuxBuild = this.linuxVersions[0]; }
-      else { this.currentLinuxBuild = this.linuxVersions[1]; }
-    }
+    // else if (os.indexOf('Fedora') > -1 ||
+    //          os.indexOf('Red Hat') > -1 ||
+    //          os.indexOf('CentOS')) {
+    //   this.headerBuild = this.builds.linux;
+    //   if (platform.os.architecture === 32) { this.currentLinuxBuild = this.linuxVersions[0]; }
+    //   else { this.currentLinuxBuild = this.linuxVersions[0]; }
+    // }
     else if (os.indexOf('Debian') > -1 ||
              os.indexOf ('Ubuntu') > -1 ||
              os.indexOf ('Kubuntu') > -1 ||
              os.indexOf ('Xubuntu') > -1 ||
              os.indexOf('Mint')) {
-      this.headerBuild = this.builds.linux;
-      if (platform.os.architecture === 32) { this.currentLinuxBuild = this.linuxVersions[2]; }
-      else { this.currentLinuxBuild = this.linuxVersions[3]; }
+      if (platform.os.architecture === 64) {
+        this.headerBuild = this.builds.linux;
+        this.currentLinuxBuild = this.linuxVersions[0];
+      }
+      else { this.headerBuild = this.builds.blank; }
+      // else { this.currentLinuxBuild = this.linuxVersions[0]; }
     }
     else { this.headerBuild = this.builds.blank; }
 
