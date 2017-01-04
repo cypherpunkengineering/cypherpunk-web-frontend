@@ -6,7 +6,10 @@ import { WhyusComponent } from './whyus.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'whyus', component: WhyusComponent }
+      {
+        path: 'why-you-need-online-privacy-protection',
+        component: WhyusComponent
+      }
     ])
   ]
 })

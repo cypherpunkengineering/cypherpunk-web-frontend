@@ -147,8 +147,8 @@
 		<to last="true">/recover.html$1</to>
 	</rule>
 	<rule>
-		<from>^/whyus(.*)</from>
-		<to last="true">/whyus.html$1</to>
+		<from>^/why-you-need-online-privacy-protection(.*)</from>
+		<to last="true">/why-you-need-online-privacy-protection.html$1</to>
 	</rule>
 	<rule>
 		<from>^/features(.*)</from>

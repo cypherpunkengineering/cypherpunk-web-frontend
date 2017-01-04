@@ -6,7 +6,7 @@ import { DOCUMENT } from '@angular/platform-browser';
   styleUrls: ['./whyus.component.css']
 })
 export class WhyusComponent implements AfterViewInit {
-  title: string = 'Why You Need Cypherpunk Privacy';
+  title: string = 'Why You Need Online Privacy Protection';
   description: string = 'Cypherpunk Privacy provides unrestricted access to the internet, protects your privacy online and secures public WiFi networks.';
 
   constructor(@Inject(DOCUMENT) private document: any) { }

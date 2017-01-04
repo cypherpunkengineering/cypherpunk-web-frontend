@@ -21,7 +21,7 @@ export const routes: string[] = [
   'recover',
   'download',
   'confirm',
-  'whyus',
+  'why-you-need-online-privacy-protection',
   'features',
   'locations',
   'privacy',

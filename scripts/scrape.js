@@ -12,7 +12,7 @@ const routes = [
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
-  { url: baseRoute + 'whyus', dirPath: baseDir + 'whyus.html' },
+  { url: baseRoute + 'why-you-need-online-privacy-protection', dirPath: baseDir + 'why-you-need-online-privacy-protection.html' },
   { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'locations', dirPath: baseDir + 'locations.html' },
   { url: baseRoute + 'privacy', dirPath: baseDir + 'privacy.html' },
