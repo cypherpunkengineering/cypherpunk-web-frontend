@@ -9,10 +9,7 @@
   .masthead-image {
     width: 100%;
     height: 403px;
-    position: relative;
-    background-image: url('/assets/premium/pay-header.png');
-    background-position: center;
-    background-repeat: no-repeat;
+    img { width: 100%; height: 100%; object-fit: contain; }
   }
 }
 
@@ -135,9 +132,9 @@
       color: #1986BE;
       margin-left: 25px;
     }
-    img { padding: 0 10px 0; margin: 0 0 -8px; }
+    img { width: 54px; padding: 0 10px 0; margin: 0 0 -8px; }
   }
-  
+
   .total-line {
     width: 25px;
     height: 2px;
@@ -166,6 +163,7 @@
 #consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
 
 @media (max-width: 1060px) {
+  .masthead .masthead-image img { object-fit: cover; }
   .masthead .masthead-header { padding: 0 10px; }
   .page { padding: 25px 10px 0; }
 }
