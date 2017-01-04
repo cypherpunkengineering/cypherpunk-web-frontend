@@ -2,7 +2,8 @@
 set -e
 
 # build vars
-NODE_VERSION=v6.9.1
+export NODE_VERSION=v6.9.3
+export NVM_DIR=$HOME/.nvm
 
 # load nvm depending on OS
 case `uname -s` in
