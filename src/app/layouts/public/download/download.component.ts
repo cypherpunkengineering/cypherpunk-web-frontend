@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import * as platform from 'platform';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 
 @Component({
@@ -83,7 +84,7 @@ export class DownloadComponent {
   downloadBuildLink: string = '';
   showDownloadModal: boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     // detect os setup
     let os: string = platform.os.family;
     if (os.indexOf('OS X') > -1) { this.headerBuild = this.builds.mac; }
@@ -126,8 +127,11 @@ export class DownloadComponent {
     if (build.name === 'Linux') {
       this.downloadBuildName = this.currentLinuxBuild.os + ' ' + this.currentLinuxBuild.version;
       link = this.currentLinuxBuild.link;
+      this.downloadBuildLink = link;
     }
-    this.downloadBuildLink = link;
+    else if (build.name === 'Android') { return window.location.href = link; }
+    else if (build.name === 'iOS') { return window.location.href = link; }
+    else { this.downloadBuildLink = link; }
 
     // download file
     this.downloadFile(link);
