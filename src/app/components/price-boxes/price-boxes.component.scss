@@ -4,7 +4,7 @@
 
   .price-box {
     display: inline-block;
-    width: 200px;
+    width: 250px;
     height: 170px;
     margin-right: 25px;
     cursor: pointer;
@@ -30,7 +30,7 @@
       position: relative;
       border: solid 2px #1887BE;
       padding: 10px 0 20px;
-      width: 200px;
+      width: 250px;
 
       .best-value {
         position: absolute;
@@ -56,7 +56,7 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
   .price-boxes .price-box:last-child { margin: 25px 0 25px; }
   .price-boxes .price-box .box { margin: auto;}

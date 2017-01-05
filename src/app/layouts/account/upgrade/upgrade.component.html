@@ -9,7 +9,7 @@
 
   <div class="page-divider"></div>
 
-  <app-price-boxes></app-price-boxes>
+  <app-price-boxes [btc]="showBTC"></app-price-boxes>
 
   <div class="page-divider bottom"></div>
 
@@ -215,7 +215,10 @@
 
       <div class="total">
         <img src="/assets/premium/total.png" alt="Total">
-        TOTAL: <span class="total-price">{{ bpTotal() }}</span>
+        TOTAL:
+        <span class="total-price">
+          {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
+        </span>
       </div>
 
       <div class="total-line"></div>

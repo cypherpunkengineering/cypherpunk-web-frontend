@@ -44,6 +44,7 @@ export class PremiumComponent {
 
   // bitpay variables
   bpRate: number;
+  showBTC: boolean = false;
 
   // validation variables
   validCCEmail: boolean = false;
@@ -165,7 +166,16 @@ export class PremiumComponent {
       http.get(url)
       .map(res => res.json())
       .subscribe((data: any) => {
-        if (data.rate) { this.bpRate = data.rate; }
+        if (data.rate) {this.bpRate = data.rate; }
+        this.plansService.plans[0].bcPrice = this.bpConvert(this.plansService.plans[0].price);
+        this.plansService.plans[2].bcPrice = this.bpConvert(this.plansService.plans[2].price);
+        this.plansService.plans[1].bcPrice = this.bpConvert(this.plansService.plans[1].price);
+        this.plansService.plans[0].bcTotal = this.bpConvert(this.plansService.plans[0].total);
+        this.plansService.plans[2].bcTotal = this.bpConvert(this.plansService.plans[2].total);
+        this.plansService.plans[1].bcTotal = this.bpConvert(this.plansService.plans[1].total);
+        this.plansService.plans[0].bcYearly = `₿ ~${this.plansService.plans[0].bcTotal} / monthly`;
+        this.plansService.plans[2].bcYearly = `₿ ~${this.plansService.plans[2].bcTotal} / semiannually`;
+        this.plansService.plans[1].bcYearly = `₿ ~${this.plansService.plans[1].bcTotal} / annually`;
       });
     }
   }
@@ -449,10 +459,9 @@ export class PremiumComponent {
 
   // pay with bitpay
 
-  bpTotal(): string {
-    let total: number = this.plansService.selectedPlan.total;
-    if (this.bpRate) { return (total / this.bpRate).toFixed(8) + ' BTC'; }
-    else { return total.toString(); }
+  bpConvert(usd: number): number {
+    if (this.bpRate) { return +(usd / this.bpRate).toFixed(3); }
+    else { return -1; }
   }
 
   payWithBitpay() {
@@ -638,8 +647,11 @@ export class PremiumComponent {
 
     // launch amazon payments
     if (this.selectedOption === 'a') {
+      this.showBTC = false;
       setTimeout(() => { this.amazonInit(); }, 100);
     }
+    else if (this.selectedOption === 'bc') { this.showBTC = true; }
+    else { this.showBTC = false; }
   }
 
 }

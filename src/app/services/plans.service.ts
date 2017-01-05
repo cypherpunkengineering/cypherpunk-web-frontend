@@ -3,9 +3,12 @@ import { Injectable, NgZone } from '@angular/core';
 export class Plan {
   id: string;
   price: number;
+  bcPrice: number;
   period: string;
   total: number;
+  bcTotal: number;
   yearly: string;
+  bcYearly: string;
   viewable: boolean;
   constructor() {}
 }
@@ -16,25 +19,34 @@ export class PlansService {
     {
       id: 'monthly899',
       price: 8.99,
+      bcPrice: undefined,
       period: '1 Month',
       total: 8.99,
+      bcTotal: undefined,
       yearly: '$ 8.99 / monthly',
+      bcYearly: '',
       viewable: true
     },
     {
       id: 'annually5999',
       price: 4.99,
+      bcPrice: undefined,
       period: '12 Months',
       total: 59.99,
+      bcTotal: undefined,
       yearly: '$ 59.99 / annually',
+      bcYearly: '',
       viewable: true
     },
     {
       id: 'semiannually4499',
       price: 7.49,
+      bcPrice: undefined,
       period: '6 Months',
       total: 44.99,
+      bcTotal: undefined,
       yearly: '$ 44.99 / semiannually',
+      bcYearly: '',
       viewable: true
     }
   ];

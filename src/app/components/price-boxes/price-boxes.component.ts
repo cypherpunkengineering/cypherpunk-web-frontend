@@ -9,6 +9,7 @@ import { PlansService } from '../../services/plans.service';
 })
 export class PriceBoxesComponent {
   @Input() upgrade: boolean;
+  @Input() btc: boolean;
 
   // payment plans
   plans = this.plansService.plans;
