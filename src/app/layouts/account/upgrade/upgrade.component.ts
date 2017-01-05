@@ -41,6 +41,9 @@ export class UpgradeComponent {
   amazonWallet: any;
   amazonRecurring: any;
 
+  // bitpay variables
+  bpRate: number;
+
   // validation variables
   validCCName: boolean = false;
   validCCNumber: boolean = false;
@@ -138,8 +141,8 @@ export class UpgradeComponent {
       }
     }
 
+    // use Geo-IP to preload CC country
     if (isBrowser) {
-      // use Geo-IP to preload CC country
       let url = '/api/v0/network/status';
       http.get(url)
       .map(res => res.json())
@@ -152,6 +155,16 @@ export class UpgradeComponent {
             this.changeCountry();
           }
         });
+      });
+    }
+
+    // get rates for bitpay
+    if (isBrowser) {
+      let url = 'https://bitpay.com/api/rates/usd';
+      http.get(url)
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        if (data.rate) { this.bpRate = data.rate; }
       });
     }
   }
@@ -373,6 +386,12 @@ export class UpgradeComponent {
   }
 
   // pay with bitpay
+
+  bpTotal(): string {
+    let total: number = this.plansService.selectedPlan.total;
+    if (this.bpRate) { return (total / this.bpRate).toFixed(8) + ' BTC'; }
+    else { return total.toString(); }
+  }
 
   payWithBitpay() {
     this.loading = true;
