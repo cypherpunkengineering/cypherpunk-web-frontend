@@ -49,6 +49,12 @@
       </select>
     </div>
 
+    <div class="download-container">
+      <button class="btn blue" (click)="downloadProfile('23')" [disabled]="!download23ButtonEnabled || !country23Select">
+        Download
+      </button>
+    </div>
+
     <textarea class="profile" [(ngModel)]="profile23" readonly></textarea>
 
     <div class="download-container">
@@ -80,6 +86,12 @@
           </option>
         </optgroup>
       </select>
+    </div>
+
+    <div class="download-container">
+      <button class="btn blue" (click)="downloadProfile('24')" [disabled]="!download24ButtonEnabled || !country24Select">
+        Download
+      </button>
     </div>
 
     <textarea class="profile" [(ngModel)]="profile24" readonly></textarea>
