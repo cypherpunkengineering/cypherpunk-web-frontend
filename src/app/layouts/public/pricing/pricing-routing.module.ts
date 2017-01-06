@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { PremiumComponent } from './premium.component';
+import { PricingComponent } from './pricing.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'premium', component: PremiumComponent }
+      { path: 'pricing', component: PricingComponent }
     ])
   ]
 })
-export class PremiumRoutingModule { }
+export class PricingRoutingModule { }

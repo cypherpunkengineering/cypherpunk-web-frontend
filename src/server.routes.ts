@@ -16,7 +16,7 @@ export const routes: string[] = [
   'account/upgrade',
   'account/setup',
   'account/reset',
-  'premium',
+  'pricing',
   'login',
   'recover',
   'download',

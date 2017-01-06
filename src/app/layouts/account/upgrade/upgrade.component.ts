@@ -8,7 +8,7 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
 import 'rxjs/add/operator/toPromise';
-import country_list from '../../public/premium/countries';
+import country_list from '../../public/pricing/countries';
 
 @Component({
   templateUrl: './upgrade.component.html',

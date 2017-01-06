@@ -136,8 +136,8 @@
 		<to last="true">/download.html$1</to>
 	</rule>
 	<rule>
-		<from>^/premium(.*)</from>
-		<to last="true">/premium.html$1</to>
+		<from>^/pricing(.*)</from>
+		<to last="true">/pricing.html$1</to>
 	</rule>
 	<rule>
 		<from>^/login(.*)</from>

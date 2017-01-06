@@ -11,10 +11,10 @@ import 'rxjs/add/operator/toPromise';
 import country_list from './countries';
 
 @Component({
-  templateUrl: './premium.component.html',
-  styleUrls: ['./premium.component.css']
+  templateUrl: './pricing.component.html',
+  styleUrls: ['./pricing.component.css']
 })
-export class PremiumComponent {
+export class PricingComponent {
   posData: string = '';
   ccButtonDisabled: boolean = false;
   ppButtonDisabled: boolean = false;

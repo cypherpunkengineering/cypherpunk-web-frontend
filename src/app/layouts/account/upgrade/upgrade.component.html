@@ -17,7 +17,7 @@
     <div class="payment-bg">
       <div class="type-container" (click)="selectOption('cc')" [ngClass]="{'active': selectedOption === 'cc'}">
         <div class="icon-container">
-          <img src="/assets/premium/credit-card.png">
+          <img src="/assets/payment/credit-card.png">
         </div>
         <div class="type-title desktop">Credit Card</div>
         <div class="type-title mobile">CC</div>
@@ -25,21 +25,21 @@
 
       <div class="type-container" (click)="selectOption('a')" [ngClass]="{'active': selectedOption === 'a'}">
         <div class="icon-container">
-          <img src="/assets/premium/amazon.png">
+          <img src="/assets/payment/amazon.png">
         </div>
         <div class="type-title">Amazon</div>
       </div>
 
       <div class="type-container" (click)="selectOption('pp')" [ngClass]="{'active': selectedOption === 'pp'}">
         <div class="icon-container">
-          <img src="/assets/premium/paypal.png">
+          <img src="/assets/payment/paypal.png">
         </div>
         <div class="type-title">PayPal</div>
       </div>
 
       <div class="type-container" (click)="selectOption('bc')" [ngClass]="{'active': selectedOption === 'bc'}">
         <div class="icon-container">
-          <img src="/assets/premium/bitcoin.png">
+          <img src="/assets/payment/bitcoin.png">
         </div>
         <div class="type-title">Bitcoin</div>
       </div>
@@ -104,7 +104,7 @@
       </div>
 
       <div class="total">
-        <img src="/assets/premium/total.png" alt="Total">
+        <img src="/assets/payment/total.png" alt="Total">
         TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
@@ -126,7 +126,7 @@
       </div>
 
       <div class="total">
-        <img src="/assets/premium/total.png" alt="Total">
+        <img src="/assets/payment/total.png" alt="Total">
         TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
@@ -156,7 +156,7 @@
       </div>
 
       <div class="total">
-        <img src="/assets/premium/total.png" alt="Total">
+        <img src="/assets/payment/total.png" alt="Total">
         TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
       </div>
 
@@ -214,7 +214,7 @@
       </div>
 
       <div class="total">
-        <img src="/assets/premium/total.png" alt="Total">
+        <img src="/assets/payment/total.png" alt="Total">
         TOTAL:
         <span class="total-price">
           {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}

@@ -9,7 +9,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cypherpunk.com/premium</loc>
+    <loc>https://cypherpunk.com/pricing</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -25,7 +25,7 @@
     <loc>https://cypherpunk.com/locations</loc>
   </url>
   <url>
-    <loc>https://cypherpunk.com/bounty</loc>
+    <loc>https://cypherpunk.com/community</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/privacy</loc>

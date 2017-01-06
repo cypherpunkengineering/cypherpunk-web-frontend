@@ -7,7 +7,7 @@ const baseRoute = 'http://localhost:3000/';
 const baseDir = './build/';
 const routes = [
   { url: baseRoute, dirPath: baseDir + 'cypherpunk-public.html' },
-  { url: baseRoute + 'premium', dirPath: baseDir + 'premium.html' },
+  { url: baseRoute + 'pricing', dirPath: baseDir + 'pricing.html' },
   { url: baseRoute + 'download', dirPath: baseDir + 'download.html' },
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },

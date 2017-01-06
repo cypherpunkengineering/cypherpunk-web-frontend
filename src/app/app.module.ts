@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
 
 import { HomeModule } from './layouts/public/home/home.module';
-import { PremiumModule } from './layouts/public/premium/premium.module';
+import { PricingModule } from './layouts/public/pricing/pricing.module';
 import { LoginModule } from './layouts/public/login/login.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
 import { DownloadModule } from './layouts/public/download/download.module';
@@ -48,7 +48,7 @@ import { PlansService } from './services/plans.service';
     SharedModule,
 
     HomeModule,
-    PremiumModule,
+    PricingModule,
     LoginModule,
     RecoverModule,
     DownloadModule,
