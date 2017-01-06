@@ -103,7 +103,7 @@ public class NetworkAPI extends HttpServlet
 
 			case "status": { // {{{
 				String countryCode = ipdb.getCountry(reqIP);
-				out.println("{ip: \"" + reqIP + "\", country: \"" + countryCode + "\"}");
+				out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 			}
 			break; // }}}
 
