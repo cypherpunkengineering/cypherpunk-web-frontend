@@ -18,7 +18,7 @@
       </li>
       <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
         <li class="border">
-          <a class="nav-link">log in</a>
+          <a class="nav-link">Sign in</a>
         </li>
       </a>
       <a routerLink="/account" *ngIf="isLoggedIn()">
@@ -52,7 +52,7 @@
         </li>
         <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
           <li class="border">
-            <a class="nav-link">log in</a>
+            <a class="nav-link">Sign in</a>
           </li>
         </a>
         <a routerLink="/account" *ngIf="isLoggedIn()">
@@ -90,7 +90,7 @@
       DOWNLOAD
     </div>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
-      log in
+      Sign in
     </div>
     <div class="mobile-dd-item" *ngIf="isLoggedIn()" routerLink="/account">
       My Account

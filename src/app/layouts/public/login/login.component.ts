@@ -44,7 +44,7 @@ export class LoginComponent implements AfterViewInit {
       console.log(err);
       this.zone.run(() => {
         this.loginButtonDisabled = false;
-        this.alertService.error('Could not log in');
+        this.alertService.error('Could not sign in');
       });
     });
   }
