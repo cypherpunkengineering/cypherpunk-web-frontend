@@ -11,10 +11,10 @@
         <a class="nav-link" routerLink="/premium" routerLinkActive="active">premium</a>
       </li>
       <li>
-        <a class="nav-link" href="https://support.cypherpunk.com/hc">help</a>
+        <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
       </li>
       <li>
-        <button class="btn blue" routerLink="/download">DOWNLOAD</button>
+        <button class="btn blue" routerLink="/download">Get Cypherpunk Now</button>
       </li>
       <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
         <li class="border">
@@ -45,10 +45,10 @@
           <a class="nav-link" routerLink="/premium" routerLinkActive="active">premium</a>
         </li>
         <li>
-          <a class="nav-link" href="https://support.cypherpunk.com/hc">help</a>
+          <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
         </li>
         <li>
-          <button class="btn blue" routerLink="/download">DOWNLOAD</button>
+          <button class="btn blue" routerLink="/download">Get Cypherpunk Now</button>
         </li>
         <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
           <li class="border">
@@ -82,12 +82,10 @@
       premium
     </div>
     <a href="https://support.cypherpunk.com/hc">
-      <div class="mobile-dd-item">
-        help
-      </div>
+      <div class="mobile-dd-item">support</div>
     </a>
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
-      DOWNLOAD
+      Get Cypherpunk Now
     </div>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
       Sign in

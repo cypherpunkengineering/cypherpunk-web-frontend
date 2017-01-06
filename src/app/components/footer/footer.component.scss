@@ -33,12 +33,6 @@
   color: #8DFFFB;
 }
 
-.btn {
-  margin-top: 45px;
-  width: 115px;
-  height: 39px;
-}
-
 .footer-header {
   font-size: 18px;
   font-weight: 600;
@@ -121,12 +115,10 @@
     }
   }
   .feedback { margin: 16px auto; }
-  .footer-column.logo .btn { width: 341px; height: 80px; font-size: 24px; }
   .mobile { display: block; margin-top: 25px; }
   .desktop { display: none; }
 }
 
 @media (max-width: 375px) {
   .safari-column-fix { display: block; }
-  .footer-column.logo .btn { width: 280px; }
 }

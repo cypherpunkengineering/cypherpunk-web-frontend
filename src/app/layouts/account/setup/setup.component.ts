@@ -29,7 +29,6 @@ export class SetupComponent implements OnInit {
   ipsecSelect: string = '';
   ikeSelect: string = '';
   httpSelect: string = '';
-  socksSelect: string = '';
 
   constructor(
     private http: Http,
@@ -85,7 +84,6 @@ export class SetupComponent implements OnInit {
             this.ipsecSelect = location.ipsecHostname;
             this.ikeSelect = location.ipsecHostname;
             this.httpSelect = location.ipsecHostname;
-            this.socksSelect = location.ipsecHostname;
           }
           region.countries.push(location);
         });
