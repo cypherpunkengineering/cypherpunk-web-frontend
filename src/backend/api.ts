@@ -126,7 +126,7 @@ export function confirm(req, res) {
   return res.json(body);
 }
 
-export function login(req, res) {
+export function signin(req, res) {
   let body = {
     secret: 'abcd',
     privacy: { username: '', password: '' },
@@ -136,7 +136,7 @@ export function login(req, res) {
   return res.json(body);
 }
 
-export function logout(req, res) {
+export function signout(req, res) {
   return res.json({});
 }
 

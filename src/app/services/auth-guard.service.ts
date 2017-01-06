@@ -18,28 +18,28 @@ export class AuthGuard implements CanActivate {
     if (url.startsWith('/account/upgrade')) {
       if (this.auth.authed) { return Promise.resolve({}); }
       let secret = route.queryParams['secret'];
-      return this.checkLogin(url, route, secret);
+      return this.checkAuth(url, route, secret);
     }
     else if (url.startsWith('/account/billing')) {
       if (this.auth.authed) { return Promise.resolve({}); }
-      return this.checkLogin(url, route);
+      return this.checkAuth(url, route);
     }
     else if (url.startsWith('/account/setup')) {
       if (this.auth.authed) { return Promise.resolve({}); }
-      return this.checkLogin(url, route);
+      return this.checkAuth(url, route);
     }
     else if (url.startsWith('/account')) {
       let secret = route.queryParams['secret'];
-      return this.checkLogin(url, route, secret);
+      return this.checkAuth(url, route, secret);
     }
     else {
       // non user route protected?
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signin']);
       return Promise.resolve({});
     }
   }
 
-  checkLogin(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<any> {
+  checkAuth(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<any> {
     let promise;
     if (secret) { promise = this.session.pullPlanData(secret); }
     else { promise = this.session.pullPlanData(); }
@@ -54,7 +54,7 @@ export class AuthGuard implements CanActivate {
         this.auth.authed = false;
         this.session.userFound = false;
         this.auth.redirectUrl = url;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/signin']);
         return Promise.reject({});
       }
     });

@@ -14,7 +14,7 @@
         <li *ngIf="showPriceBoxes()">
           <button class="btn blue" routerLink="/account/upgrade">UPGRADE</button>
         </li>
-        <li class="border" (click)="logout()">
+        <li class="border" (click)="signout()">
           <a class="nav-link">SIGN OUT</a>
         </li>
       </ul>
@@ -40,7 +40,7 @@
           <li *ngIf="showPriceBoxes()">
             <button class="btn blue" routerLink="/account/upgrade">UPGRADE</button>
           </li>
-          <li class="border" (click)="logout()">
+          <li class="border" (click)="signout()">
             <a class="nav-link">SIGN OUT</a>
           </li>
         </ul>
@@ -68,7 +68,7 @@
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="showPriceBoxes()">
       <button class="btn blue">UPGRADE</button>
     </div>
-    <div class="mobile-dd-item" (click)="logout()">
+    <div class="mobile-dd-item" (click)="signout()">
       SIGN OUT
     </div>
   </div>

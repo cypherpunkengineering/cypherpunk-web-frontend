@@ -6,7 +6,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 import { HomeModule } from './layouts/public/home/home.module';
 import { PricingModule } from './layouts/public/pricing/pricing.module';
-import { LoginModule } from './layouts/public/login/login.module';
+import { SigninModule } from './layouts/public/signin/signin.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
@@ -49,7 +49,7 @@ import { PlansService } from './services/plans.service';
 
     HomeModule,
     PricingModule,
-    LoginModule,
+    SigninModule,
     RecoverModule,
     DownloadModule,
     ConfirmModule,

@@ -267,7 +267,7 @@ export class UpgradeComponent {
         this.modal.link = false;
         this.modal.show = true;
       });
-      // error 409 -> redirect to login page
+      // error 409 -> redirect to Signin page
     });
   }
 

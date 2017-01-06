@@ -19,8 +19,8 @@ export class AccountNavigationComponent {
     private session: SessionService
   ) { this.user = session.user; }
 
-  logout() {
-    this.auth.logout()
+  signout() {
+    this.auth.signout()
     .then(() => { this.router.navigate(['/']); });
   }
 

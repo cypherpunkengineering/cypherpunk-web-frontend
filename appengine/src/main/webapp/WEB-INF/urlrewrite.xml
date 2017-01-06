@@ -140,8 +140,8 @@
 		<to last="true">/pricing.html$1</to>
 	</rule>
 	<rule>
-		<from>^/login(.*)</from>
-		<to last="true">/login.html$1</to>
+		<from>^/signin(.*)</from>
+		<to last="true">/signin.html$1</to>
 	</rule>
 	<rule>
 		<from>^/recover(.*)</from>

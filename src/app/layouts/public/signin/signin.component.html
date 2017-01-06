@@ -9,22 +9,22 @@
     <form>
       <p>
         <label for="username">Email</label><br>
-        <input id="login-username" type="text" name="username" [(ngModel)]="user.login" placeholder="Username / Email" autofocus>
+        <input id="email" type="text" name="username" [(ngModel)]="user.email" placeholder="Email" autofocus>
       </p>
 
       <p>
         <label for="password">Password</label><br>
-        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="login()">
+        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signin()">
       </p>
 
       <p class="center">
-        <button class="btn blue" type="button" (click)="login()" [disabled]="!validateLogin() || loginButtonDisabled">
+        <button class="btn blue" type="button" (click)="signin()" [disabled]="!validateSignin() || signinButtonDisabled">
           Sign In
         </button>
       </p>
 
       <p class="center">
-        <a class="login-link" routerLink="/recover">Forgot Password?</a>
+        <a class="signin-link" routerLink="/recover">Forgot Password?</a>
       </p>
     </form>
   </div>

@@ -33,9 +33,9 @@ export class NavigationComponent {
   }
 
   isLoggedIn() {
-    let authLogin = this.auth.authed;
-    let sessionLogin = this.session.userFound;
-    if (authLogin || sessionLogin) { return true; }
+    let authed = this.auth.authed;
+    let sessionFound = this.session.userFound;
+    if (authed || sessionFound) { return true; }
     else { return false; }
   }
 

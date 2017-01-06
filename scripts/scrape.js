@@ -10,7 +10,7 @@ const routes = [
   { url: baseRoute + 'pricing', dirPath: baseDir + 'pricing.html' },
   { url: baseRoute + 'download', dirPath: baseDir + 'download.html' },
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
-  { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
+  { url: baseRoute + 'signin', dirPath: baseDir + 'signin.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
   { url: baseRoute + 'why-you-need-online-privacy-protection', dirPath: baseDir + 'why-you-need-online-privacy-protection.html' },
   { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },

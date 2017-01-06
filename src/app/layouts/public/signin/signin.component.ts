@@ -5,12 +5,12 @@ import { AlertService } from '../../../services/alert.service';
 import { isBrowser } from 'angular2-universal';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css']
 })
-export class LoginComponent implements AfterViewInit {
-  user = { login: '', password: '' };
-  loginButtonDisabled: boolean = false;
+export class SigninComponent implements AfterViewInit {
+  user = { email: '', password: '' };
+  signinButtonDisabled: boolean = false;
 
   constructor(
     private zone: NgZone,
@@ -21,20 +21,20 @@ export class LoginComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (isBrowser) {
-      document.getElementById('login-username').focus();
+      document.getElementById('email').focus();
     }
   }
 
-  validateLogin () {
-    if (!this.user.login.length) { return false; }
+  validateSignin () {
+    if (!this.user.email.length) { return false; }
     if (!this.user.password.length) { return false; }
     return true;
   }
 
-  login() {
-    this.loginButtonDisabled = true;
+  signin() {
+    this.signinButtonDisabled = true;
 
-    this.auth.login(this.user)
+    this.auth.signin(this.user)
     .then(() => {
       let redirectUrl = this.auth.redirectUrl;
       if (redirectUrl) { this.router.navigate([redirectUrl]); }
@@ -43,7 +43,7 @@ export class LoginComponent implements AfterViewInit {
     .catch((err) => {
       console.log(err);
       this.zone.run(() => {
-        this.loginButtonDisabled = false;
+        this.signinButtonDisabled = false;
         this.alertService.error('Could not sign in');
       });
     });

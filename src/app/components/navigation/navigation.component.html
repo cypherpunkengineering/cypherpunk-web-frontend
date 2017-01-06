@@ -16,7 +16,7 @@
       <li>
         <button class="btn blue" routerLink="/download">Get Cypherpunk Now</button>
       </li>
-      <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
+      <a routerLink="/signin" routerLinkActive="active" *ngIf="!isLoggedIn()">
         <li class="border">
           <a class="nav-link">Sign in</a>
         </li>
@@ -50,7 +50,7 @@
         <li>
           <button class="btn blue" routerLink="/download">Get Cypherpunk Now</button>
         </li>
-        <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
+        <a routerLink="/signin" routerLinkActive="active" *ngIf="!isLoggedIn()">
           <li class="border">
             <a class="nav-link">Sign in</a>
           </li>
@@ -87,7 +87,7 @@
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
       Get Cypherpunk Now
     </div>
-    <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
+    <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/signin" routerLinkActive="active">
       Sign in
     </div>
     <div class="mobile-dd-item" *ngIf="isLoggedIn()" routerLink="/account">

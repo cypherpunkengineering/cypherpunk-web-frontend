@@ -7,21 +7,21 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
   authed: boolean = false;
   redirectUrl: string;
-  private loginUrl: string = '/api/v0/account/authenticate/userpasswd';
-  private logoutUrl: string = '/api/v0/account/logout';
+  private signinUrl: string = '/api/v0/account/authenticate/userpasswd';
+  private signoutUrl: string = '/api/v0/account/logout';
 
   constructor(
     private session: SessionService,
     private http: Http
   ) { }
 
-  login(user): Promise<void> {
-    let body = { login: user.login, password: user.password };
+  signin(user): Promise<void> {
+    let body = { login: user.email, password: user.password };
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
 
     // this will set cookie
-    return this.http.post(this.loginUrl, body, options).toPromise()
+    return this.http.post(this.signinUrl, body, options).toPromise()
     .then((res: Response) => { return res.json() || {}; })
     // set user session data
     .then((data) => { this.session.setUserData(data); })
@@ -29,12 +29,12 @@ export class AuthService {
     .then(() => { this.authed = true; });
   }
 
-  logout() {
+  signout() {
     let body = { };
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.logoutUrl, body, options).toPromise()
+    return this.http.post(this.signoutUrl, body, options).toPromise()
     .then((res: Response) => {
       try { return res.json(); } catch (e) { return {}; }
     })
