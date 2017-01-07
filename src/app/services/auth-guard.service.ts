@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
     }
     else {
       // non user route protected?
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/login']);
       return Promise.resolve({});
     }
   }
@@ -54,7 +54,7 @@ export class AuthGuard implements CanActivate {
         this.auth.authed = false;
         this.session.userFound = false;
         this.auth.redirectUrl = url;
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/login']);
         return Promise.reject({});
       }
     });

@@ -30,7 +30,7 @@ public class BackendProxy extends HttpServlet {
 
 		if (path.equals("") || path.equals("/"))
 		{
-			res.sendRedirect("/signin");
+			res.sendRedirect("/login");
 		} else {
 			connectToBackend(req, res, HTTPMethod.GET);
 		}
