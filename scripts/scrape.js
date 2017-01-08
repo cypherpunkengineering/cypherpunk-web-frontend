@@ -110,4 +110,4 @@ return new Promise((resolve, reject) => {
     });
   });
 })
-.catch((err) => { console.log(err); });
+.catch((err) => { console.log(err); process.exit(1); });

@@ -24,7 +24,8 @@ npm install
 
 # start build
 npm run build:prod:ngc
-npm run server &
+node ./scripts/checkServer
+npm run serve &
 sleep 5
 
 # start scrape
