@@ -10,6 +10,7 @@
   color: #4a4a4d;
 
   .header { text-align: left; }
+  .shift { padding-left: 15px; }
 
   hr {
     height: 2px;
@@ -18,7 +19,7 @@
   }
 
   ul { list-style-type: none; }
-  li { padding: 0 0 20px; }
+  li { padding: 0 0 20px 20px; }
 
   .lead { color: #1973af; }
   .right { text-align: right; }
