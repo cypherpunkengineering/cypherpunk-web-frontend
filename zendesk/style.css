@@ -621,7 +621,7 @@ main, .header-inner {
 
 .header {
   /* background: $color_5; */
-  background-color: #0e003f;
+  background-color: #163138;
 }
 
 .header-inner .user-nav #user #user-name { color: #fff; }
@@ -658,6 +658,7 @@ main, .header-inner {
   text-align: center;
 }
 
+.header-box.highlight { box-shadow: 0 0 5px 4px #fc6146; }
 .header-box img { margin: auto; display: none; }
 .header-box:last-child { margin-right: 0; }
 .header-box.large { height: 180px; max-height: 180px; }
@@ -2932,7 +2933,7 @@ body.community-enabled .search-results-column + .search-results-column {
 .footer {
   width: 100%;
   height: 110px;
-  background-color: #0e003f;
+  background-color: #163138;
 }
 
 .footer-inner {
@@ -2953,7 +2954,7 @@ body.community-enabled .search-results-column + .search-results-column {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.93;
-  color: #a5a2eb;
+  color: #fff;
 }
 
 /* Media Queries */
