@@ -89,8 +89,8 @@ export class DownloadComponent {
     let os: string = platform.os.family;
     if (os.indexOf('OS X') > -1) { this.headerBuild = this.builds.mac; }
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
-    else if (os.indexOf('Android') > -1) { this.headerBuild = this.builds.android; }
-    else if (os.indexOf('iOS') > -1) { this.headerBuild = this.builds.ios; }
+    else if (os.indexOf('Android') > -1) { window.location.href = this.builds.android.link; }
+    else if (os.indexOf('iOS') > -1) { window.location.href = this.builds.ios.link; }
     // else if (os.indexOf('Fedora') > -1 ||
     //          os.indexOf('Red Hat') > -1 ||
     //          os.indexOf('CentOS')) {
