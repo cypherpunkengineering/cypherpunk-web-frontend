@@ -23,7 +23,19 @@
 
 <div class="content survey" *ngIf="currentTab === 'survey'">
   <div class="body">
-    <iframe frameborder="0" width="100%" height="2750" scrolling="auto" allowtransparency="true" src="//slickaged.polldaddy.com/s/test-survey?iframe=1"><a href="//slickaged.polldaddy.com/s/test-survey">View Survey</a></iframe>
+    <h2 class="header orange">
+      Take a moment and fill out our survey
+    </h2>
+
+    <p>
+      We are seeking feedback from our users – as your guidance gives us a better insight into the Cypherpunk Privacy community. Your feedback will help up focus our efforts in a specific direction guided by you!
+    </p>
+
+    <div class="survey-button">
+      <button id="survey-button" class="btn orange" (click)="showSurvey()">Start Survey</button>
+    </div>
+
+    <iframe id="survey" frameborder="0" width="100%" height="2750" scrolling="auto" allowtransparency="true" src="//slickaged.polldaddy.com/s/test-survey?iframe=1"><a href="//slickaged.polldaddy.com/s/test-survey">View Survey</a></iframe>
   </div>
 </div>
 

@@ -35,7 +35,13 @@
   }
 
   &.feedback { padding: 60px 0; text-align: center; }
-  &.survey { padding: 0; height: 2850px; }
+  &.survey {
+    padding: 0;
+    .survey-button {
+      text-align: center;
+      .btn { margin: 0 0 40px; }
+    }
+  }
   &.bounty {
     color: #4a4a4d;
     .header { text-align: left; margin: 0.67em 0; }
@@ -52,6 +58,8 @@
   width: 320px;
   height: 60px;
 }
+
+#survey { display: none; }
 
 @media (max-width: 1016px) {
   .content { padding: 30px 10px 60px; }
