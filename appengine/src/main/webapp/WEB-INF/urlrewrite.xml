@@ -157,8 +157,8 @@
 		<to last="true">/features.html$1</to>
 	</rule>
 	<rule>
-		<from>^/locations(.*)</from>
-		<to last="true">/locations.html$1</to>
+		<from>^/network(.*)</from>
+		<to last="true">/network.html$1</to>
 	</rule>
 	<rule>
 		<from>^/aboutus(.*)</from>

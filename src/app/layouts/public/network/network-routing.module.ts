@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LocationsComponent } from './locations.component';
+import { NetworkComponent } from './network.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
-        path: 'locations',
-        component: LocationsComponent
+        path: 'network',
+        component: NetworkComponent
       }
     ])
   ]
 })
-export class LocationsRoutingModule { }
+export class NetworkRoutingModule { }

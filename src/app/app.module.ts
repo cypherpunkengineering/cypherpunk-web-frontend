@@ -12,7 +12,7 @@ import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { FeaturesModule } from './layouts/public/features/features.module';
-import { LocationsModule } from './layouts/public/locations/locations.module';
+import { NetworkModule } from './layouts/public/network/network.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
@@ -55,7 +55,7 @@ import { PlansService } from './services/plans.service';
     ConfirmModule,
     WhyusModule,
     FeaturesModule,
-    LocationsModule,
+    NetworkModule,
     PrivacyModule,
     AboutusModule,
     TosModule,

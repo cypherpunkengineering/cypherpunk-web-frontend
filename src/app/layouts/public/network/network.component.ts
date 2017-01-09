@@ -5,10 +5,10 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
-  templateUrl: './locations.component.html',
-  styleUrls: ['./locations.component.css']
+  templateUrl: './network.component.html',
+  styleUrls: ['./network.component.css']
 })
-export class LocationsComponent implements OnInit {
+export class NetworkComponent implements OnInit {
   regionArray = [];
   loading: boolean = true;
   totalServers: number = 0;
