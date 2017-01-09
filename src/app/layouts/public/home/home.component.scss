@@ -44,6 +44,8 @@
 
 .cta-container {
   position: relative;
+  text-align: center;
+  color: #fff;
 
   .call-to-action {
     position: absolute;
@@ -54,7 +56,16 @@
     width: 341px;
     z-index: 25;
 
-    .btn { width: 341px; height: 60px; }
+    .btn { width: 341px; }
+  }
+}
+.cta-container.top {
+  .btn:first-child { margin-bottom: 30px; }
+  .btn:last-child {
+    background-color: #fff;
+    color: #ff7857;
+    margin-top: 30px;
+    border: 2px solid #ff7857;
   }
 }
 
@@ -62,21 +73,6 @@
   height: 115px;
   width: 100%;
   background-color: #010010;
-  position: relative;
-  text-align: center;
-
-  .subheader {
-    padding-top: 46px;
-    color: #ECD490;
-    font-weight: 500;
-    margin: 0 auto;
-
-    a {
-      color: #fff;
-      font-size: 19px;
-      &:hover { color: #fedf89; }
-    }
-  }
 }
 
 .header-bottom-border {
@@ -220,18 +216,33 @@
 .btn {
   font-size: 24px;
   width: 280px;
-  height: 80px;
+  height: 60px;
 }
 
 .bottom-callout {
-  padding: 80px 0 120px;
-  text-align: center;
+  background-color: #010010;
+  .bottom-header { padding-top: 40px; }
+  .bottom-buttons {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 0 40px;
+    overflow: auto;
+    text-align: center;
 
-  .callout-header {
-    font-size: 32px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    color: #242323;
+    .middle {
+      display: inline-block;
+      padding: 20px 0 0;
+      text-align: center;
+      color: #fff;
+    }
+    .btn:first-child { float: left; }
+    .btn:last-child {
+      float: right;
+      background-color: #fff;
+      color: #ff7857;
+      border: 2px solid #ff7857;
+    }
   }
 }
 
@@ -277,7 +288,13 @@
 
 @media (max-width: 375px) {
   .content .content-inner .row .cell { width: 100%; margin-right: 0; }
-  .cta-container .call-to-action { width: 100%; max-width: 300px; top: -25px; text-align: center; }
-  .cta-container .call-to-action .btn { width: 280px; height: 58px; font-size: 20px; }
-  .available .subheader { font-size: 12px; padding-top: 66px; a { font-size: 14px; } }
+  .cta-container .call-to-action { width: 100%; top: -25px; text-align: center; }
+  .cta-container.top .call-to-action .btn { width: 280px; font-size: 20px; }
+  .cta-container.top .btn:first-child { margin-bottom: 20px; }
+  .cta-container.top .btn:last-child { margin-top: 20px; }
+  .bottom-callout .bottom-buttons {
+    .middle { padding: 20px 0 20px; display: block; }
+    .btn:first-child { float: none; }
+    .btn:last-child { float: none; }
+  }
 }
