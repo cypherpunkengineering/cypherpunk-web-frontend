@@ -18,14 +18,13 @@ import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { BlogModule } from './layouts/public/blog/blog.module';
-import { ChromeModule } from './layouts/public/available/chrome/chrome.module';
-import { MacModule } from './layouts/public/available/mac/mac.module';
-import { WindowsModule } from './layouts/public/available/windows/windows.module';
-import { IosModule } from './layouts/public/available/ios/ios.module';
-import { AndroidModule } from './layouts/public/available/android/android.module';
-import { LinuxModule } from './layouts/public/available/linux/linux.module';
-import { RoutersModule } from './layouts/public/available/routers/routers.module';
-import { FirefoxModule } from './layouts/public/available/firefox/firefox.module';
+import { BrowserModule } from './layouts/public/apps/browser/browser.module';
+import { MacModule } from './layouts/public/apps/mac/mac.module';
+import { WindowsModule } from './layouts/public/apps/windows/windows.module';
+import { IosModule } from './layouts/public/apps/ios/ios.module';
+import { AndroidModule } from './layouts/public/apps/android/android.module';
+import { LinuxModule } from './layouts/public/apps/linux/linux.module';
+import { RoutersModule } from './layouts/public/apps/routers/routers.module';
 import { FeedbackModule } from './layouts/public/feedback/feedback.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
 
@@ -62,14 +61,13 @@ import { PlansService } from './services/plans.service';
     TosModule,
     NotFoundModule,
     BlogModule,
-    ChromeModule,
+    BrowserModule,
     MacModule,
     WindowsModule,
     IosModule,
     AndroidModule,
     LinuxModule,
     RoutersModule,
-    FirefoxModule,
     FeedbackModule,
     BountyModule,
 

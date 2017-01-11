@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LinuxComponent } from './linux.component';
+import { RoutersComponent } from './routers.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'linux', component: LinuxComponent }
+      { path: 'apps/routers', component: RoutersComponent }
     ])
   ]
 })
-export class LinuxRoutingModule { }
+export class RoutersRoutingModule { }

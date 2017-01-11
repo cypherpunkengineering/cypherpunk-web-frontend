@@ -5,7 +5,7 @@ import { WindowsComponent } from './windows.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'windows', component: WindowsComponent }
+      { path: 'apps/windows', component: WindowsComponent }
     ])
   ]
 })

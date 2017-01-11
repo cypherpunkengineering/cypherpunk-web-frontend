@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RoutersComponent } from './routers.component';
+import { AndroidComponent } from './android.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'routers', component: RoutersComponent }
+      { path: 'apps/android', component: AndroidComponent }
     ])
   ]
 })
-export class RoutersRoutingModule { }
+export class AndroidRoutingModule { }

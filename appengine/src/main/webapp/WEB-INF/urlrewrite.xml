@@ -106,36 +106,32 @@
 		<to last="true">/feedback.html$1</to>
 	</rule>
 	<rule>
-		<from>^/chrome(.*)</from>
-		<to last="true">/chrome.html$1</to>
+		<from>^/apps/browser(.*)</from>
+		<to last="true">/apps/browser.html$1</to>
 	</rule>
 	<rule>
-		<from>^/firefox(.*)</from>
-		<to last="true">/firefox.html$1</to>
+		<from>^/apps/mac(.*)</from>
+		<to last="true">/apps/mac.html$1</to>
 	</rule>
 	<rule>
-		<from>^/mac(.*)</from>
-		<to last="true">/mac.html$1</to>
+		<from>^/apps/windows(.*)</from>
+		<to last="true">/apps/windows.html$1</to>
 	</rule>
 	<rule>
-		<from>^/windows(.*)</from>
-		<to last="true">/windows.html$1</to>
+		<from>^/apps/ios(.*)</from>
+		<to last="true">/apps/ios.html$1</to>
 	</rule>
 	<rule>
-		<from>^/ios(.*)</from>
-		<to last="true">/ios.html$1</to>
+		<from>^/apps/android(.*)</from>
+		<to last="true">/apps/android.html$1</to>
 	</rule>
 	<rule>
-		<from>^/android(.*)</from>
-		<to last="true">/android.html$1</to>
+		<from>^/apps/linux(.*)</from>
+		<to last="true">/apps/linux.html$1</to>
 	</rule>
 	<rule>
-		<from>^/linux(.*)</from>
-		<to last="true">/linux.html$1</to>
-	</rule>
-	<rule>
-		<from>^/routers(.*)</from>
-		<to last="true">/routers.html$1</to>
+		<from>^/apps/routers(.*)</from>
+		<to last="true">/apps/routers.html$1</to>
 	</rule>
 	<rule>
 		<from>^/download(.*)</from>

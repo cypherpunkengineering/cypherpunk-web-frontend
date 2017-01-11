@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IosComponent } from './ios.component';
+import { MacComponent } from './mac.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'ios', component: IosComponent }
+      { path: 'apps/mac', component: MacComponent }
     ])
   ]
 })
-export class IosRoutingModule { }
+export class MacRoutingModule { }
