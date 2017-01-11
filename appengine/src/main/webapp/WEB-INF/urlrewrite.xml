@@ -98,6 +98,10 @@
 
 	<!-- public marketing content -->
 	<rule>
+		<from>^/bounty(.*)</from>
+		<to last="true">/bounty.html$1</to>
+	</rule>
+	<rule>
 		<from>^/community(.*)</from>
 		<to last="true">/community.html$1</to>
 	</rule>
