@@ -102,8 +102,8 @@
 		<to last="true">/bounty.html$1</to>
 	</rule>
 	<rule>
-		<from>^/community(.*)</from>
-		<to last="true">/community.html$1</to>
+		<from>^/feedback(.*)</from>
+		<to last="true">/feedback.html$1</to>
 	</rule>
 	<rule>
 		<from>^/chrome(.*)</from>

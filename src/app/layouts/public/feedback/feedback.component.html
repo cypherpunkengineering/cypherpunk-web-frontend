@@ -1,14 +1,14 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <h1 class="masthead-header header white">Community</h1>
+  <h1 class="masthead-header header white">Feedback</h1>
 </div>
 
 <div class="navigation">
   <ul>
     <li (click)="currentTab = 'survey'" [ngClass]="{'active': currentTab === 'survey'}">Survey</li>
     <li (click)="currentTab = 'feedback'" [ngClass]="{'active': currentTab === 'feedback'}">Feedback</li>
-    <li (click)="currentTab = 'suggest'" [ngClass]="{'active': currentTab === 'suggest'}">Suggest a Feature</li>
+    <li (click)="currentTab = 'suggest'" [ngClass]="{'active': currentTab === 'suggest'}">Feature Request</li>
   </ul>
 </div>
 

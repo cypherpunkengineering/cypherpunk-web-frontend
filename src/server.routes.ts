@@ -37,6 +37,6 @@ export const routes: string[] = [
   'linux',
   'routers',
   'firefox',
-  'community',
+  'feedback',
   'bounty'
 ];

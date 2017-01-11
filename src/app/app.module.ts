@@ -26,7 +26,7 @@ import { AndroidModule } from './layouts/public/available/android/android.module
 import { LinuxModule } from './layouts/public/available/linux/linux.module';
 import { RoutersModule } from './layouts/public/available/routers/routers.module';
 import { FirefoxModule } from './layouts/public/available/firefox/firefox.module';
-import { CommunityModule } from './layouts/public/community/community.module';
+import { FeedbackModule } from './layouts/public/feedback/feedback.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
@@ -70,7 +70,7 @@ import { PlansService } from './services/plans.service';
     LinuxModule,
     RoutersModule,
     FirefoxModule,
-    CommunityModule,
+    FeedbackModule,
     BountyModule,
 
     DashboardModule,

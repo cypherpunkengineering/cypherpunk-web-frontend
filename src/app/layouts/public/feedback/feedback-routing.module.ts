@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CommunityComponent } from './community.component';
+import { FeedbackComponent } from './feedback.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'community', component: CommunityComponent }
+      { path: 'feedback', component: FeedbackComponent }
     ])
   ]
 })
-export class CommunityRoutingModule { }
+export class FeedbackRoutingModule { }

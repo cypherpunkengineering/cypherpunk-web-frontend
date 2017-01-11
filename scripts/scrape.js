@@ -32,7 +32,7 @@ const routes = [
   { url: baseRoute + 'linux', dirPath: baseDir + 'linux.html' },
   { url: baseRoute + 'routers', dirPath: baseDir + 'routers.html' },
   { url: baseRoute + 'firefox', dirPath: baseDir + 'firefox.html' },
-  { url: baseRoute + 'community', dirPath: baseDir + 'community.html' },
+  { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' }
 ];
 
