@@ -19,6 +19,7 @@ webpack.records.json
 
 morgan.log
 
+/build/apps/*.html
 /build/account/*.html
 /build/index*.js
 /build/*.html
