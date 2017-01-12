@@ -73,6 +73,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^88\.178\.16\.</condition><!-- aurel home -->
 		<condition type="remote-addr" operator="notequal" next="and">^2605:e000:c3c6:b300:</condition><!-- slickage anthony home -->
 		<condition type="remote-addr" operator="notequal" next="and">^78\.97\.52\.</condition><!-- andrei 2nd ip -->
+		<condition type="remote-addr" operator="notequal" next="and">^67\.172\.223\.</condition><!-- reg virginia home -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
 		<to last="true">/cypherpunk.txt</to>
