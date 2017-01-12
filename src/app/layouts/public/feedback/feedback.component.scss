@@ -34,13 +34,13 @@
     margin: auto;
   }
 
+  .button-container {
+    text-align: center;
+    .btn { margin: 0 0 40px; }
+  }
   &.feedback { padding: 60px 0; text-align: center; }
-  &.survey {
+  &.survey, &.suggest {
     padding: 0;
-    .survey-button {
-      text-align: center;
-      .btn { margin: 0 0 40px; }
-    }
   }
   &.bounty {
     color: #4a4a4d;
@@ -60,6 +60,7 @@
 }
 
 #survey { display: none; }
+#vote { display: none; }
 
 @media (max-width: 1016px) {
   .content { padding: 30px 10px 60px; }
