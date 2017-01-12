@@ -57,7 +57,6 @@
     "one-line": [
       true,
       "check-open-brace",
-      "check-catch",
       "check-whitespace"
     ],
     "quotemark": [
