@@ -189,6 +189,7 @@
           done = true;
           /* Place your SnapEngage JS API code below */
           /* SnapEngage.allowChatSound(true); Example JS API: Enable sounds for Visitors. */
+          if (SnapEngageEmail) { SnapEngage.setUserEmail(SnapEngageEmail); }
         }
       };
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);

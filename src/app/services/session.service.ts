@@ -1,4 +1,4 @@
-import { Injectable, Inject, NgZone } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { PlansService } from './plans.service';
 import { isBrowser } from 'angular2-universal';
@@ -39,6 +39,7 @@ export class SessionService {
         plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
         this.setExpirationString(this.user.subscription.expiration);
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
+        this.setSnapEngageEmail(this.user);
       }
     } catch (e) {
       this.userFound = false;
@@ -123,8 +124,16 @@ export class SessionService {
       this.setUserData(data);
       return data;
     })
+    .then(this.setSnapEngageEmail)
     .then((data) => { return { authed: true, loading: data.loading }; })
     .catch(() => { return { authed: false }; });
+  }
+
+  setSnapEngageEmail(data) {
+    (<any>window).SnapEngageEmail = data.account.email;
+    let snapEngage = (<any>window).SnapEngage;
+    if (snapEngage) { snapEngage.setUserEmail(data.account.email); }
+    return data;
   }
 
   clearUserData() {
