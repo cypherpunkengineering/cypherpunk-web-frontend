@@ -1,5 +1,12 @@
 .masthead {
-  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
+  border-bottom: 10px solid #efeaea;
+  .masthead-header { margin: 30px auto; }
+  .masthead-image {
+    width: 100%;
+    max-width: 345px;
+    margin: auto;
+    img { width: 100%; }
+  }
 }
 
 .content {
@@ -7,9 +14,13 @@
   max-width: 1000px;
   margin: auto;
   padding: 60px 0 60px;
-  color: #666;
+  color: #4a4a4d;
 
-  .header { text-align: left; }
+  .line {
+    width: 20px;
+    height: 3px;
+    background-color: #96d2d8;
+  }
 
   .subheader {
     font-size: 22px;
@@ -17,19 +28,20 @@
     color: #1973af;
   }
 
-  .shift {
-    padding-left: 15px;
+  .separator {
+    width: 100%;
+    max-width: 400px;
+    height: 3px;
+    background-color: #f3efef;
+    padding: 0 10px;
+    margin: 50px auto;
   }
 
-  hr {
-    height: 2px;
-    border: solid 1px #1973af;
-    margin-bottom: 25px;
-  }
-
+  .last-updated { font-size: 18px; }
+  .header { color: #19343b; font-size: 28px; text-align: left; margin-bottom: 20px; }
+  .shift { padding-left: 15px; }
   .lead { color: #1973af; }
   .right { text-align: right; }
-
 }
 
 @media (max-width: 1016px) {
