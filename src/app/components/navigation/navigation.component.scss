@@ -67,6 +67,8 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s ease;
+  background-color: #fff;
+  box-shadow: 0px 0px 3px 2px rgba(10, 10, 10, 0.3);
   .nav-link { color: #8DFFFB; }
   .nav-link:hover { color: #fff; }
   .nav-link.active { color: #ffc933; }
