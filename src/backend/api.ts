@@ -117,6 +117,13 @@ export function identify(req, res) {
   else { return res.sendStatus(401); }
 }
 
+export function signup(req, res) {
+  return res.json({
+    account: { email: req.body.email },
+    secret: req.body.password
+  });
+}
+
 export function confirm(req, res) {
   let body = {
     valid: true,

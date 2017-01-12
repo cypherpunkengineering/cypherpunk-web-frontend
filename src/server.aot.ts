@@ -67,7 +67,7 @@ function cacheControl(req, res, next) {
 app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}));
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
-import { serverApi, subs, confirm, signin, signout, locations, world, amazonPurchase, stripePurchase, identify, blog, networkStatus } from './backend/api';
+import { serverApi, subs, confirm, signin, signout, locations, world, amazonPurchase, stripePurchase, identify, blog, networkStatus, signup } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
 app.get('/api/v0/account/status', subs);
@@ -79,6 +79,7 @@ app.post('/api/v0/account/confirm/email', confirm);
 app.post('/api/v0/account/authenticate/userpasswd', signin);
 app.post('/api/v0/account/logout', signout);
 app.post('/api/v0/account/identify/email', identify);
+app.post('/api/v0/account/register/signup', signup);
 app.post('/api/v0/subscription/purchase', stripePurchase);
 app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
 
