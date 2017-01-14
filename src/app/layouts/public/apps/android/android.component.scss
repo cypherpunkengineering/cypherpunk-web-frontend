@@ -1,30 +1,40 @@
 .masthead {
-  .masthead-header {
-    margin: 40px auto 0;
-    span { color: #7972c4; }
-  }
-
-  .masthead-divider {
-    max-width: 500px;
-    border: 1px solid #220f6d;
-    margin: 30px auto;
-  }
-
-  .masthead-subheader {
-    text-align: center;
-    font-size: 18px;
-    color: #a5a2eb;
-    padding: 0 0 50px;
-  }
+  .masthead-header { margin: 0; padding: 40px 0 60px; }
 }
 
-.header-bottom-border {
-  height: 7px;
+.navigation {
   width: 100%;
-  background-color: #efeaea;
+  text-align: center;
+  background-color: #163138;
+
+  ul {
+    margin: auto;
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    height: 50px;
+    cursor: pointer;
+    &.active {
+      cursor: default;
+      background-color: #fff;
+      color: #163138;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    img { vertical-align: middle; margin: 0 10px 0 0; }
+    img.d { width: 29px; }
+    img.b { width: 27px; }
+    img.a { width: 15px; }
+    img.i { width: 15px; }
+  }
 }
 
-.content.grey:after { border-top: 20px solid #efebeb; }
 .content:after {
   content: ' ';
   width: 0;
@@ -44,32 +54,37 @@
   position: relative;
   width: 100%;
   text-align: center;
-  padding: 125px 0;
-  &.grey { background-color: #efebeb; }
+  padding: 60px 0;
 
   .content-inner {
+    width: 100%;
     max-width: 1000px;
     margin: auto;
     overflow: auto;
   }
 
-  .header { margin-bottom: 100px; }
+  .header { margin-bottom: 50px; }
 
-  .row-divider {
-    height: 3px;
-    width: 100%;
-    max-width: 340px;
-    background-color: #ccc;
-    margin: 120px auto;
+  .button-container {
+    text-align: center;
+    margin: 0 0 80px;
+    padding: 0 20px;
+    .btn {
+      font-size: 23px;
+      padding: 12px 10px 15px;
+      width: 100%;
+      max-width: 600px;
+    }
   }
 
   .row {
+    width: 100%;
+    max-width: 700px;
     overflow: auto;
-    width: 1000px;
     margin: auto;
 
     .cell {
-      width: 300px;
+      width: 200px;
       float: left;
       margin-right: 50px;
       &:last-child { margin-right: 0; }
@@ -77,48 +92,188 @@
       .cell-image {
         position: relative;
         margin: auto;
-        height: 241px;
+        height: 115px;
+        cursor: pointer;
         img {
           position: absolute;
-          bottom: 0;
+          top: 0;
           left: 0;
           right: 0;
           margin: auto;
+          &.d { width: 148px; }
+          &.w { width: 41px; }
+          &.a { width: 37px; }
+          &.l { width: 43px; }
+        }
+        .logo {
+          position: absolute;
+          top: 20px;
         }
       }
-      .cell-header {
-        font-size: 28px;
-        letter-spacing: 0.6px;
-        color: #fc6146;
-        margin: 45px auto;
+    }
+  }
+
+  .separator {
+    width: 90%;
+    max-width: 1000px;
+    padding: 0 10px;
+    height: 2px;
+    background-color: #87ccd3;
+    margin: 40px auto 80px;
+  }
+
+  .split {
+    width: 100%;
+    max-width: 1000px;
+    overflow: auto;
+    margin: 0 0 50px;
+
+    .left {
+      width: 50%;
+      float: left;
+      min-height: 20px;
+    }
+    .right {
+      width: 50%;
+      float: left;
+      text-align: left;
+
+      .tag {
+        font-size: 20px;
+        color: #ff7857;
+        margin: 20px 0;
       }
-      .cell-text {
-        font-size: 16px;
-        color: #4a4a4d;
-        letter-spacing: 0.6px;
-        margin-bottom: 10px;
+
+      .btn {
+        margin: 40px 0 0;
+        padding: 10px;
+        width: 100%;
       }
     }
   }
 }
 
-.btn {
-  font-size: 24px;
-  width: 280px;
-  height: 80px;
+.features:after {
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #163238;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 2;
 }
 
-@media (max-width: 1050px) {
-  .content {
-    .content-inner { width: 100%; }
-    .content-header { padding: 0 10px; }
-    .row { width: 100%; }
-    .row .cell { width: 100%; margin-bottom: 100px; }
-    .row .cell .cell-text { padding: 0 15px; }
-    .row .cell:last-child { margin-bottom: 0px; }
+.features {
+  width: 100%;
+  position: relative;
+  background-color: #163238;
+
+  .features-inner {
+    width: 100%;
+    max-width: 1000px;
+    padding: 60px 0;
+    margin: auto;
+  }
+
+  .header { margin: 60px 0 50px; }
+
+  .row {
+    width: 100%;
+    overflow: auto;
+    margin: 0 0 50px;
+
+    .image {
+      width: 39.6%;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      .e { width: 249px; }
+      .d { width: 242px; }
+      .p { width: 277px; }
+      .s { width: 224px; }
+    }
+
+    .mobile { display: none; }
+    .desktop { display: inline-block; }
+
+    .text {
+      width: 60%;
+      display: inline-block;
+      color: #8dfffc;
+      vertical-align: middle;
+      .text-header { font-size: 20px; }
+      &.left { text-align: right; }
+      &.right { text-align: left; }
+    }
   }
 }
 
-@media (max-width: 375px) {
-  .content .content-inner .row .cell { width: 100%; margin-right: 0; }
+.row-divider {
+  width: 100%;
+  max-width: 340px;
+  height: 3px;
+  background-color: #184449;
+  margin: 0 auto 50px;
+}
+
+.bottom {
+  background-color: #0d1e26;
+  padding: 80px 0;
+  text-align: center;
+
+  .btn {
+    font-size: 18px;
+    width: 90%;
+    max-width: 450px;
+    padding: 10px;
+    margin: 0 10px;
+  }
+}
+
+.mobile { display: none; }
+.gold { color: #ffe49a; }
+.desktop { display: block; }
+.desktop-inline { display: inline-block; }
+
+@media (max-width: 1020px) {
+  .content .split {
+    .left { width: 100%; padding: 0 20px; }
+    .right { width: 100%; padding: 0 20px; }
+  }
+
+  .features .features-inner {
+    .mobile { display: block; }
+    .desktop { display: none; }
+    .image { width: 100%; }
+    .text.right, .text.left{ width: 100%; padding: 20px; text-align: center; }
+    .row-divider { width: 90%; }
+  }
+
+  .mobile { display: block ; }
+  .desktop { display: none; }
+}
+
+@media (max-width: 710px) {
+  .content {
+    .content-header { padding: 0 10px; }
+    .row {
+      width: 100%;
+      .cell { width: 100%; margin-bottom: 100px; }
+      .cell:last-child { margin-bottom: 0px; }
+    }
+  }
+  .desktop-inline { display: none; }
+}
+
+@media (max-width: 400px) {
+  .navigation li { padding: 10px 15px; font-size: 16px; }
+  .content {
+    .button-container { margin: 0 10px 80px; }
+    .content-inner .row .cell { width: 100%; margin-right: 0; }
+  }
 }

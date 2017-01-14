@@ -19,7 +19,9 @@
     font-weight: bold;
     color: #fff;
     height: 50px;
+    cursor: pointer;
     &.active {
+      cursor: default;
       background-color: #fff;
       color: #163138;
       border-top-left-radius: 5px;
@@ -91,6 +93,7 @@
         position: relative;
         margin: auto;
         height: 115px;
+        cursor: pointer;
         img {
           position: absolute;
           top: 0;
