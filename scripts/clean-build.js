@@ -16,6 +16,15 @@ return new Promise((resolve, reject) => {
     });
   });
 })
+// remove all /apps/ html files
+.then(() => {
+  return new Promise((resolve, reject) => {
+    rimraf('./build/apps/*.html', (err) => {
+      if (err) { return reject(err); }
+      else { return resolve(); }
+    });
+  });
+})
 // remove all html files
 .then(() => {
   return new Promise((resolve, reject) => {
