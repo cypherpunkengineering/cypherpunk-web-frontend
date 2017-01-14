@@ -4,123 +4,219 @@
   <h1 class="masthead-header header white">Download Cypherpunk Privacy</h1>
 </div>
 
-<div class="cta-container">
-  <div class="call-to-action">
-    <a (click)="launchDownloadModal(headerBuild)">
-      <button class="btn gold">
-        Download for {{ headerBuild.name }}
-      </button>
-    </a>
-  </div>
-</div>
-
-<div class="subheader-content">
-  <div class="subheader-version">{{ headerBuild.versions }}</div>
-
-  <div class="subheader-slogan">
-    Are you a cypherpunk?
-  </div>
-</div>
-
-<div id="desktop" class="content">
-  <h2 class="header blue">Download Cypherpunk for your Computer</h2>
-
-  <div class="grouping">
-    <div id="windows" class="group">
-      <a (click)="launchDownloadModal(builds.windows)">
-        <img src="/assets/icon-desktop--windows.png"><br>
-        <h3 class="group-header">{{ builds.windows.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
-      </a>
+<div class="download">
+  <div class="inner">
+    <div class="left">
+      <img class="d" src="/assets/apps/desktop-hover@2x.png" srcset="/assets/apps/desktop-hover.png 500w, /assets/apps/desktop-hover@2x.png 1000w" alt="Download">
+      <img class="w" src="/assets/apps/windows-hover@2x.png" alt="Windows" *ngIf="headerBuild.name === 'Windows' ">
+      <img class="m" src="/assets/apps/apple-hover@2x.png" alt="Mac" *ngIf="headerBuild.name === 'Mac' ">
+      <img class="m" src="/assets/apps/linux-hover@2x.png" alt="Linux" *ngIf="headerBuild.name === 'Linux' ">
     </div>
 
-    <div id="mac" class="group">
-      <a (click)="launchDownloadModal(builds.mac)">
-        <img src="/assets/icon-desktop--mac.png"><br>
-        <h3 class="group-header">{{ builds.mac.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
-      </a>
-    </div>
-
-    <div id="linux" class="group">
-      <a (click)="launchDownloadModal(builds.linux)">
-        <img src="/assets/icon-desktop--linux.png"><br>
-        <h3 class="group-header">{{ builds.linux.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
-      </a>
-      <select name="linux-download" id="linux-download" [(ngModel)]="currentLinuxBuild">
-        <option *ngFor="let version of linuxVersions" value="{{version}}">
-          {{version.os}} {{version.version}}
-        </option>
-      </select>
-    </div>
-  </div>
-</div>
-
-<div id="browser" class="content">
-  <h2 class="header blue">Download Cypherpunk for your Browser</h2>
-
-  <div class="grouping mobile-devices">
-    <div id="chrome" class="group">
-      <a (click)="launchDownloadModal(builds.chrome)">
-        <img src="/assets/icon-browser--chrome.png"><br>
-        <h3 class="group-header">{{ builds.chrome.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
-      </a>
-    </div>
-
-    <div id="firefox" class="group">
-      <a (click)="launchDownloadModal(builds.firefox)">
-        <img src="/assets/icon-browser--ff.png"><br>
-        <h3 class="group-header">{{ builds.firefox.name }}</h3>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
-        </div>
+    <div class="right">
+      <a (click)="launchDownloadModal(headerBuild)">
+        <button class="btn blue">
+          Download for {{ headerBuild.name }}
+        </button>
       </a>
     </div>
   </div>
 </div>
 
-<div class="content">
-  <h2 class="header blue">Download Cypherpunk for your Mobile Device</h2>
+<div class="choices">
+  <div class="inner">
+    <div class="row">
+      <div class="half">
+        <div class="half-header">Desktop</div>
 
-  <div class="grouping mobile-devices">
-    <div id="ios" class="group">
-      <a href="{{ builds.ios.link }}">
-        <img src="/assets/icon-mobile--ios.png"><br>
-        <h3 class="group-header">{{ builds.ios.name }}</h3>
-        <div class="group-subheader">{{ builds.ios.versions }}</div>
-        <div class="badge">
-          <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
+        <div class="half" *ngIf="headerBuild.name !== 'Windows'">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <img src="/assets/apps/windows@2x.png" alt="">
+          </div>
+
+          <p>Windows</p>
+
+          <button class="btn orange" (click)="launchDownloadModal(builds.windows)">
+            Download
+          </button>
+
+          <p>Windows Vista 64-bit and later</p>
+
+          <a href="/apps/windows">Learn More</a>
         </div>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
+
+        <div class="half" *ngIf="headerBuild.name !== 'Mac'">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <img src="/assets/apps/apple@2x.png" alt="">
+          </div>
+
+          <p>MacOS</p>
+
+          <button class="btn orange" (click)="launchDownloadModal(builds.mac)">
+            Download
+          </button>
+
+          <p>MacOS Version 10.10 64-bit and later</p>
+
+          <a href="/apps/linux">Learn More</a>
         </div>
-      </a>
+
+        <div class="half" *ngIf="headerBuild !== 'Linux'">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <img src="/assets/apps/linux@2x.png" alt="">
+          </div>
+
+          <p>Linux</p>
+
+          <button class="btn orange" (click)="launchDownloadModal(builds.linux)">
+            Download
+          </button>
+
+          <p>Linux Version x and later</p>
+
+          <a href="/apps/linux">Learn More</a>
+        </div>
+      </div>
+
+      <div class="half">
+        <div class="half-header">Mobile</div>
+
+        <div class="half">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <p>iOS</p>
+
+          <div class="ios-badge">
+            <a href="{{ builds.ios.link }}">
+              <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
+            </a>
+          </div>
+
+          <p>iOS 7 and later</p>
+
+          <a href="/apps/ios">Learn More</a>
+        </div>
+
+        <div class="half">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <p>Android</p>
+
+          <div class="android-badge">
+            <a href="{{ builds.android.link }}">
+              <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
+            </a>
+          </div>
+
+          <p>Android 4.01 and later</p>
+
+          <a href="/apps/android">Download APK</a><br>
+          <a href="/apps/android">Learn More</a>
+        </div>
+      </div>
     </div>
 
-    <div id="android" class="group">
-      <a href="{{ builds.android.link }}">
-        <img src="/assets/icon-mobile--android.png"><br>
-        <h3 class="group-header">{{ builds.android.name }}</h3>
-        <div class="group-subheader">{{ builds.android.versions }}</div>
-        <div class="badge">
-          <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
+    <div class="separator"></div>
+
+    <div class="row">
+      <div class="half">
+        <div class="half-header">Browsers</div>
+
+        <div class="half">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <p>Chrome/Opera/Vivaldi</p>
+
+          <button class="btn orange" (click)="launchDownloadModal(builds.chrome)">
+            Download
+          </button>
+
+          <p>For Chrome/Opera/Vivaldi Browser 22+</p>
+
+          <a href="/apps/browser">Learn More</a>
         </div>
-        <div class="download btn blue">
-          <i class="fa fa-download"></i>&nbsp;Download
+
+        <div class="half">
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <p>Firefox</p>
+
+          <button class="btn orange" (click)="launchDownloadModal(builds.firefox)">
+            Download
+          </button>
+
+          <p>Firefox Version 5+</p>
+
+          <a href="/apps/browser">Learn More</a>
         </div>
-      </a>
+      </div>
+
+      <div class="half"></div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="row">
+      <div class="row-header">Routers</div>
+
+      <div class="half">
+        <div class="half">
+          <p>DD-WRT</p>
+
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <button class="btn orange">
+            Setup Guide
+          </button>
+        </div>
+
+        <div class="half">
+          <p>Tomato</p>
+
+          <div class="image-container">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </div>
+
+          <button class="btn orange">
+            Setup Guide
+          </button>
+        </div>
+      </div>
+
+      <div class="half">
+        <p>VPN Routers</p>
+
+        <div class="image-container">
+          <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+        </div>
+
+        <div>
+          <button class="btn orange">
+            Setup Guide
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="different">
+  <div class="header black">Want to use it on a different device?</div>
+
+  <button class="btn blue">Check out the Setup Guide</button>
 </div>
 
 <app-footer></app-footer>

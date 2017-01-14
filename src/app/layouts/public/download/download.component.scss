@@ -1,19 +1,153 @@
 .masthead {
-  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
-}
-
-.cta-container {
   position: relative;
 
-  .call-to-action {
+  .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
+
+  &:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #163138;
     position: absolute;
-    top: -40px;
+    bottom: -20px;
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 344px;
+    margin: auto;
+    z-index: 2;
+  }
+}
+
+.download {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 80px 0 50px;
+  position: relative;
+
+  .inner { overflow: auto;}
+
+  .left {
+    width: 50%;
+    float: left;
     text-align: center;
+    position: relative;
+    img.d { width: 250px; }
+    img.w { position: absolute; top: 32px; left: 0; right: 0; margin: auto; }
+    img.m { position: absolute; top: 25px; left: 0; right: 0; margin: auto; }
+  }
+  .right {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+
+  &:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #fff;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+  }
+}
+
+.choices {
+  width: 100%;
+  background-color: #efeaea;
+  padding: 50px 0;
+  position: relative;
+
+  .inner { width: 100%; max-width: 1000px; margin: auto; }
+
+  .separator { width: 90%; border-bottom: 3px dashed #cac5c5; margin: auto; }
+
+  .row {
+    overflow: auto;
+
+    .row-header {
+      font-size: 23px;
+      margin: 40px 0 0;
+      text-align: center;
+    }
+
+    .half {
+      width: 50%;
+      float: left;
+      text-align: center;
+      padding: 0 0 40px;
+
+      .half-header {
+        font-size: 23px;
+        text-align: center;
+        color: #163238;
+        margin: 40px 0;
+      }
+
+      a { color: #fc6146; }
+
+      .btn { font-size: 16px; margin: 10px 0 20px; width: 135px; height: 40px; }
+
+      .image-container {
+        position: relative;
+        img:nth-child(2) {
+          position: absolute;
+          top: 15px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: 55px;
+        }
+        img.d { width: 150px; }
+      }
+
+      .ios-badge {
+        margin: 25px 0 30px;
+        img { width: 150px; }
+      }
+      .android-badge {
+        margin: 10px 0 18px;
+        img { width: 170px; }
+      }
+    }
+  }
+
+  &:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #efeaea;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+  }
+}
+
+.different {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 0 80px;
+  text-align: center;
+
+  .header { margin: 40px 0; }
+
+  .btn {
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
   }
 }
 
@@ -25,104 +159,13 @@
   margin-bottom: 50px;
 }
 
-.subheader-content {
-  height: 148px;
-  width: 100%;
-  background-color: #cad8eb;
-  text-align: center;
-  padding: 0;
-
-  .subheader-version {
-    color: #d19e12;
-    font-size: 18px;
-    padding-top: 55px
-  }
-
-  .subheader-slogan {
-    color: #666666;
-    font-size: 18px;
-    margin-top: 15px;
-  }
-}
-
-.content {
-  width: 100%;
-  border-bottom: 11px #f2f2f2 solid;
-  text-align: center;
-  padding: 25px 0;
-
-  .header { margin: 30px 0; }
-
-  .grouping {
-    text-align: center;
-    margin: 0 auto 30px;
-    overflow: auto;
-    width: 665px;
-    &.mobile-devices { width: 430px; }
-
-    .group {
-      position: relative;
-      float: left;
-      text-align: center;
-      margin: 0 50px 0 0;
-      width: 188px;
-      &:last-child { margin-right: 0; }
-      &.empty { width: 144px; min-height: 1px; }
-      &:hover > a > .download {
-        display: block;
-        position: absolute;
-        top: 30%;
-        left: 10%;
-        right: 10%;
-        margin: auto;
-        padding: 10px;
-        font-size: 16px;
-      }
-      .badge {
-        padding: 10px;
-        .google { width: 155px; }
-        .apple { padding: 10px 0; }
-      }
-
-      .download {
-        display: none;
-        &.btn.blue {
-          width: auto;
-          height: auto;
-        }
-      }
-
-      a { text-decoration: none; }
-
-      .group-header {
-        color: #333333;
-        font-size: 22px;
-        font-weight: 500
-      }
-      .group-subheader {
-        color: #999999;
-        font-size: 14px;
-      }
-    }
-  }
-}
-
-.content.no-border { border: 0; }
-
 .modal .modal-content .modal-footer .btn { margin: 0; }
 
 @media (max-width: 700px) {
-  .content .grouping { width: 100%; }
-  .content .grouping.mobile-devices { width: 100%; }
-  .content .grouping .group {
-    width: 100%;
-    margin: 0 0 50px;
-  }
   .content { padding: 0 10px; }
-  .grey-content { padding: 0 10px; }
 }
 
 @media (max-width: 375px) {
   .btn { width: 280px; }
-  .cta-container .call-to-action { width: 100%; max-width: 300px; }
+  .different .btn { width: 280px; }
 }
