@@ -25,7 +25,6 @@
   .subheader {
     font-size: 22px;
     font-weight: 500;
-    color: #1973af;
   }
 
   .separator {
@@ -42,6 +41,9 @@
   .shift { padding-left: 15px; }
   .lead { color: #1973af; }
   .right { text-align: right; }
+
+  .blue { color: #1973af; }
+  .orange { color: #fc6146; }
 }
 
 @media (max-width: 1016px) {
