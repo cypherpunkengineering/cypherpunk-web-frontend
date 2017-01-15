@@ -34,8 +34,8 @@
 
 	<!-- publicly accessible routes, for itunes app review guys -->
 	<rule>
-		<from>^/privacy(.*)</from>
-		<to last="true">/privacy.html$1</to>
+		<from>^/pp(.*)</from>
+		<to last="true">/pp.html$1</to>
 	</rule>
 	<rule>
 		<from>^/tos(.*)</from>

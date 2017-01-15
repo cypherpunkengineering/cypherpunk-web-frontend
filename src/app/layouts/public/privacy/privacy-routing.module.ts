@@ -6,7 +6,7 @@ import { PrivacyComponent } from './privacy.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'privacy', component: PrivacyComponent }
+      { path: 'pp', component: PrivacyComponent }
     ])
   ]
 })

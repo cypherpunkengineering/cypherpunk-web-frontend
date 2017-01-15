@@ -15,7 +15,7 @@ const routes = [
   { url: baseRoute + 'why-you-need-online-privacy-protection', dirPath: baseDir + 'why-you-need-online-privacy-protection.html' },
   { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'network', dirPath: baseDir + 'network.html' },
-  { url: baseRoute + 'privacy', dirPath: baseDir + 'privacy.html' },
+  { url: baseRoute + 'pp', dirPath: baseDir + 'pp.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
   { url: baseRoute + 'tos', dirPath: baseDir + 'tos.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
