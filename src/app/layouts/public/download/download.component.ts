@@ -129,6 +129,7 @@ export class DownloadComponent {
       link = this.currentLinuxBuild.link;
       this.downloadBuildLink = link;
     }
+    else if (build.name === 'Chrome/Opera/Vivaldi') { return window.location.href = link; }
     else if (build.name === 'Android') { return window.location.href = link; }
     else if (build.name === 'iOS') { return window.location.href = link; }
     else { this.downloadBuildLink = link; }
