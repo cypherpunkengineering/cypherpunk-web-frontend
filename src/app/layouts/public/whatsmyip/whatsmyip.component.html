@@ -1,0 +1,32 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <h1 class="masthead-header header white">What's My IP?</h1>
+</div>
+
+<div class="content">
+  <div class="body">
+    <div class="overflow">
+      <div class="left">
+        <p>IP Address: <strong>{{ ip }}</strong></p>
+        <p>Browser: <strong>{{ browser }}</strong></p>
+      </div>
+
+      <div class="right">
+        <p>
+          Country: <img class="flag" src="/assets/flags/{{countryCode}}.png" *ngIf="countryCode"> 
+          <strong>{{ country }}</strong></p>
+        <p>Operating System: <strong>{{ os }}</strong></p>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button class="btn blue" routerLink="/download">
+        Protect Your Privacy Now
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

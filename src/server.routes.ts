@@ -38,5 +38,6 @@ export const routes: string[] = [
   'apps/linux',
   'apps/routers',
   'feedback',
-  'bounty'
+  'bounty',
+  'whatsmyip'
 ];

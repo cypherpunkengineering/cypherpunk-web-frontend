@@ -99,6 +99,10 @@
 
 	<!-- public marketing content -->
 	<rule>
+		<from>^/whatsmyip(.*)</from>
+		<to last="true">/whatsmyip.html$1</to>
+	</rule>
+	<rule>
 		<from>^/bounty(.*)</from>
 		<to last="true">/bounty.html$1</to>
 	</rule>

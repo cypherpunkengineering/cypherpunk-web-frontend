@@ -33,7 +33,8 @@ const routes = [
   { url: baseRoute + 'apps/linux', dirPath: baseDir + 'apps/linux.html' },
   { url: baseRoute + 'apps/routers', dirPath: baseDir + 'apps/routers.html' },
   { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
-  { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' }
+  { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
+  { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' }
 ];
 
 // remove index.*.js files
