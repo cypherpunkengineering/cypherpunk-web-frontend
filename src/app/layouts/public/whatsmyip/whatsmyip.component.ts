@@ -10,10 +10,10 @@ import * as platform from 'platform';
 })
 export class WhatsMyIpComponent {
   os: string;
-  ip: string;
+  ip: string = 'Unknown';
   browser: string;
-  country: string;
-  countryCode: string;
+  country: string = 'Unknown';
+  countryCode: string = undefined;
 
   constructor(private http: Http) {
     // detect os setup
