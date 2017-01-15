@@ -29,6 +29,7 @@ export const routes: string[] = [
   'tos',
   'blog',
   '404',
+  'apps',
   'apps/browser',
   'apps/mac',
   'apps/windows',

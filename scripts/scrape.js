@@ -24,6 +24,7 @@ const routes = [
   { url: baseRoute + 'account/billing', dirPath: baseDir + 'account/billing.html' },
   { url: baseRoute + 'account/setup', dirPath: baseDir + 'account/setup.html' },
   { url: baseRoute + 'account/reset', dirPath: baseDir + 'account/reset.html' },
+  { url: baseRoute + 'apps', dirPath: baseDir + 'apps.html' },
   { url: baseRoute + 'apps/browser', dirPath: baseDir + 'apps/browser.html' },
   { url: baseRoute + 'apps/mac', dirPath: baseDir + 'apps/mac.html' },
   { url: baseRoute + 'apps/windows', dirPath: baseDir + 'apps/windows.html' },

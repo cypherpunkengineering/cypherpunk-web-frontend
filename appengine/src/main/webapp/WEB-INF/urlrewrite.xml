@@ -107,6 +107,10 @@
 		<to last="true">/feedback.html$1</to>
 	</rule>
 	<rule>
+		<from>^/apps(.*)</from>
+		<to last="true">/apps.html$1</to>
+	</rule>
+	<rule>
 		<from>^/apps/browser(.*)</from>
 		<to last="true">/apps/browser.html$1</to>
 	</rule>

@@ -27,6 +27,7 @@ import { LinuxModule } from './layouts/public/apps/linux/linux.module';
 import { RoutersModule } from './layouts/public/apps/routers/routers.module';
 import { FeedbackModule } from './layouts/public/feedback/feedback.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
+import { AppsModule } from './layouts/public/apps/apps/apps.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -70,6 +71,7 @@ import { PlansService } from './services/plans.service';
     RoutersModule,
     FeedbackModule,
     BountyModule,
+    AppsModule,
 
     DashboardModule,
     BillingModule,
