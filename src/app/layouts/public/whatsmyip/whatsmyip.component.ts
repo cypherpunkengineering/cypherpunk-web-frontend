@@ -10,9 +10,9 @@ import * as platform from 'platform';
 })
 export class WhatsMyIpComponent {
   os: string;
-  ip: string = 'Unknown';
+  ip: string = 'Loading';
   browser: string;
-  country: string = 'Unknown';
+  country: string = 'Loading';
   countryCode: string = undefined;
 
   constructor(private http: Http) {
@@ -40,6 +40,11 @@ export class WhatsMyIpComponent {
             }
           });
         }
+      },
+      (err) => {
+        this.country = 'Unknown';
+        this.ip = 'Unknown';
+        this.countryCode = 'Unknown';
       });
     }
   }
