@@ -60,7 +60,7 @@ public class BackendProxy extends HttpServlet {
 		SystemProperty.Environment.Value env = environment.value();
 		if (env == Development)
 		{
-			backendURL = new URL("http://127.0.0.1" + path + "?" + queryString);
+			backendURL = new URL("http://127.0.0.1:11080" + path + "?" + queryString);
 		}
 
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();

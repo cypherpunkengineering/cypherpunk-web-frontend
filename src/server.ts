@@ -61,9 +61,8 @@ app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { serverApi, subs, confirm, signin, signout, locations, world, amazonPurchase, stripePurchase, identify, blog, networkStatus, signup } from './backend/api';
+import { subs, confirm, signin, signout, locations, world, amazonPurchase, stripePurchase, identify, blog, networkStatus, signup } from './backend/api';
 // Our API for demos only
-app.get('/data.json', serverApi);
 app.get('/api/v0/account/status', subs);
 app.get('/api/v0/location/list/premium', locations);
 app.get('/api/v0/location/world', world);

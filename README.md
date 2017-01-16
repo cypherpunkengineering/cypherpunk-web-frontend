@@ -46,6 +46,7 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 * `npm run scrape` to scrape all the web pages into the build folder
 
 ## Development
+* Set DEV_MODE to true in env_vars
 * run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
 
 ## Watch files
