@@ -18,6 +18,11 @@ import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 import com.google.appengine.api.urlfetch.FetchOptions;
 import static com.google.appengine.api.urlfetch.FetchOptions.Builder.withDefaults;
 
+import com.google.appengine.api.utils.SystemProperty;
+import static com.google.appengine.api.utils.SystemProperty.environment;
+import static com.google.appengine.api.utils.SystemProperty.Environment.Value.Development;
+import static com.google.appengine.api.utils.SystemProperty.Environment.Value.Production;
+
 @SuppressWarnings("serial")
 public class BackendProxy extends HttpServlet {
 
@@ -51,6 +56,12 @@ public class BackendProxy extends HttpServlet {
 
 		URL backendURL;
 		backendURL = new URL("https://" + backend + path + "?" + queryString);
+
+		SystemProperty.Environment.Value env = environment.value();
+		if (env == Development)
+		{
+			backendURL = new URL("http://127.0.0.1" + path + "?" + queryString);
+		}
 
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 
