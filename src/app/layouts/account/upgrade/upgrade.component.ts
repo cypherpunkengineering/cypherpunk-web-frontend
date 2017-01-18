@@ -189,6 +189,7 @@ export class UpgradeComponent {
       .subscribe((data: any) => {
         this.defaultCardId = data.default_source;
         this.cards = data.sources;
+        if (!this.cards.length) { this.showCreateCard = true; }
       });
     }
   }

@@ -247,7 +247,7 @@ export class PricingComponent {
     };
 
     // call server at this point (using promises)
-    let url = '/api/v0/subscription/purchase';
+    let url = '/api/v0/account/purchase/stripe';
     let body = serverParams;
     let options = new RequestOptions({});
     // sets cookie

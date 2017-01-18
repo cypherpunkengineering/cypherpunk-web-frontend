@@ -21,7 +21,7 @@ export class DashboardComponent {
   countries = country_list;
 
   // payment details
-  defaultCardId: string;
+  defaultCardId: string = '';
   defaultCard: any = {};
   cards = [];
   showPaymentDetails: boolean = false;
@@ -104,6 +104,12 @@ export class DashboardComponent {
         this.cards.map((card) => {
           if (card.id === data.default_source) { this.defaultCard = card; }
         });
+
+        if (!this.cards.length) {
+          this.showCreateCard = true;
+          this.defaultCard.id = '';
+          this.defaultCardId = '';
+        }
       });
     }
   }

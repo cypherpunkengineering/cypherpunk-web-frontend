@@ -168,6 +168,8 @@
   }
 }
 
+.clickable { cursor: pointer; }
+
 @media (max-width: 1060px) {
   .wrapper {
     .content .content-inner .content-row .full { padding: 0; }

@@ -7,7 +7,7 @@ export function stripePurchase(req, res) {
 
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/subscription/purchase';
+    let url = 'http://localhost:8080/api/v0/account/purchase/stripe';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

@@ -81,7 +81,7 @@ app.post('/api/v0/account/logout', signout);
 app.post('/api/v0/account/identify/email', identify);
 app.post('/api/v0/account/register/signup', signup);
 app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
-app.post('/api/v0/subscription/purchase', stripePurchase);
+app.post('/api/v0/account/purchase/stripe', stripePurchase);
 app.post('/api/v0/account/upgrade/stripe', stripeUpgrade);
 app.get('/api/v0/account/source/list', stripeCardList);
 app.post('/api/v0/account/source/default', stripeDefaultCard);

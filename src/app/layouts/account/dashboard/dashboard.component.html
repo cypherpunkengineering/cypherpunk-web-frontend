@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="content-row" (click)="showPaymentDetails = true">
+        <div class="content-row clickable" (click)="showPaymentDetails = true">
           <div class="left">
             View Payment Details
           </div>
@@ -74,7 +74,10 @@
             </div>
 
             <div class="number">{{ defaultCard.last4 }}</div>
-            <div class="expiry">{{ defaultCard.exp_month + '/' + defaultCard.exp_year }}</div>
+            <div class="expiry" *ngIf="defaultCard.exp_month && defaultCard.exp_year">{{ defaultCard.exp_month + '/' + defaultCard.exp_year }}</div>
+            <div class="number" *ngIf="!defaultCard.exp_month && !defaultCard.exp_year">
+              Please add a credit card to your account
+            </div>
           </div>
 
           <!-- list other cards -->
