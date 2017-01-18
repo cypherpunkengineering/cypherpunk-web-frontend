@@ -61,7 +61,8 @@ app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { subs, confirm, signin, signout, locations, world, amazonPurchase, stripePurchase, stripeUpgrade, identify, blog, networkStatus, signup } from './backend/api';
+import { subs, confirm, signin, signout, locations, world, amazonPurchase, identify, blog, networkStatus, signup } from './backend/api';
+import { stripePurchase, stripeUpgrade, stripeCardList, stripeDefaultCard, stripeCreateCard } from './backend/stripe';
 // Our API for demos only
 app.get('/api/v0/account/status', subs);
 app.get('/api/v0/location/list/premium', locations);
@@ -76,6 +77,9 @@ app.post('/api/v0/account/register/signup', signup);
 app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
 app.post('/api/v0/subscription/purchase', stripePurchase);
 app.post('/api/v0/subscription/upgrade', stripeUpgrade);
+app.get('/api/v0/account/source/list', stripeCardList);
+app.post('/api/v0/account/source/default', stripeDefaultCard);
+app.post('/api/v0/account/source/add', stripeCreateCard);
 
 function ngApp(req, res) {
   res.render('index', {

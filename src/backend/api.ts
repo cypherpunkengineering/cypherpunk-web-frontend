@@ -29,61 +29,6 @@ export function subs(req, res) {
   }
 }
 
-export function stripePurchase(req, res) {
-
-  if (DEV_MODE) {
-    let body = req.body;
-    let url = 'http://localhost:8080/api/v0/subscription/purchase';
-    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
-  }
-  else {
-    return res.json({
-      secret: '',
-      privacy: {
-        username: '',
-        password: ''
-      },
-      account: {
-        id: '1',
-        email: '',
-        type: '',
-        confirmed: false
-      },
-      subscription: {
-        renewal: '',
-        expiration: '0'
-      }
-    });
-  }
-}
-
-export function stripeUpgrade(req, res) {
-  if (DEV_MODE) {
-    let body = req.body;
-    let url = 'http://localhost:8080/api/v0/subscription/upgrade';
-    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
-  }
-  else {
-    return res.json({
-      secret: '',
-      privacy: {
-        username: '',
-        password: ''
-      },
-      account: {
-        id: '1',
-        email: '',
-        type: '',
-        confirmed: false
-      },
-      subscription: {
-        renewal: '',
-        expiration: '0'
-      }
-    });
-  }
-}
-
 export function amazonPurchase(req, res) {
   if (DEV_MODE) {
     let body = req.body;

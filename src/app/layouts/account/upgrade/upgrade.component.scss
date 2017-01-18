@@ -66,7 +66,67 @@
   width: 100%;
   max-width: 450px;
   min-height: 300px;
-  margin: 50px auto 0;
+  margin: 10px auto 0;
+
+  .list-cards {
+    .tabs {
+      overflow: auto;
+      margin: 15px 0;
+      font-size: 24px;
+      color: #28434E;
+      font-weight: 600;
+      .tab {
+        width: 50%;
+        cursor: pointer;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .active { background-color: #FF775A; }
+      .left { float: left; padding-left: 20px; }
+      .right { float: right; padding-right: 20px; text-align: right; }
+    }
+
+    .card {
+      display: inline-block;
+      width: 32%;
+
+      &.hide { display: none; }
+      &:first-child > .card-info { margin: 20px 10px 10px; }
+
+      .card-info {
+        padding: 10px 5px;
+        margin: 10px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        &.active { background-color: RGBA(235, 131, 81, 0.58); }
+      }
+      .logo { width: 24%; display: inline-block; vertical-align: middle; }
+      .text { width: 73%; display: inline-block; vertical-align: middle; text-align: right; }
+    }
+  }
+
+  .create-card {
+    padding: 0 10px;
+    overflow: hidden;
+    transition: all 0.5s;
+    max-height: 0;
+    opacity: 0;
+    &.open {
+      max-height: 660px;
+      opacity: 1;
+    }
+    .half {
+      display: inline-block;
+      width: 48%;
+      &:last-child { float: right; }
+      .btn { width: 100%; }
+    }
+    .info p { margin: 10px 0 0; }
+    .info:first-child p { margin: 20px 0 0; }
+    .info:last-child p { margin: 10px 0 20px; }
+  }
 
   .separator {
     margin: 15px 0;
@@ -81,6 +141,16 @@
     height: 3px;
     background-color: #87CBD4;
     margin: 0 0 0 5px;
+  }
+
+  .account {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+    padding: 0 5px 0;
+    font-size: 24px;
+    text-align: center;
+    p { margin: 10px 0; }
   }
 
   .info {
@@ -146,6 +216,11 @@
   }
 
   .pay { text-align: center; }
+  .stripe-pay {
+    text-align: center;
+    &.hide { display: none; }
+    .btn { margin: 10px auto 10px; }
+  }
 
   #AmazonPayButton { margin: 40px 0 25px; }
 }
@@ -176,5 +251,10 @@
 }
 
 @media (max-width: 375px) {
+  .payment-info .list-cards .tabs { font-size: 20px; }
+  .payment-info .account { font-size: 20px; }
+  .payment-info .account label { display: none; }
+  .payment-info .list-cards .card .logo { width: 100%; }
+  .payment-info .list-cards .card .text { width: 100%; }
   .btn { width: 300px; }
 }

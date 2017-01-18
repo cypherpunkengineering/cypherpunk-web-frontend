@@ -1,6 +1,6 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -35,6 +35,9 @@ export class UpgradeComponent {
   country: string;
   zipCode: string;
   showZip: boolean = false;
+  defaultCardId: string = 'card_19dA5L2eZvKYlo2CzNUVNTxW1';
+  showCreateCard: boolean = false;
+  cards = [];
 
   // Amazon variables
   billingAgreementId: string;
@@ -177,6 +180,17 @@ export class UpgradeComponent {
         this.plansService.plans[1].bcYearly = `₿ ~${this.plansService.plans[1].bcTotal} / annually`;
       });
     }
+
+    // get all stripe cards for this user
+    if (isBrowser) {
+      let url = '/api/v0/account/source/list';
+      http.get(url)
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        this.defaultCardId = data.default_source;
+        this.cards = data.sources;
+      });
+    }
   }
 
   // pay with credit card
@@ -193,6 +207,18 @@ export class UpgradeComponent {
 
     return this.validateCountry();
   }
+
+  stripeButtonDisabled() {
+    if (this.showCreateCard) { return !this.validateCC() || this.ccButtonDisabled; }
+    else { return !this.defaultCardId; }
+  }
+
+  stripeUpgrade() {
+    if (this.showCreateCard) { this.getToken(); }
+    else { this.finalizeDefaultCard(); }
+  }
+
+  // stripe upgrade with new card
 
   getToken() {
     // show loading overlay
@@ -228,7 +254,7 @@ export class UpgradeComponent {
       }
       else {
         let token = response.id;
-        return this.saveToServer(token);
+        return this.createCard(token);
       }
     };
 
@@ -237,12 +263,61 @@ export class UpgradeComponent {
     stripe.card.createToken(stripeParams, stripeCallback);
   }
 
-  saveToServer(token: string) {
-    let serverParams = {
-      token: token,
-      plan: this.plansService.selectedPlan.id,
-      email: this.email
-    };
+  createCard(token) {
+    this.ccButtonDisabled = true;
+    let url = '/api/v0/account/source/add';
+    let body = { token: token };
+    let options = new RequestOptions({});
+    // set cookie
+    return this.http.post(url, body, options).toPromise()
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      return resData;
+    })
+    .then((data) => { this.auth.authed = true; return data; })
+    // alert and redirect
+    .then((data) => {
+      this.zone.run(() => {
+        this.defaultCardId = data.default_source;
+        this.cards = data.sources;
+      });
+      return this.saveToServer();
+    })
+    // handle errors
+    .catch((error) => {
+      this.zone.run(() => {
+        this.loading = false;
+        this.ccButtonDisabled = false;
+
+        this.modal.header = 'Error: Could not process your payment';
+        this.modal.body = error.messsage;
+        this.modal.link = false;
+        this.modal.show = true;
+      });
+      // error 409 -> redirect to Signin page
+    });
+  }
+
+  // stripe upgrade with existing card
+
+  setDefaultCard(cardId) { this.defaultCardId = cardId; }
+
+  finalizeDefaultCard() {
+    let url = '/api/v0/account/source/default';
+    let body = { default_source: this.defaultCardId };
+    let options = new RequestOptions({});
+    return this.http.post(url, body, options).toPromise()
+    .then((res: Response) => {
+      let resData = res.json() || {};
+      this.defaultCardId = resData.default_source;
+      this.cards = resData.sources;
+      return this.defaultCardId;
+    })
+    .then(() => { return this.saveToServer(); });
+  }
+
+  saveToServer() {
+    let serverParams = { plan: this.plansService.selectedPlan.id };
 
     // call server at this point (using promises)
     let url = '/api/v0/subscription/upgrade';
