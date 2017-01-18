@@ -211,7 +211,7 @@ export class SetupComponent implements OnInit {
 		'</ca>'
 	];
 
-	profileTemp = profileTempArray.join('\r\n');
+	  profileTemp = profileTempArray.join('\r\n');
 
     if (version === '23') { this.profile23 = profileTemp; }
     else { this.profile24 = profileTemp; }

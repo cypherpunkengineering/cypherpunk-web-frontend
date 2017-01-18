@@ -35,7 +35,7 @@ export class UpgradeComponent {
   country: string;
   zipCode: string;
   showZip: boolean = false;
-  defaultCardId: string = 'card_19dA5L2eZvKYlo2CzNUVNTxW1';
+  defaultCardId: string = '';
   showCreateCard: boolean = false;
   cards = [];
 
