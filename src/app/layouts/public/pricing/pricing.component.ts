@@ -269,12 +269,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
+      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
-        this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.message;
+        this.modal.header = 'Error: ' + errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -325,12 +325,13 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
+      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.ppButtonDisabled = false;
 
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.message;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -444,13 +445,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
+      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
 
-        console.log(error);
-        this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.message;
+        this.modal.header = 'Error: ' + errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -510,12 +510,13 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
+      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.bpButtonDisabled = false;
 
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.message;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });

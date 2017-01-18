@@ -246,10 +246,11 @@ export class DashboardComponent {
     })
     // handle errors
     .catch((error) => {
+      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
-        this.alertService.error('There was an error adding your card');
+        this.alertService.error('Error: ' + errorData.message);
       });
     });
   }
