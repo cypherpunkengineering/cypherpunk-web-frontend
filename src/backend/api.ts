@@ -4,104 +4,176 @@ import * as request from 'request';
 const DEV_MODE = process.env.DEV_MODE || false;
 
 export function subs(req, res) {
-  let body = {
-    secret: '',
-    privacy: {
-      username: '',
-      password: ''
-    },
-    account: {
-      id: '1',
-      email: '',
-      type: 'free',
-      confirmed: false
-    },
-    subscription: {
-      renewal: '',
-      expiration: '0'
-    }
-  };
-
-  return res.json(body);
-  // return res.sendStatus(401);
+  if (DEV_MODE) {
+    let url = 'http://localhost:8080/api/v0/account/status';
+    return req.pipe(request({url: url, jar: true})).pipe(res);
+  }
+  else {
+    return res.json({
+      secret: '',
+      privacy: {
+        username: '',
+        password: ''
+      },
+      account: {
+        id: '1',
+        email: '',
+        type: '',
+        confirmed: false
+      },
+      subscription: {
+        renewal: '',
+        expiration: '0'
+      }
+    });
+  }
 }
 
 export function stripePurchase(req, res) {
-  let body = {
-    secret: '',
-    privacy: {
-      username: '',
-      password: ''
-    },
-    account: {
-      id: '1',
-      email: '',
-      type: '',
-      confirmed: false
-    },
-    subscription: {
-      renewal: '',
-      expiration: '0'
-    }
-  };
-  return res.json(body);
+
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/subscription/purchase';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      secret: '',
+      privacy: {
+        username: '',
+        password: ''
+      },
+      account: {
+        id: '1',
+        email: '',
+        type: '',
+        confirmed: false
+      },
+      subscription: {
+        renewal: '',
+        expiration: '0'
+      }
+    });
+  }
+}
+
+export function stripeUpgrade(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/subscription/upgrade';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      secret: '',
+      privacy: {
+        username: '',
+        password: ''
+      },
+      account: {
+        id: '1',
+        email: '',
+        type: '',
+        confirmed: false
+      },
+      subscription: {
+        renewal: '',
+        expiration: '0'
+      }
+    });
+  }
 }
 
 export function amazonPurchase(req, res) {
-  let body = {
-    secret: '',
-    privacy: {
-      username: '',
-      password: ''
-    },
-    account: {
-      id: '1',
-      email: '',
-      type: '',
-      confirmed: false
-    },
-    subscription: {
-      renewal: '',
-      expiration: '0'
-    }
-  };
-  return res.json(body);
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/payment/amazon/billingAgreement';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      secret: '',
+      privacy: {
+        username: '',
+        password: ''
+      },
+      account: {
+        id: '1',
+        email: '',
+        type: '',
+        confirmed: false
+      },
+      subscription: {
+        renewal: '',
+        expiration: '0'
+      }
+    });
+  }
 }
 
 export function identify(req, res) {
-  let valid = false;
-  if (valid) { return res.sendStatus(200); }
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/account/identify/email';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
   else { return res.sendStatus(401); }
 }
 
 export function signup(req, res) {
-  return res.json({
-    account: { email: req.body.email },
-    secret: req.body.password
-  });
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/account/confirm/email';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      account: { email: req.body.email },
+      secret: req.body.password
+    });
+  }
 }
 
 export function confirm(req, res) {
-  let body = {
-    valid: true,
-    account: { email: '' },
-    secret: ''
-  };
-  return res.json(body);
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/account/confirm/email';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      valid: true,
+      account: { email: '' },
+      secret: ''
+    });
+  }
 }
 
 export function signin(req, res) {
-  let body = {
-    secret: 'abcd',
-    privacy: { username: '', password: '' },
-    account: { id: 'id', email: '', confirmed: true, type: '' },
-    subscription: { renewal: 'forever', expiration: '0' }
-  };
-  return res.json(body);
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/account/authenticate/userpasswd';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      secret: 'abcd',
+      privacy: { username: '', password: '' },
+      account: { id: 'id', email: '', confirmed: true, type: '' },
+      subscription: { renewal: 'forever', expiration: '0' }
+    });
+  }
 }
 
 export function signout(req, res) {
-  return res.json({});
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = 'http://localhost:8080/api/v0/account/logout';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({});
+  }
 }
 
 export function networkStatus(req, res) {
