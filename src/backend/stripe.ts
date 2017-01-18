@@ -2,12 +2,16 @@
 import * as request from 'request';
 
 const DEV_MODE = process.env.DEV_MODE || false;
+const REAL_MODE = false;
+
+let urlStart = 'http://localhost:8080/';
+if (REAL_MODE) { urlStart = 'https://cypherpunk.engineering/'; }
 
 export function stripePurchase(req, res) {
 
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/purchase/stripe';
+    let url = urlStart + 'api/v0/account/purchase/stripe';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -34,7 +38,7 @@ export function stripePurchase(req, res) {
 export function stripeUpgrade(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/upgrade/stripe';
+    let url = urlStart + 'api/v0/account/upgrade/stripe';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -60,7 +64,7 @@ export function stripeUpgrade(req, res) {
 
 export function stripeCardList(req, res) {
   if (DEV_MODE) {
-    let url = 'http://localhost:8080/api/v0/account/source/list';
+    let url = urlStart + 'api/v0/account/source/list';
     return req.pipe(request({url: url, jar: true })).pipe(res);
   }
   else {
@@ -74,7 +78,7 @@ export function stripeCardList(req, res) {
 export function stripeDefaultCard(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/source/default';
+    let url = urlStart + 'api/v0/account/source/default';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -85,7 +89,7 @@ export function stripeDefaultCard(req, res) {
 export function stripeCreateCard(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/source/add';
+    let url = urlStart + 'api/v0/account/source/add';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

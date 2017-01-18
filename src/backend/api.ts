@@ -2,10 +2,14 @@
 import * as request from 'request';
 
 const DEV_MODE = process.env.DEV_MODE || false;
+const REAL_MODE = false;
+
+let urlStart = 'http://localhost:8080/';
+if (REAL_MODE) { urlStart = 'https://cypherpunk.engineering/'; }
 
 export function subs(req, res) {
   if (DEV_MODE) {
-    let url = 'http://localhost:8080/api/v0/account/status';
+    let url = urlStart + 'api/v0/account/status';
     return req.pipe(request({url: url, jar: true})).pipe(res);
   }
   else {
@@ -32,7 +36,7 @@ export function subs(req, res) {
 export function amazonPurchase(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/payment/amazon/billingAgreement';
+    let url = urlStart + 'api/v0/payment/amazon/billingAgreement';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -59,7 +63,7 @@ export function amazonPurchase(req, res) {
 export function identify(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/identify/email';
+    let url =  urlStart + 'api/v0/account/identify/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else { return res.sendStatus(401); }
@@ -68,7 +72,7 @@ export function identify(req, res) {
 export function signup(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/confirm/email';
+    let url = urlStart + 'api/v0/account/confirm/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -82,7 +86,7 @@ export function signup(req, res) {
 export function confirm(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/confirm/email';
+    let url = urlStart + 'api/v0/account/confirm/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -97,7 +101,8 @@ export function confirm(req, res) {
 export function signin(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/authenticate/userpasswd';
+    let url = urlStart + 'api/v0/account/authenticate/userpasswd';
+    console.log(url);
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -113,7 +118,7 @@ export function signin(req, res) {
 export function signout(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/account/logout';
+    let url = urlStart + 'api/v0/account/logout';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -122,22 +127,22 @@ export function signout(req, res) {
 }
 
 export function networkStatus(req, res) {
-  if (DEV_MODE) { return request('http://localhost:8080/api/v0/network/status').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v0/network/status').pipe(res); }
   else { return res.json({ ip: '127.0.0.1', country: 'ZZ'}); }
 }
 
 export function blog(req, res) {
-  if (DEV_MODE) { return request('http://localhost:8080/api/v0/blog/posts').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v0/blog/posts').pipe(res); }
   else { res.json({}); }
 }
 
 export function locations(req, res) {
-  if (DEV_MODE) { return request('http://localhost:8080/api/v0/location/list/premium').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v0/location/list/premium').pipe(res); }
   else { res.json({}); }
 }
 
 export function world(req, res) {
-  if (DEV_MODE) { return request('http://localhost:8080/api/v0/location/world').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v0/location/world').pipe(res); }
   else {
     let world = {
       region: {

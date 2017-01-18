@@ -274,7 +274,7 @@ export class PricingComponent {
         this.ccButtonDisabled = false;
 
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.messsage;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -330,7 +330,7 @@ export class PricingComponent {
         this.ppButtonDisabled = false;
 
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.messsage;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -450,7 +450,7 @@ export class PricingComponent {
 
         console.log(error);
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.messsage;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -514,9 +514,8 @@ export class PricingComponent {
         this.loading = false;
         this.bpButtonDisabled = false;
 
-        console.log(error);
         this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = error.messsage;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });

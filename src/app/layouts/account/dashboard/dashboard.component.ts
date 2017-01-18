@@ -320,8 +320,6 @@ export class DashboardComponent {
       valid = valid && this.validZipCode && this.zipCodeTouched;
     }
 
-    console.log(valid);
-
     return valid;
   }
 
