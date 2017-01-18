@@ -34,7 +34,7 @@ export function stripePurchase(req, res) {
 export function stripeUpgrade(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = 'http://localhost:8080/api/v0/subscription/upgrade';
+    let url = 'http://localhost:8080/api/v0/account/upgrade/stripe';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

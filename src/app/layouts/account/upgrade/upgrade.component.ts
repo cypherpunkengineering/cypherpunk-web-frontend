@@ -320,7 +320,7 @@ export class UpgradeComponent {
     let serverParams = { plan: this.plansService.selectedPlan.id };
 
     // call server at this point (using promises)
-    let url = '/api/v0/subscription/upgrade';
+    let url = '/api/v0/account/upgrade/stripe';
     let body = serverParams;
     let options = new RequestOptions({});
     // set cookie
