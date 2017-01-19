@@ -57,6 +57,7 @@
 
 		<!-- API v0 resources handled by backend -->
 		<url-pattern>/api/v0/account/*</url-pattern>
+		<url-pattern>/api/v0/ipn/*</url-pattern>
 		<url-pattern>/api/v0/location/*</url-pattern>
 		<url-pattern>/api/v0/monitoring/*</url-pattern>
 		<url-pattern>/api/v0/subscription/*</url-pattern>
@@ -64,6 +65,7 @@
 
 		<!-- API v1 resources handled by backend -->
 		<url-pattern>/api/v1/account/*</url-pattern>
+		<url-pattern>/api/v1/ipn/*</url-pattern>
 		<url-pattern>/api/v1/location/*</url-pattern>
 		<url-pattern>/api/v1/monitoring/*</url-pattern>
 		<url-pattern>/api/v1/subscription/*</url-pattern>
