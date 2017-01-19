@@ -540,7 +540,7 @@ export class PricingComponent {
       let options = new RequestOptions({});
       this.http.post(url, body, options).toPromise()
       .then(() => {
-        this.modal.header = 'It looks like your already a Cypherpunk!';
+        this.modal.header = 'It looks like you\'re already a Cypherpunk!';
         this.modal.body = `Why not upgrade your account here: `;
         this.modal.link = true;
         this.modal.show = true;

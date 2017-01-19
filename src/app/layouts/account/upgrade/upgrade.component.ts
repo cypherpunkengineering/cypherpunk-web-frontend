@@ -443,12 +443,11 @@ export class UpgradeComponent {
     /* send billingAgreement to server */
     let serverParams = {
       AmazonBillingAgreementId: this.billingAgreementId,
-      plan: this.plansService.selectedPlan.id,
-      email: this.email
+      plan: this.plansService.selectedPlan.id
     };
 
     // call server at this point (using promises)
-    let url = '/api/v0/payment/amazon/billingAgreement';
+    let url = '/api/v0/account/upgrade/amazon';
     let body = serverParams;
     let options = new RequestOptions({});
     return this.http.post(url, body, options).toPromise()
