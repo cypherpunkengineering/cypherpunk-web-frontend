@@ -416,7 +416,7 @@ export class PricingComponent {
 
     /* send billingAgreement to server */
     let serverParams = {
-      amazonBillingAgreementId: this.billingAgreementId,
+      AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password

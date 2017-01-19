@@ -442,7 +442,7 @@ export class UpgradeComponent {
 
     /* send billingAgreement to server */
     let serverParams = {
-      billingAgreementId: this.billingAgreementId,
+      AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
       email: this.email
     };
