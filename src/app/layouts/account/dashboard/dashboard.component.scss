@@ -58,7 +58,7 @@
         max-height: 0;
         opacity: 0;
         &.show {
-          max-height: 770px;
+          max-height: 820px;
           opacity: 1;
         }
 
@@ -95,6 +95,8 @@
             padding: 10px;
             margin: 25px 0 0;
           }
+
+          .privacy { padding: 10px 0 0; font-size: small; }
         }
 
         .create-card {

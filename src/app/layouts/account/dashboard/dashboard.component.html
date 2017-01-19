@@ -90,6 +90,10 @@
               <option value="Add New Card">Add New Card</option>
             </select>
 
+            <div class="privacy">
+              In accordance with our Privacy Policy, We don't store any credit card information. Your data is secure on our payment gateway's servers (Stripe).
+            </div>
+
             <div class="button-container">
               <button class="btn blue" (click)="finalizeDefaultCard()" [disabled]="defaultCardId === defaultCard.id">Save Card</button>
             </div>

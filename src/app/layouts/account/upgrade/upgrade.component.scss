@@ -71,7 +71,7 @@
   .list-cards {
     .tabs {
       overflow: auto;
-      margin: 15px 0;
+      margin: 15px 0 0;
       font-size: 24px;
       color: #28434E;
       font-weight: 600;
@@ -85,6 +85,16 @@
       .active { background-color: #FF775A; }
       .left { float: left; padding-left: 20px; }
       .right { float: right; padding-right: 20px; text-align: right; }
+    }
+
+    .privacy { font-size: small; text-align: center; padding: 10px 0 0; }
+    .no-cards {
+      text-align: center;
+      font-weight: bold;
+      div {
+        padding: 20px 0 40px;
+        a { cursor: pointer; text-decoration: underline; }
+      }
     }
 
     .card {

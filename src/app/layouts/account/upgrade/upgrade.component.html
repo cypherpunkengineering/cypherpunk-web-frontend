@@ -68,6 +68,9 @@
 
         <!-- list all cards here -->
         <div>
+          <div class="privacy">
+            In accordance with our Privacy Policy, We don't store any credit card information. Your data is secure on our payment gateway's servers (Stripe).
+          </div>
           <div class="card" *ngFor="let card of cards; let i = index" (click)="setDefaultCard(card.id)" [ngClass]="{'hide': showCreateCard}">
             <div class="card-info" [ngClass]="{'active': defaultCardId === card.id}">
               <div class="logo">
@@ -83,6 +86,12 @@
                 {{ card.last4 }}<br>
                 {{ card.exp_month + '/' + card.exp_year }}
               </div>
+            </div>
+          </div>
+
+          <div class="no-cards" *ngIf="!cards.length && !showCreateCard" >
+            <div>
+              <a (click)="showCreateCard = true">Please add a card</a>
             </div>
           </div>
         </div>
