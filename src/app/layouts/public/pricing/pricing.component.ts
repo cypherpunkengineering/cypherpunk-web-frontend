@@ -414,16 +414,18 @@ export class PricingComponent {
     this.loading = true;
     this.amButtonDisabled = true;
 
+    console.log(this.billingAgreementId);
+
     /* send billingAgreement to server */
     let serverParams = {
-      billingAgreementId: this.billingAgreementId,
+      amazonBiillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
     };
 
     // call server at this point (using promises)
-    let url = '/api/v0/payment/amazon/billingAgreement';
+    let url = '/api/v0/account/purchase/amazon';
     let body = serverParams;
     let options = new RequestOptions({});
     // sets cookie

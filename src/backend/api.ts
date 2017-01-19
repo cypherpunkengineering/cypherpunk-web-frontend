@@ -33,33 +33,6 @@ export function subs(req, res) {
   }
 }
 
-export function amazonPurchase(req, res) {
-  if (DEV_MODE) {
-    let body = req.body;
-    let url = urlStart + 'api/v0/payment/amazon/billingAgreement';
-    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
-  }
-  else {
-    return res.json({
-      secret: '',
-      privacy: {
-        username: '',
-        password: ''
-      },
-      account: {
-        id: '1',
-        email: '',
-        type: '',
-        confirmed: false
-      },
-      subscription: {
-        renewal: '',
-        expiration: '0'
-      }
-    });
-  }
-}
-
 export function identify(req, res) {
   if (DEV_MODE) {
     let body = req.body;
