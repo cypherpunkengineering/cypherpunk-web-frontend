@@ -414,11 +414,9 @@ export class PricingComponent {
     this.loading = true;
     this.amButtonDisabled = true;
 
-    console.log(this.billingAgreementId);
-
     /* send billingAgreement to server */
     let serverParams = {
-      amazonBiillingAgreementId: this.billingAgreementId,
+      amazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
