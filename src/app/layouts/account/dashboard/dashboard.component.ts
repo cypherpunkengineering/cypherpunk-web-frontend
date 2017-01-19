@@ -1,24 +1,26 @@
 import { isBrowser } from 'angular2-universal';
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, RequestOptions, Response } from '@angular/http';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
-import 'rxjs/add/operator/toPromise';
 import country_list from '../../public/pricing/countries';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   user: any;
   upgrade: boolean = true;
   loading: boolean = true;
   showEmailModal: boolean = false;
   showPasswordModal: boolean = false;
   countries = country_list;
+  ppPDTToken: string = 'LmIFezNvuok97Nk07H7-stpgqy5TfFDwzqkj5Ye6uSqOPE7vEsttiCxPGcy';
+  showPPWarning: boolean = false;
 
   // payment details
   defaultCardId: string = '';
@@ -112,6 +114,28 @@ export class DashboardComponent {
         }
       });
     }
+  }
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((qParams) => {
+      console.log(qParams);
+      let tx = qParams['tx'];
+      if (!tx) { return; }
+      else { this.showPPWarning = true; }
+
+      if (isBrowser) {
+        let url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
+        let body = {
+          tx: tx,
+          at: this.ppPDTToken
+        };
+        this.http.post(url, body)
+        .map(res => res.json())
+        .subscribe((data: any) => {
+          console.log(data);
+        });
+      }
+    });
   }
 
   showPriceBoxes() {
