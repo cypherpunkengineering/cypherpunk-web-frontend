@@ -36,9 +36,9 @@
     "debug": "node --debug-brk dist/server/index.js",
     "scrape": "node ./scripts/scrape.js"
   },
-  "license": "MIT",
+  "license": "PROPRIETARY",
   "contributors": [
-    "Edward Kim <ed@slickage.com>"
+    "Edward Kim <ed@cypherpunk.com>"
   ],
   "dependencies": {
     "@angular/common": "~2.1.2",
