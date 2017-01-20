@@ -6,7 +6,7 @@ import { TosComponent } from './tos.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'tos', component: TosComponent }
+      { path: 'terms-of-service', component: TosComponent }
     ])
   ]
 })

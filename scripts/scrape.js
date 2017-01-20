@@ -17,7 +17,7 @@ const routes = [
   { url: baseRoute + 'network', dirPath: baseDir + 'network.html' },
   { url: baseRoute + 'privacy-policy', dirPath: baseDir + 'privacy-policy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
-  { url: baseRoute + 'tos', dirPath: baseDir + 'tos.html' },
+  { url: baseRoute + 'terms-of-service', dirPath: baseDir + 'terms-of-service.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
   { url: baseRoute + 'account', dirPath: baseDir + 'account/account.html' },
   { url: baseRoute + 'account/upgrade', dirPath: baseDir + 'account/upgrade.html' },
