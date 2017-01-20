@@ -484,6 +484,7 @@ export class PricingComponent {
     // set user session
     .then((res: Response) => {
       let resData = res.json() || {};
+      this.userId = resData.account.id;
       this.session.setUserData({
         account: { email: resData.account.email },
         secret: resData.secret
@@ -494,8 +495,8 @@ export class PricingComponent {
     .then(() => { this.alertService.success('You account was created!'); })
     .then(() => {
       let posId = {
-        email: this.email,
-        planId: this.plansService.selectedPlan.id
+        id: this.userId,
+        plan: this.plansService.selectedPlan.id
       };
       this.posData = JSON.stringify(posId);
     })
