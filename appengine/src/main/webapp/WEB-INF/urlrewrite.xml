@@ -163,8 +163,12 @@
 		<to last="true">/why-you-need-online-privacy-protection.html$1</to>
 	</rule>
 	<rule>
-		<from>^/features(.*)</from>
-		<to last="true">/features.html$1</to>
+		<from>^/online-privacy#online-freedom(.*)</from>
+		<to last="true">/online-privacy.html$1</to>
+	</rule>
+	<rule>
+		<from>^/online-privacy(.*)</from>
+		<to last="true">/online-privacy.html$1</to>
 	</rule>
 	<rule>
 		<from>^/network(.*)</from>

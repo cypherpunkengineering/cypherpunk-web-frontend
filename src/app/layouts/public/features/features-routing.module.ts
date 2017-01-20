@@ -6,7 +6,7 @@ import { FeaturesComponent } from './features.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'features', component: FeaturesComponent }
+      { path: 'online-privacy', component: FeaturesComponent }
     ])
   ]
 })
