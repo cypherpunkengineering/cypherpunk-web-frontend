@@ -120,12 +120,13 @@ export class DashboardComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((qParams) => {
       console.log(qParams);
       let tx = qParams['tx'];
-      if (!tx) { return; }
-      else { this.showPPWarning = true; }
+      let st = qParams['st'];
+      if (!tx && st === 'Completed') { return; }
 
       if (isBrowser) {
         let url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
         let body = {
+          cmd: '_notify-synch',
           tx: tx,
           at: this.ppPDTToken
         };
@@ -133,6 +134,8 @@ export class DashboardComponent implements OnInit {
         .map(res => res.json())
         .subscribe((data: any) => {
           console.log(data);
+
+          this.showPPWarning = true;
         });
       }
     });

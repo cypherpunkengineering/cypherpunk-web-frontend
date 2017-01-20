@@ -7,7 +7,7 @@
   </div>
 
   <div class="content" *ngIf="showPriceBoxes()">
-    <div class="pp-warning">
+    <div class="pp-warning" *ngIf="showPPWarning">
       Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at <a href="www.paypal.com" target="blank" rel="noopener noreferrer">www.paypal.com</a> to view details of this transaction.
     </div>
 
