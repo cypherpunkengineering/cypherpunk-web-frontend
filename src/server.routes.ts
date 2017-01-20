@@ -24,7 +24,7 @@ export const routes: string[] = [
   'why-you-need-online-privacy-protection',
   'features',
   'network',
-  'pp',
+  'privacy-policy',
   'aboutus',
   'tos',
   'blog',
