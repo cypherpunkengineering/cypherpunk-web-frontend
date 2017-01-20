@@ -118,26 +118,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((qParams) => {
-      console.log(qParams);
       let tx = qParams['tx'];
       let st = qParams['st'];
-      if (!tx && st === 'Completed') { return; }
-
-      if (isBrowser) {
-        let url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-        let body = {
-          cmd: '_notify-synch',
-          tx: tx,
-          at: this.ppPDTToken
-        };
-        this.http.post(url, body)
-        .map(res => res.json())
-        .subscribe((data: any) => {
-          console.log(data);
-
-          this.showPPWarning = true;
-        });
-      }
+      if (!tx || st !== 'Completed') { return; }
+      if (tx && st === 'Completed') { this.showPPWarning = true; }
     });
   }
 

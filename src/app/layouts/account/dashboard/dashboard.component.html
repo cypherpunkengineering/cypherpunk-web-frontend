@@ -8,13 +8,14 @@
 
   <div class="content" *ngIf="showPriceBoxes()">
     <div class="pp-warning" *ngIf="showPPWarning">
-      Thank you for your payment. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account at <a href="www.paypal.com" target="blank" rel="noopener noreferrer">www.paypal.com</a> to view details of this transaction.
+      Thank you for your payment. Your transaction has is being processed, and a receipt of your purchase wil be emailed to you. You may log into your account at <a href="www.paypal.com" target="blank" rel="noopener noreferrer">www.paypal.com</a> to view details of this transaction. Please visit our download page in the meantime: <a routerLink="/download">Download</a>
     </div>
 
     <div class="content-inner">
-      <h2 class="content-header">Upgrade Now!</h2>
+      <h2 class="content-header" *ngIf="!showPPWarning">Upgrade Now!</h2>
+      <h2 class="content-header" *ngIf="showPPWarning">Upgrading!</h2>
 
-      <app-price-boxes [upgrade]="upgrade"></app-price-boxes>
+      <app-price-boxes [upgrade]="upgrade" *ng-If="!showPPWarning"></app-price-boxes>
     </div>
   </div>
 
