@@ -355,13 +355,13 @@ export class UpgradeComponent {
     this.loading = true;
     this.ppButtonDisabled = true;
 
-    if (this.plansService.selectedPlan.id === 'monthly899') {
+    if (this.plansService.selectedPlan.id === 'monthly1295') {
       document.getElementById('paypalMonthly').click();
     }
-    else if (this.plansService.selectedPlan.id === 'annually5999') {
+    else if (this.plansService.selectedPlan.id === 'annually9995') {
       document.getElementById('paypalAnnual').click();
     }
-    else if (this.plansService.selectedPlan.id === 'semiannually4499') {
+    else if (this.plansService.selectedPlan.id === 'semiannually5995') {
       document.getElementById('paypalSemiannual').click();
     }
   }
@@ -489,13 +489,13 @@ export class UpgradeComponent {
     };
     this.posData = JSON.stringify(posId);
 
-    if (this.plansService.selectedPlan.id === 'monthly899') {
+    if (this.plansService.selectedPlan.id === 'monthly1295') {
       document.getElementById('bitpayMonthly').click();
     }
-    else if (this.plansService.selectedPlan.id === 'annually5999') {
+    else if (this.plansService.selectedPlan.id === 'annually9995') {
       document.getElementById('bitpayAnnual').click();
     }
-    else if (this.plansService.selectedPlan.id === 'semiannually4499') {
+    else if (this.plansService.selectedPlan.id === 'semiannually5995') {
       document.getElementById('bitpaySemiannual').click();
     }
   }

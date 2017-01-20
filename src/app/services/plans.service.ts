@@ -17,35 +17,35 @@ export class Plan {
 export class PlansService {
   plans: Plan[] = [
     {
-      id: 'monthly899',
-      price: 8.99,
+      id: 'monthly1295',
+      price: 12.95,
       bcPrice: undefined,
       period: '1 Month',
-      total: 8.99,
+      total: 12.95,
       bcTotal: undefined,
-      yearly: '$ 8.99 / monthly',
+      yearly: '$ 12.95 / monthly',
       bcYearly: '',
       viewable: true
     },
     {
-      id: 'annually5999',
-      price: 4.99,
+      id: 'annually9995',
+      price: 8.32,
       bcPrice: undefined,
       period: '12 Months',
-      total: 59.99,
+      total: 99.95,
       bcTotal: undefined,
-      yearly: '$ 59.99 / annually',
+      yearly: '$ 99.95 / annually',
       bcYearly: '',
       viewable: true
     },
     {
-      id: 'semiannually4499',
-      price: 7.49,
+      id: 'semiannually5995',
+      price: 9.99,
       bcPrice: undefined,
       period: '6 Months',
-      total: 44.99,
+      total: 59.95,
       bcTotal: undefined,
-      yearly: '$ 44.99 / semiannually',
+      yearly: '$ 59.95 / semiannually',
       bcYearly: '',
       viewable: true
     }
