@@ -27,6 +27,7 @@ export class UpgradeComponent {
   // user variables
   email: string;
   name: string;
+  userId: string;
 
   // Stripe variables
   cardNumber: string;
@@ -77,6 +78,7 @@ export class UpgradeComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.email = session.user.account.email;
+    this.userId = session.user.account.id;
 
     if (isBrowser) {
       let route = activatedRoute.snapshot;
@@ -482,8 +484,8 @@ export class UpgradeComponent {
     this.bpButtonDisabled = true;
 
     let posId = {
-      email: this.email,
-      planId: this.plansService.selectedPlan.id
+      id: this.userId,
+      plan: this.plansService.selectedPlan.id
     };
     this.posData = JSON.stringify(posId);
 
