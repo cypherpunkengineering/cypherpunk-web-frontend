@@ -331,8 +331,12 @@ export class UpgradeComponent {
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {
-      this.alertService.success('You have upgraded your account');
-      this.router.navigate(['/account']);
+      this.zone.run(() => {
+        this.loading = false;
+        this.alertService.success('You have upgraded your account');
+        this.router.navigate(['/account']);
+        this.ccButtonDisabled = false;
+      });
     })
     // handle errors
     .catch((error) => {

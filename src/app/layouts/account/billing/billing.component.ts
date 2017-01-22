@@ -1,5 +1,5 @@
 import { isBrowser } from 'angular2-universal';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
 
@@ -7,7 +7,7 @@ import { AuthGuard } from '../../../services/auth-guard.service';
   templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.css']
 })
-export class BillingComponent implements OnInit {
+export class BillingComponent {
 
   transactions = [
     {
@@ -58,22 +58,6 @@ export class BillingComponent implements OnInit {
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state);
     }
-  }
-
-  ngOnInit() {
-    this.activatedRoute.data.subscribe(
-      (data: any) => {
-        /*
-          Update local vars here
-        */
-
-        this.transactionsLastPage = 1;
-        this.transactionsCurrentPage = 1;
-        this.invoicesLastPage = 1;
-        this.invoicesCurrentPage = 1;
-      },
-      (error: any) => { console.log(error); }
-    );
   }
 
   previousTransactionsDisabled() {

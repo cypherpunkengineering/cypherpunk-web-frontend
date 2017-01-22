@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../../../components/shared/shared.module';
 import { BillingComponent } from './billing.component';
 import { BillingRoutingModule } from './billing-routing.module';
-import { BillingResolver } from '../../../resolvers/billing.resolver';
 
 @NgModule({
   imports: [
@@ -13,8 +12,6 @@ import { BillingResolver } from '../../../resolvers/billing.resolver';
   declarations: [
     BillingComponent
   ],
-  providers: [
-    BillingResolver
-  ]
+  providers: []
 })
 export class BillingModule { }

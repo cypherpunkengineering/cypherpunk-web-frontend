@@ -111,6 +111,8 @@ routes.forEach(route => {
   app.get(`/${route}/*`, ngApp);
 });
 
+app.get('/shutdown', function(req, res) { process.exit(0); });
+
 app.get('*', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   var pojo = { status: 404, message: 'No Content' };

@@ -36,7 +36,5 @@ cd appengine
 mvn install
 mvn appengine:update || true
 
-# kill server process
-pkill -f "node dist/server/index.js"
 # done
 exit 0

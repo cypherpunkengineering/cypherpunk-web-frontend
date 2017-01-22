@@ -112,4 +112,16 @@ return new Promise((resolve, reject) => {
     });
   });
 })
+// shutdown server
+.then(() => {
+  setTimeout(() => {
+    return new Promise((resolve, reject) => {
+      request('http://localhost:3000/shutdown', (error, response) => {
+        if (error) { return reject(error, response); }
+        console.log('Issued command to shutdown server');
+        return resolve();
+      });
+    });
+  }, 1000);
+})
 .catch((err) => { console.log(err); process.exit(1); });
