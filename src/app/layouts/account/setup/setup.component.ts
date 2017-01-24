@@ -215,7 +215,7 @@ export class SetupComponent implements OnInit {
     this.downloadButtonEnabled = true;
   }
 
-  downloadProfile(version: string) {
+  downloadProfile() {
     let profile;
     this.downloadButtonEnabled = false;
     profile = this.profile;
