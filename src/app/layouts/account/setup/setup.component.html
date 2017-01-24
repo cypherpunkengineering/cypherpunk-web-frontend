@@ -15,8 +15,7 @@
   <div class="vpn-select-container">
     <label for="vpnSelect">Choose a vpn client:</label>
     <select name="vpnSelect" id="vpn-select" [(ngModel)]="vpnSelect">
-      <option value="openvpn2.3">OpenVPN 2.3</option>
-      <option value="openvpn2.4">OpenVPN 2.4</option>
+      <option value="openvpn">OpenVPN 2.3/2.4</option>
       <option value="ipsec">IPSec VPN</option>
       <option value="ike">IKEv2 VPN</option>
       <option value="proxy">HTTP/SOCKS Proxy</option>
@@ -25,8 +24,8 @@
 
   <hr>
 
-  <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn2.3'}">
-    <div class="subheader">OpenVPN 2.3</div>
+  <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
+    <div class="subheader">OpenVPN 2.3/2.4</div>
 
     <div class="privacy">
       <strong>Username: </strong><br>
@@ -40,9 +39,9 @@
     <div class="location-select-container">
       <label for="locations">Please choose a location: </label>
       <br>
-      <select name="locations" id="ov-locations" [(ngModel)]="country23Select" (ngModelChange)="updateProfile('23')">
+      <select name="locations" id="ov-locations" [(ngModel)]="countrySelect" (ngModelChange)="updateProfile()">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
             {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
           </option>
         </optgroup>
@@ -50,54 +49,15 @@
     </div>
 
     <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile('23')" [disabled]="!download23ButtonEnabled || !country23Select">
+      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
         Download
       </button>
     </div>
 
-    <textarea class="profile" [(ngModel)]="profile23" readonly></textarea>
+    <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
 
     <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile('23')" [disabled]="!download23ButtonEnabled || !country23Select">
-        Download
-      </button>
-    </div>
-  </div>
-
-  <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn2.4'}">
-    <div class="subheader">OpenVPN 2.4</div>
-
-    <div class="privacy">
-      <strong>Username: </strong><br>
-      {{user.privacy.username}}
-      <br><br>
-      <strong>Password: </strong><br>
-      {{user.privacy.password}}
-      <br><br>
-    </div>
-
-    <div class="location-select-container">
-      <label for="locations">Please choose a location: </label>
-      <br>
-      <select name="locations" id="ov-locations" [(ngModel)]="country24Select" (ngModelChange)="updateProfile('24')">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>
-    </div>
-
-    <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile('24')" [disabled]="!download24ButtonEnabled || !country24Select">
-        Download
-      </button>
-    </div>
-
-    <textarea class="profile" [(ngModel)]="profile24" readonly></textarea>
-
-    <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile('24')" [disabled]="!download24ButtonEnabled || !country24Select">
+      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
         Download
       </button>
     </div>
@@ -116,7 +76,7 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ipsecSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
             {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
           </option>
         </optgroup>
@@ -139,7 +99,7 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ikeSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
             {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
           </option>
         </optgroup>
@@ -162,7 +122,7 @@
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
         <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [attr.selected]="country.default" [disabled]="freeAccount && country.level !== 'free'">
+          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
             {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
           </option>
         </optgroup>
