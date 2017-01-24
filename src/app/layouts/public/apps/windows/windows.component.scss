@@ -174,11 +174,13 @@
   position: relative;
   background-color: #163238;
 
+  &.padded { padding: 0 0 60px; }
+
   .features-inner {
     width: 100%;
     max-width: 1000px;
-    padding: 60px 0;
-    margin: auto;
+    padding: 60px 0 0;
+    margin: 0 auto 0;
   }
 
   .header { margin: 60px 0 50px; }
@@ -186,7 +188,6 @@
   .row {
     width: 100%;
     overflow: auto;
-    margin: 0 0 50px;
 
     .image {
       width: 39.6%;
@@ -210,6 +211,51 @@
       .text-header { font-size: 20px; }
       &.left { text-align: right; }
       &.right { text-align: left; }
+    }
+
+    a { color: #fc6146; cursor: pointer; }
+  }
+}
+
+.more {
+  width: 100%;
+  max-width: 1000px;
+  color: #000;
+  overflow: hidden;
+  transition: all 0.5s;
+  margin: 0 auto;
+  max-height: 0;
+  opacity: 0;
+
+  &.open {
+    margin: 60px auto 50px;
+    max-height: 340px;
+    opacity: 1;
+  }
+  &.open.double { max-height: 680px; }
+  &.open.triple { max-height: 900px; }
+
+  .cell {
+    float: left;
+    width: 25%;
+    text-align: center;
+    padding: 30px 0;
+
+    .cell-image {
+      width: 90%;
+      height: 180px;
+      background-color: #ccc;
+      margin: auto
+    }
+
+    .cell-header {
+      font-size: 26px;
+      color: #fc6146;
+    }
+
+    .cell-text {
+      color: #4a4a4d;
+      padding: 0 20px;
     }
   }
 }

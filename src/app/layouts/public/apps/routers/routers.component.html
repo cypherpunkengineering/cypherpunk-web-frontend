@@ -75,14 +75,44 @@
       </div>
 
       <div class="text right">
-        <div class="text-header gold">Easy server selection</div>
+        <div class="text-header gold">CypherPlay™</div>
 
         <p>
-          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds.
+          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds. Lorem Ipsum
         </p>
+
+        <a (click)="switch1 = !switch1">Learn More</a>
       </div>
     </div>
+  </div>
+</div>
 
+<div class="more" [ngClass]="{'open': switch1}">
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Play from anywhere</div>
+
+    <div class="cell-text">
+      Freedom to watch any streaming content online
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Automatic regional routing</div>
+
+    <div class="cell-text">
+      We route you through the necessary locations to access your geo-blocked content
+    </div>
+  </div>
+</div>
+
+<div class="features padded">
+  <div class="features-inner">
     <div class="row-divider"></div>
 
     <div class="row">
@@ -91,52 +121,31 @@
       </div>
 
       <div class="text left">
-        <div class="text-header gold">Different Modes for different reasons</div>
+        <div class="text-header gold">Privacy Protection</div>
 
         <p>
-          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes.
+          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes. Lorem Ipsum
         </p>
+
+        <a (click)="switch2 = !switch2">Learn More</a>
       </div>
 
       <div class="image desktop">
         <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="row-divider"></div>
-
-    <div class="row">
-      <div class="image">
-        <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text right">
-        <div class="text-header gold">Privacy Firewall</div>
-
-        <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
-        </p>
-      </div>
+<div class="more" [ngClass]="{'open': switch2}">
+  <div class="cell">
+    <div class="cell-image">
     </div>
 
-    <div class="row-divider"></div>
+    <div class="cell-header">Privacy Filter</div>
 
-    <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text left">
-        <div class="text-header gold">Per App Settings</div>
-
-        <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
-        </p>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
+    <div class="cell-text">
+      Block ads, trackers, and malware with our advanced filtering system. Malicious sites blocked at the server level to protect you.
     </div>
   </div>
 </div>
