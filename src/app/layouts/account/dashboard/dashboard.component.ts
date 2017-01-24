@@ -67,7 +67,9 @@ export class DashboardComponent implements OnInit {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
-      .then((data) => { this.loading = false; })
+      .then((data) => {
+        this.zone.run(() => { this.loading = false; });
+      })
       .catch(() => { /* keep error from showing up in console */ });
     }
 

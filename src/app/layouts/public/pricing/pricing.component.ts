@@ -270,12 +270,15 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData = error.json() || {};
+      let errorData;
+      try { errorData = error.json(); }
+      catch (err) { errorData = { message: 'Unexpected error' }; }
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
         this.modal.header = 'Error: ' + errorData.message;
+        this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -327,13 +330,15 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData = error.json() || {};
+      let errorData;
+      try { errorData = error.json(); }
+      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.ppButtonDisabled = false;
 
-        this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = errorData.message;
+        this.modal.header = 'Error: ' + errorData.message;
+        this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -447,12 +452,15 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData = error.json() || {};
+      let errorData;
+      try { errorData = error.json(); }
+      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
 
         this.modal.header = 'Error: ' + errorData.message;
+        this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -513,13 +521,15 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData = error.json() || {};
+      let errorData;
+      try { errorData = error.json(); }
+      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.bpButtonDisabled = false;
 
-        this.modal.header = 'Error: Could not process your payment';
-        this.modal.body = errorData.message;
+        this.modal.header = 'Error: ' + errorData.message;
+        this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
       });
