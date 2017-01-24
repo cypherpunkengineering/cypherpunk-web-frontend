@@ -63,7 +63,7 @@
     overflow: auto;
   }
 
-  .header { margin-bottom: 50px; }
+  .header { margin-bottom: 15px; }
 
   .button-container {
     text-align: center;
@@ -79,12 +79,12 @@
 
   .row {
     width: 100%;
-    max-width: 450px;
+    max-width: 510px;
     overflow: auto;
     margin: auto;
 
     .cell {
-      width: 200px;
+      width: 220px;
       float: left;
       margin-right: 50px;
       &:last-child { margin-right: 0; }
@@ -92,7 +92,7 @@
       .cell-image {
         position: relative;
         margin: auto;
-        height: 115px;
+        height: 60px;
         cursor: pointer;
         img {
           position: absolute;
@@ -100,14 +100,19 @@
           left: 0;
           right: 0;
           margin: auto;
-          &.d { width: 148px; }
-          &.w { width: 41px; }
-          &.a { width: 37px; }
-          &.l { width: 43px; }
+          &.d { width: 206px; }
         }
         .logo {
           position: absolute;
           top: 20px;
+        }
+        .firefox {
+          background-color: #57bd35;
+          width: 100%;
+          height: 55px;
+          text-align: center;
+          padding: 17px 10px;
+          color: #fff;
         }
       }
     }
@@ -149,7 +154,7 @@
   .btn {
     margin: 40px 0 0;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     max-width: 450px;
   }
 }
@@ -315,6 +320,12 @@
     }
   }
   .desktop-inline { display: none; }
+}
+
+@media (max-width: 525px) {
+  .subnav .row .cell { width: 100%; }
+  .subnav .row .cell:last-child { margin: 60px auto 0; }
+  .subnav .row .cell .cell-image .firefox { width: 225px; margin: auto; }
 }
 
 @media (max-width: 400px) {
