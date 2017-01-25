@@ -20,9 +20,12 @@ export class PricingComponent {
   ppButtonDisabled: boolean = false;
   amButtonDisabled: boolean = false;
   bpButtonDisabled: boolean = false;
+  disableAccountInfo: boolean = false;
   loading: boolean = false;
   modal = { show: false, header: '', body: '', link: false };
   countries = country_list;
+  errHeader: string = 'Error processing your payment';
+  errBody: string = 'Please check your payment information and try again.';
 
   // user variables
   email: string;
@@ -200,6 +203,7 @@ export class PricingComponent {
     // show loading overlay
     this.loading = true;
     this.ccButtonDisabled = true;
+    this.disableAccountInfo = true;
 
     let month: number;
     let year: number;
@@ -225,6 +229,7 @@ export class PricingComponent {
       if (response.error) {
         this.zone.run(() => {
           this.loading = false;
+          this.disableAccountInfo = false;
           this.alertService.error('Could not process payment: ' + response.error.message);
         });
       }
@@ -272,13 +277,13 @@ export class PricingComponent {
     .catch((error) => {
       let errorData;
       try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Unexpected error' }; }
+      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
-        this.modal.body = '';
+        this.modal.header = this.errHeader;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -290,6 +295,7 @@ export class PricingComponent {
   payWithPaypal() {
     this.loading = true;
     this.ppButtonDisabled = true;
+    this.disableAccountInfo = true;
 
     let serverParams = {
       email: this.email,
@@ -332,13 +338,13 @@ export class PricingComponent {
     .catch((error) => {
       let errorData;
       try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
+      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.ppButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
-        this.modal.body = '';
+        this.modal.header = this.errHeader;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -420,6 +426,7 @@ export class PricingComponent {
   amazonButton() {
     this.loading = true;
     this.amButtonDisabled = true;
+    this.disableAccountInfo = true;
 
     /* send billingAgreement to server */
     let serverParams = {
@@ -454,13 +461,13 @@ export class PricingComponent {
     .catch((error) => {
       let errorData;
       try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
+      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
-        this.modal.body = '';
+        this.modal.header = this.errHeader;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -477,6 +484,7 @@ export class PricingComponent {
   payWithBitpay() {
     this.loading = true;
     this.bpButtonDisabled = true;
+    this.disableAccountInfo = true;
 
     let serverParams = {
       email: this.email,
@@ -523,13 +531,13 @@ export class PricingComponent {
     .catch((error) => {
       let errorData;
       try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
+      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.bpButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
-        this.modal.body = '';
+        this.modal.header = this.errHeader;
+        this.modal.body = errorData.message;
         this.modal.link = false;
         this.modal.show = true;
       });
