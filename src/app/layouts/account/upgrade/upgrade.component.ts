@@ -64,7 +64,7 @@ export class UpgradeComponent {
   zipCodeTouched: boolean = false;
 
   // payment options (cc, a, pp, bc)
-  selectedOption = 'cc';
+  selectedOption: string = 'cc';
 
   constructor(
     private http: Http,
