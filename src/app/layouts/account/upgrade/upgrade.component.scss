@@ -1,72 +1,105 @@
-.masthead {
-  position: relative;
-  height: 400px;
-  margin: 0 0 150px 0;
-  border-bottom: 10px solid #ccc;
-
-  .masthead-header { margin: 0px auto 30px; }
-
-  .masthead-image {
-    width: 100%;
-    height: 403px;
-    position: relative;
-    background-image: url('/assets/payment/pay-header.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
 .page {
   width: 100%;
   max-width: 1000px;
   padding: 20px 15px 35px;
   margin: auto;
-  .page-divider {
-    height: 1px;
-    width: 100%;
-    border: 1px #87CCD3 solid;
-    margin: 5px 0 30px;
-    &.bottom { margin: 45px 0 50px;}
+  position: relative;
+
+  &:after {
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #fff;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
+  }
+}
+
+.page-header {
+  text-align: center;
+
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 30px auto 30px;
+    color: #4a991c;
+  }
+
+  .text {
+    font-size: 21px;
+    line-height: 1.57;
+    color: #7f7979;
+    margin: auto;
+    .highlight { color: #ff7857; }
+  }
+}
+
+.page-divider {
+  height: 3px;
+  width: 90%;
+  background-color: #f0ecec;
+  margin: 50px auto;
+}
+
+.page-number {
+  text-align: center;
+  margin: 0 0 50px;
+
+  .number {
+    display: inline-block;
+    font-size: 30px;
+    background-color: #4a991c;
+    border-radius: 50px;
+    margin: 0 10px 0 0;
+    color: #fff;
+    width: 36px;
+  }
+
+  .text {
+    font-size: 30px;
+    color: #163238;
+    display: inline-block;
   }
 }
 
 .payment-selection {
-  width: 100%;
-  max-width: 450px;
-  margin: 40px auto 20px;
-  padding: 0 0 30px;
-  text-align: center;
-  border-bottom: 1px solid #87CCD3;
+  width: 90%;
+  margin: auto;
 
-  .payment-bg {
+  .payment-options {
+    text-align: center;
+
     .type-container {
       display: inline-block;
-      width: 100px;
-      color: #666;
       cursor: pointer;
-      margin: 0 10px 0 0;
-      opacity: 0.5;
-      transition: all 0.5s;
-      &:last-child { margin-right: 0; }
-      &.active { color: #2A4150; opacity: 1; }
+      margin: 0 40px 0 0;
+      &:last-child { margin: 0; }
+      img { display: none; margin: auto; }
+      img.show { display: block; }
     }
-    .type-title {
-      font-size: 18px;
-      font-weight: 500;
-      &.mobile { display: none; }
-    }
-    .icon-container {
-      font-size: 32px;
-      margin-top: 15px;
+    .text {
+      text-align: center;
+      input, label { cursor: pointer; }
+      label { color: #163238; vertical-align: middle; }
     }
   }
 }
 
 .payment-info {
-  width: 100%;
-  max-width: 450px;
-  min-height: 300px;
-  margin: 10px auto 0;
+  width: 90%;
+  border: 2px solid #f0ecec;
+  border-radius: 5px;
+  margin: 50px auto 70px;
+  padding: 30px 40px 40px;
+
+  .amazon-pay { text-align: center; }
+  .upgrade { padding: 20px 0; }
 
   .list-cards {
     .tabs {
@@ -87,7 +120,7 @@
       .right { float: right; padding-right: 20px; text-align: right; }
     }
 
-    .privacy { font-size: small; text-align: center; padding: 10px 0 0; }
+    .privacy { font-size: small; text-align: center; padding: 20px 0 10px; }
     .no-cards {
       text-align: center;
       font-weight: bold;
@@ -118,39 +151,12 @@
   }
 
   .create-card {
-    padding: 0 10px;
     overflow: hidden;
     transition: all 0.5s;
     max-height: 0;
     opacity: 0;
-    &.open {
-      max-height: 660px;
-      opacity: 1;
-    }
-    .half {
-      display: inline-block;
-      width: 48%;
-      &:last-child { float: right; }
-      .btn { width: 100%; }
-    }
-    .info p { margin: 10px 0 0; }
-    .info:first-child p { margin: 20px 0 0; }
+    &.open { max-height: 660px; opacity: 1; }
     .info:last-child p { margin: 10px 0 20px; }
-  }
-
-  .separator {
-    margin: 15px 0;
-    font-size: 28px;
-    color: #28434E;
-    font-weight: 600;
-    padding: 0 0 0 5px;
-  }
-
-  .line {
-    width: 25px;
-    height: 3px;
-    background-color: #87CBD4;
-    margin: 0 0 0 5px;
   }
 
   .account {
@@ -160,14 +166,15 @@
     padding: 0 5px 0;
     font-size: 24px;
     text-align: center;
-    p { margin: 10px 0; }
+    p { margin: 10px 0 20px; }
   }
 
   .info {
     width: 100%;
     margin: auto;
     overflow: auto;
-    padding: 0 5px 0;
+
+    p { margin: 10px 0; }
 
     p.half {
       width: 50%;
@@ -175,69 +182,78 @@
       padding-right: 5px;
       & input { width: 100%; }
       &:last-child { padding: 0 0 0 5px; }
+      img { margin: 0 0 0 15px; }
+      #cccvc { width: 82%; display: inline; }
     }
-  }
-
-  label { font-size: 18px; color: #61BBC3; }
-  input, select {
-    display: table-cell;
-    background-color: #fff;
-    width: 100%;
-    height: 50px;
-    border-radius: 4px;
-    margin-top: 5px;
-    font-size: 18px;
-    padding: 10px;
-    color: #61BBC3;
-    border: 2px solid #87CBD4;
-    &.error {
-      border-color: #a94442;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #ce8483;
-    }
-    &.success {
-      border-color: #3c763d;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #67b168;
-    }
-    &::-webkit-input-placeholder,
-    &::-moz-placeholder,
-    &:-ms-input-placeholder,
-    &:-moz-placeholder { color: #61BBC3; }
   }
 
   .total {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.78;
-    color: #000;
-    margin: 15px 0 25px;
-    .total-price {
-      color: #1986BE;
-      margin-left: 25px;
+    font-size: 21px;
+    color: #163238;
+    overflow: auto;
+    border: dashed 2px #67b23f;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 20px 40px;
+
+    .price {
+      float: left;
+      color: #163238;
+      img { width: 33px; margin: 0 10px -5px 0; }
+      .total-price { color: #67b23f; }
+      .billing-rate {
+        margin: 10px 0 0;
+        font-size: 14px;
+        color: #7f7979;
+        text-transform: capitalize;
+      }
     }
-    img { padding: 0 10px 0; margin: 0 0 -8px; }
-  }
 
-  .total-line {
-    width: 25px;
-    height: 2px;
-    margin: 0 auto 25px;
-    background-color: #61BBC4;
+    .pay {
+      float: right;
+      text-align: center;
+      .btn { width: 240px; margin: 0; }
+    }
   }
-
-  .pay { text-align: center; }
-  .stripe-pay {
-    text-align: center;
-    &.hide { display: none; }
-    .btn { margin: 10px auto 10px; }
-  }
-
-  #AmazonPayButton { margin: 40px 0 25px; }
 }
 
-.upgrade {
-  padding: 20px;
+.features {
+  width: 90%;
+  margin: 0 auto 80px;
   text-align: center;
+
+  .feature {
+    text-align: center;
+    display: inline-table;
+    width: 205px;
+    margin: 0 10px 30px 0;
+  }
+}
+
+.countries {
+  width: 100%;
+  background-color: #0d1e26;
+  overflow: auto;
+  padding: 0 0 80px;
+
+  .inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .countries-header {
+    font-size: 30px;
+    color: #8dfffc;
+    margin: 60px 0 40px 10px;
+  }
+
+  .half {
+    width: 50%;
+    float: left;
+    img.flags { width: 100%; }
+    img.sitting { height: 100%; }
+  }
 }
 
 .btn {
@@ -247,24 +263,58 @@
   font-size: 24px;
 }
 
+#AmazonPayButton { margin: 40px 0 25px; }
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
 #consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
 
-@media (max-width: 1060px) {
-  .masthead .masthead-header { padding: 0 10px; }
-  .page { padding: 25px 10px 0; }
+label { font-size: 18px; color: #7f7979; }
+input[type="text"], input[type="email"], input[type="password"], select {
+  background-color: #fff;
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 10px;
+  margin: 5px 0 0;
+  color: #7f7979;
+  border: 2px solid #e0dede;
+  &.error {
+    border-color: #a94442;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #ce8483;
+  }
+  &.success {
+    border-color: #3c763d;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #67b168;
+  }
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &:-moz-placeholder { color: #7f7979; }
 }
 
-@media (max-width: 399px) {
-  .payment-selection .payment-bg .type-title.desktop { display: none; }
-  .payment-selection .payment-bg .type-title.mobile { display: block; }
+@media (max-width: 1000px) {
+  .page { padding: 25px 10px 0; }
+  .countries .half { width: 100%; }
+}
+
+@media (max-width: 700px) {
+  .payment-info .total {
+    padding: 20px 20px;
+
+    .price { width: 100%; text-align: center; }
+    .pay { width: 100%; margin: 25px 0 0; .btn { width: 100%; } }
+  }
 }
 
 @media (max-width: 375px) {
+  .payment-info { padding: 10px 10px; }
+  .payment-info .info p.half { width: 100%; }
+  .payment-info .info p.half #cccvc { width: 72%; }
   .payment-info .list-cards .tabs { font-size: 20px; }
-  .payment-info .account { font-size: 20px; }
-  .payment-info .account label { display: none; }
   .payment-info .list-cards .card .logo { width: 100%; }
   .payment-info .list-cards .card .text { width: 100%; }
-  .btn { width: 300px; }
+  .payment-info .account { font-size: 20px; }
+  .payment-info .account label { display: none; }
+  .payment-selection .payment-options .type-container { width: 100%; margin: 0 0 25px; }
+  .btn { width: 100%; }
 }

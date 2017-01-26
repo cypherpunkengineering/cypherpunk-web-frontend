@@ -1,47 +1,75 @@
-<div class="masthead">
-  <app-acc-nav></app-acc-nav>
-
-  <h1 class="masthead-header header white">What kind of Cypherpunk are you?</h1>
-  <div class="masthead-image"></div>
-</div>
-
 <div class="page">
+
+  <div class="page-header">
+    <div class="title">Choose your Cypherpunk Privacy plan</div>
+
+    <div class="text">
+      Experience a complete <span class="highlight">Privacy Suite</span> for all your devices.
+    </div>
+
+    <div class="text">
+      <span class="highlight">100% Money-Back Guarantee</span> in your first 30 days of service.
+    </div>
+  </div>
 
   <div class="page-divider"></div>
 
-  <app-price-boxes [btc]="showBTC"></app-price-boxes>
+  <div class="select-plan">
+    <div class="page-number">
+      <div class="number">1</div>
+      <div class="text">Select a plan that works for you</div>
+    </div>
 
-  <div class="page-divider bottom"></div>
+    <app-price-boxes [btc]="showBTC"></app-price-boxes>
+  </div>
+
+  <div class="page-divider"></div>
 
   <div class="payment-selection">
-    <div class="payment-bg">
+    <div class="page-number">
+      <div class="number">2</div>
+      <div class="text">Select a payment option</div>
+    </div>
+
+    <div class="payment-options">
       <div class="type-container" (click)="selectOption('cc')" [ngClass]="{'active': selectedOption === 'cc'}">
-        <div class="icon-container">
-          <img src="/assets/payment/credit-card.png">
+        <img [ngClass]="{'show': selectedOption === 'cc'}" src="/assets/payment/credit-card-selected.png">
+        <img [ngClass]="{'show': selectedOption !== 'cc'}" src="/assets/payment/credit-card.png">
+
+        <div class="text">
+          <input id="cc" type="radio" name="paymentOptions" [checked]="selectedOption === 'cc'" [value]="cc">
+          <label for="cc">Credit Card</label>
         </div>
-        <div class="type-title desktop">Credit Card</div>
-        <div class="type-title mobile">CC</div>
       </div>
 
       <div class="type-container" (click)="selectOption('a')" [ngClass]="{'active': selectedOption === 'a'}">
-        <div class="icon-container">
-          <img src="/assets/payment/amazon.png">
+        <img [ngClass]="{'show': selectedOption === 'a'}" src="/assets/payment/amazon-selected.png">
+        <img [ngClass]="{'show': selectedOption !== 'a'}" src="/assets/payment/amazon.png">
+
+        <div class="text">
+          <input id="a" type="radio" name="paymentOptions" [checked]="selectedOption === 'a'" [value]="a">
+          <label for="a">Amazon</label>
         </div>
-        <div class="type-title">Amazon</div>
       </div>
 
       <div class="type-container" (click)="selectOption('pp')" [ngClass]="{'active': selectedOption === 'pp'}">
-        <div class="icon-container">
-          <img src="/assets/payment/paypal.png">
+        <img [ngClass]="{'show': selectedOption === 'pp'}" src="/assets/payment/paypal-selected.png">
+        <img [ngClass]="{'show': selectedOption !== 'pp'}" src="/assets/payment/paypal.png">
+
+        <div class="text">
+          <input id="pp" type="radio" name="paymentOptions" [checked]="selectedOption === 'pp'" [value]="pp">
+          <label for="pp">Paypal</label>
         </div>
-        <div class="type-title">PayPal</div>
       </div>
 
       <div class="type-container" (click)="selectOption('bc')" [ngClass]="{'active': selectedOption === 'bc'}">
-        <div class="icon-container">
-          <img src="/assets/payment/bitcoin.png">
+        <img [ngClass]="{'show': selectedOption === 'bc'}" src="/assets/payment/bitcoin-selected.png">
+        <img [ngClass]="{'show': selectedOption !== 'bc'}" src="/assets/payment/bitcoin.png">
+
+        <div class="text">
+          <input id="bc" type="radio" name="paymentOptions" [checked]="selectedOption === 'bc'" [value]="bc">
+          <label for="bc">Bitcoin</label>
         </div>
-        <div class="type-title">Bitcoin</div>
       </div>
     </div>
   </div>
@@ -100,8 +128,7 @@
         <div class="create-card" [ngClass]="{'open': showCreateCard }">
           <div class="info">
             <p>
-              <label>Name</label><br>
-              <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched, 'success': validCCName && ccNameTouched}">
+              <input type="text" placeholder="Name" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched, 'success': validCCName && ccNameTouched}">
             </p>
           </div>
 
@@ -119,8 +146,9 @@
             </p>
 
             <p class="half">
-              <label>CVV/CSC Code</label><br>
+              <label>Security Code ( 3 on back, Amex: 4 on front )</label><br>
               <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched, 'success': validCCcvc && ccCVCTouched}" maxlength="4">
+              <img src="/assets/payment/cvc-icon.png" alt="">
             </p>
           </div>
 
@@ -145,16 +173,19 @@
       </div>
 
       <div class="total">
-        <img src="/assets/payment/total.png" alt="Total">
-        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
-      </div>
+        <div class="price">
+          <img src="/assets/payment/total.png" alt="Total">
+          Order Total: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Payment Billed {{ plansService.selectedPlan.rate }}
+          </div>
+        </div>
 
-      <div class="total-line"></div>
-
-      <div class="stripe-pay">
-        <button class="btn blue" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
-          Upgrade Now
-        </button>
+        <div class="pay">
+          <button class="btn blue" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
+            Upgrade Now
+          </button>
+        </div>
       </div>
     </div>
 
@@ -165,14 +196,7 @@
         </p>
       </div>
 
-      <div class="total">
-        <img src="/assets/payment/total.png" alt="Total">
-        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
-      </div>
-
-      <div class="total-line"></div>
-
-      <div class="pay">
+      <div class="amazon-pay">
         <div id="AmazonPayButton"></div>
 
         <div id="walletWidgetDiv"></div>
@@ -180,10 +204,19 @@
         <div id="consentWidgetDiv"></div>
       </div>
 
-      <div class="pay">
-        <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
-          Upgrade Now
-        </button>
+      <div class="total">
+        <div class="price">
+          <img src="/assets/payment/total.png" alt="Total">
+          Order Total: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Payment Billed {{ plansService.selectedPlan.rate }}
+          </div>
+        </div>
+        <div class="pay">
+          <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="amButtonDisabled">
+            Upgrade Now
+          </button>
+        </div>
       </div>
     </div>
 
@@ -195,16 +228,18 @@
       </div>
 
       <div class="total">
-        <img src="/assets/payment/total.png" alt="Total">
-        TOTAL: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
-      </div>
-
-      <div class="total-line"></div>
-
-      <div class="pay">
-        <button class="btn blue" (click)="payWithPaypal()" [disabled]="ppButtonDisabled">
-          Upgrade Now
-        </button>
+        <div class="price">
+          <img src="/assets/payment/total.png" alt="Total">
+          Order Total: <span class="total-price">{{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Payment Billed {{ plansService.selectedPlan.rate }}
+          </div>
+        </div>
+        <div class="pay">
+          <button class="btn blue" (click)="payWithPaypal()" [disabled]="ppButtonDisabled">
+            Upgrade Now
+          </button>
+        </div>
       </div>
 
       <form ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" [style.display]="'none'">
@@ -249,19 +284,21 @@
       </div>
 
       <div class="total">
-        <img src="/assets/payment/total.png" alt="Total">
-        TOTAL:
-        <span class="total-price">
-          {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
-        </span>
-      </div>
-
-      <div class="total-line"></div>
-
-      <div class="pay">
-        <button class="btn blue" (click)="payWithBitpay()" [disabled]="bpButtonDisabled">
-          Upgrade Now
-        </button>
+        <div class="price">
+          <img src="/assets/payment/total.png" alt="Total">
+          Order Total:
+          <span class="total-price">
+            {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
+          </span>
+          <div class="billing-rate">
+            Payment Billed {{ plansService.selectedPlan.rate }}
+          </div>
+        </div>
+        <div class="pay">
+          <button class="btn blue" (click)="payWithBitpay()" [disabled]="bpButtonDisabled">
+            Upgrade Now
+          </button>
+        </div>
       </div>
 
       <!-- Monthly -->
@@ -288,10 +325,138 @@
         <input id="bitpaySemiAnnual" type="image" src="https://bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
       </form>
     </div>
+
+    <div class="agree">
+      By ordering you agree with our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    </div>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <div class="page-number">
+    <div class="text">Cypherpunk Privacy Features</div>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <img src="/assets/payment/features1.png" alt="">
+      <div class="text">
+        24/7 Instant Support Live Chat
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features2.png" alt="">
+      <div class="text">
+        Ultra Fast Servers in 20+ countries
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features3.png" alt="">
+      <div class="text">
+        Friendly Apps
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features4.png" alt="">
+      <div class="text">
+        Official Support
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features5.png" alt="">
+      <div class="text">
+        Strong Encryption Profiles
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features6.png" alt="">
+      <div class="text">
+        Max Speed & Unlimited Bandwidth
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features7.png" alt="">
+      <div class="text">
+        Automatically Secure Public WiFi
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features8.png" alt="">
+      <div class="text">
+        30 Days Risk Free Refund Policy
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features9.png" alt="">
+      <div class="text">
+        5 Simultaneous Connections
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features10.png" alt="">
+      <div class="text">
+        Smart Play For Video Streaming
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features11.png" alt="">
+      <div class="text">
+        No Logging Policy
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features12.png" alt="">
+      <div class="text">
+        Supports P2P
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features13.png" alt="">
+      <div class="text">
+        OpenVPN, IPsec, IKEv2 VPN Support
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features14.png" alt="">
+      <div class="text">
+        HTTP, HTTPS, SOCKS5 Proxy Support
+      </div>
+    </div>
+
+    <div class="feature">
+      <img src="/assets/payment/features15.png" alt="">
+      <div class="text">
+        Block Ads, Trackers, and Malware
+      </div>
+    </div>
   </div>
 </div>
 
-<app-footer></app-footer>
+<div class="countries">
+  <div class="inner">
+    <div class="half">
+      <div class="countries-header">Our Countries are: </div>
+      <img class="flags" src="/assets/payment/flags.png" alt="">
+    </div>
+
+    <div class="half">
+    </div>
+  </div>
+</div>
+
 
 <div class="modal" [ngClass]="{'open': modal.show}">
   <div class="background" (click)="modal.show = false" [ngClass]="{'open': modal.show}"></div>
