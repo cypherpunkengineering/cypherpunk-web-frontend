@@ -1,57 +1,83 @@
 .price-boxes {
-  padding: 5px 0 25px;
   text-align: center;
 
   .price-box {
     display: inline-block;
     width: 250px;
-    height: 170px;
-    margin-right: 25px;
+    margin: 0 50px 0 0;
     cursor: pointer;
-    &:last-child { margin-right: 0; }
+    color: #1987bd;
+    &:last-child { margin: 0; }
     &.active {
-      .period { color: #FF775A; }
+      color: #4a991c;
       .box {
-        border-color: #FF775A;
-        .best-value { background-color: #FF775A; }
-        .price-area .price-time { color: #FF775A; }
-        .yearly { color: #FF775A; }
+        border-color: #4a991c;
+        .separator { background-color: #4a991c; }
+        .savings .saves { border-color: #4a991c; }
+        .select .btn { background-color: #4a991c; }
       }
     }
 
-    .period {
-      margin: 15px 0;
-      font-size: 22px;
-      font-weight: 500;
-      color: #284451;
+    .best-value {
+      width: 225px;
+      margin: auto;
+      padding: 10px;
+      color: #fff;
+      font-size: 21px;
+      background-color: #ff7857;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
     }
 
     .box {
       position: relative;
-      border: solid 2px #1887BE;
+      border: solid 2px #1987bd;
+      border-radius: 5px;
       padding: 10px 0 20px;
       width: 250px;
 
-      .best-value {
-        position: absolute;
-        bottom: -33px;
-        right: -2px;
-        width: 80px;
-        height: 33px;
-        padding-top: 8px;
-        color: #fff;
-        font-size: 14px;
-        background-color: #1887BE;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
+      &.buff { border-width: 5px; }
+
+      .period {
+        margin: 10px 0;
+        font-size: 23px;
+        font-weight: 500;
       }
 
       .price-area {
-        .price { color: #294351; font-size: 40px; font-weight: bold; }
-        .price-time { color: #1A84BD; }
+        .price { font-size: 50px; font-weight: bold; }
+        .price-time { font-size: 23px; }
       }
 
-      .yearly { color: #1A84BD; }
+      .separator {
+        width: 90%;
+        height: 2px;
+        margin: 20px auto 15px;
+        background-color: #1987bd;
+        opacity: 0.5;
+      }
+
+      .savings {
+        height: 30px;
+        margin: 20px auto 30px;
+        .saves {
+          font-size: 16px;
+          border: 2px dashed #1987bd;
+          border-radius: 10px;
+          padding: 10px;
+          margin: auto;
+          width: 100px;
+        }
+      }
+
+      .select .btn {
+        padding: 10px;
+        font-size: 18px;
+        background-color: #1987bd;
+        border-radius: 30px;
+        width: 130px;
+      }
+
     }
   }
 }

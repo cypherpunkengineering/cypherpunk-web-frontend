@@ -1,65 +1,102 @@
 <div class="price-boxes">
 
   <div class="price-box" (click)="selectPlan(plans[0])" [ngClass]="{ 'active': selectedPlan.id === plans[0].id }">
-    <div class="period">{{plans[0].period}}</div>
 
     <div class="box">
+      <div class="period">{{plans[0].period}}</div>
+
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price">₿ ~{{plans[0].bcPrice}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">₿ ~</span>
+          <span class="price">{{plans[0].bcPrice}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[0].bcYearly"></div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price">$ {{plans[0].price}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">$ </span>
+          <span class="price">{{plans[0].price}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[0].yearly"></div>
+      </div>
+
+      <div class="savings"></div>
+
+      <div class="select">
+        <button class="btn">Select</button>
       </div>
     </div>
   </div>
 
   <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': selectedPlan.id === plans[1].id }">
-    <div class="period">{{plans[1].period}}</div>
 
-    <div class="box">
-      <div class="best-value">Best Value!</div>
+    <div class="best-value">Best Value!</div>
+    <div class="box buff">
+      <div class="period">{{plans[1].period}}</div>
+
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price">₿ ~{{plans[1].bcPrice}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">₿ ~</span>
+          <span class="price">{{plans[1].bcPrice}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[1].bcYearly"></div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price">$ {{plans[1].price}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">$ </span>
+          <span class="price">{{plans[1].price}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[1].yearly"></div>
+      </div>
+
+      <div class="savings">
+        <div class="saves">Save 36%</div>
+      </div>
+
+      <div class="select">
+        <button class="btn">Select</button>
       </div>
     </div>
   </div>
 
   <div class="price-box" (click)="selectPlan(plans[2])" [ngClass]="{ 'active': selectedPlan.id === plans[2].id }">
-    <div class="period">{{plans[2].period}}</div>
 
     <div class="box">
+      <div class="period">{{plans[2].period}}</div>
+
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price">₿ ~{{plans[2].bcPrice}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">₿ ~</span>
+          <span class="price">{{plans[2].bcPrice}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[2].bcYearly"></div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price">$ {{plans[2].price}}</span>
-          <span class="price-time"> / month</span>
+          <span class="price-time">$ </span>
+          <span class="price">{{plans[2].price}}</span>
+          <span class="price-time"> / mo</span>
         </div>
+        <div class="separator"></div>
         <div class="yearly" [innerHTML]="plans[2].yearly"></div>
+      </div>
+
+      <div class="savings">
+        <div class="saves">Save 33%</div>
+      </div>
+
+      <div class="select">
+        <button class="btn">Select</button>
       </div>
     </div>
   </div>

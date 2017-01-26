@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { isBrowser } from 'angular2-universal';
+import { Component, Input } from '@angular/core';
 import { PlansService } from '../../services/plans.service';
 
 @Component({
@@ -11,13 +13,40 @@ export class PriceBoxesComponent {
   @Input() upgrade: boolean;
   @Input() btc: boolean;
 
-  // payment plans
+  bpRate: number;
   plans = this.plansService.plans;
   selectedPlan = this.plansService.selectedPlan;
 
   constructor(
-    private plansService: PlansService,
-    private router: Router) { }
+    private http: Http,
+    private router: Router,
+    private plansService: PlansService
+  ) {
+    // get rates for bitpay
+    if (isBrowser) {
+      let url = 'https://bitpay.com/api/rates/usd';
+      http.get(url)
+      .map(res => res.json())
+      .subscribe((data: any) => {
+        if (data.rate) {this.bpRate = data.rate; }
+        this.plans[0].bcPrice = this.bpConvert(this.plans[0].price);
+        this.plans[1].bcPrice = this.bpConvert(this.plans[1].price);
+        this.plans[2].bcPrice = this.bpConvert(this.plans[2].price);
+        this.plans[0].bcTotal = this.bpConvert(this.plans[0].total);
+        this.plans[1].bcTotal = this.bpConvert(this.plans[1].total);
+        this.plans[2].bcTotal = this.bpConvert(this.plans[2].total);
+        this.plans[0].bcYearly = `Billed ₿ ~${this.plans[0].bcTotal} every month`;
+        this.plans[1].bcYearly = `Billed ₿ ~${this.plans[1].bcTotal} every 12 months`;
+        this.plans[2].bcYearly = `Billed ₿ ~${this.plans[2].bcTotal} every 6 months`;
+      });
+    }
+
+  }
+
+  bpConvert(usd: number): number {
+    if (this.bpRate) { return +(usd / this.bpRate).toFixed(3); }
+    else { return -1; }
+  }
 
   selectPlan(plan) {
     this.plansService.selectedPlan = plan;

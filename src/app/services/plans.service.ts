@@ -9,6 +9,7 @@ export class Plan {
   bcTotal: number;
   yearly: string;
   bcYearly: string;
+  rate: string;
   viewable: boolean;
   constructor() {}
 }
@@ -20,22 +21,24 @@ export class PlansService {
       id: 'monthly1295',
       price: 12.95,
       bcPrice: undefined,
-      period: '1 Month',
+      period: 'Monthly',
       total: 12.95,
       bcTotal: undefined,
-      yearly: '$ 12.95 / monthly',
+      yearly: 'Billed $12.95 every month',
       bcYearly: '',
+      rate: 'monthly',
       viewable: true
     },
     {
       id: 'annually9995',
       price: 8.32,
       bcPrice: undefined,
-      period: '12 Months',
+      period: 'Yearly',
       total: 99.95,
       bcTotal: undefined,
-      yearly: '$ 99.95 / annually',
+      yearly: 'Billed $99.95 every 12 month',
       bcYearly: '',
+      rate: 'annually',
       viewable: true
     },
     {
@@ -45,8 +48,9 @@ export class PlansService {
       period: '6 Months',
       total: 59.95,
       bcTotal: undefined,
-      yearly: '$ 59.95 / semiannually',
+      yearly: 'Billed $59.95 every 6 months',
       bcYearly: '',
+      rate: 'semiannually',
       viewable: true
     }
   ];
