@@ -253,14 +253,15 @@ public class GeoLocationDB
 				//LOG.log(Level.INFO, "got IP range: "+country[0]+" to "+country[1]+" for "+country[2]);
 
 				// check for ipv4 or IPv6
-				String id = "IP-" + country[0] + "-" + country[1];
 				if (country[0].contains(":")) {
+					String id = "IPv6-" + country[0] + "-" + country[1];
 					ShortBlob rangeStart = convertIPv6AddrToShortBlob(country[0]);
 					ShortBlob rangeEnd = convertIPv6AddrToShortBlob(country[1]);
 					String rangeCountryCode = country[2];
 					addIPv6Range(id, rangeStart, rangeEnd, rangeCountryCode);
 				}
 				else {
+					String id = "IPv4-" + country[0] + "-" + country[1];
 					long rangeStart = convertIPv4dottedToLong(country[0]);
 					long rangeEnd = convertIPv4dottedToLong(country[1]);
 					String rangeCountryCode = country[2];
