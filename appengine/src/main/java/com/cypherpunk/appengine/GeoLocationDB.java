@@ -16,6 +16,7 @@ import com.google.appengine.api.datastore.Query.CompositeFilter;
 import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.ShortBlob;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.memcache.Expiration;
@@ -33,6 +34,11 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
+import java.util.Arrays;
+
+import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
+import java.math.BigInteger;
 // }}}
 
 public class GeoLocationDB
@@ -67,18 +73,25 @@ public class GeoLocationDB
 		db_name = "";
 	} // }}}
 
-	public final String getCountry(String reqIP) // {{{
-	{
-		long reqIPlong = convertIPv4dottedToLong(reqIP);
-
+	public final String getCountry(String reqIP) { // {{{
 		// Return value immediately if memcached
 		String countryCode = (String)mc.get(reqIP);
-		if (countryCode != null)
-			return countryCode;
+		if (countryCode != null) { return countryCode; }
+
+		System.out.println(reqIP);
+		if (reqIP.contains(":")) { countryCode = searchIPv6CountryCode(reqIP); }
+		else { countryCode = searchIPv4CountryCode(reqIP); }
+
+		return countryCode;
+	} // }}}
+
+	private String searchIPv4CountryCode(String reqIP) {
+		String countryCode = "";
+		long reqIPLong = convertIPv4dottedToLong(reqIP);
 
 		// Otherwise query from datastore
-		Filter IPv4RangeStartFilter = new FilterPredicate(IPv4Range.RANGE_START, FilterOperator.LESS_THAN_OR_EQUAL, reqIPlong);
-		Filter IPv4RangeEndFilter = new FilterPredicate(IPv4Range.RANGE_END, FilterOperator.GREATER_THAN_OR_EQUAL, reqIPlong);
+		Filter IPv4RangeStartFilter = new FilterPredicate(IPv4Range.RANGE_START, FilterOperator.LESS_THAN_OR_EQUAL, reqIPLong);
+		Filter IPv4RangeEndFilter = new FilterPredicate(IPv4Range.RANGE_END, FilterOperator.GREATER_THAN_OR_EQUAL, reqIPLong);
 		//Filter IPv4RangeFilter = CompositeFilterOperator.and(IPv4RangeStartFilter, IPv4RangeEndFilter);
 
 		List<Entity> result = null;
@@ -112,7 +125,7 @@ public class GeoLocationDB
 			long IPv4RangeEnd = (long)result.get(0).getProperty(IPv4Range.RANGE_END);
 
 			// check if IP is in range of result
-			if (reqIPlong >= IPv4RangeStart && reqIPlong <= IPv4RangeEnd)
+			if (reqIPLong >= IPv4RangeStart && reqIPLong <= IPv4RangeEnd)
 			{
 				countryCode = (String)result.get(0).getProperty(IPv4Range.COUNTRY_CODE);
 				LOG.log(Level.INFO, "GeoIP lookup for "+reqIP+" matched country "+countryCode);
@@ -120,7 +133,7 @@ public class GeoLocationDB
 			else
 			{
 				countryCode = "ZZ"; // IP not in any result range, set as unknown
-				LOG.log(Level.WARNING, "GeoIP lookup for "+reqIP+" ("+reqIPlong+") didn't match check: "+IPv4RangeStart+" - "+IPv4RangeEnd);
+				LOG.log(Level.WARNING, "GeoIP lookup for "+reqIP+" ("+reqIPLong+") didn't match check: "+IPv4RangeStart+" - "+IPv4RangeEnd);
 			}
 		}
 
@@ -128,31 +141,98 @@ public class GeoLocationDB
 			mc.put(reqIP, countryCode, Expiration.byDeltaSeconds(CACHE_PERIOD), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
 
 		return countryCode;
-	} // }}}
+	}
 
-	private void addIPv4Range(String id, long rangeStart, long rangeEnd, String rangeCountryCode) // {{{ TODO: rewrite to use multiple puts in one transaction
-	{
+	private String searchIPv6CountryCode(String reqIP) {
+		String countryCode = "";
+		ShortBlob reqIPShortBlob = convertIPv6AddrToShortBlob(reqIP);
+
+		// Otherwise query from datastore
+		Filter IPv4RangeStartFilter = new FilterPredicate(IPv6Range.RANGE_START, FilterOperator.LESS_THAN_OR_EQUAL, reqIPShortBlob);
+		Filter IPv4RangeEndFilter = new FilterPredicate(IPv6Range.RANGE_END, FilterOperator.GREATER_THAN_OR_EQUAL, reqIPShortBlob);
+		//Filter IPv4RangeFilter = CompositeFilterOperator.and(IPv4RangeStartFilter, IPv4RangeEndFilter);
+
+		List<Entity> result = null;
+		try
+		{
+			Query query = new Query(IPv6Range.KIND)
+				.setFilter(IPv4RangeStartFilter)
+				.setFilter(IPv4RangeEndFilter);
+				//.setFilter(IPv4RangeFilter)
+				//.addSort(IPv4Range.RANGE_START, SortDirection.ASCENDING);
+			PreparedQuery pq = DS.prepare(query);
+			//result = pq.asSingleEntity();
+			result = pq.asList(FetchOptions.Builder.withLimit(1));
+
+			if (result.size() == 0)
+			{
+				LOG.log(Level.WARNING, "GeoIP lookup for "+reqIP+" returned empty result list!");
+				return null;
+			}
+		}
+		catch (Exception e)
+		{
+			LOG.log(Level.WARNING, e.toString(), e);
+			return null;
+		}
+
+		// found the closest result
+		if (result.size() > 0)
+		{
+			ShortBlob IPv6RangeStart = (ShortBlob)result.get(0).getProperty(IPv6Range.RANGE_START);
+			ShortBlob IPv6RangeEnd = (ShortBlob)result.get(0).getProperty(IPv6Range.RANGE_END);
+
+			// check if IP is in range of result
+			if (reqIPShortBlob.compareTo(IPv6RangeStart) > 0 &&
+					reqIPShortBlob.compareTo(IPv6RangeEnd) < 0)
+			{
+				countryCode = (String)result.get(0).getProperty(IPv6Range.COUNTRY_CODE);
+				LOG.log(Level.INFO, "GeoIP lookup for "+reqIP+" matched country "+countryCode);
+			}
+			else
+			{
+				countryCode = "ZZ"; // IP not in any result range, set as unknown
+				LOG.log(Level.WARNING, "GeoIP lookup for "+reqIP+" ("+reqIPShortBlob+") didn't match check: "+IPv6RangeStart+" - "+IPv6RangeEnd);
+			}
+		}
+
+		if (countryCode != null) // cache result in memcache
+			mc.put(reqIP, countryCode, Expiration.byDeltaSeconds(CACHE_PERIOD), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
+
+		return countryCode;
+	}
+
+	private void addIPv4Range(String id, long rangeStart, long rangeEnd, String rangeCountryCode) { // {{{ TODO: rewrite to use multiple puts in one transaction
 		Key rangeKey = KeyFactory.createKey(IPv4Range.KIND, id);
 		Transaction tx = DS.beginTransaction();
 		Entity range = new Entity(rangeKey);
-		try
-		{
+		try {
 			range.setProperty(IPv4Range.RANGE_START, rangeStart);
 			range.setProperty(IPv4Range.RANGE_END, rangeEnd);
 			range.setProperty(IPv4Range.COUNTRY_CODE, rangeCountryCode);
 			DS.put(tx, range);
 			tx.commit();
 		}
-		catch (Exception e)
-		{
-			LOG.log(Level.WARNING, e.toString(), e);
+		catch (Exception e) { LOG.log(Level.WARNING, e.toString(), e); }
+		finally {
+			if (tx.isActive()) { tx.rollback(); }
 		}
-		finally
-		{
-			if (tx.isActive())
-			{
-				tx.rollback();
-			}
+	} // }}}
+
+	private void addIPv6Range(String id, ShortBlob rangeStart, ShortBlob rangeEnd, String rangeCountryCode) { // {{{ TODO: rewrite to use multiple puts in one transaction
+		Key rangeKey = KeyFactory.createKey(IPv6Range.KIND, id);
+		Transaction tx = DS.beginTransaction();
+		Entity range = new Entity(rangeKey);
+		try {
+			range.setProperty(IPv6Range.RANGE_START, rangeStart);
+			range.setProperty(IPv6Range.RANGE_END, rangeEnd);
+			range.setProperty(IPv6Range.COUNTRY_CODE, rangeCountryCode);
+			DS.put(tx, range);
+			tx.commit();
+		}
+		catch (Exception e) { LOG.log(Level.WARNING, e.toString(), e); }
+		finally {
+			if (tx.isActive()) { tx.rollback(); }
 		}
 	} // }}}
 
@@ -163,46 +243,40 @@ public class GeoLocationDB
 		String line;
 		long lineNumber = 0;
 
-		try
-		{
+		try {
 			reader = new BufferedReader(new FileReader(filePath));
-			while ((line = reader.readLine()) != null)
-			{
+			while ((line = reader.readLine()) != null) {
 				lineNumber++;
 
 				// parse csv
 				String[] country = line.replaceAll("\"", "").split(",");
 				//LOG.log(Level.INFO, "got IP range: "+country[0]+" to "+country[1]+" for "+country[2]);
+
+				// check for ipv4 or IPv6
 				String id = "IP-" + country[0] + "-" + country[1];
-				long rangeStart = convertIPv4dottedToLong(country[0]);
-				long rangeEnd = convertIPv4dottedToLong(country[1]);
-				String rangeCountryCode = country[2];
-
-				addIPv4Range(id, rangeStart, rangeEnd, rangeCountryCode);
+				if (country[0].contains(":")) {
+					ShortBlob rangeStart = convertIPv6AddrToShortBlob(country[0]);
+					ShortBlob rangeEnd = convertIPv6AddrToShortBlob(country[1]);
+					String rangeCountryCode = country[2];
+					addIPv6Range(id, rangeStart, rangeEnd, rangeCountryCode);
+				}
+				else {
+					long rangeStart = convertIPv4dottedToLong(country[0]);
+					long rangeEnd = convertIPv4dottedToLong(country[1]);
+					String rangeCountryCode = country[2];
+					addIPv4Range(id, rangeStart, rangeEnd, rangeCountryCode);
+				}
 			}
-
 		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
+		catch (FileNotFoundException e) { e.printStackTrace(); }
+		catch (IOException e) {
 			// LOG.log(Level.WARNING, "line number "+lineNumber, e);
 			e.printStackTrace();
 		}
-		finally
-		{
-			if (reader != null)
-			{
-				try
-				{
-					reader.close();
-				}
-				catch (IOException e)
-				{
-					e.printStackTrace();
-				}
+		finally {
+			if (reader != null) {
+				try { reader.close(); }
+				catch (IOException e) { e.printStackTrace(); }
 			}
 		}
 
@@ -231,6 +305,21 @@ public class GeoLocationDB
 			}
 		}
 		return result;
+	} // }}}
+
+	private ShortBlob convertIPv6AddrToShortBlob(String ipAddress) { // {{{
+		// create empty byte array of 16 bytes
+		byte[] result = new byte[16];
+
+		try {
+			InetAddress addr = InetAddress.getByName(ipAddress);
+			result = addr.getAddress();
+		}
+		catch (Exception e) {
+			LOG.log(Level.WARNING, "unable to convert IP address " + ipAddress, e);
+		}
+
+		return new ShortBlob(result);
 	} // }}}
 
 }
