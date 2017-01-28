@@ -77,6 +77,7 @@
 		<condition type="remote-addr" operator="notequal" next="and">^103\.5\.140\.</condition><!-- tommmmy -->
 		<condition type="remote-addr" operator="notequal" next="and">^172\.98\.66\.</condition><!-- virginia vpn ip -->
 		<condition type="remote-addr" operator="notequal" next="and">^23\.242\.14\.</condition><!-- jon new ip -->
+		<condition type="remote-addr" operator="notequal" next="and">^192\.154\.161</condition><!-- slickage new ip -->
 		<condition type="remote-addr" operator="notequal">^127\.</condition>
 		<from>/.*</from>
 		<to last="true">/cypherpunk.txt</to>
