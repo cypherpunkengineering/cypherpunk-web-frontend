@@ -60,12 +60,14 @@
   }
 }
 .cta-container.top {
-  .btn:first-child { margin-bottom: 30px; }
-  .btn:last-child {
+  .btn:first-child {
+    margin-bottom: 30px;
     background-color: #fff;
     color: #ff7857;
-    margin-top: 30px;
     border: 2px solid #ff7857;
+  }
+  .btn:last-child {
+    margin-top: 30px;
   }
 }
 
