@@ -53,6 +53,9 @@
   height: 38px;
   margin: -10px 25px 0 0;
   padding: 0 10px;
+  background-color: #fff;
+  color: #ff7857;
+  border: 2px solid #ff7857;
 }
 
 .clear { clear: both; }
@@ -136,7 +139,7 @@
   width: 100%;
   height: 80px;
   z-index: 100;
-  background-color: #0e003f;
+  background-color: #0d1e26;
   opacity: 0;
   visibility: hidden;
   transition: all 0.5s ease;
