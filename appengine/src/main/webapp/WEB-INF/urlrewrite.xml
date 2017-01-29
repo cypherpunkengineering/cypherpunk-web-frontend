@@ -11,6 +11,44 @@
 		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
 	</rule>
 
+	<!-- set HSTS header for all requests to cypherpunk.com -->
+	<rule>
+		<condition name="host">^cypherpunk.com$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
+	</rule>
+
+	<!-- default cache-control and expiration -->
+	<rule>
+		<set type="response-header" name="Cache-Control">public, max-age=43200</set>
+		<set type="expires">12 hours</set>
+	</rule>
+
+    <!-- set short cache times for things that change often -->
+	<rule>
+		<from>^[^\.]*$</from><!-- any URL without a dot, should match / and /features and /account/profile etc. -->
+		<set type="response-header" name="Cache-Control">public, max-age=3600</set>
+		<set type="expires">1 hour</set>
+	</rule>
+
+    <!-- set medium cache times for things that change sometimes -->
+	<rule>
+		<from>\.(html|txt|json|rss|xml)$</from><!-- request URL ends in these extensions -->
+		<set type="response-header" name="Cache-Control">public, max-age=3600</set>
+		<set type="expires">1 hour</set>
+	</rule>
+	<rule>
+		<from>\.(jpg|jpeg|png|ico)$</from><!-- request URL ends in these extensions -->
+		<set type="response-header" name="Cache-Control">public, max-age=86400</set>
+		<set type="expires">1 day</set>
+	</rule>
+
+    <!-- set very long cache times for things that cache-busted assets -->
+	<rule>
+		<from>\.(js|css)$</from><!-- request URL ends in these extensions -->
+		<set type="response-header" name="Cache-Control">public, max-age=2592000</set>
+		<set type="expires">30 days</set>
+	</rule>
+
 	<!-- rewrite appengine paths exactly as requested -->
 	<rule>
 		<from>^/_ah/(.*)</from>
