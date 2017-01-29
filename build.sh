@@ -32,7 +32,7 @@ sleep 5
 npm run scrape
 
 # deploy to appengine
-cd appengine
+cd appengine/static/
 mvn install
 mvn appengine:update || true
 
