@@ -13,7 +13,7 @@ const routes = [
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
   { url: baseRoute + 'why-you-need-online-privacy-protection', dirPath: baseDir + 'why-you-need-online-privacy-protection.html' },
-  { url: baseRoute + 'online-privacy', dirPath: baseDir + 'online-privacy.html' },
+  { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'network', dirPath: baseDir + 'network.html' },
   { url: baseRoute + 'privacy-policy', dirPath: baseDir + 'privacy-policy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
