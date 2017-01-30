@@ -4,10 +4,26 @@
 
 	<!-- allow api paths for a few domains -->
 	<rule>
-		<condition name="host" operator="notequal" next="or">^cypherpunk.com$</condition>
-		<condition name="host" operator="notequal" next="or">^cypherpunk.engineering$</condition>
-		<condition name="host" operator="notequal" next="or">^cypherpunk.privacy.network$</condition>
-		<condition name="host" operator="notequal">^localhost:8080$</condition>
+		<condition name="host" operator="notequal">^cypherpunk.com$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
+		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.com</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
+		<set type="response-header" name="Access-Control-Max-Age">0</set>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
+	<rule>
+		<condition name="host" operator="notequal">^cypherpunk.engineering$</condition>
+		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.engineering</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
+		<set type="response-header" name="Access-Control-Max-Age">0</set>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
+	<rule>
+		<condition name="host" operator="notequal">^cypherpunk.privacy.network$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
