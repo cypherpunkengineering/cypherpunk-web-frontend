@@ -35,16 +35,16 @@ export class PriceBoxesComponent {
         this.plans[0].bcTotal = this.bpConvert(this.plans[0].total);
         this.plans[1].bcTotal = this.bpConvert(this.plans[1].total);
         this.plans[2].bcTotal = this.bpConvert(this.plans[2].total);
-        this.plans[0].bcYearly = `Billed ₿ ~${this.plans[0].bcTotal} every month`;
-        this.plans[1].bcYearly = `Billed ₿ ~${this.plans[1].bcTotal} every 12 months`;
-        this.plans[2].bcYearly = `Billed ₿ ~${this.plans[2].bcTotal} every 6 months`;
+        this.plans[0].bcYearly = this.plans[0].bcTotal.toString();
+        this.plans[1].bcYearly = this.plans[1].bcTotal.toString();
+        this.plans[2].bcYearly = this.plans[2].bcTotal.toString();
       });
     }
 
   }
 
   bpConvert(usd: number): number {
-    if (this.bpRate) { return +(usd / this.bpRate).toFixed(3); }
+    if (this.bpRate) { return +(usd / this.bpRate).toFixed(8); }
     else { return -1; }
   }
 

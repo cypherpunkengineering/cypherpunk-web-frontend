@@ -7,21 +7,19 @@
 
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price-time">₿ ~</span>
-          <span class="price">{{plans[0].bcPrice}}</span>
+          <span class="price">₿ ~ {{plans[0].bcPrice | number:'.3-3'}} </span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[0].bcYearly"></div>
+        <div class="yearly">Billed ₿ ~ {{plans[0].bcYearly | number:'.3-3'}} every month</div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price-time">$ </span>
-          <span class="price">{{plans[0].price}}</span>
+          <span class="price">$ {{plans[0].price | number: '.2-2'}}</span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[0].yearly"></div>
+        <div class="yearly">Billed ${{plans[0].yearly}} every month</div>
       </div>
 
       <div class="savings"></div>
@@ -40,21 +38,19 @@
 
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price-time">₿ ~</span>
-          <span class="price">{{plans[1].bcPrice}}</span>
+          <span class="price">₿ ~{{plans[1].bcPrice | number:'.3-3'}}</span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[1].bcYearly"></div>
+        <div class="yearly">Billed ₿ ~ {{plans[1].bcYearly | number:'.3-3'}} every 12 months</div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price-time">$ </span>
-          <span class="price">{{plans[1].price}}</span>
+          <span class="price">$ {{plans[1].price | number:'.2-2'}}</span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[1].yearly"></div>
+        <div class="yearly">Billed ${{plans[1].yearly}} every 12 months</div>
       </div>
 
       <div class="savings">
@@ -74,21 +70,19 @@
 
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price-time">₿ ~</span>
-          <span class="price">{{plans[2].bcPrice}}</span>
+          <span class="price">₿ ~{{plans[2].bcPrice | number:'.3-3'}}</span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[2].bcYearly"></div>
+        <div class="yearly">Billed ₿ ~ {{plans[2].bcYearly | number:'.3-3'}} every 6 months</div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price-time">$ </span>
-          <span class="price">{{plans[2].price}}</span>
+          <span class="price">$ {{plans[2].price | number:'.2-2'}}</span>
           <span class="price-time"> / mo</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly" [innerHTML]="plans[2].yearly"></div>
+        <div class="yearly">Billed ${{plans[2].yearly}} every 6 months</div>
       </div>
 
       <div class="savings">
