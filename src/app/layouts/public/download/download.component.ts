@@ -12,12 +12,12 @@ export class DownloadComponent {
     mac: {
       name: 'Mac',
       versions: '',
-      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-macos-0.3.0-alpha-00350.pkg'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-macos-0.5.0-beta-00418.pkg'
     },
     windows: {
       name: 'Windows',
       versions: '',
-      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-windows-0.3.0-alpha-00330.exe'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-windows-0.5.0-beta-00383.exe'
     },
     linux: {
       name: 'Linux',
@@ -70,7 +70,7 @@ export class DownloadComponent {
     {
       os: 'Debian/Ubuntu/Mint',
       version: '64-bit',
-      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-linux-x64_0.3.0-alpha+00034.deb'
+      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-linux-x64_0.5.0-beta+00094.deb'
     }
   ];
 
