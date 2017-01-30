@@ -31,12 +31,30 @@
 	-->
 
 	<servlet>
-		<servlet-name>BucketDownloader</servlet-name>
-		<servlet-class>com.cypherpunk.download.BucketDownloader</servlet-class>
+		<servlet-name>ReleaseDownloader</servlet-name>
+		<servlet-class>com.cypherpunk.download.ReleaseDownloader</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>BucketDownloader</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<servlet-name>ReleaseDownloader</servlet-name>
+		<url-pattern>/release/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BuildsDownloader</servlet-name>
+		<servlet-class>com.cypherpunk.download.BuildsDownloader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BuildsDownloader</servlet-name>
+		<url-pattern>/builds/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BuildsListing</servlet-name>
+		<servlet-class>com.cypherpunk.download.BuildsListing</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BuildsListing</servlet-name>
+		<url-pattern>/builds/</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
