@@ -14,15 +14,20 @@
   </url>
   <url>
     <loc>https://cypherpunk.com/why-you-need-online-privacy-protection</loc>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cypherpunk.com/howitworks</loc>
-  </url>
-  <url>
-    <loc>https://cypherpunk.com/aboutus</loc>
+    <loc>https://cypherpunk.com/features</loc>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cypherpunk.com/network</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/whatsmyip</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/aboutus</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/feedback</loc>
@@ -32,6 +37,30 @@
   </url>
   <url>
     <loc>https://cypherpunk.com/terms-of-service</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/bounty</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/windows</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/mac</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/linux</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/browser</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/ios</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/android</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/routers</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/login</loc>

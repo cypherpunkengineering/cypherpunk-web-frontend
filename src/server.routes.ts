@@ -22,7 +22,7 @@ export const routes: string[] = [
   'download',
   'confirm',
   'why-you-need-online-privacy-protection',
-  'online-privacy',
+  'features',
   'network',
   'privacy-policy',
   'aboutus',

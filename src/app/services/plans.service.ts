@@ -24,7 +24,7 @@ export class PlansService {
       period: 'Monthly',
       total: 12.95,
       bcTotal: undefined,
-      yearly: 'Billed $12.95 every month',
+      yearly: '12.95',
       bcYearly: '',
       rate: 'monthly',
       viewable: true
@@ -36,7 +36,7 @@ export class PlansService {
       period: 'Yearly',
       total: 99.95,
       bcTotal: undefined,
-      yearly: 'Billed $99.95 every 12 month',
+      yearly: '99.95',
       bcYearly: '',
       rate: 'annually',
       viewable: true
@@ -48,7 +48,7 @@ export class PlansService {
       period: '6 Months',
       total: 59.95,
       bcTotal: undefined,
-      yearly: 'Billed $59.95 every 6 months',
+      yearly: '59.95',
       bcYearly: '',
       rate: 'semiannually',
       viewable: true
