@@ -4,6 +4,13 @@
   <h1 class="masthead-header header white">Features</h1>
 </div>
 
+<div class="navigation">
+  <ul>
+    <li (click)="updateLocation('online-privacy')" [ngClass]="{'active': currentTab === 'online-privacy'}">Online Privacy</li>
+    <li (click)="updateLocation('online-freedom')" [ngClass]="{'active': currentTab === 'online-freedom'}">Online Freedom</li>
+  </ul>
+</div>
+
 <div class="features">
   <div class="features-inner">
     <div id="online-privacy" class="header gold">Online Privacy</div>

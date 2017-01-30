@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 @Component({
   templateUrl: './features.component.html',
@@ -8,6 +9,8 @@ import { DOCUMENT } from '@angular/platform-browser';
 export class FeaturesComponent implements AfterViewInit {
   title: string = 'How Cypherpunk Privacy Protects Your Online Privacy and Freedom';
   description: string = 'Learn how Cypherpunk Privacy provides unrestricted access to the internet and protects your privacy online.';
+
+  currentTab: string = 'online-privacy';
 
   pnSwitch: boolean = false;
   psSwitch: boolean = false;
@@ -23,7 +26,19 @@ export class FeaturesComponent implements AfterViewInit {
   fwSwitch: boolean = false;
   fnSwitch: boolean = false;
 
-  constructor(@Inject(DOCUMENT) private document: any) { }
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    private location: Location
+  ) { }
 
   ngAfterViewInit(): void { this.document.title = this.title; }
+
+  updateLocation(fragment: string) {
+    this.currentTab = fragment;
+    let element = document.querySelector('#' + fragment);
+    if (element) {
+      this.location.go('/features#' + fragment);
+      element.scrollIntoView({behavior: 'smooth'});
+    }
+  }
 }

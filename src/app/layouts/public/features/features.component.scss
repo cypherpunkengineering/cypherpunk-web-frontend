@@ -1,6 +1,24 @@
 .masthead {
-  border-bottom: 10px solid #ddd;
   .masthead-header { margin: 45px auto 0; padding: 0 0 95px; }
+}
+
+.navigation {
+  background-color: #0d1e26;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+
+    li {
+      color: #fff;
+      padding: 20px;
+      display: inline-block;
+      cursor: pointer;
+      &.active { background-color: #163238; }
+    }
+  }
 }
 
 .features:after {
