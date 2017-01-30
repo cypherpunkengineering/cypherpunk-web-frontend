@@ -27,7 +27,6 @@
 	<!-- for API requests without Origin header, just pass it thru -->
 	<rule>
 		<condition name="host">^cypherpunk.privacy.network$</condition>
-		<condition name="origin">^$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
@@ -45,13 +44,6 @@
 		<condition name="host">^cypherpunk.engineering$</condition>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
-	</rule>
-
-	<!-- deny other API requests which didn't pass above checks -->
-	<rule>
-		<from>^/api/.*</from>
-		<set type="status">403</set>
-		<to last="true">null</to>
 	</rule>
 
 	<!-- redirect typo domains to main domain -->
