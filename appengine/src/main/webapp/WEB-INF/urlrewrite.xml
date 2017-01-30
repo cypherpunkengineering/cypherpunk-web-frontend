@@ -2,9 +2,10 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN" "http://www.tuckey.org/res/dtds/urlrewrite2.6.dtd">
 <urlrewrite>
 
-	<!-- allow api paths for a few domains -->
+	<!-- for API requests, if Origin header was passed, make sure it matches one of our hosts, if so let it through and add CORS headers -->
 	<rule>
-		<condition name="host" operator="notequal">^cypherpunk.com$</condition>
+		<condition name="host" next="and">^cypherpunk.privacy.network$</condition>
+		<condition name="origin">^cypherpunk.com$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.com</set>
 		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
@@ -14,7 +15,8 @@
 		<to last="true">-</to>
 	</rule>
 	<rule>
-		<condition name="host" operator="notequal">^cypherpunk.engineering$</condition>
+		<condition name="host" next="and">^cypherpunk.privacy.network$</condition>
+		<condition name="origin">^cypherpunk.engineering$</condition>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.engineering</set>
 		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
 		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
@@ -22,11 +24,33 @@
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
+	<!-- for API requests without Origin header, just pass it thru -->
 	<rule>
-		<condition name="host" operator="notequal">^cypherpunk.privacy.network$</condition>
+		<condition name="host">^cypherpunk.privacy.network$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
+	</rule>
+
+	<!-- also allow API requests on .com domain, but remove this after remaining requests to cypherpunk.com/api/ are removed -->
+	<rule>
+		<condition name="host">^cypherpunk.com$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
+	<!-- same as above but for development -->
+	<rule>
+		<condition name="host">^cypherpunk.engineering$</condition>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
+
+	<!-- deny other API requests which didn't pass above checks -->
+	<rule>
+		<from>^/api/.*</from>
+		<set type="status">403</set>
+		<to last="true">null</to>
 	</rule>
 
 	<!-- redirect typo domains to main domain -->
