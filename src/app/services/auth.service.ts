@@ -16,7 +16,7 @@ export class AuthService {
   signin(user): Promise<void> {
     let body = { login: user.email, password: user.password };
     let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     // this will set cookie
     return this.backend.signin(body, options)
@@ -29,7 +29,7 @@ export class AuthService {
   signout() {
     let body = { };
     let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
 
     return this.backend.signout(body, options)
     // clear session
