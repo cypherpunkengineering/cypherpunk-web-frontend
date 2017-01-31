@@ -1,0 +1,288 @@
+runtime: python27
+threadsafe: true
+api_version: 1
+
+default_expiration: "1m"
+
+handlers: # should be ordered from most specific to least specific
+- url: /(.*\.(appcache|manifest))
+  mime_type: text/cache-manifest
+  static_files: content/\1
+  upload: content/(.*\.(appcache|manifest))
+  expiration: "0m"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.atom)
+  mime_type: application/atom+xml
+  static_files: content/\1
+  upload: content/(.*\.atom)
+  expiration: "1h"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.crx)
+  mime_type: application/x-chrome-extension
+  static_files: content/\1
+  upload: content/(.*\.crx)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: content/\1
+  upload: content/(.*\.css)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.eot)
+  mime_type: application/vnd.ms-fontobject
+  static_files: content/\1
+  upload: content/(.*\.eot)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.htc)
+  mime_type: text/x-component
+  static_files: content/\1
+  upload: content/(.*\.htc)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: content/\1
+  upload: content/(.*\.html)
+  expiration: "1m"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.ico)
+  mime_type: image/x-icon
+  static_files: content/\1
+  upload: content/(.*\.ico)
+  expiration: "1d"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: content/\1
+  upload: content/(.*\.js)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.json)
+  mime_type: application/json
+  static_files: content/\1
+  upload: content/(.*\.json)
+  expiration: "1h"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.m4v)
+  mime_type: video/m4v
+  static_files: content/\1
+  upload: content/(.*\.m4v)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.mp4)
+  mime_type: video/mp4
+  static_files: content/\1
+  upload: content/(.*\.mp4)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.(ogg|oga))
+  mime_type: audio/ogg
+  static_files: content/\1
+  upload: content/(.*\.(ogg|oga))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.ogv)
+  mime_type: video/ogg
+  static_files: content/\1
+  upload: content/(.*\.ogv)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.otf)
+  mime_type: font/opentype
+  static_files: content/\1
+  upload: content/(.*\.otf)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.rss)
+  mime_type: application/rss+xml
+  static_files: content/\1
+  upload: content/(.*\.rss)
+  expiration: "1h"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.safariextz)
+  mime_type: application/octet-stream
+  static_files: content/\1
+  upload: content/(.*\.safariextz)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.(svg|svgz))
+  mime_type: images/svg+xml
+  static_files: content/\1
+  upload: content/(.*\.(svg|svgz))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.swf)
+  mime_type: application/x-shockwave-flash
+  static_files: content/\1
+  upload: content/(.*\.swf)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.ttf)
+  mime_type: font/truetype
+  static_files: content/\1
+  upload: content/(.*\.ttf)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.txt)
+  mime_type: text/plain
+  static_files: content/\1
+  upload: content/(.*\.txt)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.unity3d)
+  mime_type: application/vnd.unity
+  static_files: content/\1
+  upload: content/(.*\.unity3d)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.webm)
+  mime_type: video/webm
+  static_files: content/\1
+  upload: content/(.*\.webm)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.webp)
+  mime_type: image/webp
+  static_files: content/\1
+  upload: content/(.*\.webp)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.woff)
+  mime_type: application/x-font-woff
+  static_files: content/\1
+  upload: content/(.*\.woff)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.xml)
+  mime_type: application/xml
+  static_files: content/\1
+  upload: content/(.*\.xml)
+  expiration: "1h"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.*\.xpi)
+  mime_type: application/x-xpinstall
+  static_files: content/\1
+  upload: content/(.*\.xpi)
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# image files
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: content/\1
+  upload: content/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# audio files
+- url: /(.*\.(mid|midi|mp3|wav))
+  static_files: content/\1
+  upload: content/(.*\.(mid|midi|mp3|wav))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# windows files
+- url: /(.*\.(doc|exe|ppt|rtf|xls))
+  static_files: content/\1
+  upload: content/(.*\.(doc|exe|ppt|rtf|xls))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# compressed files
+- url: /(.*\.(bz2|gz|rar|tar|tgz|zip))
+  static_files: content/\1
+  upload: content/(.*\.(bz2|gz|rar|tar|tgz|zip))
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# index files
+- url: /(.+)/
+  static_files: content/\1.html
+  upload: content/(.+).html
+  expiration: "1m"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /(.+)
+  static_files: content/\1.html
+  upload: content/(.+).html
+  expiration: "1m"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+# site root
+- url: /
+  static_files: content/cypherpunk.txt
+  upload: content/cypherpunk.txt
+  expiration: "1m"
+  secure: always
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
