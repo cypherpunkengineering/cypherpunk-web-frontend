@@ -1,24 +1,24 @@
 #!/bin/bash -x
 set -e
 
-## build vars
-#export NODE_VERSION=v6.9.4
-#export NVM_DIR=$HOME/.nvm
-#
-## load nvm depending on OS
-#case `uname -s` in
-#	Darwin)
-#		source "$(brew --prefix nvm)/nvm.sh" ${NODE_VERSION}
-#		;;
-#	FreeBSD|Linux)
-#		source $HOME/.nvm/nvm.sh ${NODE_VERSION}
-#		;;
-#esac
-#
-## prepare node/npm
-#nvm install ${NODE_VERSION}
-#nvm use ${NODE_VERSION}
-#
+# build vars
+export NODE_VERSION=v6.9.4
+export NVM_DIR=$HOME/.nvm
+
+# load nvm depending on OS
+case `uname -s` in
+	Darwin)
+		source "$(brew --prefix nvm)/nvm.sh" ${NODE_VERSION}
+		;;
+	FreeBSD|Linux)
+		source $HOME/.nvm/nvm.sh ${NODE_VERSION}
+		;;
+esac
+
+# prepare node/npm
+nvm install ${NODE_VERSION}
+nvm use ${NODE_VERSION}
+
 # prepare local deps
 npm install
 
