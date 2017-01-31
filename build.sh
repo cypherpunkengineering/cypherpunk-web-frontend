@@ -37,9 +37,9 @@ gcloud config set project cypherpunk-engineering
 echo y | gcloud app deploy
 
 # deploy to appengine dynamic
-cd ../api/
-mvn install
-mvn appengine:update || true
+#cd ../api/
+#mvn install
+#mvn appengine:update || true
 
 # done
 exit 0
