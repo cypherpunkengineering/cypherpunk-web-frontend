@@ -33,7 +33,7 @@ npm run scrape
 
 # deploy to appengine static
 cd appengine/static/
-gcloud config set project cypherpunk-com
+gcloud config set project cypherpunk-dev
 echo y | gcloud app deploy
 
 # deploy to appengine dynamic
