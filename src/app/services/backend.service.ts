@@ -19,6 +19,7 @@ export class BackendService {
   confirmToken(body, options): Promise<any> {
     // this will set cookie
     let url = this.backendUrl + 'account/confirm/email';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson);
   }
@@ -26,6 +27,7 @@ export class BackendService {
   signin(body, options): Promise<any> {
     // this will set cookie
     let url = this.backendUrl + 'account/authenticate/userpasswd';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
