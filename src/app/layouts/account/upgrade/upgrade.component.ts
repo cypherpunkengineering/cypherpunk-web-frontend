@@ -1,12 +1,13 @@
 import { isBrowser } from 'angular2-universal';
+import { RequestOptions } from '@angular/http';
 import { Component, NgZone } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
+import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
-import { PlansService } from '../../../services/plans.service';
+import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/operator/toPromise';
 import country_list from '../../public/pricing/countries';
 
@@ -67,12 +68,12 @@ export class UpgradeComponent {
   selectedOption: string = 'cc';
 
   constructor(
-    private http: Http,
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
     private authGuard: AuthGuard,
     private session: SessionService,
+    private backend: BackendService,
     private alertService: AlertService,
     private plansService: PlansService,
     private activatedRoute: ActivatedRoute
@@ -148,9 +149,7 @@ export class UpgradeComponent {
 
     // use Geo-IP to preload CC country
     if (isBrowser) {
-      let url = '/api/v0/network/status';
-      http.get(url)
-      .map(res => res.json())
+      backend.networkStatus()
       .subscribe((data: any) => {
         if (data.country === 'ZZ') { return; }
 
@@ -160,19 +159,17 @@ export class UpgradeComponent {
             this.changeCountry();
           }
         });
-      });
+      }, () => {});
     }
 
     // get all stripe cards for this user
     if (isBrowser) {
-      let url = '/api/v0/account/source/list';
-      http.get(url)
-      .map(res => res.json())
+      backend.cards()
       .subscribe((data: any) => {
         this.defaultCardId = data.default_source;
         this.cards = data.sources;
         if (!this.cards.length) { this.showCreateCard = true; }
-      });
+      }, () => {});
     }
   }
 
@@ -248,15 +245,10 @@ export class UpgradeComponent {
 
   createCard(token) {
     this.ccButtonDisabled = true;
-    let url = '/api/v0/account/source/add';
     let body = { token: token };
     let options = new RequestOptions({});
     // set cookie
-    return this.http.post(url, body, options).toPromise()
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      return resData;
-    })
+    return this.backend.createCard(body, options)
     .then((data) => { this.auth.authed = true; return data; })
     // alert and redirect
     .then((data) => {
@@ -268,14 +260,11 @@ export class UpgradeComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
+        this.modal.header = 'Error: ' + error.message;
         this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
@@ -289,28 +278,22 @@ export class UpgradeComponent {
   setDefaultCard(cardId) { this.defaultCardId = cardId; }
 
   finalizeDefaultCard() {
-    let url = '/api/v0/account/source/default';
     let body = { default_source: this.defaultCardId };
     let options = new RequestOptions({});
-    return this.http.post(url, body, options).toPromise()
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      this.defaultCardId = resData.default_source;
-      this.cards = resData.sources;
-      return this.defaultCardId;
+    return this.backend.defaultCard(body, options)
+    .then((data) => {
+      this.defaultCardId = data.default_source;
+      this.cards = data.sources;
     })
     .then(() => { return this.saveToServer(); });
   }
 
   saveToServer() {
-    let serverParams = { plan: this.plansService.selectedPlan.id };
-
-    // call server at this point (using promises)
-    let url = '/api/v0/account/upgrade/stripe';
-    let body = serverParams;
+    let body = { plan: this.plansService.selectedPlan.id };
     let options = new RequestOptions({});
+
     // set cookie
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.stripeUpgrade(body, options)
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {
@@ -323,14 +306,11 @@ export class UpgradeComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
+        this.modal.header = 'Error: ' + error.message;
         this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;
@@ -432,17 +412,12 @@ export class UpgradeComponent {
     this.loading = true;
     this.amButtonDisabled = true;
 
-    /* send billingAgreement to server */
-    let serverParams = {
+    let body = {
       AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id
     };
-
-    // call server at this point (using promises)
-    let url = '/api/v0/account/upgrade/amazon';
-    let body = serverParams;
     let options = new RequestOptions({});
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.amazonUpgrade(body, options)
     // alert and redirect
     .then(() => {
       this.alertService.success('You account was upgraded!');
@@ -450,14 +425,11 @@ export class UpgradeComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: 'Could not process your payment' }; }
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
 
-        this.modal.header = 'Error: ' + errorData.message;
+        this.modal.header = 'Error: ' + error.message;
         this.modal.body = '';
         this.modal.link = false;
         this.modal.show = true;

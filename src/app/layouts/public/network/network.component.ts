@@ -1,7 +1,7 @@
-import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -14,17 +14,14 @@ export class NetworkComponent implements OnInit {
   totalServers: number = 0;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private http: Http
+    private route: ActivatedRoute,
+    private backend: BackendService
   ) { }
 
   ngOnInit() {
-    let locationsUrl = '/api/v0/location/list/premium';
-    let regionsUrl = '/api/v0/location/world';
-
-    let locationsObs = this.http.get(locationsUrl).map(res => res.json());
-    let regionsObs = this.http.get(regionsUrl).map(res => res.json());
+    let locationsObs = this.backend.locations();
+    let regionsObs = this.backend.regions();
 
     return Observable.forkJoin([locationsObs, regionsObs])
     .subscribe((data: any) => {

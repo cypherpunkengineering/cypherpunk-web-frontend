@@ -1,10 +1,10 @@
-import { Http } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Rx';
+import { isBrowser } from 'angular2-universal';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
-import { isBrowser } from 'angular2-universal';
-import { Observable } from 'rxjs/Rx';
+import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -27,11 +27,11 @@ export class SetupComponent implements OnInit {
   httpSelect: string = '';
 
   constructor(
-    private http: Http,
     private router: Router,
     private authGuard: AuthGuard,
-    private activatedRoute: ActivatedRoute,
-    private session: SessionService
+    private session: SessionService,
+    private backend: BackendService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.user = session.user;
     if (session.user.account.type === 'free') { this.freeAccount = true; }
@@ -41,16 +41,14 @@ export class SetupComponent implements OnInit {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
-      .then((data) => { this.loading = false; });
+      .then((data) => { this.loading = false; })
+      .catch(() => {});
     }
   }
 
   ngOnInit() {
-    let locationsUrl = '/api/v0/location/list/premium';
-    let regionsUrl = '/api/v0/location/world';
-
-    let locationsObs = this.http.get(locationsUrl).map(res => res.json());
-    let regionsObs = this.http.get(regionsUrl).map(res => res.json());
+    let locationsObs = this.backend.locations();
+    let regionsObs = this.backend.regions();
 
     return Observable.forkJoin([locationsObs, regionsObs])
     .subscribe((data: any) => {

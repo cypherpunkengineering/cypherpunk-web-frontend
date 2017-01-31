@@ -1,12 +1,13 @@
+import { Router } from '@angular/router';
+import { RequestOptions} from '@angular/http';
 import { isBrowser } from 'angular2-universal';
 import { Component, NgZone } from '@angular/core';
-import { Http, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { AuthGuard } from '../../../services/auth-guard.service';
 import { AlertService } from '../../../services/alert.service';
-import { SessionService } from '../../../services/session.service';
 import { PlansService } from '../../../services/plans.service';
+import { AuthGuard } from '../../../services/auth-guard.service';
+import { SessionService } from '../../../services/session.service';
+import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/operator/toPromise';
 import country_list from './countries';
 
@@ -71,11 +72,11 @@ export class PricingComponent {
   selectedOption = 'cc';
 
   constructor(
-    private http: Http,
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
     private authGuard: AuthGuard,
+    private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService
@@ -148,9 +149,7 @@ export class PricingComponent {
 
     // use Geo-IP to preload CC country
     if (isBrowser) {
-      let url = '/api/v0/network/status';
-      http.get(url)
-      .map(res => res.json())
+      backend.networkStatus()
       .subscribe((data: any) => {
         if (data.country === 'ZZ') { return; }
 
@@ -225,25 +224,22 @@ export class PricingComponent {
   }
 
   saveToServer(token: string) {
-    let serverParams = {
+    // call server at this point (using promises)
+    let body = {
       token: token,
       plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
     };
-
-    // call server at this point (using promises)
-    let url = '/api/v0/account/purchase/stripe';
-    let body = serverParams;
     let options = new RequestOptions({});
+
     // sets cookie
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.stripeCharge(body, options)
     // set user session
-    .then((res: Response) => {
-      let resData = res.json() || {};
+    .then((data) => {
       this.session.setUserData({
-        account: { email: resData.account.email },
-        secret: resData.secret
+        account: { email: data.account.email },
+        secret: data.secret
       });
     })
     // turn on authed
@@ -255,15 +251,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
 
         this.modal.header = this.errHeader;
-        this.modal.body = errorData.message;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -277,24 +270,17 @@ export class PricingComponent {
     this.ppButtonDisabled = true;
     this.disableAccountInfo = true;
 
-    let serverParams = {
-      email: this.email,
-      password: this.password
-    };
-
     // call server at this point (using promises)
-    let url = '/api/v0/account/register/signup';
-    let body = serverParams;
+    let body = { email: this.email, password: this.password };
     let options = new RequestOptions({});
     // sets cookie
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.createAccount(body, options)
     // set user session
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      this.userId = resData.account.id;
+    .then((data) => {
+      this.userId = data.account.id;
       this.session.setUserData({
-        account: { email: resData.account.email },
-        secret: resData.secret
+        account: { email: data.account.email },
+        secret: data.secret
       });
     })
     // turn on authed
@@ -316,15 +302,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.ppButtonDisabled = false;
 
         this.modal.header = this.errHeader;
-        this.modal.body = errorData.message;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -409,25 +392,21 @@ export class PricingComponent {
     this.disableAccountInfo = true;
 
     /* send billingAgreement to server */
-    let serverParams = {
+    let options = new RequestOptions({});
+    let body = {
       AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
       email: this.email,
       password: this.password
     };
 
-    // call server at this point (using promises)
-    let url = '/api/v0/account/purchase/amazon';
-    let body = serverParams;
-    let options = new RequestOptions({});
     // sets cookie
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.amazonCharge(body, options)
     // set user session
-    .then((res: Response) => {
-      let resData = res.json() || {};
+    .then((data) => {
       this.session.setUserData({
-        account: { email: resData.account.email },
-        secret: resData.secret
+        account: { email: data.account.email },
+        secret: data.secret
       });
     })
     // turn on authed
@@ -439,15 +418,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.amButtonDisabled = false;
 
         this.modal.header = this.errHeader;
-        this.modal.body = errorData.message;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -461,24 +437,17 @@ export class PricingComponent {
     this.bpButtonDisabled = true;
     this.disableAccountInfo = true;
 
-    let serverParams = {
-      email: this.email,
-      password: this.password
-    };
-
-    // call server at this point (using promises)
-    let url = '/api/v0/account/register/signup';
-    let body = serverParams;
+    let body = { email: this.email, password: this.password};
     let options = new RequestOptions({});
+
     // sets cookie
-    return this.http.post(url, body, options).toPromise()
+    return this.backend.createAccount(body, options)
     // set user session
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      this.userId = resData.account.id;
+    .then((data) => {
+      this.userId = data.account.id;
       this.session.setUserData({
-        account: { email: resData.account.email },
-        secret: resData.secret
+        account: { email: data.account.email },
+        secret: data.secret
       });
     })
     // turn on authed
@@ -504,15 +473,12 @@ export class PricingComponent {
     })
     // handle errors
     .catch((error) => {
-      let errorData;
-      try { errorData = error.json(); }
-      catch (err) { errorData = { message: this.errBody }; }
       this.zone.run(() => {
         this.loading = false;
         this.bpButtonDisabled = false;
 
         this.modal.header = this.errHeader;
-        this.modal.body = errorData.message;
+        this.modal.body = error.message;
         this.modal.link = false;
         this.modal.show = true;
       });
@@ -529,12 +495,9 @@ export class PricingComponent {
     else { this.validCCEmail = true; }
 
     if (onBlur && this.validCCEmail) {
-      // call server at this point (using promises)
-      let serverParams = { email: this.email };
-      let url = '/api/v0/account/identify/email';
-      let body = serverParams;
+      let body = { email: this.email };
       let options = new RequestOptions({});
-      this.http.post(url, body, options).toPromise()
+      this.backend.identifyEmail(body, options)
       .then(() => {
         this.modal.header = 'It looks like you\'re already a Cypherpunk!';
         this.modal.body = `Why not upgrade your account here: `;
