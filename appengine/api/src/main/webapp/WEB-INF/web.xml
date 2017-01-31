@@ -35,7 +35,8 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>UrlRewriteFilter</filter-name>
-		<url-pattern>*</url-pattern>
+		<url-pattern>/</url-pattern>
+		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
@@ -114,7 +115,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>no-welcome-file</welcome-file>
 	</welcome-file-list>
 
 </web-app>

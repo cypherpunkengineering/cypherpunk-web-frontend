@@ -31,8 +31,13 @@ sleep 5
 # start scrape
 npm run scrape
 
-# deploy to appengine
+# deploy to appengine static
 cd appengine/static/
+gcloud config set project cypherpunk-com
+echo y | gcloud app deploy
+
+# deploy to appengine dynamic
+cd ../api/
 mvn install
 mvn appengine:update || true
 

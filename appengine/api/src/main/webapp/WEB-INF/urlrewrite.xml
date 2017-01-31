@@ -238,6 +238,10 @@
 		<to last="true">/features.html$1</to>
 	</rule>
 	<rule>
+		<from>^/network(.*)</from>
+		<to last="true">/network.html$1</to>
+	</rule>
+	<rule>
 		<from>^/aboutus(.*)</from>
 		<to last="true">/aboutus.html$1</to>
 	</rule>
@@ -250,7 +254,7 @@
 		<to last="true">/404.html$1</to>
 	</rule>
 
-	<!-- public root, delete this rewrite after launch and use static-files instead -->
+	<!-- public root -->
 	<rule>
 		<from>^/$</from>
 		<to last="true">/cypherpunk-public.html</to>
