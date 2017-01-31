@@ -41,6 +41,7 @@ export class BackendService {
 
   signout(body, options): Promise<any> {
     let url = this.backendUrl + 'account/logout';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then((res: Response) => {
       try { return res.json(); }
@@ -52,13 +53,15 @@ export class BackendService {
 
   cards() {
     let url = this.backendUrl + 'account/source/list';
-    return this.http.get(url)
+    let options = new RequestOptions({ withCredentials: true });
+    return this.http.get(url, options)
     .map(res => res.json());
   }
 
   createCard(body, options): Promise<any> {
     // set cookie
     let url = this.backendUrl + 'account/source/add';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -66,6 +69,7 @@ export class BackendService {
 
   defaultCard(body, options): Promise<any> {
     let url = this.backendUrl + 'account/source/default';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -74,6 +78,7 @@ export class BackendService {
   stripeCharge(body, options): Promise<any> {
     // sets cookie
     let url = this.backendUrl + 'account/purchase/stripe';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -82,15 +87,16 @@ export class BackendService {
   stripeUpgrade(body, options): Promise<any> {
     // set cookie
     let url = this.backendUrl + 'account/upgrade/stripe';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
   }
 
   amazonCharge(body, options): Promise<any> {
-    // call server at this point (using promises)
     // sets cookie
     let url = this.backendUrl + 'account/purchase/amazon';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -98,6 +104,7 @@ export class BackendService {
 
   amazonUpgrade(body, options): Promise<any> {
     let url = this.backendUrl + 'account/upgrade/amazon';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -106,6 +113,7 @@ export class BackendService {
   createAccount(body, options): Promise<any> {
     // sets cookie
     let url = this.backendUrl + 'account/register/signup';
+    options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
