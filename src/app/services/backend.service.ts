@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
-import { Http, Response } from '@angular/http';
+import { Http, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class BackendService {
@@ -33,8 +33,9 @@ export class BackendService {
 
   accountStatus(secret?: string): Promise<any> {
     let url = this.backendUrl + 'account/status';
+    let options = new RequestOptions({ withCredentials: true });
     if (secret) { url = url + '?secret=' + secret; }
-    return this.http.get(url).toPromise()
+    return this.http.get(url, options).toPromise()
     .then(this.parseJson);
   }
 
