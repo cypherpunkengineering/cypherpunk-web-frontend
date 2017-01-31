@@ -9,6 +9,7 @@
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.com</set>
 		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">*</set>
 		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
 		<set type="response-header" name="Access-Control-Max-Age">86400</set>
 		<from>^/api/v[0-2]/.*</from>
@@ -19,6 +20,7 @@
 		<condition name="origin">^https://cypherpunk.engineering$</condition>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.engineering</set>
 		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">*</set>
 		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
 		<set type="response-header" name="Access-Control-Max-Age">86400</set>
 		<from>^/api/v[0-2]/.*</from>
