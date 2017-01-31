@@ -2,7 +2,7 @@ runtime: python27
 threadsafe: true
 api_version: 1
 
-default_expiration: "1m"
+default_expiration: "10m"
 
 handlers: # should be ordered from most specific to least specific
 - url: /(.*\.(appcache|manifest))
@@ -59,7 +59,7 @@ handlers: # should be ordered from most specific to least specific
   mime_type: text/html
   static_files: content/\1
   upload: content/(.*\.html)
-  expiration: "1m"
+  expiration: "10m"
   secure: always
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
@@ -264,7 +264,7 @@ handlers: # should be ordered from most specific to least specific
 - url: /(.+)/
   static_files: content/\1.html
   upload: content/(.+).html
-  expiration: "1m"
+  expiration: "10m"
   secure: always
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
@@ -272,7 +272,7 @@ handlers: # should be ordered from most specific to least specific
 - url: /(.+)
   static_files: content/\1.html
   upload: content/(.+).html
-  expiration: "1m"
+  expiration: "10m"
   secure: always
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
@@ -281,7 +281,7 @@ handlers: # should be ordered from most specific to least specific
 - url: /
   static_files: content/cypherpunk.txt
   upload: content/cypherpunk.txt
-  expiration: "1m"
+  expiration: "10m"
   secure: always
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
