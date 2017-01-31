@@ -1,5 +1,5 @@
-import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../../../services/backend.service';
 
 @Component({
   templateUrl: './blog.component.html',
@@ -119,12 +119,10 @@ export class BlogComponent implements OnInit {
     ]
   };
 
-  constructor(private http: Http) { }
+  constructor(private backend: BackendService) { }
 
   ngOnInit() {
-    let blogApiUrl = '/api/v0/blog/posts';
-    this.http.get(blogApiUrl)
-    .map(res => res.json())
+    this.backend.blogPosts()
     .subscribe((data: any) => {
         console.log(data);
         // shift first item to be featured

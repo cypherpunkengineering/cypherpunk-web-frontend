@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -40,11 +40,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkAuth(url: string, route: ActivatedRouteSnapshot, secret?: string): Promise<any> {
-    let promise;
-    if (secret) { promise = this.session.pullPlanData(secret); }
-    else { promise = this.session.pullPlanData(); }
-
-    return promise
+    return this.session.pullPlanData(secret)
     .then((data) => {
       if (data.authed) {
         this.auth.authed = true;
@@ -55,7 +51,7 @@ export class AuthGuard implements CanActivate {
         this.session.userFound = false;
         this.auth.redirectUrl = url;
         this.router.navigate(['/login']);
-        return Promise.reject({});
+        return Promise.reject({}); // kill any extra code from executing after this level
       }
     });
   }

@@ -1,10 +1,11 @@
 import { isBrowser } from 'angular2-universal';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http, RequestOptions, Response } from '@angular/http';
+import { RequestOptions } from '@angular/http';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
+import { BackendService } from '../../../services/backend.service';
 import country_list from '../../public/pricing/countries';
 import 'rxjs/add/operator/toPromise';
 
@@ -52,11 +53,11 @@ export class DashboardComponent implements OnInit {
   ccButtonDisabled: boolean = false;
 
   constructor(
-    private http: Http,
     private zone: NgZone,
     private router: Router,
     private authGuard: AuthGuard,
     private session: SessionService,
+    private backend: BackendService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -99,9 +100,7 @@ export class DashboardComponent implements OnInit {
 
     // get all stripe cards for this user
     if (isBrowser) {
-      let url = '/api/v0/account/source/list';
-      http.get(url)
-      .map(res => res.json())
+      backend.cards()
       .subscribe((data: any) => {
         this.defaultCardId = data.default_source;
         this.cards = data.sources;
@@ -114,7 +113,7 @@ export class DashboardComponent implements OnInit {
           this.defaultCard.id = '';
           this.defaultCardId = '';
         }
-      });
+      }, () => {});
     }
   }
 
@@ -173,18 +172,16 @@ export class DashboardComponent implements OnInit {
 
   finalizeDefaultCard() {
     this.loading = true;
-    let url = '/api/v0/account/source/default';
     let body = { default_source: this.defaultCard.id };
     let options = new RequestOptions({});
-    return this.http.post(url, body, options).toPromise()
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      this.defaultCardId = resData.default_source;
-      this.cards = resData.sources;
+    return this.backend.defaultCard(body, options)
+    .then((data) => {
+      this.defaultCardId = data.default_source;
+      this.cards = data.sources;
       this.loading = false;
       return this.defaultCardId;
     })
-    .catch((err) => {
+    .catch(() => {
       this.alertService.error('There was an error updating your account');
       this.loading = false;
     });
@@ -235,15 +232,10 @@ export class DashboardComponent implements OnInit {
 
   createCard(token) {
     this.ccButtonDisabled = true;
-    let url = '/api/v0/account/source/add';
     let body = { token: token };
     let options = new RequestOptions({});
     // set cookie
-    return this.http.post(url, body, options).toPromise()
-    .then((res: Response) => {
-      let resData = res.json() || {};
-      return resData;
-    })
+    return this.backend.createCard(body, options)
     // alert and redirect
     .then((data) => {
       this.zone.run(() => {
@@ -259,11 +251,10 @@ export class DashboardComponent implements OnInit {
     })
     // handle errors
     .catch((error) => {
-      let errorData = error.json() || {};
       this.zone.run(() => {
         this.loading = false;
         this.ccButtonDisabled = false;
-        this.alertService.error('Error: ' + errorData.message);
+        this.alertService.error('Error: ' + error.message);
       });
     });
   }

@@ -56,7 +56,8 @@ export class BillingComponent {
     if (isBrowser) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
-      this.authGuard.canActivate(route, state);
+      this.authGuard.canActivate(route, state)
+      .catch(() => {});
     }
   }
 

@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
-import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 import { SessionService } from '../../services/session.service';
+import { Component, HostListener, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-acc-nav',
@@ -14,14 +15,21 @@ export class AccountNavigationComponent {
   scrolledNavElement: HTMLElement;
 
   constructor(
+    private zone: NgZone,
     private router: Router,
     private auth: AuthService,
-    private session: SessionService
+    private session: SessionService,
+    private alertService: AlertService
   ) { this.user = session.user; }
 
   signout() {
     this.auth.signout()
-    .then(() => { this.router.navigate(['/']); });
+    .then(() => { this.router.navigate(['/']); })
+    .catch((err) => {
+      this.zone.run(() => {
+        this.alertService.error('Could not sign out: ' + err);
+      });
+    });
   }
 
   showPriceBoxes() {

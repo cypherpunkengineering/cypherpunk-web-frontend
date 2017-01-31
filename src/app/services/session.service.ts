@@ -1,7 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { PlansService } from './plans.service';
 import { isBrowser } from 'angular2-universal';
+import { Injectable, NgZone } from '@angular/core';
+import { BackendService } from './backend.service';
 
 @Injectable()
 export class SessionService {
@@ -18,9 +18,9 @@ export class SessionService {
   };
 
   constructor(
-    private http: Http,
     private zone: NgZone,
     private plans: PlansService,
+    private backend: BackendService
   ) {
 
     try {
@@ -41,7 +41,8 @@ export class SessionService {
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
         this.setSnapEngageEmail(this.user);
       }
-    } catch (e) {
+    }
+    catch (e) {
       this.userFound = false;
       console.log(e);
     };
@@ -113,12 +114,7 @@ export class SessionService {
   }
 
   pullPlanData(secret?: string): Promise<any> {
-    let url = '';
-    if (secret) { url = `/api/v0/account/status?secret=${secret}`; }
-    else { url = '/api/v0/account/status'; }
-
-    return this.http.get(url).toPromise()
-    .then((res: Response) => { return res.json() || {}; })
+    return this.backend.accountStatus(secret)
     .then((data) => {
       if (data.confirmed) { data.status = 'active'; }
       this.setUserData(data);

@@ -1,8 +1,8 @@
-import { Http } from '@angular/http';
 import { Component } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
-import country_list from '../pricing/countries';
+import { BackendService } from '../../../services/backend.service';
 import * as platform from 'platform';
+import country_list from '../pricing/countries';
 
 @Component({
   templateUrl: './whatsmyip.component.html',
@@ -15,16 +15,14 @@ export class WhatsMyIpComponent {
   country: string = 'Loading';
   countryCode: string = undefined;
 
-  constructor(private http: Http) {
+  constructor(private backend: BackendService) {
     // detect os setup
     this.os = platform.os;
     this.browser = platform.description;
 
     // detect Geo-IP & country
     if (isBrowser) {
-      let url = '/api/v0/network/status';
-      http.get(url)
-      .map(res => res.json())
+      this.backend.networkStatus()
       .subscribe((data: any) => {
         this.ip = data.ip;
         this.countryCode = data.country;

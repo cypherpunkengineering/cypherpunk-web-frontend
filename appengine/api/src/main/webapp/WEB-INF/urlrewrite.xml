@@ -8,7 +8,8 @@
 		<condition name="origin">^https://cypherpunk.com$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.com</set>
-		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST, OPTIONS</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">Access-Control-Allow-Origin, Cookie, Origin, Content-Type, Content-Range, Content-Disposition, Content-Description</set>
 		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
 		<set type="response-header" name="Access-Control-Max-Age">86400</set>
 		<from>^/api/v[0-2]/.*</from>
@@ -18,7 +19,8 @@
 		<condition name="host" next="and">^cypherpunk.privacy.network$</condition>
 		<condition name="origin">^https://cypherpunk.engineering$</condition>
 		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.engineering</set>
-		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST, OPTIONS</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">Access-Control-Allow-Origin, Cookie, Origin, Content-Type, Content-Range, Content-Disposition, Content-Description</set>
 		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
 		<set type="response-header" name="Access-Control-Max-Age">86400</set>
 		<from>^/api/v[0-2]/.*</from>
@@ -27,7 +29,6 @@
 	<!-- for API requests without Origin header, just pass it thru -->
 	<rule>
 		<condition name="host">^cypherpunk.privacy.network$</condition>
-		<condition name="origin">^$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
@@ -45,13 +46,6 @@
 		<condition name="host">^cypherpunk.engineering$</condition>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
-	</rule>
-
-	<!-- deny other API requests which didn't pass above checks -->
-	<rule>
-		<from>^/api/.*</from>
-		<set type="status">403</set>
-		<to last="true">null</to>
 	</rule>
 
 	<!-- redirect typo domains to main domain -->

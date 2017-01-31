@@ -41,10 +41,9 @@ export class SigninComponent implements AfterViewInit {
       else { this.router.navigate(['account']); }
     })
     .catch((err) => {
-      console.log(err);
       this.zone.run(() => {
         this.signinButtonDisabled = false;
-        this.alertService.error('Could not sign in');
+        this.alertService.error('Could not sign in: ' + err.message);
       });
     });
   }
