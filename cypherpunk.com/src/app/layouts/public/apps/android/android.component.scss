@@ -145,6 +145,8 @@
     }
   }
 
+  .android-button img { width: 150px; }
+
   .btn {
     margin: 40px 0 0;
     padding: 10px;
@@ -215,7 +217,6 @@
     a { color: #fc6146; cursor: pointer; }
   }
 }
-
 
 .more {
   width: 100%;
@@ -288,7 +289,7 @@
 .desktop-inline { display: inline-block; }
 
 @media (max-width: 1020px) {
-  .content .split {
+  .subnav .split {
     .left { width: 100%; padding: 0 20px; }
     .right { width: 100%; padding: 0 20px; }
   }
@@ -306,11 +307,10 @@
 }
 
 @media (max-width: 710px) {
-  .content {
-    .content-header { padding: 0 10px; }
+  .subnav {
     .row {
       width: 100%;
-      .cell { width: 100%; margin-bottom: 100px; }
+      .cell { width: 100%; margin-bottom: 60px; }
       .cell:last-child { margin-bottom: 0px; }
     }
   }
@@ -319,8 +319,4 @@
 
 @media (max-width: 400px) {
   .navigation li { padding: 10px 15px; font-size: 16px; }
-  .content {
-    .button-container { margin: 0 10px 80px; }
-    .content-inner .row .cell { width: 100%; margin-right: 0; }
-  }
 }
