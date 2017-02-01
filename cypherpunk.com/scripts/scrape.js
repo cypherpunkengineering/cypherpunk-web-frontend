@@ -47,16 +47,7 @@ return new Promise((resolve, reject) => {
 // remove all /account/ html files
 .then(() => {
   return new Promise((resolve, reject) => {
-    rimraf('./build/account/*.html', (err) => {
-      if (err) { return reject(err); }
-      else { return resolve(); }
-    });
-  });
-})
-// remove all html files
-.then(() => {
-  return new Promise((resolve, reject) => {
-    rimraf('./build/*.html', (err) => {
+    rimraf('./build/**/*.html', (err) => {
       if (err) { return reject(err); }
       else { return resolve(); }
     });
