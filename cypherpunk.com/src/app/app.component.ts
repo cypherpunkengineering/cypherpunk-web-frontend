@@ -4,7 +4,10 @@ import { isBrowser } from 'angular2-universal';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`
+  template: `
+    <app-noscript></app-noscript>
+    <router-outlet></router-outlet>
+  `
 })
 export class AppComponent implements OnInit {
 

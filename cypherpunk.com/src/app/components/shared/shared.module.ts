@@ -9,6 +9,7 @@ import { AlertComponent } from '../alert/alert.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { PriceBoxesComponent } from '../price-boxes/price-boxes.component';
+import { NoScriptComponent } from '../noscript/noscript.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -29,7 +30,8 @@ const COMPONENTS = [
   AlertComponent,
   FooterComponent,
   LoadingComponent,
-  PriceBoxesComponent
+  PriceBoxesComponent,
+  NoScriptComponent
 ];
 
 const PROVIDERS = [];
