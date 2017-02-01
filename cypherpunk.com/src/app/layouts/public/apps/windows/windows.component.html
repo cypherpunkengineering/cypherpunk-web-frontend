@@ -12,18 +12,24 @@
       <img class="d desktop-inline" src="/assets/apps/desktop-icon-hover@2x.png" srcset="/assets/apps/desktop-icon-hover.png 500w, /assets/apps/desktop-icon-hover@2x.png 1000w" alt="Desktop">
       Desktop
     </li>
-    <li routerLink="/apps/browser">
-      <img class="b desktop-inline" src="/assets/apps/browser-icon@2x.png" srcset="/assets/apps/browser-icon.png 500w, /assets/apps/browser-icon@2x.png 1000w" alt="Browser">
-      Browser
-    </li>
-    <li routerLink="/apps/android">
-      <img class="a desktop-inline" src="/assets/apps/android-icon@2x.png" srcset="/assets/apps/android-icon.png 500w, /assets/apps/android-icon@2x.png 1000w" alt="Android">
-      Android
-    </li>
-    <li routerLink="/apps/ios">
-      <img class="i desktop-inline" src="/assets/apps/ios-icon@2x.png" srcset="/assets/apps/ios-icon.png 500w, /assets/apps/ios-icon@2x.png 1000w" alt="iOS">
-      iOS
-    </li>
+    <a routerLink="/apps/browser">
+      <li>
+        <img class="b desktop-inline" src="/assets/apps/browser-icon@2x.png" srcset="/assets/apps/browser-icon.png 500w, /assets/apps/browser-icon@2x.png 1000w" alt="Browser">
+        Browser
+      </li>
+    </a>
+    <a routerLink="/apps/android">
+      <li>
+        <img class="a desktop-inline" src="/assets/apps/android-icon@2x.png" srcset="/assets/apps/android-icon.png 500w, /assets/apps/android-icon@2x.png 1000w" alt="Android">
+        Android
+      </li>
+    </a>
+    <a routerLink="/apps/ios">
+      <li>
+        <img class="i desktop-inline" src="/assets/apps/ios-icon@2x.png" srcset="/assets/apps/ios-icon.png 500w, /assets/apps/ios-icon@2x.png 1000w" alt="iOS">
+        iOS
+      </li>
+    </a>
   </ul>
 </div>
 
@@ -38,17 +44,21 @@
       </div>
 
       <div class="cell">
-        <div class="cell-image" routerLink="/apps/mac">
-          <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Apple">
-          <img class="a logo" src="/assets/apps/apple@2x.png" srcset="/assets/apps/apple.png 500w, /assets/apps/apple@2x.png 1000w" alt="Apple">
-        </div>
+        <a routerLink="/apps/mac">
+          <div class="cell-image">
+            <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Apple">
+            <img class="a logo" src="/assets/apps/apple@2x.png" srcset="/assets/apps/apple.png 500w, /assets/apps/apple@2x.png 1000w" alt="Apple">
+          </div>
+        </a>
       </div>
 
       <div class="cell">
-        <div class="cell-image" routerLink="/apps/linux">
-          <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Linux">
-          <img class="l logo" src="/assets/apps/linux@2x.png" srcset="/assets/apps/linux.png 500w, /assets/apps/linux@2x.png 1000w" alt="Linux">
-        </div>
+        <a routerLink="/apps/linux">
+          <div class="cell-image">
+            <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Linux">
+            <img class="l logo" src="/assets/apps/linux@2x.png" srcset="/assets/apps/linux.png 500w, /assets/apps/linux@2x.png 1000w" alt="Linux">
+          </div>
+        </a>
       </div>
     </div>
 
@@ -59,9 +69,11 @@
       <div class="right"></div>
     </div>
 
-    <button class="btn blue" routerLink="/download" fragment="windows">
-      Download Cypherpunk for Windows Free
-    </button>
+    <a routerLink="/download" fragment="windows">
+      <button class="btn blue">
+        Download Cypherpunk for Windows Free
+      </button>
+    </a>
   </div>
 </div>
 
@@ -432,9 +444,11 @@
 </div>
 
 <div class="bottom">
-  <button class="btn orange" routerLink="/download" fragment="windows">
-    Download Cypherpunk for Windows Free
-  </button>
+  <a routerLink="/download" fragment="windows">
+    <button class="btn orange">
+      Download Cypherpunk for Windows Free
+    </button>
+  </a>
 </div>
 
 <app-footer></app-footer>

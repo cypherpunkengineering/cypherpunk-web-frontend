@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import * as platform from 'platform';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({ template: '' })
@@ -15,7 +15,7 @@ export class AppsComponent {
     }
     else if (os.indexOf('Window') > -1) {
       router.navigate(['/apps/windows']);
-      location.replaceState('/apps/mac');
+      location.replaceState('/apps/windows');
     }
     else if (os.indexOf('Fedora') > -1 ||
              os.indexOf('Red Hat') > -1 ||
@@ -26,11 +26,11 @@ export class AppsComponent {
              os.indexOf ('Xubuntu') > -1 ||
              os.indexOf('Mint')) {
       router.navigate(['/apps/linux']);
-      location.replaceState('/apps/mac');
+      location.replaceState('/apps/linux');
     }
     else {
       router.navigate(['/apps/windows']);
-      location.replaceState('/apps/mac');
+      location.replaceState('/apps/windows');
     }
   }
 }

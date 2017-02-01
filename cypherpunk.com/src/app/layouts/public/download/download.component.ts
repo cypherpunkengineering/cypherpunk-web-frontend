@@ -68,6 +68,7 @@ export class DownloadComponent {
     },
     */
     {
+      name: 'Debian/Ubuntu/Mint',
       os: 'Debian/Ubuntu/Mint',
       version: '64-bit',
       link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-linux-x64_0.5.0-beta+00094.deb'
@@ -87,6 +88,7 @@ export class DownloadComponent {
   constructor(private router: Router) {
     // detect os setup
     let os: string = platform.os.family;
+    console.log(os);
     if (os.indexOf('OS X') > -1) { this.headerBuild = this.builds.mac; }
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
     else if (os.indexOf('Android') > -1) { window.location.href = this.builds.android.link; }
@@ -102,15 +104,17 @@ export class DownloadComponent {
              os.indexOf ('Ubuntu') > -1 ||
              os.indexOf ('Kubuntu') > -1 ||
              os.indexOf ('Xubuntu') > -1 ||
-             os.indexOf('Mint')) {
+             os.indexOf('Mint') > -1) {
+
+      console.log('in linux');
       if (platform.os.architecture === 64) {
         this.headerBuild = this.builds.linux;
         this.currentLinuxBuild = this.linuxVersions[0];
       }
-      else { this.headerBuild = this.builds.blank; }
+      else { this.headerBuild = this.builds.windows; }
       // else { this.currentLinuxBuild = this.linuxVersions[0]; }
     }
-    else { this.headerBuild = this.builds.blank; }
+    else { this.headerBuild = this.builds.windows; }
 
     // download file setup
     if (isBrowser) {
@@ -119,7 +123,10 @@ export class DownloadComponent {
     }
   }
 
-  launchDownloadModal(build: any): void {
+  launchDownloadModal(build: any, event): boolean {
+    event.preventDefault();
+    event.stopPropagation();
+
     this.downloadBuildName = build.name;
 
     // figure out correct link
@@ -139,6 +146,8 @@ export class DownloadComponent {
 
     // show modal
     this.showDownloadModal = true;
+
+    return false;
   }
 
   downloadFile (sUrl: string): boolean {

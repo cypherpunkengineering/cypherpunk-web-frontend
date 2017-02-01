@@ -14,16 +14,18 @@
         <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
       </li>
       <li>
-        <button class="btn orange" routerLink="/download">START MY FREE PREVIEW</button>
+        <a routerLink="/download">
+          <button class="btn orange">START MY FREE PREVIEW</button>
+        </a>
       </li>
       <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-        <li class="border">
-          <a class="nav-link">Sign in</a>
+        <li class="border nav-link">
+          <span>Sign in</span>
         </li>
       </a>
       <a routerLink="/account" *ngIf="isLoggedIn()">
-        <li class="border">
-          <a class="nav-link">My Account</a>
+        <li class="border nav-link">
+          <span>My Account</span>
         </li>
       </a>
     </ul>
@@ -48,16 +50,18 @@
           <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
         </li>
         <li>
-          <button class="btn orange" routerLink="/download">START MY FREE PREVIEW</button>
+          <a routerLink="/download">
+            <button class="btn orange">START MY FREE PREVIEW</button>
+          </a>
         </li>
         <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-          <li class="border">
-            <a class="nav-link">Sign in</a>
+          <li class="border nav-link">
+            <span>Sign in</span>
           </li>
         </a>
         <a routerLink="/account" *ngIf="isLoggedIn()">
-          <li class="border">
-            <a class="nav-link">My Account</a>
+          <li class="border nav-link">
+            <span>My Account</span>
           </li>
         </a>
       </ul>
@@ -84,9 +88,9 @@
     <a href="https://support.cypherpunk.com/hc">
       <div class="mobile-dd-item">support</div>
     </a>
-    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
-      START MY FREE PREVIEW
-    </div>
+    <a routerLink="/download" routerLinkActive="active">
+      <div class="mobile-dd-item">START MY FREE PREVIEW </div>
+    </a>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
       Sign in
     </div>

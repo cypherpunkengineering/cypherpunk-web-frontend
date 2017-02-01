@@ -14,7 +14,7 @@
     </div>
 
     <div class="right">
-      <a (click)="launchDownloadModal(headerBuild)">
+      <a href="{{headerBuild.link}}" (click)="launchDownloadModal(headerBuild, $event)">
         <button class="btn blue">
           Download for {{ headerBuild.name }}
         </button>
@@ -37,9 +37,9 @@
 
           <p>Windows</p>
 
-          <button class="btn orange" (click)="launchDownloadModal(builds.windows)">
-            Download
-          </button>
+          <a href="{{builds.windows.link}}" (click)="launchDownloadModal(builds.windows, $event)">
+            <button class="btn orange">Download</button>
+          </a>
 
           <p>Windows Vista 64-bit and later</p>
 
@@ -54,9 +54,9 @@
 
           <p>MacOS</p>
 
-          <button class="btn orange" (click)="launchDownloadModal(builds.mac)">
-            Download
-          </button>
+          <a href="{{builds.mac.link}}" (click)="launchDownloadModal(builds.mac, $event)">
+            <button class="btn orange">Download</button>
+          </a>
 
           <p>MacOS Version 10.10 64-bit and later</p>
 
@@ -71,9 +71,9 @@
 
           <p>Linux</p>
 
-          <button class="btn orange" (click)="launchDownloadModal(builds.linux)">
-            Download
-          </button>
+          <a href="{{currentLinuxBuild.link}}" (click)="launchDownloadModal(builds.linux, $event)">
+            <button class="btn orange">Download</button>
+          </a>
 
           <p>Linux Version x and later</p>
 
@@ -136,9 +136,9 @@
 
           <p>Chrome/Opera/Vivaldi</p>
 
-          <button class="btn orange" (click)="launchDownloadModal(builds.chrome)">
-            Download
-          </button>
+          <a href="{{builds.chrome.link}}" (click)="launchDownloadModal(builds.chrome, $event)">
+            <button class="btn orange">Download</button>
+          </a>
 
           <p>For Chrome/Opera/Vivaldi Browser 22+</p>
 
@@ -152,9 +152,9 @@
 
           <p>Firefox</p>
 
-          <button class="btn orange" (click)="launchDownloadModal(builds.firefox)">
-            Download
-          </button>
+          <a (click)="launchDownloadModal(builds.firefox, $event)">
+            <button class="btn orange">Download</button>
+          </a>
 
           <p>Firefox Version 5+</p>
 
@@ -178,9 +178,9 @@
             <img class="d" src="/assets/apps/desktop@2x.png" alt="">
           </div>
 
-          <button class="btn orange">
-            Setup Guide
-          </button>
+          <a>
+            <button class="btn orange">Setup Guide</button>
+          </a>
         </div>
 
         <div class="half">
@@ -190,9 +190,9 @@
             <img class="d" src="/assets/apps/desktop@2x.png" alt="">
           </div>
 
-          <button class="btn orange">
-            Setup Guide
-          </button>
+          <a>
+            <button class="btn orange">Setup Guide</button>
+          </a>
         </div>
       </div>
 
@@ -203,11 +203,9 @@
           <img class="d" src="/assets/apps/desktop@2x.png" alt="">
         </div>
 
-        <div>
-          <button class="btn orange">
-            Setup Guide
-          </button>
-        </div>
+        <a>
+          <button class="btn orange">Setup Guide</button>
+        </a>
       </div>
     </div>
   </div>
@@ -216,7 +214,9 @@
 <div class="different">
   <div class="header black">Want to use it on a different device?</div>
 
-  <button class="btn blue">Check out the Setup Guide</button>
+  <a>
+    <button class="btn blue">Check out the Setup Guide</button>
+  </a>
 </div>
 
 <app-footer></app-footer>

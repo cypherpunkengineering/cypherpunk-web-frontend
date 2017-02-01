@@ -6,8 +6,16 @@
 
 <div class="navigation">
   <ul>
-    <li (click)="updateLocation('online-privacy')" [ngClass]="{'active': currentTab === 'online-privacy'}">Online Privacy</li>
-    <li (click)="updateLocation('online-freedom')" [ngClass]="{'active': currentTab === 'online-freedom'}">Online Freedom</li>
+    <a href="/features#online-privacy">
+      <li [ngClass]="{'active': currentTab === 'online-privacy'}">
+          Online Privacy
+      </li>
+    </a>
+    <a href="/features#online-freedom">
+      <li [ngClass]="{'active': currentTab === 'online-freedom'}">
+          Online Freedom
+      </li>
+    </a>
   </ul>
 </div>
 

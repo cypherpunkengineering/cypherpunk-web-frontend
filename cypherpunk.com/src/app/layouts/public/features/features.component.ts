@@ -1,12 +1,12 @@
-import { Component, AfterViewInit, Inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Location } from '@angular/common';
+import { Component, AfterViewInit, OnInit, Inject } from '@angular/core';
 
 @Component({
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css']
 })
-export class FeaturesComponent implements AfterViewInit {
+export class FeaturesComponent implements AfterViewInit, OnInit {
   title: string = 'How Cypherpunk Privacy Protects Your Online Privacy and Freedom';
   description: string = 'Learn how Cypherpunk Privacy provides unrestricted access to the internet and protects your privacy online.';
 
@@ -27,18 +27,18 @@ export class FeaturesComponent implements AfterViewInit {
   fnSwitch: boolean = false;
 
   constructor(
-    @Inject(DOCUMENT) private document: any,
-    private location: Location
+    private router: Router,
+    @Inject(DOCUMENT) private document: any
   ) { }
 
   ngAfterViewInit(): void { this.document.title = this.title; }
 
-  updateLocation(fragment: string) {
-    this.currentTab = fragment;
-    let element = document.querySelector('#' + fragment);
-    if (element) {
-      this.location.go('/features#' + fragment);
-      element.scrollIntoView({behavior: 'smooth'});
-    }
+  ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) { return; }
+
+      const tree = this.router.parseUrl(this.router.url);
+      if (tree.fragment) { this.currentTab = tree.fragment; }
+    });
   }
 }
