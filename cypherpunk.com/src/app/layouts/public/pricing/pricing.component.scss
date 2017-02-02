@@ -109,28 +109,12 @@
   border: 2px solid #f0ecec;
   border-radius: 5px;
   margin: 50px auto 70px;
-  padding: 30px 40px 40px;
+  padding: 30px 35px 40px;
 
   .amazon-pay { text-align: center; }
   .upgrade { padding: 20px 0; }
 
-  .info {
-    width: 100%;
-    margin: auto;
-    overflow: auto;
-
-    p { margin: 10px 0; }
-
-    p.half {
-      width: 50%;
-      float: left;
-      padding-right: 5px;
-      & input { width: 100%; }
-      &:last-child { padding: 0 0 0 5px; }
-      img { margin: 0 0 0 15px; }
-      #cccvc { width: 82%; display: inline; }
-    }
-  }
+  p { margin: 10px 5px; }
 
   .total {
     font-size: 21px;
@@ -253,8 +237,6 @@ input[type="text"], input[type="email"], input[type="password"], select {
 
 @media (max-width: 375px) {
   .payment-info { padding: 10px 10px; }
-  .payment-info .info p.half { width: 100%; }
-  .payment-info .info p.half #cccvc { width: 72%; }
   .payment-selection .payment-options .type-container { width: 100%; margin: 0 0 25px; }
   .btn { width: 100%; }
 }

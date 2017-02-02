@@ -107,52 +107,11 @@
           <!-- Add a card to the list -->
           <div class="create-card" [ngClass]="{'open': showCreateCard}">
             <label for="create-card">Or add a new card: </label>
-            <div class="info">
-              <p>
-                <label>Name</label><br>
-                <input type="text" placeholder="John Smith" [(ngModel)]="name" (ngModelChange)="validateCCName()" (blur)="validateCCName()" [ngClass]="{'error': !validCCName && ccNameTouched, 'success': validCCName && ccNameTouched}">
-              </p>
-            </div>
 
-            <div class="info">
-              <p>
-                <label>Card Number</label><br>
-                <input type="text" [(ngModel)]="cardNumber" (ngModelChange)="validateCCNumber()" (blur)="validateCCNumber()" [ngClass]="{'error': !validCCNumber && ccNumberTouched, 'success': validCCNumber && ccNumberTouched}">
-              </p>
-            </div>
-
-            <div class="info">
-              <p class="half">
-                <label>Expiration Date</label><br>
-                <input id="ccexpiry" type="text" placeholder="mm/yy" [(ngModel)]="expiryDate" (ngModelChange)="validateCCExpiry()" (blur)="validateCCExpiry()" [ngClass]="{'error': !validCCExpiry && ccExpiryTouched, 'success': validCCExpiry && ccExpiryTouched}" maxlength="5">
-              </p>
-
-              <p class="half">
-                <label>CVV/CSC Code</label><br>
-                <input id="cccvc" type="text" [(ngModel)]="cvc" (ngModelChange)="validateCCcvc()" (blur)="validateCCcvc()" [ngClass]="{'error': !validCCcvc && ccCVCTouched, 'success': validCCcvc && ccCVCTouched}" maxlength="4">
-              </p>
-            </div>
-
-            <div class="info">
-              <p>
-                <label>Country</label><br>
-                <select name="country" id="country" [(ngModel)]="country" (ngModelChange)="changeCountry()" (blur)="validateCountry()" [ngClass]="{'error': !validCountry && countryTouched, 'success': validCountry && countryTouched}">
-                  <option *ngFor="let country of countries" [value]="country.name">
-                    {{country.name}}
-                  </option>
-                </select>
-              </p>
-            </div>
-
-            <div class="info" *ngIf="showZip">
-              <p>
-                <label>Zip Code</label><br>
-                <input type="text" [(ngModel)]="zipCode" (ngModelChange)="validateZipCode()" (blur)="validateZipCode()" [ngClass]="{'error': !validZipCode && zipCodeTouched, 'success': validZipCode && zipCodeTouched}">
-              </p>
-            </div>
+            <app-stripe-cc-form [stripeFormData]="stripeFormData" small="true"></app-stripe-cc-form>
 
             <div class="info center">
-              <button class="btn blue" (click)="getToken()" [disabled]="!validateCC() || ccButtonDisabled">Add New Card</button>
+              <button class="btn blue" (click)="getToken()" [disabled]="!this.stripeFormData.form.valid || ccButtonDisabled">Add New Card</button>
             </div>
           </div>
         </div>

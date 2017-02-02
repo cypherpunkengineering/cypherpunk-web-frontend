@@ -1,0 +1,38 @@
+<form [formGroup]="stripeForm">
+  <p>
+    <label>Name on Card</label><br>
+    <input name="name" type="text" placeholder="Name" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name.touched && !name.valid, 'success': name.touched && name.valid}"/>
+  </p>
+
+  <p>
+    <label>Card Number</label><br>
+    <input name="cardNumber" type="text" required formControlName="cardNumber" [(ngModel)]="stripeFormData.cardNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}"/>
+  </p>
+
+  <div class="info">
+    <p class="half" [ngClass]="{'dashboard': small}">
+      <label>Expiration Date</label><br>
+      <input id="ccexpiry" name="expiryDate" type="text" placeholder="mm/yy" required maxlength="5" formControlName="expiryDate" [(ngModel)]="stripeFormData.expiryDate" (ngModelChange)="expiryOnChange()" [ngClass]="{'error': expiryDate.touched && !expiryDate.valid, 'success': expiryDate.touched && expiryDate.valid}">
+    </p>
+
+    <p class="half" [ngClass]="{'dashboard': small}">
+      <label>Security Code</label><br>
+      <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}">
+      <img src="/assets/payment/cvc-icon.png" alt="">
+    </p>
+  </div>
+
+  <p>
+    <label>Country</label><br>
+    <select id="country" name="country" required formControlName="country" [(ngModel)]="stripeFormData.country" [ngClass]="{'error': country.touched && !country.valid, 'success': country.touched && country.valid}">
+      <option *ngFor="let country of countries" [value]="country.name">
+        {{country.name}}
+      </option>
+    </select>
+  </p>
+
+  <p [hidden]="stripeFormData.country !== 'United States' && stripeFormData.country !== 'United Kingdom' && stripeFormData.country !== 'Canada'">
+    <label>Zip Code</label><br>
+    <input name="zipCode" type="text" formControlName="zipCode" [(ngModel)]="stripeFormData.zipCode" [ngClass]="{'error': zipCode.touched && !zipCode.valid, 'success': zipCode.touched && zipCode.valid}">
+  </p>
+</form>

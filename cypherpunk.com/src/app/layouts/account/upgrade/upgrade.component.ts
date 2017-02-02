@@ -27,20 +27,22 @@ export class UpgradeComponent {
 
   // user variables
   email: string;
-  name: string;
   userId: string;
   sessionUser;
 
   // Stripe variables
-  cardNumber: string;
-  expiryDate: string;
-  cvc: string;
-  country: string;
-  zipCode: string;
-  showZip: boolean = false;
+  cards = [];
   defaultCardId: string = '';
   showCreateCard: boolean = false;
-  cards = [];
+  stripeFormData = {
+    name: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvc: '',
+    country: '',
+    zipCode: '',
+    form: { valid: false }
+  };
 
   // Amazon variables
   billingAgreementId: string;
@@ -49,20 +51,6 @@ export class UpgradeComponent {
 
   // bitpay variables
   showBTC: boolean = false;
-
-  // validation variables
-  validCCName: boolean = false;
-  validCCNumber: boolean = false;
-  validCCExpiry: boolean = false;
-  validCCcvc: boolean = false;
-  validCountry: boolean = false;
-  validZipCode: boolean = false;
-  ccNameTouched: boolean = false;
-  ccNumberTouched: boolean = false;
-  ccExpiryTouched: boolean = false;
-  ccCVCTouched: boolean = false;
-  countryTouched: boolean = false;
-  zipCodeTouched: boolean = false;
 
   // payment options (cc, a, pp, bc)
   selectedOption: string = 'cc';
@@ -155,8 +143,7 @@ export class UpgradeComponent {
 
         this.countries.map((country) => {
           if (country.code === data.country) {
-            this.country = country.name;
-            this.changeCountry();
+            this.stripeFormData.country = country.name;
           }
         });
       }, () => {});
@@ -175,21 +162,8 @@ export class UpgradeComponent {
 
   // pay with credit card
 
-  changeCountry() {
-    let currentCountry = this.country;
-
-    if (currentCountry === 'United States' ||
-        currentCountry === 'United Kingdom' ||
-        currentCountry === 'Canada') {
-      this.showZip = true;
-    }
-    else { this.showZip = false; }
-
-    return this.validateCountry();
-  }
-
   stripeButtonDisabled() {
-    if (this.showCreateCard) { return !this.validateCC() || this.ccButtonDisabled; }
+    if (this.showCreateCard) { return !this.stripeFormData.form.valid || this.ccButtonDisabled; }
     else { return !this.defaultCardId; }
   }
 
@@ -208,21 +182,20 @@ export class UpgradeComponent {
     let month: number;
     let year: number;
 
-    month = Number(this.expiryDate.split('/')[0]);
-    year = Number(this.expiryDate.split('/')[1]);
+    month = Number(this.stripeFormData.expiryDate.split('/')[0]);
+    year = Number(this.stripeFormData.expiryDate.split('/')[1]);
 
     // stripe params
     let stripeParams = {
-      name: this.name,
-      number: this.cardNumber,
+      name: this.stripeFormData.name,
+      number: this.stripeFormData.cardNumber,
       exp_month: month,
       exp_year: year,
-      cvc: this.cvc,
-      address_zip: '',
-      address_country: this.country
+      cvc: this.stripeFormData.cvc,
+      address_zip: this.stripeFormData.zipCode,
+      address_country: this.stripeFormData.country
     };
-    if (this.zipCode) { stripeParams.address_zip = this.zipCode; }
-    else { delete stripeParams.address_zip; }
+    if (!this.stripeFormData.zipCode) { delete stripeParams.address_zip; }
 
     // stripe callback
     let stripeCallback = (status: number, response: any) => {
@@ -458,75 +431,6 @@ export class UpgradeComponent {
     else if (this.plansService.selectedPlan.id === 'semiannually5995') {
       document.getElementById('bitpaySemiannual').click();
     }
-  }
-
-  // validation functions
-
-  validateCCName() {
-    this.ccNameTouched = true;
-
-    if (!this.name) { this.validCCName = false; }
-    else { this.validCCName = true; }
-    return this.validCCName;
-  }
-
-  validateCCNumber() {
-    this.ccNumberTouched = true;
-
-    let stripe = (<any>window).Stripe;
-    this.validCCNumber = stripe.card.validateCardNumber(this.cardNumber);
-    return this.validCCNumber;
-  }
-
-  validateCCExpiry() {
-    this.ccExpiryTouched = true;
-
-    if (this.expiryDate && this.expiryDate.length === 2) { this.expiryDate += '/'; }
-
-    let stripe = (<any>window).Stripe;
-    this.validCCExpiry = stripe.card.validateExpiry(this.expiryDate);
-    if (this.validCCExpiry) { document.getElementById('cccvc').focus(); }
-    return this.validCCExpiry;
-  }
-
-  validateCCcvc() {
-    this.ccCVCTouched = true;
-
-    let stripe = (<any>window).Stripe;
-    this.validCCcvc = stripe.card.validateCVC(this.cvc);
-    return this.validCCcvc;
-  }
-
-  validateCountry() {
-    this.countryTouched = true;
-
-    if (!this.country) { this.validCountry = false; }
-    else { this.validCountry = true; }
-    return this.validCountry;
-  }
-
-  validateZipCode() {
-    this.zipCodeTouched = true;
-
-    if (!this.zipCode) { this.validZipCode = false; }
-    else { this.validZipCode = true; }
-    return this.validZipCode;
-  }
-
-  validateCC() {
-    let valid = this.validCCName && this.ccNameTouched &&
-    this.validCCNumber && this.ccNumberTouched &&
-    this.validCCExpiry && this.ccExpiryTouched &&
-    this.validCCcvc && this.ccCVCTouched &&
-    this.validCountry && this.countryTouched;
-
-    if (this.country === 'United States' ||
-    this.country === 'United Kingdom' ||
-    this.country === 'Canada') {
-      valid = valid && this.validZipCode && this.zipCodeTouched;
-    }
-
-    return valid;
   }
 
   isNumber(n) {

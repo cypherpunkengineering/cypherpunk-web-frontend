@@ -10,6 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { PriceBoxesComponent } from '../price-boxes/price-boxes.component';
 import { NoScriptComponent } from '../noscript/noscript.component';
+import { StripeCCFormComponent } from '../stripe-cc-form/stripe-cc-form.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -31,7 +32,8 @@ const COMPONENTS = [
   FooterComponent,
   LoadingComponent,
   PriceBoxesComponent,
-  NoScriptComponent
+  NoScriptComponent,
+  StripeCCFormComponent
 ];
 
 const PROVIDERS = [];
