@@ -1,6 +1,6 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { isBrowser } from 'angular2-universal';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +20,8 @@ export class AppComponent implements OnInit {
 
         const tree = this.router.parseUrl(this.router.url);
         if (tree.fragment) {
-          // you can use DomAdapter
           const element = document.querySelector('#' + tree.fragment);
-          if (element) {
-            element.scrollIntoView({
-             behavior: 'smooth'
-            });
-          }
+          if (element) { element.scrollIntoView({ behavior: 'smooth' }); }
         }
         else { document.body.scrollTop = 0; }
       });
