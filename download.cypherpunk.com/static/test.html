@@ -1,0 +1,133 @@
+<!doctype html>
+<html 🆖>
+<head>
+  <meta charset="UTF-8">
+  <title>Cypherpunk Privacy Builds</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      box-sizing: border-box;
+      font-family: Roboto;
+      font-size: 16px;
+    }
+    *, *:before, *:after { box-sizing: inherit; }
+
+    .navigation { background-color: #3367d6; }
+    ul { margin: 0; }
+    li {
+      display: inline-block;
+      padding: 15px;
+      color: #fff;
+      cursor: pointer;
+      text-transform: capitalize;
+    }
+    li.active { background-color: #4285f4; }
+
+    #content { padding: 20px; }
+  </style>
+
+  <script type="text/javascript">
+    var baseUrl = '/api/builds/';
+    var elements = {};
+    var tabNameArray = [
+      'latest',
+      'windows',
+      'macos',
+      'ubuntu',
+      'debian',
+      'android',
+      'ios',
+      'chrome',
+      'firefox'
+    ];
+
+    // easy get request
+    function request(data, cb) {
+      var xhr = new XMLHttpRequest();
+      xhr.open(data.method, data.url, true);
+      xhr.resposneType = 'json';
+      xhr.onload = function() {
+        if (xhr.status !== 200) { return cb(new Error('Error calling server'), xhr); }
+
+        var data;
+        try { data = JSON.parse(xhr.response); }
+        catch (e) { return cb(new Error('Error parsing response'), xhr); }
+
+        return cb(null, data);
+      };
+      xhr.send();
+    }
+
+    // click handler
+    function elementClickHandler(e) {
+      // figure out which tab we're working with
+      var name = e.target.name;
+
+      // remove active from all tabs
+      tabNameArray.forEach(function(name) { elements[name].classList.remove('active'); });
+      elements[name].classList.add('active');
+
+      // load data for this page
+      var params = { method: 'GET', url: baseUrl + name };
+      request(params, function(err, response) {
+        if (err) { return console.log(err, response); }
+        else { drawPage(response, name); }
+      });
+    }
+
+    // load page with content
+    function drawPage (data, type) {
+      var text = '';
+      if (type === 'latest') {
+        for (var key in data) {
+          text += key + ': <a href="' + data[key].url + '">' + data[key].label + '</a><br>';
+        }
+      }
+      else {
+        data.forEach(function(datum) {
+          text += '<a href="' + datum.url + '">' + datum.label + '</a><br>';
+        });
+      }
+
+      document.getElementById('content').innerHTML = text;
+    }
+
+    // on page load
+    function pageLoad () {
+      // draw navigation
+      var navigation = document.getElementById('navigation');
+      tabNameArray.forEach(function(name, index) {
+        var child = document.createElement('li');
+        child.id = name;
+        child.innerText = name;
+        if (index === 0) { child.classList.add('active'); }
+        navigation.appendChild(child);
+      });
+
+      // load all tab elements into elements array
+      tabNameArray.forEach(function(name) {
+        elements[name] = document.getElementById(name);
+        elements[name].addEventListener('click', elementClickHandler);
+        elements[name].name = name;
+      });
+
+      // load first page
+      document.getElementById(tabNameArray[0]).click();
+    }
+    document.addEventListener("DOMContentLoaded", pageLoad);
+  </script>
+</head>
+<body>
+  <div class="navigation">
+    <ul id="navigation"></ul>
+  </div>
+
+  <div id="content"></div>
+</body>
+</html>
