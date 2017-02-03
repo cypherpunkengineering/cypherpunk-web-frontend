@@ -1,7 +1,6 @@
 <form [formGroup]="accountForm">
   <p>
     <input name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
-      {{disabledSwitch}}
   </p>
 
   <p>
