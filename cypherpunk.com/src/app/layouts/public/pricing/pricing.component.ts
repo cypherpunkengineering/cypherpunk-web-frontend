@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { RequestOptions} from '@angular/http';
 import { isBrowser } from 'angular2-universal';
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
@@ -16,22 +16,28 @@ import country_list from './countries';
   styleUrls: ['./pricing.component.css']
 })
 export class PricingComponent {
-  posData: string = '';
-  ccButtonDisabled: boolean = false;
-  ppButtonDisabled: boolean = false;
-  amButtonDisabled: boolean = false;
-  bpButtonDisabled: boolean = false;
-  disableAccountInfo: boolean = false;
-  loading: boolean = false;
-  modal = { show: false, header: '', body: '', link: false };
+  @ViewChild('accounts') accountChild;
+
+  // payment options (cc, a, pp, bc)
+  selectedOption = 'cc';
   countries = country_list;
+  loading: boolean = false;
+  disablePayment: boolean = false;
+  modal = { show: false, header: '', body: '', link: false };
   errHeader: string = 'Error processing your payment';
   errBody: string = 'Please check your payment information and try again.';
 
   // user variables
-  email: string;
-  password: string;
-  userId: string;
+  accountFormData = {
+    email: '',
+    password: '',
+    validation: {
+      email: false,
+      warning: false,
+      disabled: false
+    },
+    form: { valid: false }
+  };
 
   // Stripe variables
   stripeFormData = {
@@ -50,15 +56,11 @@ export class PricingComponent {
   amazonRecurring: any;
 
   // bitpay variables
+  posData: string = '';
   showBTC: boolean = false;
 
-  validCCEmail: boolean = false;
-  validCCPass: boolean = false;
-  ccEmailTouched: boolean = false;
-  ccPassTouched: boolean = false;
-
-  // payment options (cc, a, pp, bc)
-  selectedOption = 'cc';
+  // Paypayl variables
+  userId: string;
 
   constructor(
     private zone: NgZone,
@@ -156,8 +158,8 @@ export class PricingComponent {
   getToken() {
     // show loading overlay
     this.loading = true;
-    this.ccButtonDisabled = true;
-    this.disableAccountInfo = true;
+    this.disablePayment = true;
+    this.accountChild.disableInputs();
 
     let month: number;
     let year: number;
@@ -182,7 +184,6 @@ export class PricingComponent {
       if (response.error) {
         this.zone.run(() => {
           this.loading = false;
-          this.disableAccountInfo = false;
           this.alertService.error('Could not process payment: ' + response.error.message);
         });
       }
@@ -202,8 +203,8 @@ export class PricingComponent {
     let body = {
       token: token,
       plan: this.plansService.selectedPlan.id,
-      email: this.email,
-      password: this.password
+      email: this.accountFormData.email,
+      password: this.accountFormData.password
     };
     let options = new RequestOptions({});
 
@@ -224,28 +225,18 @@ export class PricingComponent {
       this.router.navigate(['/account']);
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.ccButtonDisabled = false;
-
-        this.modal.header = this.errHeader;
-        this.modal.body = error.message;
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-    });
+    .catch(error => { this.handleError(error); });
   }
 
   // pay with paypal
 
   payWithPaypal() {
     this.loading = true;
-    this.ppButtonDisabled = true;
-    this.disableAccountInfo = true;
+    this.disablePayment = true;
+    this.accountChild.disableInputs();
 
     // call server at this point (using promises)
-    let body = { email: this.email, password: this.password };
+    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
     let options = new RequestOptions({});
     // sets cookie
     return this.backend.createAccount(body, options)
@@ -275,17 +266,7 @@ export class PricingComponent {
       }
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.ppButtonDisabled = false;
-
-        this.modal.header = this.errHeader;
-        this.modal.body = error.message;
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-    });
+    .catch(error => { this.handleError(error); });
   }
 
   // pay with amazon
@@ -362,16 +343,16 @@ export class PricingComponent {
 
   amazonButton() {
     this.loading = true;
-    this.amButtonDisabled = true;
-    this.disableAccountInfo = true;
+    this.disablePayment = true;
+    this.accountChild.disableInputs();
 
     /* send billingAgreement to server */
     let options = new RequestOptions({});
     let body = {
       AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
-      email: this.email,
-      password: this.password
+      email: this.accountFormData.email,
+      password: this.accountFormData.password
     };
 
     // sets cookie
@@ -391,27 +372,17 @@ export class PricingComponent {
       this.router.navigate(['/account']);
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.amButtonDisabled = false;
-
-        this.modal.header = this.errHeader;
-        this.modal.body = error.message;
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-    });
+    .catch(error => { this.handleError(error); });
   }
 
   // pay with bitpay
 
   payWithBitpay() {
     this.loading = true;
-    this.bpButtonDisabled = true;
-    this.disableAccountInfo = true;
+    this.disablePayment = true;
+    this.accountChild.disableInputs();
 
-    let body = { email: this.email, password: this.password};
+    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
     let options = new RequestOptions({});
 
     // sets cookie
@@ -446,65 +417,24 @@ export class PricingComponent {
       }
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.bpButtonDisabled = false;
+    .catch(error => { this.handleError(error); });
+  }
 
-        this.modal.header = this.errHeader;
-        this.modal.body = error.message;
-        this.modal.link = false;
-        this.modal.show = true;
-      });
+  isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+  // helper functions
+
+  handleError(error) {
+    this.zone.run(() => {
+      this.loading = false;
+      this.disablePayment = false;
+
+      this.modal.header = this.errHeader;
+      this.modal.body = error.message;
+      this.modal.link = false;
+      this.modal.show = true;
     });
   }
-
-  // validation functions
-
-  validateCCEmail(onBlur: boolean) {
-    this.ccEmailTouched = true;
-
-    if (!this.email) { this.validCCEmail = false; }
-    else if (!/^\S+@\S+$/.test(this.email)) { this.validCCEmail = false; }
-    else { this.validCCEmail = true; }
-
-    if (onBlur && this.validCCEmail) {
-      let body = { email: this.email };
-      let options = new RequestOptions({});
-      this.backend.identifyEmail(body, options)
-      .then(() => {
-        this.modal.header = 'It looks like you\'re already a Cypherpunk!';
-        this.modal.body = `Why not upgrade your account here: `;
-        this.modal.link = true;
-        this.modal.show = true;
-      })
-      .catch((data) => {
-        if (data.status === 401) { this.validCCEmail = true; }
-        else { this.validCCEmail = false; }
-      });
-    }
-
-    return this.validCCEmail;
-  }
-
-  validateCCPass() {
-    this.ccPassTouched = true;
-
-    if (!this.password) { this.validCCPass = false; }
-    else { this.validCCPass = true; }
-    return this.validCCPass;
-  }
-
-  validatePP() {
-    return this.validCCEmail && this.ccEmailTouched &&
-    this.validCCPass && this.ccPassTouched;
-  }
-
-  isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
-  // option functions
 
   selectOption(option) {
     this.selectedOption = option;

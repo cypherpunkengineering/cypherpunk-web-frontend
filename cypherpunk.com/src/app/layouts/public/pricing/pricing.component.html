@@ -31,13 +31,7 @@
       <div class="text">Create your secure account</div>
     </div>
 
-    <p>
-      <input type="email" placeholder="Email" [(ngModel)]="email" (ngModelChange)="validateCCEmail(false)" (blur)="validateCCEmail(true)" [disabled]="disableAccountInfo" [ngClass]="{'error': !validCCEmail && ccEmailTouched, 'success': validCCEmail && ccEmailTouched}">
-    </p>
-
-    <p>
-      <input type="password" placeholder="Password" [(ngModel)]="password" (ngModelChange)="validateCCPass()" (blur)="validateCCPass()" [disabled]="disableAccountInfo" [ngClass]="{'error': !validCCPass && ccPassTouched, 'success': validCCPass && ccPassTouched}">
-    </p>
+    <app-account-creation-form [accountFormData]="accountFormData" #accounts></app-account-creation-form>
   </div>
 
   <div class="page-divider"></div>
@@ -107,7 +101,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn blue" [disabled]="!stripeFormData.form.valid || validatePP() || ccButtonDisabled" (click)="getToken()">
+          <button class="btn blue" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
             Join Now
           </button>
         </div>
@@ -132,7 +126,7 @@
           </div>
         </div>
         <div class="pay">
-          <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="!validatePP() || amButtonDisabled">
+          <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
           Join Now
           </button>
         </div>
@@ -149,7 +143,7 @@
           </div>
         </div>
         <div class="pay">
-          <button class="btn blue" (click)="payWithPaypal()" [disabled]="!validatePP() || ppButtonDisabled">
+          <button class="btn blue" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
             Join Now
           </button>
         </div>
@@ -202,7 +196,7 @@
           </div>
         </div>
         <div class="pay">
-          <button class="btn blue" (click)="payWithBitpay()" [disabled]="!validatePP() || bpButtonDisabled">
+          <button class="btn blue" (click)="payWithBitpay()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
             Join Now
           </button>
         </div>
@@ -383,6 +377,24 @@
 
     <div class="modal-footer">
       <button class="btn teal" (click)="modal.show = false">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'open': this.accountFormData.validation.warning}">
+  <div class="background" (click)="this.accountFormData.validation.warning = false" [ngClass]="{'open': this.accountFormData.validation.warning}"></div>
+  <div class="modal-content">
+    <div class="modal-header">It looks like you're already a Cypherpunk!</div>
+    <div class="modal-line"></div>
+
+    <div class="modal-body">
+      <p>Why not upgrade your account here: </p>
+
+      <a routerLink="/account">My Account</a>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn teal" (click)="this.accountFormData.validation.warning = false">Close</button>
     </div>
   </div>
 </div>
