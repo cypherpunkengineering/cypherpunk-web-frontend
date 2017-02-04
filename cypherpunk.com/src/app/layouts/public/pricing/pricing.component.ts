@@ -19,13 +19,12 @@ export class PricingComponent {
   @ViewChild('accounts') accountChild;
 
   // payment options (cc, a, pp, bc)
-  selectedOption = 'cc';
+  paymentMethod = 'cc';
   countries = country_list;
   loading: boolean = false;
   disablePayment: boolean = false;
   modal = { show: false, header: '', body: '', link: false };
   errHeader: string = 'Error processing your payment';
-  errBody: string = 'Please check your payment information and try again.';
 
   // user variables
   accountFormData = {
@@ -436,15 +435,14 @@ export class PricingComponent {
     });
   }
 
-  selectOption(option) {
-    this.selectedOption = option;
-
+  selectOption(method) {
+    this.paymentMethod = method;
     // launch amazon payments
-    if (this.selectedOption === 'a') {
+    if (method === 'a') {
       this.showBTC = false;
       setTimeout(() => { this.amazonInit(); }, 100);
     }
-    else if (this.selectedOption === 'bc') { this.showBTC = true; }
+    else if (method === 'bc') { this.showBTC = true; }
     else { this.showBTC = false; }
   }
 

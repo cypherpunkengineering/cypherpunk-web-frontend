@@ -42,52 +42,12 @@
       <div class="text">Select a payment option</div>
     </div>
 
-    <div class="payment-options">
-      <div class="type-container" (click)="selectOption('cc')" [ngClass]="{'active': selectedOption === 'cc'}">
-        <img [ngClass]="{'show': selectedOption === 'cc'}" src="/assets/payment/credit-card-selected.png">
-        <img [ngClass]="{'show': selectedOption !== 'cc'}" src="/assets/payment/credit-card.png">
-
-        <div class="text">
-          <input id="cc" type="radio" name="paymentOptions" [checked]="selectedOption === 'cc'">
-          <label for="cc">Credit Card</label>
-        </div>
-      </div>
-
-      <div class="type-container" (click)="selectOption('a')" [ngClass]="{'active': selectedOption === 'a'}">
-        <img [ngClass]="{'show': selectedOption === 'a'}" src="/assets/payment/amazon-selected.png">
-        <img [ngClass]="{'show': selectedOption !== 'a'}" src="/assets/payment/amazon.png">
-
-        <div class="text">
-          <input id="a" type="radio" name="paymentOptions" [checked]="selectedOption === 'a'">
-          <label for="a">Amazon</label>
-        </div>
-      </div>
-
-      <div class="type-container" (click)="selectOption('pp')" [ngClass]="{'active': selectedOption === 'pp'}">
-        <img [ngClass]="{'show': selectedOption === 'pp'}" src="/assets/payment/paypal-selected.png">
-        <img [ngClass]="{'show': selectedOption !== 'pp'}" src="/assets/payment/paypal.png">
-
-        <div class="text">
-          <input id="pp" type="radio" name="paymentOptions" [checked]="selectedOption === 'pp'">
-          <label for="pp">Paypal</label>
-        </div>
-      </div>
-
-      <div class="type-container" (click)="selectOption('bc')" [ngClass]="{'active': selectedOption === 'bc'}">
-        <img [ngClass]="{'show': selectedOption === 'bc'}" src="/assets/payment/bitcoin-selected.png">
-        <img [ngClass]="{'show': selectedOption !== 'bc'}" src="/assets/payment/bitcoin.png">
-
-        <div class="text">
-          <input id="bc" type="radio" name="paymentOptions" [checked]="selectedOption === 'bc'">
-          <label for="bc">Bitcoin</label>
-        </div>
-      </div>
-    </div>
+    <app-payment-selection [paymentMethod]="paymentMethod" (selectOption)="selectOption($event)"></app-payment-selection>
   </div>
 
   <div class="payment-info">
 
-    <div class="credit-card" *ngIf="selectedOption === 'cc'">
+    <div class="credit-card" *ngIf="paymentMethod === 'cc'">
 
       <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
 
@@ -108,7 +68,7 @@
       </div>
     </div>
 
-    <div class="amazon" *ngIf="selectedOption === 'a'">
+    <div class="amazon" *ngIf="paymentMethod === 'a'">
       <div class="amazon-pay">
         <div id="AmazonPayButton"></div>
 
@@ -133,7 +93,7 @@
       </div>
     </div>
 
-    <div class="paypal" *ngIf="selectedOption === 'pp'">
+    <div class="paypal" *ngIf="paymentMethod === 'pp'">
       <div class="total">
         <div class="price">
           <img src="/assets/payment/total.png" alt="Total">
@@ -183,7 +143,7 @@
       </form>
     </div>
 
-    <div class="bitcoin" *ngIf="selectedOption === 'bc'">
+    <div class="bitcoin" *ngIf="paymentMethod === 'bc'">
       <div class="total">
         <div class="price">
           <img src="/assets/payment/total.png" alt="Total">

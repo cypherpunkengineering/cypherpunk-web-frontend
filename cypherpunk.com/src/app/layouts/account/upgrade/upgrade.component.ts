@@ -16,14 +16,13 @@ import country_list from '../../public/pricing/countries';
   styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent {
-  posData: string = '';
-  ccButtonDisabled: boolean = false;
-  ppButtonDisabled: boolean = false;
-  amButtonDisabled: boolean = false;
-  bpButtonDisabled: boolean = false;
-  loading: boolean = true;
-  modal = { show: false, header: '', body: '', link: false };
+  // payment options (cc, a, pp, bc)
+  paymentMethod: string = 'cc';
   countries = country_list;
+  loading: boolean = true;
+  disablePayment: boolean = false;
+  modal = { show: false, header: '', body: '' };
+  errHeader: string = 'Error processing your payment';
 
   // user variables
   email: string;
@@ -50,10 +49,8 @@ export class UpgradeComponent {
   amazonRecurring: any;
 
   // bitpay variables
+  posData: string = '';
   showBTC: boolean = false;
-
-  // payment options (cc, a, pp, bc)
-  selectedOption: string = 'cc';
 
   constructor(
     private zone: NgZone,
@@ -163,8 +160,8 @@ export class UpgradeComponent {
   // pay with credit card
 
   stripeButtonDisabled() {
-    if (this.showCreateCard) { return !this.stripeFormData.form.valid || this.ccButtonDisabled; }
-    else { return !this.defaultCardId; }
+    if (this.showCreateCard) { return !this.stripeFormData.form.valid || this.disablePayment; }
+    else { return !this.defaultCardId || this.disablePayment; }
   }
 
   stripeUpgrade() {
@@ -177,7 +174,7 @@ export class UpgradeComponent {
   getToken() {
     // show loading overlay
     this.loading = true;
-    this.ccButtonDisabled = true;
+    this.disablePayment = true;
 
     let month: number;
     let year: number;
@@ -217,7 +214,6 @@ export class UpgradeComponent {
   }
 
   createCard(token) {
-    this.ccButtonDisabled = true;
     let body = { token: token };
     let options = new RequestOptions({});
     // set cookie
@@ -232,18 +228,8 @@ export class UpgradeComponent {
       return this.saveToServer();
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.ccButtonDisabled = false;
-
-        this.modal.header = 'Error: ' + error.message;
-        this.modal.body = '';
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-      // error 409 -> redirect to Signin page
-    });
+    // error 409 -> redirect to Signin page
+    .catch(error => { this.handleError(error); });
   }
 
   // stripe upgrade with existing card
@@ -251,6 +237,10 @@ export class UpgradeComponent {
   setDefaultCard(cardId) { this.defaultCardId = cardId; }
 
   finalizeDefaultCard() {
+    // show loading overlay
+    this.loading = true;
+    this.disablePayment = true;
+
     let body = { default_source: this.defaultCardId };
     let options = new RequestOptions({});
     return this.backend.defaultCard(body, options)
@@ -274,29 +264,19 @@ export class UpgradeComponent {
         this.loading = false;
         this.alertService.success('You have upgraded your account');
         this.router.navigate(['/account']);
-        this.ccButtonDisabled = false;
+        this.disablePayment = false;
       });
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.ccButtonDisabled = false;
-
-        this.modal.header = 'Error: ' + error.message;
-        this.modal.body = '';
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-      // error 409 -> redirect to Signin page
-    });
+    // error 409 -> redirect to Signin page
+    .catch(error => { this.handleError(error); });
   }
 
   // pay with paypal
 
   payWithPaypal() {
     this.loading = true;
-    this.ppButtonDisabled = true;
+    this.disablePayment = true;
 
     if (this.plansService.selectedPlan.id === 'monthly1295') {
       document.getElementById('paypalMonthly').click();
@@ -383,7 +363,7 @@ export class UpgradeComponent {
 
   amazonButton() {
     this.loading = true;
-    this.amButtonDisabled = true;
+    this.disablePayment = true;
 
     let body = {
       AmazonBillingAgreementId: this.billingAgreementId,
@@ -397,24 +377,14 @@ export class UpgradeComponent {
       this.router.navigate(['/account']);
     })
     // handle errors
-    .catch((error) => {
-      this.zone.run(() => {
-        this.loading = false;
-        this.amButtonDisabled = false;
-
-        this.modal.header = 'Error: ' + error.message;
-        this.modal.body = '';
-        this.modal.link = false;
-        this.modal.show = true;
-      });
-    });
+    .catch(error => { this.handleError(error); });
   }
 
   // pay with bitpay
 
   payWithBitpay() {
     this.loading = true;
-    this.bpButtonDisabled = true;
+    this.disablePayment = true;
 
     let posId = {
       id: this.userId,
@@ -433,21 +403,30 @@ export class UpgradeComponent {
     }
   }
 
-  isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+  isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+  // helper functions
+
+  handleError(error) {
+    this.zone.run(() => {
+      this.loading = false;
+      this.disablePayment = false;
+
+      this.modal.header = this.errHeader;
+      this.modal.body = error.message;
+      this.modal.show = true;
+    });
   }
 
-  // option functions
-
-  selectOption(option) {
-    this.selectedOption = option;
+  selectOption(method) {
+    this.paymentMethod = method;
 
     // launch amazon payments
-    if (this.selectedOption === 'a') {
+    if (this.paymentMethod === 'a') {
       this.showBTC = false;
       setTimeout(() => { this.amazonInit(); }, 100);
     }
-    else if (this.selectedOption === 'bc') { this.showBTC = true; }
+    else if (this.paymentMethod === 'bc') { this.showBTC = true; }
     else { this.showBTC = false; }
   }
 

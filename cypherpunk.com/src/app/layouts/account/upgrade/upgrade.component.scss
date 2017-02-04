@@ -68,28 +68,7 @@
   }
 }
 
-.payment-selection {
-  width: 90%;
-  margin: auto;
-
-  .payment-options {
-    text-align: center;
-
-    .type-container {
-      display: inline-block;
-      cursor: pointer;
-      margin: 0 40px 0 0;
-      &:last-child { margin: 0; }
-      img { display: none; margin: auto; }
-      img.show { display: block; }
-    }
-    .text {
-      text-align: center;
-      input, label { cursor: pointer; }
-      label { color: #163238; vertical-align: middle; }
-    }
-  }
-}
+.payment-selection { width: 90%; margin: auto; }
 
 .payment-info {
   width: 90%;
