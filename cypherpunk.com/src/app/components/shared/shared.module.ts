@@ -8,11 +8,11 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { AlertComponent } from '../alert/alert.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
-import { PriceBoxesComponent } from '../price-boxes/price-boxes.component';
 import { NoScriptComponent } from '../noscript/noscript.component';
-import { StripeCCFormComponent } from '../stripe-cc-form/stripe-cc-form.component';
-import { AccountCreationFormComponent } from '../account-creation-form/account-creation-form.component';
-import { PaymentSelectionComponent } from '../payment-selection/payment-selection.component';
+import { PriceBoxesComponent } from '../payment/price-boxes/price-boxes.component';
+import { StripeCCFormComponent } from '../forms/stripe-cc-form/stripe-cc-form.component';
+import { AccountCreationFormComponent } from '../forms/account-creation-form/account-creation-form.component';
+import { PaymentSelectionComponent } from '../payment/payment-selection/payment-selection.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here

@@ -2,7 +2,7 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { isBrowser } from 'angular2-universal';
 import { Component, Input } from '@angular/core';
-import { PlansService } from '../../services/plans.service';
+import { PlansService } from '../../../services/plans.service';
 
 @Component({
   selector: 'app-price-boxes',

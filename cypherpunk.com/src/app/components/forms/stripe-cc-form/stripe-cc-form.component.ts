@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import country_list from '../../layouts/public/pricing/countries';
+import country_list from '../../../layouts/public/pricing/countries';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 @Component({

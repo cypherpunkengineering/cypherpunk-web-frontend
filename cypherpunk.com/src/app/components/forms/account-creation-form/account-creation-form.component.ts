@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, NgZone } from '@angular/core';
-import { BackendService } from '../../services/backend.service';
+import { BackendService } from '../../../services/backend.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
