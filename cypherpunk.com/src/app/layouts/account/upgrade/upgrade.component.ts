@@ -1,7 +1,7 @@
 import { isBrowser } from 'angular2-universal';
 import { RequestOptions } from '@angular/http';
-import { Component, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, NgZone, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
@@ -16,6 +16,8 @@ import country_list from '../../public/pricing/countries';
   styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent {
+  @ViewChild('paypal') paypal;
+
   // payment options (cc, a, pp, bc)
   paymentMethod: string = 'cc';
   countries = country_list;
@@ -277,16 +279,7 @@ export class UpgradeComponent {
   payWithPaypal() {
     this.loading = true;
     this.disablePayment = true;
-
-    if (this.plansService.selectedPlan.id === 'monthly1295') {
-      document.getElementById('paypalMonthly').click();
-    }
-    else if (this.plansService.selectedPlan.id === 'annually9995') {
-      document.getElementById('paypalAnnual').click();
-    }
-    else if (this.plansService.selectedPlan.id === 'semiannually5995') {
-      document.getElementById('paypalSemiannual').click();
-    }
+    this.paypal.pay(this.plansService.selectedPlan.id);
   }
 
   // pay with amazon

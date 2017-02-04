@@ -17,6 +17,7 @@ import country_list from './countries';
 })
 export class PricingComponent {
   @ViewChild('accounts') accountChild;
+  @ViewChild('paypal') paypal;
 
   // payment options (cc, a, pp, bc)
   paymentMethod = 'cc';
@@ -254,15 +255,7 @@ export class PricingComponent {
       this.alertService.success('You account was created!');
     })
     .then(() => {
-      if (this.plansService.selectedPlan.id === 'monthly1295') {
-        document.getElementById('paypalMonthly').click();
-      }
-      else if (this.plansService.selectedPlan.id === 'annually9995') {
-        document.getElementById('paypalAnnual').click();
-      }
-      else if (this.plansService.selectedPlan.id === 'semiannually5995') {
-        document.getElementById('paypalSemiannual').click();
-      }
+      this.paypal.pay(this.plansService.selectedPlan.id);
     })
     // handle errors
     .catch(error => { this.handleError(error); });
