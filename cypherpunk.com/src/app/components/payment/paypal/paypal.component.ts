@@ -7,17 +7,23 @@ import { Component, Input } from '@angular/core';
 export class PaypalComponent {
   @Input() userId: string;
 
+  posData: string;
+
   constructor() { }
 
   pay(planId) {
-    if (planId.startsWith('monthly')) {
-      document.getElementById('paypalMonthly').click();
-    }
-    else if (planId.startsWith('annually')) {
-      document.getElementById('paypalAnnual').click();
-    }
-    else if (planId.startsWith('semiannually')) {
-      document.getElementById('paypalSemiannual').click();
-    }
+    this.posData = this.userId + '|' + planId;
+
+    setTimeout(() => {
+      if (planId.startsWith('monthly')) {
+        document.getElementById('paypalMonthly').click();
+      }
+      else if (planId.startsWith('annually')) {
+        document.getElementById('paypalAnnual').click();
+      }
+      else if (planId.startsWith('semiannually')) {
+        document.getElementById('paypalSemiannual').click();
+      }
+    });
   }
 }

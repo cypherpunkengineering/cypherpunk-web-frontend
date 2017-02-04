@@ -17,6 +17,7 @@ import country_list from '../../public/pricing/countries';
 })
 export class UpgradeComponent {
   @ViewChild('paypal') paypal;
+  @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
   paymentMethod: string = 'cc';
@@ -51,7 +52,6 @@ export class UpgradeComponent {
   amazonRecurring: any;
 
   // bitpay variables
-  posData: string = '';
   showBTC: boolean = false;
 
   constructor(
@@ -378,22 +378,7 @@ export class UpgradeComponent {
   payWithBitpay() {
     this.loading = true;
     this.disablePayment = true;
-
-    let posId = {
-      id: this.userId,
-      plan: this.plansService.selectedPlan.id
-    };
-    this.posData = JSON.stringify(posId);
-
-    if (this.plansService.selectedPlan.id === 'monthly1295') {
-      document.getElementById('bitpayMonthly').click();
-    }
-    else if (this.plansService.selectedPlan.id === 'annually9995') {
-      document.getElementById('bitpayAnnual').click();
-    }
-    else if (this.plansService.selectedPlan.id === 'semiannually5995') {
-      document.getElementById('bitpaySemiannual').click();
-    }
+    this.bitpay.pay(this.plansService.selectedPlan.id);
   }
 
   isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }

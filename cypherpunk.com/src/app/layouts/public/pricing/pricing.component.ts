@@ -18,6 +18,7 @@ import country_list from './countries';
 export class PricingComponent {
   @ViewChild('accounts') accountChild;
   @ViewChild('paypal') paypal;
+  @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
   paymentMethod = 'cc';
@@ -56,7 +57,6 @@ export class PricingComponent {
   amazonRecurring: any;
 
   // bitpay variables
-  posData: string = '';
   showBTC: boolean = false;
 
   // Paypayl variables
@@ -391,22 +391,7 @@ export class PricingComponent {
     .then(() => { this.auth.authed = true; })
     .then(() => { this.alertService.success('You account was created!'); })
     .then(() => {
-      let posId = {
-        id: this.userId,
-        plan: this.plansService.selectedPlan.id
-      };
-      this.posData = JSON.stringify(posId);
-    })
-    .then(() => {
-      if (this.plansService.selectedPlan.id === 'monthly1295') {
-        document.getElementById('bitpayMonthly').click();
-      }
-      else if (this.plansService.selectedPlan.id === 'annually9995') {
-        document.getElementById('bitpayAnnual').click();
-      }
-      else if (this.plansService.selectedPlan.id === 'semiannually5995') {
-        document.getElementById('bitpaySemiannual').click();
-      }
+      this.bitpay.pay(this.plansService.selectedPlan.id);
     })
     // handle errors
     .catch(error => { this.handleError(error); });
