@@ -235,29 +235,8 @@ export class PricingComponent {
     this.disablePayment = true;
     this.accountChild.disableInputs();
 
-    // call server at this point (using promises)
-    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
-    let options = new RequestOptions({});
-    // sets cookie
-    return this.backend.createAccount(body, options)
-    // set user session
-    .then((data) => {
-      this.userId = data.account.id;
-      this.session.setUserData({
-        account: { email: data.account.email },
-        secret: data.secret
-      });
-    })
-    // turn on authed
-    .then(() => { this.auth.authed = true; })
-    // alert and redirect to paypal
-    .then(() => {
-      this.alertService.success('You account was created!');
-    })
-    .then(() => {
-      this.paypal.pay(this.plansService.selectedPlan.id);
-    })
-    // handle errors
+    return this.createAccount()
+    .then(() => { this.paypal.pay(this.plansService.selectedPlan.id); })
     .catch(error => { this.handleError(error); });
   }
 
@@ -339,7 +318,6 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     /* send billingAgreement to server */
-    let options = new RequestOptions({});
     let body = {
       AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id,
@@ -348,7 +326,7 @@ export class PricingComponent {
     };
 
     // sets cookie
-    return this.backend.amazonCharge(body, options)
+    return this.backend.amazonCharge(body, {})
     // set user session
     .then((data) => {
       this.session.setUserData({
@@ -374,11 +352,19 @@ export class PricingComponent {
     this.disablePayment = true;
     this.accountChild.disableInputs();
 
-    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
-    let options = new RequestOptions({});
+    return this.createAccount()
+    .then(() => { this.bitpay.pay(this.plansService.selectedPlan.id); })
+    .catch(error => { this.handleError(error); });
+  }
 
+  // helper functions
+
+  isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+  createAccount(): Promise<void> {
     // sets cookie
-    return this.backend.createAccount(body, options)
+    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
+    return this.backend.createAccount(body, {})
     // set user session
     .then((data) => {
       this.userId = data.account.id;
@@ -389,17 +375,8 @@ export class PricingComponent {
     })
     // turn on authed
     .then(() => { this.auth.authed = true; })
-    .then(() => { this.alertService.success('You account was created!'); })
-    .then(() => {
-      this.bitpay.pay(this.plansService.selectedPlan.id);
-    })
-    // handle errors
-    .catch(error => { this.handleError(error); });
+    .then(() => { this.alertService.success('You account was created!'); });
   }
-
-  isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
-
-  // helper functions
 
   handleError(error) {
     this.zone.run(() => {

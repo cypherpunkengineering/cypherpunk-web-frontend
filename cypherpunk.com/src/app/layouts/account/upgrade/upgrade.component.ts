@@ -362,8 +362,7 @@ export class UpgradeComponent {
       AmazonBillingAgreementId: this.billingAgreementId,
       plan: this.plansService.selectedPlan.id
     };
-    let options = new RequestOptions({});
-    return this.backend.amazonUpgrade(body, options)
+    return this.backend.amazonUpgrade(body, {})
     // alert and redirect
     .then(() => {
       this.alertService.success('You account was upgraded!');
