@@ -10,6 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { NoScriptComponent } from '../noscript/noscript.component';
 import { PriceBoxesComponent } from '../payment/price-boxes/price-boxes.component';
+import { AmazonComponent } from '../payment/amazon/amazon.component';
 import { PaypalComponent } from '../payment/paypal/paypal.component';
 import { BitpayComponent } from '../payment/bitpay/bitpay.component';
 import { StripeCCFormComponent } from '../forms/stripe-cc-form/stripe-cc-form.component';
@@ -35,6 +36,7 @@ const COMPONENTS = [
   AlertComponent,
   FooterComponent,
   LoadingComponent,
+  AmazonComponent,
   PaypalComponent,
   BitpayComponent,
   PriceBoxesComponent,

@@ -107,20 +107,14 @@
       </div>
     </div>
 
-    <div class="amazon" *ngIf="paymentMethod === 'a'">
+    <div class="amazon" [hidden]="paymentMethod !== 'a'">
       <div class="account">
         <p >
           <label>Email: </label><strong>{{ email }}</strong>
         </p>
       </div>
 
-      <div class="amazon-pay">
-        <div id="AmazonPayButton"></div>
-
-        <div id="walletWidgetDiv"></div>
-
-        <div id="consentWidgetDiv"></div>
-      </div>
+      <app-amazon #amazon [billingAgreementId]="billingAgreementId"></app-amazon>
 
       <div class="total">
         <div class="price">

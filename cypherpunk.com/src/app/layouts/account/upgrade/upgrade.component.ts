@@ -8,7 +8,6 @@ import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import 'rxjs/add/operator/toPromise';
 import country_list from '../../public/pricing/countries';
 
 @Component({
@@ -16,6 +15,7 @@ import country_list from '../../public/pricing/countries';
   styleUrls: ['./upgrade.component.css']
 })
 export class UpgradeComponent {
+  @ViewChild('amazon') amazon;
   @ViewChild('paypal') paypal;
   @ViewChild('bitpay') bitpay;
 
@@ -48,8 +48,6 @@ export class UpgradeComponent {
 
   // Amazon variables
   billingAgreementId: string;
-  amazonWallet: any;
-  amazonRecurring: any;
 
   // bitpay variables
   showBTC: boolean = false;
@@ -106,31 +104,6 @@ export class UpgradeComponent {
         stripe.setAttribute('onload', 'stripeOnload()');
         stripe.setAttribute('src', 'https://js.stripe.com/v2/');
         document.body.appendChild(stripe);
-      }
-    }
-
-    // load amazon js files
-    if (isBrowser) {
-      if (!document.getElementById('amazon-init')) {
-        let amazonInit = document.createElement('script');
-        amazonInit.setAttribute('id', 'amazon-init');
-        amazonInit.setAttribute('type', 'text/javascript');
-        amazonInit.innerHTML = `
-          window.onAmazonLoginReady = function() {
-            var cid = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
-            amazon.Login.setClientId(cid);
-          };
-        `;
-        document.body.appendChild(amazonInit);
-      }
-
-      if (!document.getElementById('amazon-widget')) {
-        let amazon = document.createElement('script');
-        amazon.setAttribute('id', 'amazon-widget');
-        amazon.setAttribute('type', 'text/javascript');
-        amazon.setAttribute('async', 'async');
-        amazon.setAttribute('src', 'https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js');
-        document.body.appendChild(amazon);
       }
     }
 
@@ -284,77 +257,7 @@ export class UpgradeComponent {
 
   // pay with amazon
 
-  amazonInit() {
-    let amazon = (<any>window).amazon;
-    let OffAmazonPayments = (<any>window).OffAmazonPayments;
-
-    OffAmazonPayments.Button(
-      'AmazonPayButton',
-      'A2FF2JPNM9GYDJ', {
-        type:  'PwA',
-        color: 'Gold',
-        size:  'medium',
-        authorization: () => {
-          amazon.Login.authorize({ scope: 'profile', popup: 'true' });
-          this.zone.run(() => { this.amazonCreateWallet(); });
-        },
-        onError: (error) => { console.log(error); }
-      }
-    );
-  }
-
-  amazonCreateWallet() {
-    let OffAmazonPayments = (<any>window).OffAmazonPayments;
-    document.getElementById('walletWidgetDiv').style.display = 'block';
-
-    if (!this.amazonWallet) {
-      new OffAmazonPayments.Widgets.Wallet({
-        sellerId: 'A2FF2JPNM9GYDJ',
-        onReady: (billingAgreement) => {
-          this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
-        },
-        agreementType: 'BillingAgreement',
-        design: { designMode: 'responsive' },
-        onPaymentSelect: (billingAgreement) => {
-          this.zone.run(() => { this.amazonCreateRecurring(); });
-        },
-        onError: (error) => { console.log(error); }
-      }).bind('walletWidgetDiv');
-    }
-  }
-
-  amazonCreateRecurring () {
-    let OffAmazonPayments = (<any>window).OffAmazonPayments;
-    document.getElementById('consentWidgetDiv').style.display = 'block';
-
-    if (!this.amazonRecurring) {
-      new OffAmazonPayments.Widgets.Consent({
-        sellerId: 'A2FF2JPNM9GYDJ',
-        // amazonBillingAgreementId obtained from the Amazon Address Book widget.
-        amazonBillingAgreementId: this.billingAgreementId,
-        design: { designMode: 'responsive' },
-        // Called after widget renders
-        onReady: (billingAgreementConsentStatus) => {
-          let getStatus = billingAgreementConsentStatus.getConsentStatus;
-          if (getStatus && getStatus() === 'true') {
-            document.getElementById('payWithAmazon').style.display = 'inline';
-          }
-        },
-        onConsent: (billingAgreementConsentStatus) => {
-          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
-            document.getElementById('payWithAmazon').style.display = 'inline';
-          }
-          else {
-            window.alert('Please allow for future payments to join Cypherpunk.');
-            document.getElementById('payWithAmazon').style.display = 'none';
-          }
-        },
-        onError: (error) => { console.log(error); }
-      }).bind('consentWidgetDiv');
-    }
-  }
-
-  amazonButton() {
+  payWithAmazon() {
     this.loading = true;
     this.disablePayment = true;
 
@@ -380,8 +283,6 @@ export class UpgradeComponent {
     this.bitpay.pay(this.plansService.selectedPlan.id);
   }
 
-  isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
-
   // helper functions
 
   handleError(error) {
@@ -401,7 +302,7 @@ export class UpgradeComponent {
     // launch amazon payments
     if (this.paymentMethod === 'a') {
       this.showBTC = false;
-      setTimeout(() => { this.amazonInit(); }, 100);
+      setTimeout(() => { this.amazon.init(); }, 100);
     }
     else if (this.paymentMethod === 'bc') { this.showBTC = true; }
     else { this.showBTC = false; }

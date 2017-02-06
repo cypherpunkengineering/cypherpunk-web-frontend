@@ -79,10 +79,8 @@
   margin: 50px auto 70px;
   padding: 30px 35px 40px;
 
-  .amazon-pay { text-align: center; }
-  .upgrade { padding: 20px 0; }
-
   p { margin: 10px 5px; }
+  .upgrade { padding: 20px 0; }
 
   .total {
     font-size: 21px;
@@ -159,10 +157,6 @@
   margin: 25px auto 25px;
   font-size: 24px;
 }
-
-#AmazonPayButton { margin: 20px 0 40px; }
-#walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
-#consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
 
 @media (max-width: 1000px) {
   .page { padding: 25px 10px 0; }

@@ -77,7 +77,6 @@
   margin: 50px auto 70px;
   padding: 30px 35px 40px;
 
-  .amazon-pay { text-align: center; }
   .upgrade { padding: 20px 0; }
 
   .list-cards {
@@ -224,35 +223,6 @@
   height: 60px;
   margin: 25px auto 25px;
   font-size: 24px;
-}
-
-#AmazonPayButton { margin: 40px 0 25px; }
-#walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
-#consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }
-
-label { font-size: 18px; color: #7f7979; }
-input[type="text"], input[type="email"], input[type="password"], select {
-  background-color: #fff;
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
-  font-size: 18px;
-  padding: 10px;
-  margin: 5px 0 0;
-  color: #7f7979;
-  border: 2px solid #e0dede;
-  &.error {
-    border-color: #a94442;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #ce8483;
-  }
-  &.success {
-    border-color: #3c763d;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #67b168;
-  }
-  &::-webkit-input-placeholder,
-  &::-moz-placeholder,
-  &:-ms-input-placeholder,
-  &:-moz-placeholder { color: #7f7979; }
 }
 
 @media (max-width: 1000px) {
