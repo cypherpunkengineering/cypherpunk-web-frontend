@@ -216,7 +216,6 @@ export class PricingComponent {
   // pay with amazon
 
   updateBillingId(billingId) {
-    console.log(billingId);
     this.billingAgreementId = billingId;
   }
 
@@ -232,8 +231,6 @@ export class PricingComponent {
       email: this.accountFormData.email,
       password: this.accountFormData.password
     };
-
-    console.log(body);
 
     // sets cookie
     return this.backend.amazonCharge(body, {})
