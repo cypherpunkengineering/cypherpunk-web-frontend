@@ -114,9 +114,9 @@
         </p>
       </div>
 
-      <app-amazon #amazon [billingAgreementId]="billingAgreementId"></app-amazon>
+      <app-amazon #amazon [billingAgreementId]="billingAgreementId" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
-      <div class="total">
+      <div class="total" *ngIf="paymentMethod === 'a'">
         <div class="price">
           <img src="/assets/payment/total.png" alt="Total">
           Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
@@ -125,7 +125,7 @@
           </div>
         </div>
         <div class="pay">
-          <button id="payWithAmazon" class="btn blue" (click)="amazonButton()" [style.display]="'none'" [disabled]="disablePayment">
+          <button id="payWithAmazon" class="btn blue" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="disablePayment">
             Upgrade Now
           </button>
         </div>
