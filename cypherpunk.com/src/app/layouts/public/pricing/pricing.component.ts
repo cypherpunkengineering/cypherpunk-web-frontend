@@ -228,6 +228,8 @@ export class PricingComponent {
       password: this.accountFormData.password
     };
 
+    console.log(body);
+
     // sets cookie
     return this.backend.amazonCharge(body, {})
     // set user session

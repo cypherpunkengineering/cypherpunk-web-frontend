@@ -66,7 +66,9 @@ export class AmazonComponent {
       new OffAmazonPayments.Widgets.Wallet({
         sellerId: 'A2FF2JPNM9GYDJ',
         onReady: (billingAgreement) => {
-          this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+          this.zone.run(() => {
+            this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+          });
         },
         agreementType: 'BillingAgreement',
         design: { designMode: 'responsive' },
