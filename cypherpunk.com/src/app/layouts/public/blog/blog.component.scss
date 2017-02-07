@@ -1,26 +1,9 @@
 .wrapper {
   .masthead {
-    position: relative;
-
     .masthead-header {
       margin: 20px auto 0;
       padding: 0 0 30px;
       span { color: #7972c4; }
-    }
-
-    &:after {
-      content: ' ';
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 20px solid #163138;
-      position: absolute;
-      bottom: -20px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      z-index: 2;
     }
   }
 

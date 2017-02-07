@@ -21,24 +21,8 @@
   }
 }
 
-.features:after {
-  content: ' ';
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid #163238;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 2;
-}
-
 .features {
   width: 100%;
-  position: relative;
   background-color: #163238;
 
   .features-inner {

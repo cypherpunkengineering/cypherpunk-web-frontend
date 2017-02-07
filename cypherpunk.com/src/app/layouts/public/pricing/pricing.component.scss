@@ -3,22 +3,6 @@
   max-width: 1000px;
   padding: 20px 15px 35px;
   margin: auto;
-  position: relative;
-
-  &:after {
-    content: ' ';
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #fff;
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 2;
-  }
 }
 
 .page-header {

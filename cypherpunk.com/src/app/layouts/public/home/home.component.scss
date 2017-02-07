@@ -84,28 +84,11 @@
 }
 
 .content.grey.mobile { display: none; }
-.content.grey:after { border-top: 20px solid #efebeb; }
-.content:after {
-  content: ' ';
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid #fff;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 2;
-}
-
 .content {
-  position: relative;
   width: 100%;
   text-align: center;
   padding: 75px 0;
-  &.grey { background-color: #efebeb; }
+  &.grey { background-color: #efeaea; }
 
   .content-inner {
     max-width: 1000px;

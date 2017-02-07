@@ -68,6 +68,24 @@
     .btn:disabled { cursor: default; background-color: #ccc; }
     input:disabled { background-color: #eee !important; }
 
+    .down-arrow { position: relative; }
+    .down-arrow.green:after { border-top: 20px solid #163238; }
+    .down-arrow.beige:after { border-top: 20px solid #efeaea; }
+    .down-arrow:after {
+      content: ' ';
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid #fff;
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 2;
+    }
+
     .anchor-target {
       padding-top: 80px;
       margin-top: -80px;
