@@ -69,7 +69,7 @@
     </div>
 
     <div class="amazon" [hidden]="paymentMethod !== 'a'">
-      <app-amazon #amazon [billingAgreementId]="billingAgreementId" [hidden]="paymentMethod !== 'a'"></app-amazon>
+      <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
       <div class="total" *ngIf="paymentMethod === 'a'">
         <div class="price">

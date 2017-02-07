@@ -1,5 +1,5 @@
 import { isBrowser } from 'angular2-universal';
-import { Component, Input, NgZone } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-amazon',
@@ -8,6 +8,7 @@ import { Component, Input, NgZone } from '@angular/core';
 })
 export class AmazonComponent {
   @Input() billingAgreementId: string;
+  @Output() updateBillingId: EventEmitter<string> = new EventEmitter<string>();
 
   amazonWallet: any;
   amazonRecurring: any;
@@ -66,9 +67,8 @@ export class AmazonComponent {
       new OffAmazonPayments.Widgets.Wallet({
         sellerId: 'A2FF2JPNM9GYDJ',
         onReady: (billingAgreement) => {
-          this.zone.run(() => {
-            this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
-          });
+          this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
+          this.updateBillingId.emit(this.billingAgreementId);
         },
         agreementType: 'BillingAgreement',
         design: { designMode: 'responsive' },

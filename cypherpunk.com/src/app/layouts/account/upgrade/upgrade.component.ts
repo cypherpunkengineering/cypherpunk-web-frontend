@@ -257,6 +257,10 @@ export class UpgradeComponent {
 
   // pay with amazon
 
+  updateBillingId(billingId) {
+    this.billingAgreementId = billingId;
+  }
+
   payWithAmazon() {
     this.loading = true;
     this.disablePayment = true;

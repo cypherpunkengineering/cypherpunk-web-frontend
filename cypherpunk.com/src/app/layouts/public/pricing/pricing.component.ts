@@ -215,6 +215,11 @@ export class PricingComponent {
 
   // pay with amazon
 
+  updateBillingId(billingId) {
+    console.log(billingId);
+    this.billingAgreementId = billingId;
+  }
+
   payWithAmazon() {
     this.loading = true;
     this.disablePayment = true;
