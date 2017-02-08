@@ -37,35 +37,16 @@ const routes = [
   { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' }
 ];
 
-// remove index.*.js files
-return new Promise((resolve, reject) => {
-  rimraf('./build/index.*.js', (err) => {
-    if (err) { return reject(err); }
-    else { return resolve(); }
-  });
-})
-// remove all /account/ html files
-.then(() => {
+return Promise.all(routes.map((routeObject) => {
   return new Promise((resolve, reject) => {
-    rimraf('./build/**/*.html', (err) => {
-      if (err) { return reject(err); }
-      else { return resolve(); }
+    request(routeObject.url, (error, response, body) => {
+      if (error) { return reject(error, response); }
+      fs.writeFileSync(routeObject.dirPath, body);
+      console.log(routeObject.url, routeObject.dirPath);
+      return resolve();
     });
   });
-})
-// copy route request ouput to build dir
-.then(() => {
-  return Promise.all(routes.map((routeObject) => {
-    return new Promise((resolve, reject) => {
-      request(routeObject.url, (error, response, body) => {
-        if (error) { return reject(error, response); }
-        fs.writeFileSync(routeObject.dirPath, body);
-        console.log(routeObject.url, routeObject.dirPath);
-        return resolve();
-      });
-    });
-  }));
-})
+}))
 // copy index.#.js file into build dir
 .then(() => {
   return new Promise((resolve, reject) => {
@@ -106,9 +87,9 @@ return new Promise((resolve, reject) => {
 // shutdown server
 .then(() => {
   setTimeout(() => {
-    return new Promise((resolve, reject) => {
-      request('http://localhost:3000/shutdown', (error, response) => {
-        if (error) { return reject(error, response); }
+    return new Promise((resolve) => {
+      request('http://localhost:3000/shutdown', () => {
+        // expecting an error
         console.log('Issued command to shutdown server');
         return resolve();
       });

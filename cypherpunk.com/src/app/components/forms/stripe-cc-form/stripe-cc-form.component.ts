@@ -1,3 +1,4 @@
+import { isBrowser } from 'angular2-universal';
 import { Component, Input, OnInit } from '@angular/core';
 import country_list from '../../../layouts/public/pricing/countries';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
@@ -85,36 +86,45 @@ interface ValidationResult { [key: string]: boolean; }
 
 class NumberValidator {
   static validate(control: FormControl): ValidationResult {
-    let stripe = (<any>window).Stripe;
-    if (!stripe) { return { 'stripeNotFound': true }; }
+    if (isBrowser) {
+      let stripe = (<any>window).Stripe;
+      if (!stripe) { return { 'stripeNotFound': true }; }
 
-    let passStripeValidation = stripe.card.validateCardNumber(control.value);
-    if (passStripeValidation) { return null; }
-    else { return { 'invalidExpiryDate': true }; }
+      let passStripeValidation = stripe.card.validateCardNumber(control.value);
+      if (passStripeValidation) { return null; }
+      else { return { 'invalidExpiryDate': true }; }
+    }
+    else { return null; }
   }
 }
 
 class ExpiryValidator {
   static validate(control: FormControl): ValidationResult {
-    let stripe = (<any>window).Stripe;
-    if (!stripe) { return { 'stripeNotFound': true }; }
+    if (isBrowser) {
+      let stripe = (<any>window).Stripe;
+      if (!stripe) { return { 'stripeNotFound': true }; }
 
-    let passStripeValidation = stripe.card.validateExpiry(control.value);
-    if (passStripeValidation) {
-      document.getElementById('cccvc').focus();
-      return null;
+      let passStripeValidation = stripe.card.validateExpiry(control.value);
+      if (passStripeValidation) {
+        document.getElementById('cccvc').focus();
+        return null;
+      }
+      else { return { 'invalidExpiryDate': true }; }
     }
-    else { return { 'invalidExpiryDate': true }; }
+    else { return null; }
   }
 }
 
 class CvcValidator {
   static validate(control: FormControl): ValidationResult {
-    let stripe = (<any>window).Stripe;
-    if (!stripe) { return { 'stripeNotFound': true }; }
+    if (isBrowser) {
+      let stripe = (<any>window).Stripe;
+      if (!stripe) { return { 'stripeNotFound': true }; }
 
-    let passStripeValidation = stripe.card.validateCVC(control.value);
-    if (passStripeValidation) { return null; }
-    else { return { 'invalidExpiryDate': true }; }
+      let passStripeValidation = stripe.card.validateCVC(control.value);
+      if (passStripeValidation) { return null; }
+      else { return { 'invalidExpiryDate': true }; }
+    }
+    else { return null; }
   }
 }
