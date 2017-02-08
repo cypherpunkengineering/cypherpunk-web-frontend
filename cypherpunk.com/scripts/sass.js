@@ -29,3 +29,4 @@ var writeFile = (baseDir, filename, result) => {
 
 // walk /src/app and sass render all the scss files
 walk.filesSync('./src/app', handleFile);
+walk.filesSync('./build', handleFile);

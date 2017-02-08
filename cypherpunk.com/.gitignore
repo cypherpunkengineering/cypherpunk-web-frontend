@@ -21,6 +21,7 @@ morgan.log
 
 /build/index*.js
 /build/**/*.html
+/build/landing*
 
 /src/app/**/*.css
 
