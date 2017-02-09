@@ -75,7 +75,6 @@ export function signin(req, res) {
   if (DEV_MODE) {
     let body = req.body;
     let url = urlStart + 'api/v0/account/authenticate/userpasswd';
-    console.log(url);
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

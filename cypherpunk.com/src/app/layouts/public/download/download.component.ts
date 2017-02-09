@@ -88,7 +88,6 @@ export class DownloadComponent {
   constructor(private router: Router) {
     // detect os setup
     let os: string = platform.os.family;
-    console.log(os);
     if (os.indexOf('OS X') > -1) { this.headerBuild = this.builds.mac; }
     else if (os.indexOf('Window') > -1) { this.headerBuild = this.builds.windows; }
     else if (os.indexOf('Android') > -1) { window.location.href = this.builds.android.link; }
@@ -106,7 +105,6 @@ export class DownloadComponent {
              os.indexOf ('Xubuntu') > -1 ||
              os.indexOf('Mint') > -1) {
 
-      console.log('in linux');
       if (platform.os.architecture === 64) {
         this.headerBuild = this.builds.linux;
         this.currentLinuxBuild = this.linuxVersions[0];
