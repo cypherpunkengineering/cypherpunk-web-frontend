@@ -1,6 +1,9 @@
 #!/bin/bash -x
 set -e
 
+# change pwd to folder containing this file
+cd "$( dirname "${BASH_SOURCE[0]}" )" 
+
 # build vars
 export NODE_VERSION=v6.9.4
 export NVM_DIR=$HOME/.nvm
