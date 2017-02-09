@@ -19,7 +19,7 @@ const routes = [
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
   { url: baseRoute + 'terms-of-service', dirPath: baseDir + 'terms-of-service.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
-  { url: baseRoute + 'account', dirPath: baseDir + 'account/account.html' },
+  { url: baseRoute + 'account', dirPath: baseDir + 'account.html' },
   { url: baseRoute + 'account/upgrade', dirPath: baseDir + 'account/upgrade.html' },
   { url: baseRoute + 'account/billing', dirPath: baseDir + 'account/billing.html' },
   { url: baseRoute + 'account/setup', dirPath: baseDir + 'account/setup.html' },
