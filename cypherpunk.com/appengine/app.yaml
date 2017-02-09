@@ -16,7 +16,7 @@ handlers: # should be ordered from most specific to least specific
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
 - url: /(.*\.asc)
-  mime_type: text/plain
+  mime_type: application/pgp-keys
   static_files: content/\1
   upload: content/(.*\.xpi)
   secure: always
