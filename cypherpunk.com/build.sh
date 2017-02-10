@@ -27,16 +27,25 @@ GIT_HASH="$(git describe --always --match=nosuchtagpattern --dirty=-p)"
 [ -z "${BUILD_NUMBER}" ] && BUILD_NUMBER="manually"
 BUILD_INFO="Deployed ${BUILD_NUMBER} on $(date) from revision ${GIT_HASH}"
 echo $BUILD_INFO
-sed -i.bak -e "s/__BUILD_INFO__/${BUILD_INFO}/" src/index.ejs && rm src/index.ejs.bak
 
-# start build
-npm run build:prod:ngc
-node ./scripts/checkServer
-npm run serve &
-sleep 5
+if [ "$1" = "--target=landing" ];then
+	# add versioning tag to html index
+	sed -i.bak -e "s/__BUILD_INFO__/${BUILD_INFO}/" landing/landing.html && rm landing/landing.html.bak
+	# copy landing page
+	npm run landing
+else
+	# add versioning tag to html index
+	sed -i.bak -e "s/__BUILD_INFO__/${BUILD_INFO}/" src/index.ejs && rm src/index.ejs.bak
+	# start build
+	npm run build:prod:ngc
+	node ./scripts/checkServer
+	npm run serve &
+	sleep 5
 
-# start scrape
-npm run scrape
+	# start scrape
+	npm run scrape
+	npm run landing:addon
+fi
 
 # deploy to appengine static
 cd appengine/

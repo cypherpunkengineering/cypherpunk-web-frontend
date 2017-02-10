@@ -64,7 +64,8 @@ function cacheControl(req, res, next) {
   next();
 }
 // Serve static files
-app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}));
+app.use(express.static(path.join(ROOT, 'assets'), {index: false, redirect: false}));
+app.use(express.static(path.join(ROOT, 'landing'), {index: false, redirect: false}));
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 import { subs, confirm, signin, signout, locations, world, identify, blog, networkStatus, signup } from './backend/api';

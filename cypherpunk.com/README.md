@@ -35,25 +35,19 @@ A minimal Angular 2 starter for Universal JavaScript using TypeScript 2 and Webp
 
 * `npm install`
 
-## Serve
+## Dev
+* Set DEV_MODE to true in env_vars (DEV_MODE=true)
+* `npm start` to clean all generated files, generate all css files (landing and webapp), build this webapp, and launch a nodemon server that serves both the webapp and the landing page at /landing.html
+* `npm run watch` to start a watcher on both the webapp sass files and the landing page's sass files
 
-* `npm start` to build your client app and start a web server
+## Production
+* `npm run build:prod:ngc` to clean target folder, copy over assets, generate css files, and prepare a distributable bundle for the webapp
+* `npm run serve` to start a one time use web server
+* `npm run scrape` to scrape all the web pages into the build folder (this will exit the server for you as well)
+* (optional) `npm run landing:addon` to add the landing page to the target folder at /landing
 
-## Scrape
-
-* `npm run build:prod:ngc` to prepare a distributable bundle
-* `npm run server` to start a web server
-* `npm run scrape` to scrape all the web pages into the build folder
-
-## Development
-* Set DEV_MODE to true in env_vars
-* run `npm start` and `npm run watch` in two separate terminals to build your client app, start a web server, and allow file changes to update in realtime
-
-## Watch files
-* `npm run watch` to build your client app and start a web server
-
-## AoT and Prod
-* `npm run build:prod:ngc` to compile the ngfactory files and build prod
+## Landing Page
+* `npm run landing` will clean all generated files, create the appengine/target dir, generate the css file for the landing page, copy over the css and js files, copy over the html as cypherpunk-public.html, and finally copy over the logo into a generated appengine/target/assets dir.
 
 ### Brotli Compression Support
 

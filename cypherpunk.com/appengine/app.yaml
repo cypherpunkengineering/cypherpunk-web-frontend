@@ -7,8 +7,8 @@ default_expiration: "10m"
 handlers: # should be ordered from most specific to least specific
 - url: /(.*\.(appcache|manifest))
   mime_type: text/cache-manifest
-  static_files: content/\1
-  upload: content/(.*\.(appcache|manifest))
+  static_files: target/\1
+  upload: target/(.*\.(appcache|manifest))
   expiration: "0m"
   secure: always
   redirect_http_response_code: 301
@@ -17,8 +17,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.asc)
   mime_type: application/pgp-keys
-  static_files: content/\1
-  upload: content/(.*\.xpi)
+  static_files: target/\1
+  upload: target/(.*\.xpi)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -26,8 +26,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.atom)
   mime_type: application/atom+xml
-  static_files: content/\1
-  upload: content/(.*\.atom)
+  static_files: target/\1
+  upload: target/(.*\.atom)
   expiration: "1h"
   secure: always
   redirect_http_response_code: 301
@@ -36,8 +36,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.crx)
   mime_type: application/x-chrome-extension
-  static_files: content/\1
-  upload: content/(.*\.crx)
+  static_files: target/\1
+  upload: target/(.*\.crx)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -45,8 +45,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.css)
   mime_type: text/css
-  static_files: content/\1
-  upload: content/(.*\.css)
+  static_files: target/\1
+  upload: target/(.*\.css)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -54,8 +54,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.eot)
   mime_type: application/vnd.ms-fontobject
-  static_files: content/\1
-  upload: content/(.*\.eot)
+  static_files: target/\1
+  upload: target/(.*\.eot)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -63,8 +63,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.htc)
   mime_type: text/x-component
-  static_files: content/\1
-  upload: content/(.*\.htc)
+  static_files: target/\1
+  upload: target/(.*\.htc)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -72,8 +72,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.html)
   mime_type: text/html
-  static_files: content/\1
-  upload: content/(.*\.html)
+  static_files: target/\1
+  upload: target/(.*\.html)
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301
@@ -82,8 +82,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.ico)
   mime_type: image/x-icon
-  static_files: content/\1
-  upload: content/(.*\.ico)
+  static_files: target/\1
+  upload: target/(.*\.ico)
   expiration: "1d"
   secure: always
   redirect_http_response_code: 301
@@ -92,8 +92,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.js)
   mime_type: text/javascript
-  static_files: content/\1
-  upload: content/(.*\.js)
+  static_files: target/\1
+  upload: target/(.*\.js)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -101,8 +101,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.json)
   mime_type: application/json
-  static_files: content/\1
-  upload: content/(.*\.json)
+  static_files: target/\1
+  upload: target/(.*\.json)
   expiration: "1h"
   secure: always
   redirect_http_response_code: 301
@@ -111,8 +111,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.m4v)
   mime_type: video/m4v
-  static_files: content/\1
-  upload: content/(.*\.m4v)
+  static_files: target/\1
+  upload: target/(.*\.m4v)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -120,8 +120,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.mp4)
   mime_type: video/mp4
-  static_files: content/\1
-  upload: content/(.*\.mp4)
+  static_files: target/\1
+  upload: target/(.*\.mp4)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -129,8 +129,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.(ogg|oga))
   mime_type: audio/ogg
-  static_files: content/\1
-  upload: content/(.*\.(ogg|oga))
+  static_files: target/\1
+  upload: target/(.*\.(ogg|oga))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -138,8 +138,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.ogv)
   mime_type: video/ogg
-  static_files: content/\1
-  upload: content/(.*\.ogv)
+  static_files: target/\1
+  upload: target/(.*\.ogv)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -147,8 +147,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.otf)
   mime_type: font/opentype
-  static_files: content/\1
-  upload: content/(.*\.otf)
+  static_files: target/\1
+  upload: target/(.*\.otf)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -156,8 +156,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.rss)
   mime_type: application/rss+xml
-  static_files: content/\1
-  upload: content/(.*\.rss)
+  static_files: target/\1
+  upload: target/(.*\.rss)
   expiration: "1h"
   secure: always
   redirect_http_response_code: 301
@@ -166,8 +166,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.safariextz)
   mime_type: application/octet-stream
-  static_files: content/\1
-  upload: content/(.*\.safariextz)
+  static_files: target/\1
+  upload: target/(.*\.safariextz)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -175,8 +175,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.(svg|svgz))
   mime_type: images/svg+xml
-  static_files: content/\1
-  upload: content/(.*\.(svg|svgz))
+  static_files: target/\1
+  upload: target/(.*\.(svg|svgz))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -184,8 +184,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.swf)
   mime_type: application/x-shockwave-flash
-  static_files: content/\1
-  upload: content/(.*\.swf)
+  static_files: target/\1
+  upload: target/(.*\.swf)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -193,8 +193,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.ttf)
   mime_type: font/truetype
-  static_files: content/\1
-  upload: content/(.*\.ttf)
+  static_files: target/\1
+  upload: target/(.*\.ttf)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -202,8 +202,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.txt)
   mime_type: text/plain
-  static_files: content/\1
-  upload: content/(.*\.txt)
+  static_files: target/\1
+  upload: target/(.*\.txt)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -211,8 +211,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.unity3d)
   mime_type: application/vnd.unity
-  static_files: content/\1
-  upload: content/(.*\.unity3d)
+  static_files: target/\1
+  upload: target/(.*\.unity3d)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -220,8 +220,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.webm)
   mime_type: video/webm
-  static_files: content/\1
-  upload: content/(.*\.webm)
+  static_files: target/\1
+  upload: target/(.*\.webm)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -229,8 +229,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.webp)
   mime_type: image/webp
-  static_files: content/\1
-  upload: content/(.*\.webp)
+  static_files: target/\1
+  upload: target/(.*\.webp)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -238,8 +238,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.woff)
   mime_type: application/x-font-woff
-  static_files: content/\1
-  upload: content/(.*\.woff)
+  static_files: target/\1
+  upload: target/(.*\.woff)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -247,8 +247,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.xml)
   mime_type: application/xml
-  static_files: content/\1
-  upload: content/(.*\.xml)
+  static_files: target/\1
+  upload: target/(.*\.xml)
   expiration: "1h"
   secure: always
   redirect_http_response_code: 301
@@ -257,8 +257,8 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /(.*\.xpi)
   mime_type: application/x-xpinstall
-  static_files: content/\1
-  upload: content/(.*\.xpi)
+  static_files: target/\1
+  upload: target/(.*\.xpi)
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -266,8 +266,8 @@ handlers: # should be ordered from most specific to least specific
 
 # image files
 - url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
-  static_files: content/\1
-  upload: content/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: target/\1
+  upload: target/(.*\.(bmp|gif|ico|jpeg|jpg|png))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -275,8 +275,8 @@ handlers: # should be ordered from most specific to least specific
 
 # audio files
 - url: /(.*\.(mid|midi|mp3|wav))
-  static_files: content/\1
-  upload: content/(.*\.(mid|midi|mp3|wav))
+  static_files: target/\1
+  upload: target/(.*\.(mid|midi|mp3|wav))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -284,8 +284,8 @@ handlers: # should be ordered from most specific to least specific
 
 # windows files
 - url: /(.*\.(doc|exe|ppt|rtf|xls))
-  static_files: content/\1
-  upload: content/(.*\.(doc|exe|ppt|rtf|xls))
+  static_files: target/\1
+  upload: target/(.*\.(doc|exe|ppt|rtf|xls))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -293,8 +293,8 @@ handlers: # should be ordered from most specific to least specific
 
 # compressed files
 - url: /(.*\.(bz2|gz|rar|tar|tgz|zip))
-  static_files: content/\1
-  upload: content/(.*\.(bz2|gz|rar|tar|tgz|zip))
+  static_files: target/\1
+  upload: target/(.*\.(bz2|gz|rar|tar|tgz|zip))
   secure: always
   redirect_http_response_code: 301
   http_headers:
@@ -302,8 +302,8 @@ handlers: # should be ordered from most specific to least specific
 
 # index files
 - url: /(.+)/
-  static_files: content/\1.html
-  upload: content/(.+).html
+  static_files: target/\1.html
+  upload: target/(.+).html
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301
@@ -311,8 +311,8 @@ handlers: # should be ordered from most specific to least specific
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
 - url: /(.+)
-  static_files: content/\1.html
-  upload: content/(.+).html
+  static_files: target/\1.html
+  upload: target/(.+).html
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301
@@ -321,8 +321,8 @@ handlers: # should be ordered from most specific to least specific
 
 # site root
 - url: /
-  static_files: content/cypherpunk.txt
-  upload: content/cypherpunk.txt
+  static_files: target/cypherpunk.txt
+  upload: target/cypherpunk.txt
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301

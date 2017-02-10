@@ -57,7 +57,8 @@ function cacheControl(req, res, next) {
 }
 
 // Serve static files
-app.use(express.static(path.join(ROOT, 'build'), {index: false, redirect: false}));
+app.use(express.static(path.join(ROOT, 'assets'), {index: false, redirect: false}));
+app.use(express.static(path.join(ROOT, 'landing'), {index: false, redirect: false}));
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 

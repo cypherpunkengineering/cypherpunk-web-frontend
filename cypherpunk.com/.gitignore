@@ -6,6 +6,7 @@
 npm-debug.log
 
 /dist/
+/appengine/target
 
 .idea
 *.ngfactory.ts
@@ -14,15 +15,10 @@ npm-debug.log
 .DS_Store
 
 webpack.records.json
-
 /npm-debug.log.*
-
 morgan.log
 
-/build/index*.js
-/build/**/*.html
-/build/landing*
-
+/landing/**/*.css
 /src/app/**/*.css
 
 target

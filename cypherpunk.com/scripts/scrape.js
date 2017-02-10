@@ -4,7 +4,7 @@ const rimraf = require('rimraf');
 const request = require('request');
 
 const baseRoute = 'http://localhost:3000/';
-const baseDir = './build/';
+const baseDir = './appengine/target/';
 const routes = [
   { url: baseRoute, dirPath: baseDir + 'cypherpunk-public.html' },
   { url: baseRoute + 'pricing', dirPath: baseDir + 'pricing.html' },
@@ -65,7 +65,7 @@ return Promise.all(routes.map((routeObject) => {
       let time = fs.statSync(file).ctime;
       if (!latestTime || time > latestTime) {
         latestTime = time;
-        latestFilename = './build/' + fileName;
+        latestFilename = './appengine/target/' + fileName;
         latestFile = file;
       }
     }
