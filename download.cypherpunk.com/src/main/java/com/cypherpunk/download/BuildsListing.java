@@ -25,7 +25,20 @@ public class BuildsListing extends HttpServlet
 		try
 		{
 			BucketInterface bucket = new BucketInterface(BUCKET_NAME);
-			out = bucket.list(req, res);
+			String what = "";
+			try
+			{
+				// get 3rd thing /api/builds/foo
+				what = req.getRequestURI().split("/")[3];
+			}
+			catch (Exception e)
+			{
+				what = "";
+			}
+			out = bucket.list(req, res, "builds/" + what + "/");
+			writer.println(out);
+			//out = bucket.list(req, res, "/builds/android/");
+			//writer.println(out);
 		}
 		catch (IOException e)
 		{
@@ -37,6 +50,8 @@ public class BuildsListing extends HttpServlet
 			t.printStackTrace();
 			res.sendError(500);
 		}
-		writer.println(out);
+		//writer.println(out);
 	}
 }
+
+// vim: foldmethod=marker wrap

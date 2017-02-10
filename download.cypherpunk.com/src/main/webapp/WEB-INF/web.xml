@@ -54,7 +54,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BuildsListing</servlet-name>
-		<url-pattern>/builds/</url-pattern>
+		<url-pattern>/api/builds/*</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>

@@ -100,6 +100,11 @@
 							<filtering>true</filtering>
 							<targetPath>WEB-INF</targetPath>
 						</resource>
+						<resource>
+							<directory>${basedir}/static</directory>
+							<filtering>false</filtering>
+							<targetPath>static</targetPath>
+						</resource>
 					</webResources>
 				</configuration>
 			</plugin>

@@ -1,5 +1,6 @@
 package com.cypherpunk.download;
 
+// {{{
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
@@ -59,9 +60,11 @@ import org.w3c.dom.Element;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+// }}}
 
 public class BucketInterface
 {
+	// {{{ member vars
 	/** Global configuration of Google Cloud Storage OAuth 2.0 scope. */
 	private final String STORAGE_SCOPE = "https://www.googleapis.com/auth/devstorage.read_write";
 
@@ -78,28 +81,30 @@ public class BucketInterface
 	/** our bucket name */
 	private String mBucketName;
 
+	// }}}
 	/**
 	 * Constructs a bucket interface.
 	 */
-	public BucketInterface(String bucketName)
+	public BucketInterface(String bucketName) // {{{
 	{
 		mBucketName = bucketName;
-	}
+	} // }}}
 
 	/**
 	 * Fetches the listing of the given bucket.
 	 *
 	 * @return the pretty printed contents of the bucket.
+	 * @param path the path to list
 	 * @throws IOException if there's an error communicating with Cloud Storage.
 	 * @throws GeneralSecurityException for errors creating https connection.
 	 */
-	public String list(HttpServletRequest req, HttpServletResponse res) throws IOException, GeneralSecurityException
+	public String list(HttpServletRequest req, HttpServletResponse res, String path) throws IOException, GeneralSecurityException // {{{
 	{
 		// Build an account credential.
 		GoogleCredential credential = GoogleCredential.getApplicationDefault().createScoped(Collections.singleton(STORAGE_SCOPE));
 
 		// Set up and execute a Google Cloud Storage request.
-		String uri = "https://storage.googleapis.com/" + URLEncoder.encode(mBucketName, "UTF-8");
+		String uri = "https://storage.googleapis.com/" + URLEncoder.encode(mBucketName, "UTF-8") + "?delimiter=/&prefix=" + URLEncoder.encode(path, "UTF-8");
 
 		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 		HttpRequestFactory requestFactory = httpTransport.createRequestFactory(credential);
@@ -108,34 +113,41 @@ public class BucketInterface
 		HttpRequest request = requestFactory.buildGetRequest(url);
 		HttpResponse response = request.execute();
 
+		if (1 + 1 == 2)
+			return response.parseAsString();
+
 		// transform and roll out
 		String out = "";
 		try
 		{
 			// parse xml response
 			DocumentBuilder newDocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			//LOG.log(Level.WARNING, response.parseAsString());
 			InputSource is = new InputSource(response.getContent());
 			Document parse = newDocumentBuilder.parse(is);
 
 			// get directory name for page header
-			//out += parse.getFirstChild().getFirstChild().getTextContent() + "<br>\n";
+			out += parse.getFirstChild().getFirstChild().getTextContent() + "<br>\n";
 
 			// get all "Contents" nodes
 			NodeList nodeList = parse.getFirstChild().getChildNodes();
 			for (int i = 0; i < nodeList.getLength(); i++)
 			{
 				Node currentNode = nodeList.item(i);
+				//LOG.log(Level.WARNING, currentNode.getNodeName());
 				if (currentNode.getNodeType() == Node.ELEMENT_NODE && currentNode.getNodeName().equals("Contents"))
 				{
 					NodeList contentsNodes = currentNode.getChildNodes();
 					for (int j = 0; j < contentsNodes.getLength(); j++)
 					{
 						Node currentContentsNode = contentsNodes.item(j);
+						//LOG.log(Level.WARNING, currentContentsNode.getNodeName());
 						if (currentContentsNode.getNodeType() == Node.ELEMENT_NODE && currentContentsNode.getNodeName().equals("Key"))
 						{
-							String path = currentContentsNode.getTextContent();
+							//LOG.log(Level.WARNING, currentContentsNode.getTextContent());
+							String filePath = currentContentsNode.getTextContent();
 							String fileName = path.substring(path.lastIndexOf('/') + 1, path.length());
-							out += "<a href='" + req.getRequestURL() + fileName + "'>" + fileName + "</a><br>\n";
+							out += "<a href='" + req.getRequestURL() + filePath + "/" + fileName + "'>" + fileName + "</a><br>\n";
 						}
 					}
 				}
@@ -148,9 +160,14 @@ public class BucketInterface
 			out = "Error parsing bucket list: "+e.toString();
 		}
 		return out;
-	}
+	} // }}}
 
-	public void download(HttpServletRequest req, HttpServletResponse res, String fileName) throws IOException
+	/**
+	 * Serves a file from bucket for download.
+	 *
+	 * @throws IOException if there's an error communicating with Cloud Storage.
+	 */
+	public void download(HttpServletRequest req, HttpServletResponse res, String fileName) throws IOException // {{{
 	{
 		// connect to blobservice
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
@@ -216,5 +233,7 @@ public class BucketInterface
 		//ByteRange all = new ByteRange(1);
 		// serve directly from blobservice to avoid 32MB limit
 		blobstoreService.serve(blobKey, res);
-	}
+	} // }}}
 }
+
+// vim: foldmethod=marker wrap
