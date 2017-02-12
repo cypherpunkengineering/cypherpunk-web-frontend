@@ -310,6 +310,42 @@ handlers: # should be ordered from most specific to least specific
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /freedom
+  static_files: target/features.html
+  upload: target/features.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /privacy
+  static_files: target/features.html
+  upload: target/features.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /security
+  static_files: target/features.html
+  upload: target/features.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /support
+  static_files: target/features.html
+  upload: target/features.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /(.+)
   static_files: target/\1.html
   upload: target/(.+).html
