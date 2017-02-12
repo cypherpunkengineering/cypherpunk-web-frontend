@@ -34,8 +34,8 @@
 <div class="features down-arrow green">
   <div class="features-inner">
     <span id="freedom" class="anchor-target"></span>
-    <h2 class="header gold">Freedom</h2>
-    <h3 class="subheader">Access the full open internet</h3>
+    <!-- <h2 class="header gold">Freedom</h2> -->
+    <!-- <h3 class="subheader">Access the full open internet</h3> -->
 
     <div class="row">
       <div class="image">
@@ -47,6 +47,10 @@
 
         <p>
           Freedom to watch, listen, and stream your content from anywhere.
+        </p>
+
+        <p>
+          Unique networking technology to play any type of geo-restricted content from anywhere without experiencing speed deterioration.
         </p>
 
         <a class="learn-more" (click)="cpSwitch = !cpSwitch">
@@ -61,16 +65,7 @@
   </div>
 </div>
 
-<div class="more quin" [ngClass]="{'open': cpSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header"></div>
-
-    <div class="cell-text">Unique networking technology to play any type of geo-restricted content from anywhere without experiencing speed deterioration.</div>
-  </div>
-
+<div class="more double" [ngClass]="{'open': cpSwitch}">
   <div class="cell">
     <div class="cell-image">
     </div>
@@ -93,7 +88,9 @@
     </div>
   </div>
 
-  <div class="cell">
+  <div></div>
+
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -102,7 +99,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -111,7 +108,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -120,7 +117,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -129,7 +126,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -138,7 +135,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -147,7 +144,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -156,7 +153,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -165,7 +162,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -174,7 +171,7 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
     </div>
 
@@ -198,6 +195,10 @@
           Freedom to access the full open internet. Access censored blocked websites from anywhere.
         </p>
 
+        <p>
+          Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
+        </p>
+
         <a class="learn-more right" (click)="mfSwitch = !mfSwitch">
           <div>
             <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!mfSwitch">
@@ -215,17 +216,6 @@
 </div>
 
 <div class="more triple" [ngClass]="{'open': mfSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header"></div>
-
-    <div class="cell-text">
-      Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
-    </div>
-  </div>
-
   <div class="cell">
     <div class="cell-image">
     </div>
@@ -268,8 +258,11 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div></div>
+
+  <div class="cell small">
     <div class="cell-image">
+      <i class="fa fa-wikipedia-w"></i>
     </div>
 
     <div class="cell-header">Wikipedia</div>
@@ -277,8 +270,9 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
+      <i class="fa fa-google"></i>
     </div>
 
     <div class="cell-header">Google</div>
@@ -286,8 +280,9 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
+      <i class="fa fa-facebook-official"></i>
     </div>
 
     <div class="cell-header">Facebook</div>
@@ -295,8 +290,9 @@
     <div class="cell-text"></div>
   </div>
 
-  <div class="cell">
+  <div class="cell small">
     <div class="cell-image">
+      <i class="fa fa-twitter"></i>
     </div>
 
     <div class="cell-header">Twitter</div>
@@ -310,8 +306,8 @@
 <div class="features down-arrow green">
   <div class="features-inner">
     <span id="privacy" class="anchor-target"></span>
-    <h2 class="header gold">Privacy</h2>
-    <h3 class="subheader">Protect your activity online</h3>
+    <!-- <h2 class="header gold">Privacy</h2> -->
+    <!-- <h3 class="subheader">Protect your activity online</h3> -->
 
     <div class="row">
       <div class="image">
@@ -520,8 +516,8 @@
 <div class="features down-arrow green">
   <div class="features-inner">
     <span id="security" class="anchor-target"></span>
-    <h2 class="header gold">Security</h2>
-    <h3 class="subheader">Secure your internet from anywhere</h3>
+    <!-- <h2 class="header gold">Security</h2> -->
+    <!-- <h3 class="subheader">Secure your internet from anywhere</h3> -->
 
     <div class="row">
       <div class="image">
@@ -712,8 +708,8 @@
 <div class="features down-arrow green">
   <div class="features-inner">
     <span id="support" class="anchor-target"></span>
-    <h2 class="header gold">Support</h2>
-    <h3 class="subheader"></h3>
+    <!-- <h2 class="header gold">Support</h2> -->
+    <!-- <h3 class="subheader"></h3> -->
 
     <div class="row">
       <div class="image">
