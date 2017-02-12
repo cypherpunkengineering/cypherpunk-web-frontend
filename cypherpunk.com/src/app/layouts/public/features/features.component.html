@@ -6,23 +6,36 @@
 
 <div class="navigation">
   <ul>
-    <a href="/features#online-privacy">
-      <li [ngClass]="{'active': currentTab === 'online-privacy'}">
-          Online Privacy
+    <a href="/features#freedom">
+      <li [ngClass]="{'active': currentTab === 'freedom'}">
+        Freedom
       </li>
     </a>
-    <a href="/features#online-freedom">
-      <li [ngClass]="{'active': currentTab === 'online-freedom'}">
-          Online Freedom
+    <a href="/features#privacy">
+      <li [ngClass]="{'active': currentTab === 'privacy'}">
+        Privacy
+      </li>
+    </a>
+    <a href="/features#security">
+      <li [ngClass]="{'active': currentTab === 'security'}">
+        Security
+      </li>
+    </a>
+    <a href="/features#support">
+      <li [ngClass]="{'active': currentTab === 'support'}">
+        Support
       </li>
     </a>
   </ul>
 </div>
 
+<!-- Freedom Section -->
+
 <div class="features down-arrow green">
   <div class="features-inner">
-    <span id="online-privacy" class="anchor-target"></span>
-    <div class="header gold">Online Privacy</div>
+    <span id="freedom" class="anchor-target"></span>
+    <h2 class="header gold">Freedom</h2>
+    <h3 class="subheader">Access the full open internet</h3>
 
     <div class="row">
       <div class="image">
@@ -30,65 +43,144 @@
       </div>
 
       <div class="text right">
-        <div class="text-header gold">Cypherpunk Privacy Network™</div>
+        <div class="text-header gold">CypherPlay&trade;</div>
 
         <p>
-          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds. Lorem Ipsum
+          Freedom to watch, listen, and stream your content from anywhere.
         </p>
 
-        <a (click)="pnSwitch = !pnSwitch">Learn More</a>
+        <a class="learn-more" (click)="cpSwitch = !cpSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!cpSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="cpSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="more double" [ngClass]="{'open': pnSwitch}">
+<div class="more quin" [ngClass]="{'open': cpSwitch}">
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/no-logging-policy@2x.png" srcset="/assets/features/online-privacy/no-logging-policy.png 500w, /assets/features/online-privacy/no-logging-policy@2x.png 1000w" alt="Strict no-logging policy">
     </div>
 
-    <div class="cell-header">Strict no-logging policy</div>
+    <div class="cell-header"></div>
+
+    <div class="cell-text">Unique networking technology to play any type of geo-restricted content from anywhere without experiencing speed deterioration.</div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Play from anywhere</div>
 
     <div class="cell-text">
-      We respect and defend the privacy of your online activities
+      Freedom to watch any streaming content online
     </div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/shared-ip-system@2x.png" srcset="/assets/features/online-privacy/shared-ip-system.png 500w, /assets/features/online-privacy/shared-ip-system@2x.png 1000w" alt="Shared IP System">
     </div>
 
-    <div class="cell-header">Shared IP system</div>
+    <div class="cell-header">Automatic regional routing</div>
 
     <div class="cell-text">
-      Anonymize your online activity by mixing it with everyone else's traffic
+      We route you through the necessary locations to access your geo-blocked content
     </div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/ultra-fast-servers@2x.png" srcset="/assets/features/online-privacy/ultra-fast-servers.png 500w, /assets/features/online-privacy/ultra-fast-servers@2x.png 1000w" alt="Ultra fast servers">
     </div>
 
-    <div class="cell-header">Ultra-fast servers</div>
+    <div class="cell-header">Netflix</div>
 
-    <div class="cell-text">
-      Powerful servers with 1gbit ports direct to Tier 1 providers
-    </div>
+    <div class="cell-text"></div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/worldwide-locations@2x.png" srcset="/assets/features/online-privacy/worldwide-locations.png 500w, /assets/features/online-privacy/worldwide-locations@2x.png 1000w" alt="Worldwide Locations">
     </div>
 
-    <div class="cell-header">Worldwide Locations</div>
+    <div class="cell-header">Hulu</div>
 
-    <div class="cell-text">
-      Tunnel around the world in more than 20+ countries
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
     </div>
+
+    <div class="cell-header">YouTube</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Spotify</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">BBC iPlayer</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Seeso</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Amazon Prime Video</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">HBO Go</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">CBC</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">NBC</div>
+
+    <div class="cell-text"></div>
   </div>
 </div>
 
@@ -100,13 +192,19 @@
       </div>
 
       <div class="text left">
-        <div class="text-header gold">Cypherpunk Privacy Suite™</div>
+        <div class="text-header gold">CypherpunkVPN&trade;</div>
 
         <p>
-          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes. Lorem Ipsum
+          Freedom to access the full open internet. Access censored blocked websites from anywhere.
         </p>
 
-        <a (click)="psSwitch = !psSwitch">Learn More</a>
+        <a class="learn-more right" (click)="mfSwitch = !mfSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!mfSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="mfSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
       </div>
 
       <div class="image desktop">
@@ -116,19 +214,130 @@
   </div>
 </div>
 
-<div class="more" [ngClass]="{'open': psSwitch}">
+<div class="more triple" [ngClass]="{'open': mfSwitch}">
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/friendly-apps@2x.png" srcset="/assets/features/online-privacy/friendly-apps.png 500w, /assets/features/online-privacy/friendly-apps@2x.png 1000w" alt="Friendly Apps">
     </div>
 
-    <div class="cell-header">Super simple, friendly to use apps</div>
+    <div class="cell-header"></div>
 
     <div class="cell-text">
-      One click connect to protect your privacy online
+      Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
     </div>
   </div>
 
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">
+      Bypass any government or enterprise censored network
+    </div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">
+      Disguise your VPN traffic as normal web browsing
+    </div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Optimized traffic flow</div>
+
+    <div class="cell-text">
+      Unblock any restricted websites and geo-blocked content. No matter where you are, it just works
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Blazing fast speeds</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Wikipedia</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Google</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Facebook</div>
+
+    <div class="cell-text"></div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+    </div>
+
+    <div class="cell-header">Twitter</div>
+
+    <div class="cell-text"></div>
+  </div>
+</div>
+
+<!-- Privacy Section -->
+
+<div class="features down-arrow green">
+  <div class="features-inner">
+    <span id="privacy" class="anchor-target"></span>
+    <h2 class="header gold">Privacy</h2>
+    <h3 class="subheader">Protect your activity online</h3>
+
+    <div class="row">
+      <div class="image">
+        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
+      </div>
+
+      <div class="text right">
+        <div class="text-header gold">Cypherpunk Privacy Suite™</div>
+
+        <p>
+          Super simple, friendly to use apps. One click connect to protect your privacy online.
+        </p>
+
+        <a class="learn-more" (click)="psSwitch = !psSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!psSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="psSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="more double" [ngClass]="{'open': psSwitch}">
   <div class="cell">
     <div class="cell-image">
       <img src="/assets/features/online-privacy/protect-all-your-devices@2x.png" srcset="/assets/features/online-privacy/protect-all-your-devices.png 500w, /assets/features/online-privacy/protect-all-your-devices@2x.png 1000w" alt="Protect all your devices">
@@ -152,103 +361,7 @@
       Continuous protection for up to 5 of your devices
     </div>
   </div>
-</div>
 
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="row">
-      <div class="image">
-        <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text right">
-        <div class="text-header gold">Expert 24/7/365 Support</div>
-
-        <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
-        </p>
-
-        <a (click)="esSwitch = !esSwitch">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more double" [ngClass]="{'open': esSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-      <img src="/assets/features/online-privacy/always-available@2x.png" srcset="/assets/features/online-privacy/always-available.png 500w, /assets/features/online-privacy/always-available@2x.png 1000w" alt="Always Available">
-    </div>
-
-    <div class="cell-header">We're always available</div>
-
-    <div class="cell-text">
-      Contact us at any time to help your privacy needs
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-      <img src="/assets/features/online-privacy/premium-support@2x.png" srcset="/assets/features/online-privacy/premium-support.png 500w, /assets/features/online-privacy/premium-support@2x.png 1000w" alt="Premium Support">
-    </div>
-
-    <div class="cell-header">Premium support</div>
-
-    <div class="cell-text">
-      USA based native english speaking support staff
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-      <img src="/assets/features/online-privacy/instant-live-chat@2x.png" srcset="/assets/features/online-privacy/instant-live-chat.png 500w, /assets/features/online-privacy/instant-live-chat@2x.png 1000w" alt="Instant Live Chat">
-    </div>
-
-    <div class="cell-header">Instant live chat</div>
-
-    <div class="cell-text">
-      Experts are just a click away to start chatting
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-      <img src="/assets/features/online-privacy/email-us-anytime@2x.png" srcset="/assets/features/online-privacy/email-us-anytime.png 500w, /assets/features/online-privacy/email-us-anytime@2x.png 1000w" alt="Email Us Anytime">
-    </div>
-
-    <div class="cell-header">Email us anytime</div>
-
-    <div class="cell-text">
-      Just shoot us an email anytime and we'll get right back to you
-    </div>
-  </div>
-</div>
-
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text left">
-        <div class="text-header gold">Extreme Privacy Protection</div>
-
-        <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
-        </p>
-
-        <a (click)="eppSwitch = !eppSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more double" [ngClass]="{'open': eppSwitch}">
   <div class="cell">
     <div class="cell-image">
       <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
@@ -296,16 +409,84 @@
       Our apps will disable IPv6 to prevent potential privacy leaks. Soon we will add full IPv6 support to our entire privacy network.
     </div>
   </div>
+</div>
+
+<div class="features down-arrow green">
+  <div class="features-inner">
+    <div class="row">
+      <div class="image mobile">
+        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
+      </div>
+
+      <div class="text left">
+        <div class="text-header gold">Cypherpunk Privacy Network™</div>
+
+        <p>
+          Strict no-logging policy. We respect and defend the privacy of your online activities.
+        </p>
+
+        <a class="learn-more right" (click)="pnSwitch = !pnSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!pnSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="pnSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
+      </div>
+
+      <div class="image desktop">
+        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="more double" [ngClass]="{'open': pnSwitch}">
+  <div class="cell">
+    <div class="cell-image">
+      <img src="/assets/features/online-privacy/shared-ip-system@2x.png" srcset="/assets/features/online-privacy/shared-ip-system.png 500w, /assets/features/online-privacy/shared-ip-system@2x.png 1000w" alt="Shared IP System">
+    </div>
+
+    <div class="cell-header">Shared IP system</div>
+
+    <div class="cell-text">
+      Anonymize your online activity by mixing it with everyone else's traffic
+    </div>
+  </div>
 
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/ddos-protection@2x.png" srcset="/assets/features/online-privacy/ddos-protection.png 500w, /assets/features/online-privacy/ddos-protection@2x.png 1000w" alt="DDoS Protection">
+      <img src="/assets/features/online-privacy/ultra-fast-servers@2x.png" srcset="/assets/features/online-privacy/ultra-fast-servers.png 500w, /assets/features/online-privacy/ultra-fast-servers@2x.png 1000w" alt="Ultra fast servers">
     </div>
 
-    <div class="cell-header">DDoS Protection</div>
+    <div class="cell-header">Ultra-fast servers</div>
 
     <div class="cell-text">
-      Don't let attackers kick you offline
+      Powerful servers with 1gbit ports direct to Tier 1 providers
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+      <img src="/assets/features/online-privacy/worldwide-locations@2x.png" srcset="/assets/features/online-privacy/worldwide-locations.png 500w, /assets/features/online-privacy/worldwide-locations@2x.png 1000w" alt="Worldwide Locations">
+    </div>
+
+    <div class="cell-header">Worldwide Locations</div>
+
+    <div class="cell-text">
+      Tunnel around the world in more than 20+ countries
+    </div>
+  </div>
+
+  <div class="cell">
+    <div class="cell-image">
+      <img src="/assets/features/online-privacy/worldwide-locations@2x.png" srcset="/assets/features/online-privacy/worldwide-locations.png 500w, /assets/features/online-privacy/worldwide-locations@2x.png 1000w" alt="Worldwide Locations">
+    </div>
+
+    <div class="cell-header">Fast Network for streaming video</div>
+
+    <div class="cell-text">
+      Ultra-fast servers in more than 20+ countries. Unlimited bandwidth, speed, and server switching
     </div>
   </div>
 
@@ -320,42 +501,40 @@
       Bittorrent and other sharing protocols
     </div>
   </div>
-</div>
 
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text left">
-        <div class="text-header gold">Secure all your WiFi and untrusted networks</div>
-
-        <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
-        </p>
-
-        <a (click)="snSwitch = !snSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more" [ngClass]="{'open': snSwitch}">
   <div class="cell">
     <div class="cell-image">
-      <img src="/assets/features/online-privacy/automatic-protection@2x.png" srcset="/assets/features/online-privacy/automatic-protection.png 500w, /assets/features/online-privacy/automatic-protection@2x.png 1000w" alt="Automatic Protection">
+      <img src="/assets/features/online-privacy/ddos-protection@2x.png" srcset="/assets/features/online-privacy/ddos-protection.png 500w, /assets/features/online-privacy/ddos-protection@2x.png 1000w" alt="DDoS Protection">
     </div>
 
-    <div class="cell-header">Automatic Protection</div>
+    <div class="cell-header">DDoS Protection</div>
 
     <div class="cell-text">
-      Auto-connect feature for untrusted networks
+      Don't let attackers kick you offline
+    </div>
+  </div>
+</div>
+
+<!-- Security Section -->
+
+<div class="features down-arrow green">
+  <div class="features-inner">
+    <span id="security" class="anchor-target"></span>
+    <h2 class="header gold">Security</h2>
+    <h3 class="subheader">Secure your internet from anywhere</h3>
+
+    <div class="row">
+      <div class="image">
+        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
+      </div>
+
+      <div class="text right">
+        <div class="text-header gold">Secure public WiFi to maintain your privacy</div>
+
+        <p>
+          Automatically protect WiFi and untrusted networks on mobile devices.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -368,13 +547,19 @@
       </div>
 
       <div class="text left">
-        <div class="text-header gold">Multiple encryption profiles</div>
+        <div class="text-header gold">Online security</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
+          Optimize your online traffic for security, privacy, or speed.
         </p>
 
-        <a (click)="mepSwitch = !mepSwitch">Learn More</a>
+        <a class="learn-more right" (click)="mepSwitch = !mepSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!mepSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="mepSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
       </div>
 
       <div class="image desktop">
@@ -390,7 +575,7 @@
       <img src="/assets/features/online-privacy/max-privacy-mode@2x.png" srcset="/assets/features/online-privacy/max-privacy-mode.png 500w, /assets/features/online-privacy/max-privacy-mode@2x.png 1000w" alt="Max Privacy Mode">
     </div>
 
-    <div class="cell-header">Max Privacy mode</div>
+    <div class="cell-header">Max Security mode</div>
 
     <div class="cell-text">
       Extra strong RSA-4096 + AES-256 cryptography
@@ -402,7 +587,7 @@
       <img src="/assets/features/online-privacy/max-freedom-mode@2x.png" srcset="/assets/features/online-privacy/max-freedom-mode.png 500w, /assets/features/online-privacy/max-freedom-mode@2x.png 1000w" alt="Max Freedom Mode">
     </div>
 
-    <div class="cell-header">Max Freedom mode</div>
+    <div class="cell-header">Max Privacy mode</div>
 
     <div class="cell-text">
       Scramble your encrypted traffic to make it less detectable to governments and harder to detect and block.
@@ -425,28 +610,42 @@
 <div class="features down-arrow green">
   <div class="features-inner">
     <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
+      <div class="image ">
+        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
       </div>
 
-      <div class="text left">
+      <div class="text right">
         <div class="text-header gold">Support for all modern VPN and Proxy protocols</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
+          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
         </p>
 
-        <a (click)="svSwitch = !svSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
+        <a class="learn-more" (click)="svSwitch = !svSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!svSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="svSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </div>
 
 <div class="more double" [ngClass]="{'open': svSwitch}">
+  <div class="cell">
+    <div class="cell-image">
+      <img src="/assets/features/online-privacy/openvpn@2x.png" srcset="/assets/features/online-privacy/openvpn.png 500w, /assets/features/online-privacy/openvpn@2x.png 1000w" alt="OpenVPN">
+    </div>
+
+    <div class="cell-header">CypherpunkVPN&trade;</div>
+
+    <div class="cell-text">
+      Proprietary VPN technology to bypass the most restrictive network firewalls
+    </div>
+  </div>
+
   <div class="cell">
     <div class="cell-image">
       <img src="/assets/features/online-privacy/openvpn@2x.png" srcset="/assets/features/online-privacy/openvpn.png 500w, /assets/features/online-privacy/openvpn@2x.png 1000w" alt="OpenVPN">
@@ -508,312 +707,88 @@
   </div>
 </div>
 
-
-
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <span id="online-freedom" class="anchor-target"></span>
-    <div class="header gold">Online Freedom</div>
-
-    <div class="row">
-      <div class="image">
-        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text right">
-        <div class="text-header gold">CypherPlay™</div>
-
-        <p>
-          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds. Lorem Ipsum
-        </p>
-
-        <a (click)="cpSwitch = !cpSwitch">Learn More</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more" [ngClass]="{'open': cpSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Play from anywhere</div>
-
-    <div class="cell-text">
-      Freedom to watch any streaming content online
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Automatic regional routing</div>
-
-    <div class="cell-text">
-      We route you through the necessary locations to access your geo-blocked content
-    </div>
-  </div>
-</div>
+<!-- Support Section -->
 
 <div class="features down-arrow green">
   <div class="features-inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
-      </div>
+    <span id="support" class="anchor-target"></span>
+    <h2 class="header gold">Support</h2>
+    <h3 class="subheader"></h3>
 
-      <div class="text left">
-        <div class="text-header gold">Max Freedom</div>
-
-        <p>
-          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes. Lorem Ipsum
-        </p>
-
-        <a (click)="mfSwitch = !mfSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more" [ngClass]="{'open': mfSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Break out of any censored network</div>
-
-    <div class="cell-text">
-      Unblock any restricted websites and geo-blocked content
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Optimized traffic flow</div>
-
-    <div class="cell-text">
-      No matter where you are, it just works
-    </div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Blazing fast speeds</div>
-
-    <div class="cell-text">
-      Fast like a rocket
-    </div>
-  </div>
-</div>
-
-<div class="features down-arrow green">
-  <div class="features-inner">
     <div class="row">
       <div class="image">
         <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="">
       </div>
 
       <div class="text right">
-        <div class="text-header gold">Freedom to access censored and blocked websites from anywhere</div>
+        <div class="text-header gold">Expert 24/7/365 Support</div>
 
         <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
+          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
         </p>
 
-        <a (click)="faSwitch = !faSwitch">Learn More</a>
+        <a class="learn-more" (click)="esSwitch = !esSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-orange.png" *ngIf="!esSwitch">
+            <img src="/assets/features/online-privacy/learn-more-orange-closed.png" *ngIf="esSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="more double" [ngClass]="{'open': faSwitch}">
+<div class="more double" [ngClass]="{'open': esSwitch}">
   <div class="cell">
     <div class="cell-image">
+      <img src="/assets/features/online-privacy/always-available@2x.png" srcset="/assets/features/online-privacy/always-available.png 500w, /assets/features/online-privacy/always-available@2x.png 1000w" alt="Always Available">
     </div>
 
-    <div class="cell-header">Wikipedia</div>
+    <div class="cell-header">We're always available</div>
+
+    <div class="cell-text">
+      Contact us at any time to help your privacy needs
+    </div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
+      <img src="/assets/features/online-privacy/premium-support@2x.png" srcset="/assets/features/online-privacy/premium-support.png 500w, /assets/features/online-privacy/premium-support@2x.png 1000w" alt="Premium Support">
     </div>
 
-    <div class="cell-header">Google</div>
+    <div class="cell-header">Premium support</div>
+
+    <div class="cell-text">
+      USA based native english speaking support staff
+    </div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
+      <img src="/assets/features/online-privacy/instant-live-chat@2x.png" srcset="/assets/features/online-privacy/instant-live-chat.png 500w, /assets/features/online-privacy/instant-live-chat@2x.png 1000w" alt="Instant Live Chat">
     </div>
 
-    <div class="cell-header">Facebook</div>
+    <div class="cell-header">Instant live chat</div>
+
+    <div class="cell-text">
+      Experts are just a click away to start chatting
+    </div>
   </div>
 
   <div class="cell">
     <div class="cell-image">
+      <img src="/assets/features/online-privacy/email-us-anytime@2x.png" srcset="/assets/features/online-privacy/email-us-anytime.png 500w, /assets/features/online-privacy/email-us-anytime@2x.png 1000w" alt="Email Us Anytime">
     </div>
 
-    <div class="cell-header">Twitter</div>
-  </div>
-</div>
+    <div class="cell-header">Email us anytime</div>
 
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text left">
-        <div class="text-header gold">Freedom to watch, listen, and stream your content from anywhere</div>
-
-        <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
-        </p>
-
-        <a (click)="fwSwitch = !fwSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
+    <div class="cell-text">
+      Just shoot us an email anytime and we'll get right back to you
     </div>
   </div>
 </div>
 
-<div class="more triple" [ngClass]="{'open': fwSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
 
-    <div class="cell-header">Netflix</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Hulu</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Youtube</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Spotify</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">BBC iPlayer</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Seeso</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Amazon Prime Video</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">HBO Go</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">CBC</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">NBC</div>
-  </div>
-</div>
-
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text left">
-        <div class="text-header gold">Fast Network for streaming video</div>
-
-        <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
-        </p>
-
-        <a (click)="fnSwitch = !fnSwitch">Learn More</a>
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="more double" [ngClass]="{'open': fnSwitch}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Ultra-fast servers in more than 20+ countries</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Unlimited bandwidth</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Unlimited speed</div>
-  </div>
-
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Unlimited servers switches</div>
-  </div>
-</div>
 
 <app-footer></app-footer>

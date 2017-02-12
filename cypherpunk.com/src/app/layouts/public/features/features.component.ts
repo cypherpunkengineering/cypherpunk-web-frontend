@@ -10,21 +10,14 @@ export class FeaturesComponent implements AfterViewInit, OnInit {
   title: string = 'How Cypherpunk Privacy Protects Your Online Privacy and Freedom';
   description: string = 'Learn how Cypherpunk Privacy provides unrestricted access to the internet and protects your privacy online.';
 
-  currentTab: string = 'online-privacy';
-
-  pnSwitch: boolean = false;
-  psSwitch: boolean = false;
-  esSwitch: boolean = false;
-  eppSwitch: boolean = false;
-  snSwitch: boolean = false;
-  mepSwitch: boolean = false;
-  svSwitch: boolean = false;
-
+  currentTab: string = 'freedom';
   cpSwitch: boolean = false;
   mfSwitch: boolean = false;
-  faSwitch: boolean = false;
-  fwSwitch: boolean = false;
-  fnSwitch: boolean = false;
+  pnSwitch: boolean = false;
+  psSwitch: boolean = false;
+  mepSwitch: boolean = false;
+  svSwitch: boolean = false;
+  esSwitch: boolean = false;
 
   constructor(
     private router: Router,
