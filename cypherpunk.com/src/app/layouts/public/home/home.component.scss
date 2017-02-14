@@ -264,7 +264,17 @@
     .masthead-mobile-banner { display: block; }
   }
 
+  .bottom-callout .bottom-buttons { padding: 40px; }
+
   .mobile { display: block; }
+}
+
+@media (max-width: 700px) {
+  .bottom-callout .bottom-buttons {
+    .middle { padding: 20px 0 20px; display: block; }
+    .btn.left { float: none; }
+    .btn.right { float: none; }
+  }
 }
 
 @media (max-width: 500px) {
@@ -277,9 +287,4 @@
   .cta-container.top .call-to-action .btn { width: 280px; font-size: 20px; }
   .cta-container.top .btn.top { margin-bottom: 20px; }
   .cta-container.top .btn.bottom { margin-top: 20px; }
-  .bottom-callout .bottom-buttons {
-    .middle { padding: 20px 0 20px; display: block; }
-    .btn.left { float: none; }
-    .btn.right { float: none; }
-  }
 }
