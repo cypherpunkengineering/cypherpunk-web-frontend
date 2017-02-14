@@ -40,6 +40,7 @@
   .row {
     width: 100%;
     overflow: auto;
+    padding: 25px 0;
 
     .image {
       width: 39.6%;
@@ -60,20 +61,21 @@
       display: inline-block;
       color: #8dfffc;
       vertical-align: middle;
-      .text-header { font-size: 20px; }
+      font-size: 18px;
+      .text-header { font-size: 28px; }
       &.left { text-align: right; }
       &.right { text-align: left; }
     }
 
     .learn-more {
-      color: #5fbbc4;
+      color: #ffe49a;
       cursor: pointer;
       font-size: 20px;
       &.right { float: right; }
       div {
         img { width: 25px; vertical-align: middle; margin-right: 7px; }
         .learn-more-text { vertical-align: middle; display: inline-block; }
-        border: 2px solid #5fbbc4;
+        border: 2px solid #ffe49a;
         width: 170px;
         border-radius: 50px;
         padding: 7px 0 12px;
