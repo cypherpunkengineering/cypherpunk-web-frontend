@@ -16,7 +16,7 @@ export class BlogComponent implements OnInit {
     this.backend.blogPosts()
     .subscribe((data: any) => {
         // shift first item to be featured
-        if (data.items.length) {
+        if (data.items && data.items.length) {
           this.featured = data.items.shift();
           this.posts = data.items;
         }
