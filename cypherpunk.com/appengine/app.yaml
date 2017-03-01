@@ -4,6 +4,7 @@ api_version: 1
 
 default_expiration: "10m"
 
+# [START handlers]
 handlers: # should be ordered from most specific to least specific
 - url: /(.*\.(appcache|manifest))
   mime_type: text/cache-manifest
@@ -346,6 +347,10 @@ handlers: # should be ordered from most specific to least specific
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /blog/(.*)
+  script: blog.app
+  secure: always
+
 - url: /(.+)
   static_files: target/\1.html
   upload: target/(.+).html
@@ -364,3 +369,13 @@ handlers: # should be ordered from most specific to least specific
   redirect_http_response_code: 301
   http_headers:
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+# [END handlers]
+
+# [START libraries]
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+# [END libraries]
+
