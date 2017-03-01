@@ -6,128 +6,20 @@ import { BackendService } from '../../../services/backend.service';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
-  posts = [
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    },
-    {
-      id: 'postId1',
-      title: 'Hello World!',
-      content: 'some content',
-      published: '2016-12-24T17:07:00+09:00',
-      images: [
-        { url: 'http://placehold.it/250x150' }
-      ]
-    }
-  ];
+  posts = [];
+  featured = {};
   showSearch: boolean = false;
-
-  featured = {
-    id: 'postId1',
-    title: 'Hello World!',
-    content: 'some content',
-    published: '2016-12-24T17:07:00+09:00',
-    images: [
-      { url: 'http://placehold.it/250x150' }
-    ]
-  };
 
   constructor(private backend: BackendService) { }
 
   ngOnInit() {
     this.backend.blogPosts()
     .subscribe((data: any) => {
-        console.log(data);
         // shift first item to be featured
-        this.featured = data.items.shift();
-        this.posts = data.items;
+        if (data.items.length) {
+          this.featured = data.items.shift();
+          this.posts = data.items;
+        }
       },
       (error: any) => { console.log(error); }
     );
