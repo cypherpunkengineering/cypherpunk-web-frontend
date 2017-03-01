@@ -6,8 +6,8 @@ import { BackendService } from '../../../services/backend.service';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
+  featured;
   posts = [];
-  featured = {};
   showSearch: boolean = false;
 
   constructor(private backend: BackendService) { }
