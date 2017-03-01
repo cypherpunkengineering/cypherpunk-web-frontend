@@ -25,7 +25,7 @@ export class BlogPostComponent implements OnInit {
     let postId = this.route.snapshot.params['postId'];
     this.backend.blogPost(postId)
     .subscribe(
-      (data: any) => { console.log(data); this.post = data; },
+      (data: any) => { this.post = data; },
       (error: any) => { console.log(error); }
     );
   }

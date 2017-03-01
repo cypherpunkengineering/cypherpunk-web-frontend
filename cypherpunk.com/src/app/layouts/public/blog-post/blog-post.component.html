@@ -1,15 +1,11 @@
 <div class="wrapper">
 
-  <div class="masthead down-arrow green">
+  <div class="masthead">
     <app-nav></app-nav>
 
     <h1 class="masthead-header header white">
       Online Privacy <span>&</span> Freedom Blog
     </h1>
-  </div>
-
-  <div class="featured-article">
-    <div class="article-header header white">{{post.title}}</div>
   </div>
 
   <div class="article-navigation">
@@ -40,10 +36,9 @@
 
   <div class="page">
     <div class="page-inner">
-      <div class="articles">
-        <div class="header">
-          {{ post.published | date: "MM/dd/yyyy" }}
-        </div>
+      <div class="article">
+        <div class="article-header">{{post.title}}</div>
+        <div class="article-timestamp">{{ post.published | date: "MM/dd/yyyy" }}</div>
 
         <div class="content" [innerHTML]=post.content></div>
       </div>
