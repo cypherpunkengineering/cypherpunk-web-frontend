@@ -134,7 +134,10 @@
           border-radius: 5px;
           position: relative;
           margin: 0 0 25px;
-          cursor: pointer;
+
+          &:hover {
+            .image .read-more { display: block; }
+          }
 
           .header {
             position: absolute;
@@ -156,6 +159,25 @@
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
             img { width: 100%; height: 100%; object-fit: cover; }
+            .read-more {
+              display: none;
+              position: absolute;
+              height: 50px;
+              top: 50%;
+              margin-top: -25px;
+              left: 0;
+              right: 0;
+              text-align: center;
+              .btn {
+                height: 50px;
+                padding: 10px 15px;
+                border: 0;
+                background-color: rgba(30, 30, 30, 0.5);
+                color: #fff;
+                border-radius: 5px;
+                cursor: pointer;
+              }
+            }
           }
 
           .footer {
@@ -165,6 +187,48 @@
             background-color: #163138;
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
+
+            /* styles for '...' */
+            .jeff {
+              /* hide text if it more than N lines  */
+              overflow: hidden;
+              /* for set '...' in absolute position */
+              position: relative;
+              /* use this value to count block height */
+              line-height: 1.5em;
+              /* max-height = line-height (1.2) * lines max number (3) */
+              max-height: 4.5em;
+              /* fix problem when last visible word doesn't adjoin right side  */
+              text-align: justify;
+              /* place for '...' */
+              padding-right: 1em;
+
+            }
+            /* create the ... */
+            .jeff:before {
+              /* points in the end */
+              content: '...';
+              /* absolute position */
+              position: absolute;
+              /* set position to right bottom corner of block */
+              right: 0;
+              bottom: 0;
+            }
+            /* hide ... if we have text, which is less than or equal to max lines */
+            .jeff:after {
+              /* points in the end */
+              content: '';
+              /* absolute position */
+              position: absolute;
+              /* set position to right bottom corner of text */
+              right: 0;
+              /* set width and height */
+              width: 1em;
+              height: 1em;
+              margin-top: 0.2em;
+              /* bg color = bg color under block */
+              background: white;
+            }
           }
         }
 
@@ -173,7 +237,6 @@
           border-radius: 3px;
           margin: 0 25px 25px 0;
           display: inline-block;
-          cursor: pointer;
           &:nth-child(odd) { margin: 0 0 25px; }
 
           &:hover {
@@ -212,6 +275,7 @@
                 background-color: rgba(30, 30, 30, 0.5);
                 color: #fff;
                 border-radius: 5px;
+                cursor: pointer;
               }
             }
           }

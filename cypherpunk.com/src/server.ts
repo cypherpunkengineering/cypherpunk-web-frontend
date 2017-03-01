@@ -62,7 +62,7 @@ app.use(express.static(path.join(ROOT, 'landing'), {index: false, redirect: fals
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { subs, confirm, signin, signout, locations, world, identify, blog, networkStatus, signup } from './backend/api';
+import { subs, confirm, signin, signout, locations, world, identify, blog, blogPost, networkStatus, signup } from './backend/api';
 import { stripePurchase, stripeUpgrade, stripeCardList, stripeDefaultCard, stripeCreateCard } from './backend/stripe';
 import { amazonPurchase, amazonUpgrade } from './backend/amazon';
 // Our API for demos only
@@ -70,6 +70,7 @@ app.get('/api/v0/account/status', subs);
 app.get('/api/v0/location/list/premium', locations);
 app.get('/api/v0/location/world', world);
 app.get('/api/v0/blog/posts', blog);
+app.get('/api/v0/blog/post/:postId', blogPost);
 app.get('/api/v0/network/status', networkStatus);
 app.post('/api/v0/account/confirm/email', confirm);
 app.post('/api/v0/account/authenticate/userpasswd', signin);

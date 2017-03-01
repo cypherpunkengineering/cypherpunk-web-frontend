@@ -18,6 +18,7 @@ import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { TosModule } from './layouts/public/tos/tos.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { BlogModule } from './layouts/public/blog/blog.module';
+import { BlogPostModule } from './layouts/public/blog-post/blog-post.module';
 import { BrowserModule } from './layouts/public/apps/browser/browser.module';
 import { MacModule } from './layouts/public/apps/mac/mac.module';
 import { WindowsModule } from './layouts/public/apps/windows/windows.module';
@@ -64,6 +65,7 @@ import { BackendService } from './services/backend.service';
     TosModule,
     NotFoundModule,
     BlogModule,
+    BlogPostModule,
     BrowserModule,
     MacModule,
     WindowsModule,

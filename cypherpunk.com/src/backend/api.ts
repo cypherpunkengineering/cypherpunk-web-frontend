@@ -104,7 +104,23 @@ export function networkStatus(req, res) {
 }
 
 export function blog(req, res) {
-  if (DEV_MODE) { return request(urlStart + 'api/v0/blog/posts').pipe(res); }
+  if (DEV_MODE) {
+    return request(urlStart + 'api/v0/blog/posts', (err, resp, body) => {
+      let retval = JSON.parse(body);
+      return res.json(retval);
+    });
+  }
+  else { res.json({}); }
+}
+
+export function blogPost(req, res) {
+  if (DEV_MODE) {
+    let postId = req.params.postId;
+    return request(urlStart + 'api/v0/blog/post/' + postId, (err, resp, body) => {
+      let retval = JSON.parse(body);
+      return res.json(retval);
+    });
+  }
   else { res.json({}); }
 }
 

@@ -126,13 +126,11 @@ export class BlogComponent implements OnInit {
     .subscribe((data: any) => {
         console.log(data);
         // shift first item to be featured
+        this.featured = data.items.shift();
+        this.posts = data.items;
       },
       (error: any) => { console.log(error); }
     );
-  }
-
-  truncateContent () {
-
   }
 
 }

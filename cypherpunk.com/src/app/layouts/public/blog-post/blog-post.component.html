@@ -9,19 +9,7 @@
   </div>
 
   <div class="featured-article">
-    <span class="banner">FEATURED ARTICLE</span>
-
-    <div class="article-header header white">{{featured.title}}</div>
-
-    <div class="article-image">
-      <img src="{{featured.images[0].url}}" alt="{{featured.title}}">
-    </div>
-
-    <a [routerLink]="['/blog/post', featured.id]">
-      <button class="read-more">
-        Read More...
-      </button>
-    </a>
+    <div class="article-header header white">{{post.title}}</div>
   </div>
 
   <div class="article-navigation">
@@ -53,56 +41,11 @@
   <div class="page">
     <div class="page-inner">
       <div class="articles">
-        <template ngFor let-post [ngForOf]="posts" let-i="index">
-          <div class="full" *ngIf="i === 0">
-            <div class="header">
-              {{post.title}}
-              <div class="right">{{ post.published | date: "MM/dd/yyyy" }}</div>
-            </div>
+        <div class="header">
+          {{ post.published | date: "MM/dd/yyyy" }}
+        </div>
 
-            <div class="image">
-              <img src="{{post.images[0].url}}" alt="">
-              <div class="read-more">
-                <a [routerLink]="['/blog/post', post.id]">
-                  <button class="btn">Read More...</button>
-                </a>
-              </div>
-            </div>
-
-            <div class="footer">
-              <div class="jeff" [innerHTML]=post.content></div>
-            </div>
-          </div>
-
-          <div class="half" *ngIf="i > 0 && i < 5">
-            <div class="image">
-              <img src="{{post.images[0].url}}" alt="{{post.title}}">
-              <div class="read-more">
-                <a [routerLink]="['/blog/post', post.id]">
-                  <button class="btn">Read More...</button>
-                </a>
-              </div>
-            </div>
-
-            <div class="text">
-              {{post.title}}
-              <div class="date">{{ post.published | date: "MM/dd/yyyy" }}</div>
-            </div>
-          </div>
-
-          <div class="quarter" *ngIf="i > 4 && i < 11">
-            <a [routerLink]="['/blog/post', post.id]">
-              <div class="image">
-                <img src="{{post.images[0].url}}" alt="{{post.title}}">
-              </div>
-
-              <div class="text">
-                {{post.title}}
-                <div class="date">{{ post.published | date: "MM/dd/yyyy" }}</div>
-              </div>
-            </a>
-          </div>
-        </template>
+        <div class="content" [innerHTML]=post.content></div>
       </div>
 
       <div class="sidebar">

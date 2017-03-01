@@ -132,6 +132,12 @@ export class BackendService {
     .map(res => res.json());
   }
 
+  blogPost(postId) {
+    let url = this.backendUrl + 'blog/post/' + postId;
+    return this.http.get(url)
+    .map(res => res.json());
+  }
+
   // public apis
 
   networkStatus() {
