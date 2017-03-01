@@ -80,7 +80,7 @@
 							<targetPath>res</targetPath>
 						</resource>
 						<resource>
-							<directory>${basedir}/../cypherpunk.com/build</directory>
+							<directory>${basedir}/../cypherpunk.com/appengine/target</directory>
 							<filtering>false</filtering>
 							<targetPath>site</targetPath>
 						</resource>
