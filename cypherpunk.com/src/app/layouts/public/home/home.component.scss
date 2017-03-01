@@ -269,9 +269,13 @@
   .mobile { display: block; }
 }
 
+@media (max-width: 1100px) {
+  .bottom-callout .bottom-buttons { padding: 40px 20px; }
+}
+
 @media (max-width: 700px) {
   .bottom-callout .bottom-buttons {
-    .middle { padding: 20px 0 20px; display: block; }
+    .middle { padding: 20px 0; display: block; }
     .btn.left { float: none; }
     .btn.right { float: none; }
   }
