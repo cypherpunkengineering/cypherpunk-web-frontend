@@ -14,21 +14,21 @@
       margin: auto;
 
       .navigation {
-        height: 60px;
-
         ul {
           height: 100%;
-          display: table;
           list-style-type: none;
-          margin: 0;
+          padding: 0;
+          margin: auto;
+          text-align: center;
         }
         li {
           color: #fff;
           font-size: 18px;
           padding: 0 25px;
           cursor: pointer;
-          display: table-cell;
-          vertical-align: middle;
+          display: inline-block;
+          height: 60px;
+          line-height: 60px;
           &:hover { background-color: #2A542C; }
           &.active {
             background-color: #fff;
@@ -36,7 +36,6 @@
           }
         }
       }
-
     }
   }
 
@@ -63,7 +62,7 @@
 
   .page {
     width: 100%;
-    padding: 25px 0;
+    padding: 50px 0;
     border-bottom: 5px solid #efeaea;
 
     .page-inner {
@@ -85,12 +84,6 @@
           font-size: 18px;
           text-align: left;
           padding: 10px 0;
-        }
-
-        .separator {
-          padding: 20px 0;
-
-          img { width: 100%; height: 100%; }
         }
       }
 
@@ -152,8 +145,14 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
+  .wrapper .page .page-inner .article { width: 100%; padding: 0 20px 50px; }
+  .wrapper .page .page-inner .sidebar { width: 100%; }
+  .wrapper .page .page-inner .sidebar .panel { width: 100%; padding: 0 20px; margin: 0 0 25px 0; }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 850px) {
+  .wrapper .article-navigation .article-navigation-inner .navigation ul li {
+      font-size: 16px;
+  }
 }
