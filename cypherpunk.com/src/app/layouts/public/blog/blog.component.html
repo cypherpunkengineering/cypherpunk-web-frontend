@@ -1,27 +1,11 @@
 <div class="wrapper">
 
-  <div class="masthead down-arrow green">
+  <div class="masthead">
     <app-nav></app-nav>
 
     <h1 class="masthead-header header white">
       Online Privacy <span>&</span> Freedom Blog
     </h1>
-  </div>
-
-  <div class="featured-article" *ngIf="featured">
-    <span class="banner">FEATURED ARTICLE</span>
-
-    <div class="article-header header white">{{featured.title}}</div>
-
-    <div class="article-image">
-      <img src="{{featured.images[0].url}}" alt="{{featured.title}}">
-    </div>
-
-    <a [routerLink]="['/blog/post', featured.id]">
-      <button class="read-more">
-        Read More...
-      </button>
-    </a>
   </div>
 
   <div class="article-navigation">
