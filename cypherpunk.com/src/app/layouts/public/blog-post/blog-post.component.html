@@ -38,7 +38,7 @@
     <div class="page-inner">
       <div class="article">
         <div class="article-header">{{post.title}}</div>
-        <div class="article-timestamp">{{ post.published | date: "MM/dd/yyyy" }}</div>
+        <div class="article-timestamp">{{ postDate() }}</div>
 
         <div class="content" [innerHTML]=post.content></div>
       </div>

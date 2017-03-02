@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
@@ -28,6 +29,16 @@ export class BlogPostComponent implements OnInit {
       (data: any) => { this.post = data; },
       (error: any) => { console.log(error); }
     );
+  }
+
+  postDate() {
+    if (this.post.published === '__BLOG_DATE__') {
+      return this.post.published;
+    }
+    else {
+      let datePipe = new DatePipe('en-us');
+      return datePipe.transform(this.post.published, 'MM/dd/yyyy');
+    }
   }
 
 }
