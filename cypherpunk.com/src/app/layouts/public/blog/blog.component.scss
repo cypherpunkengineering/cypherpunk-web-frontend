@@ -1,13 +1,14 @@
 .wrapper {
   .masthead .masthead-header {
     margin: 20px auto 0;
-    padding: 0 0 30px;
+    padding: 0 0 50px;
     span { color: #7972c4; }
   }
 
   .article-navigation {
     width: 100%;
     background-color: #163138;
+    display: none;
 
     .article-navigation-inner {
       max-width: 1000px;
