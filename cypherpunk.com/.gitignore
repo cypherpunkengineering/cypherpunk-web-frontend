@@ -7,6 +7,7 @@ npm-debug.log
 
 /dist/
 /appengine/target
+/appengine/blog-article.html
 
 .idea
 *.ngfactory.ts

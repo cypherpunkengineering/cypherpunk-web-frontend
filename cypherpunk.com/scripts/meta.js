@@ -28,16 +28,16 @@ const metaMap = {
     title: 'Why You Need Online Privacy Protection',
     description: 'Cypherpunk Privacy provides unrestricted access to the internet, protects your privacy online and secures public WiFi networks.'
   },
-  'post.html': {
-    title: '__BLOG_TITLE__',
-    description: '__BLOG_CONTENT__',
-    url: '__BLOG_URL__',
-    image: '__BLOG_IMAGE__'
+  'blog-article.html': {
+    title: '{{__BLOG_TITLE__}}',
+    description: '{{__BLOG_CONTENT__}}',
+    url: '{{__BLOG_URL__}}',
+    image: '{{__BLOG_IMAGE__}}'
   }
 };
 
 // walk /src/app and sass render all the scss files
-walk.walkSync('./appengine/target', updateMeta);
+walk.walkSync('./appengine', updateMeta);
 
 function updateMeta(baseDir, filename) {
   if (!filename.endsWith('.html')) { return; }

@@ -16,7 +16,7 @@ const routes = [
   { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'network', dirPath: baseDir + 'network.html' },
   { url: baseRoute + 'blog', dirPath: baseDir + 'blog.html' },
-  { url: baseRoute + 'blog/post/test', dirPath: baseDir + 'blog/post.html' },
+  { url: baseRoute + 'blog/post/test', dirPath: baseDir + '../blog-article.html' },
   { url: baseRoute + 'privacy-policy', dirPath: baseDir + 'privacy-policy.html' },
   { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
   { url: baseRoute + 'terms-of-service', dirPath: baseDir + 'terms-of-service.html' },

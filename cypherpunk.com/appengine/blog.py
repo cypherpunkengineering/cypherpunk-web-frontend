@@ -21,6 +21,8 @@ class MainPage(webapp2.RequestHandler):
             '__BLOG_TITLE__': 'foo',
             '__BLOG_DATE__': 'foo',
             '__BLOG_CONTENT__': 'foo',
+            '__BLOG_URL__': 'foo',
+            '__BLOG_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
         }
 
         template = JINJA_ENVIRONMENT.get_template('blog-article.html')

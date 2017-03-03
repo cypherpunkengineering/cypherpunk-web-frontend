@@ -9,13 +9,11 @@ import { BackendService } from '../../../services/backend.service';
 })
 export class BlogPostComponent implements OnInit {
   post = {
-    id: 'postId1',
-    title: 'Hello World!',
-    content: 'some content',
-    published: '2016-12-24T17:07:00+09:00',
-    images: [
-      { url: 'http://placehold.it/250x150' }
-    ]
+    id: '',
+    title: '',
+    content: '',
+    published: '',
+    images: [ { url: '' } ]
   };
 
   showSearch: boolean = false;
@@ -32,7 +30,10 @@ export class BlogPostComponent implements OnInit {
   }
 
   postDate() {
-    if (this.post.published === '__BLOG_DATE__') {
+    if (this.post.published === '{{__BLOG_DATE__}}') {
+      return this.post.published;
+    }
+    else if (!this.post.published) {
       return this.post.published;
     }
     else {

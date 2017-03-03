@@ -114,23 +114,21 @@ export function blog(req, res) {
 }
 
 export function blogPost(req, res) {
-  if (DEV_MODE) {
-    let postId = req.params.postId;
-    if (postId === 'test') {
-      return res.json({
-        id: 'test',
-        title: '__BLOG_TITLE__',
-        content: '__BLOG_CONTENT__',
-        published: '__BLOG_DATE__',
-        images: [ { url: '' } ]
-      });
-    }
-    else {
-      return request(urlStart + 'api/v0/blog/post/' + postId, (err, resp, body) => {
-        let retval = JSON.parse(body);
-        return res.json(retval);
-      });
-    }
+  let postId = req.params.postId;
+  if (postId === 'test') {
+    return res.json({
+      id: 'test',
+      title: '{{__BLOG_TITLE__}}',
+      content: '{{__BLOG_CONTENT__}}',
+      published: '{{__BLOG_DATE__}}',
+      images: [ { url: '{{__BLOG_IMAGE__}}' } ]
+    });
+  }
+  else if (DEV_MODE) {
+    return request(urlStart + 'api/v0/blog/post/' + postId, (err, resp, body) => {
+      let retval = JSON.parse(body);
+      return res.json(retval);
+    });
   }
   else { res.json({}); }
 }
