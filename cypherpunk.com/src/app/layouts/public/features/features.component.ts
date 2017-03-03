@@ -1,15 +1,11 @@
 import { Router, NavigationEnd } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, AfterViewInit, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.css']
 })
-export class FeaturesComponent implements AfterViewInit, OnInit {
-  title: string = 'How Cypherpunk Privacy Protects Your Online Privacy and Freedom';
-  description: string = 'Learn how Cypherpunk Privacy provides unrestricted access to the internet and protects your privacy online.';
-
+export class FeaturesComponent implements OnInit {
   currentTab: string = 'freedom';
   cpSwitch: boolean = true;
   mfSwitch: boolean = true;
@@ -19,12 +15,7 @@ export class FeaturesComponent implements AfterViewInit, OnInit {
   svSwitch: boolean = true;
   esSwitch: boolean = true;
 
-  constructor(
-    private router: Router,
-    @Inject(DOCUMENT) private document: any
-  ) { }
-
-  ngAfterViewInit(): void { this.document.title = this.title; }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.router.events.subscribe((evt) => {

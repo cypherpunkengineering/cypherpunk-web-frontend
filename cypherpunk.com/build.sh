@@ -44,6 +44,7 @@ else
 
 	# start scrape
 	npm run scrape
+	npm run meta
 	npm run landing:addon
 fi
 
