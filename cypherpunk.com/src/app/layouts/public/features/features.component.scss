@@ -72,11 +72,10 @@
     vertical-align: middle;
     font-size: 18px;
     .text-header { font-size: 28px; }
-    &.left { text-align: right; }
-    &.right { text-align: left; }
   }
 
   .learn-more {
+    display: none;
     color: #1b87bb;
     cursor: pointer;
     font-size: 20px;
@@ -93,37 +92,22 @@
   }
 }
 
-.features {
-  width: 100%;
-  background-color: #163238;
-
-  .features-inner {
-    width: 100%;
-    max-width: 1000px;
-    padding: 10px 0 30px;
-    margin: auto;
-  }
-
-  .header { margin: 60px 0 0; }
-  .subheader { color: #fff; text-align: center; margin: 15px 0 50px; }
-}
-
 .more {
   width: 100%;
   max-width: 1000px;
   color: #000;
-  overflow: hidden;
-  transition: all 0.5s;
   margin: 0 auto;
-  max-height: 0;
-  opacity: 0;
   text-align: center;
+  // overflow: hidden;
+  // transition: all 0.5s;
+  // max-height: 0;
+  // opacity: 0;
 
-  &.open { max-height: 340px; opacity: 1; }
-  &.open.double { max-height: 680px; }
-  &.open.triple { max-height: 900px; }
-  &.open.quad { max-height: 1200px; }
-  &.open.quin { max-height: 1500px; }
+  // &.open { max-height: 340px; opacity: 1; }
+  // &.open.double { max-height: 680px; }
+  // &.open.triple { max-height: 900px; }
+  // &.open.quad { max-height: 1200px; }
+  // &.open.quin { max-height: 1500px; }
 
   .cell {
     width: 300px;
@@ -135,25 +119,27 @@
     &:last-child { margin-right: 0; }
 
     &.small {
-      width: 75px;
+      width: 200px;
       margin: 60px 30px 0 0;
       &:nth-child(4n+0) { margin-right: 50px; }
       &:last-child { margin-right: 0; }
       .cell-header { font-size: 20px; }
-      .cell-image { height: 50px; }
+      .cell-image { height: 100px; }
       i { font-size: 35px; }
     }
 
     .cell-image {
       width: 100%;
-      height: 180px;
+      height: 225px;
       margin: auto;
       img { height: 100%; max-width: 100%; }
+      img.width { width: 100%; height: 65px; }
     }
 
     .cell-header {
-      font-size: 26px;
+      font-size: 20px;
       color: #fc6146;
+      padding: 10px 0;
     }
 
     .cell-text {
@@ -202,14 +188,6 @@
 }
 
 @media (max-width: 1016px) {
-  .features .features-inner {
-    .mobile { display: block; }
-    .desktop { display: none; }
-    .image { width: 100%; }
-    .text.right, .text.left{ width: 100%; padding: 20px; text-align: center; }
-    .row-divider { width: 90%; }
-  }
-
   .bottom-callout .bottom-buttons { padding: 40px; }
 
   .mobile { display: block ; }
