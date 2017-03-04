@@ -70,63 +70,65 @@
 
     <div class="row">
       <div class="image">
-        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
+        <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="Cypherplay">
       </div>
 
-      <div class="text right">
+      <div class="text">
         <div class="text-header gold">CypherPlay™</div>
 
         <p>
           Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds. Lorem Ipsum
         </p>
 
-        <a (click)="switch1 = !switch1">Learn More</a>
+        <!-- <a (click)="switch1 = !switch1">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="more" [ngClass]="{'open': switch1}">
-  <div class="cell">
-    <div class="cell-image">
+<div class="descriptions" [ngClass]="{'open': switch1}">
+  <div class="more">
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/play-from-anywhere@2x.png" srcset="/assets/features/freedom/play-from-anywhere 500w, /assets/features/freedom/play-from-anywhere@2x.png" alt="Play From Anywhere">
+      </div>
+
+      <div class="cell-header">Play from anywhere</div>
+
+      <div class="cell-text">
+        Freedom to watch any streaming content online
+      </div>
     </div>
 
-    <div class="cell-header">Play from anywhere</div>
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/automatic-regional-routing@2x.png" srcset="/assets/features/freedom/automatic-regional-routing 500w, /assets/features/freedom/automatic-regional-routing@2x.png" alt="Automatic Regional Routing">
+      </div>
 
-    <div class="cell-text">
-      Freedom to watch any streaming content online
-    </div>
-  </div>
+      <div class="cell-header">Automatic regional routing</div>
 
-  <div class="cell">
-    <div class="cell-image">
-    </div>
-
-    <div class="cell-header">Automatic regional routing</div>
-
-    <div class="cell-text">
-      We route you through the necessary locations to access your geo-blocked content
+      <div class="cell-text">
+        We route you through the necessary locations to access your geo-blocked content
+      </div>
     </div>
   </div>
 </div>
 
 <div class="features down-arrow green">
   <div class="features-inner">
-    <div class="row-divider"></div>
-
     <div class="row">
       <div class="image mobile">
         <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="">
       </div>
 
-      <div class="text left">
+      <div class="text">
         <div class="text-header gold">Privacy Protection</div>
 
         <p>
           Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes. Lorem Ipsum
         </p>
 
-        <a (click)="switch2 = !switch2">Learn More</a>
+        <!-- <a (click)="switch2 = !switch2">Learn More</a> -->
       </div>
 
       <div class="image desktop">
@@ -136,78 +138,82 @@
   </div>
 </div>
 
-<div class="more" [ngClass]="{'open': switch2}">
-  <div class="cell">
-    <div class="cell-image">
-    </div>
+<div class="descriptions" [ngClass]="{'open': switch2}">
+  <div class="more">
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
+      </div>
 
-    <div class="cell-header">Privacy Filter</div>
+      <div class="cell-header">Privacy Filter</div>
 
-    <div class="cell-text">
-      Block ads, trackers, and malware with our advanced filtering system. Malicious sites blocked at the server level to protect you.
+      <div class="cell-text">
+        Block ads, trackers, and malware with our advanced filtering system. Malicious sites blocked at the server level to protect you.
+      </div>
     </div>
   </div>
 </div>
 
 <div class="features down-arrow green padded">
   <div class="features-inner">
-    <div class="row-divider"></div>
-
     <div class="row">
       <div class="image">
         <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="">
       </div>
 
-      <div class="text right">
+      <div class="text">
         <div class="text-header gold">Advanced Features</div>
 
         <p>
           If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
         </p>
 
-        <a (click)="switch3 = !switch3">Learn More</a>
+        <!-- <a (click)="switch3 = !switch3">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="more" [ngClass]="{'open': switch3}">
-  <div class="cell">
-    <div class="cell-image">
+<div class="descriptions">
+  <div class="more" [ngClass]="{'open': switch3}">
+    <div class="cell">
+      <div class="cell-image">
+      </div>
+
+      <div class="cell-header">Auto Connect</div>
+
+      <div class="cell-text">
+        Automatic protection on public WiFi and untrusted networks
+      </div>
     </div>
 
-    <div class="cell-header">Auto Connect</div>
+    <div class="cell">
+      <div class="cell-image">
+      </div>
 
-    <div class="cell-text">
-      Automatic protection on public WiFi and untrusted networks
-    </div>
-  </div>
+      <div class="cell-header">One Click Connect</div>
 
-  <div class="cell">
-    <div class="cell-image">
+      <div class="cell-text"></div>
     </div>
 
-    <div class="cell-header">One Click Connect</div>
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/ikev2@2x.png" srcset="/assets/features/online-privacy/ikev2.png 500w, /assets/features/online-privacy/ikev2@2x.png 1000w" alt="IKEv2">
+      </div>
 
-    <div class="cell-text"></div>
-  </div>
+      <div class="cell-header">IKEv2</div>
 
-  <div class="cell">
-    <div class="cell-image">
+      <div class="cell-text"></div>
     </div>
 
-    <div class="cell-header">IKEv2</div>
+    <div class="cell">
+      <div class="cell-image">
+      </div>
 
-    <div class="cell-text"></div>
-  </div>
+      <div class="cell-header">Quick Connect from widget</div>
 
-  <div class="cell">
-    <div class="cell-image">
+      <div class="cell-text"></div>
     </div>
-
-    <div class="cell-header">Quick Connect from widget</div>
-
-    <div class="cell-text"></div>
   </div>
 </div>
 

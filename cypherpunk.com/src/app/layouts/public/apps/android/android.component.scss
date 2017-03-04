@@ -148,15 +148,15 @@
   .features-inner {
     width: 100%;
     max-width: 1000px;
-    padding: 60px 0 0;
     margin: 0 auto 0;
   }
 
-  .header { margin: 60px 0 50px; }
+  .header { padding: 90px 0 0; }
 
   .row {
     width: 100%;
     overflow: auto;
+    padding: 50px 0;
 
     .image {
       width: 39.6%;
@@ -178,43 +178,46 @@
       color: #8dfffc;
       vertical-align: middle;
       .text-header { font-size: 20px; }
-      &.left { text-align: right; }
-      &.right { text-align: left; }
     }
 
     a { color: #fc6146; cursor: pointer; }
   }
 }
 
+.descriptions { background-color: #efebeb; }
+
 .more {
   width: 100%;
   max-width: 1000px;
   color: #000;
-  overflow: hidden;
-  transition: all 0.5s;
   margin: 0 auto;
-  max-height: 0;
-  opacity: 0;
+  text-align: center;
+  padding: 50px 0 25px;
+  // overflow: hidden;
+  // transition: all 0.5s;
+  // max-height: 0;
+  // opacity: 0;
 
-  &.open {
-    margin: 60px auto 50px;
-    max-height: 340px;
-    opacity: 1;
-  }
-  &.open.double { max-height: 680px; }
-  &.open.triple { max-height: 900px; }
+  // &.open {
+  //   margin: 60px auto 50px;
+  //   max-height: 340px;
+  //   opacity: 1;
+  // }
+  // &.open.double { max-height: 680px; }
+  // &.open.triple { max-height: 900px; }
 
   .cell {
-    float: left;
-    width: 25%;
+    width: 300px;
+    display: inline-block;
     text-align: center;
     padding: 30px 0;
+    vertical-align: top;
 
     .cell-image {
-      width: 90%;
-      height: 180px;
-      background-color: #ccc;
-      margin: auto
+      width: 100%;
+      height: 225px;
+      margin: auto;
+      img { height: 100%; max-width: 100%; }
     }
 
     .cell-header {

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./ios.component.css']
 })
 export class IosComponent {
-  switch1: boolean = false;
-  switch2: boolean = false;
-  switch3: boolean = false;
+  switch1: boolean = true;
+  switch2: boolean = true;
+  switch3: boolean = true;
 }

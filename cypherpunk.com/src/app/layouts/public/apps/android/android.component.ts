@@ -5,12 +5,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./android.component.css']
 })
 export class AndroidComponent {
-  switch1: boolean = false;
-  switch2: boolean = false;
-  switch3: boolean = false;
-  switch4: boolean = false;
-  switch5: boolean = false;
-  switch6: boolean = false;
-  switch7: boolean = false;
-  switch8: boolean = false;
+  switch1: boolean = true;
+  switch2: boolean = true;
+  switch3: boolean = true;
+  switch4: boolean = true;
+  switch5: boolean = true;
+  switch6: boolean = true;
+  switch7: boolean = true;
+  switch8: boolean = true;
 }

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./browser.component.css']
 })
 export class BrowserComponent {
-  switch1: boolean = false;
-  switch2: boolean = false;
-  switch3: boolean = false;
+  switch1: boolean = true;
+  switch2: boolean = true;
+  switch3: boolean = true;
 }

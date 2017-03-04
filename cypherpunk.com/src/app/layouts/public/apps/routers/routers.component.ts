@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./routers.component.css']
 })
 export class RoutersComponent {
-  switch1: boolean = false;
-  switch2: boolean = false;
+  switch1: boolean = true;
+  switch2: boolean = true;
 }
