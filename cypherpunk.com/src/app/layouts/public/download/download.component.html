@@ -13,12 +13,11 @@
       <img class="m" src="/assets/apps/linux-hover@2x.png" alt="Linux" *ngIf="headerBuild.name === 'Linux' ">
     </div>
 
-    <div class="right">
-      <a href="{{headerBuild.link}}" (click)="launchDownloadModal(headerBuild, $event)">
-        <button class="btn blue">
-          Download for {{ headerBuild.name }}
-        </button>
-      </a>
+    <div class="right" *ngIf="showDownloadSection">
+      Your download will begin shortly...
+      <br>
+      Or click here to download now:
+      <a href="{{downloadBuildLink}}" target="_top"> download</a>
     </div>
   </div>
 </div>
@@ -31,16 +30,13 @@
 
         <div class="half" *ngIf="headerBuild.name !== 'Windows'">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
-            <img src="/assets/apps/windows@2x.png" alt="">
+            <a routerLink="/apps/windows">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+              <img src="/assets/apps/windows@2x.png" alt="">
+            </a>
           </div>
 
           <p>Windows</p>
-
-          <a href="{{builds.windows.link}}" (click)="launchDownloadModal(builds.windows, $event)">
-            <button class="btn orange">Download</button>
-          </a>
-
           <p>Windows Vista 64-bit and later</p>
 
           <a href="/apps/windows">Learn More</a>
@@ -48,16 +44,13 @@
 
         <div class="half" *ngIf="headerBuild.name !== 'Mac'">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
-            <img src="/assets/apps/apple@2x.png" alt="">
+            <a routerLink="/apps/mac">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+              <img src="/assets/apps/apple@2x.png" alt="">
+            </a>
           </div>
 
           <p>MacOS</p>
-
-          <a href="{{builds.mac.link}}" (click)="launchDownloadModal(builds.mac, $event)">
-            <button class="btn orange">Download</button>
-          </a>
-
           <p>MacOS Version 10.10 64-bit and later</p>
 
           <a href="/apps/linux">Learn More</a>
@@ -65,16 +58,13 @@
 
         <div class="half" *ngIf="headerBuild.name !== 'Linux'">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
-            <img src="/assets/apps/linux@2x.png" alt="">
+            <a routerLink="/app/linux">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+              <img src="/assets/apps/linux@2x.png" alt="">
+            </a>
           </div>
 
           <p>Linux</p>
-
-          <a href="{{currentLinuxBuild.link}}" (click)="launchDownloadModal(builds.linux, $event)">
-            <button class="btn orange">Download</button>
-          </a>
-
           <p>Linux Version x and later</p>
 
           <a href="/apps/linux">Learn More</a>
@@ -86,17 +76,14 @@
 
         <div class="half">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
-          </div>
-
-          <p>iOS</p>
-
-          <div class="ios-badge">
-            <a href="{{ builds.ios.link }}">
-              <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
+            <a routerLink="/apps/ios">
+              <div class="ios-badge">
+                <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
+              </div>
             </a>
           </div>
 
+          <p>iOS</p>
           <p>iOS 7 and later</p>
 
           <a href="/apps/ios">Learn More</a>
@@ -104,20 +91,16 @@
 
         <div class="half">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
-          </div>
-
-          <p>Android</p>
-
-          <div class="android-badge">
-            <a href="{{ builds.android.link }}">
-              <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
+            <a routerLink="/apps/android">
+              <div class="android-badge">
+                <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
+              </div>
             </a>
           </div>
 
+          <p>Android</p>
           <p>Android 4.01 and later</p>
 
-          <a href="/apps/android">Download APK</a><br>
           <a href="/apps/android">Learn More</a>
         </div>
       </div>
@@ -131,15 +114,12 @@
 
         <div class="half">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <a routerLink="/apps/browser">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            </a>
           </div>
 
           <p>Chrome/Opera/Vivaldi</p>
-
-          <a href="{{builds.chrome.link}}" (click)="launchDownloadModal(builds.chrome, $event)">
-            <button class="btn orange">Download</button>
-          </a>
-
           <p>For Chrome/Opera/Vivaldi Browser 22+</p>
 
           <a href="/apps/browser">Learn More</a>
@@ -147,15 +127,12 @@
 
         <div class="half">
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <a routerLink="/apps/browser">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            </a>
           </div>
 
           <p>Firefox</p>
-
-          <a (click)="launchDownloadModal(builds.firefox, $event)">
-            <button class="btn orange">Download</button>
-          </a>
-
           <p>Firefox Version 5+</p>
 
           <a href="/apps/browser">Learn More</a>
@@ -175,24 +152,24 @@
           <p>DD-WRT</p>
 
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <a routerLink="/apps/routers">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            </a>
           </div>
 
-          <a>
-            <button class="btn orange">Setup Guide</button>
-          </a>
+          <a href="/apps/browser">Learn More</a>
         </div>
 
         <div class="half">
           <p>Tomato</p>
 
           <div class="image-container">
-            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            <a routerLink="/apps/routers">
+              <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+            </a>
           </div>
 
-          <a>
-            <button class="btn orange">Setup Guide</button>
-          </a>
+          <a href="/apps/browser">Learn More</a>
         </div>
       </div>
 
@@ -200,12 +177,12 @@
         <p>VPN Routers</p>
 
         <div class="image-container">
-          <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          <a routerLink="/apps/routers">
+            <img class="d" src="/assets/apps/desktop@2x.png" alt="">
+          </a>
         </div>
 
-        <a>
-          <button class="btn orange">Setup Guide</button>
-        </a>
+        <a href="/apps/browser">Learn More</a>
       </div>
     </div>
   </div>
@@ -220,29 +197,3 @@
 </div>
 
 <app-footer></app-footer>
-
-<div class="modal" [ngClass]="{'open': showDownloadModal}">
-  <div class="background" (click)="showDownloadModal = false" [ngClass]="{'open': showDownloadModal}"></div>
-  <div class="modal-content">
-    <div class="modal-header">
-      Downloading Cypherpunk Privacy for {{ downloadBuildName }}
-    </div>
-
-    <div class="modal-line"></div>
-
-    <div class="modal-body">
-      <div class="row">
-        <label>
-          Your download will begin shortly...
-          <br>
-          Or click here to download now:
-          <a href="{{downloadBuildLink}}" target="_top"> download</a>
-        </label>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="showDownloadModal = false">Close</button>
-    </div>
-  </div>
-</div>
