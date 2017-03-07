@@ -13,6 +13,19 @@ export class AuthService {
     private backend: BackendService
   ) { }
 
+  signup(user): Promise<void> {
+    let body = { login: user.email, password: user.password };
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({ headers: headers });
+
+    // this will set cookie
+    return this.backend.signup(body, options)
+    // set user session data
+    .then((data) => { this.session.setUserData(data); })
+    // turn authed on
+    .then(() => { this.authed = true; });
+  }
+
   signin(user): Promise<void> {
     let body = { login: user.email, password: user.password };
     let headers = new Headers({'Content-Type': 'application/json'});

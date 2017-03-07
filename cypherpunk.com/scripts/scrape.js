@@ -36,7 +36,8 @@ const routes = [
   { url: baseRoute + 'apps/routers', dirPath: baseDir + 'apps/routers.html' },
   { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
-  { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' }
+  { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' },
+  { url: baseRoute + 'create', dirPath: baseDir + 'create.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

@@ -45,13 +45,15 @@ export function identify(req, res) {
 export function signup(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/confirm/email';
+    let url = urlStart + 'api/v0/account/register/signup';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
     return res.json({
-      account: { email: req.body.email },
-      secret: req.body.password
+      secret: 'abcd',
+      privacy: { username: '', password: '' },
+      account: { id: 'id', email: '', confirmed: true, type: '' },
+      subscription: { renewal: 'forever', expiration: '0' }
     });
   }
 }

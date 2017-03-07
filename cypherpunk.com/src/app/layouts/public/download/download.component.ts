@@ -123,11 +123,11 @@ export class DownloadComponent {
       window.location.href = link;
       return;
     }
-    else if (this.headerBuild.name === 'Android') {
+    else if (this.headerBuild.name === 'Android' && isBrowser) {
       window.location.href = link;
       return;
     }
-    else if (this.headerBuild.name === 'iOS') {
+    else if (this.headerBuild.name === 'iOS' && isBrowser) {
       window.location.href = link;
       return;
     }

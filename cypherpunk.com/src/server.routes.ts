@@ -43,5 +43,6 @@ export const routes: string[] = [
   'freedom',
   'privacy',
   'security',
-  'support'
+  'support',
+  'create'
 ];

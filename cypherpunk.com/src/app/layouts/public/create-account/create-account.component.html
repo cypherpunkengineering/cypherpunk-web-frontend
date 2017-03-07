@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="masthead">
+    <app-nav></app-nav>
+
+    <h1 class="header white">Create Account</h1>
+  </div>
+
+  <div>
+    <form>
+      <p>
+        <label for="username">Email</label><br>
+        <input id="email" type="email" name="username" [(ngModel)]="user.email" placeholder="Email" (blur)="validateEmail()" [ngClass]="{'error': (emailTouched && !validEmail), 'success': (emailTouched && validEmail)}" autofocus>
+      </p>
+
+      <p>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signin()" (ngModelChange)="validatePassword()" (blur)="validatePassword()" [ngClass]="{'error': (passwordTouched && !validPassword), 'success': (passwordTouched && validPassword)}">
+      </p>
+
+      <p class="center">
+        <button class="btn blue" type="button" (click)="signin()" [disabled]="!validPassword || !validEmail || signinButtonDisabled">
+          Create
+        </button>
+      </p>
+
+      <p class="center">
+        <a class="signin-link" routerLink="/recover">Forgot Password?</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

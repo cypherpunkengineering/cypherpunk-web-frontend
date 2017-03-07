@@ -51,6 +51,15 @@ export class BackendService {
     });
   }
 
+  signup(body, options): Promise<any> {
+    // this will set cookie
+    let url = this.backendUrl + 'account/register/signup';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
   // User account apis
 
   cards() {
