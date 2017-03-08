@@ -25,7 +25,7 @@
     "build:prod:json": "webpack --config webpack.prod.config.ts --json | webpack-bundle-size-analyzer",
     "ngc": "ngc -p tsconfig.aot.json",
     "landing": "npm run clean && npm run sass:landing && npm run landing:copy",
-    "landing:copy": "mkdir -p appengine/target && cp landing/*.{css,js} appengine/target/ && cp landing/landing.html appengine/target/cypherpunk-public.html && mkdir -p appengine/target/assets && cp assets/assets/logo* appengine/target/assets/",
+    "landing:copy": "mkdir -p appengine/target && cp landing/landing.css appengine/target/ && cp landing/landing.js appengine/target/ && cp landing/landing.html appengine/target/cypherpunk-public.html && mkdir -p appengine/target/assets && cp assets/assets/logo* appengine/target/assets/ && cp assets/assets/landing*.png appengine/target/assets",
     "landing:addon": "mkdir -p appengine/target && npm run sass:landing && cp landing/landing.html appengine/target/ && cp landing/landing.css appengine/target/ && cp landing/landing.js appengine/target/",
     "sass": "node scripts/sass",
     "sass:landing": "node scripts/landing-sass",
