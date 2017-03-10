@@ -162,8 +162,7 @@ export class DownloadComponent {
     // Force file download (whether supported by server).
     if (sUrl.indexOf('?') === -1) { sUrl += '?download'; }
 
-    window.open(sUrl, '_self');
+    if (isBrowser) { window.open(sUrl, '_self'); }
     return true;
   };
-
 }
