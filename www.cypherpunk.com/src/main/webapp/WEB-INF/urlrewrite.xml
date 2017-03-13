@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN" "http://www.tuckey.org/res/dtds/urlrewrite2.6.dtd">
+<urlrewrite>
+
+	<!-- default cache-control and expiration -->
+	<rule>
+		<set type="response-header" name="Cache-Control">public, max-age=31337</set>
+		<set type="expires">31337 seconds</set>
+	</rule>
+
+	<!-- redirect typo domains to main domain -->
+	<rule>
+		<from>/(.*)</from>
+		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
+	</rule>
+
+</urlrewrite>

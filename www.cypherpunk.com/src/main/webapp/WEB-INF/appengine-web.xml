@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+
+  <application>cypherpunk-www</application>
+  <version>1</version>
+  <threadsafe>true</threadsafe>
+
+  <instance-class>F1</instance-class>
+  <automatic-scaling>
+	<min-idle-instances>1</min-idle-instances>
+	<max-idle-instances>automatic</max-idle-instances>
+	<min-pending-latency>30ms</min-pending-latency>
+	<max-pending-latency>automatic</max-pending-latency>
+	<max-concurrent-requests>10</max-concurrent-requests>
+  </automatic-scaling>
+
+  <system-properties>
+	<property name="java.util.logging.config.file" value="WEB-INF/logging.properties" />
+	<property name="file.encoding" value="UTF=8" />
+	<property name="DEFAULT_ENCODING" value="UTF=8" />
+  </system-properties>
+
+  <public-root>site</public-root>
+
+  <!-- static files which match these paths will take precedence over urlrewrite.xml -->
+  <static-files>
+
+	<!-- minimal time for html -->
+	<include path="/**.html" expiration="5m">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+
+	<!-- short times for other things that change often -->
+	<include path="/**.json" expiration="1h">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.rss" expiration="1h">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.xml" expiration="1h">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.txt" expiration="1h">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+
+	<!-- medium times for images -->
+	<include path="/**.jpg" expiration="1d">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.png" expiration="1d">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.ico" expiration="1d">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+
+	<!-- long times for cache-busted assets -->
+	<include path="/**.js" expiration="4d">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+	<include path="/**.css" expiration="4d">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+
+	<!-- default -->
+	<include path="/**" expiration="1m">
+		<http-header name="Strict-Transport-Security" value="max-age=10886400; includeSubDomains; preload" />
+	</include>
+
+  </static-files>
+
+</appengine-web-app>
