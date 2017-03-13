@@ -33,6 +33,13 @@
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
+	<!-- for API request staging/testing -->
+	<rule>
+		<condition name="host" next="or">^cypherpunk-privacy.appspot.com$</condition>
+		<condition name="host">cypherpunk-dev.appspot.com$</condition>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
 	<!-- redirect root routes from [.*]privacy.network to .com site with HSTS preload header -->
 	<rule>
 		<condition name="host">privacy.network$</condition>

@@ -1,1 +1,10 @@
-mkdir -p dbip-chunks && cd dbip-chunks && split -a 3 -l 400 ../dbip-country-2016-12.csv dbip-chunk-
+#!/bin/bash
+[ -z "$1" ] && echo "Usage: $0 <file>" && exit 1
+mkdir -p dbip-chunks && \
+cd dbip-chunks && \
+split -a 3 -l 300 ../${1} dbip-chunk- && \
+for x in {a..z}
+do
+	mkdir dbip-chunk-${x} && mv dbip-chunk-${x}* dbip-chunk-${x}/ 2>/dev/null
+done
+exit 0

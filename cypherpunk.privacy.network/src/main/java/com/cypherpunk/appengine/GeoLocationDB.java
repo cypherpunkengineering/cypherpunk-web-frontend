@@ -61,7 +61,7 @@ public class GeoLocationDB
 		private static final String RANGE_END = "range_end";
 		private static final String COUNTRY_CODE = "country_code";
 	} // }}}
-	private static final class IPv6Range // {{{ TODO: implement 128 bit IPv6 support
+	private static final class IPv6Range // {{{
 	{
 		private static final String KIND = "IPv6Range";
 		private static final String RANGE_START = "range_start";
@@ -85,7 +85,8 @@ public class GeoLocationDB
 		return countryCode;
 	} // }}}
 
-	private String searchIPv4CountryCode(String reqIP) {
+	private String searchIPv4CountryCode(String reqIP) // {{{
+	{
 		String countryCode = "";
 		long reqIPLong = convertIPv4dottedToLong(reqIP);
 
@@ -141,9 +142,9 @@ public class GeoLocationDB
 			mc.put(reqIP, countryCode, Expiration.byDeltaSeconds(CACHE_PERIOD), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
 
 		return countryCode;
-	}
-
-	private String searchIPv6CountryCode(String reqIP) {
+	} // }}}
+	private String searchIPv6CountryCode(String reqIP) // {{{
+	{
 		String countryCode = "";
 		ShortBlob reqIPShortBlob = convertIPv6AddrToShortBlob(reqIP);
 
@@ -200,13 +201,15 @@ public class GeoLocationDB
 			mc.put(reqIP, countryCode, Expiration.byDeltaSeconds(CACHE_PERIOD), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
 
 		return countryCode;
-	}
+	} // }}}
 
-	private void addIPv4Range(String id, long rangeStart, long rangeEnd, String rangeCountryCode) { // {{{ TODO: rewrite to use multiple puts in one transaction
+	private void addIPv4Range(String id, long rangeStart, long rangeEnd, String rangeCountryCode) // {{{ TODO: rewrite to use multiple puts in one transaction
+	{
 		Key rangeKey = KeyFactory.createKey(IPv4Range.KIND, id);
 		Transaction tx = DS.beginTransaction();
 		Entity range = new Entity(rangeKey);
-		try {
+		try
+		{
 			range.setProperty(IPv4Range.RANGE_START, rangeStart);
 			range.setProperty(IPv4Range.RANGE_END, rangeEnd);
 			range.setProperty(IPv4Range.COUNTRY_CODE, rangeCountryCode);
@@ -214,12 +217,13 @@ public class GeoLocationDB
 			tx.commit();
 		}
 		catch (Exception e) { LOG.log(Level.WARNING, e.toString(), e); }
-		finally {
+		finally
+		{
 			if (tx.isActive()) { tx.rollback(); }
 		}
 	} // }}}
-
-	private void addIPv6Range(String id, ShortBlob rangeStart, ShortBlob rangeEnd, String rangeCountryCode) { // {{{ TODO: rewrite to use multiple puts in one transaction
+	private void addIPv6Range(String id, ShortBlob rangeStart, ShortBlob rangeEnd, String rangeCountryCode) // {{{ TODO: rewrite to use multiple puts in one transaction
+	{
 		Key rangeKey = KeyFactory.createKey(IPv6Range.KIND, id);
 		Transaction tx = DS.beginTransaction();
 		Entity range = new Entity(rangeKey);
@@ -238,14 +242,16 @@ public class GeoLocationDB
 
 	public void initDatabase(String chunk) // {{{
 	{
-		String filePath = "res/dbip-chunks/dbip-chunk-"+chunk;
+		String filePath = "res/dbip-chunks/dbip-chunk-" + chunk.charAt(0) + "/dbip-chunk-" + chunk;
 		BufferedReader reader = null;
 		String line;
 		long lineNumber = 0;
 
-		try {
+		try
+		{
 			reader = new BufferedReader(new FileReader(filePath));
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null)
+			{
 				lineNumber++;
 
 				// parse csv
@@ -253,14 +259,16 @@ public class GeoLocationDB
 				//LOG.log(Level.INFO, "got IP range: "+country[0]+" to "+country[1]+" for "+country[2]);
 
 				// check for ipv4 or IPv6
-				if (country[0].contains(":")) {
+				if (country[0].contains(":"))
+				{
 					String id = "IPv6-" + country[0] + "-" + country[1];
 					ShortBlob rangeStart = convertIPv6AddrToShortBlob(country[0]);
 					ShortBlob rangeEnd = convertIPv6AddrToShortBlob(country[1]);
 					String rangeCountryCode = country[2];
 					addIPv6Range(id, rangeStart, rangeEnd, rangeCountryCode);
 				}
-				else {
+				else
+				{
 					String id = "IPv4-" + country[0] + "-" + country[1];
 					long rangeStart = convertIPv4dottedToLong(country[0]);
 					long rangeEnd = convertIPv4dottedToLong(country[1]);
@@ -270,12 +278,15 @@ public class GeoLocationDB
 			}
 		}
 		catch (FileNotFoundException e) { e.printStackTrace(); }
-		catch (IOException e) {
+		catch (IOException e)
+		{
 			// LOG.log(Level.WARNING, "line number "+lineNumber, e);
 			e.printStackTrace();
 		}
-		finally {
-			if (reader != null) {
+		finally
+		{
+			if (reader != null)
+			{
 				try { reader.close(); }
 				catch (IOException e) { e.printStackTrace(); }
 			}
@@ -307,7 +318,6 @@ public class GeoLocationDB
 		}
 		return result;
 	} // }}}
-
 	private ShortBlob convertIPv6AddrToShortBlob(String ipAddress) { // {{{
 		// create empty byte array of 16 bytes
 		byte[] result = new byte[16];

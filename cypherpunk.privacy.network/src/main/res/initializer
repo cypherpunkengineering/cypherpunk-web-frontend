@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
-for i in dbip-chunks/dbip-chunk-*
+for i in dbip-chunks/dbip-chunk-[b-z]/dbip-chunk-*
 do
-	id=`echo $i|cut -d '-' -f4`
+	id=`echo $i|cut -d '-' -f6`
 	echo "init slice ${id}"
-	curl "https://cypherpunk.com/api/v0/network/secretGeoDatabaseInit?chunk=${id}" &
-	sleep 15
+	curl "https://cypherpunk-privacy.appspot.com/api/v0/network/secretGeoDatabaseInit?chunk=${id}" &
+	sleep 0.5
 done
