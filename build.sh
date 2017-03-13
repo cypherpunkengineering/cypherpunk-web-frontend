@@ -1,2 +1,2 @@
 #!/bin/bash
-(cd cypherpunk.com/ && ./build.sh)
+(cd cypherpunk-com/ && ./build.sh)
