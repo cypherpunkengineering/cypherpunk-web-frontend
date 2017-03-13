@@ -33,6 +33,20 @@
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
+	<!-- redirect root routes from [.*]privacy.network to .com site with HSTS preload header -->
+	<rule>
+		<condition name="host">privacy.network$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains; preload</set>
+		<from>^/$</from>
+		<to last="true" type="permanent-redirect">https://cypherpunk.com/</to>
+	</rule>
+	<!-- catchall 404 for other c.p.n requests -->
+	<rule>
+		<condition name="host">^cypherpunk.privacy.network$</condition>
+		<from>.*</from>
+		<set type="status">404</set>
+		<to last="true">null</to>
+	</rule>
 
 	<!-- also allow API requests on .com domain, but remove this after remaining requests to cypherpunk.com/api/ are removed -->
 	<rule>
@@ -44,6 +58,7 @@
 	<!-- same as above but for development -->
 	<rule>
 		<condition name="host">^cypherpunk.engineering$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
@@ -57,7 +72,7 @@
 		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
 	</rule>
 
-	<!-- set HSTS header for all requests to cypherpunk.com -->
+	<!-- set HSTS preload header for all requests to cypherpunk.com -->
 	<rule>
 		<condition name="host">^cypherpunk.(com|engineering)$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=13370000; includeSubDomains; preload</set>
