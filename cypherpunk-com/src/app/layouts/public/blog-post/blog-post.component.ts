@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 
 @Component({
@@ -18,13 +19,20 @@ export class BlogPostComponent implements OnInit {
 
   showSearch: boolean = false;
 
-  constructor(private backend: BackendService, private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private backend: BackendService,
+    @Inject(DOCUMENT) private document: any
+  ) { }
 
   ngOnInit() {
     let postId = this.route.snapshot.params['postId'];
     this.backend.blogPost(postId)
     .subscribe(
-      (data: any) => { this.post = data; },
+      (data: any) => {
+        this.post = data;
+        this.document.title = data.title;
+      },
       (error: any) => { console.log(error); }
     );
   }
