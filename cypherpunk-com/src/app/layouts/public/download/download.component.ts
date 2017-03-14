@@ -7,13 +7,13 @@ export class DownloadPlatforms {
   static mac = {
     name: 'Mac',
     versions: '',
-    link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-macos-0.5.0-beta-00418.pkg'
+    link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.6.1-beta-00452.pkg'
   };
 
   static windows = {
     name: 'Windows',
     versions: '',
-    link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-windows-0.5.0-beta-00383.exe'
+    link: 'https://download.cypherpunk.com/release/windows/cypherpunk-privacy-windows-0.6.1-beta-00416.exe'
   };
 
   static linux = {
@@ -74,7 +74,7 @@ export class DownloadPlatforms {
       name: 'Debian/Ubuntu/Mint',
       os: 'Debian/Ubuntu/Mint',
       version: '64-bit',
-      link: 'https://download.cypherpunk.com/release/cypherpunk-privacy-linux-x64_0.5.0-beta+00094.deb'
+      link: 'https://download.cypherpunk.com/release/debian/cypherpunk-privacy-linux-x64_0.6.1-beta-00131.deb'
     }
   ];
 }
