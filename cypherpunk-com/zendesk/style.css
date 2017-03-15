@@ -619,10 +619,7 @@ main, .header-inner {
   max-width: 940px;
 }
 
-.header {
-  /* background: $color_5; */
-  background-color: #163138;
-}
+.header { background-color: #163138; }
 
 .header-inner .user-nav #user #user-name { color: #fff; }
 
@@ -632,37 +629,66 @@ main, .header-inner {
   font-family: 'Dosis', sans-serif;
   font-size: 32px;
   font-weight: 500;
-  padding-left: 15px;
+  padding: 15px 0;
   color: #fff;
   display: inline-block;
 }
 
-.header-boxes {
-  padding: 10px 0 20px;
-  overflow: auto;
-  width: 100%;
-  max-width: 805px;
-  margin: auto;
+.header-subtitle {
+  color: #8dfffb;
+  font-size: 16px;
 }
 
-.header-box {
-  width: 235px;
-  height: 80px;
-  max-height: 80px;
-  font-family: 'Dosis', sans-serif;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  margin-right: 50px;
-  display: inline-block;
-  float: left;
+.header-illustration {
+  text-align: center;
+  border-bottom: 10px solid #efeaea;
+}
+.header-illustration img {
+  position: relative;
+  top: 30px;
+  max-width: 50%;
+}
+
+.header-boxes {
+  padding: 80px 0 60px;
+  width: 100%;
+	background-color: #fff;
   text-align: center;
 }
 
-.header-box.highlight { box-shadow: 0 0 5px 4px #fc6146; }
-.header-box img { margin: auto; display: none; }
+.header-box {
+  position: relative;
+  width: 235px;
+  height: 335px;
+  padding: 20px;
+  font-family: 'Dosis', sans-serif;
+  margin-right: 50px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #efeaea;
+}
+
+.header-box.highlight {
+  border: 2px solid #909090;
+  box-shadow: 5px 5px 5px 2px #efeaea;
+}
+.header-box img { width: 100%; }
 .header-box:last-child { margin-right: 0; }
-.header-box.large { height: 180px; max-height: 180px; }
-.header-box.large img { display: block; }
+.header-box.large { height: 335px; }
+.header-box.large img { padding: 0; display: block; }
+.header-box .text { padding: 10px 0 0; font-size: 16px; }
+.header-box .img-text {
+  position: absolute;
+  top: 210px;
+  left: 0;
+  right: 0;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+.header-box .img-text a { color: #fff; text-decoration: none; font-size: 20px; }
+.header-box .img-text.online { top: 207px; }
+.header-box .img-text.email { top: 203px; }
 
 .ticket-image { padding-top: 24px; }
 .chat-image { padding-top: 23.8px; }
@@ -739,6 +765,20 @@ main, .header-inner {
   margin: 0 0 0 25px;
 }
 
+.user-nav .pricing {
+  font-weight: bold;
+  color: #8dfffb;
+}
+
+.user-nav .preview {
+  font-weight: bold;
+  color: #ff7857;
+  border: 2px solid #ff7857;
+  border-radius: 5px;
+  padding: 6px;
+  background-color: #fff;
+}
+
 [dir="rtl"] .user-nav {
   text-align: left;
 }
@@ -774,21 +814,22 @@ main, .header-inner {
    ==================================================== */
 .search-box {
   position: relative;
-  background: rgba(202,216,235, 0.4);
-  margin-bottom: 35px;
-  padding: 35px 0;
+  padding: 5px 0 60px;
 }
 
-.search-box::before {
-  content: " ";
+.search-box:after {
+  content: ' ';
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #fff;
   position: absolute;
-  z-index: -1;
-  left: 0px;
+  bottom: -20px;
+  left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
-  box-shadow: -894px 0 rgba(202,216,235, 0.4), 894px 0 rgba(202,216,235, 0.4);
-  display: block;
+  margin: auto;
+  z-index: 2;
 }
 
 .search-box .search {
@@ -893,10 +934,7 @@ main, .header-inner {
 }
 
 .category-tree {
-  border-color: rgba(0, 0, 0, 0.15);
-  border-style: solid;
-  border-width: 1px 0;
-  padding: 20px 30px;
+  padding: 60px 30px;
 }
 
 .category-tree h3 ~ * {
@@ -904,14 +942,13 @@ main, .header-inner {
 }
 
 .category-tree .category {
-  display: inline-block;
-  padding-right: 30px;
-  vertical-align: top;
-  width: 49.5%;
+  width: 100%;
 }
 
 .category-tree .category h2 {
   margin: 12px 0;
+  padding: 10px;
+  border-bottom: 2px solid #c1c1c1;
 }
 .category-tree .category h2:hover {
   background-color: rgba(202,216,235, 0.4);
@@ -2928,6 +2965,50 @@ body.community-enabled .search-results-column + .search-results-column {
   content: "\e718";
 }
 
+/* Quickstart */
+
+.quickstart {
+  position: relative;
+  width: 100%;
+  background-color: #efeaea;
+  padding-bottom: 60px;
+  text-align: center;
+}
+
+.quickstart::before {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  left: 0px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: -794px 0 #efeaea, 794px 0 #efeaea;
+  display: block;
+}
+
+.quickstart .quickstart-header {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fc6146;
+  padding: 60px 0;
+}
+
+.quickstart .item {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  margin: 0 20px 60px;
+  vertical-align: top;
+}
+.quickstart .item img { width: 100%; }
+.quickstart .item .item-title {
+  padding-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /* FOOTER */
 footer { background-color: #163138; }
 .footer {
@@ -3060,40 +3141,32 @@ footer { background-color: #163138; }
 }
 
 
-@media (max-width: 950px) {
-	.search-box {
-    background: none;
-    margin-bottom: 0;
-  }
-  .search-box:before {
-    box-shadow: none;
-  }
-}
-
-@media (max-width: 850px) {
-  .header-box {
-    margin: 0 auto 25px ;
-    display: block;
-    float: none;
-  }
+@media (max-width: 870px) {
+  .header-box { margin: 0 auto 25px ; }
   .header-box:last-child { margin: 0 auto 0; }
-  .header-box.large { height: 80px; max-height: 180px; }
-  .header-box.large img { display: none; }
 }
 
 @media (max-width: 800px) {
-  .category-tree .category { width: 100%; }
   .section-tree .section { width: 100%; }
+  .header-illustration img { max-width: 80%; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .logo {
     float: none;
     text-align: center;
   }
 
   .user-nav {
+    height: auto;
     float: none;
     text-align: center;
   }
+  .user-nav .pricing { margin: 0 0 20px; width: 100%; }
+  .user-nav .preview { margin: 0 0 20px; }
+  .user-nav .user-info { margin: 0; width: 100%; }
+}
+
+@media (max-width: 500px) {
+  .category-tree { padding: 60px 0; }
 }
