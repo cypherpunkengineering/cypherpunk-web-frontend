@@ -690,9 +690,6 @@ main, .header-inner {
 .header-box .img-text.online { top: 207px; }
 .header-box .img-text.email { top: 203px; }
 
-.ticket-image { padding-top: 24px; }
-.chat-image { padding-top: 23.8px; }
-.email-image { padding-top: 35.3px; }
 .ticket-button {
   margin: 15px auto 15px;
   width: 204.7px;
