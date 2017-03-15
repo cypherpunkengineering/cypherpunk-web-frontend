@@ -1,14 +1,14 @@
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, OnInit } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.css']
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent implements OnInit, OnDestroy {
   post = {
     id: '',
     title: '',
@@ -17,13 +17,29 @@ export class BlogPostComponent implements OnInit {
     images: [ { url: '' } ]
   };
 
+  img: any;
+  ctaImages = [
+    {
+      url: '/assets/blog/cta-button-01@2x.png',
+      srcset: '/assets/blog/cta-button-01.png 500w, /assets/blog/cta-button-01@2x.png 1000w'
+    },
+    {
+      url: '/assets/blog/cta-button-02@2x.png',
+      srcset: '/assets/blog/cta-button-02.png 500w, /assets/blog/cta-button-02@2x.png 1000w'
+    },
+    {
+      url: '/assets/blog/cta-button-03@2x.png',
+      srcset: '/assets/blog/cta-button-03.png 500w, /assets/blog/cta-button-03@2x.png 1000w'
+    }
+  ];
+
   showSearch: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any
-  ) { }
+  ) { this.img = this.ctaImages[Math.floor(Math.random() * this.ctaImages.length)]; }
 
   ngOnInit() {
     let postId = this.route.snapshot.params['postId'];
@@ -48,6 +64,10 @@ export class BlogPostComponent implements OnInit {
       let datePipe = new DatePipe('en-us');
       return datePipe.transform(this.post.published, 'MM/dd/yyyy');
     }
+  }
+
+  ngOnDestroy() {
+    this.document.title = 'Cypherpunk Privacy | Online Privacy &amp; Freedom Made Easy';
   }
 
 }
