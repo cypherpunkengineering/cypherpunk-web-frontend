@@ -21,15 +21,18 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   ctaImages = [
     {
       url: '/assets/blog/cta-button-01@2x.png',
-      srcset: '/assets/blog/cta-button-01.png 500w, /assets/blog/cta-button-01@2x.png 1000w'
+      srcset: '/assets/blog/cta-button-01.png 500w, /assets/blog/cta-button-01@2x.png 1000w',
+      token: '123'
     },
     {
       url: '/assets/blog/cta-button-02@2x.png',
-      srcset: '/assets/blog/cta-button-02.png 500w, /assets/blog/cta-button-02@2x.png 1000w'
+      srcset: '/assets/blog/cta-button-02.png 500w, /assets/blog/cta-button-02@2x.png 1000w',
+      token: '456'
     },
     {
       url: '/assets/blog/cta-button-03@2x.png',
-      srcset: '/assets/blog/cta-button-03.png 500w, /assets/blog/cta-button-03@2x.png 1000w'
+      srcset: '/assets/blog/cta-button-03.png 500w, /assets/blog/cta-button-03@2x.png 1000w',
+      token: '789'
     }
   ];
 

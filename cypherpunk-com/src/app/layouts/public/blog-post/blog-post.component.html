@@ -43,7 +43,9 @@
         <div class="content" [innerHTML]=post.content></div>
 
         <div class="cta">
-          <img src="{{img.url}}" srcset="{{img.srcset}}" alt="Join Now!">
+          <a [routerLink]="['/create', img.token]">
+            <img src="{{img.url}}" srcset="{{img.srcset}}" alt="Join Now!">
+          </a>
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import { CreateAccountComponent } from './create-account.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'create', component: CreateAccountComponent }
+      { path: 'create/:token', component: CreateAccountComponent }
     ])
   ]
 })

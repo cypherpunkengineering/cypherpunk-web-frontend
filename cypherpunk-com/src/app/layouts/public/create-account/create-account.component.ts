@@ -27,8 +27,8 @@ export class CreateAccountComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit() {
-    let queryParams = this.route.snapshot.queryParams;
-    let token = queryParams['referrerToken'];
+    let params = this.route.snapshot.params;
+    let token = params['token'];
     if (!token) { this.router.navigate(['/']); }
 
     if (isBrowser) { document.getElementById('email').focus(); }
