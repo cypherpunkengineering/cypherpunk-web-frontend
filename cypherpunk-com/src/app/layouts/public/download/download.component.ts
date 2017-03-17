@@ -12,7 +12,7 @@ export class DownloadPlatforms {
 
   static windows = {
     name: 'Windows',
-    versions: '',
+    versions: '7 64-bit and later',
     link: 'https://download.cypherpunk.com/release/windows/cypherpunk-privacy-windows-0.6.1-beta-00416.exe'
   };
 
@@ -31,7 +31,7 @@ export class DownloadPlatforms {
   static firefox = {
     name: 'Firefox',
     versions: '',
-    link: ''
+    link: '#'
   };
 
   static android = {

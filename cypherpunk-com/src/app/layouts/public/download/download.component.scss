@@ -1,29 +1,69 @@
 .masthead {
+  border-bottom: 10px solid #efeaea;
   .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
+  .masthead-image {
+    position: relative;
+    top: 30px;
+    width: 710px;
+    height: 273px;
+    margin: auto;
+    text-align: center;
+
+    img {
+      position: absolute;
+      height: 100%;
+      left: 50%;
+      margin-left: -360px;
+    }
+
+    .masthead-image-text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      width: 230px;
+      margin: auto;
+      height: 70px;
+      padding-top: 12px;
+      cursor: pointer;
+      z-index: 5;
+      a { color: #fff; text-decoration: none; }
+    }
+  }
 }
 
 .download {
   width: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: 80px 0 50px;
+  padding: 0 0 50px;
 
-  .inner { overflow: auto;}
+  a { text-decoration: none; }
 
-  .left {
-    width: 50%;
-    float: left;
+  .version {
+    padding: 50px 0 10px;
     text-align: center;
-    position: relative;
-    img.d { width: 250px; }
-    img.w { position: absolute; top: 32px; left: 0; right: 0; margin: auto; }
-    img.m { position: absolute; top: 25px; left: 0; right: 0; margin: auto; }
+    font-size: 22px;
+    font-weight: bold;
   }
-  .right {
-    width: 50%;
-    float: left;
-    text-align: left;
-    padding: 50px;
+
+  .prompt { text-align: center; padding: 0 0 50px; }
+
+  .screen { text-align: center; }
+
+  .learn {
+    width: 240px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #5e5a5a;
+    border-radius: 5px;
+    color: #fff;
+    margin: 30px auto 0;
+    text-align: center;
+    font-size: 22px;
   }
 }
 
@@ -34,47 +74,86 @@
 
   .inner { width: 100%; max-width: 1000px; margin: auto; }
 
-  .separator { width: 90%; border-bottom: 3px dashed #cac5c5; margin: auto; }
-
   .row {
     overflow: auto;
 
     .row-header {
       font-size: 23px;
-      margin: 40px 0 0;
       text-align: center;
+      color: #ff7756;
+      margin: 40px 0;
     }
 
-    .half {
-      width: 50%;
-      float: left;
-      text-align: center;
-      padding: 0 0 40px;
+    .half { float:left; width: 50%; }
 
-      .half-header {
-        font-size: 23px;
-        text-align: center;
-        color: #163238;
-        margin: 40px 0;
+    .platform {
+      width: 250px;
+      height: 350px;
+      display: inline-block;
+      vertical-align: middle;
+      border: 2px solid #cccbcb;
+      text-align: center;
+      margin-right: -5px;
+
+      &.long { width: 500px; }
+
+      &:hover .normal { display: none; }
+      .normal {
+        padding: 15px;
+        display: block;
       }
 
-      a { color: #fc6146; }
+      &:hover .hover { display: block; }
+      .hover {
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        padding: 80px 15px 15px;
+        display: none;
+        background-color: #fff;
 
-      .btn { font-size: 16px; margin: 10px 0 20px; width: 135px; height: 40px; }
+        a { text-decoration: none; }
+
+        .platform-download {
+          width: 150px;
+          height: 40px;
+          line-height: 40px;
+          background-color: #5e5a5a;
+          border-radius: 5px;
+          color: #fff;
+          margin: 30px auto 0;
+          text-align: center;
+          font-size: 20px;
+          cursor: pointer;
+        }
+
+        .platform-learn {
+          width: 150px;
+          height: 40px;
+          line-height: 40px;
+          background-color: #ff7756;
+          border-radius: 5px;
+          color: #fff;
+          margin: 20px auto 0;
+          text-align: center;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+
+      .platform-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: 5px;
+      }
+
+      .plaform-version { padding-bottom: 30px; }
 
       .image-container {
-        position: relative;
-        img:nth-child(2) {
-          position: absolute;
-          top: 15px;
-          left: 0;
-          right: 0;
-          margin: auto;
-          width: 55px;
-        }
-        img.d { width: 150px; }
+        width: 50%;
+        margin: 30px auto;
+        img { width: 100%; }
       }
-
       .ios-badge {
         margin: 25px 0 30px;
         img { width: 150px; }
@@ -96,6 +175,11 @@
 
   .header { margin: 40px 0; }
 
+  .diff-images {
+    margin-bottom: 60px;
+    img { width: 100%; }
+  }
+
   .btn {
     width: 100%;
     max-width: 450px;
@@ -113,16 +197,30 @@
 
 .modal .modal-content .modal-footer .btn { margin: 0; }
 
-@media (max-width: 800px) {
-  .choices .row .half { width: 100%; }
+.desktop { display: inline-block; }
+.mobile { display: none; }
+
+@media (max-width: 1030px) {
+  .choices .row .platform {
+    display: block;
+    margin: 0 auto 30px;
+  }
+
+  .mobile { display: block; }
+  .desktop { display: none; }
+  .choices .row .half:first-child { width: 100%; }
+}
+
+@media (max-width: 715px) {
+  .masthead .masthead-image { width: auto; }
 }
 
 @media (max-width: 700px) {
   .content { padding: 0 10px; }
 }
 
-@media (max-width: 650px) {
-  .download .left, .download .right { width : 100%; text-align: center; }
+@media (max-width: 510px) {
+  .choices .row .platform.long { width: 90%; }
 }
 
 @media (max-width: 375px) {
