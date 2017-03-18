@@ -31,6 +31,7 @@ import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { AppsModule } from './layouts/public/apps/apps/apps.module';
 import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
 import { CreateAccountModule } from './layouts/public/create-account/create-account.module';
+import { PressModule } from './layouts/public/press/press.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -79,6 +80,7 @@ import { BackendService } from './services/backend.service';
     AppsModule,
     WhatsMyIpModule,
     CreateAccountModule,
+    PressModule,
 
     DashboardModule,
     BillingModule,
