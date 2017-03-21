@@ -30,6 +30,7 @@ export class SignupComponent implements AfterViewInit {
   ngAfterViewInit() {
     let params = this.route.snapshot.params;
     this.refToken = params['token'];
+    if (!this.refToken) { this.router.navigate(['/']); }
     if (isBrowser) { document.getElementById('email').focus(); }
   }
 
