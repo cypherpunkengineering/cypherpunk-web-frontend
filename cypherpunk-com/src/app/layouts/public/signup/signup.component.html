@@ -14,7 +14,7 @@
 
       <p>
         <label for="password">Password</label><br>
-        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signin()" (ngModelChange)="validatePassword()" (blur)="validatePassword()" [ngClass]="{'error': (passwordTouched && !validPassword), 'success': (passwordTouched && validPassword)}">
+        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signup()" (ngModelChange)="validatePassword()" (blur)="validatePassword()" [ngClass]="{'error': (passwordTouched && !validPassword), 'success': (passwordTouched && validPassword)}">
       </p>
 
       <p class="center">
