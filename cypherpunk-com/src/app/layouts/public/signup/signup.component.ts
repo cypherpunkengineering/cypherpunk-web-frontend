@@ -6,10 +6,11 @@ import { BackendService } from '../../../services/backend.service';
 import { Component, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class CreateAccountComponent implements AfterViewInit {
+export class SignupComponent implements AfterViewInit {
+  refToken: string;
   user = { email: '', password: '' };
   validEmail: boolean = false;
   emailTouched: boolean = false;
@@ -28,9 +29,7 @@ export class CreateAccountComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     let params = this.route.snapshot.params;
-    let token = params['token'];
-    if (!token) { this.router.navigate(['/']); }
-
+    this.refToken = params['token'];
     if (isBrowser) { document.getElementById('email').focus(); }
   }
 
@@ -57,7 +56,7 @@ export class CreateAccountComponent implements AfterViewInit {
     });
   }
 
-  signin() {
+  signup() {
     this.signinButtonDisabled = true;
 
     this.auth.signup(this.user)

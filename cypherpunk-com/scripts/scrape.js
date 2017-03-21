@@ -43,7 +43,7 @@ const routes = [
   { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
   { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' },
-  { url: baseRoute + 'create', dirPath: baseDir + 'create.html' },
+  { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
   { url: baseRoute + 'press', dirPath: baseDir + 'press.html' }
 ];
 

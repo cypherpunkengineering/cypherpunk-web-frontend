@@ -377,9 +377,9 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
-- url: /create/(.+)
-  static_files: target/create.html
-  upload: target/create.html
+- url: /signup/(.+)
+  static_files: target/signup.html
+  upload: target/signup.html
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301

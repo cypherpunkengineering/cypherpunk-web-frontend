@@ -30,7 +30,7 @@ import { FeedbackModule } from './layouts/public/feedback/feedback.module';
 import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { AppsModule } from './layouts/public/apps/apps/apps.module';
 import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
-import { CreateAccountModule } from './layouts/public/create-account/create-account.module';
+import { SignupModule } from './layouts/public/signup/signup.module';
 import { PressModule } from './layouts/public/press/press.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
@@ -79,7 +79,7 @@ import { BackendService } from './services/backend.service';
     BountyModule,
     AppsModule,
     WhatsMyIpModule,
-    CreateAccountModule,
+    SignupModule,
     PressModule,
 
     DashboardModule,
