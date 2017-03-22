@@ -44,7 +44,8 @@ const routes = [
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
   { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' },
   { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
-  { url: baseRoute + 'press', dirPath: baseDir + 'press.html' }
+  { url: baseRoute + 'press', dirPath: baseDir + 'press.html' },
+  { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

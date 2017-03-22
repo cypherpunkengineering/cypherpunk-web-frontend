@@ -45,5 +45,6 @@ export const routes: string[] = [
   'security',
   'support',
   'signup',
-  'press'
+  'press',
+  'reset'
 ];

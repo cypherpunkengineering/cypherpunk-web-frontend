@@ -1,0 +1,29 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <h1 class="header white">Reset Password</h1>
+</div>
+
+<div class="content">
+  <form>
+    <p>
+      <label for="password">New Password</label><br>
+      <input id="password" type="password" name="password" [(ngModel)]="password" autofocus>
+    </p>
+
+    <p>
+      <label for="username">Confirm Password</label><br>
+      <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" (ngModelChange)="comparePass()">
+    </p>
+
+    <div class="error">{{ error.message }}</div>
+
+    <p class="center">
+      <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">
+        Reset Password
+      </button>
+    </p>
+  </form>
+</div>
+
+<app-footer></app-footer>
