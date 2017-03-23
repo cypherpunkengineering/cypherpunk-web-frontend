@@ -211,7 +211,7 @@ handlers: # should be ordered from most specific to least specific
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
 - url: /(.*\.(svg|svgz))
-  mime_type: images/svg+xml
+  mime_type: image/svg+xml
   static_files: target/\1
   upload: target/(.*\.(svg|svgz))
   secure: always
