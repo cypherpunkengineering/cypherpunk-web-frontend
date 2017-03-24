@@ -93,7 +93,7 @@ export class DownloadComponent {
   isSafari: boolean = false;
   downloadBuildName: string = '';
   downloadBuildLink: string = '';
-  showDownloadSection: boolean = true;
+  showDownloadSection: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     let currentPlatform = route.snapshot.params['platform'];
@@ -134,8 +134,14 @@ export class DownloadComponent {
     else { this.downloadBuildLink = link; }
 
     // download file
-    this.downloadFile(link);
+    let url = router.routerState.snapshot.url;
+    if (url.endsWith('autostart')) {
+      this.showDownloadSection = true;
+      this.downloadFile(link);
+    }
   }
+
+  startingDownload() { this.showDownloadSection = true; }
 
   downloadFile (sUrl: string): boolean {
     // If in Chrome or Safari - download via virtual link click

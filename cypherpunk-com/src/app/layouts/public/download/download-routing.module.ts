@@ -7,7 +7,8 @@ import { DownloadBaseComponent } from './download-base.component';
   imports: [
     RouterModule.forChild([
       { path: 'download', pathMatch: 'full', component: DownloadBaseComponent },
-      { path: 'download/:platform', component: DownloadComponent }
+      { path: 'download/:platform', component: DownloadComponent },
+      { path: 'download/:platform/autostart', component: DownloadComponent }
     ])
   ]
 })
