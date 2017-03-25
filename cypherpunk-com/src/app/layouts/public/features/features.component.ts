@@ -1,5 +1,6 @@
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './features.component.html',
@@ -15,7 +16,12 @@ export class FeaturesComponent implements OnInit {
   svSwitch: boolean = true;
   esSwitch: boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    @Inject(DOCUMENT) private document: any
+  ) {
+    this.document.title = 'Cypherpunk Privacy Features';
+  }
 
   ngOnInit() {
     this.router.events.subscribe((evt) => {

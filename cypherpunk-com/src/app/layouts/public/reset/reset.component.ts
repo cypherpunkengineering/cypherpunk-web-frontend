@@ -1,9 +1,10 @@
 import { isBrowser } from 'angular2-universal';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, AfterViewInit, NgZone } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './reset.component.html',
@@ -22,10 +23,16 @@ export class PublicResetComponent implements AfterViewInit {
     private auth: AuthService,
     private backend: BackendService,
     private session: SessionService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Password Reset for Cypherpunk Privacy';
+
+    // replace history
     if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
 
+    // check resetToken exists
     let route = this.activatedRoute.snapshot;
     this.resetToken = route.queryParams['resetToken'];
     if (!this.resetToken) { this.router.navigate(['/']); }

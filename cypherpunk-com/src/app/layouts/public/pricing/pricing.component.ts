@@ -1,13 +1,14 @@
 import { Router } from '@angular/router';
 import { RequestOptions} from '@angular/http';
 import { isBrowser } from 'angular2-universal';
-import { Component, NgZone, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { Component, Inject, NgZone, ViewChild } from '@angular/core';
 import country_list from './countries';
 
 @Component({
@@ -68,8 +69,12 @@ export class PricingComponent {
     private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
-    private plansService: PlansService
+    private plansService: PlansService,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
+
     // redirect if user is already logged in
     if (isBrowser) {
       this.authGuard.shouldUpgrade()

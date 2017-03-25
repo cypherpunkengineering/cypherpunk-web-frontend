@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, NgZone } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './recover.component.html',
@@ -9,12 +10,13 @@ export class RecoverComponent implements AfterViewInit {
   email: string = '';
   recoverButtonDisabled: boolean = false;
 
-  constructor(private zone: NgZone) { }
+  constructor(
+    private zone: NgZone,
+    @Inject(DOCUMENT) private document: any
+  ) { this.document.title = 'Reset your password for Cypherpunk Privacy'; }
 
   ngAfterViewInit() {
-    if (isBrowser) {
-      document.getElementById('recover-username').focus();
-    }
+    if (isBrowser) { document.getElementById('recover-username').focus(); }
   }
 
   validateRecover () {

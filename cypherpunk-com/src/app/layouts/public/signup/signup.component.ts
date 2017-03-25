@@ -1,9 +1,10 @@
 import { isBrowser } from 'angular2-universal';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, AfterViewInit, NgZone } from '@angular/core';
+import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -24,8 +25,9 @@ export class SignupComponent implements AfterViewInit {
     private auth: AuthService,
     private route: ActivatedRoute,
     private backend: BackendService,
-    private alertService: AlertService
-  ) { }
+    private alertService: AlertService,
+    @Inject(DOCUMENT) private document: any
+  ) { this.document.title = 'Create Account with Cypherpunk Privacy'; }
 
   ngAfterViewInit() {
     let params = this.route.snapshot.params;

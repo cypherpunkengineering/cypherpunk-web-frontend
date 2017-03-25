@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './mac.component.html',
@@ -13,4 +14,8 @@ export class MacComponent {
   switch6: boolean = true;
   switch7: boolean = true;
   switch8: boolean = true;
+
+  constructor(@Inject(DOCUMENT) private document: any) {
+    this.document.title = 'Download Cypherpunk Mac Privacy App';
+  }
 }

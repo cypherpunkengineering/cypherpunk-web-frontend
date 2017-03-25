@@ -1,7 +1,8 @@
 import { isBrowser } from 'angular2-universal';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
-import { Component, AfterViewInit, NgZone } from '@angular/core';
+import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './reset.component.html',
@@ -17,8 +18,13 @@ export class ResetComponent implements AfterViewInit {
     private zone: NgZone,
     private router: Router,
     private authGuard: AuthGuard,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Password Reset for Cypherpunk Privacy';
+
+    // check user account
     if (isBrowser) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
@@ -27,9 +33,7 @@ export class ResetComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (isBrowser) {
-      document.getElementById('password').focus();
-    }
+    if (isBrowser) { document.getElementById('password').focus(); }
   }
 
   validateReset () {

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './press.component.html',
   styleUrls: ['./press.component.css']
 })
 export class PressComponent {
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: any) {
+    this.document.title = 'Cypherpunk Privacy Press';
+  }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 
 export class DownloadPlatforms {
@@ -95,7 +96,15 @@ export class DownloadComponent {
   downloadBuildLink: string = '';
   showDownloadSection: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
+  ) {
+    // handle title
+    this.document.title = 'Download Cypherpunk Privacy VPN Apps';
+
+    // determine platform param
     let currentPlatform = route.snapshot.params['platform'];
     this.headerBuild = DownloadPlatforms[currentPlatform];
     if (!this.headerBuild) { this.headerBuild = DownloadPlatforms.blank; }

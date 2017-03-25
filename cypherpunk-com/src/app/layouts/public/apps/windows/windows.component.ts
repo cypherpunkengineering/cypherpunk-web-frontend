@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './windows.component.html',
@@ -12,4 +13,8 @@ export class WindowsComponent {
   switch5: boolean = true;
   switch6: boolean = true;
   switch7: boolean = true;
+
+  constructor(@Inject(DOCUMENT) private document: any) {
+    this.document.title = 'Download Cypherpunk Windows Privacy App';
+  }
 }

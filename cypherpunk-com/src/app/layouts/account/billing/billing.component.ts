@@ -1,5 +1,6 @@
 import { isBrowser } from 'angular2-universal';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
 
@@ -51,8 +52,13 @@ export class BillingComponent {
   constructor(
     private router: Router,
     private authGuard: AuthGuard,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Billing | Cypherpunk Privacy';
+
+    // check user account
     if (isBrowser) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;

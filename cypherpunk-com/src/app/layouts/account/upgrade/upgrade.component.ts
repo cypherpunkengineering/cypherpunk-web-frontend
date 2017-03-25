@@ -1,13 +1,14 @@
 import { isBrowser } from 'angular2-universal';
 import { RequestOptions } from '@angular/http';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, NgZone, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { Component, Inject, NgZone, ViewChild } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 
 @Component({
@@ -61,8 +62,13 @@ export class UpgradeComponent {
     private backend: BackendService,
     private alertService: AlertService,
     private plansService: PlansService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Upgrade Cypherpunk Account';
+
+    // check if valid user account
     if (isBrowser) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;

@@ -1,9 +1,10 @@
 import { isBrowser } from 'angular2-universal';
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { RequestOptions } from '@angular/http';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
+import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
 import country_list from '../../public/pricing/countries';
@@ -46,8 +47,13 @@ export class DashboardComponent implements OnInit {
     private session: SessionService,
     private backend: BackendService,
     private alertService: AlertService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'My Account with Cypherpunk Privacy';
+
+    // set user
     this.user = this.session.user;
 
     // redirect user if not logged in

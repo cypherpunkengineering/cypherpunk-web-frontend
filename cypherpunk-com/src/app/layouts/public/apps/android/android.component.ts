@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './android.component.html',
@@ -13,4 +14,8 @@ export class AndroidComponent {
   switch6: boolean = true;
   switch7: boolean = true;
   switch8: boolean = true;
+
+  constructor(@Inject(DOCUMENT) private document: any) {
+    this.document.title = 'Download Android Privacy & VPN App from Cypherpunk Privacy';
+  }
 }

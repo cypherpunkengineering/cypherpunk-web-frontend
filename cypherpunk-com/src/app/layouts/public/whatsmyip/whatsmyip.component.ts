@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { isBrowser } from 'angular2-universal';
-import { BackendService } from '../../../services/backend.service';
 import * as platform from 'platform';
+import { isBrowser } from 'angular2-universal';
 import country_list from '../pricing/countries';
+import { Component, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+import { BackendService } from '../../../services/backend.service';
 
 @Component({
   templateUrl: './whatsmyip.component.html',
@@ -15,7 +16,13 @@ export class WhatsMyIpComponent {
   country: string = 'Loading';
   countryCode: string = undefined;
 
-  constructor(private backend: BackendService) {
+  constructor(
+    private backend: BackendService,
+    @Inject(DOCUMENT) private document: any
+  ) {
+    // handle title
+    this.document.title = 'What\'s My IP Address?';
+
     // detect os setup
     this.os = platform.os;
     this.browser = platform.description;

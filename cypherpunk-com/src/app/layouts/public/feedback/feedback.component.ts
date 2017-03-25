@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component, Inject, OnInit } from '@angular/core';
+
 
 @Component({
   templateUrl: './feedback.component.html',
@@ -10,9 +12,10 @@ export class FeedbackComponent implements OnInit {
   currentTab: string;
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
-    private location: Location
-  ) { }
+    @Inject(DOCUMENT) private document: any
+  ) { this.document.title = 'Submit Feedback About Cypherpunk Privacy'; }
 
   ngOnInit() {
     let fragment = this.route.snapshot.fragment;

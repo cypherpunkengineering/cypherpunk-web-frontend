@@ -1,7 +1,8 @@
 import { Observable } from 'rxjs/Rx';
 import { isBrowser } from 'angular2-universal';
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
@@ -31,8 +32,13 @@ export class SetupComponent implements OnInit {
     private authGuard: AuthGuard,
     private session: SessionService,
     private backend: BackendService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any
   ) {
+    // handle title
+    this.document.title = 'Setup Cypherpunk Privacy';
+
+    // set user
     this.user = session.user;
     if (session.user.account.type === 'free') { this.freeAccount = true; }
     else { this.freeAccount = false; }

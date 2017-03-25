@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Rx';
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/observable/forkJoin';
 
@@ -16,8 +17,11 @@ export class NetworkComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private backend: BackendService
-  ) { }
+    private backend: BackendService,
+    @Inject(DOCUMENT) private document: any
+  ) {
+    this.document.title = 'Cypherpunk Privacy VPN Network';
+  }
 
   ngOnInit() {
     let locationsObs = this.backend.locations();

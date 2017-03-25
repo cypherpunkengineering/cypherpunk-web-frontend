@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 
 @Component({
@@ -9,8 +10,10 @@ export class BlogComponent implements OnInit {
   posts = [];
   showSearch: boolean = false;
 
-  constructor(private backend: BackendService) { }
-  
+  constructor(
+    private backend: BackendService,
+    @Inject(DOCUMENT) private document: any
+  ) { this.document.title = 'Cypherpunk Online Privacy & Freedom Blog'; }
 
   ngOnInit() {
     this.backend.blogPosts()
