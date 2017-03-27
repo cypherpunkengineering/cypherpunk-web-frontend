@@ -170,6 +170,10 @@ const metaMap = {
     title: 'Create Account with Cypherpunk Privacy',
     description: 'Create an account with Cypherpunk Privacy'
   },
+  'press.html': {
+    title: 'Cypherpunk Privacy Press Area',
+    description: 'Information about Cypherpunk Privacy and screenshots, images and logos for press inquiries.'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_CONTENT__}}',

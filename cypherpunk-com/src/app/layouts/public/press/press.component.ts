@@ -7,6 +7,6 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class PressComponent {
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Cypherpunk Privacy Press';
+    this.document.title = 'Cypherpunk Privacy Press Area';
   }
 }
