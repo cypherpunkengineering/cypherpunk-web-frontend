@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate {
       }
       else {
         this.auth.authed = false;
-        this.session.userFound = false;
+        this.session.clearUserData();
         this.auth.redirectUrl = url;
         this.router.navigate(['/login']);
         return Promise.reject({}); // kill any extra code from executing after this level
