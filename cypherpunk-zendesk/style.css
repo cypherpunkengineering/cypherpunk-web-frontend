@@ -3065,6 +3065,11 @@ footer { background-color: #163138; }
   font-weight: 500;
   line-height: 1.69;
 }
+.footer-listing li:hover img.display { display: none; }
+.footer-listing li:hover img.hover { display: inline; }
+.footer-listing li img { height: 25px; }
+.footer-listing li img.display { display: inline; }
+.footer-listing li img.hover { display: none; }
 .footer-listing li.inline {
   display: inline;
   margin-right: 28px;
@@ -3129,7 +3134,7 @@ footer { background-color: #163138; }
   }
   .footer-column.social .footer-listing .inline {
     display: block;
-    margin: 15px auto;
+    margin: 0 auto 15px;
   }
   .feedback { margin: 16px auto; }
   .mobile { display: block; margin-top: 25px; }
