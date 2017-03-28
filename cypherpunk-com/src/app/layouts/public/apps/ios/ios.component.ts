@@ -11,6 +11,6 @@ export class IosComponent {
   switch3: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download iOS Privacy & VPN App from Cypherpunk Privacy';
+    this.document.title = 'Cypherpunk iOS VPN & Online Privacy App';
   }
 }

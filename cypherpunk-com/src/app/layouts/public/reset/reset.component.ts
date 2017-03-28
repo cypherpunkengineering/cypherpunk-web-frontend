@@ -27,7 +27,7 @@ export class PublicResetComponent implements AfterViewInit {
     @Inject(DOCUMENT) private document: any
   ) {
     // handle title
-    this.document.title = 'Password Reset for Cypherpunk Privacy';
+    this.document.title = 'Reset Your Password';
 
     // replace history
     if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }

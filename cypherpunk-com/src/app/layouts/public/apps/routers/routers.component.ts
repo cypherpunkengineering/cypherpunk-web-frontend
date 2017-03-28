@@ -10,6 +10,6 @@ export class RoutersComponent {
   switch2: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download Router Privacy & VPN Apps';
+    this.document.title = 'Cypherpunk VPN & Online Privacy App for Routers';
   }
 }

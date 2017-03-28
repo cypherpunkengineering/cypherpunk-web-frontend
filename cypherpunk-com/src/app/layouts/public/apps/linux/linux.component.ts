@@ -15,6 +15,6 @@ export class LinuxComponent {
   switch7: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download Linux Privacy & VPN Apps from Cypherpunk Privacy';
+    this.document.title = 'Cypherpunk Linux VPN & Online Privacy App';
   }
 }

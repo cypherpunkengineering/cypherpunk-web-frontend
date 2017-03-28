@@ -27,33 +27,33 @@ const metaMap = {
   },
   'download:windows.html': {
     url: 'https://cypherpunk.com/download/windows',
-    title: 'Download Cypherpunk Privacy VPN Apps For Windows',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for Windows',
+    description: ' '
   },
   'download:mac.html': {
     url: 'https://cypherpunk.com/download/mac',
-    title: 'Download Cypherpunk Privacy VPN Apps For MacOS',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for your Mac',
+    description: ' '
   },
   'download:linux.html': {
     url: 'https://cypherpunk.com/download/linux',
-    title: 'Download Cypherpunk Privacy VPN Apps For Linux',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for Linux',
+    description: ' '
   },
   'download:android.html': {
     url: 'https://cypherpunk.com/download/android',
-    title: 'Download Cypherpunk Privacy VPN Apps For Android',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for Android',
+    description: ' '
   },
   'download:ios.html': {
     url: 'https://cypherpunk.com/download/ios',
-    title: 'Download Cypherpunk Privacy VPN Apps For iPhone and iPad',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for iOS',
+    description: ' '
   },
   'download:routers.html': {
     url: 'https://cypherpunk.com/download/routers',
-    title: 'Download Cypherpunk Privacy VPN Apps For Routers',
-    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
+    title: 'Download Cypherpunk for your Router',
+    description: ' '
   },
   'pricing.html': {
     title: 'Cypherpunk Privacy & VPN Pricing and Order Form',
@@ -69,38 +69,38 @@ const metaMap = {
   },
   'apps:windows.html': {
     url: 'https://cypherpunk.com/apps/windows',
-    title: 'Download Cypherpunk Windows Privacy App',
-    description: 'Protect your Windows device with the Cypherpunk Windows Privacy App.'
+    title: 'Cypherpunk Windows VPN & Online Privacy App',
+    description: 'Protect your Windows device with the Cypherpunk Windows VPN & Online Privacy App.'
   },
   'apps:mac.html': {
     url: 'https://cypherpunk.com/apps/mac',
-    title: 'Download Cypherpunk Mac Privacy App',
-    description: 'Protect your Mac device with the Cypherpunk Macintosh Privacy App.'
+    title: 'Cypherpunk Mac VPN & Online Privacy App',
+    description: 'Protect your Mac device with the Cypherpunk Macintosh VPN & Online Privacy App.'
   },
   'apps:linux.html': {
     url: 'https://cypherpunk.com/apps/linux',
-    title: 'Download Linux Privacy & VPN Apps from Cypherpunk Privacy',
-    description: 'Protect your Linux device with the Cypherpunk Linux Privacy App.'
+    title: 'Cypherpunk Linux VPN & Online Privacy App',
+    description: 'Protect your Linux device with the Cypherpunk Linux VPN & Online Privacy App.'
   },
   'apps:browser.html': {
     url: 'https://cypherpunk.com/apps/browser',
-    title: 'Download Privacy & VPN Browser Extensions from Cypherpunk Privacy',
-    description: 'Protect your from internet browser with Cypherpunk Privacy Browser Extensions'
+    title: 'Cypherpunk VPN & Online Privacy Browser Extensions for Chrome, Firefox, Opera & Vivaldi',
+    description: 'Protect your from internet browser with Cypherpunk VPN & Online Privacy Browser Extensions'
   },
   'apps:ios.html': {
     url: 'https://cypherpunk.com/apps/ios',
-    title: 'Download iOS Privacy & VPN App from Cypherpunk Privacy',
-    description: 'Protect your iOS device with the Cypherpunk iOS Privacy App.'
+    title: 'Cypherpunk iOS VPN & Online Privacy App',
+    description: 'Protect your iOS device with the Cypherpunk iOS VPN & Online Privacy App.'
   },
   'apps:android.html': {
     url: 'https://cypherpunk.com/apps/android',
-    title: 'Download Android Privacy & VPN App from Cypherpunk Privacy',
-    description: 'Protect your Android device with the Cypherpunk Android Privacy App.'
+    title: 'Cypherpunk Android VPN & Online Privacy App',
+    description: 'Protect your Android device with the Cypherpunk Android VPN & Online Privacy App.'
   },
   'apps:routers.html': {
     url: 'https://cypherpunk.com/apps/routers',
-    title: 'Download Router Privacy & VPN Apps',
-    description: 'Protect your Router with the Cypherpunk Router Privacy App.'
+    title: 'Cypherpunk VPN & Online Privacy App for Routers',
+    description: 'Protect your Router with the Cypherpunk Router VPN & Online Privacy App.'
   },
   'aboutus.html': {
     title: 'About Cypherpunk Privacy',
@@ -159,11 +159,11 @@ const metaMap = {
   },
   'account:reset.html': {
     url: 'https://cypherpunk.com/account/reset',
-    title: 'Password Reset for Cypherpunk Privacy',
+    title: 'Reset Your Password',
     description: ' '
   },
   'reset.html': {
-    title: 'Password Reset for Cypherpunk Privacy',
+    title: 'Reset Your Password',
     description: ' '
   },
   'signup.html': {

@@ -22,7 +22,7 @@ export class ResetComponent implements AfterViewInit {
     @Inject(DOCUMENT) private document: any
   ) {
     // handle title
-    this.document.title = 'Password Reset for Cypherpunk Privacy';
+    this.document.title = 'Reset Your Password';
 
     // check user account
     if (isBrowser) {

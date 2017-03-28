@@ -15,6 +15,6 @@ export class WindowsComponent {
   switch7: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download Cypherpunk Windows Privacy App';
+    this.document.title = 'Cypherpunk Windows VPN & Online Privacy App';
   }
 }

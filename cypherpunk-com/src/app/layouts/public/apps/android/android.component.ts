@@ -16,6 +16,6 @@ export class AndroidComponent {
   switch8: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download Android Privacy & VPN App from Cypherpunk Privacy';
+    this.document.title = 'Cypherpunk Android VPN & Online Privacy App';
   }
 }

@@ -101,9 +101,6 @@ export class DownloadComponent {
     private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: any
   ) {
-    // handle title
-    this.document.title = 'Download Cypherpunk Privacy VPN Apps';
-
     // determine platform param
     let currentPlatform = route.snapshot.params['platform'];
     this.headerBuild = DownloadPlatforms[currentPlatform];
@@ -113,6 +110,9 @@ export class DownloadComponent {
       this.showDownloadSection = false;
       return;
     }
+
+    // handle title
+    this.document.title = 'Download Cypherpunk for ' + this.headerBuild.name;
 
     // download file setup
     if (isBrowser) {

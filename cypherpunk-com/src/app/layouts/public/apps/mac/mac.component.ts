@@ -16,6 +16,6 @@ export class MacComponent {
   switch8: boolean = true;
 
   constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Download Cypherpunk Mac Privacy App';
+    this.document.title = 'Cypherpunk Mac VPN & Online Privacy App';
   }
 }
