@@ -24,7 +24,7 @@ const routes = [
   { url: baseRoute + 'blog', dirPath: baseDir + 'blog.html' },
   { url: baseRoute + 'blog/post/test', dirPath: baseDir + '../blog-article.html' },
   { url: baseRoute + 'privacy-policy', dirPath: baseDir + 'privacy-policy.html' },
-  { url: baseRoute + 'aboutus', dirPath: baseDir + 'aboutus.html' },
+  { url: baseRoute + 'about-us', dirPath: baseDir + 'about-us.html' },
   { url: baseRoute + 'terms-of-service', dirPath: baseDir + 'terms-of-service.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
   { url: baseRoute + 'account', dirPath: baseDir + 'account.html' },
