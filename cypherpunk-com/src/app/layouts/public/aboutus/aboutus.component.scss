@@ -1,12 +1,12 @@
 .masthead {
   border-bottom: 5px solid #efebeb;
 
-  .masthead-header { margin: 45px auto 0; padding: 0 0 96px; }
+  .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
 
   .masthead-image {
     text-align: center;
     padding: 0 0 40px;
-    img { width: 100%; max-width: 1000px; }
+    img { width: 50%; max-width: 1000px; }
   }
 }
 
@@ -86,6 +86,8 @@
 }
 
 @media (max-width: 700px) {
+  .masthead .masthead-image img { width: 80%; }
+
   .bottom-callout .bottom-buttons {
     .middle { padding: 20px 0; display: block; }
     .btn.left { float: none; }
