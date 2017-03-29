@@ -57,6 +57,7 @@ export class DownloadPlatforms {
   static blank = {
     name: '',
     versions: '',
+    appLink: '',
     link: '#'
   };
 
