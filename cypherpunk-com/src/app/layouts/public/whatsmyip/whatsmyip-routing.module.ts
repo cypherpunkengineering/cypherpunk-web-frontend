@@ -6,7 +6,7 @@ import { WhatsMyIpComponent } from './whatsmyip.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'whatsmyip', component: WhatsMyIpComponent }
+      { path: 'whats-my-ip-address', component: WhatsMyIpComponent }
     ])
   ]
 })

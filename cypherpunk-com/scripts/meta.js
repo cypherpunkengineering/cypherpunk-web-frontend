@@ -59,7 +59,7 @@ const metaMap = {
     title: 'Cypherpunk Privacy & VPN Pricing and Order Form',
     description: 'Pricing and order form for Cypherpunk Online Privacy service.'
   },
-  'whatsmyip.html': {
+  'whats-my-ip-address.html': {
     title: 'What\'s My IP Address?',
     description: 'See your current IP address and other information about you that other people can see, plus tips on how to hide that information.'
   },

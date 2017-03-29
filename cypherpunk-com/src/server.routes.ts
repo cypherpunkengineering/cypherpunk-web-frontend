@@ -39,7 +39,7 @@ export const routes: string[] = [
   'apps/routers',
   'feedback',
   'bounty',
-  'whatsmyip',
+  'whats-my-ip-address',
   'freedom',
   'privacy',
   'security',

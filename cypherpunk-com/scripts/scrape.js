@@ -42,7 +42,7 @@ const routes = [
   { url: baseRoute + 'apps/routers', dirPath: baseDir + 'apps/routers.html' },
   { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
-  { url: baseRoute + 'whatsmyip', dirPath: baseDir + 'whatsmyip.html' },
+  { url: baseRoute + 'whats-my-ip-address', dirPath: baseDir + 'whats-my-ip-address.html' },
   { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
   { url: baseRoute + 'press', dirPath: baseDir + 'press.html' },
   { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' }

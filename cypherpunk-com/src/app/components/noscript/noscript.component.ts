@@ -30,7 +30,7 @@ export class NoScriptComponent implements OnInit {
         case '/feedback':
           this.showNoScript = true;
           break;
-        case '/whatsmyip':
+        case '/whats-my-ip-address':
           this.showNoScript = true;
           break;
         default:
