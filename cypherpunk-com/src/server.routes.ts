@@ -25,7 +25,7 @@ export const routes: string[] = [
   'features',
   'network',
   'privacy-policy',
-  'aboutus',
+  'about-us',
   'terms-of-service',
   'blog',
   '404',

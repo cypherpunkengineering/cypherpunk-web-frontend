@@ -264,8 +264,8 @@
 		<to last="true">/network.html$1</to>
 	</rule>
 	<rule>
-		<from>^/aboutus(.*)</from>
-		<to last="true">/aboutus.html$1</to>
+		<from>^/about-us(.*)</from>
+		<to last="true">/about-us.html$1</to>
 	</rule>
 	<rule>
 		<from>^/home(.*)</from>
