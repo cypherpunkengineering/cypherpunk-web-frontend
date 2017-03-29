@@ -28,32 +28,32 @@ const metaMap = {
   'download:windows.html': {
     url: 'https://cypherpunk.com/download/windows',
     title: 'Download Cypherpunk for Windows',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'download:mac.html': {
     url: 'https://cypherpunk.com/download/mac',
     title: 'Download Cypherpunk for your Mac',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'download:linux.html': {
     url: 'https://cypherpunk.com/download/linux',
     title: 'Download Cypherpunk for Linux',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'download:android.html': {
     url: 'https://cypherpunk.com/download/android',
     title: 'Download Cypherpunk for Android',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'download:ios.html': {
     url: 'https://cypherpunk.com/download/ios',
     title: 'Download Cypherpunk for iOS',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'download:routers.html': {
     url: 'https://cypherpunk.com/download/routers',
     title: 'Download Cypherpunk for your Router',
-    description: ' '
+    description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.'
   },
   'pricing.html': {
     title: 'Cypherpunk Privacy & VPN Pricing and Order Form',
