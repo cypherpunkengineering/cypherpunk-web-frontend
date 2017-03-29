@@ -184,8 +184,8 @@
 
 	<!-- public marketing content -->
 	<rule>
-		<from>^/whatsmyip(.*)</from>
-		<to last="true">/whatsmyip.html$1</to>
+		<from>^/whats-my-ip-address(.*)</from>
+		<to last="true">/whats-my-ip-address.html$1</to>
 	</rule>
 	<rule>
 		<from>^/bounty(.*)</from>
