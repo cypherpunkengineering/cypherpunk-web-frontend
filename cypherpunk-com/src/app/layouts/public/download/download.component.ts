@@ -7,42 +7,49 @@ export class DownloadPlatforms {
   static test = 'asdf';
   static mac = {
     name: 'Mac',
+    appLink: '/apps/mac',
     versions: '',
     link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.6.1-beta-00452.pkg'
   };
 
   static windows = {
     name: 'Windows',
+    appLink: '/apps/windows',
     versions: '7 64-bit and later',
     link: 'https://download.cypherpunk.com/release/windows/cypherpunk-privacy-windows-0.6.1-beta-00416.exe'
   };
 
   static linux = {
     name: 'Linux',
+    appLink: '/apps/linux',
     versions: '',
     link: '#'
   };
 
   static chrome = {
     name: 'Chrome/Opera/Vivaldi',
+    appLink: '/apps/browser',
     versions: '',
     link: 'https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj'
   };
 
   static firefox = {
     name: 'Firefox',
+    appLink: '/apps/browser',
     versions: '',
     link: '#'
   };
 
   static android = {
     name: 'Android',
+    appLink: '/apps/android',
     versions: '4.0.3+',
     link: 'https://play.google.com/store/apps/details?id=com.cypherpunk.privacy'
   };
 
   static ios = {
     name: 'iOS',
+    appLink: '/apps/ios',
     versions: 'iOS 8+',
     link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
   };
