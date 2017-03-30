@@ -432,6 +432,39 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /download/windows/autostart
+  static_files: target/download/windows.html
+  upload: target/download/windows.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: deny
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /download/mac/autostart
+  static_files: target/download/mac.html
+  upload: target/download/mac.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: deny
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /download/linux/autostart
+  static_files: target/download/linux.html
+  upload: target/download/linux.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: deny
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /blog/(.*)
   script: blog.app
   secure: always
