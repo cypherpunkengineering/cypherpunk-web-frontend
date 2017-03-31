@@ -24,88 +24,82 @@
 <body>
   <div class="container">
     <!-- Navigation -->
-    <div class="navigation">
-      <div class="nav-left">
+    <div class="navigation tall">
+      <div class="nav-middle">
         <img src="/assets/logo@2px.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" alt="">
       </div>
-
-      <div class="nav-right">
-        ONLINE PRIVACY & FREEDOM MADE EASY
-      </div>
     </div>
 
-    <div class="image-con">
-      <img src="/assets/landing/landing@2x.png" srcset="/assets/landing/landing.png 500w, /assets/landing/landing@2x.png 1000w" alt="Hello">
+    <div class="confirmation-header">
+      We'll send you an email when the free preview starts!
     </div>
 
-    <h1 class="header">
-      We are bringing back the internet,
-      <br>
-      the way <em><span>it was meant to be</span></em>, in:
-    </h1>
-
-    <div class="countdown">
-      <div class="time">
-        <div id="days" class="display"></div>
-        <div class="type">DAYS</div>
-      </div>
-
-      <div class="time">
-        <div id="hours" class="display"></div>
-        <div class="type">HOURS</div>
-      </div>
-
-      <div class="time">
-        <div id="minutes" class="display"></div>
-        <div class="type">MINUTES</div>
-      </div>
-
-      <div class="time">
-        <div id="seconds" class="display"></div>
-        <div class="type">SECONDS</div>
-      </div>
+    <div class="confirmation-illustration">
+      <img src="/assets/landing/confirmation-illustration@2x.png" srcset="/assets/landing/confirmation-illustration.png 500w, /assets/landing/confirmation-illustration@2x.png" alt="Thank You">
     </div>
 
-    <h2 class="subheader">
-      Free Preview Access will be <em><span>VERY&nbsp;</span></em> limited
-    </h2>
-    <div class="subtext">
-      Enter your email address below to guarantee your spot!
+    <div class="confirmation-header no-top">
+      Invite your friends!
     </div>
 
-    <div class="email">
-      <input id="email" type="email" placeholder="Your Email Address">
-      <button id="subscribe">SUBMIT</button>
-    </div>
 
-    <div class="social">
-      <div class="proof">
-        Keep your friends safe by letting them know about Cypherpunk:
-      </div>
+    <section class="confirmation-section">
+      <div class="line"></div>
 
-      <div class="outlets">
-        <div class="outlet">
-          <a href="https://www.facebook.com/Cypherpunk-Privacy-1753643554959348/">
-            <i class="fa fa-facebook-official"></i>
-          </a>
+      <div class="inputs-container">
+        <div class="inputs left">
+          <input type="text" placeholder="Your Full Name">
         </div>
-        <div class="outlet">
-          <a href="https://twitter.com/cypherpunkvpn">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </div>
-        <div class="outlet">
-          <a href="https://plus.google.com/u/3/107488558916493732044">
-            <i class="fa fa-google-plus-official"></i>
-          </a>
-        </div>
-        <div class="outlet">
-          <a href="mailto:support@cypherpunk.com">
-            <i class="fa fa-envelope"></i>
-          </a>
+
+        <div class="inputs right">
+          <input type="text" placeholder="Email Addresses">
+          <label for="">Separate multiple emails with commas</label>
         </div>
       </div>
-    </div>
+
+      <div class="invite">
+        <button>Invite</button>
+      </div>
+
+      <div class="confirmation-header no-top">
+        And, share with others!
+      </div>
+
+      <div class="line"></div>
+
+      <div class="share">
+        <div class="left">
+          <div class="first pad-right">
+            <div class="facebook">
+              <div class="logo">
+                <img src="/assets/landing/facebook.png" alt="Facebook">
+              </div>
+
+              <div class="text">Share</div>
+            </div>
+          </div>
+
+          <div class="second pad-left">
+            <div class="twitter">
+              <div class="logo">
+                <img src="/assets/landing/twitter.png" alt="Twitter">
+              </div>
+
+              <div class="text">Share</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          <button class="copy">
+            Copy Link
+          </button>
+
+          <input class="copy-input" type="text" value="https://cypherpunk.com">
+        </div>
+      </div>
+
+    </section>
   </div>
 
   <div class="footer">
@@ -113,7 +107,6 @@
   </div>
 
   <!-- page script -->
-  <script src="/landing.js"></script>
 
   <!-- begin GA -->
   <script type="text/javascript" async>

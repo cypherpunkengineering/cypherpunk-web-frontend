@@ -12,12 +12,14 @@ html, body {
 
 .container { min-height: 100%; width: 100%; max-width: 1000px; margin: 0 auto -40px; }
 .container:after { content: ''; display: block; }
-.footer { text-align: center; padding: 10px; a { color: #fff; } }
+.footer { text-align: center; padding: 10px 0 80px; a { color: #fff; } }
 .footer, .container:after { height: 40px;}
 
 .navigation {
   height: 75px;
   overflow: auto;
+  &.tall { height: 105px; }
+
   .nav-left {
     float: left;
     padding: 15px;
@@ -27,6 +29,11 @@ html, body {
     color: #7ffffb;
     float: right;
     padding: 27px 15px 0;
+  }
+  .nav-middle {
+    padding: 30px;
+    text-align: center;
+    img { height: 40px; }
   }
 }
 
@@ -129,8 +136,154 @@ html, body {
   }
 }
 
+/** Confirmation Page **/
+
+.confirmation-header {
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 20px;
+  color: #7ffffb;
+  &.no-top { padding-top: 0; }
+}
+
+.confirmation-illustration {
+  width: 100%;
+  max-width: 750px;
+  margin: auto;
+  text-align: center;
+  padding: 20px 0 0;
+  img { width: 100%; }
+}
+
+.confirmation-section {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  padding: 0 15px 0;
+
+  .line {
+    height: 1px;
+    width: 100%;
+    margin: 20px 0;
+    background-color: #19474c;
+  }
+
+  .inputs-container { padding: 20px 0; overflow: auto; }
+  .inputs {
+    width: 50%;
+    input {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      font-size: 18px;
+      padding: 5px;
+      color: #56A8B1;
+      background-color: #0D1E26;
+      border-radius: 5px;
+      border: 3px solid #19474c;
+    }
+    label { color: #56A8B1; padding-top: 10px; }
+
+    &.left { float: left; padding-right: 10px; }
+    &.right {
+      float: right;
+      padding-left: 10px;
+      input { margin-bottom: 10px; }
+    }
+  }
+
+  .invite {
+    padding: 10px 0 60px;
+
+    button {
+      width: 100%;
+      height: 45px;
+      color: #fff;
+      font-size: 18px;
+      border: 0;
+      border-radius: 5px;
+      background-color: #1987BD;
+      cursor: pointer;
+    }
+  }
+
+  .share {
+    width: 100%;
+    max-width: 700px;
+    overflow: auto;
+    padding: 10px 0 60px;
+
+    .left { width: 50%; float: left; }
+    .right { width: 50%; float: right; padding-left: 10px; }
+    .first { width: 50%; float: left; padding-right: 10px; }
+    .second { width: 50%; float: right; padding: 0 10px 0 10px; }
+
+    .facebook {
+      width: 157.5px;
+      height: 45px;
+      font-size: 18px;
+      line-height: 45px;
+      padding: 0 10px;
+      border-radius: 5px;
+      background-color: #254E91;
+      .logo { display: inline-block; img { width: 30px; padding-top: 7px; margin-right: 20px; }}
+      .text { display: inline-block; vertical-align: top; }
+    }
+
+    .twitter {
+      width: 147.5px;
+      height: 45px;
+      font-size: 18px;
+      line-height: 45px;
+      padding: 0 10px;
+      border-radius: 5px;
+      background-color: #329ECE;
+      .logo { display: inline-block; img { width: 30px; padding-top: 7px; margin-right: 20px; }}
+      .text { display: inline-block; vertical-align: top; }
+    }
+
+    .copy {
+      height: 45px;
+      width: 120px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      background-color: #FF7857;
+      border: 0;
+      color: #fff;
+      font-size: 18px;
+      position: relative;
+    }
+    .copy-input {
+      width: 200px;
+      height: 46px;
+      line-height: 45px;
+      font-size: 18px;
+      padding: 5px;
+      color: #56A8B1;
+      background-color: #0D1E26;
+      border-radius: 5px;
+      border: 3px solid #19474c;
+      margin-left: -8px;
+    }
+  }
+}
+
 @media (max-width: 1400px) {
   .image-con { position: relative; left: 0; top: 0; text-align: center; }
+}
+
+@media (max-width: 780px) {
+  .confirmation-illustration { padding: 20px 15px 0; }
+  .confirmation-section .share {
+    .left { width: 100%; float: left; text-align: center; padding-bottom: 10px; }
+    .right { width: 100%; float: right; padding-left: 0; text-align: center; }
+    .first { width: 100%; float: left; padding-right: 0; padding-bottom: 10px; }
+    .second { width: 100%; float: right; padding: 0; }
+
+    .facebook { margin: auto; }
+    .twitter { width: 157.5px; margin: auto; }
+    .copy-input { width: 170px; }
+  }
 }
 
 @media (max-width: 600px) {
@@ -154,6 +307,18 @@ html, body {
 
 @media (max-width: 550px) {
   .image-con { display: none; }
+}
+
+@media (max-width: 500px) {
+  .confirmation-section .inputs {
+    width: 100%;
+    &.left { float: left; padding: 0 0 10px; }
+    &.right {
+      float: right;
+      padding-left: 0;
+      input { margin-bottom: 10px; }
+    }
+  }
 }
 
 @media (max-width: 400px) {
