@@ -96,6 +96,7 @@ export class DownloadComponent {
   builds = DownloadPlatforms;
   headerBuild = DownloadPlatforms.blank;
   currentLinuxBuild = DownloadPlatforms.linuxVersions[0];
+  apkUrl = '#';
 
   // download
   isChrome: boolean = false;
