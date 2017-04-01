@@ -19,6 +19,11 @@
         Privacy
       </li>
     </a>
+    <a href="/features#content">
+      <li [ngClass]="{'active': currentTab === 'content'}">
+        Content
+      </li>
+    </a>
     <a href="/features#network">
       <li [ngClass]="{'active': currentTab === 'network'}">
         Network
@@ -42,11 +47,126 @@
   </ul>
 </div>
 
+<!-- Privacy Section -->
+
 <div class="feature down-arrow white">
   <div class="inner">
+    <span id="privacy" class="anchor-target"></span>
+
     <div class="row">
       <div class="image">
-        <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="">
+        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
+      </div>
+
+      <div class="text">
+        <div class="text-header blue">Cypherpunk Privacy Suite™</div>
+
+        <p>
+          Full protection no matter what platform or device you use
+        </p>
+
+        <p>
+          Simple friendly to use apps. One click connect to protect your privacy online.
+        </p>
+
+        <a class="learn-more right" (click)="psSwitch = !psSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!psSwitch">
+            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="psSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="descriptions">
+  <div class="more double" [ngClass]="{'open': psSwitch}">
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/protect-all-your-devices@2x.png" srcset="/assets/features/online-privacy/protect-all-your-devices.png 500w, /assets/features/online-privacy/protect-all-your-devices@2x.png 1000w" alt="Protect all your devices">
+      </div>
+
+      <div class="cell-header">Protect all your devices</div>
+
+      <div class="cell-text">
+        We support all major platforms and operating systems
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/online-privacy/multiple-connections@2x.png" srcset="/assets/features/online-privacy/multiple-connections.png 500w, /assets/features/online-privacy/multiple-connections@2x.png 1000w" alt="Multiple Connections">
+      </div>
+
+      <div class="cell-header">Multiple simultaneous connections</div>
+
+      <div class="cell-text">
+        Continuous protection for up to 5 of your devices
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
+      </div>
+
+      <div class="cell-header">Privacy Filter</div>
+
+      <div class="cell-text">
+        Block ads, trackers, and malware with our advanced filtering system
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/privacy-firewall@2x.png" srcset="/assets/features/online-privacy/privacy-firewall.png 500w, /assets/features/online-privacy/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
+      </div>
+
+      <div class="cell-header">Privacy Firewall</div>
+
+      <div class="cell-text">
+        Internet killswitch to prevent leakage if your network connection drops
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/online-privacy/dns-leak-protection@2x.png" srcset="/assets/features/online-privacy/dns-leak-protection.png 500w, /assets/features/online-privacy/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
+      </div>
+
+      <div class="cell-header">DNS Leak Protection</div>
+
+      <div class="cell-text">
+        We operate our own DNS servers to protect your privacy
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/ipv6-leak-protection@2x.png" srcset="/assets/features/online-privacy/ipv6-leak-protection.png 500w, /assets/features/online-privacy/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
+      </div>
+
+      <div class="cell-header">IPv6 Leak Protection</div>
+
+      <div class="cell-text">
+        Our apps will disable IPv6 to prevent potential privacy leaks.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Content Section -->
+
+<div class="feature down-arrow white">
+  <div class="inner">
+    <span id="content" class="anchor-target"></span>
+
+    <div class="row">
+      <div class="image mobile">
+        <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="CypherPlay">
       </div>
 
       <div class="text">
@@ -67,6 +187,10 @@
             <section class="learn-more-text">Learn More</section>
           </div>
         </a>
+      </div>
+
+      <div class="image desktop">
+        <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="CypherPlay">
       </div>
     </div>
   </div>
@@ -272,121 +396,6 @@
 </div>
 
 
-<!-- Privacy Section -->
-
-<div class="feature down-arrow white">
-  <div class="inner">
-    <span id="privacy" class="anchor-target"></span>
-
-    <div class="row">
-      <div class="image mobile">
-        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
-      </div>
-
-      <div class="text">
-        <div class="text-header blue">Cypherpunk Privacy Suite™</div>
-
-        <p>
-          Full protection no matter what platform or device you use
-        </p>
-
-        <p>
-          Simple friendly to use apps. One click connect to protect your privacy online.
-        </p>
-
-        <a class="learn-more right" (click)="psSwitch = !psSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!psSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="psSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
-      </div>
-
-      <div class="image desktop">
-        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="descriptions">
-  <div class="more double" [ngClass]="{'open': psSwitch}">
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/protect-all-your-devices@2x.png" srcset="/assets/features/online-privacy/protect-all-your-devices.png 500w, /assets/features/online-privacy/protect-all-your-devices@2x.png 1000w" alt="Protect all your devices">
-      </div>
-
-      <div class="cell-header">Protect all your devices</div>
-
-      <div class="cell-text">
-        We support all major platforms and operating systems
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/multiple-connections@2x.png" srcset="/assets/features/online-privacy/multiple-connections.png 500w, /assets/features/online-privacy/multiple-connections@2x.png 1000w" alt="Multiple Connections">
-      </div>
-
-      <div class="cell-header">Multiple simultaneous connections</div>
-
-      <div class="cell-text">
-        Continuous protection for up to 5 of your devices
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
-      </div>
-
-      <div class="cell-header">Privacy Filter</div>
-
-      <div class="cell-text">
-        Block ads, trackers, and malware with our advanced filtering system
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-firewall@2x.png" srcset="/assets/features/online-privacy/privacy-firewall.png 500w, /assets/features/online-privacy/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
-      </div>
-
-      <div class="cell-header">Privacy Firewall</div>
-
-      <div class="cell-text">
-        Internet killswitch to prevent leakage if your network connection drops
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/dns-leak-protection@2x.png" srcset="/assets/features/online-privacy/dns-leak-protection.png 500w, /assets/features/online-privacy/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
-      </div>
-
-      <div class="cell-header">DNS Leak Protection</div>
-
-      <div class="cell-text">
-        We operate our own DNS servers to protect your privacy
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/ipv6-leak-protection@2x.png" srcset="/assets/features/online-privacy/ipv6-leak-protection.png 500w, /assets/features/online-privacy/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
-      </div>
-
-      <div class="cell-header">IPv6 Leak Protection</div>
-
-      <div class="cell-text">
-        Our apps will disable IPv6 to prevent potential privacy leaks.
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- Network Section -->
 
 <div class="feature down-arrow white">
@@ -399,7 +408,7 @@
       </div>
 
       <div class="text">
-        <div class="text-header blue">Cypherpunk Privacy Network™</div>
+        <div class="text-header blue">Cypherpunk Privacy Network&trade;</div>
 
         <p>
           Strict no-logging policy. We respect and defend the privacy of your online activities.
@@ -743,7 +752,7 @@
       </div>
 
       <div class="text">
-        <div class="text-header blue">Multiple VPN / Proxy Protocols</div>
+        <div class="text-header blue">Multiple Protocols</div>
 
         <p>
           Support for all modern VPN and Proxy protocols
@@ -769,18 +778,6 @@
   <div class="more double" [ngClass]="{'open': svSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
-      </div>
-
-      <div class="cell-header">CypherVPN™</div>
-
-      <div class="cell-text">
-        Proprietary VPN technology to bypass the most restrictive network firewalls
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
         <img src="/assets/features/online-privacy/openvpn@2x.png" srcset="/assets/features/online-privacy/openvpn.png 500w, /assets/features/online-privacy/openvpn@2x.png 1000w" alt="OpenVPN">
       </div>
 
@@ -788,6 +785,18 @@
 
       <div class="cell-text">
         The most trusted open-source VPN backend
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
+      </div>
+
+      <div class="cell-header">CypherVPN&trade;</div>
+
+      <div class="cell-text">
+        Proprietary VPN technology to bypass the most restrictive network firewalls
       </div>
     </div>
 
@@ -803,9 +812,11 @@
       </div>
     </div>
 
-    <div class="cell">
+    <div></div>
+
+    <div class="cell medium">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ikev2@2x.png" srcset="/assets/features/online-privacy/ikev2.png 500w, /assets/features/online-privacy/ikev2@2x.png 1000w" alt="IKEv2">
+        <img class="width" src="/assets/features/online-privacy/ikev2@2x.png" srcset="/assets/features/online-privacy/ikev2.png 500w, /assets/features/online-privacy/ikev2@2x.png 1000w" alt="IKEv2">
       </div>
 
       <div class="cell-header">IKEv2</div>
@@ -815,9 +826,9 @@
       </div>
     </div>
 
-    <div class="cell">
+    <div class="cell medium">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/http-proxy@2x.png" srcset="/assets/features/online-privacy/http-proxy.png 500w, /assets/features/online-privacy/http-proxy@2x.png 1000w" alt="HTTP Proxy">
+        <img class="width" src="/assets/features/online-privacy/http-proxy@2x.png" srcset="/assets/features/online-privacy/http-proxy.png 500w, /assets/features/online-privacy/http-proxy@2x.png 1000w" alt="HTTP Proxy">
       </div>
 
       <div class="cell-header">HTTP proxy</div>
@@ -827,15 +838,25 @@
       </div>
     </div>
 
-    <div class="cell">
+    <div class="cell medium">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/socks-proxy@2x.png" srcset="/assets/features/online-privacy/socks-proxy.png 500w, /assets/features/online-privacy/socks-proxy@2x.png 1000w" alt="SOCKS Proxy">
+        <img class="width" src="/assets/features/online-privacy/socks-proxy@2x.png" srcset="/assets/features/online-privacy/socks-proxy.png 500w, /assets/features/online-privacy/socks-proxy@2x.png 1000w" alt="SOCKS Proxy">
       </div>
 
       <div class="cell-header">SOCKS proxy</div>
 
       <div class="cell-text">
         For safer torrenting and file sharing
+      </div>
+    </div>
+
+    <div class="cell medium">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">HTTPS / TLS proxy</div>
+
+      <div class="cell-text">
+        For the most secure and private web browsing experience
       </div>
     </div>
   </div>
@@ -865,10 +886,10 @@
     <div class="cell">
       <div class="cell-image"></div>
 
-      <div class="cell-header">HTTPS / TLS proxy</div>
+      <div class="cell-header">Recommended Default</div>
 
       <div class="cell-text">
-        For the most secure and private web browsing experience
+        Balance of speed, security, and privacy
       </div>
     </div>
 
