@@ -18,7 +18,7 @@ const routes = [
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },
-  { url: baseRoute + 'why-you-need-online-privacy-protection', dirPath: baseDir + 'why-you-need-online-privacy-protection.html' },
+  { url: baseRoute + 'why-use-a-vpn', dirPath: baseDir + 'why-use-a-vpn.html' },
   { url: baseRoute + 'features', dirPath: baseDir + 'features.html' },
   { url: baseRoute + 'network', dirPath: baseDir + 'network.html' },
   { url: baseRoute + 'blog', dirPath: baseDir + 'blog.html' },

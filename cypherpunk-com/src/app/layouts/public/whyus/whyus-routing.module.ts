@@ -7,7 +7,7 @@ import { WhyusComponent } from './whyus.component';
   imports: [
     RouterModule.forChild([
       {
-        path: 'why-you-need-online-privacy-protection',
+        path: 'why-use-a-vpn',
         component: WhyusComponent
       }
     ])

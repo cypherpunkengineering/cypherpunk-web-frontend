@@ -9,7 +9,7 @@ const defaultImage = 'https://cypherpunk.com/assets/features/masthead@2x.png';
 
 const metaMap = {
   'cypherpunk-public.html': { url: 'https://cypherpunk.com' },
-  'why-you-need-online-privacy-protection.html': {
+  'why-use-a-vpn.html': {
     title: 'Why You Need Cypherpunk Privacy & VPN Service',
     description: 'Discover how Cypherpunk Privacy protects your online privacy and freedom and secures public Wi-Fi networks. Try it free for  days!'
   },

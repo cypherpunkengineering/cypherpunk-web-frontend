@@ -21,7 +21,7 @@ export const routes: string[] = [
   'recover',
   'download',
   'confirm',
-  'why-you-need-online-privacy-protection',
+  'why-use-a-vpn',
   'features',
   'network',
   'privacy-policy',
