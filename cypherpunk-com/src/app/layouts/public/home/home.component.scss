@@ -1,6 +1,6 @@
 .masthead {
   .masthead-header {
-    margin: 40px auto 30px;
+    margin: 40px auto 10px;
     span { color: #8BFEFA; }
   }
 
@@ -12,6 +12,7 @@
 
   .masthead-banner {
     width: 1000px;
+    height: 300px;
     margin: auto;
     padding: 46px 0;
     position: relative;
@@ -56,7 +57,7 @@
     width: 341px;
     z-index: 25;
 
-    .btn { width: 341px; }
+    .btn { width: 341px; border-radius: 50px; }
   }
 }
 .cta-container.top {
@@ -87,23 +88,14 @@
 .content {
   width: 100%;
   text-align: center;
-  padding: 75px 0;
+  padding: 110px 0 75px;
   &.grey { background-color: #efeaea; }
+  &.green { background-color: #163138; }
 
   .content-inner {
     max-width: 1000px;
     margin: auto;
     overflow: auto;
-  }
-
-  .header { margin-bottom: 75px; }
-
-  .row-divider {
-    height: 3px;
-    width: 100%;
-    max-width: 340px;
-    background-color: #ccc;
-    margin: 120px auto;
   }
 
   .row {
@@ -126,24 +118,14 @@
           bottom: 0;
           left: 0;
           right: 0;
-          width: 80%;
           margin: auto;
-          &.blocked { width: 239px; height: 200px; }
-          &.online { width: 130px; height: 200px;; }
-          &.secure { width: 220px; height: 240px; }
+          height: 100%;
         }
       }
       .cell-header {
-        font-size: 26px;
-        letter-spacing: 0.6px;
+        font-size: 24px;
         color: #fc6146;
         margin: 45px auto;
-      }
-      .cell-text {
-        font-size: 16px;
-        color: #4a4a4d;
-        letter-spacing: 0.6px;
-        margin-bottom: 10px;
       }
     }
 
@@ -239,7 +221,6 @@
     .content-header { padding: 0 10px; }
     .row { width: 100%; }
     .row .cell { width: 100%; margin-bottom: 100px; }
-    .row .cell .cell-text { padding: 0 15px; }
     .row .cell:last-child { margin-bottom: 0px; }
   }
 
