@@ -1,11 +1,14 @@
 import * as platform from 'platform';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { isBrowser } from 'angular2-universal';
 import { DownloadPlatforms } from './download.component';
 
 @Component({ template: '' })
 export class DownloadBaseComponent {
   constructor(private router: Router) {
+    // replace history
+    if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
     // detect os setup
     let os: string = platform.os.family;
     if (os.indexOf('OS X') > -1) { router.navigate(['/download/mac']); }
