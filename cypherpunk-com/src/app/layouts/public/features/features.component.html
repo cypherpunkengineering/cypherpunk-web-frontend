@@ -3,6 +3,10 @@
 
   <h1 class="masthead-header header white">Features</h1>
 
+  <div class="masthead-subheader">
+    Here's what we use to protect your Online Privacy and Freedom.
+  </div>
+
   <div class="masthead-image">
     <img src="/assets/features/masthead@2x.png" srcset="/assets/features/masthead.png 500w, /assets/features/masthead@2x.png 1000w" alt="">
   </div>
@@ -10,14 +14,19 @@
 
 <div class="navigation">
   <ul>
-    <a href="/features#freedom">
-      <li [ngClass]="{'active': currentTab === 'freedom'}">
-        Freedom
-      </li>
-    </a>
     <a href="/features#privacy">
       <li [ngClass]="{'active': currentTab === 'privacy'}">
         Privacy
+      </li>
+    </a>
+    <a href="/features#network">
+      <li [ngClass]="{'active': currentTab === 'network'}">
+        Network
+      </li>
+    </a>
+    <a href="/features#freedom">
+      <li [ngClass]="{'active': currentTab === 'freedom'}">
+        Freedom
       </li>
     </a>
     <a href="/features#security">
@@ -33,13 +42,8 @@
   </ul>
 </div>
 
-
-<!-- Freedom Section -->
-
 <div class="feature down-arrow white">
   <div class="inner">
-    <span id="freedom" class="anchor-target"></span>
-
     <div class="row">
       <div class="image">
         <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="">
@@ -53,7 +57,7 @@
         </p>
 
         <p>
-          Unique networking technology to play any type of geo-restricted content from anywhere without experiencing speed deterioration.
+          Unique networking technology to play any type of geo-restricted content from anywhere without slowing down your experience.
         </p>
 
         <a class="learn-more" (click)="cpSwitch = !cpSwitch">
@@ -94,46 +98,23 @@
       </div>
     </div>
 
-    <div></div>
+    <div class="section-header">Access your favorite streaming services, such as: </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="logo" src="/assets/features/freedom/netflix@2x.png" srcset="/assets/features/freedom/netflix.png 500w, /assets/features/freedom/netflix@2x.png 1000w" alt="">
+        <img class="width" src="/assets/features/freedom/netflix@2x.png" srcset="/assets/features/freedom/netflix.png 500w, /assets/features/freedom/netflix@2x.png 1000w" alt="">
+        <span></span>
       </div>
 
       <div class="cell-header">Netflix</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="logo" src="/assets/features/freedom/hulu@2x.png" srcset="/assets/features/freedom/hulu.png 500w, /assets/features/freedom/hulu@2x.png 1000w" alt="">
+        <img class="width" src="/assets/features/freedom/hulu@2x.png" srcset="/assets/features/freedom/hulu.png 500w, /assets/features/freedom/hulu@2x.png 1000w" alt="">
       </div>
 
       <div class="cell-header">Hulu</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img class="logo" src="/assets/features/freedom/youtube@2x.png" srcset="/assets/features/freedom/youtube.png 500w, /assets/features/freedom/youtube@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">YouTube</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img class="logo" src="/assets/features/freedom/spotify@2x.png" srcset="/assets/features/freedom/spotify.png 500w, /assets/features/freedom/spotify@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">Spotify</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
@@ -147,18 +128,68 @@
     </div>
 
     <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/seeso@2x.png" srcset="/assets/features/freedom/seeso.png 500w, /assets/features/freedom/seeso@2x.png 1000w" alt="SeeSo">
-      </div>
+      <div class="cell-image"></div>
 
-      <div class="cell-header">Seeso</div>
+      <div class="cell-header">Kodi</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">ESPN</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Dazn</div>
 
       <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="logo" src="/assets/features/freedom/amazon-prime-video@2x.png" srcset="/assets/features/freedom/amazon-prime-video.png 500w, /assets/features/freedom/amazon-prime-video@2x.png 1000w" alt="Amazon Prime Video">
+        <img class="width" src="/assets/features/freedom/youtube@2x.png" srcset="/assets/features/freedom/youtube.png 500w, /assets/features/freedom/youtube@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">YouTube</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Pandora</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/freedom/spotify@2x.png" srcset="/assets/features/freedom/spotify.png 500w, /assets/features/freedom/spotify@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Spotify</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Playstation Vue</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/freedom/amazon-prime-video@2x.png" srcset="/assets/features/freedom/amazon-prime-video.png 500w, /assets/features/freedom/amazon-prime-video@2x.png 1000w" alt="Amazon Prime Video">
       </div>
 
       <div class="cell-header">Amazon Prime Video</div>
@@ -177,135 +208,49 @@
     </div>
 
     <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/cbcnews@2x.png" srcset="/assets/features/freedom/cbcnews.png 500w, /assets/features/freedom/cbcnews@2x.png 1000w" alt="">
-      </div>
+      <div class="cell-image"></div>
 
-      <div class="cell-header">CBC</div>
+      <div class="cell-header">Showtime</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Starz</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Sling</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">SkyGo</div>
 
       <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img src="/assets/features/freedom/nbc@2x.png" srcset="/assets/features/freedom/nbc.png 500w, /assets/features/freedom/nbc@2x.png 1000w" alt="">
+        <img src="/assets/features/freedom/nbc@2x.png" srcset="/assets/features/freedom/nbc.png 500w, /assets/features/freedom/nbc@2x.png 1000w" alt="NBC">
       </div>
 
       <div class="cell-header">NBC</div>
 
       <div class="cell-text"></div>
     </div>
-  </div>
-</div>
-
-<div class="feature down-arrow white">
-  <div class="inner">
-    <div class="row">
-      <div class="image mobile">
-        <img class="d" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="">
-      </div>
-
-      <div class="text">
-        <div class="text-header blue">CypherVPN&trade;</div>
-
-        <p>
-          Freedom to access the full open internet. Access censored blocked websites from anywhere.
-        </p>
-
-        <p>
-          Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
-        </p>
-
-        <a class="learn-more right" (click)="mfSwitch = !mfSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!mfSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="mfSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
-      </div>
-
-      <div class="image desktop">
-        <img class="d" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="descriptions">
-  <div class="more triple" [ngClass]="{'open': mfSwitch}">
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/bypass-any-gouvernment@2x.png" srcset="/assets/features/freedom/bypass-any-gouvernment.png 500w, /assets/features/freedom/bypass-any-gouvernment@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">
-        Bypass any government or enterprise censored network
-      </div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/disguise-your-vpntraffic@2x.png" srcset="/assets/features/freedom/disguise-your-vpntraffic.png 500w, /assets/features/freedom/disguise-your-vpntraffic@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">
-        Disguise your VPN traffic as normal web browsing
-      </div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/optimized-traffic@2x.png" srcset="/assets/features/freedom/optimized-traffic.png 500w, /assets/features/freedom/optimized-traffic@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">Optimized traffic flow</div>
-
-      <div class="cell-text">
-        Unblock any restricted websites and geo-blocked content. No matter where you are, it just works
-      </div>
-    </div>
-
-    <div class="cell wide">
-      <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/blazing-fast-speeds@2x.png" srcset="/assets/features/freedom/blazing-fast-speeds.png 500w, /assets/features/freedom/blazing-fast-speeds@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">Blazing fast speeds</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div></div>
 
     <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/wikipedia@2x.png" srcset="/assets/features/freedom/wikipedia.png 500w, /assets/features/freedom/wikipedia@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">Wikipedia</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/google@2x.png" srcset="/assets/features/freedom/google.png 500w, /assets/features/freedom/google@2x.png 1000w" alt="">
-      </div>
-
-      <div class="cell-header">Google</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/facebook@2x.png" srcset="/assets/features/freedom/facebook.png 500w, /assets/features/freedom/facebook@2x.png 1000w" alt="">
-      </div>
+      <div class="cell-image"></div>
 
       <div class="cell-header">Facebook</div>
 
@@ -313,13 +258,15 @@
     </div>
 
     <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/twitter@2x.png" srcset="/assets/features/freedom/twitter.png 500w, /assets/features/freedom/twitter@2x.png 1000w" alt="">
-      </div>
+      <div class="cell-image"></div>
 
-      <div class="cell-header">Twitter</div>
+      <div class="cell-header">Zattoo</div>
 
       <div class="cell-text"></div>
+    </div>
+
+    <div class="section-header">
+      CypherPlay works with over 300+ services and adding more all the time!
     </div>
   </div>
 </div>
@@ -332,24 +279,32 @@
     <span id="privacy" class="anchor-target"></span>
 
     <div class="row">
-      <div class="image">
-        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="">
+      <div class="image mobile">
+        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
       </div>
 
       <div class="text">
         <div class="text-header blue">Cypherpunk Privacy Suite™</div>
 
         <p>
-          Super simple, friendly to use apps. One click connect to protect your privacy online.
+          Full protection no matter what platform or device you use
         </p>
 
-        <a class="learn-more" (click)="psSwitch = !psSwitch">
+        <p>
+          Simple friendly to use apps. One click connect to protect your privacy online.
+        </p>
+
+        <a class="learn-more right" (click)="psSwitch = !psSwitch">
           <div>
             <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!psSwitch">
             <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="psSwitch">
             <section class="learn-more-text">Learn More</section>
           </div>
         </a>
+      </div>
+
+      <div class="image desktop">
+        <img class="e" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
       </div>
     </div>
   </div>
@@ -425,16 +380,21 @@
       <div class="cell-header">IPv6 Leak Protection</div>
 
       <div class="cell-text">
-        Our apps will disable IPv6 to prevent potential privacy leaks. Soon we will add full IPv6 support to our entire privacy network.
+        Our apps will disable IPv6 to prevent potential privacy leaks.
       </div>
     </div>
   </div>
 </div>
 
+
+<!-- Network Section -->
+
 <div class="feature down-arrow white">
   <div class="inner">
+    <span id="network" class="anchor-target"></span>
+
     <div class="row">
-      <div class="image mobile">
+      <div class="image">
         <img class="d" src="/assets/features/privacy/cypherpunk-privacy-network@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-network.png 500w, /assets/features/privacy/cypherpunk-privacy-network@2x.png 1000w" alt="">
       </div>
 
@@ -453,16 +413,25 @@
           </div>
         </a>
       </div>
-
-      <div class="image desktop">
-        <img class="d" src="/assets/features/privacy/cypherpunk-privacy-network@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-network.png 500w, /assets/features/privacy/cypherpunk-privacy-network@2x.png 1000w" alt="">
-      </div>
     </div>
   </div>
 </div>
 
 <div class="descriptions">
   <div class="more double" [ngClass]="{'open': pnSwitch}">
+
+    <div class="cell wide">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/freedom/blazing-fast-speeds@2x.png" srcset="/assets/features/freedom/blazing-fast-speeds.png 500w, /assets/features/freedom/blazing-fast-speeds@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Blazing fast speeds</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div></div>
+
     <div class="cell">
       <div class="cell-image">
         <img src="/assets/features/online-privacy/shared-ip-system@2x.png" srcset="/assets/features/online-privacy/shared-ip-system.png 500w, /assets/features/online-privacy/shared-ip-system@2x.png 1000w" alt="Shared IP System">
@@ -471,7 +440,7 @@
       <div class="cell-header">Shared IP system</div>
 
       <div class="cell-text">
-        Anonymize your online activity by mixing it with everyone else's traffic
+        Anonymize your online activity by mixing it with everyone's traffic
       </div>
     </div>
 
@@ -483,7 +452,7 @@
       <div class="cell-header">Ultra-fast servers</div>
 
       <div class="cell-text">
-        Powerful servers with 1gbit ports direct to Tier 1 providers
+        Powerful servers with 1 gbit ports direct to Tier 1 providers
       </div>
     </div>
 
@@ -507,7 +476,9 @@
       <div class="cell-header">Fast Network for streaming video</div>
 
       <div class="cell-text">
-        Ultra-fast servers in more than 20+ countries. Unlimited bandwidth, speed, and server switching
+        Ultra-fast servers in more than 20+ countries.
+        <br>
+        Unlimited bandwidth, speed, and server switching
       </div>
     </div>
 
@@ -538,34 +509,190 @@
 </div>
 
 
-<!-- Security Section -->
+<!-- Freedom Section -->
 
-<div class="feature">
+<div class="feature down-arrow white">
   <div class="inner">
-    <span id="security" class="anchor-target"></span>
-    <!-- <h2 class="header blue">Security</h2> -->
-    <!-- <h3 class="subheader">Secure your internet from anywhere</h3> -->
+    <span id="freedom" class="anchor-target"></span>
 
     <div class="row">
-      <div class="image">
-        <img class="e" src="/assets/apps/windows/easy-server-selection@2x.png" srcset="/assets/apps/easy-server-selection.png 500w, /assets/apps/easy-server-selection@2x.png 1000w" alt="">
+      <div class="image mobile">
+        <img class="d" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="">
       </div>
 
       <div class="text">
-        <div class="text-header blue">Secure public WiFi to maintain your privacy</div>
+        <div class="text-header blue">CypherVPN&trade;</div>
 
         <p>
-          Automatically protect WiFi and untrusted networks on mobile devices.
+          Freedom to access the full open internet. Access censored blocked websites from anywhere.
         </p>
+
+        <p>
+          Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
+        </p>
+
+        <a class="learn-more right" (click)="mfSwitch = !mfSwitch">
+          <div>
+            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!mfSwitch">
+            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="mfSwitch">
+            <section class="learn-more-text">Learn More</section>
+          </div>
+        </a>
+      </div>
+
+      <div class="image desktop">
+        <img class="d" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="">
       </div>
     </div>
   </div>
 </div>
 
+<div class="descriptions">
+  <div class="more triple" [ngClass]="{'open': mfSwitch}">
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/bypass-any-gouvernment@2x.png" srcset="/assets/features/freedom/bypass-any-gouvernment.png 500w, /assets/features/freedom/bypass-any-gouvernment@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">
+        Bypass any censorship
+      </div>
+
+      <div class="cell-text">
+        Break through government censored or enterprise restricted networks
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/freedom/disguise-your-vpntraffic@2x.png" srcset="/assets/features/freedom/disguise-your-vpntraffic.png 500w, /assets/features/freedom/disguise-your-vpntraffic@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">
+        Avoid deep packet inspection
+      </div>
+
+      <div class="cell-text">
+        Make your VPN data appear like normal web browsing traffic
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/optimized-traffic@2x.png" srcset="/assets/features/freedom/optimized-traffic.png 500w, /assets/features/freedom/optimized-traffic@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Optimized traffic flow</div>
+
+      <div class="cell-text">
+        Unblock any restricted websites and geo-blocked content. <br>
+        No matter where you are, it just works
+      </div>
+    </div>
+
+    <div></div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/facebook@2x.png" srcset="/assets/features/freedom/facebook.png 500w, /assets/features/freedom/facebook@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Facebook</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Gmail</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/google@2x.png" srcset="/assets/features/freedom/google.png 500w, /assets/features/freedom/google@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Google</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Skype</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Snapchat</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Tinder</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/twitter@2x.png" srcset="/assets/features/freedom/twitter.png 500w, /assets/features/freedom/twitter@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Twitter</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Whatsapp</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">Viber</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/wikipedia@2x.png" srcset="/assets/features/freedom/wikipedia.png 500w, /assets/features/freedom/wikipedia@2x.png 1000w" alt="">
+      </div>
+
+      <div class="cell-header">Wikipedia</div>
+
+      <div class="cell-text"></div>
+    </div>
+
+    <div class="section-header">and the entire free open internet</div>
+  </div>
+</div>
+
+
+<!-- Security Section -->
+
 <div class="feature down-arrow white">
   <div class="inner">
+    <span id="security" class="anchor-target"></span>
+
     <div class="row">
-      <div class="image mobile">
+      <div class="image">
         <img class="s" src="/assets/features/security/online-security@2x.png" srcset="/assets/features/security/online-security.png 500w, /assets/features/security/online-security@2x.png 1000w" alt="">
       </div>
 
@@ -573,7 +700,11 @@
         <div class="text-header blue">Online security</div>
 
         <p>
-          Optimize your online traffic for security, privacy, or speed.
+          Utilizing encryption to prevent ISPs and adversaries from injecting malicious traffic into your web browsing activity.
+        </p>
+
+        <p>
+          Blocks malware from entering your VPN to protect your network and devices.
         </p>
 
         <a class="learn-more right" (click)="mepSwitch = !mepSwitch">
@@ -584,49 +715,21 @@
           </div>
         </a>
       </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/features/security/online-security@2x.png" srcset="/assets/features/security/online-security.png 500w, /assets/features/security/online-security@2x.png 1000w" alt="">
-      </div>
     </div>
   </div>
 </div>
 
 <div class="descriptions">
   <div class="more" [ngClass]="{'open': mepSwitch}">
-    <div class="cell">
+
+    <div class="cell wide">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-privacy-mode@2x.png" srcset="/assets/features/online-privacy/max-privacy-mode.png 500w, /assets/features/online-privacy/max-privacy-mode@2x.png 1000w" alt="Max Privacy Mode">
       </div>
 
-      <div class="cell-header">Max Security mode</div>
+      <div class="cell-header">Automatic WiFi Security</div>
 
       <div class="cell-text">
-        Extra strong RSA-4096 + AES-256 cryptography
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-freedom-mode@2x.png" srcset="/assets/features/online-privacy/max-freedom-mode.png 500w, /assets/features/online-privacy/max-freedom-mode@2x.png 1000w" alt="Max Freedom Mode">
-      </div>
-
-      <div class="cell-header">Max Privacy mode</div>
-
-      <div class="cell-text">
-        Scramble your encrypted traffic to make it less detectable to governments and harder to detect and block.
-      </div>
-    </div>
-
-    <div class="cell">
-      <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-speed-mode@2x.png" srcset="/assets/features/online-privacy/max-speed-mode.png 500w, /assets/features/online-privacy/max-speed-mode@2x.png 1000w" alt="Max Speed Mode">
-      </div>
-
-      <div class="cell-header">Max Speed mode</div>
-
-      <div class="cell-text">
-        When your content doesn't require additional encryption and you want the fastest experience
+        Secure your data and internet traffic while using untrusted networks or public WiFi.
       </div>
     </div>
   </div>
@@ -635,15 +738,15 @@
 <div class="feature down-arrow white">
   <div class="inner">
     <div class="row">
-      <div class="image ">
-        <img class="e" src="/assets/features/security/support-for-modern-vpn@2x.png" srcset="/assets/features/security/support-for-modern-vpn.png 500w, /assets/features/security/support-for-modern-vpn@2x.png 1000w" alt="">
+      <div class="image mobile">
+        <img class="e" src="/assets/features/security/support-for-modern-vpn@2x.png" srcset="/assets/features/security/support-for-modern-vpn.png 500w, /assets/features/security/support-for-modern-vpn@2x.png 1000w" alt="Modern VPN">
       </div>
 
       <div class="text">
-        <div class="text-header blue">Support for all modern VPN and Proxy protocols</div>
+        <div class="text-header blue">Multiple VPN / Proxy Protocols</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
+          Support for all modern VPN and Proxy protocols
         </p>
 
         <a class="learn-more" (click)="svSwitch = !svSwitch">
@@ -654,12 +757,28 @@
           </div>
         </a>
       </div>
+
+      <div class="image desktop">
+        <img class="e" src="/assets/features/security/support-for-modern-vpn@2x.png" srcset="/assets/features/security/support-for-modern-vpn.png 500w, /assets/features/security/support-for-modern-vpn@2x.png 1000w" alt="Modern VPN">
+      </div>
     </div>
   </div>
 </div>
 
 <div class="descriptions">
   <div class="more double" [ngClass]="{'open': svSwitch}">
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
+      </div>
+
+      <div class="cell-header">CypherVPN™</div>
+
+      <div class="cell-text">
+        Proprietary VPN technology to bypass the most restrictive network firewalls
+      </div>
+    </div>
+
     <div class="cell">
       <div class="cell-image">
         <img src="/assets/features/online-privacy/openvpn@2x.png" srcset="/assets/features/online-privacy/openvpn.png 500w, /assets/features/online-privacy/openvpn@2x.png 1000w" alt="OpenVPN">
@@ -704,7 +823,7 @@
       <div class="cell-header">HTTP proxy</div>
 
       <div class="cell-text">
-        For browsing privacy and streaming content
+        Change your web browser's public location without impacting speed, ideal for content streaming
       </div>
     </div>
 
@@ -722,25 +841,92 @@
   </div>
 </div>
 
+<div class="feature">
+  <div class="inner">
+    <span id="security" class="anchor-target"></span>
+
+    <div class="row">
+      <div class="image">
+      </div>
+
+      <div class="text">
+        <div class="text-header blue">Multiple Encryption Modes</div>
+
+        <p>
+          Optimize your online experience based on your needs for security, privacy, or speed.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="descriptions">
+  <div class="more" [ngClass]="{'open': mepSwitch}">
+    <div class="cell">
+      <div class="cell-image"></div>
+
+      <div class="cell-header">HTTPS / TLS proxy</div>
+
+      <div class="cell-text">
+        For the most secure and private web browsing experience
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/max-privacy-mode@2x.png" srcset="/assets/features/online-privacy/max-privacy-mode.png 500w, /assets/features/online-privacy/max-privacy-mode@2x.png 1000w" alt="Max Privacy Mode">
+      </div>
+
+      <div class="cell-header">Max Security mode</div>
+
+      <div class="cell-text">
+        Extra strong RSA-4096 + AES-256 cryptography
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/max-freedom-mode@2x.png" srcset="/assets/features/online-privacy/max-freedom-mode.png 500w, /assets/features/online-privacy/max-freedom-mode@2x.png 1000w" alt="Max Freedom Mode">
+      </div>
+
+      <div class="cell-header">Max Privacy mode</div>
+
+      <div class="cell-text">
+        Scramble your encrypted traffic to make it less detectable to governments and harder to detect and block.
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="cell-image">
+        <img src="/assets/features/online-privacy/max-speed-mode@2x.png" srcset="/assets/features/online-privacy/max-speed-mode.png 500w, /assets/features/online-privacy/max-speed-mode@2x.png 1000w" alt="Max Speed Mode">
+      </div>
+
+      <div class="cell-header">Max Speed mode</div>
+
+      <div class="cell-text">
+        When your content doesn't require additional encryption and you want the fastest experience
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Support Section -->
 
 <div class="feature down-arrow white">
   <div class="inner">
     <span id="support" class="anchor-target"></span>
-    <!-- <h2 class="header blue">Support</h2> -->
-    <!-- <h3 class="subheader"></h3> -->
 
     <div class="row">
-      <div class="image">
-        <img class="p" src="/assets/features/support/expert@2x.png" srcset="/assets/features/support/expert.png 500w, /assets/features/support/expert@2x.png 1000w" alt="">
+      <div class="image mobile">
+        <img class="p" src="/assets/features/support/expert@2x.png" srcset="/assets/features/support/expert.png 500w, /assets/features/support/expert@2x.png 1000w" alt="Expert Support">
       </div>
 
       <div class="text">
         <div class="text-header blue">Expert 24/7/365 Support</div>
 
         <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
+          Your satisfaction is our priority. We're here to answer your questions, give assistance with setting up and using our service, or helping you in any way possible.
         </p>
 
         <a class="learn-more" (click)="esSwitch = !esSwitch">
@@ -750,6 +936,10 @@
             <section class="learn-more-text">Learn More</section>
           </div>
         </a>
+      </div>
+
+      <div class="image desktop">
+        <img class="p" src="/assets/features/support/expert@2x.png" srcset="/assets/features/support/expert.png 500w, /assets/features/support/expert@2x.png 1000w" alt="Expert Support">
       </div>
     </div>
   </div>

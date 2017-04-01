@@ -1,5 +1,12 @@
 .masthead {
-  .masthead-header { margin: 20px auto 0; padding: 0 0 50px; }
+  .masthead-header { margin: 20px auto 0; padding: 0 0 10px; }
+
+  .masthead-subheader {
+    text-align: center;
+    font-size: 18px;
+    color: #74D5D4;
+    padding: 0 0 40px;
+  }
 
   .masthead-image {
     text-align: center;
@@ -109,6 +116,12 @@
   // &.open.quad { max-height: 1200px; }
   // &.open.quin { max-height: 1500px; }
 
+  .section-header {
+    font-size: 20px;
+    color: #fc6146;
+    padding: 80px 0 0;
+  }
+
   .cell {
     width: 330px;
     margin: 60px 0 0;
@@ -117,7 +130,8 @@
     padding: 0 15px;
 
     &.small {
-      width: 240px;
+      width: 150px;
+      height: auto;
       margin: 60px 0 0;
       .cell-header { font-size: 20px; }
       .cell-image { height: 100px; }
@@ -130,8 +144,13 @@
       width: 100%;
       height: 225px;
       margin: auto;
-      img { height: 100%; max-width: 100%; }
-      img.logo { width: 100%; height: 65px; }
+      img {
+        height: 100%;
+        max-width: 100%;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       img.width { width: 100%; height: auto; }
     }
 
