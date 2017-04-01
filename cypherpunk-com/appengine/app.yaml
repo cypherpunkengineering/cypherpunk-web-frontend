@@ -526,7 +526,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/cypherpunk.txt
   expiration: "10m"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: deny
