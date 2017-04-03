@@ -38,23 +38,27 @@ html, body {
 }
 
 .image-con {
-  height: 257px;
+  width: 100%;
+  max-width: 1000px;
   position: absolute;
-  left: -40px;
-  top: 150px;
-  img { height: 100%; }
+  text-align: center;
+  img { width: 100%; opacity: 0.2; }
 }
 
 .header {
+  position: relative;
   font-size: 33px;
   font-weight: 600;
   text-align: center;
-  padding: 0 20px 30px;
+  padding: 0 20px 10px;
   span { color: #7ffffb; }
 }
 
 .countdown {
+  position: relative;
   text-align: center;
+  padding-bottom: 90px;
+
   .time {
     width: 110px;
     margin-right: 20px;
@@ -75,6 +79,7 @@ html, body {
 }
 
 .subheader {
+  position: relative;
   font-size: 24px;
   text-align: center;
   padding: 25px 20px 0;
@@ -83,6 +88,7 @@ html, body {
 }
 
 .subtext {
+  position: relative;
   color: #7ffffb;
   font-size: 18px;
   margin: 10px auto 40px;
@@ -91,6 +97,7 @@ html, body {
 }
 
 .email {
+  position: relative;
   text-align: center;
   margin: 0 auto 40px;
   input {
@@ -144,6 +151,7 @@ html, body {
   padding: 10px 20px;
   color: #7ffffb;
   &.no-top { padding-top: 0; }
+  &.more-bottom { padding-bottom: 60px; }
 }
 
 .confirmation-illustration {
@@ -268,10 +276,6 @@ html, body {
   }
 }
 
-@media (max-width: 1400px) {
-  .image-con { position: relative; left: 0; top: 0; text-align: center; }
-}
-
 @media (max-width: 780px) {
   .confirmation-illustration { padding: 20px 15px 0; }
   .confirmation-section .share {
@@ -287,6 +291,8 @@ html, body {
 }
 
 @media (max-width: 600px) {
+  .image-con { position: relative;  img { opacity: 0.8; } }
+  .countdown { padding-bottom: 0; }
   .navigation {
     text-align: center;
     height: auto;
@@ -303,10 +309,6 @@ html, body {
 @media (max-width: 575px) {
   .countdown .time { margin-bottom: 25px; }
   .countdown .time:last-child { margin-right: 20px; }
-}
-
-@media (max-width: 550px) {
-  .image-con { display: none; }
 }
 
 @media (max-width: 500px) {
