@@ -63,6 +63,8 @@
     text-align: center;
     display: inline-block;
     vertical-align: middle;
+    .padded-width { width: 80%; padding: 0 20px; }
+    .full-width { width: 100%; }
     .e { width: 249px; }
     .d { width: 242px; }
     .p { width: 277px; }
