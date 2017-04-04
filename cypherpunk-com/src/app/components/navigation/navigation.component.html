@@ -1,11 +1,13 @@
 <div id="nav" class="nav">
   <div class="nav-left">
-    <a routerLink="/">
+    <a routerLink="/" *ngIf="enableLinks">
       <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
+
+    <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
   </div>
 
-  <nav class="nav-right">
+  <nav class="nav-right" *ngIf="enableLinks">
     <ul>
       <li>
         <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
@@ -36,12 +38,14 @@
 <div id="scrolled-nav" class="scrolled-nav-container">
   <div class="nav">
     <div class="nav-left">
-      <a routerLink="/">
+      <a routerLink="/" *ngIf="enableLinks">
         <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
       </a>
+
+      <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
     </div>
 
-    <nav class="nav-right">
+    <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
           <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
@@ -72,11 +76,13 @@
 
 <div class="mobile-nav">
   <div class="mobile-nav-left">
-    <a routerLink="/">
+    <a routerLink="/" *ngIf="enableLinks">
       <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
 
-    <div class="mobile-nav-right" (click)="showDropDown = !showDropDown">
+    <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
+
+    <div class="mobile-nav-right" (click)="showDropDown = !showDropDown" *ngIf="enableLinks">
       <img src="/assets/icon-menu.png" alt="Menu Button" title="Click to Open Menu">
     </div>
   </div>
@@ -101,7 +107,7 @@
   <div class="clear"></div>
 </div>
 
-<div id="scrolled-mobile-nav" class="scrolled-mobile-nav" *ngIf="bannerModel">
+<div id="scrolled-mobile-nav" class="scrolled-mobile-nav" *ngIf="bannerModel && enableLinks">
   <a href="{{bannerModel.link}}">
     <div class="left">
       <div class="heading">

@@ -11,7 +11,8 @@ import { Component, HostListener, NgZone } from '@angular/core';
 })
 export class AccountNavigationComponent {
   user: any;
-  showDropDown = false;
+  enableLinks: boolean = true;
+  showDropDown: boolean = false;
   scrolledNavElement: HTMLElement;
 
   constructor(
@@ -20,7 +21,13 @@ export class AccountNavigationComponent {
     private auth: AuthService,
     private session: SessionService,
     private alertService: AlertService
-  ) { this.user = session.user; }
+  ) {
+    // detect route
+    if (this.router.url.startsWith('/account/upgrade')) { this.enableLinks = false; }
+
+    // assign user from session
+    this.user = session.user;
+  }
 
   signout() {
     this.auth.signout()

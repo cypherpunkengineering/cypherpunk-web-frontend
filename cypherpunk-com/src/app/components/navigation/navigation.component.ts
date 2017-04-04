@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
@@ -9,6 +10,7 @@ import * as platform from 'platform';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  enableLinks: boolean = true;
   showDropDown: boolean = false;
   scrolledNavElement: HTMLElement;
   scrolledMobileNavElement: HTMLElement;
@@ -25,7 +27,14 @@ export class NavigationComponent {
     link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
   };
 
-  constructor(private auth: AuthService, private session: SessionService) {
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private session: SessionService
+  ) {
+    // detect route
+    if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
+
     // detect os setup
     let os: string = platform.os.family;
     if (os.indexOf('Android') > -1) { this.bannerModel = this.androidModel; }
@@ -51,7 +60,7 @@ export class NavigationComponent {
     if (currentPosition > 60) {
       this.scrolledNavElement.style.opacity = '1';
       this.scrolledNavElement.style.visibility = 'visible';
-      if (this.bannerModel) {
+      if (this.bannerModel && this.enableLinks) {
         this.scrolledMobileNavElement.style.opacity = '1';
         this.scrolledMobileNavElement.style.visibility = 'visible';
       }
@@ -59,7 +68,7 @@ export class NavigationComponent {
     else {
       this.scrolledNavElement.style.opacity = '0';
       this.scrolledNavElement.style.visibility = 'hidden';
-      if (this.bannerModel) {
+      if (this.bannerModel && this.enableLinks) {
         this.scrolledMobileNavElement.style.opacity = '0';
         this.scrolledMobileNavElement.style.visibility = 'hidden';
       }
