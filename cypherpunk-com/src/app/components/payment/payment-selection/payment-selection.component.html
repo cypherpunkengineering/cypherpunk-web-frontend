@@ -9,16 +9,6 @@
     </div>
   </div>
 
-  <div class="type-container" (click)="update('a')" [ngClass]="{'active': paymentMethod === 'a'}">
-    <img [ngClass]="{'show': paymentMethod === 'a'}" src="/assets/payment/amazon-selected.png">
-    <img [ngClass]="{'show': paymentMethod !== 'a'}" src="/assets/payment/amazon.png">
-
-    <div class="text">
-      <input id="a" type="radio" name="paymentOptions" [checked]="paymentMethod === 'a'">
-      <label for="a">Amazon</label>
-    </div>
-  </div>
-
   <div class="type-container" (click)="update('pp')" [ngClass]="{'active': paymentMethod === 'pp'}">
     <img [ngClass]="{'show': paymentMethod === 'pp'}" src="/assets/payment/paypal-selected.png">
     <img [ngClass]="{'show': paymentMethod !== 'pp'}" src="/assets/payment/paypal.png">
@@ -26,6 +16,16 @@
     <div class="text">
       <input id="pp" type="radio" name="paymentOptions" [checked]="paymentMethod === 'pp'">
       <label for="pp">Paypal</label>
+    </div>
+  </div>
+
+  <div class="type-container" (click)="update('a')" [ngClass]="{'active': paymentMethod === 'a'}">
+    <img [ngClass]="{'show': paymentMethod === 'a'}" src="/assets/payment/amazon-selected.png">
+    <img [ngClass]="{'show': paymentMethod !== 'a'}" src="/assets/payment/amazon.png">
+
+    <div class="text">
+      <input id="a" type="radio" name="paymentOptions" [checked]="paymentMethod === 'a'">
+      <label for="a">Amazon</label>
     </div>
   </div>
 
