@@ -522,8 +522,8 @@ handlers: # should be ordered from most specific to least specific
 
 # site root
 - url: /
-  static_files: target/cypherpunk.txt
-  upload: target/cypherpunk.txt
+  static_files: target/cypherpunk.html
+  upload: target/cypherpunk.html
   expiration: "10m"
   secure: always
   redirect_http_response_code: 301
