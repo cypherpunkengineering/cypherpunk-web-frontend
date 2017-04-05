@@ -18,6 +18,7 @@ export class SetupComponent implements OnInit {
   regionArray = [];
   freeAccount: boolean = true;
   vpnSelect: string = 'openvpn';
+  useCypherplay: boolean = false;
 
   countrySelect: string = '';
   profile: string = '';
@@ -127,7 +128,7 @@ export class SetupComponent implements OnInit {
   }
 
   generateProfile() {
-    let hostname, profileTempArray;
+    let hostname, profileTempArray, profileTempEnd;
     hostname = this.countrySelect;
 
     profileTempArray = [
@@ -146,7 +147,23 @@ export class SetupComponent implements OnInit {
       'proto udp',
       'remote ' + hostname + ' 7133',
       'cipher AES-128-CBC',
-      'auth-user-pass',
+      'auth-user-pass'
+    ];
+
+    if (this.useCypherplay) {
+      profileTempArray = profileTempArray.concat([
+        'pull-filter ignore "dhcp-option DNS 10.10.10.10"',
+        'pull-filter ignore "route 10.10.10.10 255.255.255.255"',
+        'dhcp-option DNS 10.10.10.14',
+        'dhcp-option DNS 10.10.11.14',
+        'dhcp-option DNS 10.10.12.14',
+        'route 10.10.10.14',
+        'route 10.10.11.14',
+        'route 10.10.12.14'
+      ]);
+    }
+
+    profileTempEnd = [
       '<ca>',
       '-----BEGIN CERTIFICATE-----',
       'MIIFiTCCA3GgAwIBAgICEAAwDQYJKoZIhvcNAQELBQAwUTELMAkGA1UEBhMCSVMx',
@@ -214,6 +231,7 @@ export class SetupComponent implements OnInit {
       '-----END CERTIFICATE-----',
       '</ca>'
     ];
+    profileTempArray = profileTempArray.concat(profileTempEnd);
 
     this.profile = profileTempArray.join('\r\n');
     this.downloadButtonEnabled = true;
