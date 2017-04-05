@@ -45,7 +45,7 @@ export class PlansService {
       id: 'semiannually5995',
       price: 9.99,
       bcPrice: undefined,
-      period: '6 Months',
+      period: '6 Monthly',
       total: 59.95,
       bcTotal: undefined,
       yearly: '59.95',

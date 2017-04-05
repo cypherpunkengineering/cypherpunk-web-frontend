@@ -3,81 +3,75 @@
 
   .price-box {
     display: inline-block;
-    width: 250px;
-    margin: 0 50px 0 0;
+    margin: 0 15px 0 0;
     cursor: pointer;
     color: #1987bd;
+    vertical-align: middle;
     &:last-child { margin: 0; }
     &.active {
-      color: #4a991c;
-      .box {
-        border-color: #4a991c;
-        .separator { background-color: #4a991c; }
-        .savings .saves { border-color: #4a991c; }
-        .select .btn { background-color: #4a991c; }
-      }
+      .box { border-color: #00d630; }
+      .box .box-inner { border-color: #00d630;}
     }
 
     .best-value {
-      width: 225px;
-      margin: auto;
-      padding: 10px;
+      width: 135px;
+      margin: 0 0 5px auto;
+      padding: 5px;
       color: #fff;
-      font-size: 21px;
-      background-color: #ff7857;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      background-color: #00d630;
     }
 
     .box {
+      width: 275px;
       position: relative;
-      border: solid 2px #1987bd;
-      border-radius: 5px;
-      padding: 10px 0 20px;
-      width: 250px;
+      border: 3px solid #d9dfe2;
+      color: #333;
 
-      &.buff { border-width: 5px; }
+      .box-inner { height: 100%; border: 2px solid transparent; }
+
+      &.buff {
+        height: 300px;
+        margin-bottom: 30px;
+        .period { margin: 40px 0 15px; }
+      }
 
       .period {
-        margin: 10px 0;
-        font-size: 23px;
+        margin: 25px 0 15px;
+        font-size: 29px;
         font-weight: 500;
+        color: #008ace;
       }
 
       .price-area {
+        color: #333;
         .price { font-size: 50px; font-weight: bold; }
-        .price-time { font-size: 23px; }
+        .price-time { font-size: 16px; }
       }
 
       .separator {
-        width: 90%;
+        width: 170px;
         height: 2px;
         margin: 20px auto 15px;
-        background-color: #1987bd;
+        background-color: #d9dfe2;
         opacity: 0.5;
       }
 
+      .yearly { font-size: 14px; }
+
       .savings {
         height: 30px;
-        margin: 20px auto 30px;
+        margin: 0 auto 20px;
         .saves {
+          color: #00d630;
           font-size: 16px;
-          border: 2px dashed #1987bd;
-          border-radius: 10px;
           padding: 10px;
           margin: auto;
-          width: 100px;
+          width: 120px;
+          &.larger { font-size: 20px; margin: 0 auto 0; }
         }
       }
-
-      .select .btn {
-        padding: 10px;
-        font-size: 18px;
-        background-color: #1987bd;
-        border-radius: 30px;
-        width: 130px;
-      }
-
     }
   }
 }
