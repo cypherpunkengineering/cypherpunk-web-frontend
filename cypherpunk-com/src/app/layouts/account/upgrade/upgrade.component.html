@@ -133,7 +133,7 @@
         To finish sign-up, click on the "Pay with Amazon" button.
       </div>
 
-      <div class="price">
+      <div class="price" *ngIf="paymentMethod === 'a'">
         Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
         <div class="billing-rate">
           Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)

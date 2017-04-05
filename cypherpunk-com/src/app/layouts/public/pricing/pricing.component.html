@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <div class="pay" *ngIf="paymentMethod === 'a'">
+      <div class="pay">
         <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
           Pay With Amazon
         </button>
