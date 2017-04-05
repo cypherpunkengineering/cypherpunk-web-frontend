@@ -36,7 +36,9 @@
 
   <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': selectedPlan.id === plans[1].id }">
 
-    <div class="best-value">Most Popular Plan</div>
+    <div class="best-value">
+      <div class="text">Most Popular Plan</div>
+    </div>
     <div class="box buff">
       <div class="box-inner">
         <div class="period">{{plans[1].period}}</div>

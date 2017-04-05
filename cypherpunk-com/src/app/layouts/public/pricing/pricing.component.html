@@ -19,8 +19,10 @@
 
   <div class="select-plan">
     <div class="page-number one">
-      <div class="number">1</div>
-      <div class="text">Select a plan that works for you</div>
+      <div>
+        <div class="number">1</div>
+        Select a plan that works for you
+      </div>
     </div>
 
     <app-price-boxes [btc]="showBTC"></app-price-boxes>
@@ -30,8 +32,10 @@
 
   <div class="account-creation">
     <div class="page-number">
-      <div class="number">2</div>
-      <div class="text">Create your secure account</div>
+      <div>
+        <div class="number">2</div>
+        Create your secure account
+      </div>
     </div>
 
     <app-account-creation-form [accountFormData]="accountFormData" #accounts></app-account-creation-form>
@@ -41,101 +45,130 @@
 
   <div class="payment-selection">
     <div class="page-number">
-      <div class="number">3</div>
-      <div class="text">Select a payment option</div>
+      <div>
+        <div class="number">3</div>
+        Select a payment option
+      </div>
     </div>
 
     <app-payment-selection [paymentMethod]="paymentMethod" (selectOption)="selectOption($event)"></app-payment-selection>
   </div>
 
   <div class="payment-info">
-
     <div class="credit-card" *ngIf="paymentMethod === 'cc'">
 
       <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
 
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
-        </div>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Proceed" button.
+      </div>
 
-        <div class="pay">
-          <button class="btn blue" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
-            Join Now
-          </button>
+      <div class="price">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
+      </div>
+
+      <div class="pay">
+        <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
+          Proceed
+        </button>
+      </div>
+
+      <div class="upgrade">
+        <a routerLink="/account">Already have an account? Upgrade here</a>
+      </div>
+      <div class="agree">
+        By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
     </div>
 
     <div class="amazon" [hidden]="paymentMethod !== 'a'">
       <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
-      <div class="total" *ngIf="paymentMethod === 'a'">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Proceed" button.
+      </div>
+
+      <div class="price" *ngIf="paymentMethod === 'a'">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
-        <div class="pay">
-          <button id="payWithAmazon" class="btn blue" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-          Join Now
-          </button>
-        </div>
+      </div>
+
+      <div class="pay" *ngIf="paymentMethod === 'a'">
+        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          Pay With Amazon
+        </button>
+      </div>
+
+      <div class="upgrade">
+        <a routerLink="/account">Already have an account? Upgrade here</a>
+      </div>
+      <div class="agree">
+        By Paying with Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
     </div>
 
     <div class="paypal" *ngIf="paymentMethod === 'pp'">
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
+      <div class="pre-text">
+        To finish sign-up, click on the "Continue to Paypal" button.
+      </div>
+
+      <div class="price">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
-        <div class="pay">
-          <button class="btn blue" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-            Join Now
-          </button>
-        </div>
+      </div>
+
+      <div class="pay">
+        <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          Continue to Paypal
+        </button>
+      </div>
+
+      <div class="upgrade">
+        <a routerLink="/account">Already have an account? Upgrade here</a>
+      </div>
+      <div class="agree">
+        By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
 
       <app-paypal [userId]="userId" #paypal></app-paypal>
     </div>
 
     <div class="bitcoin" *ngIf="paymentMethod === 'bc'">
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total:
-          <span class="total-price">
-            {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
-          </span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
-        </div>
-        <div class="pay">
-          <button class="btn blue" (click)="payWithBitpay()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-            Join Now
-          </button>
+      <div class="pre-text">
+        To finish sign-up, click on the "Continue to BitPay" button.
+      </div>
+
+      <div class="price">
+        Order Total:
+        <span class="total-price">
+          {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
+        </span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (₿ ~ {{ plansService.selectedPlan.bcPrice }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
       </div>
 
-      <app-bitpay [userId]="userId" #bitpay></app-bitpay>
-    </div>
+      <div class="pay">
+        <button class="btn green" (click)="payWithBitpay()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          Continue to BitPay
+        </button>
+      </div>
 
-    <div class="upgrade">
-      <a routerLink="/account">Already have an account? Upgrade here</a>
-    </div>
-    <div class="agree">
-      By ordering you agree with our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+      <div class="upgrade">
+        <a routerLink="/account">Already have an account? Upgrade here</a>
+      </div>
+      <div class="agree">
+        By continuing to BitPay you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+      </div>
+
+      <app-bitpay [userId]="userId" #bitpay></app-bitpay>
     </div>
   </div>
 

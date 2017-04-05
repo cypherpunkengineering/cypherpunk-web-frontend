@@ -20,8 +20,10 @@
 
   <div class="select-plan">
     <div class="page-number one">
-      <div class="number">1</div>
-      <div class="text">Select a plan that works for you</div>
+      <div>
+        <div class="number">1</div>
+        Select a plan that works for you
+      </div>
     </div>
 
     <app-price-boxes [btc]="showBTC"></app-price-boxes>
@@ -31,8 +33,10 @@
 
   <div class="payment-selection">
     <div class="page-number">
-      <div class="number">2</div>
-      <div class="text">Select a payment option</div>
+      <div>
+        <div class="number">2</div>
+        Select a payment option
+      </div>
     </div>
 
     <app-payment-selection [paymentMethod]="paymentMethod" (selectOption)="selectOption($event)"></app-payment-selection>
@@ -94,20 +98,25 @@
         </div>
       </div>
 
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
-        </div>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Proceed" button.
+      </div>
 
-        <div class="pay">
-          <button class="btn blue" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
-            Upgrade Now
-          </button>
+      <div class="price">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
+      </div>
+
+      <div class="pay">
+        <button class="btn green" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
+          Proceed
+        </button>
+      </div>
+
+      <div class="agree">
+        By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
     </div>
 
@@ -120,19 +129,25 @@
 
       <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
-      <div class="total" *ngIf="paymentMethod === 'a'">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Pay with Amazon" button.
+      </div>
+
+      <div class="price">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
-        <div class="pay">
-          <button id="payWithAmazon" class="btn blue" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="disablePayment">
-            Upgrade Now
-          </button>
-        </div>
+      </div>
+
+      <div class="pay">
+        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="disablePayment">
+          Pay with Amazon
+        </button>
+      </div>
+
+      <div class="agree">
+        By paying with Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
     </div>
 
@@ -143,19 +158,25 @@
         </p>
       </div>
 
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Continue to PayPal" button.
+      </div>
+
+      <div class="price">
+        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
-        <div class="pay">
-          <button class="btn blue" (click)="payWithPaypal()" [disabled]="disablePayment">
-            Upgrade Now
-          </button>
-        </div>
+      </div>
+
+      <div class="pay">
+        <button class="btn green" (click)="payWithPaypal()" [disabled]="disablePayment">
+          Continue to PayPal
+        </button>
+      </div>
+
+      <div class="agree">
+        By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
 
       <app-paypal [userId]="userId" #paypal></app-paypal>
@@ -168,29 +189,31 @@
         </p>
       </div>
 
-      <div class="total">
-        <div class="price">
-          <img src="/assets/payment/total.png" alt="Total">
-          Order Total:
-          <span class="total-price">
-            {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
-          </span>
-          <div class="billing-rate">
-            Payment Billed {{ plansService.selectedPlan.rate }}
-          </div>
-        </div>
-        <div class="pay">
-          <button class="btn blue" (click)="payWithBitpay()" [disabled]="disablePayment">
-            Upgrade Now
-          </button>
+      <div class="pre-text tall">
+        To finish sign-up, click on the "Continue to BitPay" button.
+      </div>
+
+      <div class="price">
+        Order Total:
+        <span class="total-price">
+          {{ '₿ ~' + plansService.selectedPlan.bcTotal + ' BTC' }}
+        </span>
+        <div class="billing-rate">
+          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (₿ ~ {{ plansService.selectedPlan.bcPrice }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
       </div>
 
-      <app-bitpay [userId]="userId" #bitpay></app-bitpay>
-    </div>
+      <div class="pay">
+        <button class="btn green" (click)="payWithBitpay()" [disabled]="disablePayment">
+          Continue to BitPay
+        </button>
+      </div>
 
-    <div class="agree">
-      By ordering you agree with our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+      <div class="agree">
+        By continuing to BitPay you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+      </div>
+
+      <app-bitpay [userId]="userId" #bitpay></app-bitpay>
     </div>
   </div>
 

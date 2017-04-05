@@ -14,13 +14,18 @@
     }
 
     .best-value {
-      width: 135px;
-      margin: 0 0 5px auto;
-      padding: 5px;
-      color: #fff;
-      font-size: 12px;
-      text-transform: uppercase;
-      background-color: #00d630;
+      width: 275px;
+      margin: 0 auto 5px;
+      overflow: auto;
+      .text {
+        padding: 5px;
+        color: #fff;
+        font-size: 12px;
+        text-transform: uppercase;
+        background-color: #00d630;
+        width: 135;
+        float: right;
+      }
     }
 
     .box {
@@ -78,6 +83,6 @@
 
 @media (max-width: 900px) {
   .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
-  .price-boxes .price-box:last-child { margin: 25px 0 25px; }
+  .price-boxes .price-box.active { margin: 0; width: 100%; }
   .price-boxes .price-box .box { margin: auto;}
 }

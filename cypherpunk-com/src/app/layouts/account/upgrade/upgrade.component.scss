@@ -5,23 +5,6 @@
   margin: auto;
 }
 
-.fake-nav {
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  overflow: auto;
-
-  .nav-left {
-    float: left;
-    padding: 15px 0 15px 15px;
-
-    img {
-      width: 227px;
-      height: 40px;
-    }
-  }
-}
-
 .page-header {
   text-align: center;
 
@@ -51,24 +34,19 @@
 .page-number {
   text-align: left;
   margin: 0 0 50px;
+  font-size: 30px;
+  color: #163238;
 
   &.one { width: 90%; margin: 0 auto 50px; }
 
   .number {
     display: inline-block;
-    font-size: 30px;
     background-color: #4a991c;
     border-radius: 50px;
     margin: 0 10px 0 0;
     color: #fff;
     width: 36px;
     text-align: center;
-  }
-
-  .text {
-    font-size: 30px;
-    color: #163238;
-    display: inline-block;
   }
 }
 
@@ -80,8 +58,6 @@
   border-radius: 5px;
   margin: 50px auto 70px;
   padding: 30px 35px 40px;
-
-  .upgrade { padding: 20px 0; }
 
   .list-cards {
     .tabs {
@@ -151,36 +127,28 @@
     p { margin: 10px 0 20px; }
   }
 
-  p { margin: 10px 5px; }
+  .pre-text { font-size: 14px; padding: 10px 0 40px; }
+  .pre-text.tall { padding: 40px 0 40px; }
 
-  .total {
-    font-size: 21px;
+  .price {
+    font-size: 18px;
+    font-weight: bold;
     color: #163238;
-    overflow: auto;
-    border: dashed 2px #67b23f;
-    border-radius: 5px;
-    margin: 20px 0;
-    padding: 20px 40px;
-
-    .price {
-      float: left;
-      color: #163238;
-      img { width: 33px; margin: 0 10px -5px 0; }
-      .total-price { color: #67b23f; }
-      .billing-rate {
-        margin: 10px 0 0;
-        font-size: 14px;
-        color: #7f7979;
-        text-transform: capitalize;
-      }
-    }
-
-    .pay {
-      float: right;
-      text-align: center;
-      .btn { width: 240px; margin: 0; }
+    .total-price { color: #67b23f; }
+    .billing-rate {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: #7f7979;
+      text-transform: capitalize;
     }
   }
+
+  .pay {
+    padding: 20px 0 0;
+    .btn { width: 240px; margin: 0; }
+  }
+
+  .agree { font-size: 14px; padding: 40px 0 0; }
 }
 
 .features {
@@ -245,7 +213,7 @@
 
 @media (max-width: 375px) {
   .fake-nav .nav-left { width: 100%; text-align: center; padding: 15px; }
-  .payment-info { padding: 10px 10px; }
+  .payment-info { padding: 10px 10px 20px; }
   .payment-info .list-cards .tabs { font-size: 20px; }
   .payment-info .list-cards .card .logo { width: 100%; }
   .payment-info .list-cards .card .text { width: 100%; }
