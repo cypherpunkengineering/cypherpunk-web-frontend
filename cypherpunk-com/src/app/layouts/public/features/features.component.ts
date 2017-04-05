@@ -19,9 +19,7 @@ export class FeaturesComponent implements OnInit {
   constructor(
     private router: Router,
     @Inject(DOCUMENT) private document: any
-  ) {
-    this.document.title = 'Cypherpunk Privacy Features';
-  }
+  ) { this.document.title = 'Cypherpunk Privacy Features'; }
 
   ngOnInit() {
     this.router.events.subscribe((evt) => {

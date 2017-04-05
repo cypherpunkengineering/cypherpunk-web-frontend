@@ -10,6 +10,7 @@ import * as platform from 'platform';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  isFeatures: boolean = false;
   enableLinks: boolean = true;
   showDropDown: boolean = false;
   scrolledNavElement: HTMLElement;
@@ -34,6 +35,7 @@ export class NavigationComponent {
   ) {
     // detect route
     if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
+    if (this.router.url.startsWith('/features')) { this.isFeatures = true; }
 
     // detect os setup
     let os: string = platform.os.family;
