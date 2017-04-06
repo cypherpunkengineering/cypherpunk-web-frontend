@@ -15,6 +15,7 @@ export class NavigationComponent {
   showDropDown: boolean = false;
   scrolledNavElement: HTMLElement;
   scrolledMobileNavElement: HTMLElement;
+  featuresSubnav: HTMLElement;
 
   bannerModel;
   androidModel = {
@@ -55,6 +56,7 @@ export class NavigationComponent {
   handleScrollEvent(event) {
     this.scrolledNavElement = document.getElementById('scrolled-nav');
     this.scrolledMobileNavElement = document.getElementById('scrolled-mobile-nav');
+    this.featuresSubnav = document.getElementById('features-subnav');
 
     // we round here to reduce a little workload
     let currentPosition = Math.round(window.scrollY);
@@ -74,6 +76,15 @@ export class NavigationComponent {
         this.scrolledMobileNavElement.style.opacity = '0';
         this.scrolledMobileNavElement.style.visibility = 'hidden';
       }
+    }
+
+    if (currentPosition > 497 && this.isFeatures) {
+      this.featuresSubnav.style.opacity = '1';
+      this.featuresSubnav.style.visibility = 'visible';
+    }
+    else {
+      this.featuresSubnav.style.opacity = '0';
+      this.featuresSubnav.style.visibility = 'hidden';
     }
   }
 }

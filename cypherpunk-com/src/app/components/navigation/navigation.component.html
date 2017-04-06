@@ -73,41 +73,41 @@
     <div class="clear"></div>
   </div>
 
-    <!-- /features subheader -->
-    <div class="features" *ngIf="isFeatures">
-      <ul class="features-inner">
-        <a routerLink="/features" fragment="privacy">
-          <li [ngClass]="{'active': currentTab === 'privacy'}">
-            Privacy
-          </li>
-        </a>
-        <a routerLink="/features" fragment="access">
-          <li [ngClass]="{'active': currentTab === 'access'}">
-            Access
-          </li>
-        </a>
-        <a routerLink="/features" fragment="network">
-          <li [ngClass]="{'active': currentTab === 'network'}">
-            Network
-          </li>
-        </a>
-        <a routerLink="/features" fragment="freedom">
-          <li [ngClass]="{'active': currentTab === 'freedom'}">
-            Freedom
-          </li>
-        </a>
-        <a routerLink="/features" fragment="security">
-          <li [ngClass]="{'active': currentTab === 'security'}">
-            Security
-          </li>
-        </a>
-        <a routerLink="/features" fragment="support">
-          <li [ngClass]="{'active': currentTab === 'support'}">
-            Support
-          </li>
-        </a>
-      </ul>
-    </div>
+  <!-- /features subheader -->
+  <div id="features-subnav" class="features">
+    <ul class="features-inner">
+      <a routerLink="/features" fragment="privacy">
+        <li [ngClass]="{'active': currentTab === 'privacy'}">
+          Privacy
+        </li>
+      </a>
+      <a routerLink="/features" fragment="access">
+        <li [ngClass]="{'active': currentTab === 'access'}">
+          Access
+        </li>
+      </a>
+      <a routerLink="/features" fragment="network">
+        <li [ngClass]="{'active': currentTab === 'network'}">
+          Network
+        </li>
+      </a>
+      <a routerLink="/features" fragment="freedom">
+        <li [ngClass]="{'active': currentTab === 'freedom'}">
+          Freedom
+        </li>
+      </a>
+      <a routerLink="/features" fragment="security">
+        <li [ngClass]="{'active': currentTab === 'security'}">
+          Security
+        </li>
+      </a>
+      <a routerLink="/features" fragment="support">
+        <li [ngClass]="{'active': currentTab === 'support'}">
+          Support
+        </li>
+      </a>
+    </ul>
+  </div>
 </div>
 
 <div class="mobile-nav">
