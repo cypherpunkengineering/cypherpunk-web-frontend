@@ -103,9 +103,9 @@
             height: 350px;
             overflow: hidden;
             background-color: #1986BE;
+            background-size: cover;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            img { width: 100%; height: 100%; object-fit: cover; }
             .read-more {
               display: none;
               position: absolute;
@@ -187,9 +187,7 @@
           &:nth-child(odd) { margin: 0 0 25px; }
 
           &:hover {
-            .image .read-more {
-              display: block;
-            }
+            .image .read-more { display: block; }
             .text {
               color: #fc6146;
               background-color: #fff;
@@ -202,10 +200,10 @@
             height: 150px;
             position: relative;
             background-color: #1986BE;
+            background-size: cover;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
             overflow: hidden;
-            img { width: 100%; height: 100%; object-fit: cover; }
             .read-more {
               display: none;
               position: absolute;
@@ -262,10 +260,10 @@
             height: 100px;
             float: left;
             background-color: #1986BE;
+            background-size: cover;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
             overflow: hidden;
-            img { width: 100%; height: 100%; object-fit: cover; }
           }
 
           .text {
