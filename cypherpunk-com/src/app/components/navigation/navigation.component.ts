@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
@@ -10,6 +10,7 @@ import * as platform from 'platform';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  currentTab: string;
   isFeatures: boolean = false;
   enableLinks: boolean = true;
   showDropDown: boolean = false;
@@ -37,6 +38,13 @@ export class NavigationComponent {
     // detect route
     if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
     if (this.router.url.startsWith('/features')) { this.isFeatures = true; }
+
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) { return; }
+
+      const tree = this.router.parseUrl(this.router.url);
+      if (tree.fragment) { this.currentTab = tree.fragment; }
+    });
 
     // detect os setup
     let os: string = platform.os.family;
