@@ -6,36 +6,68 @@ var _hour = _minute * 60;
 var _day = _hour * 24;
 var timer;
 
+var days = document.getElementById('days');
+var hours = document.getElementById('hours');
+var minutes = document.getElementById('minutes');
+var seconds = document.getElementById('seconds');
+
 function showRemaining() {
   var now = new Date();
   var distance = launchDate - now;
   if (distance < 0) {
     clearInterval(timer);
-    document.getElementById('days').innerHTML = '00';
-    document.getElementById('hours').innerHTML = '00';
-    document.getElementById('minutes').innerHTML = '00';
-    document.getElementById('seconds').innerHTML = '00';
+    days.innerHTML = '00';
+    hours.innerHTML = '00';
+    minutes.innerHTML = '00';
+    seconds.innerHTML = '00';
     return;
   }
-  var days = Math.floor(distance / _day);
-  var hours = Math.floor((distance % _day) / _hour);
-  var minutes = Math.floor((distance % _hour) / _minute);
-  var seconds = Math.floor((distance % _minute) / _second);
+  var daysMeasured = Math.floor(distance / _day);
+  var hoursMeasured = Math.floor((distance % _day) / _hour);
+  var minutesMeasured = Math.floor((distance % _hour) / _minute);
+  var secondsMeasured = Math.floor((distance % _minute) / _second);
 
-  document.getElementById('days').innerHTML = days;
-  document.getElementById('hours').innerHTML = hours;
-  document.getElementById('minutes').innerHTML = minutes;
-  document.getElementById('seconds').innerHTML = seconds;
+  days.innerHTML = daysMeasured;
+  hours.innerHTML = hoursMeasured;
+  minutes.innerHTML = minutesMeasured;
+  seconds.innerHTML = secondsMeasured;
 }
 
-showRemaining();
-timer = setInterval(showRemaining, 1000);
+if (days && hours && minutes && seconds) {
+  showRemaining();
+  timer = setInterval(showRemaining, 1000);
+}
 
 
 // Email subscription
 var emailInput = document.getElementById('email');
 var emailButton = document.getElementById('subscribe');
-emailButton.addEventListener('click', function() {
-  var value = emailInput.value;
-  console.log(value);
-});
+if (emailInput && emailButton) {
+  emailButton.addEventListener('click', function() {
+    var value = emailInput.value;
+    console.log(value);
+  });
+}
+
+
+// copy share link
+function copyTextToClipboard() {
+  var input = document.getElementById('cp-share');
+  input.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    if (successful) { window.alert('The link was copied to your clipboard'); }
+    else { window.alert('Could not copy this link to your clipboard'); }
+  }
+  catch (err) {
+    window.alert('Was not able to copy to your clipboard');
+  }
+}
+
+var shareButton = document.getElementById('cp-share-button');
+if (shareButton) {
+  shareButton.addEventListener('click', function() {
+    copyTextToClipboard();
+  });
+}
