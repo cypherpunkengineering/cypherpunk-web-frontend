@@ -16,7 +16,7 @@
       <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" (ngModelChange)="comparePass()">
     </p>
 
-    <div class="error">{{ error.message }}</div>
+    <div class="error" *ngIf="error.message">{{ error.message }}</div>
 
     <p class="center">
       <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">

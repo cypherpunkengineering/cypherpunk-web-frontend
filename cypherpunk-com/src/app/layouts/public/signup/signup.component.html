@@ -19,8 +19,12 @@
 
       <p class="center">
         <button class="btn blue" type="button" (click)="signup()" [disabled]="!validPassword || !validEmail || signinButtonDisabled">
-          Create
+          START YOUR FREE TRIAL
         </button>
+      </p>
+
+      <p class="tos">
+        By clicking this button, you agree to Cypherpunk Privacy's <a routerLink="/terms-of-service">Terms of Service</a>
       </p>
 
       <p class="center">

@@ -1,12 +1,12 @@
 .masthead {
   .header.white {
-    padding: 0 0 50px;
+    padding: 40px 0 50px;
     margin-top: 0;
   }
 }
 
 .btn {
-  width: 321px;
+  width: 400px;
   height: 60px;
   margin-bottom: 25px;
   font-size: 24px;
@@ -15,47 +15,33 @@
 .content {
   min-height: 50vh;
   form {
-    display: table;
+    width: 400px;
     margin: 50px auto 50px;
     text-align: center;
 
-    p { display: table-row;  text-align: left; }
+    p { text-align: left; margin: 0; }
+    p.center { text-align: center; }
 
     label { font-size: 18px; color: #666; }
     .error { color: red; margin: 0 0 25px; }
     .center { text-align: center; }
 
     input {
-      display: table-cell;
-      width: 356px;
-      height: 50px;
+      width: 400px;
+      height: 57px;
       border-radius: 4px;
-      border: solid 1px #999;
-      margin: 5px 0 25px;
+      border: solid 1px #ccc;
+      margin-top: 5px;
+      margin-bottom: 25px;
       font-size: 18px;
-      padding: 10px;
-      color: #666;
+      padding: 8px 24px;
+      color: #333;
     }
   }
 }
 
-@media (max-width: 1060px) {
-  .masthead {
-    .masthead-header { top: 0; }
-    .masthead-image {
-      height: 108px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: 50% 100%;
-      }
-    }
-  }
-}
-
-@media (max-width: 375px) {
-  .btn { width: 300px; }
-  form input { width: 290px; }
+@media (max-width: 430px) {
+  .content form { width: 100%; padding: 0 15px; }
+  .content form input { width: 100%; }
+  .btn { width: 100%; }
 }
