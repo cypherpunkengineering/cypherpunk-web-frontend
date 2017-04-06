@@ -1,7 +1,7 @@
 <div class="payment-options">
   <div class="type-container" (click)="update('cc')" [ngClass]="{'active': paymentMethod === 'cc'}">
-    <img [ngClass]="{'show': paymentMethod === 'cc'}" src="/assets/payment/credit-card-selected.png">
-    <img [ngClass]="{'show': paymentMethod !== 'cc'}" src="/assets/payment/credit-card.png">
+    <img [ngClass]="{'show': paymentMethod === 'cc'}" src="/assets/payment/credit-card-selected@2x.png" srcset="/assets/payment/credit-card-selected.png 500w, /assets/payment/credit-card-selected@2x.png 1000w">
+    <img [ngClass]="{'show': paymentMethod !== 'cc'}" src="/assets/payment/credit-card@2x.png" srcset="/assets/payment/credit-card.png 500w, /assets/payment/credit-card@2x.png 1000w">
 
     <div class="text">
       <input id="cc" type="radio" name="paymentOptions" [checked]="paymentMethod === 'cc'">
@@ -10,8 +10,8 @@
   </div>
 
   <div class="type-container" (click)="update('pp')" [ngClass]="{'active': paymentMethod === 'pp'}">
-    <img [ngClass]="{'show': paymentMethod === 'pp'}" src="/assets/payment/paypal-selected.png">
-    <img [ngClass]="{'show': paymentMethod !== 'pp'}" src="/assets/payment/paypal.png">
+    <img [ngClass]="{'show': paymentMethod === 'pp'}" src="/assets/payment/paypal-selected@2x.png" srcset="/assets/payment/paypal-selected.png 500w, /assets/payment/paypal-selected@2x.png 1000w">
+    <img [ngClass]="{'show': paymentMethod !== 'pp'}" src="/assets/payment/paypal@2x.png" srcset="/assets/payment/paypal.png 500w, /assets/payment/paypal@2x.png">
 
     <div class="text">
       <input id="pp" type="radio" name="paymentOptions" [checked]="paymentMethod === 'pp'">
@@ -20,8 +20,8 @@
   </div>
 
   <div class="type-container" (click)="update('a')" [ngClass]="{'active': paymentMethod === 'a'}">
-    <img [ngClass]="{'show': paymentMethod === 'a'}" src="/assets/payment/amazon-selected.png">
-    <img [ngClass]="{'show': paymentMethod !== 'a'}" src="/assets/payment/amazon.png">
+    <img [ngClass]="{'show': paymentMethod === 'a'}" src="/assets/payment/amazon-selected@2x.png" srcset="/assets/payment/amazon-selected.png 500w, /assets/payment/amazon-selected@2x.png 1000w">
+    <img [ngClass]="{'show': paymentMethod !== 'a'}" src="/assets/payment/amazon@2x.png" srcset="/assets/payment/amazon.png 500w, /assets/payment/amazon@2x.png 1000w">
 
     <div class="text">
       <input id="a" type="radio" name="paymentOptions" [checked]="paymentMethod === 'a'">
@@ -30,8 +30,8 @@
   </div>
 
   <div class="type-container" (click)="update('bc')" [ngClass]="{'active': paymentMethod === 'bc'}">
-    <img [ngClass]="{'show': paymentMethod === 'bc'}" src="/assets/payment/bitcoin-selected.png">
-    <img [ngClass]="{'show': paymentMethod !== 'bc'}" src="/assets/payment/bitcoin.png">
+    <img [ngClass]="{'show': paymentMethod === 'bc'}" src="/assets/payment/bitcoin-selected@2x.png" srcset="/assets/payment/bitcoin-selected.png 500w, /assets/payment/bitcoin-selected@2x.png 1000w">
+    <img [ngClass]="{'show': paymentMethod !== 'bc'}" src="/assets/payment/bitcoin@2x.png" srcset="/assets/payment/bitcoin.png 500w, /assets/payment/bitcoin@2x.png 1000w">
 
     <div class="text">
       <input id="bc" type="radio" name="paymentOptions" [checked]="paymentMethod === 'bc'">
