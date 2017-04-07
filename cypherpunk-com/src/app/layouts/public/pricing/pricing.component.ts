@@ -22,7 +22,7 @@ export class PricingComponent {
   @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
-  paymentMethod = 'cc';
+  paymentMethod = '';
   countries = country_list;
   loading: boolean = false;
   disablePayment: boolean = false;

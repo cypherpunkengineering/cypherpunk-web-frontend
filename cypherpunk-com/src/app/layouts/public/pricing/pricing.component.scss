@@ -16,18 +16,18 @@
   }
 
   .text {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 1.57;
     color: #7f7979;
     margin: auto;
-    .highlight { color: #ff7857; }
+    .highlight { font-weight: bold; color: #000; }
   }
 }
 
 .page-number {
   text-align: left;
   margin: 30px 0;
-  font-size: 30px;
+  font-size: 24px;
   color: #163238;
 
   &.one { margin: 30px auto; }
@@ -39,7 +39,7 @@
     border-radius: 50px;
     margin: 0 10px 0 0;
     color: #fff;
-    width: 36px;
+    width: 28px;
     text-align: center;
   }
 }
@@ -60,7 +60,7 @@
   width: 100%;
   border: 2px solid #f0ecec;
   border-radius: 5px;
-  margin: 50px auto 70px;
+  margin: 50px auto 10px;
   padding: 30px 35px 40px;
 
   .pre-text { font-size: 14px; padding: 10px 0 40px; }
@@ -87,42 +87,17 @@
   .agree { font-size: 14px; padding: 20px 0 0; }
 }
 
-.features {
+.footer {
   width: 100%;
-  margin: 0 auto 80px;
-  text-align: center;
+  background-color: #163138;
+  padding: 30px 0 50px;
 
-  .feature {
+  .footer-inner { width: 100%; max-width: 1000px; margin: auto; }
+
+  .copy {
+    width: 250px;
     text-align: center;
-    display: inline-table;
-    width: 205px;
-    margin: 0 10px 30px 0;
-  }
-}
-
-.countries {
-  width: 100%;
-  background-color: #0d1e26;
-  overflow: auto;
-  padding: 0 0 80px;
-
-  .inner {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-  }
-
-  .countries-header {
-    font-size: 30px;
-    color: #8dfffc;
-    margin: 60px 0 40px 10px;
-  }
-
-  .half {
-    width: 50%;
-    float: left;
-    img.flags { width: 100%; }
-    img.sitting { height: 100%; }
+    color: #8DFFFB;
   }
 }
 
@@ -136,7 +111,6 @@
 @media (max-width: 1000px) {
   .page { padding: 25px 10px 0; }
   .page-header { padding: 0 10px; }
-  .countries .half { width: 100%; }
 }
 
 @media (max-width: 700px) {

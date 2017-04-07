@@ -21,7 +21,7 @@ export class UpgradeComponent {
   @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
-  paymentMethod: string = 'cc';
+  paymentMethod: string = '';
   countries = country_list;
   loading: boolean = true;
   disablePayment: boolean = false;

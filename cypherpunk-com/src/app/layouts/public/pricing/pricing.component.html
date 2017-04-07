@@ -2,16 +2,12 @@
   <app-nav></app-nav>
 </div>
 
-<div class="page down-arrow">
+<div class="page">
   <div class="page-header">
     <div class="title">Choose your Cypherpunk Privacy plan</div>
 
     <div class="text">
-      Experience a complete <span class="highlight">Privacy Suite</span> for all your devices.
-    </div>
-
-    <div class="text">
-      <span class="highlight">100% Money-Back Guarantee</span> in your first 30 days of service.
+      Experience a complete <span class="highlight">Privacy Suite</span> for all your devices. <span class="highlight">100% Money-Back Guarantee</span> in your first 30 days of service.
     </div>
   </div>
 
@@ -52,84 +48,83 @@
     <app-payment-selection [paymentMethod]="paymentMethod" (selectOption)="selectOption($event)"></app-payment-selection>
   </div>
 
-  <div class="payment-info">
-    <div class="credit-card" *ngIf="paymentMethod === 'cc'">
+  <div class="credit-card payment-info" *ngIf="paymentMethod === 'cc'">
 
-      <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
+    <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
 
-      <div class="pre-text tall">
-        To finish sign-up, click on the "Proceed" button.
-      </div>
+    <div class="pre-text tall">
+      To finish sign-up, click on the "Proceed" button.
+    </div>
 
-      <div class="price">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
-        </div>
-      </div>
-
-      <div class="pay">
-        <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
-          Proceed
-        </button>
-      </div>
-
-      <div class="agree">
-        By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    <div class="price">
+      Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+      <div class="billing-rate">
+        Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
       </div>
     </div>
 
-    <div class="amazon" [hidden]="paymentMethod !== 'a'">
-      <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
+    <div class="pay">
+      <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
+        Proceed
+      </button>
+    </div>
 
-      <div class="pre-text tall">
-        To finish sign-up, click on the "Pay with Amazon" button.
-      </div>
+    <div class="agree">
+      By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    </div>
+  </div>
 
-      <div class="price" *ngIf="paymentMethod === 'a'">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
-        </div>
-      </div>
+  <div class="amazon payment-info" [hidden]="paymentMethod !== 'a'">
+    <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
-      <div class="pay">
-        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-          Pay With Amazon
-        </button>
-      </div>
+    <div class="pre-text tall">
+      To finish sign-up, click on the "Pay with Amazon" button.
+    </div>
 
-      <div class="agree">
-        By Paying with Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    <div class="price" *ngIf="paymentMethod === 'a'">
+      Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+      <div class="billing-rate">
+        Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
       </div>
     </div>
 
-    <div class="paypal" *ngIf="paymentMethod === 'pp'">
-      <div class="pre-text">
-        To finish sign-up, click on the "Continue to Paypal" button.
-      </div>
-
-      <div class="price">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
-        </div>
-      </div>
-
-      <div class="pay">
-        <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-          Continue to Paypal
-        </button>
-      </div>
-
-      <div class="agree">
-        By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
-      </div>
-
-      <app-paypal [userId]="userId" #paypal></app-paypal>
+    <div class="pay">
+      <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+        Pay With Amazon
+      </button>
     </div>
 
-    <div class="bitcoin" *ngIf="paymentMethod === 'bc'">
+    <div class="agree">
+      By Paying with Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    </div>
+  </div>
+
+  <div class="paypal payment-info" *ngIf="paymentMethod === 'pp'">
+    <div class="pre-text">
+      To finish sign-up, click on the "Continue to Paypal" button.
+    </div>
+
+    <div class="price">
+      Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+      <div class="billing-rate">
+        Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+      </div>
+    </div>
+
+    <div class="pay">
+      <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+        Continue to Paypal
+      </button>
+    </div>
+
+    <div class="agree">
+      By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+    </div>
+
+    <app-paypal [userId]="userId" #paypal></app-paypal>
+  </div>
+
+  <div class="bitcoin payment-info" *ngIf="paymentMethod === 'bc'">
       <div class="pre-text">
         To finish sign-up, click on the "Continue to BitPay" button.
       </div>
@@ -156,128 +151,20 @@
 
       <app-bitpay [userId]="userId" #bitpay></app-bitpay>
     </div>
-  </div>
-
-  <div class="page-number">
-    <div class="text">Cypherpunk Privacy Features</div>
-  </div>
-
-  <div class="features">
-    <div class="feature">
-      <img src="/assets/payment/features1.png" alt="">
-      <div class="text">
-        24/7 Instant Support Live Chat
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features2.png" alt="">
-      <div class="text">
-        Ultra Fast Servers in 20+ countries
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features3.png" alt="">
-      <div class="text">
-        Friendly Apps
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features4.png" alt="">
-      <div class="text">
-        Official Support
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features5.png" alt="">
-      <div class="text">
-        Strong Encryption Profiles
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features6.png" alt="">
-      <div class="text">
-        Max Speed & Unlimited Bandwidth
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features7.png" alt="">
-      <div class="text">
-        Automatically Secure Public WiFi
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features8.png" alt="">
-      <div class="text">
-        30 Days Risk Free Refund Policy
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features9.png" alt="">
-      <div class="text">
-        5 Simultaneous Connections
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features10.png" alt="">
-      <div class="text">
-        Smart Play For Video Streaming
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features11.png" alt="">
-      <div class="text">
-        No Logging Policy
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features12.png" alt="">
-      <div class="text">
-        Supports P2P
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features13.png" alt="">
-      <div class="text">
-        OpenVPN, IPsec, IKEv2 VPN Support
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features14.png" alt="">
-      <div class="text">
-        HTTP, HTTPS, SOCKS5 Proxy Support
-      </div>
-    </div>
-
-    <div class="feature">
-      <img src="/assets/payment/features15.png" alt="">
-      <div class="text">
-        Block Ads, Trackers, and Malware
-      </div>
-    </div>
-  </div>
 </div>
 
-<div class="countries">
-  <div class="inner">
-    <div class="half">
-      <div class="countries-header">Our Countries are: </div>
-      <img class="flags" src="/assets/payment/flags.png" alt="">
-    </div>
+<div class="footer">
+  <div class="footer-inner">
+    <div class="copy">
+      <div routerLink="/">
+        <a routerLink="/">
+          <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+        </a>
+      </div>
 
-    <div class="half">
+      <div class="footer-copyright">
+        &copy; 2017 Cypherpunk Partners, slf.
+      </div>
     </div>
   </div>
 </div>
