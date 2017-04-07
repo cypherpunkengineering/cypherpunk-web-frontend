@@ -44,11 +44,24 @@ var emailInput = document.getElementById('email');
 var emailButton = document.getElementById('subscribe');
 if (emailInput && emailButton) {
   emailButton.addEventListener('click', function() {
-    var value = emailInput.value;
-    console.log(value);
+    var email = emailInput.value;
+    var password = 'test123';
+    var xmlHttp = new XMLHttpRequest();
+
+    var url = '/api/v0/account/register/signup';
+    xmlHttp.open("POST", url, true);
+
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState === 4) {
+        if (xmlHttp.status === 200) { window.location.href = '/landing-thanks.html'; }
+        else { console.log(xmlHttp.responseText); }
+      }
+      else { console.log(xmlHttp); }
+    };
+
+    xmlHttp.send({ login: email, password: password});
   });
 }
-
 
 // copy share link
 function copyTextToClipboard() {
