@@ -57,7 +57,7 @@ if (emailInput && emailButton) {
           window.location.href = '/landing-thanks.html';
         }
         else if (xmlHttp.status === 409) {
-          setError('This Email is already exists');
+          setError('This Email already exists');
         }
         else { console.log(xmlHttp.responseText); }
       }

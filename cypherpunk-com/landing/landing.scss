@@ -10,10 +10,10 @@ html, body {
 }
 *, *:before, *:after { box-sizing: inherit; }
 
-.container { min-height: 100%; width: 100%; max-width: 1000px; margin: 0 auto -40px; }
+.container { min-height: 100%; width: 100%; max-width: 1000px; margin: 0 auto -20px; }
 .container:after { content: ''; display: block; }
-.footer { text-align: center; padding: 10px 0 80px; a { color: #fff; } }
-.footer, .container:after { height: 40px;}
+.footer { text-align: center; padding: 10px 0 50px; a { color: #fff; } }
+.footer, .container:after { height: 20px;}
 
 .errors {
   display: none;
@@ -71,11 +71,10 @@ html, body {
 
 .header {
   position: relative;
-  font-size: 33px;
+  font-size: 28px;
   font-weight: 600;
   text-align: center;
-  padding: 0 20px 10px;
-  span { color: #7ffffb; }
+  padding: 0 20px 40px;
 }
 
 .countdown {
@@ -284,6 +283,11 @@ html, body {
       margin-left: -8px;
     }
   }
+}
+
+/** Privacy Policy **/
+.privacy-text {
+  
 }
 
 @media (max-width: 780px) {
