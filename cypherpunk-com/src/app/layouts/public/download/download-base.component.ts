@@ -13,8 +13,12 @@ export class DownloadBaseComponent {
     let os: string = platform.os.family;
     if (os.indexOf('OS X') > -1) { router.navigate(['/download/mac']); }
     else if (os.indexOf('Window') > -1) { router.navigate(['/download/windows']); }
-    else if (os.indexOf('Android') > -1) { router.navigate([DownloadPlatforms['android'].link]); }
-    else if (os.indexOf('iOS') > -1) { router.navigate([DownloadPlatforms['ios'].link]); }
+    else if (os.indexOf('Android') > -1) {
+      window.location.href = DownloadPlatforms['android'].link;
+    }
+    else if (os.indexOf('iOS') > -1) {
+      window.location.href = DownloadPlatforms['ios'].link;
+    }
     // else if (os.indexOf('Fedora') > -1 ||
     //          os.indexOf('Red Hat') > -1 ||
     //          os.indexOf('CentOS')) {
