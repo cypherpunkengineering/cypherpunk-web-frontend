@@ -14,7 +14,7 @@ export class AuthService {
   ) { }
 
   signup(user): Promise<void> {
-    let body = { login: user.email, password: user.password };
+    let body = { email: user.email, password: user.password };
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
 
