@@ -48,7 +48,7 @@ if (emailInput && emailButton) {
     var password = 'test123';
     var xmlHttp = new XMLHttpRequest();
 
-    var url = '/api/v0/account/register/signup';
+    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/signup';
     xmlHttp.open("POST", url, true);
 
     xmlHttp.onreadystatechange = function() {
@@ -59,7 +59,8 @@ if (emailInput && emailButton) {
       else { console.log(xmlHttp); }
     };
 
-    xmlHttp.send({ login: email, password: password});
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.send(JSON.stringify({ email: email, password: password}));
   });
 }
 
