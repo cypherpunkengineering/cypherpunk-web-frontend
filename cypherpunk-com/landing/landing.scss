@@ -15,6 +15,30 @@ html, body {
 .footer { text-align: center; padding: 10px 0 80px; a { color: #fff; } }
 .footer, .container:after { height: 40px;}
 
+.errors {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  margin: 25px 0;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  .errors-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 5px;
+
+    .close { float: right; cursor: pointer; }
+  }
+}
+
 .navigation {
   height: 75px;
   overflow: auto;

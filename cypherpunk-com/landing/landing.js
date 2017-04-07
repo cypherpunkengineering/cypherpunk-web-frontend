@@ -1,5 +1,5 @@
 // Coundown timer
-var launchDate = new Date('February 14, 2017 00:00:00');
+var launchDate = new Date('May 17, 2017 00:00:00');
 var _second = 1000;
 var _minute = _second * 60;
 var _hour = _minute * 60;
@@ -56,12 +56,31 @@ if (emailInput && emailButton) {
         if (xmlHttp.status === 200 || xmlHttp.status === 202) {
           window.location.href = '/landing-thanks.html';
         }
+        else if (xmlHttp.status === 409) {
+          setError('This Email is already exists');
+        }
         else { console.log(xmlHttp.responseText); }
       }
     };
 
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.send(JSON.stringify({ email: email, password: password}));
+  });
+}
+
+function setError(errorText) {
+  var errorElement = document.getElementById('error-container');
+  var errorTextElement = document.getElementById('error-text');
+
+  errorElement.style.display = 'block';
+  errorTextElement.innerHTML = errorText;
+}
+
+var errorClose = document.getElementById('error-close');
+if (errorClose) {
+  errorClose.addEventListener('click', function() {
+    var errorElement = document.getElementById('error-container');
+    errorElement.style.display = 'none';
   });
 }
 
