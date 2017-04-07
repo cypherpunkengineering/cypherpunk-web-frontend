@@ -15,8 +15,6 @@
     </div>
   </div>
 
-  <div class="page-divider"></div>
-
   <div class="select-plan">
     <div class="page-number one">
       <div>
@@ -28,20 +26,20 @@
     <app-price-boxes [btc]="showBTC"></app-price-boxes>
   </div>
 
-  <div class="page-divider"></div>
-
   <div class="account-creation">
-    <div class="page-number">
+    <div class="page-number two">
       <div>
         <div class="number">2</div>
         Create your secure account
       </div>
     </div>
 
+    <div class="upgrade">
+      <a routerLink="/account">Already have an account? Upgrade here</a>
+    </div>
+
     <app-account-creation-form [accountFormData]="accountFormData" #accounts></app-account-creation-form>
   </div>
-
-  <div class="page-divider"></div>
 
   <div class="payment-selection">
     <div class="page-number">
@@ -76,9 +74,6 @@
         </button>
       </div>
 
-      <div class="upgrade">
-        <a routerLink="/account">Already have an account? Upgrade here</a>
-      </div>
       <div class="agree">
         By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
@@ -104,9 +99,6 @@
         </button>
       </div>
 
-      <div class="upgrade">
-        <a routerLink="/account">Already have an account? Upgrade here</a>
-      </div>
       <div class="agree">
         By Paying with Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
@@ -130,9 +122,6 @@
         </button>
       </div>
 
-      <div class="upgrade">
-        <a routerLink="/account">Already have an account? Upgrade here</a>
-      </div>
       <div class="agree">
         By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
@@ -161,9 +150,6 @@
         </button>
       </div>
 
-      <div class="upgrade">
-        <a routerLink="/account">Already have an account? Upgrade here</a>
-      </div>
       <div class="agree">
         By continuing to BitPay you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
       </div>
@@ -171,8 +157,6 @@
       <app-bitpay [userId]="userId" #bitpay></app-bitpay>
     </div>
   </div>
-
-  <div class="page-divider"></div>
 
   <div class="page-number">
     <div class="text">Cypherpunk Privacy Features</div>

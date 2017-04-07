@@ -6,12 +6,12 @@
 }
 
 .page-header {
-  text-align: center;
+  text-align: left;
 
   .title {
     font-size: 26px;
     font-weight: bold;
-    margin: 30px auto 30px;
+    margin: 10px auto;
     color: #4a991c;
   }
 
@@ -24,20 +24,14 @@
   }
 }
 
-.page-divider {
-  height: 3px;
-  width: 90%;
-  background-color: #f0ecec;
-  margin: 50px auto;
-}
-
 .page-number {
   text-align: left;
-  margin: 0 0 50px;
+  margin: 30px 0;
   font-size: 30px;
   color: #163238;
 
-  &.one { width: 90%; margin: 0 auto 50px; }
+  &.one { margin: 30px auto; }
+  &.two { margin: 10px auto 30px; }
 
   .number {
     display: inline-block;
@@ -50,12 +44,20 @@
   }
 }
 
-.account-creation { width: 90%; margin: auto; }
+.account-creation {
+  width: 100%;
+  margin: auto;
 
-.payment-selection { width: 90%; margin: auto; }
+  .upgrade {
+    padding: 0 10px;
+    margin: -10px 0 0;
+  }
+}
+
+.payment-selection { width: 100%; margin: auto; }
 
 .payment-info {
-  width: 90%;
+  width: 100%;
   border: 2px solid #f0ecec;
   border-radius: 5px;
   margin: 50px auto 70px;
@@ -82,13 +84,11 @@
     .btn { width: 240px; margin: 0; }
   }
 
-  .upgrade { padding: 40px 0 20px; }
-
-  .agree { font-size: 14px; }
+  .agree { font-size: 14px; padding: 20px 0 0; }
 }
 
 .features {
-  width: 90%;
+  width: 100%;
   margin: 0 auto 80px;
   text-align: center;
 
@@ -135,6 +135,7 @@
 
 @media (max-width: 1000px) {
   .page { padding: 25px 10px 0; }
+  .page-header { padding: 0 10px; }
   .countries .half { width: 100%; }
 }
 
