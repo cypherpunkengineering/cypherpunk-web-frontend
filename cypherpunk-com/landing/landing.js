@@ -53,10 +53,11 @@ if (emailInput && emailButton) {
 
     xmlHttp.onreadystatechange = function() {
       if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 200) { window.location.href = '/landing-thanks.html'; }
+        if (xmlHttp.status === 200 || xmlHttp.status === 202) {
+          window.location.href = '/landing-thanks.html';
+        }
         else { console.log(xmlHttp.responseText); }
       }
-      else { console.log(xmlHttp); }
     };
 
     xmlHttp.setRequestHeader("Content-Type", "application/json");
