@@ -1,5 +1,5 @@
 // Coundown timer
-var launchDate = new Date('May 17, 2017 00:00:00');
+var launchDate = new Date('2017-05-17T00:00:00Z');
 var _second = 1000;
 var _minute = _second * 60;
 var _hour = _minute * 60;
