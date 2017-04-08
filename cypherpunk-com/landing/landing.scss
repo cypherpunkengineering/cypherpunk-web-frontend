@@ -37,6 +37,20 @@ html, body {
 
     .close { float: right; cursor: pointer; }
   }
+
+  .info-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+
+    color: #3c763d;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    border-radius: 5px;
+
+    .close { float: right; cursor: pointer; }
+  }
 }
 
 .navigation {
@@ -287,7 +301,7 @@ html, body {
 
 /** Privacy Policy **/
 .privacy-text {
-  
+
 }
 
 @media (max-width: 780px) {

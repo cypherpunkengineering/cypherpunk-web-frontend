@@ -43,31 +43,39 @@ if (days && hours && minutes && seconds) {
 var emailInput = document.getElementById('email');
 var emailButton = document.getElementById('subscribe');
 if (emailInput && emailButton) {
-  emailButton.addEventListener('click', function() {
-    var email = emailInput.value;
-    var password = 'test123';
-    var xmlHttp = new XMLHttpRequest();
-
-    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/signup';
-    xmlHttp.open("POST", url, true);
-
-    xmlHttp.onreadystatechange = function() {
-      if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-          window.location.href = '/landing-thanks.html';
-        }
-        else if (xmlHttp.status === 409) {
-          setError('This Email already exists');
-        }
-        else { console.log(xmlHttp.responseText); }
-      }
-    };
-
-    xmlHttp.setRequestHeader("Content-Type", "application/json");
-    xmlHttp.send(JSON.stringify({ email: email, password: password}));
-  });
+  emailButton.addEventListener('click', registerEmail);
 }
 
+function registerInputEmail(event) {
+  if (event.keyCode === 13) { registerEmail(); }
+}
+
+function registerEmail() {
+  var email = emailInput.value;
+  var password = 'test123';
+  var xmlHttp = new XMLHttpRequest();
+
+  var url = 'https://cypherpunk.privacy.network/api/v0/account/register/signup';
+  xmlHttp.open("POST", url, true);
+
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4) {
+      if (xmlHttp.status === 200 || xmlHttp.status === 202) {
+        window.location.href = '/landing-thanks.html';
+      }
+      else if (xmlHttp.status === 409) {
+        setError('This Email already exists');
+      }
+      else { setError('There was an error adding your email'); }
+    }
+  };
+
+  xmlHttp.setRequestHeader("Content-Type", "application/json");
+  xmlHttp.send(JSON.stringify({ email: email, password: password}));
+}
+
+
+// Error Handling
 function setError(errorText) {
   var errorElement = document.getElementById('error-container');
   var errorTextElement = document.getElementById('error-text');
@@ -81,27 +89,5 @@ if (errorClose) {
   errorClose.addEventListener('click', function() {
     var errorElement = document.getElementById('error-container');
     errorElement.style.display = 'none';
-  });
-}
-
-// copy share link
-function copyTextToClipboard() {
-  var input = document.getElementById('cp-share');
-  input.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    if (successful) { window.alert('The link was copied to your clipboard'); }
-    else { window.alert('Could not copy this link to your clipboard'); }
-  }
-  catch (err) {
-    window.alert('Was not able to copy to your clipboard');
-  }
-}
-
-var shareButton = document.getElementById('cp-share-button');
-if (shareButton) {
-  shareButton.addEventListener('click', function() {
-    copyTextToClipboard();
   });
 }
