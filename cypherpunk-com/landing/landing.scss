@@ -54,22 +54,8 @@ html, body {
 }
 
 .navigation {
-  height: 75px;
-  overflow: auto;
-  &.tall { height: 105px; }
-
-  .nav-left {
-    float: left;
-    padding: 15px;
-    img { height: 40px; }
-  }
-  .nav-right {
-    color: #7ffffb;
-    float: right;
-    padding: 27px 15px 0;
-  }
   .nav-middle {
-    padding: 30px;
+    padding: 20px 0 0;
     text-align: center;
     img { height: 40px; }
   }
@@ -88,13 +74,16 @@ html, body {
   font-size: 28px;
   font-weight: 600;
   text-align: center;
-  padding: 0 20px 40px;
+  padding: 0 20px 20px;
+  .subheader {
+    font-size: 22px;
+  }
 }
 
 .countdown {
   position: relative;
   text-align: center;
-  padding-bottom: 90px;
+  padding-bottom: 20px;
 
   .time {
     width: 110px;
@@ -119,7 +108,7 @@ html, body {
   position: relative;
   font-size: 24px;
   text-align: center;
-  padding: 25px 20px 0;
+  padding: 0 20px 0;
   margin-bottom: 0;
   span { color: #7ffffb; }
 }
@@ -128,7 +117,7 @@ html, body {
   position: relative;
   color: #7ffffb;
   font-size: 18px;
-  margin: 10px auto 40px;
+  margin: 10px auto 20px;
   padding: 0 20px;
   text-align: center;
 }
@@ -299,11 +288,6 @@ html, body {
   }
 }
 
-/** Privacy Policy **/
-.privacy-text {
-
-}
-
 @media (max-width: 780px) {
   .confirmation-illustration { padding: 20px 15px 0; }
   .confirmation-section .share {
@@ -319,6 +303,11 @@ html, body {
 }
 
 @media (max-width: 600px) {
+  .header {
+    font-size: 22px;
+    .subheader { font-size: 18px; }
+  }
+  .subheader { font-size: 20px; }
   .image-con { position: relative;  img { opacity: 0.8; } }
   .countdown { padding-bottom: 0; }
   .navigation {
