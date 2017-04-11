@@ -61,7 +61,7 @@ function registerEmail() {
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4) {
       if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-        window.location.href = '/landing-thanks.html';
+        window.location.href = '/thanks.html';
       }
       else if (xmlHttp.status === 409) {
         setError('This Email already exists');

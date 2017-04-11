@@ -64,17 +64,17 @@
 
       <div class="inputs-container">
         <div class="inputs left">
-          <input type="text" placeholder="Your Full Name">
+          <input id="invite-name" type="text" placeholder="Your name or nickname" maxlength="20">
         </div>
 
         <div class="inputs right">
-          <input type="text" placeholder="Email Addresses">
+          <input id="invite-emails" type="text" placeholder="Email Addresses">
           <label for="">Separate multiple emails with commas</label>
         </div>
       </div>
 
       <div class="invite">
-        <button>Invite</button>
+        <button id="invite">Invite</button>
       </div>
 
       <div class="confirmation-header no-top">
@@ -133,7 +133,7 @@
   </div>
 
   <!-- page script -->
-  <script src="/landing-confirmation.js"></script>
+  <script src="/confirmation.js"></script>
 
   <!-- Piwik -->
   <script type="text/javascript">

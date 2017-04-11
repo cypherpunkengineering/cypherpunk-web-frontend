@@ -10,8 +10,10 @@ var qs = (function(a) {
   return b;
 })(window.location.search.substr(1).split('&'));
 
+
 // remove confirmation code from url
 // history.replaceState({}, document.title, document.location.origin);
+
 
 // Error Handling
 function setInfo(errorText) {
@@ -46,6 +48,7 @@ if (errorClose) {
   });
 }
 
+
 // copy share link
 function copyTextToClipboard() {
   var input = document.getElementById('cp-share');
@@ -67,6 +70,7 @@ if (shareButton) {
     copyTextToClipboard();
   });
 }
+
 
 // confirmation page init code
 
@@ -115,3 +119,47 @@ var hoursMeasured = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 *
 
 days.innerHTML = daysMeasured;
 hours.innerHTML = hoursMeasured;
+
+
+// share with friends
+
+var inviteButton = document.getElementById('invite');
+if (inviteButton) {
+  inviteButton.addEventListener('click', function() {
+    inviteOthers();
+  });
+}
+
+function inviteOthers() {
+  var name = document.getElementById('invite-name').value; // (optional)
+  var emails = document.getElementById('invite-emails').value.split(',');
+
+  // regex a-z
+  name = name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+  // limit to 20 chars for name
+  name = name.substring(0, 20);
+
+  emails.forEach(function(email) {
+    var xmlHttp = new XMLHttpRequest();
+    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/signup';
+    xmlHttp.open("POST", url, true);
+
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState === 4) {
+        if (xmlHttp.status === 200 || xmlHttp.status === 202) {
+          setInfo('Your Email is confirmed!');
+        }
+        else if (xmlHttp.status === 400) {
+          setError('Missing Parameters');
+        }
+        else if (xmlHttp.status === 409) {
+          setError('Email already exists');
+        }
+        else { setError('There was an error confirming your email'); }
+      }
+    };
+
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.send(JSON.stringify({ name: name, email: email, password: 'test123' }));
+  });
+}
