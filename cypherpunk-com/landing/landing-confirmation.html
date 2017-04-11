@@ -47,7 +47,7 @@
     </div>
 
     <div class="confirmation-header">
-      We'll send you an email when the free preview starts!
+      Your invitation has been secured. We'll contact you when your free preview is ready!
     </div>
 
     <div class="confirmation-illustration">
@@ -55,7 +55,7 @@
     </div>
 
     <div class="confirmation-header no-top">
-      Invite your friends!
+      Invite your friends! There's only <span id="days"></span> days <span id="hours"></span> hours remaining...
     </div>
 
 
@@ -84,9 +84,9 @@
       <div class="line"></div>
 
       <div class="share">
-        <div class="left">
-          <div class="first pad-right">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=cypherpunk.com" target="_blank">
+        <div class="social">
+          <div class="platform">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=cypherpunk.com%3Fpk_campaign%3DTeaserShares%26pk_kwd%3DTeaserShareFB" target="_blank" onclick="_paq.push(['trackGoal', 3]);">
               <div class="facebook">
                 <div class="logo">
                   <img src="/assets/landing/facebook.png" alt="Facebook">
@@ -97,8 +97,8 @@
             </a>
           </div>
 
-          <div class="second pad-left">
-            <a href="https://twitter.com/home?status=Checkout%20cypherpunk.com" target="_blank">
+          <div class="platform">
+            <a href="https://twitter.com/intent/tweet?text=%23CypherpunkIsComing.%20Don%E2%80%99t%20miss%20out%2C%20secure%20your%20free%20preview%20now!&url=https://cypherpunk.com/?pk_campaign=TeaserShares&pk_kwd=TeaserShareTwitter&hashtags=CypherpunkIsComing,onlineprivacy&via=cypherpunkvpn" data-size="large" target="_blank" onclick="_paq(['trackGoal', 4]);">
               <div class="twitter">
                 <div class="logo">
                   <img src="/assets/landing/twitter.png" alt="Twitter">
@@ -108,9 +108,21 @@
               </div>
             </a>
           </div>
+
+          <div class="platform">
+            <a href="https://plus.google.com/share?url=https%3A%2F%2Fcypherpunk.com%3Fpk_campaign%3DTeaserShares%26pk_kwd%3DTeaserShareGooglePlus" target="_blank" onclick="_paq.push(['trackGoal', 5]);">
+              <div class="gplus">
+                <div class="logo">
+                  <img src="/assets/landing/googleplus.png" alt="Google Plus">
+                </div>
+
+                <div class="text">Share</div>
+              </div>
+            </a>
+          </div>
         </div>
 
-        <div class="right">
+        <div class="share-link">
           <button id="cp-share-button" class="copy">Copy Link</button>
 
           <input id="cp-share" class="copy-input" type="text" value="https://cypherpunk.com">
@@ -118,10 +130,6 @@
       </div>
 
     </section>
-
-    <div class="footer">
-      <a href="/landing-privacy.html">Privacy Policy</a>
-    </div>
   </div>
 
   <!-- page script -->

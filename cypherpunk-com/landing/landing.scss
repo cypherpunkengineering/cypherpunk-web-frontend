@@ -1,9 +1,19 @@
+@font-face {
+  font-family: 'GothamRounded';
+  src: url('/assets/fonts/gotham/GothamRnd-Book.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'GothamRoundedBold';
+  src: url('/assets/fonts/gotham/GothamRnd-Medium.otf') format('opentype');
+}
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   color: #fff;
-  font-family: Roboto;
+  font-family: GothamRounded;
   font-size: 16px;
   box-sizing: border-box;
   background-color: #163439;
@@ -70,12 +80,15 @@ html, body {
 }
 
 .header {
+  font-family: GothamRoundedBold;
   position: relative;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
   text-align: center;
-  padding: 0 20px 20px;
-  .subheader {
+  padding: 0 20px 0;
+  &.subheader {
+    padding: 10px 0;
+    font-family: GothamRounded;
     font-size: 22px;
   }
 }
@@ -83,7 +96,7 @@ html, body {
 .countdown {
   position: relative;
   text-align: center;
-  padding-bottom: 20px;
+  padding: 50px;
 
   .time {
     width: 110px;
@@ -120,6 +133,7 @@ html, body {
   margin: 10px auto 20px;
   padding: 0 20px;
   text-align: center;
+  &.left { text-align: left; }
 }
 
 .email {
@@ -219,7 +233,7 @@ html, body {
       font-size: 18px;
       border: 0;
       border-radius: 5px;
-      background-color: #1987BD;
+      background-color: #FF7857;
       cursor: pointer;
     }
   }
@@ -232,10 +246,12 @@ html, body {
 
     a { text-decoration: none; color: #fff; }
 
-    .left { width: 50%; float: left; }
-    .right { width: 50%; float: right; padding-left: 10px; }
-    .first { width: 50%; float: left; padding-right: 10px; }
-    .second { width: 50%; float: right; padding: 0 10px 0 10px; }
+    .social { text-align: center; }
+    .platform {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 20px 20px;
+    }
 
     .facebook {
       width: 157.5px;
@@ -250,6 +266,7 @@ html, body {
     }
 
     .twitter {
+      display: inline-block;
       width: 147.5px;
       height: 45px;
       font-size: 18px;
@@ -257,8 +274,26 @@ html, body {
       padding: 0 10px;
       border-radius: 5px;
       background-color: #329ECE;
-      .logo { display: inline-block; img { width: 30px; padding-top: 7px; margin-right: 20px; }}
+      .logo { display: inline-block; img { width: 30px; padding-top: 10px; margin-right: 20px; }}
       .text { display: inline-block; vertical-align: top; }
+    }
+
+    .gplus {
+      display: inline-block;
+      width: 157.5px;
+      height: 45px;
+      font-size: 18px;
+      line-height: 45px;
+      padding: 0 10px;
+      border-radius: 5px;
+      background-color: #d34836;
+      .logo { display: inline-block; img { width: 35px; padding-top: 11px; margin-right: 20px; }}
+      .text { display: inline-block; vertical-align: top; }
+    }
+
+    .share-link {
+      width: 100%;
+      text-align: center;
     }
 
     .copy {

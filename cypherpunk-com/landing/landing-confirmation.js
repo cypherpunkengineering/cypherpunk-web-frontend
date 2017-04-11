@@ -11,7 +11,7 @@ var qs = (function(a) {
 })(window.location.search.substr(1).split('&'));
 
 // remove confirmation code from url
-history.replaceState({}, document.title, document.location.origin);
+// history.replaceState({}, document.title, document.location.origin);
 
 // Error Handling
 function setInfo(errorText) {
@@ -74,7 +74,7 @@ var accountId = qs['accountId'];
 var confToken = qs['confirmationToken'];
 
 // redirect if no query params
-if (!accountId || !confToken) { window.location.href = '/'; }
+// if (!accountId || !confToken) { window.location.href = '/'; }
 
 var xmlHttp = new XMLHttpRequest();
 var url = 'https://cypherpunk.privacy.network/api/v0/account/confirm/email';
@@ -94,3 +94,24 @@ xmlHttp.onreadystatechange = function() {
 
 xmlHttp.setRequestHeader("Content-Type", "application/json");
 xmlHttp.send(JSON.stringify({ accountId: accountId, confirmationToken: confToken }));
+
+
+// Coundown timer
+var launchDate = new Date('2017-05-17T00:00:00Z');
+var _hour = 1000 * 60 * 60;
+var _day = _hour * 24;
+
+var days = document.getElementById('days');
+var hours = document.getElementById('hours');
+
+var distance = launchDate - new Date();
+if (distance < 0) {
+  clearInterval(timer);
+  days.innerHTML = '0';
+  hours.innerHTML = '0';
+}
+var daysMeasured = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hoursMeasured = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+days.innerHTML = daysMeasured;
+hours.innerHTML = hoursMeasured;
