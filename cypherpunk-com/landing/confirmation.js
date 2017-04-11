@@ -153,7 +153,8 @@ function inviteOthers() {
           setError('Missing Parameters');
         }
         else if (xmlHttp.status === 409) {
-          setError('Email already exists');
+          // setError('Email already exists');
+          console.log(email + ' already exits');
         }
         else { setError('There was an error confirming your email'); }
       }
