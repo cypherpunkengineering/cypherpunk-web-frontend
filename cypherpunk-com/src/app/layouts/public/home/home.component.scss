@@ -41,13 +41,13 @@
   .masthead-nolog {
     width: 100%;
     max-width: 1000px;
-    text-align: right;
+    margin: auto;
     position: relative;
 
     .container {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: -90px;
+      right: 75px;
     }
 
     .slogan { padding-top: 20px; color: #74D5D4; }
@@ -67,7 +67,7 @@
       img { width: 100%; }
       &.hang {
         position: absolute;
-        bottom: -55px;
+        bottom: -70px;
         z-index: 10;
         float: left;
       }
@@ -93,7 +93,7 @@
 
   .call-to-action {
     position: absolute;
-    top: -50px;
+    top: -35px;
     left: 0;
     right: 0;
     margin: auto;
@@ -105,7 +105,7 @@
 }
 .cta-container.top {
   .btn.top {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     background-color: #ff7857;
     color: #fff;
     border: 2px solid #ff7857;
@@ -266,6 +266,7 @@
       width: 100%;
       min-height: 250px;
     }
+    .masthead-nolog { display: none; }
     .masthead-mobile-banner { display: block; }
   }
 
