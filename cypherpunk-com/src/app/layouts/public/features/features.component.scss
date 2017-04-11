@@ -59,7 +59,7 @@
   overflow: auto;
 
   .image {
-    width: 39.6%;
+    width: 39.5%;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
@@ -195,6 +195,7 @@
       text-align: center;
       color: #fff;
     }
+    .btn { width: 341px; border-radius: 50px; }
     .btn.left { float: left; }
     .btn.right {
       float: right;
@@ -228,7 +229,9 @@
 
 @media (max-width: 700px) {
   .bottom-callout .bottom-buttons {
+    padding: 20px 20px 40px; 
     .middle { padding: 20px 0 20px; display: block; }
+    .btn { width: 280px; }
     .btn.left { float: none; }
     .btn.right { float: none; }
   }

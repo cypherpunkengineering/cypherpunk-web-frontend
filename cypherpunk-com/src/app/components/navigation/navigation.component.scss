@@ -2,6 +2,7 @@
   width: 100%;
   max-width: 1000px;
   margin: auto;
+  font-size: 15px;
 }
 
 .nav-left {
@@ -38,7 +39,7 @@
 }
 
 .border {
-  width: 113.8px;
+  width: 123.8px;
   height: 38px;
   border: 1px solid #1A474C;
   border-radius: 5px;
@@ -148,9 +149,9 @@
 
   .left {
     float: left;
-    padding: 15px;
+    padding: 15px 10px;
 
-    .heading { font-size: 17px; font-weight: bold; }
+    .heading { font-size: 15px; font-weight: bold; }
     .subheading { font-size: 12px; padding-top: 5px; }
   }
 
