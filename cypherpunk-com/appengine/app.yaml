@@ -200,6 +200,7 @@ handlers: # should be ordered from most specific to least specific
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: deny
+    Access-Control-Allow-Origin: *
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
