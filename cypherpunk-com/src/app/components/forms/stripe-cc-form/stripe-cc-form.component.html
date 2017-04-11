@@ -18,7 +18,7 @@
     <p class="half" [ngClass]="{'dashboard': small}">
       <label>Security Code</label><br>
       <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}">
-      <img src="/assets/payment/cvc-icon.png" alt="">
+      <img src="/assets/payment/cvc-icon.png" alt="CVC">
     </p>
   </div>
 

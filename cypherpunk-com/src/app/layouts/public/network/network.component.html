@@ -28,7 +28,7 @@
       </tr>
       <tr *ngFor="let location of region.countries; let i = index">
         <td class="city">
-          <img class="flag" src="/assets/flags/{{location.country}}.png" alt="">
+          <img class="flag" src="/assets/flags/{{location.country}}.png" alt="Location">
           <span class="name">{{location.name}}</span> <span class="premium" *ngIf="location.level === 'premium'">PREMIUM</span>
         </td>
         <!-- <td>{{location.servers}}</td> -->
