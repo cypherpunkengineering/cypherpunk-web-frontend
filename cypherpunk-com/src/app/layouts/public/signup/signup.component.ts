@@ -36,9 +36,15 @@ export class SignupComponent implements AfterViewInit {
     if (isBrowser) { document.getElementById('email').focus(); }
   }
 
+  passwordRegex(password) {
+    return /^[\x20-\x7F]*$/.test(password);
+  }
+
   validatePassword() {
     this.passwordTouched = true;
-    if (!this.user.password.length) { this.validPassword = false; }
+    if (this.user.password.length < 6) { this.validPassword = false; }
+    else if (!this.passwordRegex(this.user.password)) { this.validPassword = false; }
+    else if (this.user.password.indexOf(' ') > -1) { this.validPassword = false; }
     else { this.validPassword = true; }
   }
 

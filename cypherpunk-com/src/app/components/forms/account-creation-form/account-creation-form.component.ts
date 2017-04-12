@@ -26,7 +26,9 @@ export class AccountCreationFormComponent implements OnInit {
         this.accountFormData.email,
         Validators.compose([ Validators.required, EmailValidator.validate])
       ],
-      password: [ this.accountFormData.password, Validators.required ],
+      password: [ this.accountFormData.password,
+        Validators.compose([Validators.required, PasswordValidator.validate])
+      ],
     });
 
     this.email = this.accountForm.controls['email'];
@@ -75,6 +77,16 @@ class EmailValidator {
   static validate(control: FormControl): ValidationResult {
     // test that email is in right format
     if (!/^\S+@\S+$/.test(control.value)) { return { 'invalidEmailFormat': true }; }
+    else { return null; }
+  }
+}
+
+class PasswordValidator {
+  static validate(control: FormControl): ValidationResult {
+    // test that email is in right format
+    if (!/^[\x20-\x7F]*$/.test(control.value)) { return { 'invalidPasswordFormat': true }; }
+    else if (control.value.length < 6) { return { 'invalidPasswordFormat': true }; }
+    else if (control.value.indexOf(' ') > -1) { return { 'invalidPasswordForma': true }; }
     else { return null; }
   }
 }
