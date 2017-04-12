@@ -1,3 +1,7 @@
+.wrapper { min-height: 100%; margin-bottom: -162px; }
+.wrapper:after { content: ''; display: block; }
+.footer, .wrapper:after { height: 162px;}
+
 .page {
   width: 100%;
   max-width: 1000px;
@@ -16,7 +20,7 @@
   }
 
   .text {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.57;
     color: #7f7979;
     margin: auto;
@@ -151,12 +155,8 @@
   padding: 30px 0 50px;
 
   .footer-inner { width: 100%; max-width: 1000px; margin: auto; }
-
-  .copy {
-    width: 250px;
-    text-align: center;
-    color: #8DFFFB;
-  }
+  .copy { width: 250px; text-align: center; color: #8DFFFB; }
+  .footer-copyright { font-size: 14px; }
 }
 
 .btn {
@@ -167,7 +167,7 @@
 }
 
 @media (max-width: 1000px) {
-  .page { padding: 25px 10px 0; }
+  .page { padding: 25px 10px 35px; }
   .page-header { padding: 0 10px; }
 }
 
