@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Please check your email to confirm</title>
   <base href="/">
+  <meta name="robots" content="noindex">
   <meta id="meta-desc" name="viewport" content="width=device-width, initial-scale=1">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicons/favicon-194x194.png" sizes="194x194">
@@ -22,17 +23,13 @@
 <body>
   <div class="container">
     <!-- Error Handling -->
-    <div id="error-container" class="errors">
-      <div class="errors-inner">
-        <span id="error-text"></span>
-        <div id="error-close" class="close">X</div>
-      </div>
-    </div>
-
-    <div id="info-container" class="errors">
-      <div class="info-inner">
-        <span id="info-text"></span>
-        <div id="info-close" class="close">X</div>
+    <div id="message-container" class="messages">
+      <div class="messages-inner">
+        <div id="message-header" class="message-header"></div>
+        <span id="message-text"></span>
+        <div class="button-container">
+          <button id="message-close" class="close">Close</button>
+        </div>
       </div>
     </div>
 
@@ -88,7 +85,7 @@
             <a href="https://www.facebook.com/sharer/sharer.php?u=cypherpunk.com%3Fpk_campaign%3DTeaserShares%26pk_kwd%3DTeaserShareFB" target="_blank" onclick="_paq.push(['trackGoal', 3]);">
               <div class="facebook">
                 <div class="logo">
-                  <img src="/assets/landing/facebook.png" alt="Facebook">
+                  <img src="/assets/landing/facebook-hover@2x.png" alt="Facebook">
                 </div>
 
                 <div class="text">Share</div>
@@ -100,7 +97,7 @@
             <a href="https://twitter.com/intent/tweet?text=%23CypherpunkIsComing.%20Don%E2%80%99t%20miss%20out%2C%20secure%20your%20free%20preview%20now!&url=https%3A%2F%2Fcypherpunk.com%2F%3Fpk_campaign%3DTeaserShares%26pk_kwd%3DTeaserShareTwitter&hashtags=onlineprivacy&via=cypherpunkvpn" data-size="large" target="_blank" onclick="_paq(['trackGoal', 4]);">
               <div class="twitter">
                 <div class="logo">
-                  <img src="/assets/landing/twitter.png" alt="Twitter">
+                  <img src="/assets/landing/twitter-hover@2x.png" alt="Twitter">
                 </div>
 
                 <div class="text">Share</div>
@@ -112,7 +109,7 @@
             <a href="https://plus.google.com/share?url=https%3A%2F%2Fcypherpunk.com%3Fpk_campaign%3DTeaserShares%26pk_kwd%3DTeaserShareGooglePlus" target="_blank" onclick="_paq.push(['trackGoal', 5]);">
               <div class="gplus">
                 <div class="logo">
-                  <img src="/assets/landing/googleplus.png" alt="Google Plus">
+                  <img src="/assets/landing/google-plus-hover@2x.png" alt="Google Plus">
                 </div>
 
                 <div class="text">Share</div>

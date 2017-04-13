@@ -64,9 +64,9 @@ function registerEmail() {
         window.location.href = '/thanks.html';
       }
       else if (xmlHttp.status === 409) {
-        setError('This Email already exists');
+        setMessage('This Email already exists');
       }
-      else { setError('There was an error adding your email'); }
+      else { setMessage('There was an error adding your email'); }
     }
   };
 
@@ -76,18 +76,20 @@ function registerEmail() {
 
 
 // Error Handling
-function setError(errorText) {
-  var errorElement = document.getElementById('error-container');
-  var errorTextElement = document.getElementById('error-text');
+function setMessage(header, text) {
+  var messageElement = document.getElementById('message-container');
+  var messageTextElement = document.getElementById('message-text');
+  var messageHeaderElement = document.getElementById('message-header');
 
-  errorElement.style.display = 'block';
-  errorTextElement.innerHTML = errorText;
+  messageElement.style.display = 'block';
+  messageHeaderElement.innerHTML = header;
+  messageTextElement.innerHTML = text;
 }
 
-var errorClose = document.getElementById('error-close');
+var errorClose = document.getElementById('message-close');
 if (errorClose) {
   errorClose.addEventListener('click', function() {
-    var errorElement = document.getElementById('error-container');
-    errorElement.style.display = 'none';
+    var messageElement = document.getElementById('message-container');
+    messageElement.style.display = 'none';
   });
 }
