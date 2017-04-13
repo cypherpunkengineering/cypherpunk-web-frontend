@@ -37,14 +37,13 @@ export class SignupComponent implements AfterViewInit {
   }
 
   passwordRegex(password) {
-    return /^[\x20-\x7F]*$/.test(password);
+    return /^[\x21-\x7E]*$/.test(password);
   }
 
   validatePassword() {
     this.passwordTouched = true;
     if (this.user.password.length < 6) { this.validPassword = false; }
     else if (!this.passwordRegex(this.user.password)) { this.validPassword = false; }
-    else if (this.user.password.indexOf(' ') > -1) { this.validPassword = false; }
     else { this.validPassword = true; }
   }
 

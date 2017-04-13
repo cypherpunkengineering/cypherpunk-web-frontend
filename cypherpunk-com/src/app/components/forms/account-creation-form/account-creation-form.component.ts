@@ -84,9 +84,8 @@ class EmailValidator {
 class PasswordValidator {
   static validate(control: FormControl): ValidationResult {
     // test that email is in right format
-    if (!/^[\x20-\x7F]*$/.test(control.value)) { return { 'invalidPasswordFormat': true }; }
+    if (!/^[\x21-\x7E]*$/.test(control.value)) { return { 'invalidPasswordFormat': true }; }
     else if (control.value.length < 6) { return { 'invalidPasswordFormat': true }; }
-    else if (control.value.indexOf(' ') > -1) { return { 'invalidPasswordForma': true }; }
     else { return null; }
   }
 }
