@@ -83,7 +83,7 @@ function setMessage(header, text) {
 
   messageElement.style.display = 'block';
   messageHeaderElement.innerHTML = header;
-  messageTextElement.innerHTML = text;
+  if (text) { messageTextElement.innerHTML = text; }
 }
 
 var errorClose = document.getElementById('message-close');
