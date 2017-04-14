@@ -124,7 +124,7 @@ function inviteOthers() {
   name = name.substring(0, 20);
 
   emails.forEach(function(email, index) {
-    email = email.trim();
+    email = email.trim().toLowerCase();
     var xmlHttp = new XMLHttpRequest();
     var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaser';
     xmlHttp.open("POST", url, true);
@@ -144,7 +144,7 @@ function inviteOthers() {
         }
         else {
           hasErrors = true;
-          setMessage('Error!', 'There was an error confirming your email');
+          setMessage('Error!', 'There was an error sending your invite');
         }
 
         if (!hasErrors && index === emails.length - 1) {
