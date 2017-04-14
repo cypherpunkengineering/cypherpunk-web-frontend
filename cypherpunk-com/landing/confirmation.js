@@ -12,7 +12,7 @@ var qs = (function(a) {
 
 
 // remove confirmation code from url
-// history.replaceState({}, document.title, document.location.origin);
+history.replaceState({}, document.title, document.location.origin);
 
 
 // Error Handling
@@ -65,7 +65,7 @@ var accountId = qs.accountId;
 var confToken = qs.confirmationToken;
 
 // redirect if no query params
-// if (!accountId || !confToken) { window.location.href = '/'; }
+if (!accountId || !confToken) { window.location.href = '/'; }
 
 var xmlHttp = new XMLHttpRequest();
 var url = 'https://cypherpunk.privacy.network/api/v0/account/confirm/email';
@@ -74,7 +74,7 @@ xmlHttp.open("POST", url, true);
 xmlHttp.onreadystatechange = function() {
   if (xmlHttp.readyState === 4) {
     if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-      setMessage('Success!', 'Your Email is confirmed!');
+      setMessage('Success!', 'Your Email is confirmed!<br><br>Don\'t forget to invite your friends!');
     }
     else if (xmlHttp.status === 400) {
       setMessage('Error!', 'Missing Parameters');
@@ -123,22 +123,22 @@ function inviteOthers() {
   // limit to 20 chars for name
   name = name.substring(0, 20);
 
-  emails.forEach(function(email) {
+  emails.forEach(function(email, index) {
+    email = email.trim();
     var xmlHttp = new XMLHttpRequest();
-    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/signup';
+    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaser';
     xmlHttp.open("POST", url, true);
 
     xmlHttp.onreadystatechange = function() {
       if (xmlHttp.readyState === 4) {
         if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-          setMessage('Success!', 'Your Email is confirmed!');
+          setMessage('Success!', 'Your Invites were sent!');
         }
         else if (xmlHttp.status === 400) {
           hasErrors = true;
           setMessage('Error!', 'Missing Parameters');
         }
         else if (xmlHttp.status === 409) {
-          hasErrors = true;
           // setMessage('Error!', 'Email already exists');
           console.log(email + ' already exits');
         }
@@ -146,14 +146,14 @@ function inviteOthers() {
           hasErrors = true;
           setMessage('Error!', 'There was an error confirming your email');
         }
+
+        if (!hasErrors && index === emails.length - 1) {
+          window.location.href = '/invites-sent.html';
+        }
       }
     };
 
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.send(JSON.stringify({ name: name, email: email, password: 'test123' }));
   });
-
-  if (!hasErrors) {
-    window.location.href = '/invites-sent.html';
-  }
 }
