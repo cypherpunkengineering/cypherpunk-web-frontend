@@ -86,6 +86,9 @@ export class PricingComponent {
         else if (type === 'premium') {
           if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
         }
+        else if (type !== 'premium') { redirect = false; }
+
+        history.replaceState({}, document.title, document.location.origin);
         if (redirect) { router.navigate(['/account/upgrade']); }
         else { router.navigate(['/account']); }
       })

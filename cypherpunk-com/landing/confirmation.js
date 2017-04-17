@@ -74,7 +74,7 @@ xmlHttp.open("POST", url, true);
 xmlHttp.onreadystatechange = function() {
   if (xmlHttp.readyState === 4) {
     if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-      setMessage('Success!', 'Your Email is confirmed!<br><br>Don\'t forget to invite your friends!');
+      setMessage('Success!', 'Your invitation has been secured!<br><br>Don\'t forget to invite your friends!');
     }
     else if (xmlHttp.status === 400) {
       setMessage('Error!', 'Missing Parameters');
@@ -126,7 +126,7 @@ function inviteOthers() {
   emails.forEach(function(email, index) {
     email = email.trim().toLowerCase();
     var xmlHttp = new XMLHttpRequest();
-    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaser';
+    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaserShare';
     xmlHttp.open("POST", url, true);
 
     xmlHttp.onreadystatechange = function() {
@@ -154,6 +154,6 @@ function inviteOthers() {
     };
 
     xmlHttp.setRequestHeader("Content-Type", "application/json");
-    xmlHttp.send(JSON.stringify({ name: name, email: email, password: 'test123' }));
+    xmlHttp.send(JSON.stringify({ name: name, email: email }));
   });
 }

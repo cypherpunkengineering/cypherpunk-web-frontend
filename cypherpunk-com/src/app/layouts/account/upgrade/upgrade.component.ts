@@ -84,7 +84,11 @@ export class UpgradeComponent {
         else if (type === 'premium') {
           if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
         }
-        if (redirect) { router.navigate(['/account']); }
+
+        if (redirect) {
+          history.replaceState({}, document.title, document.location.origin);
+          router.navigate(['/account']);
+        }
       })
       .catch(() => { /* keep error from showing on console */ });
     }

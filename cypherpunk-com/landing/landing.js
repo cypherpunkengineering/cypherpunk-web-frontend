@@ -64,7 +64,7 @@ function registerEmail() {
         window.location.href = '/thanks.html';
       }
       else if (xmlHttp.status === 409) {
-        setMessage('This Email already exists');
+        setMessage('This email has already been invited');
       }
       else { setMessage('There was an error adding your email'); }
     }
