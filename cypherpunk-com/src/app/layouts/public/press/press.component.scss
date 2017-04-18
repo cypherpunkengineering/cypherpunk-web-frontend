@@ -14,7 +14,7 @@
       position: absolute;
       height: 100%;
       left: 50%;
-      margin-left: -360px;
+      transform: translateX(-50%);
     }
   }
 }
@@ -43,7 +43,6 @@
   .inner { width: 100%; max-width: 1000px; margin: auto; }
 
   .row {
-    overflow: auto;
     text-align: center;
 
     .row-header {
@@ -148,6 +147,7 @@
 
 @media (max-width: 550px) {
   .choices .double-cell {
+    width: 100%;
     .main-screenshot { display: block; }
     .main-screenshot.left { margin: 0 auto 25px; }
     .main-screenshot.right { margin: 0 auto 0; }

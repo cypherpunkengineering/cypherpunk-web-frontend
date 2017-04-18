@@ -63,8 +63,8 @@
     text-align: center;
     display: inline-block;
     vertical-align: middle;
-    .padded-width { width: 80%; padding: 0 20px; }
-    .full-width { width: 100%; }
+    .padded-width { width: 80%; max-width: 400px; padding: 0 20px; }
+    .full-width { width: 100%; max-width: 400px; }
     .e { width: 249px; }
     .d { width: 242px; }
     .p { width: 277px; }
@@ -223,15 +223,18 @@
   .row .desktop { display: none; }
 }
 
-@media (max-width: 850px) {
-  .row .image, .row .text { width: 100%; text-align: center; }
+@media (max-width: 975px) {
+  .row .image,
+  .row .text { width: 100%; text-align: center; }
+  .row .text { padding: 20px 10px; }
+  .row .image .padded-width { width: 100%; }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 840px) {
   .bottom-callout .bottom-buttons {
-    padding: 20px 20px 40px; 
+    padding: 20px 20px 40px;
     .middle { padding: 20px 0 20px; display: block; }
-    .btn { width: 280px; }
+    .btn { width: 280px; font-size: 18px; }
     .btn.left { float: none; }
     .btn.right { float: none; }
   }
