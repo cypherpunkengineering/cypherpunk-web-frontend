@@ -228,14 +228,6 @@
   }
 }
 
-.row-divider {
-  width: 100%;
-  max-width: 340px;
-  height: 3px;
-  background-color: #184449;
-  margin: 0 auto 50px;
-}
-
 .bottom {
   background-color: #0d1e26;
   padding: 80px 0;
@@ -264,9 +256,8 @@
   .features .features-inner {
     .mobile { display: block; }
     .desktop { display: none; }
-    .image { width: 100%; }
-    .text.right, .text.left{ width: 100%; padding: 20px; text-align: center; }
-    .row-divider { width: 90%; }
+    .row .image { width: 100%; }
+    .row .text { width: 100%; text-align: center; padding: 20px 10px; }
   }
 
   .mobile { display: block ; }
