@@ -49,6 +49,7 @@ export class UpgradeComponent {
 
   // Amazon variables
   billingAgreementId: string;
+  amazonHide: boolean = false;
 
   // bitpay variables
   showBTC: boolean = false;
@@ -269,6 +270,10 @@ export class UpgradeComponent {
 
   updateBillingId(billingId) {
     this.billingAgreementId = billingId;
+  }
+
+  updateAmazonHide(amazonHide) {
+    this.amazonHide = amazonHide;
   }
 
   payWithAmazon() {

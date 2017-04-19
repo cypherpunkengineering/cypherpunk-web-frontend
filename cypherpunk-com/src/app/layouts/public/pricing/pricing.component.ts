@@ -228,6 +228,10 @@ export class PricingComponent {
     this.billingAgreementId = billingId;
   }
 
+  updateAmazonHide(amazonHide) {
+    this.amazonHide = amazonHide;
+  }
+
   payWithAmazon() {
     this.loading = true;
     this.disablePayment = true;

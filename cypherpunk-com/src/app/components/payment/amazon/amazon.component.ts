@@ -9,6 +9,7 @@ import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 export class AmazonComponent {
   @Input() billingAgreementId: string;
   @Output() updateBillingId: EventEmitter<string> = new EventEmitter<string>();
+  @Output() updateAmazonHide: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   amazonWallet: any;
   amazonRecurring: any;
@@ -61,6 +62,7 @@ export class AmazonComponent {
 
   launchAmazon() {
     let amazon = (<any>window).amazon;
+    this.updateAmazonHide.emit(true);
     amazon.Login.authorize({ scope: 'profile', popup: 'true' });
     this.zone.run(() => { this.createWallet(); });
   }
