@@ -11,6 +11,7 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: #67b23f;
+    &:disabled { cursor: default; background-color: #ccc; }
   }
   img { display: none !important; }
 }

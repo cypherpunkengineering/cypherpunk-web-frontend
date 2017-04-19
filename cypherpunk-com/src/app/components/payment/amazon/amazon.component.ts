@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 })
 export class AmazonComponent {
   @Input() billingAgreementId: string;
+  @Input() disable: boolean;
   @Output() updateBillingId: EventEmitter<string> = new EventEmitter<string>();
   @Output() updateAmazonHide: EventEmitter<boolean> = new EventEmitter<boolean>();
 
