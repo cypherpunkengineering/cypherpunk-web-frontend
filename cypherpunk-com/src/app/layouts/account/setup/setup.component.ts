@@ -19,9 +19,12 @@ export class SetupComponent implements OnInit {
   freeAccount: boolean = true;
   vpnSelect: string = 'openvpn';
   useCypherplay: boolean = false;
+  splitTextFields: boolean = false;
 
   countrySelect: string = '';
   profile: string = '';
+  profileCert: string = '';
+  profilePartial: string = '';
   downloadButtonEnabled = false;
 
   ipsecSelect: string = '';
@@ -128,10 +131,8 @@ export class SetupComponent implements OnInit {
   }
 
   generateProfile() {
-    let hostname, profileTempArray, profileTempEnd;
-    hostname = this.countrySelect;
-
-    profileTempArray = [
+    let hostname = this.countrySelect;
+    let partial = [
       'client',
       'dev tun',
       'nobind',
@@ -151,7 +152,7 @@ export class SetupComponent implements OnInit {
     ];
 
     if (this.useCypherplay) {
-      profileTempArray = profileTempArray.concat([
+      partial = partial.concat([
         'pull-filter ignore "dhcp-option DNS 10.10.10.10"',
         'pull-filter ignore "route 10.10.10.10 255.255.255.255"',
         'dhcp-option DNS 10.10.10.14',
@@ -163,8 +164,7 @@ export class SetupComponent implements OnInit {
       ]);
     }
 
-    profileTempEnd = [
-      '<ca>',
+    let cert = [
       '-----BEGIN CERTIFICATE-----',
       'MIIFiTCCA3GgAwIBAgICEAAwDQYJKoZIhvcNAQELBQAwUTELMAkGA1UEBhMCSVMx',
       'HDAaBgNVBAoME0N5cGhlcnB1bmsgUGFydG5lcnMxJDAiBgNVBAMMG0N5cGhlcnB1',
@@ -229,11 +229,24 @@ export class SetupComponent implements OnInit {
       'hqHTqGsy8pZ6ir3Ro2A0jVuB28bxWzLMERP5eCNkhET37LOEio6YK9DsqdLphX7W',
       'Y8gMhSbb7NTB',
       '-----END CERTIFICATE-----',
-      '</ca>'
     ];
-    profileTempArray = profileTempArray.concat(profileTempEnd);
 
-    this.profile = profileTempArray.join('\r\n');
+    // generate full profile
+    let fullProfilePartialClone = partial.slice(0);
+    let fullProfileCertClone = cert.slice(0);
+    fullProfilePartialClone.push('<ca>');
+    fullProfilePartialClone = fullProfilePartialClone.concat(fullProfileCertClone);
+    fullProfilePartialClone.push('</ca>');
+    this.profile = fullProfilePartialClone.join('\r\n');
+
+    // generate partial profile
+    let profilePartialClone = partial.slice(0);
+    this.profilePartial = profilePartialClone.join('\r\n');
+
+    // generate certificate
+    let profileCertClone = cert.slice(0);
+    this.profileCert = profileCertClone.join('\r\n');
+
     this.downloadButtonEnabled = true;
   }
 

@@ -53,13 +53,36 @@
       </label>
     </div>
 
+    <div>
+      <label for="certs">View Certificate Separately?
+        <input id="certs" type="checkbox" [(ngModel)]="splitTextFields" (ngModelChange)="updateProfile()">
+      </label>
+    </div>
+
     <div class="download-container">
       <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
         Download
       </button>
     </div>
 
-    <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
+    <div *ngIf="!splitTextFields">
+      <div class="profile-container">
+        <label>Profile</label>
+        <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
+      </div>
+    </div>
+
+    <div *ngIf="splitTextFields">
+      <div class="profile-container">
+        <label>Profile</label>
+        <textarea class="profile" [(ngModel)]="profilePartial" readonly></textarea>
+      </div>
+
+      <div class="profile-container">
+        <label>Certificate</label>
+        <textarea class="profile" [(ngModel)]="profileCert" readonly></textarea>
+      </div>
+    </div>
 
     <div class="download-container">
       <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
