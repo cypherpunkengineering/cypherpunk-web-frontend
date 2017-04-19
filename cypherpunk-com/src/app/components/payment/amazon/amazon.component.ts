@@ -14,6 +14,7 @@ export class AmazonComponent {
 
   amazonWallet: any;
   amazonRecurring: any;
+  amazonHide: boolean = false;
 
   constructor(private zone: NgZone) {
     // load amazon script
@@ -63,6 +64,7 @@ export class AmazonComponent {
 
   launchAmazon() {
     let amazon = (<any>window).amazon;
+    this.amazonHide = true;
     this.updateAmazonHide.emit(true);
     amazon.Login.authorize({ scope: 'profile', popup: 'true' });
     this.zone.run(() => { this.createWallet(); });
