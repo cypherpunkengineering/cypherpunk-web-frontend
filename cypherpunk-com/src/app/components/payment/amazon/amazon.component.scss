@@ -1,4 +1,18 @@
-.amazon-pay { text-align: center; }
-#AmazonPayButton { margin: 20px 0 40px; }
+#AmazonPayButton {
+  margin: 20px 0 40px;
+  button {
+    width: 280px;
+    height: 60px;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #67b23f;
+  }
+  img { display: none !important; }
+}
 #walletWidgetDiv { width: 350px; height: 228px; margin: 20px auto; display: none; }
 #consentWidgetDiv { width: 350px; height: 140px; margin: 20px auto; display: none; }

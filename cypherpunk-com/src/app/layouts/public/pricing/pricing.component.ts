@@ -54,6 +54,7 @@ export class PricingComponent {
 
   // Amazon variables
   billingAgreementId: string;
+  amazonHide: boolean = false;
 
   // bitpay variables
   showBTC: boolean = false;

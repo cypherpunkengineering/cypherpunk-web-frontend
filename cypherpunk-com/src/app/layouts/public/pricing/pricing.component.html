@@ -4,7 +4,7 @@
   </div>
 
   <div class="page">
-    <div class="page-header">
+    <div class="page-header" [hidden]="!amazonHide">
       <div class="title">Choose your Cypherpunk Privacy plan</div>
 
       <div class="text">
@@ -76,7 +76,6 @@
     </div>
 
     <div class="amazon payment-info" [hidden]="paymentMethod !== 'a'">
-      <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
       <div class="pre-text tall">
         To finish sign-up, click on the "Pay with Amazon" button.
@@ -88,6 +87,8 @@
           Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
         </div>
       </div>
+
+      <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
       <div class="pay">
         <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">

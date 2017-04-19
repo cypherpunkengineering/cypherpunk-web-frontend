@@ -59,6 +59,12 @@ export class AmazonComponent {
     );
   }
 
+  launchAmazon() {
+    let amazon = (<any>window).amazon;
+    amazon.Login.authorize({ scope: 'profile', popup: 'true' });
+    this.zone.run(() => { this.createWallet(); });
+  }
+
   createWallet() {
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
     document.getElementById('walletWidgetDiv').style.display = 'block';
