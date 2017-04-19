@@ -8,13 +8,11 @@
   <div>
     <form>
       <p>
-        <label for="username">Email</label><br>
         <input id="email" type="email" name="username" [(ngModel)]="user.email" placeholder="Email" autofocus>
       </p>
 
       <p>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signin()">
+        <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password" (keyup.enter)="signin()">
       </p>
 
       <p class="center">
@@ -25,6 +23,12 @@
 
       <p class="center">
         <a class="signin-link" routerLink="/recover">Forgot Password?</a>
+      </p>
+
+      <hr>
+
+      <p class="center">
+        <button class="btn orange" type="button">Sign Up</button>
       </p>
     </form>
   </div>
