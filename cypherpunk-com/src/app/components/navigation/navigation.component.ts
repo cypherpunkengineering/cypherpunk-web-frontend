@@ -37,6 +37,7 @@ export class NavigationComponent {
   ) {
     // detect route
     if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
+    if (this.router.url.startsWith('/login')) { this.enableLinks = false; }
     if (this.router.url.startsWith('/features')) { this.isFeatures = true; }
 
     this.router.events.subscribe((evt) => {

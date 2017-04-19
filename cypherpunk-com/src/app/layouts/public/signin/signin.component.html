@@ -1,37 +1,35 @@
-<div class="wrapper">
-  <div class="masthead">
-    <app-nav></app-nav>
+<div class="masthead">
+  <app-nav></app-nav>
 
-    <h1 class="header white">Sign In</h1>
-  </div>
-
-  <div>
-    <form>
-      <p>
-        <input id="email" type="email" name="username" [(ngModel)]="user.email" placeholder="Email" autofocus>
-      </p>
-
-      <p>
-        <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password" (keyup.enter)="signin()">
-      </p>
-
-      <p class="center">
-        <button class="btn blue" type="button" (click)="signin()" [disabled]="!validateSignin() || signinButtonDisabled">
-          Sign In
-        </button>
-      </p>
-
-      <p class="center">
-        <a class="signin-link" routerLink="/recover">Forgot Password?</a>
-      </p>
-
-      <hr>
-
-      <p class="center">
-        <button class="btn orange" type="button">Sign Up</button>
-      </p>
-    </form>
-  </div>
+  <h1 class="header white">Sign In</h1>
 </div>
 
-<app-footer></app-footer>
+<div>
+  <form>
+    <p>
+      <input id="email" type="email" name="username" [(ngModel)]="user.email" placeholder="Email" autofocus>
+    </p>
+
+    <p>
+      <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password" (keyup.enter)="signin()">
+    </p>
+
+    <p class="center">
+      <button class="btn blue" type="button" (click)="signin()" [disabled]="!validateSignin() || signinButtonDisabled">
+        Sign In
+      </button>
+    </p>
+
+    <p class="center">
+      <a class="signin-link" routerLink="/recover">Forgot Password?</a>
+    </p>
+
+    <hr>
+
+    <p class="center">
+      <a class="signin-link" routerLink="/signup">
+        Don't have an account? Sign Up Now.
+      </a>
+    </p>
+  </form>
+</div>
