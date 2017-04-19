@@ -72,7 +72,6 @@ export class AmazonComponent {
 
   createWallet() {
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
-    document.getElementById('walletWidgetDiv').style.display = 'block';
 
     if (!this.amazonWallet) {
       new OffAmazonPayments.Widgets.Wallet({
@@ -82,6 +81,7 @@ export class AmazonComponent {
           this.updateAmazonHide.emit(true);
           this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
           this.updateBillingId.emit(this.billingAgreementId);
+          document.getElementById('walletWidgetDiv').style.display = 'block';
         },
         agreementType: 'BillingAgreement',
         design: { designMode: 'responsive' },
@@ -95,7 +95,6 @@ export class AmazonComponent {
 
   createRecurring () {
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
-    document.getElementById('consentWidgetDiv').style.display = 'block';
 
     if (!this.amazonRecurring) {
       new OffAmazonPayments.Widgets.Consent({
@@ -108,6 +107,7 @@ export class AmazonComponent {
           let getStatus = billingAgreementConsentStatus.getConsentStatus;
           if (getStatus && getStatus() === 'true') {
             document.getElementById('payWithAmazon').style.display = 'inline';
+            document.getElementById('consentWidgetDiv').style.display = 'block';
           }
         },
         onConsent: (billingAgreementConsentStatus) => {
