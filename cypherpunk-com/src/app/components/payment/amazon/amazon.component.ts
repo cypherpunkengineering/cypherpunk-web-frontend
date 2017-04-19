@@ -54,6 +54,7 @@ export class AmazonComponent {
         color: 'Gold',
         size:  'medium',
         authorization: () => {
+          amazon.Login.setSandboxMode(true);
           amazon.Login.authorize({ scope: 'profile', popup: 'true' });
           this.zone.run(() => { this.createWallet(); });
         },
@@ -64,8 +65,7 @@ export class AmazonComponent {
 
   launchAmazon() {
     let amazon = (<any>window).amazon;
-    this.amazonHide = true;
-    this.updateAmazonHide.emit(true);
+    amazon.Login.setSandboxMode(true);
     amazon.Login.authorize({ scope: 'profile', popup: 'true' });
     this.zone.run(() => { this.createWallet(); });
   }
@@ -78,6 +78,8 @@ export class AmazonComponent {
       new OffAmazonPayments.Widgets.Wallet({
         sellerId: 'A2FF2JPNM9GYDJ',
         onReady: (billingAgreement) => {
+          this.amazonHide = true;
+          this.updateAmazonHide.emit(true);
           this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
           this.updateBillingId.emit(this.billingAgreementId);
         },

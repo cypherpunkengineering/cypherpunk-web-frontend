@@ -126,7 +126,6 @@
   }
 
   .pre-text { font-size: 14px; padding: 10px 0 40px; }
-  .pre-text.tall { padding: 40px 0 40px; }
 
   .price {
     font-size: 18px;
@@ -144,6 +143,10 @@
   .pay {
     padding: 20px 0 0;
     .btn { width: 280px; margin: 0; }
+  }
+
+  .amazon-pay {
+    .btn { width: 280px; margin: 0; padding: 20px 0 0; }
   }
 
   .agree { font-size: 14px; padding: 40px 0 0; }

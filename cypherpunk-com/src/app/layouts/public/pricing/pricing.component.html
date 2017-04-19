@@ -53,7 +53,7 @@
 
       <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
 
-      <div class="pre-text tall">
+      <div class="pre-text">
         To finish sign-up, click on the "Proceed" button.
       </div>
 
@@ -91,7 +91,7 @@
       <app-amazon #amazon [billingAgreementId]="billingAgreementId"
       [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
-      <div class="pay">
+      <div class="amazon-pay">
         <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
           Join Now
         </button>
