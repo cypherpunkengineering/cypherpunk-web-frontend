@@ -50,6 +50,7 @@ export class UpgradeComponent {
   // Amazon variables
   billingAgreementId: string;
   amazonHide: boolean = false;
+  amazonRecurringEnabled: boolean = false;
 
   // bitpay variables
   showBTC: boolean = false;
@@ -274,6 +275,10 @@ export class UpgradeComponent {
 
   updateAmazonHide(amazonHide) {
     this.amazonHide = amazonHide;
+  }
+
+  updateAmazonRecurringEnabled(amazonRecurringEnabled) {
+    this.amazonRecurringEnabled = amazonRecurringEnabled;
   }
 
   payWithAmazon() {

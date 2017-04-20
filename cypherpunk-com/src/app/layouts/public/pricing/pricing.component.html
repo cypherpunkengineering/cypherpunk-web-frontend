@@ -89,10 +89,10 @@
       </div>
 
       <app-amazon #amazon [billingAgreementId]="billingAgreementId"
-      [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
+      [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
       <div class="amazon-pay">
-        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || !accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
           Join Now
         </button>
       </div>

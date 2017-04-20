@@ -7,10 +7,11 @@ import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
   styleUrls: ['./amazon.component.css']
 })
 export class AmazonComponent {
-  @Input() billingAgreementId: string;
   @Input() disable: boolean;
+  @Input() billingAgreementId: string;
   @Output() updateBillingId: EventEmitter<string> = new EventEmitter<string>();
   @Output() updateAmazonHide: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() updateAmazonRecurringEnabled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   amazonWallet: any;
   amazonRecurring: any;
@@ -82,6 +83,7 @@ export class AmazonComponent {
           this.billingAgreementId = billingAgreement.getAmazonBillingAgreementId();
           this.updateBillingId.emit(this.billingAgreementId);
           document.getElementById('walletWidgetDiv').style.display = 'block';
+          document.getElementById('payWithAmazon').style.display = 'inline';
         },
         agreementType: 'BillingAgreement',
         design: { designMode: 'responsive' },
@@ -105,19 +107,19 @@ export class AmazonComponent {
         // Called after widget renders
         onReady: (billingAgreementConsentStatus) => {
           let getStatus = billingAgreementConsentStatus.getConsentStatus;
+          document.getElementById('consentWidgetDiv').style.display = 'block';
           if (getStatus && getStatus() === 'true') {
-            document.getElementById('payWithAmazon').style.display = 'inline';
-            document.getElementById('consentWidgetDiv').style.display = 'block';
+            this.updateAmazonRecurringEnabled.emit(true);
           }
+          else { this.updateAmazonRecurringEnabled.emit(false); }
         },
         onConsent: (billingAgreementConsentStatus) => {
-          if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
-            document.getElementById('payWithAmazon').style.display = 'inline';
-          }
-          else {
-            window.alert('Please allow for future payments to join Cypherpunk.');
-            document.getElementById('payWithAmazon').style.display = 'none';
-          }
+          this.zone.run(() => {
+            if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+              this.updateAmazonRecurringEnabled.emit(true);
+            }
+            else { this.updateAmazonRecurringEnabled.emit(false); }
+          });
         },
         onError: (error) => { console.log(error); }
       }).bind('consentWidgetDiv');
