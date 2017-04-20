@@ -1,6 +1,9 @@
-<div class="alerts-container">
-  <div class="alert" [ngClass]="alert.type" *ngFor="let alert of alerts; let i = index">
-    <div class="message">{{alert.message}}</div>
-    <div class="cancel" (click)="dismiss(i)">X</div>
+<div class="alert" *ngIf="alert.visible">
+  <div class="alert-inner">
+    <div class="alert-header">{{ alert.header}}</div>
+    <span>{{ alert.body }}</span>
+    <div class="button-container">
+      <button class="close" (click)="dismiss()">Close</button>
+    </div>
   </div>
 </div>

@@ -1,33 +1,38 @@
 import { Injectable } from '@angular/core';
 
-export class Alert {
-  type: string;
-  message: string;
-  constructor(type: string, message: string) {
-    this.type = type;
-    this.message = message;
-  }
-}
-
 @Injectable()
 export class AlertService {
-  alerts: Alert[] = [];
+  alert: {
+    header: string,
+    body: string,
+    visible: boolean
+  };
 
-  constructor() {}
+  constructor() {
+    this.alert = {
+      header: '',
+      body: '',
+      visible: false
+    };
+  }
 
   success(message: string): void {
-    this.alerts.push(new Alert('success', message));
+    this.alert.header = 'Success';
+    this.alert.body = message;
+    this.alert.visible = true;
   }
 
   warning(message: string): void {
-    this.alerts.push(new Alert('warning', message));
+    this.alert.header = 'Warning';
+    this.alert.body = message;
+    this.alert.visible = true;
   }
 
   error(message: string): void {
-    this.alerts.push(new Alert('error', message));
+    this.alert.header = 'Error';
+    this.alert.body = message;
+    this.alert.visible = true;
   }
 
-  dismiss(index): void {
-    this.alerts.splice(index, 1);
-  }
+  dismiss(): void { this.alert.visible = false; }
 }

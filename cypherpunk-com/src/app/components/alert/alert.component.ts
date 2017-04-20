@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Alert, AlertService } from '../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-alerts',
@@ -7,14 +7,12 @@ import { Alert, AlertService } from '../../services/alert.service';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent {
-  alerts: Alert[] = [];
+  alert: any;
 
   constructor(private alertService: AlertService) {
-    this.alerts = alertService.alerts;
+    this.alert = alertService.alert;
   }
 
-  dismiss(index) {
-    this.alertService.dismiss(index);
-  }
+  dismiss() { this.alertService.dismiss(); }
 
 }

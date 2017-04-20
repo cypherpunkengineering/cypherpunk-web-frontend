@@ -1,55 +1,45 @@
-.alerts-container {
-  position: fixed;
-  top: 60px;
-  width: 100%;
-  padding: 10px 0 0;
-  z-index: 49;
-}
-
 .alert {
-  max-width: 1000px;
+  position: fixed;
+  top: 0;
   width: 100%;
-  margin: 0 auto 5px;
-  font-size: 18px;
-  padding: 10px 0;
-  overflow: auto;
-}
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(128,128,128,0.5);
+  padding: 0 15px;
 
-.message {
-  padding-left: 15px;
-  float: left;
-  width: 95%;
-}
+  .alert-inner {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    color: #eee;
+    background-color: #0d1e26;
+    border-radius: 5px;
+    border: 4px solid #19474c;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 
-.cancel {
-  width: 5%;
-  padding-right: 15px;
-  float: right;
-  cursor: pointer;
-  text-align: right;
-}
-
-.success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border: 1px solid #d6e9c6;
-  border-radius: 5px;
-}
-
-.warning {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-  border: 1px solid #faebcc;
-  border-radius: 5px;
-}
-
-.error {
-  color: #a94442;
-  background-color: #f2dede;
-  border: 1px solid #ebccd1;
-  border-radius: 5px;
-}
-
-@media (max-width: 1250px) {
-  .alerts-container { padding: 10px 15px; }
+    .alert-header {
+      font-size: 20px;
+      padding: 0 0 20px;
+    }
+    .button-container {
+      overflow: auto;
+      padding: 20px 0 0;
+      .close {
+        width: 90px;
+        height: 45px;
+        color: #fff;
+        font-size: 18px;
+        border: 0;
+        border-radius: 5px;
+        background-color: #163439;
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
 }
