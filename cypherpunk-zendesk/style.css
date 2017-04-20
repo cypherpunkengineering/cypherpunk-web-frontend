@@ -1277,6 +1277,7 @@ h1 .visibility-internal-icon::before {
   border-bottom: 1px solid #eee;
   margin-top: 15px;
   padding: 20px 0;
+  background-color: #fff;
 }
 
 .article-footer .article-vote, .article-footer .share {
