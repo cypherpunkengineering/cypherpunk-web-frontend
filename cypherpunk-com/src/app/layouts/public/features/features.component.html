@@ -16,31 +16,37 @@
   <ul>
     <a routerLink="/features" fragment="privacy">
       <li [ngClass]="{'active': currentTab === 'privacy'}">
+        <img src="/assets/features/nav/privacy@2x.png" srcset="/assets/features/nav/privacy.png 500w, /assets/features/nav/privacy@2x.png 1000w" alt="Privacy">
         Privacy
       </li>
     </a>
     <a routerLink="/features" fragment="access">
       <li [ngClass]="{'active': currentTab === 'access'}">
+        <img src="/assets/features/nav/access@2x.png" srcset="/assets/features/nav/access.png 500w, /assets/features/nav/access@2x.png 1000w" alt="Access">
         Access
       </li>
     </a>
     <a routerLink="/features" fragment="network">
       <li [ngClass]="{'active': currentTab === 'network'}">
+        <img src="/assets/features/nav/network@2x.png" srcset="/assets/features/nav/network.png 500w, /assets/features/nav/network@2x.png 1000w" alt="Network">
         Network
       </li>
     </a>
     <a routerLink="/features" fragment="freedom">
       <li [ngClass]="{'active': currentTab === 'freedom'}">
+        <img src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Access">
         Freedom
       </li>
     </a>
     <a routerLink="/features" fragment="security">
       <li [ngClass]="{'active': currentTab === 'security'}">
+        <img src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
         Security
       </li>
     </a>
     <a routerLink="/features" fragment="support">
       <li [ngClass]="{'active': currentTab === 'support'}">
+        <img src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
         Support
       </li>
     </a>
@@ -55,7 +61,7 @@
 
     <div class="row">
       <div class="image">
-        <img class="padded-width" src="/assets/features/privacy/cypherpunk-privacy-suite@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-suite.png 500w, /assets/features/privacy/cypherpunk-privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
+        <img class="padded-width" src="/assets/features/privacy-suite@2x.png" srcset="/assets/features/privacy-suite.png 500w, /assets/features/privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
       </div>
 
       <div class="text">
@@ -68,14 +74,6 @@
         <p>
           Simple friendly to use apps. One click connect to protect your privacy online.
         </p>
-
-        <a class="learn-more right" (click)="psSwitch = !psSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!psSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="psSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
     </div>
   </div>
@@ -85,7 +83,7 @@
   <div class="more double" [ngClass]="{'open': psSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/protect-all-your-devices@2x.png" srcset="/assets/features/online-privacy/protect-all-your-devices.png 500w, /assets/features/online-privacy/protect-all-your-devices@2x.png 1000w" alt="Protect all your devices">
+        <img src="/assets/features/protect-all-your-devices@2x.png" srcset="/assets/features/protect-all-your-devices.png 500w, /assets/features/protect-all-your-devices@2x.png 1000w" alt="Protect all your devices">
       </div>
 
       <div class="cell-header">Protect all your devices</div>
@@ -97,7 +95,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/multiple-connections@2x.png" srcset="/assets/features/online-privacy/multiple-connections.png 500w, /assets/features/online-privacy/multiple-connections@2x.png 1000w" alt="Multiple Simultaneous Connections">
+        <img src="/assets/features/multiple-connections@2x.png" srcset="/assets/features/multiple-connections.png 500w, /assets/features/multiple-connections@2x.png 1000w" alt="Multiple Simultaneous Connections">
       </div>
 
       <div class="cell-header">Multiple simultaneous connections</div>
@@ -109,7 +107,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
+        <img src="/assets/features/privacy-filter@2x.png" srcset="/assets/features/privacy-filter.png 500w, /assets/features/privacy-filter@2x.png 1000w" alt="Privacy Filter">
       </div>
 
       <div class="cell-header">Privacy Filter</div>
@@ -121,7 +119,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-firewall@2x.png" srcset="/assets/features/online-privacy/privacy-firewall.png 500w, /assets/features/online-privacy/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
+        <img src="/assets/features/privacy-firewall@2x.png" srcset="/assets/features/privacy-firewall.png 500w, /assets/features/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
       </div>
 
       <div class="cell-header">Privacy Firewall</div>
@@ -133,7 +131,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/dns-leak-protection@2x.png" srcset="/assets/features/online-privacy/dns-leak-protection.png 500w, /assets/features/online-privacy/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
+        <img class="width" src="/assets/features/dns-leak-protection@2x.png" srcset="/assets/features/dns-leak-protection.png 500w, /assets/features/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
       </div>
 
       <div class="cell-header">DNS Leak Protection</div>
@@ -145,7 +143,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ipv6-leak-protection@2x.png" srcset="/assets/features/online-privacy/ipv6-leak-protection.png 500w, /assets/features/online-privacy/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
+        <img src="/assets/features/ipv6-leak-protection@2x.png" srcset="/assets/features/ipv6-leak-protection.png 500w, /assets/features/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
       </div>
 
       <div class="cell-header">IPv6 Leak Protection</div>
@@ -166,7 +164,7 @@
 
     <div class="row">
       <div class="image mobile">
-        <img class="padded-width" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="CypherPlay">
+        <img class="padded-width" src="/assets/features/cypherplay@2x.png" srcset="/assets/features/cypherplay.png 500w, /assets/features/cypherplay@2x.png 1000w" alt="CypherPlay">
       </div>
 
       <div class="text">
@@ -179,18 +177,10 @@
         <p>
           Unique networking technology to play any type of geo-restricted content from anywhere without slowing down your experience.
         </p>
-
-        <a class="learn-more" (click)="cpSwitch = !cpSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!cpSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="cpSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
 
       <div class="image desktop">
-        <img class="padded-width" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="CypherPlay">
+        <img class="padded-width" src="/assets/features/cypherplay@2x.png" srcset="/assets/features/cypherplay.png 500w, /assets/features/cypherplay@2x.png 1000w" alt="CypherPlay">
       </div>
     </div>
   </div>
@@ -200,7 +190,7 @@
   <div class="more triple" [ngClass]="{'open': cpSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/play-from-anywhere@2x.png" srcset="/assets/features/freedom/play-from-anywhere.png 500w, /assets/features/freedom/play-from-anywhere@2x.png 1000w" alt="Play From Anywhere">
+        <img src="/assets/features/play-from-anywhere@2x.png" srcset="/assets/features/play-from-anywhere.png 500w, /assets/features/play-from-anywhere@2x.png 1000w" alt="Play From Anywhere">
       </div>
 
       <div class="cell-header">Play from anywhere</div>
@@ -212,7 +202,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/automatic-regional-routing@2x.png" srcset="/assets/features/freedom/automatic-regional-routing.png 500w, /assets/features/freedom/automatic-regional-routing@2x.png 1000w" alt="Automatic Regional Routing">
+        <img class="width" src="/assets/features/automatic-regional-routing@2x.png" srcset="/assets/features/automatic-regional-routing.png 500w, /assets/features/automatic-regional-routing@2x.png 1000w" alt="Automatic Regional Routing">
       </div>
 
       <div class="cell-header">Automatic regional routing</div>
@@ -226,167 +216,116 @@
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/netflix@2x.png" srcset="/assets/features/freedom/netflix.png 500w, /assets/features/freedom/netflix@2x.png 1000w" alt="Netflix">
-        <span></span>
+        <img class="width" src="/assets/features/icons/netflix@2x.png" srcset="/assets/features/icons/netflix.png 500w, /assets/features/icons/netflix@2x.png 1000w" alt="Netflix">
       </div>
-
-      <div class="cell-header">Netflix</div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/hulu@2x.png" srcset="/assets/features/freedom/hulu.png 500w, /assets/features/freedom/hulu@2x.png 1000w" alt="Hulu">
+        <img class="width" src="/assets/features/icons/hulu@2x.png" srcset="/assets/features/icons/hulu.png 500w, /assets/features/icons/hulu@2x.png 1000w" alt="Hulu">
       </div>
-
-      <div class="cell-header">Hulu</div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img src="/assets/features/freedom/bbcplayer@2x.png" srcset="/assets/features/freedom/bbcplayer.png 500w, /assets/features/freedom/bbcplayer@2x.png 1000w" alt="BBC iPlayer">
+        <img src="/assets/features/icons/bbc-iplayer@2x.png" srcset="/assets/features/icons/bbc-iplayer.png 500w, /assets/features/icons/bbc-iplayer@2x.png 1000w" alt="BBC iPlayer">
       </div>
-
-      <div class="cell-header">BBC iPlayer</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Kodi</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">ESPN</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Dazn</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/youtube@2x.png" srcset="/assets/features/freedom/youtube.png 500w, /assets/features/freedom/youtube@2x.png 1000w" alt="YouTube">
+        <img src="/assets/features/icons/kodi@2x.png" srcset="/assets/features/icons/kodi.png 500w, /assets/features/icons/kodi@2x.png 1000w" alt="Kodi">
       </div>
-
-      <div class="cell-header">YouTube</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Pandora</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/spotify@2x.png" srcset="/assets/features/freedom/spotify.png 500w, /assets/features/freedom/spotify@2x.png 1000w" alt="Spotify">
+        <img class="width" src="/assets/features/icons/espn@2x.png" srcset="/assets/features/icons/espn.png 500w, /assets/features/icons/espn@2x.png 1000w" alt="ESPN">
       </div>
-
-      <div class="cell-header">Spotify</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Playstation Vue</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/amazon-prime-video@2x.png" srcset="/assets/features/freedom/amazon-prime-video.png 500w, /assets/features/freedom/amazon-prime-video@2x.png 1000w" alt="Amazon Prime Video">
+        <img src="/assets/features/icons/dazn@2x.png" srcset="/assets/features/icons/dazn.png 500w, /assets/features/icons/dazn@2x.png 1000w" alt="Dazn">
       </div>
-
-      <div class="cell-header">Amazon Prime Video</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img src="/assets/features/freedom/hbogo@2x.png" srcset="/assets/features/freedom/hbogo.png 500w, /assets/features/freedom/hbogo@2x.png 1000w" alt="HBO Go">
+        <img class="width" src="/assets/features/icons/youtube@2x.png" srcset="/assets/features/icons/youtube.png 500w, /assets/features/icons/youtube@2x.png 1000w" alt="YouTube">
       </div>
-
-      <div class="cell-header">HBO Go</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Showtime</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Starz</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Sling</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">SkyGo</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
       <div class="cell-image">
-        <img src="/assets/features/freedom/nbc@2x.png" srcset="/assets/features/freedom/nbc.png 500w, /assets/features/freedom/nbc@2x.png 1000w" alt="NBC">
+        <img class="width" src="/assets/features/icons/pandora@2x.png" srcset="/assets/features/icons/pandora.png 500w, /assets/features/icons/pandora@2x.png 1000w" alt="Pandora">
       </div>
-
-      <div class="cell-header">NBC</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Facebook</div>
-
-      <div class="cell-text"></div>
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/spotify@2x.png" srcset="/assets/features/icons/spotify.png 500w, /assets/features/icons/spotify@2x.png 1000w" alt="Spotify">
+      </div>
     </div>
 
     <div class="cell small">
-      <div class="cell-image"></div>
+      <div class="cell-image">
+        <img src="/assets/features/icons/playstation@2x.png" srcset="/assets/features/icons/playstation.png 500w, /assets/features/icons/playstation@2x.png 1000w" alt="Playstation Vue">
+      </div>
+    </div>
 
-      <div class="cell-header">Zattoo</div>
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/amazon-prime@2x.png" srcset="/assets/features/icons/amazon-prime.png 500w, /assets/features/icons/amazon-prime@2x.png 1000w" alt="Amazon Prime Video">
+      </div>
+    </div>
 
-      <div class="cell-text"></div>
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/icons/hbo@2x.png" srcset="/assets/features/icons/hbo.png 500w, /assets/features/icons/hbo@2x.png 1000w" alt="HBO Go">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/showtime@2x.png" srcset="/assets/features/icons/showtime.png 500w, /assets/features/icons/showtime@2x.png 1000w" alt="Showtime">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/starz@2x.png" srcset="/assets/features/icons/starz.png 500w, /assets/features/icons/starz@2x.png 1000w" alt="Starz">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/sling@2x.png" srcset="/assets/features/icons/sling.png 500w, /assets/features/icons/sling@2x.png 1000w" alt="Sling">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/icons/skygo@2x.png" srcset="/assets/features/icons/skygo.png 500w, /assets/features/icons/skygo@2x.png 1000w" alt="SkyGo">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img src="/assets/features/icons/nbc@2x.png" srcset="/assets/features/icons/nbc.png 500w, /assets/features/icons/nbc@2x.png 1000w" alt="NBC">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/facebook@2x.png" srcset="/assets/features/icons/facebook.png 500w, /assets/features/icons/facebook@2x.png 1000w" alt="Facebook">
+      </div>
+    </div>
+
+    <div class="cell small">
+      <div class="cell-image">
+        <img class="width" src="/assets/features/icons/zatto@2x.png" srcset="/assets/features/icons/zatto.png 500w, /assets/features/icons/zatto@2x.png 1000w" alt="Zattoo">
+      </div>
     </div>
 
     <div class="section-header">
@@ -404,7 +343,7 @@
 
     <div class="row">
       <div class="image">
-        <img class="padded-width" src="/assets/features/privacy/cypherpunk-privacy-network@2x.png" srcset="/assets/features/privacy/cypherpunk-privacy-network.png 500w, /assets/features/privacy/cypherpunk-privacy-network@2x.png 1000w" alt="Cypherpunk Privacy Network">
+        <img class="padded-width" src="/assets/features/privacy-network@2x.png" srcset="/assets/features/privacy-network.png 500w, /assets/features/privacy-network@2x.png 1000w" alt="Cypherpunk Privacy Network">
       </div>
 
       <div class="text">
@@ -413,14 +352,6 @@
         <p>
           Strict no-logging policy. We respect and defend the privacy of your online activities.
         </p>
-
-        <a class="learn-more right" (click)="pnSwitch = !pnSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!pnSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="pnSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
     </div>
   </div>
@@ -431,19 +362,15 @@
 
     <div class="cell wide">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/blazing-fast-speeds@2x.png" srcset="/assets/features/freedom/blazing-fast-speeds.png 500w, /assets/features/freedom/blazing-fast-speeds@2x.png 1000w" alt="Blazing Fast Speed">
+        <img class="width" src="/assets/features/blazing-fast-speeds@2x.png" srcset="/assets/features/blazing-fast-speeds.png 500w, /assets/features/blazing-fast-speeds@2x.png 1000w" alt="Blazing Fast Speed">
       </div>
-
-      <div class="cell-header">Blazing fast speeds</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div></div>
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/shared-ip-system@2x.png" srcset="/assets/features/online-privacy/shared-ip-system.png 500w, /assets/features/online-privacy/shared-ip-system@2x.png 1000w" alt="Shared IP System">
+        <img src="/assets/features/shared-ip-system@2x.png" srcset="/assets/features/shared-ip-system.png 500w, /assets/features/shared-ip-system@2x.png 1000w" alt="Shared IP System">
       </div>
 
       <div class="cell-header">Shared IP system</div>
@@ -455,7 +382,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ultra-fast-servers@2x.png" srcset="/assets/features/online-privacy/ultra-fast-servers.png 500w, /assets/features/online-privacy/ultra-fast-servers@2x.png 1000w" alt="Ultra fast servers">
+        <img src="/assets/features/ultra-fast-servers@2x.png" srcset="/assets/features/ultra-fast-servers.png 500w, /assets/features/ultra-fast-servers@2x.png 1000w" alt="Ultra fast servers">
       </div>
 
       <div class="cell-header">Ultra-fast servers</div>
@@ -467,7 +394,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/worldwide-locations@2x.png" srcset="/assets/features/online-privacy/worldwide-locations.png 500w, /assets/features/online-privacy/worldwide-locations@2x.png 1000w" alt="Worldwide Locations">
+        <img src="/assets/features/worldwide-locations@2x.png" srcset="/assets/features/worldwide-locations.png 500w, /assets/features/worldwide-locations@2x.png 1000w" alt="Worldwide Locations">
       </div>
 
       <div class="cell-header">Worldwide Locations</div>
@@ -479,7 +406,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/privacy/fast-network-for-streaming@2x.png" srcset="/assets/features/privacy/fast-network-for-streaming.png 500w, /assets/features/privacy/fast-network-for-streaming@2x.png 1000w" alt="Fast Network for Streaming">
+        <img src="/assets/features/fast-network@2x.png" srcset="/assets/features/fast-network.png 500w, /assets/features/fast-network@2x.png 1000w" alt="Fast Network for Streaming">
       </div>
 
       <div class="cell-header">Fast Network for streaming video</div>
@@ -493,7 +420,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/p2p-friendly@2x.png" srcset="/assets/features/online-privacy/p2p-friendly.png 500w, /assets/features/online-privacy/p2p-friendly@2x.png 1000w" alt="P2P Friendly">
+        <img src="/assets/features/p2p-friendly@2x.png" srcset="/assets/features/p2p-friendly.png 500w, /assets/features/p2p-friendly@2x.png 1000w" alt="P2P Friendly">
       </div>
 
       <div class="cell-header">P2P Friendly</div>
@@ -505,7 +432,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ddos-protection@2x.png" srcset="/assets/features/online-privacy/ddos-protection.png 500w, /assets/features/online-privacy/ddos-protection@2x.png 1000w" alt="DDoS Protection">
+        <img src="/assets/features/ddos-protection@2x.png" srcset="/assets/features/ddos-protection.png 500w, /assets/features/ddos-protection@2x.png 1000w" alt="DDoS Protection">
       </div>
 
       <div class="cell-header">DDoS Protection</div>
@@ -526,7 +453,7 @@
 
     <div class="row">
       <div class="image mobile">
-        <img class="full-width" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
+        <img class="full-width" src="/assets/features/cypherpunk-vpn@2x.png" srcset="/assets/features/cypherpunk-vpn.png 500w, /assets/features/cypherpunk-vpn@2x.png 1000w" alt="CypherVPN">
       </div>
 
       <div class="text">
@@ -539,18 +466,10 @@
         <p>
           Proprietary VPN technology to bypass the most restrictive network firewalls put in place by governments (even Chinese GFW), corporations and ISPs to achieve an open internet experience.
         </p>
-
-        <a class="learn-more right" (click)="mfSwitch = !mfSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!mfSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="mfSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
 
       <div class="image desktop">
-        <img class="full-width" src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
+        <img class="full-width" src="/assets/features/cypherpunk-vpn@2x.png" srcset="/assets/features/cypherpunk-vpn.png 500w, /assets/features/cypherpunk-vpn@2x.png 1000w" alt="CypherVPN">
       </div>
     </div>
   </div>
@@ -560,7 +479,7 @@
   <div class="more triple" [ngClass]="{'open': mfSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/bypass-any-gouvernment@2x.png" srcset="/assets/features/freedom/bypass-any-gouvernment.png 500w, /assets/features/freedom/bypass-any-gouvernment@2x.png 1000w" alt="Bypass Any Censorship">
+        <img src="/assets/features/bypass-government@2x.png" srcset="/assets/features/bypass-government.png 500w, /assets/features/bypass-government@2x.png 1000w" alt="Bypass Any Censorship">
       </div>
 
       <div class="cell-header">
@@ -574,7 +493,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img class="width" src="/assets/features/freedom/disguise-your-vpntraffic@2x.png" srcset="/assets/features/freedom/disguise-your-vpntraffic.png 500w, /assets/features/freedom/disguise-your-vpntraffic@2x.png 1000w" alt="Avoid Depp Packet Inspection">
+        <img class="width" src="/assets/features/disguise-your-vpn-traffic@2x.png" srcset="/assets/features/disguise-your-vpn-traffic.png 500w, /assets/features/disguise-your-vpn-traffic@2x.png 1000w" alt="Avoid Deep Packet Inspection">
       </div>
 
       <div class="cell-header">
@@ -588,7 +507,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/optimized-traffic@2x.png" srcset="/assets/features/freedom/optimized-traffic.png 500w, /assets/features/freedom/optimized-traffic@2x.png 1000w" alt="Optimized Traffic Flow">
+        <img src="/assets/features/optimized-traffic-flow@2x.png" srcset="/assets/features/optimized-traffic-flow.png 500w, /assets/features/optimized-traffic-flow@2x.png 1000w" alt="Optimized Traffic Flow">
       </div>
 
       <div class="cell-header">Optimized traffic flow</div>
@@ -601,92 +520,10 @@
 
     <div></div>
 
-    <div class="cell small">
+    <div class="cell x-wide">
       <div class="cell-image">
-        <img src="/assets/features/freedom/facebook@2x.png" srcset="/assets/features/freedom/facebook.png 500w, /assets/features/freedom/facebook@2x.png 1000w" alt="Facebook">
+        <img class="width" src="/assets/features/free-open-internet@2x.png" srcset="/assets/features/free-open-internet.png 500w, /assets/features/free-open-internet@2x.png 1000w" alt="Facebook">
       </div>
-
-      <div class="cell-header">Facebook</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Gmail</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/google@2x.png" srcset="/assets/features/freedom/google.png 500w, /assets/features/freedom/google@2x.png 1000w" alt="Google">
-      </div>
-
-      <div class="cell-header">Google</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Skype</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Snapchat</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Tinder</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/twitter@2x.png" srcset="/assets/features/freedom/twitter.png 500w, /assets/features/freedom/twitter@2x.png 1000w" alt="Twitter">
-      </div>
-
-      <div class="cell-header">Twitter</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Whatsapp</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image"></div>
-
-      <div class="cell-header">Viber</div>
-
-      <div class="cell-text"></div>
-    </div>
-
-    <div class="cell small">
-      <div class="cell-image">
-        <img src="/assets/features/freedom/wikipedia@2x.png" srcset="/assets/features/freedom/wikipedia.png 500w, /assets/features/freedom/wikipedia@2x.png 1000w" alt="Wikipedia">
-      </div>
-
-      <div class="cell-header">Wikipedia</div>
-
-      <div class="cell-text"></div>
     </div>
 
     <div class="section-header">and the entire free open internet</div>
@@ -702,7 +539,7 @@
 
     <div class="row">
       <div class="image">
-        <img class="padded-width" src="/assets/features/security/online-security@2x.png" srcset="/assets/features/security/online-security.png 500w, /assets/features/security/online-security@2x.png 1000w" alt="Online Security">
+        <img class="padded-width" src="/assets/features/online-security@2x.png" srcset="/assets/features/online-security.png 500w, /assets/features/online-security@2x.png 1000w" alt="Online Security">
       </div>
 
       <div class="text">
@@ -715,14 +552,6 @@
         <p>
           Blocks malware from entering your VPN to protect your network and devices.
         </p>
-
-        <a class="learn-more right" (click)="mepSwitch = !mepSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!mepSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="mepSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
     </div>
   </div>
@@ -733,6 +562,7 @@
 
     <div class="cell wide">
       <div class="cell-image">
+        <img src="/assets/features/automatic-wifi-security@2x.png" srcset="/assets/features/automatic-wifi-security.png 500w, /assets/features/automatic-wifi-security@2x.png 1000w" alt="Automatic WiFi Security">
       </div>
 
       <div class="cell-header">Automatic WiFi Security</div>
@@ -748,7 +578,7 @@
   <div class="inner">
     <div class="row">
       <div class="image mobile">
-        <img class="padded-width" src="/assets/features/security/support-for-modern-vpn@2x.png" srcset="/assets/features/security/support-for-modern-vpn.png 500w, /assets/features/security/support-for-modern-vpn@2x.png 1000w" alt="Multiple Protocols">
+        <img class="padded-width" src="/assets/features/multiple-protocols@2x.png" srcset="/assets/features/multiple-protocols.png 500w, /assets/features/multiple-protocols@2x.png 1000w" alt="Multiple Protocols">
       </div>
 
       <div class="text">
@@ -757,18 +587,10 @@
         <p>
           Support for all modern VPN and Proxy protocols
         </p>
-
-        <a class="learn-more" (click)="svSwitch = !svSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!svSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="svSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
 
       <div class="image desktop">
-        <img class="padded-width" src="/assets/features/security/support-for-modern-vpn@2x.png" srcset="/assets/features/security/support-for-modern-vpn.png 500w, /assets/features/security/support-for-modern-vpn@2x.png 1000w" alt="Multiple Protocols">
+        <img class="padded-width" src="/assets/features/multiple-protocols@2x.png" srcset="/assets/features/multiple-protocols.png 500w, /assets/features/multiple-protocols@2x.png 1000w" alt="Multiple Protocols">
       </div>
     </div>
   </div>
@@ -778,7 +600,7 @@
   <div class="more double" [ngClass]="{'open': svSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/openvpn@2x.png" srcset="/assets/features/online-privacy/openvpn.png 500w, /assets/features/online-privacy/openvpn@2x.png 1000w" alt="OpenVPN">
+        <img src="/assets/features/openvpn@2x.png" srcset="/assets/features/openvpn.png 500w, /assets/features/openvpn@2x.png 1000w" alt="OpenVPN">
       </div>
 
       <div class="cell-header">OpenVPN</div>
@@ -790,7 +612,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/Cypherpunk-VPN@2x.png" srcset="/assets/features/freedom/Cypherpunk-VPN.png 500w, /assets/features/freedom/Cypherpunk-VPN@2x.png 1000w" alt="CypherVPN">
+        <img src="/assets/features/cypherpunk-vpn-proc@2x.png" srcset="/assets/features/cypherpunk-vpn-proc.png 500w, /assets/features/cypherpunk-vpn-proc@2x.png 1000w" alt="CypherVPN">
       </div>
 
       <div class="cell-header">CypherVPN&trade;</div>
@@ -802,7 +624,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ipsec@2x.png" srcset="/assets/features/online-privacy/ipsec.png 500w, /assets/features/online-privacy/ipsec@2x.png 1000w" alt="IPSec">
+        <img src="/assets/features/ipsec@2x.png" srcset="/assets/features/ipsec.png 500w, /assets/features/ipsec@2x.png 1000w" alt="IPSec">
       </div>
 
       <div class="cell-header">IPSec</div>
@@ -816,7 +638,7 @@
 
     <div class="cell medium">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/ikev2@2x.png" srcset="/assets/features/online-privacy/ikev2.png 500w, /assets/features/online-privacy/ikev2@2x.png 1000w" alt="IKEv2">
+        <img class="width" src="/assets/features/ikev2@2x.png" srcset="/assets/features/ikev2.png 500w, /assets/features/ikev2@2x.png 1000w" alt="IKEv2">
       </div>
 
       <div class="cell-header">IKEv2</div>
@@ -828,7 +650,7 @@
 
     <div class="cell medium">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/http-proxy@2x.png" srcset="/assets/features/online-privacy/http-proxy.png 500w, /assets/features/online-privacy/http-proxy@2x.png 1000w" alt="HTTP Proxy">
+        <img class="width" src="/assets/features/http-proxy@2x.png" srcset="/assets/features/http-proxy.png 500w, /assets/features/http-proxy@2x.png 1000w" alt="HTTP Proxy">
       </div>
 
       <div class="cell-header">HTTP proxy</div>
@@ -840,7 +662,7 @@
 
     <div class="cell medium">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/socks-proxy@2x.png" srcset="/assets/features/online-privacy/socks-proxy.png 500w, /assets/features/online-privacy/socks-proxy@2x.png 1000w" alt="SOCKS Proxy">
+        <img class="width" src="/assets/features/socks-proxy@2x.png" srcset="/assets/features/socks-proxy.png 500w, /assets/features/socks-proxy@2x.png 1000w" alt="SOCKS Proxy">
       </div>
 
       <div class="cell-header">SOCKS proxy</div>
@@ -851,7 +673,9 @@
     </div>
 
     <div class="cell medium">
-      <div class="cell-image"></div>
+      <div class="cell-image">
+        <img class="width" src="/assets/features/https-tls-proxy@2x.png" srcset="/assets/features/https-tls-proxy.png 500w, /assets/features/https-tls-proxy@2x.png 1000w" alt="HTTPS / TLS Proxy">
+      </div>
 
       <div class="cell-header">HTTPS / TLS proxy</div>
 
@@ -868,6 +692,7 @@
 
     <div class="row">
       <div class="image">
+        <img class="padded-width" src="/assets/features/multiple-encryption-modes@2x.png" srcset="/assets/features/multiple-encryption-modes.png 500w, /assets/features/multiple-encryption-modes@2x.png 1000w" alt="Multiple Encryption Modes">
       </div>
 
       <div class="text">
@@ -884,7 +709,9 @@
 <div class="descriptions">
   <div class="more" [ngClass]="{'open': mepSwitch}">
     <div class="cell">
-      <div class="cell-image"></div>
+      <div class="cell-image">
+        <img src="/assets/features/recommended-default@2x.png" srcset="/assets/features/recommended-default.png 500w, /assets/features/recommended-default@2x.png 1000w" alt="Recommended Default">
+      </div>
 
       <div class="cell-header">Recommended Default</div>
 
@@ -895,7 +722,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-privacy-mode@2x.png" srcset="/assets/features/online-privacy/max-privacy-mode.png 500w, /assets/features/online-privacy/max-privacy-mode@2x.png 1000w" alt="Max Security Mode">
+        <img src="/assets/features/max-security@2x.png" srcset="/assets/features/max-security.png 500w, /assets/features/max-security@2x.png 1000w" alt="Max Security Mode">
       </div>
 
       <div class="cell-header">Max Security mode</div>
@@ -907,7 +734,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-freedom-mode@2x.png" srcset="/assets/features/online-privacy/max-freedom-mode.png 500w, /assets/features/online-privacy/max-freedom-mode@2x.png 1000w" alt="Max Privacy Mode">
+        <img src="/assets/features/max-privacy@2x.png" srcset="/assets/features/max-privacy.png 500w, /assets/features/max-privacy@2x.png 1000w" alt="Max Privacy Mode">
       </div>
 
       <div class="cell-header">Max Privacy mode</div>
@@ -919,7 +746,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-speed-mode@2x.png" srcset="/assets/features/online-privacy/max-speed-mode.png 500w, /assets/features/online-privacy/max-speed-mode@2x.png 1000w" alt="Max Speed Mode">
+        <img src="/assets/features/max-speed@2x.png" srcset="/assets/features/max-speed.png 500w, /assets/features/max-speed@2x.png 1000w" alt="Max Speed Mode">
       </div>
 
       <div class="cell-header">Max Speed mode</div>
@@ -940,7 +767,7 @@
 
     <div class="row">
       <div class="image mobile">
-        <img class="padded-width" src="/assets/features/support/expert@2x.png" srcset="/assets/features/support/expert.png 500w, /assets/features/support/expert@2x.png 1000w" alt="Expert 24/7/365 Support">
+        <img class="padded-width" src="/assets/features/expert@2x.png" srcset="/assets/features/expert.png 500w, /assets/features/expert@2x.png 1000w" alt="Expert 24/7/365 Support">
       </div>
 
       <div class="text">
@@ -949,18 +776,10 @@
         <p>
           Your satisfaction is our priority. We're here to answer your questions, give assistance with setting up and using our service, or helping you in any way possible.
         </p>
-
-        <a class="learn-more" (click)="esSwitch = !esSwitch">
-          <div>
-            <img src="/assets/features/online-privacy/learn-more-blue.png" *ngIf="!esSwitch">
-            <img src="/assets/features/online-privacy/learn-more-blue-closed.png" *ngIf="esSwitch">
-            <section class="learn-more-text">Learn More</section>
-          </div>
-        </a>
       </div>
 
       <div class="image desktop">
-        <img class="padded-width" src="/assets/features/support/expert@2x.png" srcset="/assets/features/support/expert.png 500w, /assets/features/support/expert@2x.png 1000w" alt="Expert 24/7/365 Support">
+        <img class="padded-width" src="/assets/features/expert@2x.png" srcset="/assets/features/expert.png 500w, /assets/features/expert@2x.png 1000w" alt="Expert 24/7/365 Support">
       </div>
     </div>
   </div>
@@ -970,7 +789,7 @@
   <div class="more double" [ngClass]="{'open': esSwitch}">
     <div class="cell">
       <div class="cell-image">
-        <img class="width" src="/assets/features/online-privacy/always-available@2x.png" srcset="/assets/features/online-privacy/always-available.png 500w, /assets/features/online-privacy/always-available@2x.png 1000w" alt="We're Always Available">
+        <img src="/assets/features/always-available@2x.png" srcset="/assets/features/always-available.png 500w, /assets/features/always-available@2x.png 1000w" alt="We're Always Available">
       </div>
 
       <div class="cell-header">We're always available</div>
@@ -982,7 +801,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/premium-support@2x.png" srcset="/assets/features/online-privacy/premium-support.png 500w, /assets/features/online-privacy/premium-support@2x.png 1000w" alt="Premium Support">
+        <img src="/assets/features/premium-support@2x.png" srcset="/assets/features/premium-support.png 500w, /assets/features/premium-support@2x.png 1000w" alt="Premium Support">
       </div>
 
       <div class="cell-header">Premium support</div>
@@ -994,7 +813,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/instant-live-chat@2x.png" srcset="/assets/features/online-privacy/instant-live-chat.png 500w, /assets/features/online-privacy/instant-live-chat@2x.png 1000w" alt="Instant Live Chat">
+        <img src="/assets/features/live-chat@2x.png" srcset="/assets/features/live-chat.png 500w, /assets/features/live-chat@2x.png 1000w" alt="Instant Live Chat">
       </div>
 
       <div class="cell-header">Instant live chat</div>
@@ -1006,7 +825,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/email-us-anytime@2x.png" srcset="/assets/features/online-privacy/email-us-anytime.png 500w, /assets/features/online-privacy/email-us-anytime@2x.png 1000w" alt="Email Us Anytime">
+        <img src="/assets/features/email-us@2x.png" srcset="/assets/features/email-us.png 500w, /assets/features/email-us@2x.png 1000w" alt="Email Us Anytime">
       </div>
 
       <div class="cell-header">Email us anytime</div>

@@ -27,7 +27,7 @@
 
     li {
       color: #8DFFFB;
-      font-size: 16px;
+      font-size: 18px;
       padding: 20px;
       display: inline-block;
       cursor: pointer;
@@ -36,6 +36,11 @@
         background-color: #fff;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+      }
+      img {
+        width: 24px;
+        vertical-align: middle;
+        margin: 0 10px 0 0;
       }
     }
   }
@@ -150,6 +155,7 @@
     }
 
     &.wide { width: 500px; }
+    &.x-wide { width: 600px; }
 
     .cell-image {
       width: 100%;
@@ -243,10 +249,12 @@
 @media (max-width: 600px) {
   .more .cell.width { width: 300px; }
   .more .cell.wide { width: 400px; }
+  .more .cell.x-wide { width: 500px; }
 }
 
 @media (max-width: 500px) {
   .more .cell.wide { width: 300px; }
+  .more .cell.x-wide { width: 400px; }
   .feature, .descriptions { padding: 60px 20px; }
 }
 
@@ -254,4 +262,5 @@
   .more .cell { width: 100%; }
   .more .cell.small { width: 100%; }
   .more .cell.wide { width: 100%; }
+  .more .cell.x-wide { width: 100%; }
 }
