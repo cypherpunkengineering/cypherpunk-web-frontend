@@ -194,6 +194,7 @@
         width: 24px;
         vertical-align: middle;
         margin: 0 10px 0 0;
+        &.height { height: 24px; width: auto; }
       }
     }
   }
