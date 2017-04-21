@@ -213,6 +213,7 @@
   .more .cell.small { width: 100%; }
   .more .cell.wide { width: 100%; }
   .more .cell.x-wide { width: 100%; }
+  .more .cell.small img.width { max-width: 150px; }
 }
 
 @media (max-width: 375px) {
