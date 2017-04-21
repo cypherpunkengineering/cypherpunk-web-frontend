@@ -87,7 +87,7 @@ export class NavigationComponent {
       }
     }
 
-    if (currentPosition > 497 && this.isFeatures) {
+    if (currentPosition > 587 && this.isFeatures) {
       this.featuresSubnav.style.opacity = '1';
       this.featuresSubnav.style.visibility = 'visible';
     }

@@ -174,7 +174,7 @@
   .features-inner { width: 100%; max-width: 1000px; margin: auto; }
 
   ul {
-    margin: 0;
+    margin: -3px 0;
     padding: 0;
     list-style-type: none;
     text-align: center;
@@ -188,7 +188,12 @@
       cursor: pointer;
       &.active {
         color: #163238;
-        background-color: #fff;
+        background-color: #efebeb;
+      }
+      img {
+        width: 24px;
+        vertical-align: middle;
+        margin: 0 10px 0 0;
       }
     }
   }
