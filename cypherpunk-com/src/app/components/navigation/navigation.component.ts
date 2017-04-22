@@ -68,6 +68,7 @@ export class NavigationComponent {
     this.scrolledMobileNavElement = document.getElementById('scrolled-mobile-nav');
     this.featuresSubnav = document.getElementById('features-subnav');
     this.featuresMobileSubnav = document.getElementById('features-mobile-subnav');
+    let featureNavigation = document.getElementById('feature-navigation');
 
     // we round here to reduce a little workload
     let currentPosition = Math.round(window.scrollY);
@@ -98,7 +99,7 @@ export class NavigationComponent {
       this.featuresSubnav.style.visibility = 'hidden';
     }
 
-    if (currentPosition > 320 && this.isFeatures) {
+    if (featureNavigation && currentPosition > (featureNavigation.offsetTop - 59) && this.isFeatures) {
       this.featuresMobileSubnav.style.opacity = '1';
       this.featuresMobileSubnav.style.visibility = 'visible';
     }
