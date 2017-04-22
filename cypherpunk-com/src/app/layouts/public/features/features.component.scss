@@ -220,3 +220,9 @@
 @media (max-width: 375px) {
   .cta-container .call-to-action .btn { width: 280px; font-size: 18px; }
 }
+
+@media (max-width: 330px) {
+  .navigation ul li span { display: none; }
+  .navigation ul li img { margin: 0 5px 0; }
+  .navigation ul li { padding: 15px 5px; }
+}
