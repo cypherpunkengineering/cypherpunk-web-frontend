@@ -22,6 +22,7 @@ export class PricingComponent {
   @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
+  plans;
   paymentMethod = '';
   countries = country_list;
   loading: boolean = false;
@@ -77,6 +78,8 @@ export class PricingComponent {
   ) {
     // handle title
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
+
+    this.plans = plansService;
 
     // redirect if user is already logged in
     if (isBrowser) {

@@ -21,6 +21,7 @@ export class UpgradeComponent {
   @ViewChild('bitpay') bitpay;
 
   // payment options (cc, a, pp, bc)
+  plans;
   paymentMethod: string = '';
   countries = country_list;
   loading: boolean = true;
@@ -64,12 +65,14 @@ export class UpgradeComponent {
     private session: SessionService,
     private backend: BackendService,
     private alertService: AlertService,
-    private plansService: PlansService,
     private activatedRoute: ActivatedRoute,
+    private plansService: PlansService,
     @Inject(DOCUMENT) private document: any
   ) {
     // handle title
     this.document.title = 'Upgrade Cypherpunk Account';
+
+    this.plans = plansService;
 
     // check if valid user account
     if (isBrowser) {

@@ -90,9 +90,9 @@
         </div>
 
         <div class="price tall">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
           </div>
         </div>
 
@@ -122,13 +122,13 @@
         </div>
 
         <div class="price">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
           </div>
         </div>
 
-        <app-amazon #amazon [billingAgreementId]="billingAgreementId" [disable]="disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)"></app-amazon>
+        <app-amazon #amazon [billingAgreementId]="billingAgreementId" [disable]="disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
         <div class="amazon-pay">
           <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || disablePayment">
@@ -151,9 +151,9 @@
         </div>
 
         <div class="price">
-          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
           </div>
         </div>
 
@@ -182,10 +182,10 @@
         <div class="price">
           Order Total:
           <span class="total-price">
-            {{ '₿ ' + plansService.selectedPlan.bcTotal + ' BTC' }}
+            {{ '₿ ' + plans.selectedPlan.bcTotal + ' BTC' }}
           </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (₿  {{ plansService.selectedPlan.bcPrice }} per month, every {{ plansService.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (₿  {{ plans.selectedPlan.bcPrice }} per month, every {{ plans.selectedPlan.months }} months)
           </div>
         </div>
 
