@@ -74,37 +74,50 @@
     <ul>
       <a routerLink="/features" fragment="privacy">
         <li [ngClass]="{'active': currentTab === 'privacy'}">
-          <img src="/assets/features/nav/privacy@2x.png" srcset="/assets/features/nav/privacy.png 500w, /assets/features/nav/privacy@2x.png 1000w" alt="Privacy">
+          <img class="display" src="/assets/features/nav/privacy@2x.png" srcset="/assets/features/nav/privacy.png 500w, /assets/features/nav/privacy@2x.png 1000w" alt="Privacy">
+          <img class="hover" src="/assets/features/nav/privacy-hover@2x.png" srcset="/assets/features/nav/privacy-hover.png 500w, /assets/features/nav/privacy-hover@2x.png 1000w" alt="Privacy">
+          <img class="active" src="/assets/features/nav/privacy-selected@2x.png" srcset="/assets/features/nav/privacy-selected.png 500w, /assets/features/nav/privacy-selected@2x.png 1000w" alt="Privacy">
+
           Privacy
         </li>
       </a>
       <a routerLink="/features" fragment="access">
         <li [ngClass]="{'active': currentTab === 'access'}">
-          <img src="/assets/features/nav/access@2x.png" srcset="/assets/features/nav/access.png 500w, /assets/features/nav/access@2x.png 1000w" alt="Access">
+          <img class="display" src="/assets/features/nav/access@2x.png" srcset="/assets/features/nav/access.png 500w, /assets/features/nav/access@2x.png 1000w" alt="Access">
+          <img class="hover" src="/assets/features/nav/access-hover@2x.png" srcset="/assets/features/nav/access-hover.png 500w, /assets/features/nav/access-hover@2x.png 1000w" alt="Access">
+          <img class="active" src="/assets/features/nav/access-selected@2x.png" srcset="/assets/features/nav/access-selected.png 500w, /assets/features/nav/access-selected@2x.png 1000w" alt="Access">
           Access
         </li>
       </a>
       <a routerLink="/features" fragment="network">
         <li [ngClass]="{'active': currentTab === 'network'}">
-          <img src="/assets/features/nav/network@2x.png" srcset="/assets/features/nav/network.png 500w, /assets/features/nav/network@2x.png 1000w" alt="Network">
+          <img class="display" src="/assets/features/nav/network@2x.png" srcset="/assets/features/nav/network.png 500w, /assets/features/nav/network@2x.png 1000w" alt="Network">
+          <img class="hover" src="/assets/features/nav/network-hover@2x.png" srcset="/assets/features/nav/network-hover.png 500w, /assets/features/nav/network-hover@2x.png 1000w" alt="Network">
+          <img class="active" src="/assets/features/nav/network-selected@2x.png" srcset="/assets/features/nav/network-selected.png 500w, /assets/features/nav/network-selected@2x.png 1000w" alt="Network">
           Network
         </li>
       </a>
       <a routerLink="/features" fragment="freedom">
         <li [ngClass]="{'active': currentTab === 'freedom'}">
-          <img class="height" src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Freedom">
+          <img class="display height" src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Freedom">
+          <img class="hover height" src="/assets/features/nav/freedom-hover@2x.png" srcset="/assets/features/nav/freedom-hover.png 500w, /assets/features/nav/freedom-hover@2x.png 1000w" alt="Freedom">
+          <img class="active height" src="/assets/features/nav/freedom-selected@2x.png" srcset="/assets/features/nav/freedom-selected.png 500w, /assets/features/nav/freedom-selected@2x.png 1000w" alt="Freedom">
           Freedom
         </li>
       </a>
       <a routerLink="/features" fragment="security">
         <li [ngClass]="{'active': currentTab === 'security'}">
-          <img src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
+          <img class="display" src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
+          <img class="hover" src="/assets/features/nav/security-hover@2x.png" srcset="/assets/features/nav/security-hover.png 500w, /assets/features/nav/security-hover@2x.png 1000w" alt="Security">
+          <img class="active" src="/assets/features/nav/security-selected@2x.png" srcset="/assets/features/nav/security-selected.png 500w, /assets/features/nav/security-selected@2x.png 1000w" alt="Security">
           Security
         </li>
       </a>
       <a routerLink="/features" fragment="support">
         <li [ngClass]="{'active': currentTab === 'support'}">
-          <img src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
+          <img class="display" src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
+          <img class="hover" src="/assets/features/nav/support-hover@2x.png" srcset="/assets/features/nav/support-hover.png 500w, /assets/features/nav/support-hover@2x.png 1000w" alt="Support">
+          <img class="active" src="/assets/features/nav/support-selected@2x.png" srcset="/assets/features/nav/support-selected.png 500w, /assets/features/nav/support-selected@2x.png 1000w" alt="Support">
           Support
         </li>
       </a>
@@ -146,22 +159,21 @@
 
 <div id="scrolled-mobile-nav" class="scrolled-mobile-nav" *ngIf="bannerModel && enableLinks">
   <div style="overflow:auto;">
+    <a href="{{bannerModel.link}}">
+      <div class="left">
+        <div class="heading">
+          {{ bannerModel.heading }}
+        </div>
 
-  <a href="{{bannerModel.link}}">
-    <div class="left">
-      <div class="heading">
-        {{ bannerModel.heading }}
+        <div class="subheading">
+          {{ bannerModel.subheading }}
+        </div>
       </div>
 
-      <div class="subheading">
-        {{ bannerModel.subheading }}
+      <div class="right">
+        <button class="btn orange">Download</button>
       </div>
-    </div>
-
-    <div class="right">
-      <button class="btn orange">Download</button>
-    </div>
-  </a>
+    </a>
   </div>
 
   <!-- /features subheader -->
@@ -169,32 +181,38 @@
     <ul>
       <a routerLink="/features" fragment="privacy">
         <li [ngClass]="{'active': currentTab === 'privacy'}">
-          <img src="/assets/features/nav/privacy@2x.png" srcset="/assets/features/nav/privacy.png 500w, /assets/features/nav/privacy@2x.png 1000w" alt="Privacy">
+          <img class="display" src="/assets/features/nav/privacy@2x.png" srcset="/assets/features/nav/privacy.png 500w, /assets/features/nav/privacy@2x.png 1000w" alt="Privacy">
+          <img class="active" src="/assets/features/nav/privacy-selected@2x.png" srcset="/assets/features/nav/privacy-selected.png 500w, /assets/features/nav/privacy-selected@2x.png 1000w" alt="Privacy">
         </li>
       </a>
       <a routerLink="/features" fragment="access">
         <li [ngClass]="{'active': currentTab === 'access'}">
-          <img src="/assets/features/nav/access@2x.png" srcset="/assets/features/nav/access.png 500w, /assets/features/nav/access@2x.png 1000w" alt="Access">
+          <img class="display" src="/assets/features/nav/access@2x.png" srcset="/assets/features/nav/access.png 500w, /assets/features/nav/access@2x.png 1000w" alt="Access">
+          <img class="active" src="/assets/features/nav/access-selected@2x.png" srcset="/assets/features/nav/access-selected.png 500w, /assets/features/nav/access-selected@2x.png 1000w" alt="Access">
         </li>
       </a>
       <a routerLink="/features" fragment="network">
         <li [ngClass]="{'active': currentTab === 'network'}">
-          <img src="/assets/features/nav/network@2x.png" srcset="/assets/features/nav/network.png 500w, /assets/features/nav/network@2x.png 1000w" alt="Network">
+          <img class="display" src="/assets/features/nav/network@2x.png" srcset="/assets/features/nav/network.png 500w, /assets/features/nav/network@2x.png 1000w" alt="Network">
+          <img class="active" src="/assets/features/nav/network-selected@2x.png" srcset="/assets/features/nav/network-selected.png 500w, /assets/features/nav/network-selected@2x.png 1000w" alt="Network">
         </li>
       </a>
       <a routerLink="/features" fragment="freedom">
         <li [ngClass]="{'active': currentTab === 'freedom'}">
-          <img class="height" src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Freedom">
+          <img class="display height" src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Freedom">
+          <img class="display height" src="/assets/features/nav/freedom-selected@2x.png" srcset="/assets/features/nav/freedom-selected.png 500w, /assets/features/nav/freedom-selected@2x.png 1000w" alt="Freedom">
         </li>
       </a>
       <a routerLink="/features" fragment="security">
         <li [ngClass]="{'active': currentTab === 'security'}">
-          <img src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
+          <img class="display" src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
+          <img class="display" src="/assets/features/nav/security-selected@2x.png" srcset="/assets/features/nav/security-selected.png 500w, /assets/features/nav/security-selected@2x.png 1000w" alt="Security">
         </li>
       </a>
       <a routerLink="/features" fragment="support">
         <li [ngClass]="{'active': currentTab === 'support'}">
-          <img src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
+          <img class="display" src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
+          <img class="display" src="/assets/features/nav/support-selected@2x.png" srcset="/assets/features/nav/support-selected.png 500w, /assets/features/nav/support-selected@2x.png 1000w" alt="Support">
         </li>
       </a>
     </ul>

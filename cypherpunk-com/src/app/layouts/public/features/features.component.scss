@@ -32,18 +32,29 @@
       padding: 20px;
       display: inline-block;
       cursor: pointer;
-      &.active {
-        color: #163238;
-        background-color: #efebeb;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
       img {
         width: 24px;
         vertical-align: middle;
         margin: 0 10px 0 0;
         &.height { height: 24px; width: auto; }
+        &.display { display: inline; }
+        &.active { display: none; }
+        &.hover { display: none; }
       }
+
+      &.active {
+        color: #163238 !important;
+        background-color: #efebeb;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        img.active { display: inline; }
+        img.display { display: none; }
+        img.hover { display: none !important; }
+      }
+
+      &:hover { color: #fff; }
+      &:hover img.display { display: none; }
+      &:hover img.hover { display: inline; }
     }
   }
 }
