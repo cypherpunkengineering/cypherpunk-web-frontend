@@ -91,7 +91,7 @@ export class NavigationComponent {
     }
 
     if (this.isFeatures) {
-      if (currentPosition > 587) {
+      if (currentPosition > 587 && this.featuresSubnav) {
         this.featuresSubnav.style.opacity = '1';
         this.featuresSubnav.style.visibility = 'visible';
       }
@@ -99,7 +99,9 @@ export class NavigationComponent {
         this.featuresSubnav.style.opacity = '0';
         this.featuresSubnav.style.visibility = 'hidden';
       }
+    }
 
+    if (this.isFeatures && this.featuresMobileSubnav) {
       if (featureNavigation && currentPosition > (featureNavigation.offsetTop - 59)) {
         this.featuresMobileSubnav.style.opacity = '1';
         this.featuresMobileSubnav.style.visibility = 'visible';

@@ -60,12 +60,34 @@
 
 .payment-selection { width: 100%; margin: auto; }
 
+.payment-container {
+  width: 100%;
+}
+
+.payment-container-single {
+  opacity: 0;
+  max-height: 0px;
+  overflow: hidden;
+
+  &.show {
+    opacity: 1;
+    max-height: 900px;
+    transition: opacity 0.5s linear;
+  }
+  &.show-tall {
+    opacity: 1;
+    max-height: 900px;
+    transition: opacity 0.5s linear;
+  }
+}
+
 .payment-info {
   width: 100%;
   border: 2px solid #f0ecec;
   border-radius: 5px;
   margin: 50px auto 10px;
   padding: 30px 35px 40px;
+
 
   .pre-text { font-size: 14px; padding: 10px 0 40px; }
 

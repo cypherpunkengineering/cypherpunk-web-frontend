@@ -49,77 +49,84 @@
       <app-payment-selection [paymentMethod]="paymentMethod" (selectOption)="selectOption($event)"></app-payment-selection>
     </div>
 
-    <div class="credit-card payment-info" *ngIf="paymentMethod === 'cc'">
-      <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
+    <div class="payment-container-single" [ngClass]="{'show-tall': paymentMethod === 'cc'}">
+      <div class="credit-card payment-info">
+        <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
 
-      <div class="price tall">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+        <div class="price tall">
+          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+          </div>
         </div>
-      </div>
 
-      <div class="pay">
-        <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
-          Join Now
-        </button>
+        <div class="pay">
+          <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
+            Join Now
+          </button>
 
-        <br />
-        <div class="secure">
-          <i class="fa fa-lock"></i>
-          Secure checkout. You're 100% backed by our 30-Day Money-Back Guarantee.
+          <br />
+          <div class="secure">
+            <i class="fa fa-lock"></i>
+            Secure checkout. You're 100% backed by our 30-Day Money-Back Guarantee.
+          </div>
         </div>
-      </div>
 
-      <div class="agree">
-        By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+        <div class="agree">
+          By proceeding you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+        </div>
       </div>
     </div>
 
-    <div class="amazon payment-info" [hidden]="paymentMethod !== 'a'">
-      <div class="price" *ngIf="paymentMethod === 'a'">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+    <div class="payment-container-single" [ngClass]="{'show': paymentMethod === 'a'}">
+      <div class="amazon payment-info">
+        <div class="price">
+          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+          </div>
         </div>
-      </div>
 
-      <app-amazon #amazon [billingAgreementId]="billingAgreementId"
-      [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
+        <app-amazon #amazon [billingAgreementId]="billingAgreementId"
+        [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)"></app-amazon>
 
-      <div class="amazon-pay">
-        <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || !accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-          Join Now
-        </button>
-      </div>
+        <div class="amazon-pay">
+          <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || !accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+            Join Now
+          </button>
+        </div>
 
-      <div class="agree">
-        By continuing to Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+        <div class="agree">
+          By continuing to Amazon you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+        </div>
       </div>
     </div>
 
-    <div class="paypal payment-info" *ngIf="paymentMethod === 'pp'">
-      <div class="price">
-        Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
-        <div class="billing-rate">
-          Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+    <div class="payment-container-single" [ngClass]="{'show': paymentMethod === 'pp'}">
+      <div class="paypal payment-info">
+        <div class="price">
+          Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
+          <div class="billing-rate">
+            Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
+          </div>
         </div>
-      </div>
 
-      <div class="pay">
-        <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
-          Continue to Paypal
-        </button>
-      </div>
+        <div class="pay">
+          <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+            Continue to Paypal
+          </button>
+        </div>
 
-      <div class="agree">
-        By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
-      </div>
+        <div class="agree">
+          By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
+        </div>
 
-      <app-paypal [userId]="userId" #paypal></app-paypal>
+        <app-paypal [userId]="userId" #paypal></app-paypal>
+      </div>
     </div>
 
-    <div class="bitcoin payment-info" *ngIf="paymentMethod === 'bc'">
+    <div class="payment-container-single" [ngClass]="{'show': paymentMethod === 'bc'}">
+      <div class="bitcoin payment-info">
         <div class="price">
           Order Total:
           <span class="total-price">
@@ -142,6 +149,7 @@
 
         <app-bitpay [userId]="userId" #bitpay></app-bitpay>
       </div>
+    </div>
   </div>
 </div>
 
