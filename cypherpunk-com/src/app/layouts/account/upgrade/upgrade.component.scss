@@ -20,8 +20,8 @@
   }
 
   .text {
-    font-size: 16px;
-    line-height: 1.57;
+    font-size: 14px;
+    line-height: 14px;
     color: #7f7979;
     margin: auto;
     .highlight { font-weight: bold; color: #000; }
@@ -131,6 +131,7 @@
     font-size: 18px;
     font-weight: bold;
     color: #163238;
+    &.tall { padding: 15px 0 0; }
     .total-price { color: #67b23f; }
     .billing-rate {
       margin: 10px 0 0;
@@ -143,6 +144,7 @@
   .pay {
     padding: 20px 0 0;
     .btn { width: 280px; margin: 0; }
+    .secure { padding: 10px 0 0; color: #7f7979; font-size: 12px; font-weight: bold; }
   }
 
   .amazon-pay {

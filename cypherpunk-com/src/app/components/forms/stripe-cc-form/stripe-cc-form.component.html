@@ -10,16 +10,29 @@
   </p>
 
   <div class="info">
-    <p class="half" [ngClass]="{'dashboard': small}">
-      <label>Expiration Date</label><br>
-      <input id="ccexpiry" name="expiryDate" type="text" placeholder="mm/yy" required maxlength="5" formControlName="expiryDate" [(ngModel)]="stripeFormData.expiryDate" (ngModelChange)="expiryOnChange()" [ngClass]="{'error': expiryDate.touched && !expiryDate.valid, 'success': expiryDate.touched && expiryDate.valid}">
-    </p>
+    <div class="half" [ngClass]="{'dashboard': small}">
+      <div class="half">
+        <label>Expiration Date</label><br />
+        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}">
+          <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
+        </select>
+      </div>
 
-    <p class="half" [ngClass]="{'dashboard': small}">
+      <div class="half">
+        <label>Expiration Date</label><br />
+        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}">
+          <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="half" [ngClass]="{'dashboard': small}">
       <label>Security Code</label><br>
-      <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}">
       <img src="/assets/payment/cvc-icon.png" alt="CVC">
-    </p>
+      <span>
+        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}">
+      </span>
+    </div>
   </div>
 
   <p>

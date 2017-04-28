@@ -90,22 +90,24 @@ export class NavigationComponent {
       }
     }
 
-    if (currentPosition > 587 && this.isFeatures) {
-      this.featuresSubnav.style.opacity = '1';
-      this.featuresSubnav.style.visibility = 'visible';
-    }
-    else {
-      this.featuresSubnav.style.opacity = '0';
-      this.featuresSubnav.style.visibility = 'hidden';
-    }
+    if (this.isFeatures) {
+      if (currentPosition > 587) {
+        this.featuresSubnav.style.opacity = '1';
+        this.featuresSubnav.style.visibility = 'visible';
+      }
+      else {
+        this.featuresSubnav.style.opacity = '0';
+        this.featuresSubnav.style.visibility = 'hidden';
+      }
 
-    if (featureNavigation && currentPosition > (featureNavigation.offsetTop - 59) && this.isFeatures) {
-      this.featuresMobileSubnav.style.opacity = '1';
-      this.featuresMobileSubnav.style.visibility = 'visible';
-    }
-    else {
-      this.featuresMobileSubnav.style.opacity = '0';
-      this.featuresMobileSubnav.style.visibility = 'hidden';
+      if (featureNavigation && currentPosition > (featureNavigation.offsetTop - 59)) {
+        this.featuresMobileSubnav.style.opacity = '1';
+        this.featuresMobileSubnav.style.visibility = 'visible';
+      }
+      else {
+        this.featuresMobileSubnav.style.opacity = '0';
+        this.featuresMobileSubnav.style.visibility = 'hidden';
+      }
     }
   }
 }

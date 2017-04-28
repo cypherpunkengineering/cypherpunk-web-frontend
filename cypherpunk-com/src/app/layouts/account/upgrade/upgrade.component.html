@@ -8,7 +8,7 @@
       <div class="title">Choose your Cypherpunk Privacy plan</div>
 
       <div class="text">
-        Experience a complete <span class="highlight">Privacy Suite</span> for all your devices. <span class="highlight">100% Money-Back Guarantee</span> in your first 30 days of service.
+        Get complete protection using <span class="highlight">Cypherpunk Privacy Suite</span> on all your devices. <span class="highlight">100% Money-Back Guarantee</span> in your first 30 days of service.
       </div>
     </div>
 
@@ -88,11 +88,7 @@
         </div>
       </div>
 
-      <div class="pre-text tall">
-        To finish sign-up, click on the "Proceed" button.
-      </div>
-
-      <div class="price">
+      <div class="price tall">
         Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
         <div class="billing-rate">
           Cypherpunk Privacy {{ plansService.selectedPlan.rate }} (${{ plansService.selectedPlan.price }} per month, every {{ plansService.selectedPlan.months }} months)
@@ -101,8 +97,13 @@
 
       <div class="pay">
         <button class="btn green" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
-          Proceed
+          Join Now
         </button>
+
+        <div class="secure">
+          <i class="fa fa-lock"></i>
+          Secure checkout. You're 100% backed by our 30-Day Money-Back Guarantee.
+        </div>
       </div>
 
       <div class="agree">
@@ -115,10 +116,6 @@
         <p >
           <label>Email: </label><strong>{{ email }}</strong>
         </p>
-      </div>
-
-      <div class="pre-text">
-        To finish sign-up, click on the "Continue to Amazon" button.
       </div>
 
       <div class="price" *ngIf="paymentMethod === 'a'">
@@ -148,10 +145,6 @@
         </p>
       </div>
 
-      <div class="pre-text tall">
-        To finish sign-up, click on the "Continue to PayPal" button.
-      </div>
-
       <div class="price">
         Order Total: <span class="total-price">${{ plansService.selectedPlan.total }}</span>
         <div class="billing-rate">
@@ -177,10 +170,6 @@
         <p >
           <label>Email: </label><strong>{{ email }}</strong>
         </p>
-      </div>
-
-      <div class="pre-text tall">
-        To finish sign-up, click on the "Continue to BitPay" button.
       </div>
 
       <div class="price">

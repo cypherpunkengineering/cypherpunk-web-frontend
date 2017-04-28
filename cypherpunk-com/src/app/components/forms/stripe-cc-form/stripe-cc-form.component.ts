@@ -17,11 +17,22 @@ export class StripeCCFormComponent implements OnInit {
   name: AbstractControl;
   cardNumber: AbstractControl;
   expiryDate: AbstractControl;
+  expiryYear: AbstractControl;
+  expiryMonth: AbstractControl;
   cvc: AbstractControl;
   country: AbstractControl;
   zipCode: AbstractControl;
 
-  constructor(private fb: FormBuilder) { }
+  yearArray = [];
+  monthArray = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+
+  constructor(private fb: FormBuilder) {
+    // generate year array
+    let yearMin = new Date().getFullYear();
+    for (let i = 0; i < 21; i++) {
+      this.yearArray.push(yearMin + i);
+    }
+  }
 
   ngOnInit() {
     this.stripeForm = this.fb.group({
@@ -33,12 +44,18 @@ export class StripeCCFormComponent implements OnInit {
           NumberValidator.validate
         ])
       ],
-      expiryDate: [
-        this.stripeFormData.expiryDate,
+      expiryYear: [
+        this.stripeFormData.year,
         Validators.compose([
           Validators.required,
-          Validators.maxLength(5),
-          ExpiryValidator.validate
+          Validators.maxLength(4)
+        ])
+      ],
+      expiryMonth: [
+        this.stripeFormData.month,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(2)
         ])
       ],
       cvc: [
@@ -56,6 +73,8 @@ export class StripeCCFormComponent implements OnInit {
     this.name = this.stripeForm.controls['name'];
     this.cardNumber = this.stripeForm.controls['cardNumber'];
     this.expiryDate = this.stripeForm.controls['expiryDate'];
+    this.expiryMonth = this.stripeForm.controls['expiryMonth'];
+    this.expiryYear = this.stripeForm.controls['expiryYear'];
     this.cvc = this.stripeForm.controls['cvc'];
     this.country = this.stripeForm.controls['country'];
     this.zipCode = this.stripeForm.controls['zipCode'];
@@ -74,12 +93,6 @@ export class StripeCCFormComponent implements OnInit {
       this.stripeFormData.form.valid = dirty && valid && zipCodeValid;
     });
   }
-
-  expiryOnChange() {
-    if (this.stripeFormData.expiryDate && this.stripeFormData.expiryDate.length === 2) {
-      this.stripeFormData.expiryDate += '/';
-    }
-  }
 }
 
 interface ValidationResult { [key: string]: boolean; }
@@ -92,23 +105,6 @@ class NumberValidator {
 
       let passStripeValidation = stripe.card.validateCardNumber(control.value);
       if (passStripeValidation) { return null; }
-      else { return { 'invalidExpiryDate': true }; }
-    }
-    else { return null; }
-  }
-}
-
-class ExpiryValidator {
-  static validate(control: FormControl): ValidationResult {
-    if (isBrowser) {
-      let stripe = (<any>window).Stripe;
-      if (!stripe) { return { 'stripeNotFound': true }; }
-
-      let passStripeValidation = stripe.card.validateExpiry(control.value);
-      if (passStripeValidation) {
-        document.getElementById('cccvc').focus();
-        return null;
-      }
       else { return { 'invalidExpiryDate': true }; }
     }
     else { return null; }

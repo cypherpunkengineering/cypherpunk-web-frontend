@@ -5,5 +5,8 @@
 
   <p>
     <input name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+    <label class="info" for="password">
+      <small>at least 6 characters</small>
+    </label>
   </p>
 </form>
