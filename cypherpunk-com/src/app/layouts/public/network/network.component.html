@@ -1,72 +1,24 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <h1 class="masthead-header header white">Cypherpunk Privacy Network</h1>
-  <div class="masthead-subheader">
-    The Cypherpunk Privacy Network protects your online activity throughout the entire world
+  <h1 class="masthead-header header white">Cypherpunk Server Locations</h1>
+
+  <div class="masthead-image">
+    <div class="world">
+      <img src="/assets/network/map_2000@2x.png" srcset="/assets/network/map_2000.png 500w, /assets/network/map_2000.png" alt="Cypherpunk Server Locations">
+      <div class="point" [style.left.px]="l.mapX" [style.top.px]="l.mapY" [attr.data-name]="l.name" *ngFor="let l of locationArray"></div>
+    </div>
   </div>
 </div>
 
 <div class="content">
-  <table>
-    <thead>
-      <tr>
-        <th>Locations</th>
-        <!-- <th>Servers</th> -->
-      </tr>
-    </thead>
-
-    <tbody *ngIf="loading">
-      <tr>
-        <th colspan="2" scope="col">Loading...</th>
-      </tr>
-    </tbody>
-
-    <tbody *ngFor="let region of regionArray">
-      <tr *ngIf="region.countries.length">
-        <th colspan="2" scope="col">{{region.name}}</th>
-      </tr>
-      <tr *ngFor="let location of region.countries; let i = index">
-        <td class="city">
-          <img class="flag" src="/assets/flags/{{location.country}}.png" alt="Location">
-          <span class="name">{{location.name}}</span> <span class="premium" *ngIf="location.level === 'premium'">PREMIUM</span>
-        </td>
-        <!-- <td>{{location.servers}}</td> -->
-      </tr>
-    </tbody>
-    <!-- <tfoot *ngIf="totalServers">
-      <tr>
-        <th colspan="2" scope="col">
-          Total Number of Servers: {{totalServers}}
-        </th>
-      </tr>
-    </tfoot> -->
-  </table>
-</div>
-
-<div class="content bottom">
-  <div class="upper">
-    Try Cypherpunk Privacy today for Free
-  </div>
-
-  <div class="cta-container">
-    <div class="call-to-action">
-      <a routerLink="/download">
-        <button class="btn orange">
-          START MY FREE PREVIEW
-        </button>
-      </a>
-    </div>
-  </div>
-
-  <div class="available">
-    <div class="subheader">
-      Available for
-      <a routerLink="/download" fragment="desktop">Desktop</a>,
-      <a routerLink="/download" fragment="browser">Browser</a>,
-      <a routerLink="/download" fragment="android">Android</a>,
-      <a routerLink="/download" fragment="ios">iOS</a>
-    </div>
+  <div class="content-inner">
+    <ul>
+      <li *ngFor="let location of locationArray">
+        <img class="flag" src="/assets/flags/{{location.country}}.png" alt="{{location.country}}">
+        <span class="name">{{location.name}}</span> 
+      </li>
+    </ul>
   </div>
 </div>
 
