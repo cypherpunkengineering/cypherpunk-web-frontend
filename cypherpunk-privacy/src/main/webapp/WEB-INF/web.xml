@@ -62,6 +62,10 @@
 		<url-pattern>/api/v0/monitoring/*</url-pattern>
 		<url-pattern>/api/v0/subscription/*</url-pattern>
 		<url-pattern>/api/v0/vpn/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>FrontendAPIv1</servlet-name>
 
 		<!-- API v1 resources handled by backend -->
 		<url-pattern>/api/v1/account/*</url-pattern>
@@ -87,6 +91,11 @@
 	<servlet>
 		<servlet-name>BackendProxy</servlet-name>
 		<servlet-class>com.cypherpunk.appengine.BackendProxy</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FrontendAPIv1</servlet-name>
+		<servlet-class>com.cypherpunk.appengine.FrontendAPIv1</servlet-class>
 	</servlet>
 
 	<servlet>
