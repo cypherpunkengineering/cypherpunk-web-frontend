@@ -9,13 +9,16 @@
   <nav class="nav-right" *ngIf="enableLinks">
     <ul>
       <li>
+        <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">Why Use a VPN?</a>
+      </li>
+      <li>
         <a class="nav-link" routerLink="/features" routerLinkActive="active">features</a>
       </li>
       <li>
         <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
       </li>
       <li>
-        <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
+        <a class="nav-link last" href="https://support.cypherpunk.com/hc">support</a>
       </li>
       <li>
         <a routerLink="/download">
@@ -49,13 +52,16 @@
     <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
+          <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">Why use a VPN?</a>
+        </li>
+        <li>
           <a class="nav-link" routerLink="/features" routerLinkActive="active">features</a>
         </li>
         <li>
           <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
         </li>
         <li>
-          <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
+          <a class="nav-link last" href="https://support.cypherpunk.com/hc">support</a>
         </li>
         <li>
           <a routerLink="/download">
@@ -146,6 +152,9 @@
   </div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
+    <div class="mobile-dd-item" routerLink="/why-use-a-vpn" routerLinkActive="active">
+      Why Use a VPN?
+    </div>
     <div class="mobile-dd-item" routerLink="/features" routerLinkActive="active">
       features
     </div>
