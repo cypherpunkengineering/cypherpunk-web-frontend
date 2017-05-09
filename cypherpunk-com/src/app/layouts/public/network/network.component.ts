@@ -39,8 +39,6 @@ export class NetworkComponent implements OnInit {
         let locations = data[0];
         let regions = data[1];
 
-        console.log(locations);
-
         // create regionsArray
         regions.regionOrder.forEach((regionId) => {
           if (regionId !== 'DEV') {
@@ -66,7 +64,6 @@ export class NetworkComponent implements OnInit {
           region.countries.sort(this.regionSort);
         });
 
-        console.log(this.regionArray);
         this.regionArray.forEach((region) => {
           region.countries.forEach((location) => {
             this.locationArray.push(location);
@@ -74,7 +71,6 @@ export class NetworkComponent implements OnInit {
         });
 
         this.translateLocations(this.locationArray);
-        console.log(this.locationArray);
 
         this.loading = false;
       },
