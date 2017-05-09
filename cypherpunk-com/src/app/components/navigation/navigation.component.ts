@@ -66,7 +66,6 @@ export class NavigationComponent {
     let authed = this.auth.authed;
     let sessionFound = this.session.userFound;
     if (authed || sessionFound) { loggedIn = true; }
-    console.log(loggedIn);
     return loggedIn;
   }
 
