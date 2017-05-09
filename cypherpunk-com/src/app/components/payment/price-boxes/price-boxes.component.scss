@@ -16,11 +16,12 @@
     }
 
     .best-value {
-      width: 120px;
-      height: 120px;
+      width: 115px;
+      height: 80px;
       overflow: hidden;
       position: absolute;
-      right: 0;
+      right: -5px;
+      top: -5px;
       z-index: 5;
 
       .text {
@@ -29,18 +30,18 @@
         font-size: 12px;
         text-transform: uppercase;
         background-color: #ff7857;
-        width: 135px;
+        width: 155px;
         transform: rotate(35deg);
         position: relative;
-        right: -10px;
-        top: 18px;
+        right: 5px;
+        top: 20px;
       }
     }
 
     .box {
       width: 300px;
       position: relative;
-      border: 3px solid #d9dfe2;
+      border: 5px solid #d9dfe2;
       color: #333;
 
       &.buff {
@@ -69,13 +70,14 @@
         margin: 25px 0 15px;
         font-size: 29px;
         font-weight: 500;
-        color: #163138;
+        color: #8dfffc;
       }
 
       .price-area {
         color: #333;
         .price { font-size: 50px; font-weight: bold; }
         .price-time { font-size: 16px; }
+        .green { color: #00d630; }
       }
 
       .separator {

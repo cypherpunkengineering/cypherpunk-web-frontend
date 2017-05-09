@@ -31,19 +31,20 @@
 .page-number {
   text-align: left;
   margin: 50px 0 30px;
-  font-size: 24px;
+  font-size: 20px;
   color: #163238;
+  padding: 0 0 0 10px;
 
   &.one { margin: 50px auto 20px; }
   &.two { margin: 60px auto 30px; }
 
   .number {
     display: inline-block;
-    background-color: #163138;
+    background-color: #8dfffc;
     border-radius: 50px;
-    margin: 0 10px 0 0;
+    margin: 0 5px 0 0;
     color: #fff;
-    width: 28px;
+    width: 25px;
     text-align: center;
   }
 }
@@ -53,6 +54,7 @@
   margin: auto;
 
   .upgrade {
+    a { color: #8dfffc; }
     font-size: 12px;
     padding: 0 0 0 50px;
     margin: -30px 0 0;
@@ -89,7 +91,7 @@
 
   .pre-text { font-size: 14px; padding: 10px 0 40px; }
 
-  .leave-warning { margin: 30px 0 50px; }
+  .leave-warning { margin: 10px 0 50px; }
 
   .price {
     font-size: 18px;
@@ -108,32 +110,43 @@
   .pay {
     padding: 20px 0 0;
     .btn { width: 280px; margin: 0; }
-    .secure { padding: 10px 0 0; color: #7f7979; font-size: 12px; font-weight: bold; }
+    .secure {
+      .fa-lock { color: #ffe49a; }
+      padding: 10px 0 0;
+      color: #7f7979;
+      font-size: 12px;
+      font-weight: bold;
+    }
   }
 
   .amazon-pay {
     .btn { width: 280px; margin: 0; }
   }
 
-  .agree { font-size: 14px; padding: 20px 0 0; }
+  .agree {
+    font-size: 14px;
+    padding: 20px 0 0;
+
+    a { color: #8dfffc; }
+  }
 }
 
 .includes {
   width: 100%;
-  background-color: rgba(245, 245, 245, 0.8);
 
   .includes-inner {
     width: 100%;
-    padding: 40px 15px;
-    margin: 0 auto;
+    padding: 20px 10px 10px;
+    margin: 10px auto 40px;
     max-width: 1000px;
+    border: 2px solid #8dfffc;
   }
 
   .includes-header {
     font-size: 26px;
     font-weight: bold;
     margin: 10px auto;
-    color: #000;
+    color: #8dfffc;
     text-align: center;
   }
 
@@ -152,13 +165,11 @@
         &:before {
           content: '\f00c';
           font-family: FontAwesome;
-          color: #00d630;
+          color: #8dfffc;
           display: inline-block;
           margin-left: -25px;
           width: 25px;
         }
-
-        i { color: #00d630; padding: 0 10px 0 0; }
       }
     }
 
@@ -167,6 +178,7 @@
       max-width: 320px;
       display: inline-block;
       text-align: left;
+      vertical-align: top;
     }
   }
 }
@@ -186,6 +198,12 @@
   height: 60px;
   margin: 25px auto 25px;
   font-size: 24px;
+}
+
+@media (max-width: 1020px) {
+  .includes {
+    padding: 0 10px 0;
+  }
 }
 
 @media (max-width: 1000px) {

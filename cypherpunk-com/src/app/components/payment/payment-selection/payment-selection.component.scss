@@ -5,9 +5,12 @@
     display: inline-block;
     cursor: pointer;
     margin: 0 20px 0;
+    opacity: 0.5;
     img { display: none; margin: auto; width: 185px; }
     img.show { display: block; }
+    &.active { opacity: 1; }
   }
+  
   .text {
     text-align: center;
     input { display: none; }
@@ -23,9 +26,10 @@
       display: inline-block;
       vertical-align: middle;
       .circle-inner {
+        display: none;
         width: 10px;
         height: 10px;
-        background-color: #7f7979;
+        background-color: #00d630;
         border-radius: 25px;
         margin: auto;
         position: relative;
@@ -34,7 +38,7 @@
       }
 
       &.checked { border-color: #00d630; }
-      &.checked .circle-inner { background-color: #00d630; }
+      &.checked .circle-inner { display: block; }
     }
   }
 }

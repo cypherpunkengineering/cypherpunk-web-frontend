@@ -13,7 +13,11 @@
           <span class="price-time">per month</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly">Billed ₿ ~ {{plans[0].bcYearly | number:'.3-3'}} every month</div>
+        <div class="yearly">
+          Billed ₿ ~ {{plans[0].bcYearly | number:'.3-3'}} every month
+          <br>
+          30 day money-back guarantee
+        </div>
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
@@ -23,7 +27,11 @@
           <span class="price-time">per month</span>
         </div>
         <div class="separator"></div>
-        <div class="yearly">Billed ${{plans[0].yearly}} every month</div>
+        <div class="yearly">
+          Billed ${{plans[0].yearly}} every month
+          <br>
+          30 day money-back guarantee
+        </div>
       </div>
 
       <div class="savings">
@@ -34,19 +42,19 @@
 
   <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': selectedPlan.id === plans[1].id }">
 
-    <div class="best-value">
-      <div class="text">Best Value</div>
-    </div>
     <div class="box buff">
       <div class="checkmark"><i class="fa fa-check"></i></div>
       <div class="period">{{plans[1].period}}</div>
+      <div class="best-value">
+        <div class="text">Best Value</div>
+      </div>
 
       <div *ngIf="btc">
         <div class="price-area">
-          <span class="price-time">₿ ~ </span>
-          <span class="price">{{plans[1].bcPrice | number:'.3-3'}}</span>
+          <span class="price-time green">₿ ~ </span>
+          <span class="price green">{{plans[1].bcPrice | number:'.3-3'}}</span>
           <br>
-          <span class="price-time">per month</span>
+          <span class="price-time green">per month</span>
         </div>
         <div class="separator"></div>
         <div class="yearly">
@@ -57,10 +65,10 @@
       </div>
       <div *ngIf="!btc">
         <div class="price-area">
-          <span class="price-time">$ </span>
-          <span class="price">{{plans[1].price | number:'.2-2'}}</span>
+          <span class="price-time green">$ </span>
+          <span class="price green">{{plans[1].price | number:'.2-2'}}</span>
           <br>
-          <span class="price-time">per month</span>
+          <span class="price-time green">per month</span>
         </div>
         <div class="separator"></div>
         <div class="yearly">
