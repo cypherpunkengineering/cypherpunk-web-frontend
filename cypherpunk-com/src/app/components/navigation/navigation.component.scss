@@ -8,13 +8,9 @@
     float: left;
     padding: 15px 0 15px 15px;
 
-    &:hover img.display { display: none; }
-    &:hover img.hover { display: inline; }
-
     img {
       width: 227px;
       height: 45px;
-      &.hover { display: none; }
     }
   }
 

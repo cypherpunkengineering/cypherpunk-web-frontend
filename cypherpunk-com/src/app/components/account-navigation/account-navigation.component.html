@@ -11,6 +11,12 @@
     <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
+          <a class="nav-link" routerLink="/features">FEATURES</a>
+        </li>
+        <li>
+          <a class="nav-link" href="https://support.cypherpunk.com/hc">SUPPORT</a>
+        </li>
+        <li>
           <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
         </li>
         <li *ngIf="showPriceBoxes()">
@@ -38,6 +44,12 @@
 
       <nav class="nav-right" *ngIf="enableLinks">
         <ul>
+          <li>
+            <a class="nav-link" routerLink="/features">FEATURES</a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://support.cypherpunk.com/hc">SUPPORT</a>
+          </li>
           <li>
             <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
           </li>
@@ -68,6 +80,12 @@
   </div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }" *ngIf="enableLinks">
+    <div class="mobile-dd-item" routerLink="/features">
+      FEATURES
+    </div>
+    <div class="mobile-dd-item" href="https://support.cypherpunk.com/hc">
+      SUPPORT
+    </div>
     <div class="mobile-dd-item" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">
       ACCOUNT
     </div>
