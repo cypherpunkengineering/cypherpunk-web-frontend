@@ -121,6 +121,10 @@
           </p>
         </div>
 
+        <div class="leave-warning">
+          You will be redirected to Amazon to securely login to your Amazon account.
+        </div>
+
         <div class="price">
           Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
           <div class="billing-rate">
@@ -148,6 +152,10 @@
           <p >
             <label>Email: </label><strong>{{ email }}</strong>
           </p>
+        </div>
+
+        <div class="leave-warning">
+          You will be redirected to PayPal to complete your purchase securely.
         </div>
 
         <div class="price">
@@ -179,6 +187,10 @@
           </p>
         </div>
 
+        <div class="leave-warning">
+          You will be redirected to BitPay to complete your purchase securely.
+        </div>
+
         <div class="price">
           Order Total:
           <span class="total-price">
@@ -200,6 +212,43 @@
         </div>
 
         <app-bitpay [userId]="userId" #bitpay></app-bitpay>
+      </div>
+    </div>
+  </div>
+
+  <div class="includes">
+    <div class="includes-inner">
+      <div class="includes-header">
+        Cypherpunk Privacy includes:
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <ul>
+            <li>24/7 Premium customer support</li>
+            <li>Access to VPN servers in 25+ countries</li>
+            <li>No Logs Policy</li>
+            <li>User-friendly apps for ‘’LOGOS’'  and more!</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <ul>
+            <li>Connect 7 Devices At The Same Time</li>
+            <li>Ultra-fast Video Streaming with CypherPlay™</li>
+            <li>Best in class Security and Encryption</li>
+            <li>Unlimited Bandwidth and Traffic</li>
+          </ul>
+        </div>
+
+        <div class="column">
+          <ul>
+            <li>30 days Risk Free Refund Policy</li>
+            <li>Anonymous and Unlimited P2P traffic</li>
+            <li>Ad and tracker-free browsing experience</li>
+            <li>Complete malware protection</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

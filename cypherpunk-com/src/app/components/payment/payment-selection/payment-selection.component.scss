@@ -10,15 +10,35 @@
   }
   .text {
     text-align: center;
+    input { display: none; }
     input, label { cursor: pointer; }
     label { color: #163238; vertical-align: middle; }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #7f7979;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      .circle-inner {
+        width: 10px;
+        height: 10px;
+        background-color: #7f7979;
+        border-radius: 25px;
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &.checked { border-color: #00d630; }
+      &.checked .circle-inner { background-color: #00d630; }
+    }
   }
 }
 
 @media (max-width: 935px) {
   .payment-options .type-container { margin: 0 20px 25px; }
-}
-
-@media (max-width: 375px) {
-  .payment-options .type-container { width: 100%; }
 }

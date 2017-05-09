@@ -35,6 +35,8 @@ export class PriceBoxesComponent {
         this.plans[0].bcTotal = this.bpConvert(this.plans[0].total);
         this.plans[1].bcTotal = this.bpConvert(this.plans[1].total);
         this.plans[2].bcTotal = this.bpConvert(this.plans[2].total);
+        this.plans[1].bcStrikeYearly = this.bpConvert(this.plans[1].strikeYearly);
+        this.plans[2].bcStrikeYearly = this.bpConvert(this.plans[2].strikeYearly);
         this.plans[0].bcYearly = this.plans[0].bcTotal.toString();
         this.plans[1].bcYearly = this.plans[1].bcTotal.toString();
         this.plans[2].bcYearly = this.plans[2].bcTotal.toString();

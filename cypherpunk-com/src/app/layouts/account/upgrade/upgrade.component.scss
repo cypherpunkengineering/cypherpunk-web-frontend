@@ -16,7 +16,7 @@
     font-size: 26px;
     font-weight: bold;
     margin: 10px auto;
-    color: #4a991c;
+    color: #000;
   }
 
   .text {
@@ -30,16 +30,16 @@
 
 .page-number {
   text-align: left;
-  margin: 30px 0;
+  margin: 50px 0 30px;
   font-size: 24px;
   color: #163238;
 
-  &.one { margin: 30px auto; }
-  &.two { margin: 10px auto 30px; }
+  &.one { margin: 50px auto 20px; }
+  &.two { margin: 60px auto 30px; }
 
   .number {
     display: inline-block;
-    background-color: #4a991c;
+    background-color: #163138;
     border-radius: 50px;
     margin: 0 10px 0 0;
     color: #fff;
@@ -57,12 +57,12 @@
 
   &.show {
     opacity: 1;
-    max-height: 900px;
+    max-height: 1000px;
     transition: opacity 0.5s linear;
   }
   &.show-tall {
     opacity: 1;
-    max-height: 900px;
+    max-height: 1000px;
     transition: opacity 0.5s linear;
   }
 }
@@ -144,6 +144,8 @@
 
   .pre-text { font-size: 14px; padding: 10px 0 40px; }
 
+  .leave-warning { margin: 20px 0 40px; }
+
   .price {
     font-size: 18px;
     font-weight: bold;
@@ -171,6 +173,59 @@
   .agree { font-size: 14px; padding: 20px 0 0; }
 }
 
+.includes {
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0.8);
+
+  .includes-inner {
+    width: 100%;
+    padding: 40px 15px;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  .includes-header {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px auto;
+    color: #000;
+    text-align: center;
+  }
+
+  .columns {
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li {
+        padding: 10px 0 10px 25px;
+
+        &:before {
+          content: '\f00c';
+          font-family: FontAwesome;
+          color: #00d630;
+          display: inline-block;
+          margin-left: -25px;
+          width: 25px;
+        }
+
+        i { color: #00d630; padding: 0 10px 0 0; }
+      }
+    }
+
+    .column {
+      width: 100%;
+      max-width: 320px;
+      display: inline-block;
+      text-align: left;
+    }
+  }
+}
+
 .footer {
   width: 100%;
   background-color: #163138;
@@ -191,6 +246,11 @@
 @media (max-width: 1000px) {
   .page { padding: 25px 10px 35px; }
   .page-header { padding: 0 10px; }
+
+  .includes .columns .column {
+    display: block;
+    margin: auto;
+  }
 }
 
 @media (max-width: 700px) {
