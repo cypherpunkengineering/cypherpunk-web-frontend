@@ -1,4 +1,4 @@
-.wrapper { min-height: 100%; margin-bottom: -162px; }
+.wrapper { min-height: 100%; margin-bottom: -162px; background-color: rgba(245, 245, 245, 1); }
 .wrapper:after { content: ''; display: block; }
 .footer, .wrapper:after { height: 162px;}
 
@@ -75,10 +75,11 @@
 
 .payment-info {
   width: 100%;
-  border: 2px solid #f0ecec;
+  border: 2px solid #d9dfe2;
   border-radius: 5px;
   margin: 50px auto 10px;
   padding: 30px 35px 40px;
+  background-color: #fff;
 
   .list-cards {
     .tabs {
@@ -199,6 +200,7 @@
     margin: 10px auto 40px;
     max-width: 1000px;
     border: 2px solid #d9dfe2;
+    background-color: #fff;
   }
 
   .includes-header {
