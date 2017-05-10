@@ -17,10 +17,13 @@
         <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
       </li>
       <li>
+        <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+      </li>
+      <li>
         <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
       </li>
       <li>
-        <a routerLink="/download" *ngIf="!isLoggedIn()">
+        <a routerLink="/signup" *ngIf="!isLoggedIn()">
           <button class="btn orange">START FREE</button>
         </a>
       </li>
@@ -64,10 +67,13 @@
           <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
         </li>
         <li>
+          <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+        </li>
+        <li>
           <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
         </li>
         <li>
-          <a routerLink="/download" *ngIf="!isLoggedIn()">
+          <a routerLink="/signup" *ngIf="!isLoggedIn()">
             <button class="btn orange">START FREE</button>
           </a>
         </li>
@@ -169,10 +175,13 @@
     <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active">
       Pricing
     </div>
+    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
+      Download
+    </div>
     <a href="https://support.cypherpunk.com/hc">
       <div class="mobile-dd-item">Support</div>
     </a>
-    <a routerLink="/download" routerLinkActive="active" *ngIf="!isLoggedIn()">
+    <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
     </a>
     <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
