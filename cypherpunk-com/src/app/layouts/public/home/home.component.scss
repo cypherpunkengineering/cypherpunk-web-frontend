@@ -41,23 +41,17 @@
   }
 
   .masthead-banner {
-    width: 1000px;
-    height: 200px;
-    margin: auto;
     position: relative;
-    left: -40px;
+    height: 200px;
 
     .masthead-image {
-      display: inline-block;
-      width: 49%;
-      float: right;
+      width: 550px;
+      position: relative;
+      top: -131px;
+      left: -275px;
+      z-index: 10;
+      margin: auto;
       img { width: 100%; }
-      &.hang {
-        position: absolute;
-        bottom: -69px;
-        z-index: 10;
-        float: left;
-      }
     }
   }
 
@@ -192,16 +186,6 @@
 .mobile { display: none; }
 
 @media (max-width: 1050px) {
-  .masthead {
-    .masthead-banner {
-      display: none;
-      width: 100%;
-      min-height: 250px;
-    }
-    .masthead-nolog { display: none; }
-    .masthead-mobile-banner { display: block; }
-  }
-
   .feature {
     .text {
       width: 100%;
@@ -225,6 +209,18 @@
   }
 
   .mobile { display: block; }
+}
+
+@media (max-width: 750px) {
+  .masthead {
+    .masthead-banner {
+      display: none;
+      width: 100%;
+      min-height: 250px;
+    }
+    .masthead-nolog { display: none; }
+    .masthead-mobile-banner { display: block; }
+  }
 }
 
 @media (max-width: 375px) {
