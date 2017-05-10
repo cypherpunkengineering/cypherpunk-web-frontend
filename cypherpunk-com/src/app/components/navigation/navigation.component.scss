@@ -46,6 +46,7 @@
   text-align: center;
   cursor: pointer;
   & a { margin-right: 0; }
+  &:hover { border-color: #fff; }
 }
 
 .btn {
