@@ -1,42 +1,34 @@
 .masthead {
   border-bottom: 5px solid #efebeb;
-
   .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
-
-  .masthead-image {
-    text-align: center;
-    padding: 0 0 40px;
-    img { width: 50%; max-width: 1000px; }
-  }
 }
 
-.teammate {
+.team {
   width: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: 50px 0;
+  padding: 50px 10px;
+  text-align: center;
 
-  .image.mobile { display: none; }
-  .image.desktop { display: inline-block; }
-
-  .image {
-    width: 30%;
-    height: 320px;
+  .teammate {
+    max-width: 300px;
+    padding: 20px 15px;
     display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    img { height: 100%; }
-  }
+    vertical-align: top;
 
-  .text {
-    width: 69%;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0 40px 0;
-    &.right { text-align: right; }
+    .image {
+      height: 320px;
+      text-align: center;
+      img { height: 100%; }
+      img.width { height: auto; width: 100%; }
+    }
 
-    .name { color: #fd8267; font-size: 22px; padding: 10px 0; }
-    .description { color: #969191; }
+    .text {
+      text-align: left;
+
+      .name { color: #fd8267; font-size: 22px; padding: 10px 0; text-align: center; }
+      .description { color: #969191; }
+    }
   }
 }
 
@@ -76,18 +68,7 @@
   .bottom-callout .bottom-buttons { padding: 40px 20px; }
 }
 
-@media (max-width: 900px) {
-  .teammate .image { width: 100%; }
-  .teammate .text { width: 100%; }
-  .teammate .image.mobile { display: block; }
-  .teammate .image.desktop { display: none; }
-  .teammate .text { text-align: center; }
-  .teammate .text.right { text-align: center; }
-}
-
 @media (max-width: 700px) {
-  .masthead .masthead-image img { width: 80%; }
-
   .bottom-callout .bottom-buttons {
     .middle { padding: 20px 0; display: block; }
     .btn.left { float: none; }
