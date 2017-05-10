@@ -45,7 +45,8 @@ div.half {
   vertical-align: middle;
   &.dashboard { width: 100%; }
   input { width: 100%; }
-  img { margin: 5px 10px 0; float: right;}
+  img { margin: 0 10px 0; float: right; height: 50px; padding: 10px 0 0; }
+  img.first { margin: 0; }
   span { display: block; overflow: hidden; }
   #cccvc { width: 100%; }
 

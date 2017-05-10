@@ -40,7 +40,7 @@
 
   .number {
     display: inline-block;
-    background-color: #8dfffc;
+    background-color: #00d630;
     border-radius: 50px;
     margin: 0 5px 0 0;
     color: #fff;
@@ -181,7 +181,7 @@
     font-size: 14px;
     padding: 20px 0 0;
 
-    a { color: #8dfffc; }
+    a { color: #00d630; }
   }
 }
 
@@ -193,14 +193,14 @@
     padding: 20px 10px 10px;
     margin: 10px auto 40px;
     max-width: 1000px;
-    border: 2px solid #8dfffc;
+    border: 2px solid #00d630;
   }
 
   .includes-header {
     font-size: 26px;
     font-weight: bold;
     margin: 10px auto;
-    color: #8dfffc;
+    color: #00d630;
     text-align: center;
   }
 
@@ -219,11 +219,13 @@
         &:before {
           content: '\f00c';
           font-family: FontAwesome;
-          color: #8dfffc;
+          color: #00d630;
           display: inline-block;
           margin-left: -25px;
           width: 25px;
         }
+
+        img { vertical-align: middle; height: 19px; }
       }
     }
 

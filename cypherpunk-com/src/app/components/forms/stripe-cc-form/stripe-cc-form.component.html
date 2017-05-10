@@ -12,14 +12,14 @@
   <div class="info">
     <div class="half" [ngClass]="{'dashboard': small}">
       <div class="half">
-        <label>Expiration Month</label><br />
+        <label>Exp. Month</label><br />
         <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}">
           <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
         </select>
       </div>
 
       <div class="half">
-        <label>Expiration Year</label><br />
+        <label>Exp. Year</label><br />
         <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}">
           <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
         </select>
@@ -28,7 +28,8 @@
 
     <div class="half" [ngClass]="{'dashboard': small}">
       <label>Security Code</label><br>
-      <img src="/assets/payment/cvc-icon.png" alt="CVC">
+      <img class="first" src="/assets/payment/security-code-01.png" alt="CVC">
+      <img src="/assets/payment/security-code-02.png" alt="CVC">
       <span>
         <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}" placeholder="3 on back, Amex: 4 on front">
       </span>

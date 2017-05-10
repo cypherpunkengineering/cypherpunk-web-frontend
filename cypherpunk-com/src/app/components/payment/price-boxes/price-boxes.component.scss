@@ -42,7 +42,7 @@
       width: 300px;
       position: relative;
       border: 5px solid #d9dfe2;
-      color: #333;
+      color: #aaa;
 
       &.buff {
         height: 300px;
@@ -70,11 +70,11 @@
         margin: 25px 0 15px;
         font-size: 29px;
         font-weight: 500;
-        color: #8dfffc;
+        color: #000;
       }
 
       .price-area {
-        color: #333;
+        color: #888;
         .price { font-size: 50px; font-weight: bold; }
         .price-time { font-size: 16px; }
         .green { color: #00d630; }
