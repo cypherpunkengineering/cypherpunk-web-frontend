@@ -14,7 +14,9 @@
         <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
+        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+          Pricing
+        </a>
       </li>
       <li>
         <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
@@ -32,16 +34,16 @@
           <button class="btn orange">UPGRADE</button>
         </a>
       </li>
-      <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-        <li class="border nav-link">
-          <span>SIGN IN</span>
-        </li>
-      </a>
-      <a routerLink="/account" *ngIf="isLoggedIn()">
-        <li class="border nav-link">
-          <span>My Account</span>
-        </li>
-      </a>
+      <li class="nav-link no-margin" *ngIf="!isLoggedIn()">
+        <a routerLink="/login">
+          <button class="btn border no-margin">SIGN IN</button>
+        </a>
+      </li>
+      <li class="nav-link no-margin" *ngIf="isLoggedIn()">
+        <a routerLink="/account">
+          <button class="btn orange no-margin">My Account</button>
+        </a>
+      </li>
     </ul>
   </nav>
   <div class="clear"></div>
@@ -64,7 +66,9 @@
           <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+            Pricing
+          </a>
         </li>
         <li>
           <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
@@ -82,16 +86,16 @@
             <button class="btn orange">UPGRADE</button>
           </a>
         </li>
-        <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-          <li class="border nav-link">
-            <span>SIGN IN</span>
-          </li>
-        </a>
-        <a routerLink="/account" *ngIf="isLoggedIn()">
-          <li class="border nav-link">
-            <span>My Account</span>
-          </li>
-        </a>
+        <li class="nav-link no-margin" *ngIf="!isLoggedIn()">
+          <a routerLink="/login">
+            <button class="btn border no-margin">SIGN IN</button>
+          </a>
+        </li>
+        <li class="nav-link no-margin" *ngIf="isLoggedIn()">
+          <a routerLink="/account">
+            <button class="btn orange no-margin">My Account</button>
+          </a>
+        </li>
       </ul>
     </nav>
     <div class="clear"></div>
@@ -172,7 +176,7 @@
     <div class="mobile-dd-item" routerLink="/features" routerLinkActive="active">
       Features
     </div>
-    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active">
+    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
       Pricing
     </div>
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
