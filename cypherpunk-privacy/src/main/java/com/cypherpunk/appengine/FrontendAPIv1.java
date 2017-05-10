@@ -69,10 +69,11 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final Logger LOG = Logger.getLogger(FrontendAPIv1.class.getName());
 	// }}}
 	// {{{ static constants
-	private static final int LOCATION_LIST_CACHE_PERIOD = 90;
+	private static final int LOCATION_LIST_CACHE_PERIOD = (60 * 10);
 	private static final int REGION_MAP_CACHE_PERIOD = (86400 * 7);
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.network";
+	private static final String DEFAULT_GEOIP_COUNTRY = "IS";
 	// }}}
 
 	private static final class BackendResponseCache // {{{
@@ -87,17 +88,20 @@ public class FrontendAPIv1 extends HttpServlet
 	{
 		// {{{ init
 		// init gson
+		//Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 		Gson gson = new Gson();
 
 		// autodetect locale from Accept-Language http request header
 		Locale langLocale = req.getLocale();
 
-		// get appengine IP based geo-location 2 letter country code
-		GeoLocationDB ipdb = new GeoLocationDB();
+		// get request source IP
 		String reqIP = req.getRemoteAddr();
+
+		// get country of source IP in GeoLocationDB
+		GeoLocationDB ipdb = new GeoLocationDB();
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ")
-			geoCountryCode = "IS";
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
 
 		// set content type
 		res.setContentType("application/json; charset=UTF-8");
@@ -114,8 +118,8 @@ public class FrontendAPIv1 extends HttpServlet
 
 		// get URI after /api/v1 for apiMethod
 		String apiMethod = reqURI.substring( "/api/v1".length(), reqURI.length() );
-		LOG.log(Level.WARNING, "reqURI is "+reqURI);
-		LOG.log(Level.WARNING, "apiMethod is "+apiMethod);
+		//LOG.log(Level.WARNING, "reqURI is "+reqURI);
+		//LOG.log(Level.WARNING, "apiMethod is "+apiMethod);
 		// }}}
 		if (apiMethod.startsWith("/location/list")) // {{{
 		{
@@ -131,6 +135,26 @@ public class FrontendAPIv1 extends HttpServlet
 			frontendJsonString = gson.toJson(backendResponse);
 
 			out.println(frontendJsonString);
+		} //}}}
+		else if (apiMethod.startsWith("/account/status")) // {{{
+		{
+			String frontendJsonString;
+			String backendResponse = fetchBackendData(HTTPMethod.GET, reqURI, getSafeHeadersFromRequest(req));
+
+			if (backendResponse == null)
+			{
+				res.sendError(503);
+				return;
+			}
+
+			frontendJsonString = gson.toJson(backendResponse);
+
+			out.println(frontendJsonString);
+		} //}}}
+		else if (apiMethod.equals("/network/status")) // {{{
+		{
+			String countryCode = ipdb.getCountry(reqIP);
+			out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 		} //}}}
 	/*
 		else if (apiMethod.compareTo("foo2") == 0) // {{{
@@ -261,11 +285,68 @@ public class FrontendAPIv1 extends HttpServlet
 			out.println(countryCode);
 		} //}}}
 	*/
-		else // {{{
+		else // {{{ 404
 		{
 			res.sendError(res.SC_NOT_FOUND);
 		} // }}}
 	}
+
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException
+	{
+		// {{{ init
+		// init gson
+		Gson gson = new Gson();
+
+		// autodetect locale from Accept-Language http request header
+		Locale langLocale = req.getLocale();
+
+		// get appengine IP based geo-location 2 letter country code
+		GeoLocationDB ipdb = new GeoLocationDB();
+		String reqIP = req.getRemoteAddr();
+		String geoCountryCode = ipdb.getCountry(reqIP);
+		if (geoCountryCode == null || geoCountryCode == "ZZ")
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+
+		// set content type
+		res.setContentType("application/json; charset=UTF-8");
+
+		// get response writer
+		PrintWriter out = res.getWriter();
+
+		// get request URL
+		String reqURI = req.getRequestURI().toString();
+
+		boolean forceUpdate = false;
+		if (req.getParameter("forceUpdate") != null)
+			forceUpdate = true;
+
+		// get URI after /api/v1 for apiMethod
+		String apiMethod = reqURI.substring( "/api/v1".length(), reqURI.length() );
+		//LOG.log(Level.WARNING, "reqURI is "+reqURI);
+		//LOG.log(Level.WARNING, "apiMethod is "+apiMethod);
+		// }}}
+		if (apiMethod.equals("/account/authenticate/password")) // {{{
+		{
+			String frontendJsonString;
+			String backendResponse = fetchBackendData(HTTPMethod.POST, reqURI, null);
+
+			if (backendResponse == null)
+			{
+				res.sendError(res.SC_NOT_FOUND);
+				return;
+			}
+
+			frontendJsonString = gson.toJson(backendResponse);
+
+			out.println(frontendJsonString);
+		} //}}}
+		else // {{{ 404
+		{
+			res.sendError(res.SC_NOT_FOUND);
+		} // }}}
+	}
+
 	private Map<String,Object> getBackendData(String apiURI, int secondsToMemcache, boolean forceUpdate) // {{{
 	{
 		String backendResponse = null;
@@ -320,7 +401,8 @@ public class FrontendAPIv1 extends HttpServlet
 		if (backendData == null)
 		{
 			LOG.log(Level.WARNING, "Fetching data from backend for "+apiURL);
-			backendResponse = fetchBackendData(apiURL);
+
+			backendResponse = fetchBackendData(HTTPMethod.GET, apiURL, null);
 			if (backendResponse != null)
 			{
 				backendData = parseBackendData(backendResponse);
@@ -382,7 +464,22 @@ public class FrontendAPIv1 extends HttpServlet
 		} // }}}
 		return backendResponseData;
 	} // }}}
-	private String fetchBackendData(String apiURL) // {{{
+
+	private List<HTTPHeader> getSafeHeadersFromRequest(HttpServletRequest req) // {{{
+	{
+		List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+		String safeHeaders[] = {
+			"Cookie"
+		};
+
+		for (String headerName : safeHeaders)
+			if (req.getHeader(headerName) != null)
+				headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
+
+		return headers;
+	} // }}}
+
+	private String fetchBackendData(HTTPMethod fetchMethod, String apiURL, List<HTTPHeader> headers) // {{{
 	{
 		String backendResponse = null;
 		// {{{ build URL
@@ -406,7 +503,12 @@ public class FrontendAPIv1 extends HttpServlet
 		// }}}
 		// {{{ fetch URL
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
-		HTTPRequest request = new HTTPRequest(backendURL, HTTPMethod.GET, withDefaults().setDeadline(9.0));
+		HTTPRequest request = new HTTPRequest(backendURL, fetchMethod, withDefaults().setDeadline(9.0));
+
+		if (headers != null)
+			for (HTTPHeader header : headers)
+				request.setHeader(header);
+
 		HTTPResponse response = null;
 
 		try
