@@ -11,13 +11,13 @@
     <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
-          <a class="nav-link" routerLink="/features">FEATURES</a>
+          <a class="nav-link" routerLink="/features">Features</a>
         </li>
         <li>
-          <a class="nav-link" href="https://support.cypherpunk.com/hc">SUPPORT</a>
+          <a class="nav-link" href="https://support.cypherpunk.com/hc">Support</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
+          <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">Account</a>
         </li>
         <li *ngIf="showPriceBoxes()">
           <button class="btn blue" routerLink="/account/upgrade">UPGRADE</button>
@@ -45,13 +45,13 @@
       <nav class="nav-right" *ngIf="enableLinks">
         <ul>
           <li>
-            <a class="nav-link" routerLink="/features">FEATURES</a>
+            <a class="nav-link" routerLink="/features">Features</a>
           </li>
           <li>
-            <a class="nav-link" href="https://support.cypherpunk.com/hc">SUPPORT</a>
+            <a class="nav-link" href="https://support.cypherpunk.com/hc">Support</a>
           </li>
           <li>
-            <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">ACCOUNT</a>
+            <a class="nav-link" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">Account</a>
           </li>
           <li *ngIf="showPriceBoxes()">
             <button class="btn blue" routerLink="/account/upgrade">UPGRADE</button>
@@ -81,13 +81,13 @@
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }" *ngIf="enableLinks">
     <div class="mobile-dd-item" routerLink="/features">
-      FEATURES
+      Features
     </div>
     <div class="mobile-dd-item" href="https://support.cypherpunk.com/hc">
-      SUPPORT
+      Support
     </div>
     <div class="mobile-dd-item" routerLink="/account" routerLinkActive="hidden" [routerLinkActiveOptions]="{exact: true}">
-      ACCOUNT
+      Account
     </div>
     <div class="mobile-dd-item" routerLink="/account/upgrade" *ngIf="showPriceBoxes()">
       <button class="btn blue">UPGRADE</button>

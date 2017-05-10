@@ -8,16 +8,16 @@
   <nav class="nav-right" *ngIf="enableLinks">
     <ul>
       <li>
-        <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">HOW IT WORKS</a>
+        <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">How It Works</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/features" routerLinkActive="active">features</a>
+        <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
+        <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
       </li>
       <li>
-        <a class="nav-link last" href="https://support.cypherpunk.com/hc">support</a>
+        <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
       </li>
       <li>
         <a routerLink="/download" *ngIf="!isLoggedIn()">
@@ -31,7 +31,7 @@
       </li>
       <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
         <li class="border nav-link">
-          <span>Sign in</span>
+          <span>SIGN IN</span>
         </li>
       </a>
       <a routerLink="/account" *ngIf="isLoggedIn()">
@@ -55,16 +55,16 @@
     <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
-          <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">HOW IT WORKS</a>
+          <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">How It Works</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/features" routerLinkActive="active">features</a>
+          <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active">Pricing</a>
         </li>
         <li>
-          <a class="nav-link last" href="https://support.cypherpunk.com/hc">support</a>
+          <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
         </li>
         <li>
           <a routerLink="/download" *ngIf="!isLoggedIn()">
@@ -78,7 +78,7 @@
         </li>
         <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
           <li class="border nav-link">
-            <span>Sign in</span>
+            <span>SIGN IN</span>
           </li>
         </a>
         <a routerLink="/account" *ngIf="isLoggedIn()">
@@ -161,16 +161,16 @@
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
     <div class="mobile-dd-item" routerLink="/why-use-a-vpn" routerLinkActive="active">
-      HOW IT WORKS
+      How It Works
     </div>
     <div class="mobile-dd-item" routerLink="/features" routerLinkActive="active">
-      features
+      Features
     </div>
     <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active">
-      pricing
+      Pricing
     </div>
     <a href="https://support.cypherpunk.com/hc">
-      <div class="mobile-dd-item">support</div>
+      <div class="mobile-dd-item">Support</div>
     </a>
     <a routerLink="/download" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
@@ -179,7 +179,7 @@
       <div class="mobile-dd-item">UPGRADE</div>
     </a>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
-      Sign in
+      SIGN IN
     </div>
     <div class="mobile-dd-item" *ngIf="isLoggedIn()" routerLink="/account">
       My Account
