@@ -38,9 +38,14 @@
   &.one { margin: 50px auto 20px; }
   &.two { margin: 60px auto 30px; }
 
+  .highlight {
+    font-weight: bold;
+    color: #00d630;
+  }
+
   .number {
     display: inline-block;
-    background-color: #00d630;
+    background-color: #ff7857;
     border-radius: 50px;
     margin: 0 5px 0 0;
     color: #fff;
@@ -193,14 +198,14 @@
     padding: 20px 10px 10px;
     margin: 10px auto 40px;
     max-width: 1000px;
-    border: 2px solid #00d630;
+    border: 2px solid #d9dfe2;
   }
 
   .includes-header {
     font-size: 26px;
     font-weight: bold;
     margin: 10px auto;
-    color: #00d630;
+    color: #000;
     text-align: center;
   }
 
@@ -214,6 +219,7 @@
       padding: 0;
       margin: 0;
       li {
+        color: #666;
         padding: 10px 0 10px 25px;
 
         &:before {

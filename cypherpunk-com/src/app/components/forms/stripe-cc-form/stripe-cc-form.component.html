@@ -1,26 +1,26 @@
 <form [formGroup]="stripeForm">
   <p>
     <label>Name on Card</label><br>
-    <input name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name.touched && !name.valid, 'success': name.touched && name.valid}"/>
+    <input name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name.touched && !name.valid, 'success': name.touched && name.valid}" autocomplete="cc-name"/>
   </p>
 
   <p>
     <label>Card Number</label><br>
-    <input name="cardNumber" type="text" required formControlName="cardNumber" [(ngModel)]="stripeFormData.cardNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}"/>
+    <input name="cardNumber" type="text" required formControlName="cardNumber" [(ngModel)]="stripeFormData.cardNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)"/>
   </p>
 
   <div class="info">
     <div class="half" [ngClass]="{'dashboard': small}">
       <div class="half">
         <label>Exp. Month</label><br />
-        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}">
+        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}" autocomplete="cc-exp-month">
           <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
         </select>
       </div>
 
       <div class="half">
         <label>Exp. Year</label><br />
-        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}">
+        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}" autocomplete="cc-exp-year">
           <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
         </select>
       </div>
@@ -28,10 +28,10 @@
 
     <div class="half" [ngClass]="{'dashboard': small}">
       <label>Security Code</label><br>
-      <img class="first" src="/assets/payment/security-code-01.png" alt="CVC">
-      <img src="/assets/payment/security-code-02.png" alt="CVC">
+      <img class="first" src="/assets/payment/security-code-02.png" alt="CVC">
+      <img src="/assets/payment/security-code-01.png" alt="CVC">
       <span>
-        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}" placeholder="3 on back, Amex: 4 on front">
+        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}" placeholder="3 on back, Amex: 4 on front" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
       </span>
     </div>
   </div>

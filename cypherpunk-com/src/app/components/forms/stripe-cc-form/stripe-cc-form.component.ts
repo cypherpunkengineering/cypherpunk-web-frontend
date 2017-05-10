@@ -93,6 +93,22 @@ export class StripeCCFormComponent implements OnInit {
       this.stripeFormData.form.valid = dirty && valid && zipCodeValid;
     });
   }
+
+  checkCCNumber(e) {
+    e.preventDefault();
+    let input = e.key;
+    if (!/^[0-9]+$/.test(input)) { return; }
+    if ((this.stripeFormData.cardNumber.length + 1) > 19) { return; }
+    this.stripeFormData.cardNumber += input;
+  }
+
+  checkCVCNumber(e) {
+    e.preventDefault();
+    let input = e.key;
+    if (!/^[0-9]+$/.test(input)) { return; }
+    if ((this.stripeFormData.cvc.length + 1) > 4) { return; }
+    this.stripeFormData.cvc += input;
+  }
 }
 
 interface ValidationResult { [key: string]: boolean; }

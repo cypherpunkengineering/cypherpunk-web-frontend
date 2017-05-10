@@ -1,5 +1,5 @@
 <div class="payment-options">
-  <div class="type-container" (click)="update('cc')" [ngClass]="{'active': paymentMethod === 'cc'}">
+  <div class="type-container" (click)="update('cc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'cc'}">
     <img [ngClass]="{'show': paymentMethod === 'cc'}" src="/assets/payment/credit-card-selected@2x.png" srcset="/assets/payment/credit-card-selected.png 500w, /assets/payment/credit-card-selected@2x.png 1000w" alt="Credit Card">
     <img [ngClass]="{'show': paymentMethod !== 'cc'}" src="/assets/payment/credit-card@2x.png" srcset="/assets/payment/credit-card.png 500w, /assets/payment/credit-card@2x.png 1000w" alt="Credit Card">
 
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="type-container" (click)="update('pp')" [ngClass]="{'active': paymentMethod === 'pp'}">
+  <div class="type-container" (click)="update('pp')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'pp'}">
     <img [ngClass]="{'show': paymentMethod === 'pp'}" src="/assets/payment/paypal-selected@2x.png" srcset="/assets/payment/paypal-selected.png 500w, /assets/payment/paypal-selected@2x.png 1000w" alt="PayPal">
     <img [ngClass]="{'show': paymentMethod !== 'pp'}" src="/assets/payment/paypal@2x.png" srcset="/assets/payment/paypal.png 500w, /assets/payment/paypal@2x.png" alt="PayPal">
 
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="type-container" (click)="update('a')" [ngClass]="{'active': paymentMethod === 'a'}">
+  <div class="type-container" (click)="update('a')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'a'}">
     <img [ngClass]="{'show': paymentMethod === 'a'}" src="/assets/payment/amazon-selected@2x.png" srcset="/assets/payment/amazon-selected.png 500w, /assets/payment/amazon-selected@2x.png 1000w" alt="Amazon">
     <img [ngClass]="{'show': paymentMethod !== 'a'}" src="/assets/payment/amazon@2x.png" srcset="/assets/payment/amazon.png 500w, /assets/payment/amazon@2x.png 1000w" alt="Amazon">
 
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="type-container" (click)="update('bc')" [ngClass]="{'active': paymentMethod === 'bc'}">
+  <div class="type-container" (click)="update('bc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'bc'}">
     <img [ngClass]="{'show': paymentMethod === 'bc'}" src="/assets/payment/bitcoin-selected@2x.png" srcset="/assets/payment/bitcoin-selected.png 500w, /assets/payment/bitcoin-selected@2x.png 1000w" alt="BitCoin">
     <img [ngClass]="{'show': paymentMethod !== 'bc'}" src="/assets/payment/bitcoin@2x.png" srcset="/assets/payment/bitcoin.png 500w, /assets/payment/bitcoin@2x.png 1000w" alt="BitCoin">
 
