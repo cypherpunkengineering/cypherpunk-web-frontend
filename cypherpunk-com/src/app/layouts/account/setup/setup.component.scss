@@ -10,6 +10,7 @@
   font-weight: 500;
   color: #666;
   a { color: #034698; }
+  a:hover { color: #9c93d3; }
 }
 
 .content {
@@ -53,6 +54,7 @@
       width: 115px;
       padding: 10px;
       margin: 15px 0;
+      &:hover { background-color: #27a5e2; }
     }
 
     textarea { background-color: #ddd; }
@@ -77,6 +79,7 @@
     font-size: 18px;
     font-weight: 500;
     color: #034698;
+    &:hover { color: #9c93d3; }
   }
 }
 
