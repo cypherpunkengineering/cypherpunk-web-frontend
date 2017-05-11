@@ -20,6 +20,7 @@
     color: #fff;
     height: 50px;
     cursor: pointer;
+    margin: 0 0 -4px;
     &.active {
       cursor: default;
       background-color: #fff;
@@ -243,6 +244,7 @@
     max-width: 450px;
     padding: 10px;
     margin: 0 10px;
+    &:hover { background-color: #ff8c71; }
   }
 }
 
