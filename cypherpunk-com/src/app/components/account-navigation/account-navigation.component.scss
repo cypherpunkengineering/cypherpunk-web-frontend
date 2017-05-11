@@ -36,12 +36,11 @@
           }
         }
         li.border {
-          width: 113.8px;
           height: 38px;
           border: 1px solid #1A474C;
           border-radius: 5px;
-          margin-top: -7px;
-          padding-top: 8px;
+          margin-top: -9px;
+          padding: 8px 10px 0;
           text-align: center;
           cursor: pointer;
           & a { margin-right: 0; }
