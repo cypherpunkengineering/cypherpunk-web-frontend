@@ -7,7 +7,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
   border-radius: 4px;
   font-size: 18px;
   padding: 10px;
-  margin: 5px 0 25px;
+  margin: 5px 0 5px;
   color: #7f7979;
   border: 2px solid #e0dede;
   &.error {
@@ -26,11 +26,10 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 
 .row {
   padding: 0 5px 0;
-  margin: 0 0 25px 0;
+  margin: 0 0 15px 0;
 
   .error-message {
     color: #a94442;
-    margin: -15px 0 0;
     text-align: left;
     font-size: 12px;
   }
@@ -38,8 +37,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
   .half {
     width: 49%;
     display: inline-block;
-    padding: 10px 0 0;
-    vertical-align: middle;
+    vertical-align: top;
     &.dashboard { width: 100%; }
     input { width: 100%; }
     img { margin: 0 10px 0; float: right; height: 50px; padding: 10px 0 0; }
@@ -55,7 +53,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
   }
 }
 
-
 @media (max-width: 850px) {
-  div.half { width: 100%; }
+  .row .half { width: 100%; }
+  .row .half .half { margin-bottom: 15px; }
 }
