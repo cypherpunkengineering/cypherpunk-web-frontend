@@ -77,12 +77,12 @@
 
   &.show {
     opacity: 1;
-    max-height: 1000px;
+    max-height: 1040px;
     transition: opacity 0.5s linear;
   }
   &.show-tall {
     opacity: 1;
-    max-height: 1000px;
+    max-height: 1040px;
     transition: opacity 0.5s linear;
   }
 }
@@ -116,6 +116,7 @@
   .pay {
     padding: 20px 0 0;
     .btn { width: 280px; margin: 0; }
+    .btn:disabled { background-color: #67b23f; }
     .secure {
       .fa-lock { color: #ffe49a; }
       padding: 10px 0 0;
@@ -127,6 +128,7 @@
 
   .amazon-pay {
     .btn { width: 280px; margin: 0; }
+    .btn:disabled { background-color: #67b23f; }
   }
 
   .agree {

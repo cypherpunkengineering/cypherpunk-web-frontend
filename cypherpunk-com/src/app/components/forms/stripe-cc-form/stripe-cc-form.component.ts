@@ -121,7 +121,7 @@ class NumberValidator {
 
       let passStripeValidation = stripe.card.validateCardNumber(control.value);
       if (passStripeValidation) { return null; }
-      else { return { 'invalidExpiryDate': true }; }
+      else { return { 'invalidCreditCardNumber': true }; }
     }
     else { return null; }
   }
