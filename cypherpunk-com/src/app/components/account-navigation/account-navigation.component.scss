@@ -44,6 +44,8 @@
           text-align: center;
           cursor: pointer;
           & a { margin-right: 0; }
+          &:hover { border-color: #fff; }
+          &:hover .nav-link { color: #fff; }
         }
       }
     }
