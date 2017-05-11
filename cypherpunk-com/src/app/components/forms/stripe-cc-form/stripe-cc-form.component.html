@@ -14,7 +14,7 @@
       <div class="half">
         <label>Exp. Month</label><br />
         <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}" autocomplete="cc-exp-month">
-          <option selected disabled hidden>MM</option>
+          <option value="" selected disabled hidden>MM</option>
           <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
         </select>
       </div>
@@ -22,7 +22,7 @@
       <div class="half">
         <label>Exp. Year</label><br />
         <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}" autocomplete="cc-exp-year">
-          <option selected disabled hidden>YYYY</option>
+          <option value="" selected disabled hidden>YYYY</option>
           <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
         </select>
       </div>
