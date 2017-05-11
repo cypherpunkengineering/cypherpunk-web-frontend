@@ -10,10 +10,8 @@
     position: relative;
     &:first-child { margin-left: 0; }
     &:last-child { margin-right: 0; }
-    &.active {
-      .box { border-color: #00d630; }
-      .box .checkmark { display: block; }
-    }
+    &:hover, &.active { .box { border-color: #00d630; } }
+    &.active .box .checkmark { display: block; }
 
     .best-value {
       width: 115px;
