@@ -43,10 +43,12 @@
   background-color: #ff7857;
   color: #fff;
 
+  &.orange:hover { background-color: rgba(255,120,87, 0.9); }
+
   &.no-margin { margin-right: 0; }
 
   &.border {
-    width: 123.8px;
+    width: 140px;
     background-color: transparent;
     border: 1px solid #1A474C;
     border-radius: 5px;

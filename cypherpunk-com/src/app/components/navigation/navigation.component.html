@@ -41,7 +41,7 @@
       </li>
       <li class="nav-link no-margin" *ngIf="isLoggedIn()">
         <a routerLink="/account">
-          <button class="btn orange no-margin">MY ACCOUNT</button>
+          <button class="btn no-margin" [ngClass]="{'orange': getAccountType() !== 'free', 'border': getAccountType() === 'free'}">MY ACCOUNT</button>
         </a>
       </li>
     </ul>
@@ -93,7 +93,7 @@
         </li>
         <li class="nav-link no-margin" *ngIf="isLoggedIn()">
           <a routerLink="/account">
-            <button class="btn orange no-margin">MY ACCOUNT</button>
+            <button class="btn orange no-margin" [ngClass]="{'orange': getAccountType() !== 'free', 'border': getAccountType() === 'free'}">MY ACCOUNT</button>
           </a>
         </li>
       </ul>
