@@ -32,6 +32,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     color: #a94442;
     text-align: left;
     font-size: 12px;
+    &.cvc { margin-left: 5px; }
   }
 
   .half {

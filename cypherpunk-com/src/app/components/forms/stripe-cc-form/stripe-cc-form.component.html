@@ -51,7 +51,7 @@
       <span>
         <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}" placeholder="3 on back, Amex: 4 on front" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
       </span>
-      <div class="error-message" [hidden]="!(cvc.touched && !cvc.valid)">CVC is Required</div>
+      <div class="error-message cvc" [hidden]="!(cvc.touched && !cvc.valid)">CVC is Required</div>
     </div>
   </div>
 
