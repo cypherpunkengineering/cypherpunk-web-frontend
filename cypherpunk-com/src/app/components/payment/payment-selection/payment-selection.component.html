@@ -1,9 +1,14 @@
 <div class="payment-options">
+  <!-- eat tabs -->
+  <input type="checkbox">
+  <input type="checkbox">
+  <input type="checkbox">
+  <input type="checkbox">
+
   <div class="type-container" (click)="update('cc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'cc'}">
     <img [ngClass]="{'active': paymentMethod === 'cc'}" src="/assets/payment/credit-card@2x.png" srcset="/assets/payment/credit-card.png 500w, /assets/payment/credit-card@2x.png 1000w" alt="Credit Card">
 
     <div class="text">
-      <input id="cc" type="radio" name="paymentOptions">
       <div class="circle" [ngClass]="{'checked': paymentMethod === 'cc'}">
         <div class="circle-inner"></div>
       </div>
@@ -15,7 +20,6 @@
     <img [ngClass]="{'active': paymentMethod === 'pp'}" src="/assets/payment/paypal@2x.png" srcset="/assets/payment/paypal.png 500w, /assets/payment/paypal@2x.png 1000w" alt="PayPal">
 
     <div class="text">
-      <input id="pp" type="radio" name="paymentOptions">
       <div class="circle" [ngClass]="{'checked': paymentMethod === 'pp'}">
         <div class="circle-inner"></div>
       </div>
@@ -27,7 +31,6 @@
     <img [ngClass]="{'active': paymentMethod === 'a'}" src="/assets/payment/amazon@2x.png" srcset="/assets/payment/amazon.png 500w, /assets/payment/amazon@2x.png 1000w" alt="Amazon">
 
     <div class="text">
-      <input id="a" type="radio" name="paymentOptions">
       <div class="circle" [ngClass]="{'checked': paymentMethod === 'a'}">
         <div class="circle-inner"></div>
       </div>
@@ -39,7 +42,6 @@
     <img [ngClass]="{'active': paymentMethod === 'bc'}" src="/assets/payment/bitcoin@2x.png" srcset="/assets/payment/bitcoin.png 500w, /assets/payment/bitcoin@2x.png 1000w" alt="BitCoin">
 
     <div class="text">
-      <input id="bc" type="radio" name="paymentOptions">
       <div class="circle" [ngClass]="{'checked': paymentMethod === 'bc'}">
         <div class="circle-inner"></div>
       </div>
