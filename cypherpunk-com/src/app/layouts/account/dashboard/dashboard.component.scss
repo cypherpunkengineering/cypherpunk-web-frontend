@@ -2,14 +2,9 @@
   .masthead {
     border-bottom: 10px solid #040026;
 
-    .masthead-image {
-      width: 100%;
-      height: 175px;
-      margin-top: -15px;
-      background-image: url('/assets/account/account-header@2x.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    .masthead-header {
+      text-align: center;
+      padding: 50px 0;
     }
   }
 
@@ -57,7 +52,6 @@
         .full { padding-left: 25px; }
         .email { color: #7972c4; }
         .uppercase { text-transform: uppercase; }
-        &:first-child { border-top: 1px solid #d8d8f6; }
         &:last-child { margin-bottom: 25px; }
         &.clickable:hover { color: #9c93d3; }
       }
