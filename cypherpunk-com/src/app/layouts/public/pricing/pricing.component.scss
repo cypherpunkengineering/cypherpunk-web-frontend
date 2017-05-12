@@ -116,6 +116,7 @@
   .pay {
     padding: 20px 0 0;
     .btn { width: 280px; margin: 0; }
+    .btn:hover { background-color: #82c65e; }
     .secure {
       .fa-lock { color: #ffe49a; }
       padding: 10px 0 0;
@@ -127,6 +128,7 @@
 
   .amazon-pay {
     .btn { width: 280px; margin: 0; }
+    .btn:hover { background-color: #82c65e; }
   }
 
   .agree {
