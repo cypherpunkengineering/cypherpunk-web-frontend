@@ -155,6 +155,7 @@ export class PricingComponent {
     // email errors
     if (!this.accountFormData.validation.email) {
       document.getElementById('emailInput').focus();
+      document.getElementById('emailInput').blur();
       return;
     }
     if (accountForm['controls'].email.errors) {
@@ -288,6 +289,7 @@ export class PricingComponent {
     // email errors
     if (!this.accountFormData.validation.email) {
       document.getElementById('emailInput').focus();
+      document.getElementById('emailInput').blur();
       return;
     }
     if (accountForm['controls'].email.errors) {
@@ -333,6 +335,7 @@ export class PricingComponent {
     // email errors
     if (!this.accountFormData.validation.email) {
       document.getElementById('emailInput').focus();
+      document.getElementById('emailInput').blur();
       return;
     }
     if (accountForm['controls'].email.errors) {
@@ -389,6 +392,7 @@ export class PricingComponent {
     // email errors
     if (!this.accountFormData.validation.email) {
       document.getElementById('emailInput').focus();
+      document.getElementById('emailInput').blur();
       return;
     }
     if (accountForm['controls'].email.errors) {
