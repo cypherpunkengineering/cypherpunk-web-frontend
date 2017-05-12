@@ -46,7 +46,8 @@ export class UpgradeComponent {
     cvc: '',
     country: '',
     zipCode: '',
-    form: { valid: false }
+    form: { valid: false },
+    formInstance: {}
   };
 
   // Amazon variables
@@ -150,13 +151,58 @@ export class UpgradeComponent {
 
   // pay with credit card
 
-  stripeButtonDisabled() {
-    if (this.showCreateCard) { return !this.stripeFormData.form.valid || this.disablePayment; }
-    else { return !this.defaultCardId || this.disablePayment; }
-  }
-
   stripeUpgrade() {
-    if (this.showCreateCard) { this.getToken(); }
+    if (this.disablePayment) { return; }
+    if (this.showCreateCard) {
+      let stripeForm = this.stripeFormData.formInstance;
+      Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
+        input.focus();
+      });
+
+      // name, nameInput
+      if (stripeForm['controls'].name.errors) {
+        document.getElementById('nameInput').focus();
+        return;
+      }
+
+      // Credit Card Number errors
+      if (stripeForm['controls'].cardNumber.errors) {
+        document.getElementById('cardNumberInput').focus();
+        return;
+      }
+
+      // expiryMonth, ccexpirymonth
+      if (stripeForm['controls'].expiryMonth.errors) {
+        document.getElementById('ccexpirymonth').focus();
+        return;
+      }
+
+      // expiryYear, ccexpiryyear
+      if (stripeForm['controls'].expiryYear.errors) {
+        document.getElementById('ccexpiryyear').focus();
+        return;
+      }
+
+      // cvc, cccvc
+      if (stripeForm['controls'].cvc.errors) {
+        document.getElementById('cccvc').focus();
+        return;
+      }
+
+      // country, country
+      if (stripeForm['controls'].country.errors) {
+        document.getElementById('country').focus();
+        return;
+      }
+
+      // zipCode, zipCodeSelect
+      if (stripeForm['controls'].zipCode.errors) {
+        document.getElementById('zipCodeSelect').focus();
+        return;
+      }
+
+      this.getToken();
+    }
     else { this.finalizeDefaultCard(); }
   }
 
@@ -260,6 +306,7 @@ export class UpgradeComponent {
   // pay with paypal
 
   payWithPaypal() {
+    if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
     this.paypal.pay(this.plansService.selectedPlan.id);
@@ -280,6 +327,7 @@ export class UpgradeComponent {
   }
 
   payWithAmazon() {
+    if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
 
@@ -300,6 +348,7 @@ export class UpgradeComponent {
   // pay with bitpay
 
   payWithBitpay() {
+    if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
     this.bitpay.pay(this.plansService.selectedPlan.id);

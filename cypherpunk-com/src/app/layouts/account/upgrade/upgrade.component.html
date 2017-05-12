@@ -97,7 +97,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" [disabled]="stripeButtonDisabled()" (click)="stripeUpgrade()">
+          <button class="btn green" (click)="stripeUpgrade()">
             Join Now
           </button>
 
@@ -132,10 +132,10 @@
           </div>
         </div>
 
-        <app-amazon #amazon [billingAgreementId]="billingAgreementId" [disable]="disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
+        <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
         <div class="amazon-pay">
-          <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || disablePayment">
+          <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'">
             Upgrade Now
           </button>
         </div>
@@ -166,7 +166,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" (click)="payWithPaypal()" [disabled]="disablePayment">
+          <button class="btn green" (click)="payWithPaypal()">
             Continue to PayPal
           </button>
         </div>
@@ -202,7 +202,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" (click)="payWithBitpay()" [disabled]="disablePayment">
+          <button class="btn green" (click)="payWithBitpay()">
             Continue to BitPay
           </button>
         </div>

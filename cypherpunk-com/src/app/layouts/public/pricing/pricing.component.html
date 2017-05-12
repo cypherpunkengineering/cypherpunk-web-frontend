@@ -61,7 +61,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" [disabled]="!stripeFormData.form.valid || !accountFormData.validation.email || !accountFormData.form.valid || disablePayment" (click)="getToken()">
+          <button class="btn green" (click)="getToken()">
             Join Now
           </button>
 
@@ -91,11 +91,10 @@
           </div>
         </div>
 
-        <app-amazon #amazon [billingAgreementId]="billingAgreementId"
-        [disable]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
+        <app-amazon #amazon [billingAgreementId]="billingAgreementId" (updateAmazonHide)="updateAmazonHide($event)" (updateBillingId)="updateBillingId($event)" (updateAmazonRecurringEnabled)="updateAmazonRecurringEnabled($event)" [hidden]="paymentMethod !== 'a'"></app-amazon>
 
         <div class="amazon-pay">
-          <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'" [disabled]="!amazonRecurringEnabled || !accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          <button id="payWithAmazon" class="btn green" (click)="payWithAmazon()" [style.display]="'none'">
             Join Now
           </button>
         </div>
@@ -120,7 +119,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" (click)="payWithPaypal()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          <button class="btn green" (click)="payWithPaypal()">
             Continue to Paypal
           </button>
         </div>
@@ -150,7 +149,7 @@
         </div>
 
         <div class="pay">
-          <button class="btn green" (click)="payWithBitpay()" [disabled]="!accountFormData.form.valid || !accountFormData.validation.email || disablePayment">
+          <button class="btn green" (click)="payWithBitpay()">
             Continue to BitPay
           </button>
         </div>

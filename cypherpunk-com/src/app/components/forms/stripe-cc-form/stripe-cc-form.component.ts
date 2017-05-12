@@ -70,6 +70,8 @@ export class StripeCCFormComponent implements OnInit {
       zipCode: [this.stripeFormData]
     });
 
+    this.stripeFormData.formInstance = this.stripeForm;
+
     this.name = this.stripeForm.controls['name'];
     this.cardNumber = this.stripeForm.controls['cardNumber'];
     this.expiryDate = this.stripeForm.controls['expiryDate'];

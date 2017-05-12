@@ -30,6 +30,7 @@ export class AccountCreationFormComponent implements OnInit {
         Validators.compose([Validators.required, PasswordValidator.validate])
       ],
     });
+    this.accountFormData.formInstance = this.accountForm;
 
     this.email = this.accountForm.controls['email'];
     this.password = this.accountForm.controls['password'];

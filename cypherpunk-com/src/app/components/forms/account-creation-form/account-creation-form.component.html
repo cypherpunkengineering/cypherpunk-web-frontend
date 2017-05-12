@@ -1,10 +1,10 @@
 <form [formGroup]="accountForm">
   <p>
-    <input name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
+    <input id="emailInput" name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
   </p>
 
   <p>
-    <input name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+    <input id="passwordInput" name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
     <label class="info" for="password">
       <small>at least 6 characters</small>
     </label>
