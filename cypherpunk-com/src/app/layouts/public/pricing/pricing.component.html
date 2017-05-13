@@ -219,9 +219,8 @@
 
 <div class="modal" [ngClass]="{'open': modal.show}">
   <div class="background" (click)="modal.show = false" [ngClass]="{'open': modal.show}"></div>
-  <div class="modal-content">
+  <div class="modal-content" [ngClass]="{'open': modal.show}">
     <div class="modal-header">{{ modal.header}}</div>
-    <div class="modal-line"></div>
 
     <div class="modal-body">
       <p>
@@ -239,9 +238,8 @@
 
 <div class="modal" [ngClass]="{'open': this.accountFormData.validation.warning}">
   <div class="background" (click)="this.accountFormData.validation.warning = false" [ngClass]="{'open': this.accountFormData.validation.warning}"></div>
-  <div class="modal-content">
+  <div class="modal-content" [ngClass]="{'open': this.accountFormData.validation.warning}">
     <div class="modal-header">It looks like you're already a Cypherpunk!</div>
-    <div class="modal-line"></div>
 
     <div class="modal-body">
       <p>Why not upgrade your account here: </p>
