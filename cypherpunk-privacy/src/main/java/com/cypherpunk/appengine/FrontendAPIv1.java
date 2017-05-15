@@ -201,7 +201,7 @@ public class FrontendAPIv1 extends HttpServlet
 				// get post ID from request URL
 				String postID = blogApiPath.substring( "/post/".length(), blogApiPath.length() );
 
-				if (postID != null || !postID.isEmpty())
+				if (postID != null && !postID.isEmpty())
 				{
 					bloggerResponse = getBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
 				}
