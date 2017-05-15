@@ -1,13 +1,5 @@
 .masthead {
   .masthead-header { margin: 45px auto 0; padding: 0 0 15px; }
-  .masthead-subheader {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    font-size: 84px;
-    font-weight: 500;
-    color: #fff;
-  }
   .masthead-image {
     width: 100%;
     max-width: 540px;
@@ -74,13 +66,6 @@
 
       border: solid 2px #034698;
       border-radius: 82px;
-    }
-    .link:after {
-      content: '>';
-      position: absolute;
-      right: 10px;
-      top: -5px;
-      font-size: 30px;
     }
   }
 }

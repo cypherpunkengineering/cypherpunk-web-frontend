@@ -3,7 +3,9 @@
   <app-acc-nav></app-acc-nav>
 
   <div class="masthead">
-    <div class="masthead-image"></div>
+    <div class="masthead-header header white">
+      Account
+    </div>
   </div>
 
   <div class="content" *ngIf="showPriceBoxes()">
@@ -21,8 +23,6 @@
 
   <div class="content">
     <div class="content-inner">
-      <h2 class="content-header">Account</h2>
-
       <section>
         <div class="content-row">
           <div class="left">
@@ -106,8 +106,6 @@
 
           <!-- Add a card to the list -->
           <div class="create-card" [ngClass]="{'open': showCreateCard}">
-            <label for="create-card">Or add a new card: </label>
-
             <app-stripe-cc-form [stripeFormData]="stripeFormData" small="true"></app-stripe-cc-form>
 
             <div class="info center">

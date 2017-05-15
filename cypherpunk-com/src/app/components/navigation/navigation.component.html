@@ -1,33 +1,49 @@
 <div id="nav" class="nav">
   <div class="nav-left">
     <a routerLink="/">
-      <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+      <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
   </div>
 
   <nav class="nav-right" *ngIf="enableLinks">
     <ul>
       <li>
-        <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
+        <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">How It Works</a>
       </li>
       <li>
-        <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
+        <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
       </li>
       <li>
-        <a routerLink="/download">
+        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+          Pricing
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+      </li>
+      <li>
+        <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
+      </li>
+      <li>
+        <a routerLink="/signup" *ngIf="!isLoggedIn()">
           <button class="btn orange">START FREE</button>
         </a>
       </li>
-      <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-        <li class="border nav-link">
-          <span>Sign in</span>
-        </li>
-      </a>
-      <a routerLink="/account" *ngIf="isLoggedIn()">
-        <li class="border nav-link">
-          <span>My Account</span>
-        </li>
-      </a>
+      <li>
+        <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+          <button class="btn orange">UPGRADE</button>
+        </a>
+      </li>
+      <li class="nav-link no-margin" *ngIf="!isLoggedIn()">
+        <a routerLink="/login">
+          <button class="btn border no-margin">SIGN IN</button>
+        </a>
+      </li>
+      <li class="nav-link no-margin" *ngIf="isLoggedIn()">
+        <a routerLink="/account">
+          <button class="btn no-margin" [ngClass]="{'orange': getAccountType() !== 'free', 'border': getAccountType() === 'free'}">MY ACCOUNT</button>
+        </a>
+      </li>
     </ul>
   </nav>
   <div class="clear"></div>
@@ -37,33 +53,49 @@
   <div class="nav">
     <div class="nav-left">
       <a routerLink="/">
-        <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+        <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
       </a>
     </div>
 
     <nav class="nav-right" *ngIf="enableLinks">
       <ul>
         <li>
-          <a class="nav-link" routerLink="/pricing" routerLinkActive="active">pricing</a>
+          <a class="nav-link" routerLink="/why-use-a-vpn" routerLinkActive="active">How It Works</a>
         </li>
         <li>
-          <a class="nav-link" href="https://support.cypherpunk.com/hc">support</a>
+          <a class="nav-link" routerLink="/features" routerLinkActive="active">Features</a>
         </li>
         <li>
-          <a routerLink="/download">
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+            Pricing
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+        </li>
+        <li>
+          <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
+        </li>
+        <li>
+          <a routerLink="/signup" *ngIf="!isLoggedIn()">
             <button class="btn orange">START FREE</button>
           </a>
         </li>
-        <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">
-          <li class="border nav-link">
-            <span>Sign in</span>
-          </li>
-        </a>
-        <a routerLink="/account" *ngIf="isLoggedIn()">
-          <li class="border nav-link">
-            <span>My Account</span>
-          </li>
-        </a>
+        <li>
+          <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+            <button class="btn orange">UPGRADE</button>
+          </a>
+        </li>
+        <li class="nav-link no-margin" *ngIf="!isLoggedIn()">
+          <a routerLink="/login">
+            <button class="btn border no-margin">SIGN IN</button>
+          </a>
+        </li>
+        <li class="nav-link no-margin" *ngIf="isLoggedIn()">
+          <a routerLink="/account">
+            <button class="btn orange no-margin" [ngClass]="{'orange': getAccountType() !== 'free', 'border': getAccountType() === 'free'}">MY ACCOUNT</button>
+          </a>
+        </li>
       </ul>
     </nav>
     <div class="clear"></div>
@@ -129,7 +161,7 @@
 <div class="mobile-nav">
   <div class="mobile-nav-left">
     <a routerLink="/">
-      <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+      <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
 
     <div class="mobile-nav-right" (click)="showDropDown = !showDropDown" *ngIf="enableLinks">
@@ -138,20 +170,32 @@
   </div>
 
   <div class="mobile-drop-down" [ngClass]="{ 'open': showDropDown }">
-    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active">
-      pricing
+    <div class="mobile-dd-item" routerLink="/why-use-a-vpn" routerLinkActive="active">
+      How It Works
+    </div>
+    <div class="mobile-dd-item" routerLink="/features" routerLinkActive="active">
+      Features
+    </div>
+    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+      Pricing
+    </div>
+    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
+      Download
     </div>
     <a href="https://support.cypherpunk.com/hc">
-      <div class="mobile-dd-item">support</div>
+      <div class="mobile-dd-item">Support</div>
     </a>
-    <a routerLink="/download" routerLinkActive="active">
+    <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
     </a>
+    <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+      <div class="mobile-dd-item">UPGRADE</div>
+    </a>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
-      Sign in
+      SIGN IN
     </div>
     <div class="mobile-dd-item" *ngIf="isLoggedIn()" routerLink="/account">
-      My Account
+      MY ACCOUNT
     </div>
   </div>
   <div class="clear"></div>
@@ -200,19 +244,19 @@
       <a routerLink="/features" fragment="freedom">
         <li [ngClass]="{'active': currentTab === 'freedom'}">
           <img class="display height" src="/assets/features/nav/freedom@2x.png" srcset="/assets/features/nav/freedom.png 500w, /assets/features/nav/freedom@2x.png 1000w" alt="Freedom">
-          <img class="display height" src="/assets/features/nav/freedom-selected@2x.png" srcset="/assets/features/nav/freedom-selected.png 500w, /assets/features/nav/freedom-selected@2x.png 1000w" alt="Freedom">
+          <img class="active height" src="/assets/features/nav/freedom-selected@2x.png" srcset="/assets/features/nav/freedom-selected.png 500w, /assets/features/nav/freedom-selected@2x.png 1000w" alt="Freedom">
         </li>
       </a>
       <a routerLink="/features" fragment="security">
         <li [ngClass]="{'active': currentTab === 'security'}">
           <img class="display" src="/assets/features/nav/security@2x.png" srcset="/assets/features/nav/security.png 500w, /assets/features/nav/security@2x.png 1000w" alt="Security">
-          <img class="display" src="/assets/features/nav/security-selected@2x.png" srcset="/assets/features/nav/security-selected.png 500w, /assets/features/nav/security-selected@2x.png 1000w" alt="Security">
+          <img class="active" src="/assets/features/nav/security-selected@2x.png" srcset="/assets/features/nav/security-selected.png 500w, /assets/features/nav/security-selected@2x.png 1000w" alt="Security">
         </li>
       </a>
       <a routerLink="/features" fragment="support">
         <li [ngClass]="{'active': currentTab === 'support'}">
           <img class="display" src="/assets/features/nav/support@2x.png" srcset="/assets/features/nav/support.png 500w, /assets/features/nav/support@2x.png 1000w" alt="Support">
-          <img class="display" src="/assets/features/nav/support-selected@2x.png" srcset="/assets/features/nav/support-selected.png 500w, /assets/features/nav/support-selected@2x.png 1000w" alt="Support">
+          <img class="active" src="/assets/features/nav/support-selected@2x.png" srcset="/assets/features/nav/support-selected.png 500w, /assets/features/nav/support-selected@2x.png 1000w" alt="Support">
         </li>
       </a>
     </ul>

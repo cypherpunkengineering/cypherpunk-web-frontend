@@ -1,12 +1,28 @@
 <form [formGroup]="accountForm">
-  <p>
-    <input name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
-  </p>
+  <div class="row">
+    <input id="emailInput" name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
+    <div class="error-message" [hidden]="!(email.touched && !email.valid)">
+      <div *ngIf="email.errors && email.errors['required']">
+        Email is Required
+      </div>
 
-  <p>
-    <input name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+      <div *ngIf="email.errors && email.errors['invalidEmailFormat'] && !email.errors['required']">
+        Invalid Email Format
+      </div>
+
+    </div>
+    <div class="error-message" [hidden]="!(email.touched)">
+      <div *ngIf="email.valid && !accountFormData.validation.email">
+        Email is already being used
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <input id="passwordInput" name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+    <div class="error-message" [hidden]="!(password.touched && !password.valid)">Password is Required</div>
     <label class="info" for="password">
       <small>at least 6 characters</small>
     </label>
-  </p>
+  </div>
 </form>

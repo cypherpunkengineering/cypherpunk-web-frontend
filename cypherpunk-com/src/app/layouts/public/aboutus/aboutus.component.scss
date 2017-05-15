@@ -1,96 +1,60 @@
 .masthead {
   border-bottom: 5px solid #efebeb;
-
   .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
-
-  .masthead-image {
-    text-align: center;
-    padding: 0 0 40px;
-    img { width: 50%; max-width: 1000px; }
-  }
 }
 
-.teammate {
+.team {
   width: 100%;
   max-width: 1000px;
   margin: auto;
-  padding: 50px 0;
+  padding: 50px 10px 100px;
+  text-align: center;
 
-  .image.mobile { display: none; }
-  .image.desktop { display: inline-block; }
-
-  .image {
-    width: 30%;
-    height: 320px;
+  .teammate {
+    max-width: 300px;
+    padding: 20px 15px;
     display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    img { height: 100%; }
-  }
+    vertical-align: top;
 
-  .text {
-    width: 69%;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0 40px 0;
-    &.right { text-align: right; }
-
-    .name { color: #fd8267; font-size: 22px; padding: 10px 0; }
-    .description { color: #969191; }
-  }
-}
-
-.bottom-callout {
-  background-color: #010010;
-  .bottom-header { padding-top: 40px; }
-  .bottom-buttons {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 0;
-    overflow: auto;
-    text-align: center;
-
-    .middle {
-      display: inline-block;
-      padding: 20px 0 0;
+    .image {
+      height: 320px;
       text-align: center;
-      color: #fff;
+      img { height: 100%; }
+      img.width { height: auto; width: 100%; }
     }
-    .btn {
-      font-size: 22px;
-      width: 280px;
-      height: 60px;
-    }
-    .btn.left { float: left; }
-    .btn.right {
-      float: right;
-      background-color: #fff;
-      color: #ff7857;
-      border: 2px solid #ff7857;
+
+    .text {
+      text-align: left;
+
+      .name { color: #fd8267; font-size: 22px; padding: 10px 0; text-align: center; }
+      .description { color: #969191; }
     }
   }
 }
 
-@media (max-width: 1100px) {
-  .bottom-callout .bottom-buttons { padding: 40px 20px; }
-}
+.cta-container {
+  position: relative;
+  z-index: 25;
+  &.bottom { height: 40px; background-color: #163138; }
 
-@media (max-width: 900px) {
-  .teammate .image { width: 100%; }
-  .teammate .text { width: 100%; }
-  .teammate .image.mobile { display: block; }
-  .teammate .image.desktop { display: none; }
-  .teammate .text { text-align: center; }
-  .teammate .text.right { text-align: center; }
-}
+  .call-to-action {
+    text-align: center;
+    position: absolute;
+    top: -35px;
+    left: 0;
+    right: 0;
 
-@media (max-width: 700px) {
-  .masthead .masthead-image img { width: 80%; }
-
-  .bottom-callout .bottom-buttons {
-    .middle { padding: 20px 0; display: block; }
-    .btn.left { float: none; }
-    .btn.right { float: none; }
+    .btn { width: 341px; border-radius: 5px; }
+    .btn.orange:hover { background-color: #ff8c71; }
   }
+}
+
+.btn {
+  font-size: 22px;
+  width: 280px;
+  height: 60px;
+}
+
+@media (max-width: 375px) {
+  .cta-container .call-to-action .btn { width: 280px; font-size: 18px; }
 }

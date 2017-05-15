@@ -54,11 +54,19 @@ export class NavigationComponent {
     else if (os.indexOf('iOS') > -1) { this.bannerModel = this.iosModel; }
   }
 
+  getAccountType() {
+    if (this.session.user.account.type) {
+      return this.session.user.account.type;
+    }
+    else { return ''; }
+  }
+
   isLoggedIn() {
+    let loggedIn = false;
     let authed = this.auth.authed;
     let sessionFound = this.session.userFound;
-    if (authed || sessionFound) { return true; }
-    else { return false; }
+    if (authed || sessionFound) { loggedIn = true; }
+    return loggedIn;
   }
 
   // on scroll,
@@ -91,7 +99,7 @@ export class NavigationComponent {
     }
 
     if (this.isFeatures) {
-      if (currentPosition > 587 && this.featuresSubnav) {
+      if (currentPosition > 230 && this.featuresSubnav) {
         this.featuresSubnav.style.opacity = '1';
         this.featuresSubnav.style.visibility = 'visible';
       }

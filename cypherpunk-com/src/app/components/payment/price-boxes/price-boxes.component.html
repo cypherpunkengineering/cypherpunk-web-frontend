@@ -1,72 +1,85 @@
 <div class="price-boxes">
-
   <div class="price-box" (click)="selectPlan(plans[0])" [ngClass]="{ 'active': selectedPlan.id === plans[0].id }">
 
     <div class="box">
-      <div class="box-inner">
-        <div class="period">{{plans[0].period}}</div>
+      <div class="checkmark"><i class="fa fa-check"></i></div>
+      <div class="period">{{plans[0].period}}</div>
 
-        <div *ngIf="btc">
-          <div class="price-area">
-            <span class="price-time">₿ ~ </span>
-            <span class="price">{{plans[0].bcPrice | number:'.3-3'}} </span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ₿ ~ {{plans[0].bcYearly | number:'.3-3'}} every month</div>
+      <div *ngIf="btc">
+        <div class="price-area">
+          <span class="price-time">₿ ~ </span>
+          <span class="price">{{plans[0].bcPrice | number:'.3-3'}} </span>
+          <br>
+          <span class="price-time">per month</span>
         </div>
-        <div *ngIf="!btc">
-          <div class="price-area">
-            <span class="price-time">$ </span>
-            <span class="price">{{plans[0].price | number: '.2-2'}}</span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ${{plans[0].yearly}} every month</div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed ₿ ~ {{plans[0].bcYearly | number:'.3-3'}} every month
+          <br>
+          30 day money-back guarantee
         </div>
+      </div>
+      <div *ngIf="!btc">
+        <div class="price-area">
+          <span class="price-time">$ </span>
+          <span class="price">{{plans[0].price | number: '.2-2'}}</span>
+          <br>
+          <span class="price-time">per month</span>
+        </div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed ${{plans[0].yearly}} every month
+          <br>
+          30 day money-back guarantee
+        </div>
+      </div>
 
-        <div class="savings">
-          <div class="saves"></div>
-        </div>
+      <div class="savings">
+        <div class="saves"></div>
       </div>
     </div>
   </div>
 
   <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': selectedPlan.id === plans[1].id }">
 
-    <div class="best-value">
-      <div class="text">Most Popular Plan</div>
-    </div>
     <div class="box buff">
-      <div class="box-inner">
-        <div class="period">{{plans[1].period}}</div>
+      <div class="checkmark"><i class="fa fa-check"></i></div>
+      <div class="period">{{plans[1].period}}</div>
+      <div class="best-value">
+        <div class="text">Best Value</div>
+      </div>
 
-        <div *ngIf="btc">
-          <div class="price-area">
-            <span class="price-time">₿ ~ </span>
-            <span class="price">{{plans[1].bcPrice | number:'.3-3'}}</span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ₿ ~ {{plans[1].bcYearly | number:'.3-3'}} every 12 months</div>
+      <div *ngIf="btc">
+        <div class="price-area">
+          <span class="price-time green">₿ ~ </span>
+          <span class="price green">{{plans[1].bcPrice | number:'.3-3'}}</span>
+          <br>
+          <span class="price-time green">per month</span>
         </div>
-        <div *ngIf="!btc">
-          <div class="price-area">
-            <span class="price-time">$ </span>
-            <span class="price">{{plans[1].price | number:'.2-2'}}</span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ${{plans[1].yearly}} every 12 months</div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed ₿ ~ <span class="strike">{{plans[1].bcStrikeYearly | number: '.3-3'}}</span> {{plans[1].bcYearly | number:'.3-3'}} every 12 months
+          <br>
+          30 day money-back guarantee
         </div>
+      </div>
+      <div *ngIf="!btc">
+        <div class="price-area">
+          <span class="price-time green">$ </span>
+          <span class="price green">{{plans[1].price | number:'.2-2'}}</span>
+          <br>
+          <span class="price-time green">per month</span>
+        </div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed <span class="strike">{{ '$' + plans[1].strikeYearly }}</span> ${{plans[1].yearly}} every 12 months
+          <br>
+          30 day money-back guarantee
+        </div>
+      </div>
 
-        <div class="savings">
-          <div class="saves larger">Save 36%</div>
-        </div>
+      <div class="savings">
+        <div class="saves larger">Save 36%</div>
       </div>
     </div>
   </div>
@@ -74,36 +87,42 @@
   <div class="price-box" (click)="selectPlan(plans[2])" [ngClass]="{ 'active': selectedPlan.id === plans[2].id }">
 
     <div class="box">
-      <div class="box-inner">
-        <div class="period">{{plans[2].period}}</div>
+      <div class="checkmark"><i class="fa fa-check"></i></div>
+      <div class="period">{{plans[2].period}}</div>
 
-        <div *ngIf="btc">
-          <div class="price-area">
-            <span class="price-time">₿ ~ </span>
-            <span class="price">{{plans[2].bcPrice | number:'.3-3'}}</span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ₿ ~ {{plans[2].bcYearly | number:'.3-3'}} every 6 months</div>
+      <div *ngIf="btc">
+        <div class="price-area">
+          <span class="price-time">₿ ~ </span>
+          <span class="price">{{plans[2].bcPrice | number:'.3-3'}}</span>
+          <br>
+          <span class="price-time">per month</span>
         </div>
-        <div *ngIf="!btc">
-          <div class="price-area">
-            <span class="price-time">$ </span>
-            <span class="price">{{plans[2].price | number:'.2-2'}}</span>
-            <br>
-            <span class="price-time">per month</span>
-          </div>
-          <div class="separator"></div>
-          <div class="yearly">Billed ${{plans[2].yearly}} every 6 months</div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed ₿ ~ <span class="strike">{{plans[2].bcStrikeYearly | number: '.3-3'}} </span>{{plans[2].bcYearly | number:'.3-3'}} every 6 months
+          <br>
+          30 day money-back guarantee
         </div>
+      </div>
+      <div *ngIf="!btc">
+        <div class="price-area">
+          <span class="price-time">$ </span>
+          <span class="price">{{plans[2].price | number:'.2-2'}}</span>
+          <br>
+          <span class="price-time">per month</span>
+        </div>
+        <div class="separator"></div>
+        <div class="yearly">
+          Billed <span class="strike">{{ '$' + plans[2].strikeYearly }} </span>${{plans[2].yearly}} every 6 months
+          <br>
+          30 day money-back guarantee
+        </div>
+      </div>
 
-        <div class="savings">
-          <div class="saves">Save 33%</div>
-        </div>
+      <div class="savings">
+        <div class="saves">Save 33%</div>
       </div>
     </div>
   </div>
-
-  <div *ngIf="!btc" class="info">All amounts shown are in USD.</div>
 </div>
+<div *ngIf="!btc" class="info">All amounts shown are in USD.</div>

@@ -11,6 +11,8 @@ export class Plan {
   bcYearly: string;
   rate: string;
   months: string;
+  strikeYearly: number;
+  bcStrikeYearly: number;
   viewable: boolean;
   constructor() {}
 }
@@ -29,6 +31,8 @@ export class PlansService {
       bcYearly: '',
       rate: 'monthly plan',
       months: '1',
+      strikeYearly: 0,
+      bcStrikeYearly: 0,
       viewable: true
     },
     {
@@ -42,6 +46,8 @@ export class PlansService {
       bcYearly: '',
       rate: '12 month plan',
       months: '12',
+      strikeYearly: 155.4,
+      bcStrikeYearly: 0,
       viewable: true
     },
     {
@@ -55,6 +61,8 @@ export class PlansService {
       bcYearly: '',
       rate: '6 month plan',
       months: '6',
+      strikeYearly: 77.7,
+      bcStrikeYearly: 0,
       viewable: true
     }
   ];

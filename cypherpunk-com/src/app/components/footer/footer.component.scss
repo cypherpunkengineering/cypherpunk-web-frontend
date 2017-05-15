@@ -4,16 +4,20 @@
 }
 
 .footer {
-  max-width: 1000px;
+  max-width: 1340px;
   height: 367px;
   margin: auto;
+  font-size: 0;
+  text-align: center;
 }
 
 .footer-column {
+  display: inline-block;
+  vertical-align: top;
   padding-top: 50px;
   margin-left: 30px;
-  float: left;
   font-size: 15px;
+  text-align: left;
 }
 
 .footer-column.logo {
@@ -25,7 +29,7 @@
 
 .footer-column.logo img {
   width: 227px;
-  height: 40px;
+  height: 45px;
 }
 
 .footer-copyright {
@@ -50,7 +54,7 @@
 .footer-listing li {
   font-weight: 500;
   line-height: 1.69;
-  &.inline { display: inline; margin-right: 28px; }
+  &.inline { display: inline; margin-right: 15px; }
   &.inline:last-child { margin-right: 0; }
 
   img { height: 25px; }

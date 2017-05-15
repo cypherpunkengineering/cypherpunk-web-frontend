@@ -70,6 +70,8 @@ export class StripeCCFormComponent implements OnInit {
       zipCode: [this.stripeFormData]
     });
 
+    this.stripeFormData.formInstance = this.stripeForm;
+
     this.name = this.stripeForm.controls['name'];
     this.cardNumber = this.stripeForm.controls['cardNumber'];
     this.expiryDate = this.stripeForm.controls['expiryDate'];
@@ -93,6 +95,22 @@ export class StripeCCFormComponent implements OnInit {
       this.stripeFormData.form.valid = dirty && valid && zipCodeValid;
     });
   }
+
+  checkCCNumber(e) {
+    e.preventDefault();
+    let input = e.key;
+    if (!/^[0-9]+$/.test(input)) { return; }
+    if ((this.stripeFormData.cardNumber.length + 1) > 19) { return; }
+    this.stripeFormData.cardNumber += input;
+  }
+
+  checkCVCNumber(e) {
+    e.preventDefault();
+    let input = e.key;
+    if (!/^[0-9]+$/.test(input)) { return; }
+    if ((this.stripeFormData.cvc.length + 1) > 4) { return; }
+    this.stripeFormData.cvc += input;
+  }
 }
 
 interface ValidationResult { [key: string]: boolean; }
@@ -105,7 +123,7 @@ class NumberValidator {
 
       let passStripeValidation = stripe.card.validateCardNumber(control.value);
       if (passStripeValidation) { return null; }
-      else { return { 'invalidExpiryDate': true }; }
+      else { return { 'invalidCreditCardNumber': true }; }
     }
     else { return null; }
   }

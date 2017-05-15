@@ -1,61 +1,83 @@
 <div class="masthead">
   <app-nav></app-nav>
-
-  <h1 class="masthead-header header white">
-    Cypherpunk Privacy for Android
-  </h1>
 </div>
 
 <div class="navigation">
   <ul>
-    <a routerLink="/apps">
+    <a routerLink="/apps/windows">
       <li>
-        <img class="d desktop-inline" src="/assets/apps/desktop-icon@2x.png" srcset="/assets/apps/desktop-icon.png 500w, /assets/apps/desktop-icon@2x.png 1000w" alt="Desktop">
-        Desktop
+        <img class="display" src="/assets/apps/icons/windows@2x.png" srcset="/assets/apps/icons/windows.png 500w, /assets/apps/icons/windows@2x.png 1000w" alt="Windows">
+        <img class="hover" src="/assets/apps/icons/windows-hover@2x.png" srcset="/assets/apps/icons/windows-hover.png 500w, /assets/apps/icons/windows-hover@2x.png 1000w" alt="Windows">
+        <span>Windows</span>
+      </li>
+    </a>
+    <a routerLink="/apps/mac">
+      <li>
+        <img class="display" src="/assets/apps/icons/mac@2x.png" srcset="/assets/apps/icons/mac.png 500w, /assets/apps/icons/mac@2x.png 1000w" alt="Mac">
+        <img class="hover" src="/assets/apps/icons/mac-hover@2x.png" srcset="/assets/apps/icons/mac-hover.png 500w, /assets/apps/icons/mac-hover@2x.png 1000w" alt="Mac">
+        <span>Mac</span>
+      </li>
+    </a>
+    <a routerLink="/apps/linux">
+      <li>
+        <img class="display" src="/assets/apps/icons/linux@2x.png" srcset="/assets/apps/icons/linux.png 500w, /assets/apps/icons/linux@2x.png 1000w" alt="Linux">
+        <img class="hover" src="/assets/apps/icons/linux-hover@2x.png" srcset="/assets/apps/icons/linux-hover.png 500w, /assets/apps/icons/linux-hover@2x.png 1000w" alt="Linux">
+        <span>Linux</span>
+      </li>
+    </a>
+    <li class="active">
+      <img src="/assets/apps/icons/android-selected@2x.png" srcset="/assets/apps/icons/android-selected.png 500w, /assets/apps/icons/android-selected@2x.png 1000w" alt="Android">
+      <span>Android</span>
+    </li>
+    <a routerLink="/apps/ios">
+      <li>
+        <img class="display" src="/assets/apps/icons/ios@2x.png" srcset="/assets/apps/icons/ios.png 500w, /assets/apps/icons/ios@2x.png 1000w" alt="iOS">
+        <img class="hover" src="/assets/apps/icons/ios-hover@2x.png" srcset="/assets/apps/icons/ios-hover.png 500w, /assets/apps/icons/ios-hover@2x.png 1000w" alt="iOS">
+        <span>iOS</span>
       </li>
     </a>
     <a routerLink="/apps/browser">
       <li>
-        <img class="b desktop-inline" src="/assets/apps/browser-icon@2x.png" srcset="/assets/apps/browser-icon.png 500w, /assets/apps/browser-icon@2x.png 1000w" alt="Browser">
-        Browser
+        <img class="display" src="/assets/apps/icons/browser@2x.png" srcset="/assets/apps/icons/browser.png 500w, /assets/apps/icons/browser@2x.png 1000w" alt="Browser">
+        <img class="hover" src="/assets/apps/icons/browser-hover@2x.png" srcset="/assets/apps/icons/browser-hover.png 500w, /assets/apps/icons/browser-hover@2x.png 1000w" alt="Browser">
+        <span>Browser</span>
       </li>
     </a>
-    <li class="active">
-      <img class="a desktop-inline" src="/assets/apps/android-icon-hover@2x.png" srcset="/assets/apps/android-icon-hover.png 500w, /assets/apps/android-icon-hover@2x.png 1000w" alt="Android">
-      Android
-    </li>
-    <a routerLink="/apps/ios">
+    <a routerLink="/apps/routers">
       <li>
-        <img class="i desktop-inline" src="/assets/apps/ios-icon@2x.png" srcset="/assets/apps/ios-icon.png 500w, /assets/apps/ios-icon@2x.png 1000w" alt="iOS">
-        iOS
+        <img class="display" src="/assets/apps/icons/router@2x.png" srcset="/assets/apps/icons/router.png 500w, /assets/apps/icons/router@2x.png 1000w" alt="Router">
+        <img class="hover" src="/assets/apps/icons/router-hover@2x.png" srcset="/assets/apps/icons/router-hover.png 500w, /assets/apps/icons/router-hover@2x.png 1000w" alt="Router">
+        <span>Router</span>
       </li>
     </a>
+    <!-- <a routerLink="/apps/others">
+      <li>
+        <img class="display" src="/assets/apps/icons/others@2x.png" srcset="/assets/apps/icons/others.png 500w, /assets/apps/icons/others@2x.png 1000w" alt="Others">
+        <img class="hover" src="/assets/apps/icons/others-hover@2x.png" srcset="/assets/apps/icons/others-hover.png 500w, /assets/apps/icons/others-hover@2x.png 1000w" alt="Others">
+        <span>Others</span>
+      </li>
+    </a> -->
   </ul>
 </div>
 
 <div class="subnav down-arrow">
   <div class="subnav-inner">
+    <div class="header">Cypherpunk for Android</div>
+
     <div class="row">
       <div class="cell">
         <div class="header black">Phone</div>
         <div class="cell-image">
-          <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Windows" >
+          <img src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Phone" >
         </div>
       </div>
 
       <div class="cell">
         <div class="header black">Tablet</div>
         <div class="cell-image">
-          <img class="d" src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Apple">
+          <img src="/assets/apps/desktop@2x.png" srcset="/assets/apps/desktop.png 500w, /assets/apps/desktop@2x.png 1000w" alt="Tablet">
         </div>
       </div>
-    </div>
-
-    <div class="separator"></div>
-
-    <div class="split">
-      <div class="left"></div>
-      <div class="right"></div>
     </div>
 
     <a class="android-button" href="https://play.google.com/store/apps/details?id=com.cypherpunk.privacy">
@@ -64,33 +86,33 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
-  <div class="features-inner">
-    <div class="header gold">Features</div>
+<div class="page-header">
+  <div class="header">Features</div>
+</div>
 
+<div class="features down-arrow gray">
+  <div class="features-inner">
     <div class="row">
       <div class="image">
-        <img class="e" src="/assets/features/freedom/cypherplay@2x.png" srcset="/assets/features/freedom/cypherplay.png 500w, /assets/features/freedom/cypherplay@2x.png 1000w" alt="Cypherplay">
+        <img src="/assets/apps/images/cypherplay@2x.png" srcset="/assets/apps/images/cypherplay.png 500w, /assets/apps/images/cypherplay@2x.png 1000w" alt="Cypherplay">
       </div>
 
       <div class="text">
-        <div class="text-header gold">CypherPlay™</div>
+        <div class="text-header">CypherPlay™</div>
 
         <p>
-          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds. Lorem Ipsum
+          Automatically connect to the fastest server near you, or choose any one of our servers around the world in just seconds.
         </p>
-
-        <!-- <a (click)="switch1 = !switch1">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch1}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/play-from-anywhere@2x.png" srcset="/assets/features/freedom/play-from-anywhere 500w, /assets/features/freedom/play-from-anywhere@2x.png" alt="Play From Anywhere">
+        <img src="/assets/apps/images/play-from-anywhere@2x.png" srcset="/assets/apps/images/play-from-anywhere 500w, /assets/apps/images/play-from-anywhere@2x.png" alt="Play From Anywhere">
       </div>
 
       <div class="cell-header">Play from anywhere</div>
@@ -102,7 +124,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/automatic-regional-routing@2x.png" srcset="/assets/features/freedom/automatic-regional-routing 500w, /assets/features/freedom/automatic-regional-routing@2x.png" alt="Automatic Regional Routing">
+        <img class="width" src="/assets/apps/images/automatic-regional-routing@2x.png" srcset="/assets/apps/images/automatic-regional-routing 500w, /assets/apps/images/automatic-regional-routing@2x.png" alt="Automatic Regional Routing">
       </div>
 
       <div class="cell-header">Automatic regional routing</div>
@@ -114,35 +136,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
-      <div class="image mobile">
-        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="Multiple Encryption Profiles">
+      <div class="image">
+        <img src="/assets/apps/images/multiple-encryption-modes@2x.png" srcset="/assets/apps/images/multiple-encryption-modes.png 500w, /assets/apps/images/multiple-encryption-modes@2x.png 1000w" alt="Multiple Encryption Profiles">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Multiple encryption profiles</div>
+        <div class="text-header">Multiple encryption profiles</div>
 
         <p>
-          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes. Lorem Ipsum
+          Choose the perfect balance between speed and privacy for your needs with our easy to use encryption modes.
         </p>
-
-        <!-- <a (click)="switch2 = !switch2">Learn More</a> -->
-      </div>
-
-      <div class="image desktop">
-        <img class="d" src="/assets/apps/windows/different-modes@2x.png" srcset="/assets/apps/different-modes.png 500w, /assets/apps/different-modes@2x.png 1000w" alt="Multiple Encryption Profiles">
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch2}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-privacy-mode@2x.png" srcset="/assets/features/online-privacy/max-privacy-mode.png 500w, /assets/features/online-privacy/max-privacy-mode@2x.png 1000w" alt="Max Privacy Mode">
+        <img src="/assets/apps/images/max-privacy-mode@2x.png" srcset="/assets/apps/images/max-privacy-mode.png 500w, /assets/apps/images/max-privacy-mode@2x.png 1000w" alt="Max Privacy Mode">
       </div>
 
       <div class="cell-header">Max Privacy mode</div>
@@ -154,10 +170,10 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-freedom-mode@2x.png" srcset="/assets/features/online-privacy/max-freedom-mode.png 500w, /assets/features/online-privacy/max-freedom-mode@2x.png 1000w" alt="Max Freedom Mode">
+        <img src="/assets/apps/images/max-security-mode@2x.png" srcset="/assets/apps/images/max-security-mode.png 500w, /assets/apps/images/max-security-mode@2x.png 1000w" alt="Max Security Mode">
       </div>
 
-      <div class="cell-header">Max Freedom mode</div>
+      <div class="cell-header">Max Security mode</div>
 
       <div class="cell-text">
         Scramble your encrypted traffic to make it less detectable to governments and harder to detect and block.
@@ -166,7 +182,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/max-speed-mode@2x.png" srcset="/assets/features/online-privacy/max-speed-mode.png 500w, /assets/features/online-privacy/max-speed-mode@2x.png 1000w" alt="Max Speed Mode">
+        <img src="/assets/apps/images/max-speed-mode@2x.png" srcset="/assets/apps/images/max-speed-mode.png 500w, /assets/apps/images/max-speed-mode@2x.png 1000w" alt="Max Speed Mode">
       </div>
 
       <div class="cell-header">Max Speed mode</div>
@@ -178,31 +194,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
       <div class="image">
-        <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="Max Freedom">
+        <img src="/assets/apps/images/max-freedom@2x.png" srcset="/assets/apps/images/max-freedom.png 500w, /assets/apps/images/max-freedom@2x.png 1000w" alt="Max Freedom">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Max Freedom</div>
+        <div class="text-header">Max Freedom</div>
 
         <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
+          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
         </p>
-
-        <!-- <a (click)="switch3 = !switch3">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch3}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/bypass-any-gouvernment@2x.png" srcset="/assets/features/freedom/bypass-any-gouvernment.png 500w, /assets/features/freedom/bypass-any-gouvernment@2x.png 1000w" alt="Break out of any censored network">
+        <img src="/assets/apps/images/break-out-of-any-censored-network@2x.png" srcset="/assets/apps/images/break-out-of-any-censored-network.png 500w, /assets/apps/images/break-out-of-any-censored-network@2x.png 1000w" alt="Break out of any censored network">
       </div>
 
       <div class="cell-header">Break out of any censored network</div>
@@ -212,7 +226,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/freedom/optimized-traffic@2x.png" srcset="/assets/features/freedom/optimized-traffic.png 500w, /assets/features/freedom/optimized-traffic@2x.png 1000w" alt="Optimized Traffic Flow">
+        <img src="/assets/apps/images/optimized-traffic-flow@2x.png" srcset="/assets/apps/images/optimized-traffic-flow.png 500w, /assets/apps/images/optimized-traffic-flow@2x.png 1000w" alt="Optimized Traffic Flow">
       </div>
 
       <div class="cell-header">Optimized traffic flow</div>
@@ -224,6 +238,7 @@
 
     <div class="cell">
       <div class="cell-image">
+        <img src="/assets/apps/images/blazing-fast-speeds@2x.png" srcset="/assets/apps/images/blazing-fast-speeds.png 500w, /assets/apps/images/blazing-fast-speeds@2x.png 1000w" alt="Blazing Fast Speeds">
       </div>
 
       <div class="cell-header">Blazing fast speeds</div>
@@ -233,35 +248,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Privacy Filter">
+      <div class="image">
+        <img src="/assets/apps/images/privacy-filter@2x.png" srcset="/assets/apps/images/privacy-filter.png 500w, /assets/apps/images/privacy-filter@2x.png 1000w" alt="Privacy Filter">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Privacy Filter</div>
+        <div class="text-header">Privacy Filter</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
+          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
         </p>
-
-        <!-- <a (click)="switch4 = !switch4">Learn More</a> -->
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Privacy Filter">
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch4}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Block Ads, Trackers, Malware">
+        <img src="/assets/apps/images/block-ads-trackers-malware@2x.png" srcset="/assets/apps/images/block-ads-trackers-malware.png 500w, /assets/apps/images/block-ads-trackers-malware@2x.png 1000w" alt="Block Ads, Trackers, Malware">
       </div>
 
       <div class="cell-header">Block Ads, Trackers, Malware</div>
@@ -271,31 +280,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
       <div class="image">
-        <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
+        <img src="/assets/apps/images/privacy-firewall@2x.png" srcset="/assets/apps/images/privacy-firewall.png 500w, /assets/apps/images/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Privacy Firewall</div>
+        <div class="text-header">Privacy Firewall</div>
 
         <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
+          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
         </p>
-
-        <!-- <a (click)="switch5 = !switch5">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch5}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-firewall@2x.png" srcset="/assets/features/online-privacy/privacy-firewall.png 500w, /assets/features/online-privacy/privacy-firewall@2x.png 1000w" alt="Firewall">
+        <img src="/assets/apps/images/firewall@2x.png" srcset="/assets/apps/images/firewall.png 500w, /assets/apps/images/firewall@2x.png 1000w" alt="Firewall">
       </div>
 
       <div class="cell-header">Firewall</div>
@@ -305,35 +312,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Leak Protection">
+      <div class="image">
+        <img src="/assets/apps/images/leak-protection@2x.png" srcset="/assets/apps/images/leak-protection.png 500w, /assets/apps/images/leak-protection@2x.png 1000w" alt="Leak Protection">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Leak Protection</div>
+        <div class="text-header">Leak Protection</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
+          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
         </p>
-
-        <!-- <a (click)="switch6 = !switch6">Learn More</a> -->
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Leak Protection">
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch6}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-filter@2x.png" srcset="/assets/features/online-privacy/privacy-filter.png 500w, /assets/features/online-privacy/privacy-filter@2x.png 1000w" alt="Privacy Filter">
+        <img src="/assets/apps/images/privacy-filter_1@2x.png" srcset="/assets/apps/images/privacy-filter_1.png 500w, /assets/apps/images/privacy-filter_1@2x.png 1000w" alt="Privacy Filter">
       </div>
 
       <div class="cell-header">Privacy Filter</div>
@@ -345,7 +346,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/privacy-firewall@2x.png" srcset="/assets/features/online-privacy/privacy-firewall.png 500w, /assets/features/online-privacy/privacy-firewall@2x.png 1000w" alt="Privacy Firewall">
+        <img src="/assets/apps/images/privacy-firewall-02@2x.png" srcset="/assets/apps/images/privacy-firewall-02.png 500w, /assets/apps/images/privacy-firewall-02@2x.png 1000w" alt="Privacy Firewall">
       </div>
 
       <div class="cell-header">Privacy Firewall</div>
@@ -357,7 +358,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/dns-leak-protection@2x.png" srcset="/assets/features/online-privacy/dns-leak-protection.png 500w, /assets/features/online-privacy/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
+        <img class="width" src="/assets/apps/images/dns-leak-protection@2x.png" srcset="/assets/apps/images/dns-leak-protection.png 500w, /assets/apps/images/dns-leak-protection@2x.png 1000w" alt="DNS Leak Protection">
       </div>
 
       <div class="cell-header">DNS Leak Protection</div>
@@ -369,7 +370,7 @@
 
     <div class="cell">
       <div class="cell-image">
-        <img src="/assets/features/online-privacy/ipv6-leak-protection@2x.png" srcset="/assets/features/online-privacy/ipv6-leak-protection.png 500w, /assets/features/online-privacy/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
+        <img src="/assets/apps/images/ipv6-leak-protection@2x.png" srcset="/assets/apps/images/ipv6-leak-protection.png 500w, /assets/apps/images/ipv6-leak-protection@2x.png 1000w" alt="IPv6 Leak Protection">
       </div>
 
       <div class="cell-header">IPv6 Leak Protection</div>
@@ -381,30 +382,29 @@
   </div>
 </div>
 
-<div class="features down-arrow green">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
       <div class="image">
-        <img class="p" src="/assets/apps/windows/privacy-firewall@2x.png" srcset="/assets/apps/privacy-firewall.png 500w, /assets/apps/privacy-firewall@2x.png 1000w" alt="Advanced Features">
+        <img class="p" src="/assets/apps/images/advanced-features@2x.png" srcset="/assets/apps/images/advanced-features.png 500w, /assets/apps/images/advanced-features@2x.png 1000w" alt="Advanced Features">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Advanced Features</div>
+        <div class="text-header">Advanced Features</div>
 
         <p>
-          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe. Lorem Ipsum
+          If your connection to Cypherpunk is interrupted for any reason, it will block all internet connections to keep you safe.
         </p>
-
-        <!-- <a (click)="switch7 = !switch7">Learn More</a> -->
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch7}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">
+        <img src="/assets/apps/images/port-selector@2x.png" srcset="/assets/apps/images/port-selector.png 500w, /assets/apps/images/port-selector@2x.png 1000w" alt="Port Selector">
       </div>
 
       <div class="cell-header">Port Selector</div>
@@ -416,6 +416,7 @@
 
     <div class="cell">
       <div class="cell-image">
+        <img src="/assets/apps/images/one-click-connect@2x.png" srcset="/assets/apps/images/one-click-connect.png 500w, /assets/apps/images/one-click-connect@2x.png 1000w" alt="One Click Connect">
       </div>
 
       <div class="cell-header">One Click Connect</div>
@@ -427,6 +428,7 @@
 
     <div class="cell">
       <div class="cell-image">
+        <img src="/assets/apps/images/auto-launch-on-startup@2x.png" srcset="/assets/apps/images/auto-launch-on-startup.png 500w, /assets/apps/images/auto-launch-on-startup@2x.png 1000w" alt="Auto Launch on Startup">
       </div>
 
       <div class="cell-header">Auto launch on startup</div>
@@ -436,6 +438,7 @@
 
     <div class="cell">
       <div class="cell-image">
+        <img src="/assets/apps/images/auto-connect-on-launch@2x.png" srcset="/assets/apps/images/auto-connect-on-launch.png 500w, /assets/apps/images/auto-connect-on-launch@2x.png 1000w" alt="Auto Connect on Launch">
       </div>
 
       <div class="cell-header">Auto connect on launch</div>
@@ -456,31 +459,24 @@
   </div>
 </div>
 
-<div class="features down-arrow green padded">
+<div class="features down-arrow gray">
   <div class="features-inner">
     <div class="row">
-      <div class="image mobile">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Split Tunnel">
+      <div class="image">
       </div>
 
       <div class="text">
-        <div class="text-header gold">Split Tunnel</div>
+        <div class="text-header">Split Tunnel</div>
 
         <p>
-          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose. Lorem Ipsum
+          You can send all online activity through Cypherpunk, or set it up to only use it for the apps you choose.
         </p>
-
-        <!-- <a (click)="switch8 = !switch8">Learn More</a> -->
-      </div>
-
-      <div class="image desktop">
-        <img class="s" src="/assets/apps/windows/perapp-settings@2x.png" srcset="/assets/apps/perapp-settings.png 500w, /assets/apps/perapp-settings@2x.png 1000w" alt="Split Tunnel">
       </div>
     </div>
   </div>
 </div>
 
-<div class="descriptions" [ngClass]="{'open': switch8}">
+<div class="descriptions">
   <div class="more">
     <div class="cell">
       <div class="cell-image">

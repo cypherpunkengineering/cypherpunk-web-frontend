@@ -3,56 +3,80 @@
 
   .price-box {
     display: inline-block;
-    margin: 0 15px 0 0;
+    margin: 0 10px 0 10px;
     cursor: pointer;
     color: #1987bd;
     vertical-align: middle;
-    &:last-child { margin: 0; }
-    &.active {
-      .box { border-color: #00d630; }
-      .box .box-inner { border-color: #00d630;}
-    }
+    position: relative;
+    &:first-child { margin-left: 0; }
+    &:last-child { margin-right: 0; }
+    &:hover, &.active { .box { border-color: #00d630; } }
+    &.active .box .checkmark { display: block; }
 
     .best-value {
-      width: 275px;
-      margin: 0 auto 5px;
-      overflow: auto;
+      width: 115px;
+      height: 80px;
+      overflow: hidden;
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      z-index: 5;
+
       .text {
         padding: 5px;
         color: #fff;
         font-size: 12px;
         text-transform: uppercase;
-        background-color: #00d630;
-        width: 135;
-        float: right;
+        background-color: #ff7857;
+        width: 155px;
+        transform: rotate(35deg);
+        position: relative;
+        right: 5px;
+        top: 20px;
       }
     }
 
     .box {
-      width: 275px;
+      width: 300px;
       position: relative;
-      border: 3px solid #d9dfe2;
-      color: #333;
-
-      .box-inner { height: 100%; border: 2px solid transparent; }
+      border: 5px solid #d9dfe2;
+      color: #aaa;
+      background-color: #fff;
 
       &.buff {
         height: 300px;
-        margin-bottom: 30px;
         .period { margin: 40px 0 15px; }
+      }
+
+      .checkmark {
+        display: none;
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        text-align: center;
+        font-size: 50px;
+        color: #00d630;
+        font-family: FontAwesome;
+
+        i {
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
 
       .period {
         margin: 25px 0 15px;
         font-size: 29px;
         font-weight: 500;
-        color: #008ace;
+        color: #000;
       }
 
       .price-area {
-        color: #333;
+        color: #888;
         .price { font-size: 50px; font-weight: bold; }
         .price-time { font-size: 16px; }
+        .green { color: #00d630; }
       }
 
       .separator {
@@ -63,7 +87,10 @@
         opacity: 0.5;
       }
 
-      .yearly { font-size: 14px; }
+      .yearly {
+        font-size: 14px;
+        .strike { color: red; text-decoration: line-through; }
+      }
 
       .savings {
         height: 30px;
@@ -79,17 +106,17 @@
       }
     }
   }
-
-  .info {
-    font-size: 14px;
-    text-align: left;
-    margin: -30px 0 30px 50px;
-  }
 }
 
-@media (max-width: 900px) {
+.info {
+  font-size: 14px;
+  text-align: left;
+  margin: 0 0 0 50px;
+}
+
+@media (max-width: 975px) {
   .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
-  .price-boxes .price-box.active { margin: 0; width: 100%; }
+  .price-boxes .price-box.active { width: 100%; }
   .price-boxes .price-box .box { margin: auto;}
-  .price-boxes .info { text-align: center; margin: 0 0 30px; }
+  .info { text-align: center; margin: 0 0 30px; }
 }

@@ -25,52 +25,33 @@
       background-repeat: no-repeat;
       background-size: 500px;
       cursor: pointer;
+      transform: scale(0.5);
+      margin: -15px -20px 0 0;
     }
     a { text-decoration: none; }
     .windows { background-position: 0 0; }
     .mac { background-position: -57px 0; }
     .linux { background-position: -114px 0; }
-    .ios { background-position: -170px 0; }
-    .android { background-position: -228px 0; }
-    .chrome { background-position: -284px 0; }
-    .firefox { background-position: -341px 0; }
-    .opera { background-position: -398px 0; }
-    .vivaldi { background-position: -456px 0; }
-  }
-
-  .masthead-nolog {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-    position: relative;
-
-    .container {
-      position: absolute;
-      top: -40px;
-      right: 75px;
-    }
-
-    .slogan { padding-bottom: 20px; color: #74D5D4; }
+    .ios { background-position: -172px 0; }
+    .android { background-position: -230px 0; }
+    .chrome { background-position: -287px 0; }
+    .firefox { background-position: -345px 0; }
+    .opera { background-position: -403px 0; }
+    .vivaldi { background-position: -460px 0; }
   }
 
   .masthead-banner {
-    width: 1000px;
-    height: 200px;
-    margin: auto;
     position: relative;
-    left: -40px;
+    height: 200px;
 
     .masthead-image {
-      display: inline-block;
-      width: 49%;
-      float: right;
+      width: 550px;
+      position: relative;
+      top: -131px;
+      left: -275px;
+      z-index: 10;
+      margin: auto;
       img { width: 100%; }
-      &.hang {
-        position: absolute;
-        bottom: -69px;
-        z-index: 10;
-        float: left;
-      }
     }
   }
 
@@ -98,7 +79,8 @@
     left: 0;
     right: 0;
 
-    .btn { width: 341px; border-radius: 50px; }
+    .btn { width: 341px; border-radius: 5px; }
+    .btn.orange:hover { background-color: #ff8c71; }
   }
 }
 
@@ -205,16 +187,6 @@
 .mobile { display: none; }
 
 @media (max-width: 1050px) {
-  .masthead {
-    .masthead-banner {
-      display: none;
-      width: 100%;
-      min-height: 250px;
-    }
-    .masthead-nolog { display: none; }
-    .masthead-mobile-banner { display: block; }
-  }
-
   .feature {
     .text {
       width: 100%;
@@ -238,6 +210,18 @@
   }
 
   .mobile { display: block; }
+}
+
+@media (max-width: 750px) {
+  .masthead {
+    .masthead-banner {
+      display: none;
+      width: 100%;
+      min-height: 250px;
+    }
+    .masthead-nolog { display: none; }
+    .masthead-mobile-banner { display: block; }
+  }
 }
 
 @media (max-width: 375px) {

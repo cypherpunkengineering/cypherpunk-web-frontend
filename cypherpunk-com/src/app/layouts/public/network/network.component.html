@@ -1,11 +1,11 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <h1 class="masthead-header header white">Cypherpunk Server Locations</h1>
+  <h1 class="masthead-header header white">Cypherpunk Privacy Network</h1>
 
   <div class="masthead-image">
     <div class="world">
-      <img src="/assets/network/map_2000@2x.png" srcset="/assets/network/map_2000.png 500w, /assets/network/map_2000.png" alt="Cypherpunk Server Locations">
+      <img src="/assets/network/map@2x.png" srcset="/assets/network/map.png 500w, /assets/network/map@2x.png" alt="Cypherpunk Server Locations">
       <div class="point" [style.left.px]="l.mapX" [style.top.px]="l.mapY" [attr.data-name]="l.name" *ngFor="let l of locationArray"></div>
     </div>
   </div>
@@ -16,9 +16,71 @@
     <ul>
       <li *ngFor="let location of locationArray">
         <img class="flag" src="/assets/flags/{{location.country}}.png" alt="{{location.country}}">
-        <span class="name">{{location.name}}</span> 
+        <span class="name">{{location.name}}</span>
       </li>
     </ul>
+  </div>
+</div>
+
+<div class="feature">
+  <div class="inner">
+    <div class="row">
+      <div class="image">
+        <img class="padded-width" src="/assets/features/cypherplay@2x.png" srcset="/assets/features/cypherplay.png 500w, /assets/features/cypherplay@2x.png 1000w" alt="CypherPlay">
+      </div>
+
+      <div class="text">
+        <div class="text-header blue">CypherPlay&trade;</div>
+
+        <p>
+          Freedom to watch, listen, and stream your content from anywhere.
+        </p>
+
+        <p>
+          Unique networking technology to play any type of geo-restricted content from anywhere without slowing down your experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="feature green">
+  <div class="inner">
+    <div class="row">
+      <div class="image mobile">
+        <img class="padded-width" src="/assets/features/ultra-fast-servers@2x.png" srcset="/assets/features/ultra-fast-servers.png 500w, /assets/features/ultra-fast-servers@2x.png 1000w" alt="CypherPlay">
+      </div>
+
+      <div class="text">
+        <div class="text-header blue">Ultra Fast Servers</div>
+
+        <p>
+          Powerful servers with 1 gbit ports directo to Tier 1 providers
+        </p>
+      </div>
+
+      <div class="image desktop">
+        <img class="padded-width" src="/assets/features/ultra-fast-servers@2x.png" srcset="/assets/features/ultra-fast-servers.png 500w, /assets/features/ultra-fast-servers@2x.png 1000w" alt="CypherPlay">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="feature">
+  <div class="inner">
+    <div class="row">
+      <div class="image">
+        <img class="padded-width" src="/assets/features/shared-ip-system@2x.png" srcset="/assets/features/shared-ip-system.png 500w, /assets/features/shared-ip-system@2x.png 1000w" alt="Shared IP System">
+      </div>
+
+      <div class="text">
+        <div class="text-header blue">Shared IP System</div>
+
+        <p>
+          Anonymize your online activity by mixing it with everyone's traffic
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 

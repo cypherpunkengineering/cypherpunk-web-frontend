@@ -96,10 +96,10 @@
 
     <div class="privacy">
       <strong>Username: </strong><br>
-      {{user.privacy.username}}
-      <br><br>
+      <pre>{{user.privacy.username}}</pre>
+      <div></div>
       <strong>Password: </strong><br>
-      {{user.privacy.password}}
+      <pre>{{user.privacy.password}}</pre>
       <br><br>
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ipsecSelect">
@@ -119,10 +119,10 @@
 
     <div class="privacy">
       <strong>Username: </strong><br>
-      {{user.privacy.username}}
-      <br><br>
+      <pre>{{user.privacy.username}}</pre>
+      <div></div>
       <strong>Password: </strong><br>
-      {{user.privacy.password}}
+      <pre>{{user.privacy.password}}</pre>
       <br><br>
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="ikeSelect">
@@ -142,10 +142,10 @@
 
     <div class="privacy">
       <strong>Username: </strong><br>
-      {{user.privacy.username}}
-      <br><br>
+      <pre>{{user.privacy.username}}</pre>
+      <div></div>
       <strong>Password: </strong><br>
-      {{user.privacy.password}}
+      <pre>{{user.privacy.password}}</pre>
       <br><br>
       <strong>Hostname for </strong>
       <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
@@ -162,7 +162,9 @@
         <strong>Ports to use:</strong> <br>
         http:// -> 80<br>
         https:// -> 3128<br>
-        socks5:// -> 1080
+        socks5:// -> 1080<br>
+        cypherplay (non-tls) -> 4<br>
+        cypherplay (tls) -> 516 
       </span>
     </div>
   </div>

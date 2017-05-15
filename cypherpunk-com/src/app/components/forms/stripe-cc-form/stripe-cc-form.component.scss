@@ -1,12 +1,13 @@
 label { font-size: 18px; color: #7f7979; }
-input[type="text"], input[type="email"], input[type="password"], select {
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
   background-color: #fff;
   width: 100%;
   height: 50px;
   border-radius: 4px;
   font-size: 18px;
   padding: 10px;
-  margin: 5px 0;
+  margin: 5px 0 5px;
   color: #7f7979;
   border: 2px solid #e0dede;
   &.error {
@@ -23,44 +24,37 @@ input[type="text"], input[type="email"], input[type="password"], select {
   &:-moz-placeholder { color: #7f7979; }
 }
 
-.info { overflow: auto; }
+.row {
+  padding: 0 5px 0;
+  margin: 0 0 15px 0;
 
-p { padding: 10px 5px 0; margin: 0; }
-p.half {
-  width: 49%;
-  display: inline-block;
-  &.dashboard { width: 100%; }
-  input { width: 100%; }
-
-  .half {
-    float: left;
-    width: 50%;
+  .error-message {
+    color: #a94442;
+    text-align: left;
+    font-size: 12px;
+    &.cvc { margin-left: 5px; }
   }
-}
-
-div.half {
-  width: 49%;
-  display: inline-block;
-  padding: 10px 0 0;
-  vertical-align: middle;
-  &.dashboard { width: 100%; }
-  input { width: 100%; }
-  img { margin: 5px 10px 0; float: right;}
-  span { display: block; overflow: hidden; }
-  #cccvc { width: 100%; }
 
   .half {
-    float: left;
-    width: 50%;
-    padding: 0 5px;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    &.dashboard { width: 100%; }
+    input { width: 100%; }
+    img { margin: 0 10px 0; float: right; height: 50px; padding: 10px 0 0; }
+    img.first { margin: 0; }
+    span { display: block; overflow: hidden; padding: 0 5px; }
+    #cccvc { width: 100%; }
+
+    .half {
+      float: left;
+      width: 50%;
+      padding: 0 5px;
+    }
   }
 }
 
 @media (max-width: 850px) {
-  div.half { width: 100%; }
-}
-
-
-@media (max-width: 375px) {
-  p.half { width: 100%; }
+  .row .half { width: 100%; }
+  .row .half .half { margin-bottom: 15px; }
 }

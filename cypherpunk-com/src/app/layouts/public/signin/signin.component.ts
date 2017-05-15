@@ -11,6 +11,10 @@ import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 })
 export class SigninComponent implements AfterViewInit {
   user = { email: '', password: '' };
+  errors = {
+    email: { message: '', touched: false },
+    password: { message: '', touched: false }
+  };
   signinButtonDisabled: boolean = false;
 
   constructor(
@@ -22,15 +26,32 @@ export class SigninComponent implements AfterViewInit {
   ) { this.document.title = 'Login to Cypherpunk Privacy Account'; }
 
   ngAfterViewInit() {
-    if (isBrowser) {
-      document.getElementById('email').focus();
-    }
+    if (isBrowser) { document.getElementById('email').focus(); }
   }
 
   validateSignin () {
-    if (!this.user.email.length) { return false; }
-    if (!this.user.password.length) { return false; }
-    return true;
+    let valid = false;
+
+    if (!this.user.email.length) {
+      this.errors.email.message = 'Email is Required';
+    }
+    else if (!/^\S+@\S+$/.test(this.user.email)) {
+      this.errors.email.message = 'Email is not properly formatted';
+    }
+    else {
+      valid = true;
+      this.errors.email.message = '';
+    }
+
+    if (!this.user.password.length) {
+      this.errors.password.message = 'Password is Required';
+    }
+    else {
+      valid = true;
+      this.errors.password.message = '';
+    }
+
+    return valid;
   }
 
   signin() {
