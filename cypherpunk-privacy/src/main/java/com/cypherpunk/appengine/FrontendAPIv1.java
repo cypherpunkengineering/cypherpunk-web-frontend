@@ -194,15 +194,17 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 			else if (blogApiPath.startsWith("/post/")) // {{{
 			{
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
 				String frontendJsonString = null;
+				Map<String,Object> bloggerResponse = null;
 
 				// get post ID from request URL
 				String postID = blogApiPath.substring( "/post/".length(), blogApiPath.length() );
 
-				// parse args
-				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
-
-				Map<String,Object> bloggerResponse = getBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				if (postID != null || !postID.isEmpty())
+				{
+					bloggerResponse = getBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				}
 
 				if (bloggerResponse == null)
 				{
