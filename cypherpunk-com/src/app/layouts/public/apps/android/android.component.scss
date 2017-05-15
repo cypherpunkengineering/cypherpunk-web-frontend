@@ -95,6 +95,17 @@
   text-align: center;
   padding: 60px 0;
   .header { color: #ffe49a; }
+  &.white { background-color: #fff; padding: 0; }
+
+  .page-image {
+    position: relative;
+    top: 5px;
+    left: 6px;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+    img { width: 100%; }
+  }
 }
 
 .features {
