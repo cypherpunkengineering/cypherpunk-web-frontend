@@ -107,7 +107,7 @@ export function networkStatus(req, res) {
 
 export function blog(req, res) {
   if (DEV_MODE) {
-    return request(urlStart + 'api/v0/blog/posts', (err, resp, body) => {
+    return request(urlStart + 'api/v1/blog/posts', (err, resp, body) => {
       let retval = JSON.parse(body);
       return res.json(retval);
     });
@@ -127,7 +127,7 @@ export function blogPost(req, res) {
     });
   }
   else if (DEV_MODE) {
-    return request(urlStart + 'api/v0/blog/post/' + postId, (err, resp, body) => {
+    return request(urlStart + 'api/v1/blog/post/' + postId, (err, resp, body) => {
       let retval = JSON.parse(body);
       return res.json(retval);
     });
