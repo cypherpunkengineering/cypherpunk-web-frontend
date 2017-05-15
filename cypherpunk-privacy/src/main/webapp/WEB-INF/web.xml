@@ -69,6 +69,7 @@
 		<!-- API v1 resources handled by backend -->
 		<url-pattern>/api/v1/app/*</url-pattern>
 		<url-pattern>/api/v1/account/*</url-pattern>
+		<url-pattern>/api/v1/blog/*</url-pattern>
 		<url-pattern>/api/v1/ipn/*</url-pattern>
 		<url-pattern>/api/v1/location/*</url-pattern>
 		<url-pattern>/api/v1/monitoring/*</url-pattern>
@@ -82,10 +83,6 @@
 
 		<!-- API v0 resources handled by appengine -->
 		<url-pattern>/api/v0/blog/*</url-pattern>
-
-		<!-- API v1 resources handled by appengine -->
-		<url-pattern>/api/v1/blog/*</url-pattern>
-
 	</servlet-mapping>
 
 	<servlet>

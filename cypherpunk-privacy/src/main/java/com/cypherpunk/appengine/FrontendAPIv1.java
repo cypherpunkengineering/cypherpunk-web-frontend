@@ -71,9 +71,17 @@ public class FrontendAPIv1 extends HttpServlet
 	// {{{ static constants
 	private static final int LOCATION_LIST_CACHE_PERIOD = (60 * 10);
 	private static final int REGION_MAP_CACHE_PERIOD = (86400 * 7);
+	private static final int BLOGGER_API_CACHE_PERIOD = (60 * 1);
+
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.network";
+
 	private static final String DEFAULT_GEOIP_COUNTRY = "IS";
+
+	private static final String BLOGGER_API_KEY = "AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs";
+	private static final String BLOGGER_API_URL = "https://www.googleapis.com/blogger/v3/blogs/";
+	private static final String BLOGGER_BLOG_ID = "4561014629041381755";
+	private static final String BLOGGER_SUPPORT_ID = "2467816098254238300";
 	// }}}
 
 	private static final class BackendResponseCache // {{{
@@ -112,31 +120,28 @@ public class FrontendAPIv1 extends HttpServlet
 		// get request URL
 		String reqURI = req.getRequestURI().toString();
 
+		// settings to use datastore
+		boolean useDatastoreForBackend = true;
+		boolean useDatastoreForBlogger = false;
+
+		// flag to force update of datastore/memcache
 		boolean forceUpdate = false;
 		if (req.getParameter("forceUpdate") != null)
 			forceUpdate = true;
 
-		// get URI after /api/v1 for apiMethod
-		String apiMethod = reqURI.substring( "/api/v1".length(), reqURI.length() );
+		// get URI after /api/v1 for apiPath
+		String apiPath = reqURI.substring( "/api/v1".length(), reqURI.length() );
 		//LOG.log(Level.WARNING, "reqURI is "+reqURI);
-		//LOG.log(Level.WARNING, "apiMethod is "+apiMethod);
+		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
-		if (apiMethod.startsWith("/location/list")) // {{{
+
+		if (apiPath.startsWith("/hello")) // {{{
 		{
-			String frontendJsonString;
-			Map<String,Object> backendResponse = getBackendData(apiMethod, LOCATION_LIST_CACHE_PERIOD, forceUpdate);
+			out.println("hello");
+		} // }}}
 
-			if (backendResponse == null)
-			{
-				res.sendError(res.SC_NOT_FOUND);
-				return;
-			}
-
-			frontendJsonString = gson.toJson(backendResponse);
-
-			out.println(frontendJsonString);
-		} //}}}
-		else if (apiMethod.startsWith("/account/status")) // {{{
+	// account
+		else if (apiPath.equals("/account/status")) // {{{
 		{
 			String frontendJsonString;
 			String backendResponse = fetchBackendData(HTTPMethod.GET, reqURI, getSafeHeadersFromRequest(req));
@@ -151,13 +156,50 @@ public class FrontendAPIv1 extends HttpServlet
 
 			out.println(frontendJsonString);
 		} //}}}
-		else if (apiMethod.equals("/network/status")) // {{{
+
+	// blog
+		else if (apiPath.equals("/blog/posts")) // {{{
+		{
+			String frontendJsonString = null;
+			String pageToken = req.getParameter("pageToken");
+			String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+
+			if (pageToken != null && !pageToken.isEmpty())
+			{
+				bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
+			}
+
+			Map<String,Object> bloggerResponse = getBloggerData("/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+			frontendJsonString = gson.toJson(bloggerResponse);
+			out.println(frontendJsonString);
+		} //}}}
+
+	// location
+		else if (apiPath.startsWith("/location/list")) // {{{
+		{
+			String frontendJsonString;
+			Map<String,Object> backendResponse = getBackendData(apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
+
+			if (backendResponse == null)
+			{
+				res.sendError(res.SC_NOT_FOUND);
+				return;
+			}
+
+			frontendJsonString = gson.toJson(backendResponse);
+
+			out.println(frontendJsonString);
+		} //}}}
+
+	// network
+		else if (apiPath.equals("/network/status")) // {{{
 		{
 			String countryCode = ipdb.getCountry(reqIP);
 			out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 		} //}}}
+
 	/*
-		else if (apiMethod.compareTo("foo2") == 0) // {{{
+		else if (apiPath.compareTo("foo2") == 0) // {{{
 		{
 			// use requested country, or if none specified, default to user's geo-located IP address country
 			String countryCode = req.getParameter("country");
@@ -165,7 +207,7 @@ public class FrontendAPIv1 extends HttpServlet
 				countryCode = geoCountryCode;
 
 			// {{{ fetch first data
-			Map<String,Object> backendResponse = getBackendData("/api/foo2/first/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
+			Map<String,Object> backendResponse = getData("/api/foo2/first/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
 			String sponsoredListing = null;
 
 			if (backendResponse != null)
@@ -181,7 +223,7 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 			} // }}}
 			// {{{ fetch second data
-			backendResponse = getBackendData("/api/foo2/secondsByType/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
+			backendResponse = getData("/api/foo2/secondsByType/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
 			ArrayList localListings = null;
 
 			if (backendResponse != null)
@@ -207,10 +249,10 @@ public class FrontendAPIv1 extends HttpServlet
 
 			out.println(gson.toJson(frontendResponse));
 		} // }}}
-		else if (apiMethod.compareTo("foo3") == 0) // {{{
+		else if (apiPath.compareTo("foo3") == 0) // {{{
 		{
 			// {{{ fetch first data
-			Map<String,Object> backendResponse = getBackendData("/api/foo3/first", MINE_FOO_CACHE_PERIOD, forceUpdate);
+			Map<String,Object> backendResponse = getData("/api/foo3/first", MINE_FOO_CACHE_PERIOD, forceUpdate);
 			Map sponsoredListingMap = null;
 
 			if (backendResponse != null)
@@ -224,7 +266,7 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 			} // }}}
 			// {{{ fetch second data
-			backendResponse = getBackendData("/api/foo3/secondsAll", MINE_FOO_CACHE_PERIOD, forceUpdate);
+			backendResponse = getData("/api/foo3/secondsAll", MINE_FOO_CACHE_PERIOD, forceUpdate);
 			Foo2FrontendResponse frontendResponse = new Foo2FrontendResponse();
 			Map secondMap = null;
 
@@ -243,7 +285,7 @@ public class FrontendAPIv1 extends HttpServlet
 			frontendResponse.setListingMap(secondMap);
 			out.println(gson.toJson(frontendResponse));
 		} // }}}
-		else if (apiMethod.compareTo("foo4") == 0) // {{{
+		else if (apiPath.compareTo("foo4") == 0) // {{{
 		{
 			Map countries = new HashMap();
 
@@ -261,30 +303,31 @@ public class FrontendAPIv1 extends HttpServlet
 			// convert to json and output
 			out.println(gson.toJson(countries));
 		} // }}}
-		else if (apiMethod.compareTo("foo5") == 0) // {{{
+		else if (apiPath.compareTo("foo5") == 0) // {{{
 		{
 			FooListing fooListing = new FooListing();
 			String frontendJsonString = "";
-			Map<String,Object> backendResponse = getBackendData("/api/foo5", REGION_MAP_CACHE_PERIOD, forceUpdate);
+			Map<String,Object> backendResponse = getData("/api/foo5", REGION_MAP_CACHE_PERIOD, forceUpdate);
 
 			if (backendResponse != null)
 				frontendJsonString = gson.toJson(backendResponse);
 
 			out.println(frontendJsonString);
 		} //}}}
-		else if (apiMethod.compareTo("secretGeoDatabaseInit") == 0) // {{{
+		else if (apiPath.compareTo("secretGeoDatabaseInit") == 0) // {{{
 		{
 			String chunk = req.getParameter("chunk");
 			ipdb.initDatabase(chunk);
 			out.println("ok");
 		} //}}}
-		else if (apiMethod.compareTo("secretGeoDatabaseTest") == 0) // {{{
+		else if (apiPath.compareTo("secretGeoDatabaseTest") == 0) // {{{
 		{
 			String ip = req.getParameter("ip");
 			String countryCode = ipdb.getCountry(ip);
 			out.println(countryCode);
 		} //}}}
 	*/
+
 		else // {{{ 404
 		{
 			res.sendError(res.SC_NOT_FOUND);
@@ -321,12 +364,12 @@ public class FrontendAPIv1 extends HttpServlet
 		if (req.getParameter("forceUpdate") != null)
 			forceUpdate = true;
 
-		// get URI after /api/v1 for apiMethod
-		String apiMethod = reqURI.substring( "/api/v1".length(), reqURI.length() );
+		// get URI after /api/v1 for apiPath
+		String apiPath = reqURI.substring( "/api/v1".length(), reqURI.length() );
 		//LOG.log(Level.WARNING, "reqURI is "+reqURI);
-		//LOG.log(Level.WARNING, "apiMethod is "+apiMethod);
+		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
-		if (apiMethod.equals("/account/authenticate/password")) // {{{
+		if (apiPath.equals("/account/authenticate/password")) // {{{
 		{
 			String frontendJsonString;
 			String backendResponse = fetchBackendData(HTTPMethod.POST, reqURI, null);
@@ -347,10 +390,71 @@ public class FrontendAPIv1 extends HttpServlet
 		} // }}}
 	}
 
-	private Map<String,Object> getBackendData(String apiURI, int secondsToMemcache, boolean forceUpdate) // {{{
+	private List<HTTPHeader> getSafeHeadersFromRequest(HttpServletRequest req) // {{{
+	{
+		List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
+		String safeHeaders[] = {
+			"Cookie"
+		};
+
+		for (String headerName : safeHeaders)
+			if (req.getHeader(headerName) != null)
+				headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
+
+		return headers;
+	} // }}}
+
+	private URL buildBloggerURL(String bloggerURI, String bloggerArgs) // {{{
+	{
+		URL bloggerURL = null;
+		String bloggerArgsBase = "?key=" + BLOGGER_API_KEY;
+
+		try // build API request URL
+		{
+			bloggerURL = new URL(BLOGGER_API_URL + BLOGGER_BLOG_ID + bloggerURI + bloggerArgsBase + bloggerArgs);
+		}
+		catch (MalformedURLException e)
+		{
+			bloggerURL = null;
+			return null;
+		}
+		return bloggerURL;
+	} // }}}
+	private URL buildBackendURL(String backendURI) // {{{
+	{
+		URL backendURL = null;
+
+		try // build backendURL
+		{
+			// do use TLS in production
+			String backendBaseURL = BACKEND_HOSTNAME_PRODUCTION;
+
+			// don't use TLS when using appengine devserver
+			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development)
+				backendBaseURL = BACKEND_HOSTNAME_DEVELOPMENT;
+
+			backendURL = new URL(backendBaseURL + backendURI);
+		}
+		catch (MalformedURLException e)
+		{
+			backendURL = null;
+		}
+		return backendURL;
+	} // }}}
+
+	private Map<String,Object> getBackendData(String backendURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	{
+		URL backendURL = buildBackendURL(backendURI);
+		return getData(backendURL, secondsToMemcache, useDatastore, forceUpdate);
+	} // }}}
+	private Map<String,Object> getBloggerData(String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	{
+		URL bloggerURL = buildBloggerURL(bloggerURI, bloggerArgs);
+		return getData(bloggerURL, secondsToMemcache, useDatastore, forceUpdate);
+	} // }}}
+	private Map<String,Object> getData(URL apiURL, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
 		String backendResponse = null;
-		String apiURL = "/api/v0" + apiURI;
 		Map<String,Object> backendData = null;
 		boolean inMemcache = false;
 		boolean inDatastore = false;
@@ -359,7 +463,7 @@ public class FrontendAPIv1 extends HttpServlet
 		backendResponse = (String)mc.get(apiURL);
 		if (!forceUpdate && backendResponse != null)
 		{
-			backendData = parseBackendData(backendResponse);
+			backendData = parseJsonData(backendResponse);
 			if (backendData == null)
 				LOG.log(Level.WARNING, "Failed parsing memcache backend response for "+apiURL);
 			else
@@ -367,9 +471,9 @@ public class FrontendAPIv1 extends HttpServlet
 		}
 		// }}}
 		// {{{ if not in memcache, try querying the datastore
-		if (!forceUpdate && backendData == null)
+		if (useDatastore && !forceUpdate && backendData == null)
 		{
-			Key entityKey = KeyFactory.createKey(BackendResponseCache.KIND, apiURL);
+			Key entityKey = KeyFactory.createKey(BackendResponseCache.KIND, apiURL.toString());
 			Filter backendURLFilter = new FilterPredicate(Entity.KEY_RESERVED_PROPERTY, FilterOperator.EQUAL, entityKey);
 			backendResponse = null;
 			Entity result = null;
@@ -389,7 +493,7 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				Text backendResponseText = (Text)result.getProperty(BackendResponseCache.BACKEND_RESPONSE);
 				backendResponse = (String)backendResponseText.getValue();
-				backendData = parseBackendData(backendResponse);
+				backendData = parseJsonData(backendResponse);
 				if (backendData == null)
 					LOG.log(Level.WARNING, "Failed parsing datastore backend response for "+apiURL);
 				else
@@ -402,16 +506,16 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			LOG.log(Level.WARNING, "Fetching data from backend for "+apiURL);
 
-			backendResponse = fetchBackendData(HTTPMethod.GET, apiURL, null);
+			backendResponse = fetchData(HTTPMethod.GET, apiURL, null);
 			if (backendResponse != null)
 			{
-				backendData = parseBackendData(backendResponse);
+				backendData = parseJsonData(backendResponse);
 				if (backendData == null)
 					LOG.log(Level.WARNING, "Failed parsing fetched backend response for "+apiURL);
 			}
 		}
 		// }}}
-		// {{{ store in memcache for next time
+		// {{{ store in memcache/datastore for next time
 		if (backendResponse != null && backendData != null)
 		{
 			if (!inMemcache)
@@ -421,9 +525,9 @@ public class FrontendAPIv1 extends HttpServlet
 				else
 					mc.put(apiURL, backendResponse, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
 			}
-			if (!inDatastore)
+			if (useDatastore && !inDatastore)
 			{
-				Key cacheKey = KeyFactory.createKey(BackendResponseCache.KIND, apiURL);
+				Key cacheKey = KeyFactory.createKey(BackendResponseCache.KIND, apiURL.toString());
 				Transaction tx = DS.beginTransaction();
 				Entity cache = new Entity(cacheKey);
 				try
@@ -448,59 +552,39 @@ public class FrontendAPIv1 extends HttpServlet
 			}
 		}
 		// }}}
+
 		return backendData;
 	} // }}}
-	private Map<String,Object> parseBackendData(String backendResponse) // {{{
+
+	private Map<String,Object> parseJsonData(String jsonRaw) // {{{
 	{
-		Map<String,Object> backendResponseData = null;
+		Map<String,Object> jsonData = null;
 		try // {{{ parse as Json
 		{
-			backendResponseData = new Gson().fromJson(backendResponse, Map.class);
+			jsonData = new Gson().fromJson(jsonRaw, Map.class);
 		}
 		catch (JsonSyntaxException e)
 		{
 			LOG.log(Level.WARNING, e.toString(), e);
-			backendResponseData = null;
+			jsonData = null;
 		} // }}}
-		return backendResponseData;
+		return jsonData;
 	} // }}}
 
-	private List<HTTPHeader> getSafeHeadersFromRequest(HttpServletRequest req) // {{{
+	private String fetchBloggerData(HTTPMethod fetchMethod, String bloggerURI, List<HTTPHeader> headers) // {{{
 	{
-		List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
-		String safeHeaders[] = {
-			"Cookie"
-		};
-
-		for (String headerName : safeHeaders)
-			if (req.getHeader(headerName) != null)
-				headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
-
-		return headers;
+		URL bloggerURL = buildBackendURL(bloggerURI);
+		return fetchData(fetchMethod, bloggerURL, headers);
 	} // }}}
-
-	private String fetchBackendData(HTTPMethod fetchMethod, String apiURL, List<HTTPHeader> headers) // {{{
+	private String fetchBackendData(HTTPMethod fetchMethod, String backendURI, List<HTTPHeader> headers) // {{{
+	{
+		URL backendURL = buildBackendURL(backendURI);
+		return fetchData(fetchMethod, backendURL, headers);
+	} // }}}
+	private String fetchData(HTTPMethod fetchMethod, URL backendURL, List<HTTPHeader> headers) // {{{
+	//throws IOException, UnsupportedEncodingException
 	{
 		String backendResponse = null;
-		// {{{ build URL
-		URL backendURL = null;
-
-		// do use TLS in production
-		String backendBaseURL = BACKEND_HOSTNAME_PRODUCTION;
-
-		// don't use TLS when using appengine devserver
-		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development)
-			backendBaseURL = BACKEND_HOSTNAME_DEVELOPMENT;
-		// return backendURL
-		try
-		{
-			backendURL = new URL(backendBaseURL + apiURL);
-		}
-		catch (MalformedURLException e)
-		{
-			backendURL = null;
-		}
-		// }}}
 		// {{{ fetch URL
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 		HTTPRequest request = new HTTPRequest(backendURL, fetchMethod, withDefaults().setDeadline(9.0));
@@ -538,6 +622,7 @@ public class FrontendAPIv1 extends HttpServlet
 		// }}}
 		return backendResponse;
 	} // }}}
+
 }
 
 // vim: foldmethod=marker wrap
