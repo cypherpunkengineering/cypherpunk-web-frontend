@@ -5,12 +5,13 @@ import { Http, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class BackendService {
+  private backend = '';
   private backendUrl = '/api/v0/';
   private errString: string = 'Bad Response from server';
 
   constructor(private http: Http) {
     if (isBrowser && !document.location.hostname.startsWith('localhost')) {
-      this.backend = 'https://cypherpunk.privacy.network/api/v0/';
+      this.backend = 'https://cypherpunk.privacy.network';
       this.backendUrl = this.backend + '/api/v0/';
     }
   }
