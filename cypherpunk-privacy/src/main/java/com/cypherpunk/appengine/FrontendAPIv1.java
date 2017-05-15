@@ -140,7 +140,7 @@ public class FrontendAPIv1 extends HttpServlet
 			out.println("hello");
 		} // }}}
 
-	// account
+		// account
 		else if (apiPath.equals("/account/status")) // {{{
 		{
 			String frontendJsonString;
@@ -157,7 +157,7 @@ public class FrontendAPIv1 extends HttpServlet
 			out.println(frontendJsonString);
 		} //}}}
 
-	// blog
+		// blog
 		else if (apiPath.startsWith("/blog/") || apiPath.startsWith("/support/")) // {{{
 		{
 			// get blog content depending on request URL
@@ -215,7 +215,7 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 		} //}}}
 
-	// location
+		// location
 		else if (apiPath.startsWith("/location/list")) // {{{
 		{
 			String frontendJsonString;
@@ -232,142 +232,25 @@ public class FrontendAPIv1 extends HttpServlet
 			out.println(frontendJsonString);
 		} //}}}
 
-	// network
+		// network
 		else if (apiPath.equals("/network/status")) // {{{
 		{
 			String countryCode = ipdb.getCountry(reqIP);
 			out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 		} //}}}
 
-	/*
-		else if (apiPath.compareTo("foo2") == 0) // {{{
-		{
-			// use requested country, or if none specified, default to user's geo-located IP address country
-			String countryCode = req.getParameter("country");
-			if (countryCode == null)
-				countryCode = geoCountryCode;
-
-			// {{{ fetch first data
-			Map<String,Object> backendResponse = getData("/api/foo2/first/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
-			String sponsoredListing = null;
-
-			if (backendResponse != null)
-			{
-				try
-				{
-					Map firstResults = (Map)backendResponse.get("data");
-					sponsoredListing = (String)firstResults.get(countryCode);
-				}
-				catch (Exception ignored)
-				{
-					sponsoredListing = "";
-				}
-			} // }}}
-			// {{{ fetch second data
-			backendResponse = getData("/api/foo2/secondsByType/" + countryCode, BUY_FOO_CACHE_PERIOD, forceUpdate);
-			ArrayList localListings = null;
-
-			if (backendResponse != null)
-			{
-				try
-				{
-					localListings = (ArrayList)backendResponse.get(countryCode);
-				}
-				catch (Exception ignored)
-				{
-				}
-			} // }}}
-
-			Foo1FrontendResponse frontendResponse = new Foo1FrontendResponse();
-			frontendResponse.setSponsoredListing(sponsoredListing);
-			frontendResponse.setLocalListings(localListings);
-
-			// combine language code + location country to get localized country name
-			Locale countryLocale = new Locale(langLocale.getLanguage(), countryCode);
-			String localizedCountryName = countryLocale.getDisplayCountry(langLocale);
-			if (localizedCountryName != null && countryCode != null)
-				frontendResponse.setLocation(localizedCountryName, countryCode);
-
-			out.println(gson.toJson(frontendResponse));
-		} // }}}
-		else if (apiPath.compareTo("foo3") == 0) // {{{
-		{
-			// {{{ fetch first data
-			Map<String,Object> backendResponse = getData("/api/foo3/first", MINE_FOO_CACHE_PERIOD, forceUpdate);
-			Map sponsoredListingMap = null;
-
-			if (backendResponse != null)
-			{
-				try
-				{
-					sponsoredListingMap = (Map)backendResponse.get("data");
-				}
-				catch (Exception ignored)
-				{
-				}
-			} // }}}
-			// {{{ fetch second data
-			backendResponse = getData("/api/foo3/secondsAll", MINE_FOO_CACHE_PERIOD, forceUpdate);
-			Foo2FrontendResponse frontendResponse = new Foo2FrontendResponse();
-			Map secondMap = null;
-
-			if (backendResponse != null)
-			{
-				try
-				{
-					secondMap = backendResponse;
-				}
-				catch (Exception ignored)
-				{
-
-				}
-			} // }}}
-			frontendResponse.setSponsoredListingMap(sponsoredListingMap);
-			frontendResponse.setListingMap(secondMap);
-			out.println(gson.toJson(frontendResponse));
-		} // }}}
-		else if (apiPath.compareTo("foo4") == 0) // {{{
-		{
-			Map countries = new HashMap();
-
-			// create map of localized country name for each country code
-			for (String countryCode : Locale.getISOCountries())
-			{
-				Locale loc = new Locale(langLocale.getLanguage(), countryCode);
-				String localizedCountryName = loc.getDisplayCountry(langLocale);
-				countries.put(countryCode, localizedCountryName);
-			}
-
-			// sort by value
-			countries = MapUtil.sortByValue(countries);
-
-			// convert to json and output
-			out.println(gson.toJson(countries));
-		} // }}}
-		else if (apiPath.compareTo("foo5") == 0) // {{{
-		{
-			FooListing fooListing = new FooListing();
-			String frontendJsonString = "";
-			Map<String,Object> backendResponse = getData("/api/foo5", REGION_MAP_CACHE_PERIOD, forceUpdate);
-
-			if (backendResponse != null)
-				frontendJsonString = gson.toJson(backendResponse);
-
-			out.println(frontendJsonString);
-		} //}}}
-		else if (apiPath.compareTo("secretGeoDatabaseInit") == 0) // {{{
+		else if (apiPath.equals("secretGeoDatabaseInit")) // {{{
 		{
 			String chunk = req.getParameter("chunk");
 			ipdb.initDatabase(chunk);
 			out.println("ok");
 		} //}}}
-		else if (apiPath.compareTo("secretGeoDatabaseTest") == 0) // {{{
+		else if (apiPath.equals("secretGeoDatabaseTest")) // {{{
 		{
 			String ip = req.getParameter("ip");
 			String countryCode = ipdb.getCountry(ip);
 			out.println(countryCode);
 		} //}}}
-	*/
 
 		else // {{{ 404
 		{
@@ -410,6 +293,8 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "reqURI is "+reqURI);
 		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
+
+		// account
 		if (apiPath.equals("/account/authenticate/password")) // {{{
 		{
 			String frontendJsonString;
@@ -425,6 +310,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 			out.println(frontendJsonString);
 		} //}}}
+
 		else // {{{ 404
 		{
 			res.sendError(res.SC_NOT_FOUND);
