@@ -158,35 +158,61 @@ public class FrontendAPIv1 extends HttpServlet
 		} //}}}
 
 	// blog
-		else if (apiPath.equals("/blog/posts")) // {{{
+		else if (apiPath.startsWith("/blog/") || apiPath.startsWith("/support/")) // {{{
 		{
-			String frontendJsonString = null;
-			String pageToken = req.getParameter("pageToken");
-			String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+			// get blog content depending on request URL
+			String bloggerID = "";
+			String blogApiPath = "";
 
-			if (pageToken != null && !pageToken.isEmpty())
+			if (apiPath.startsWith("/blog"))
 			{
-				bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
+				bloggerID = BLOGGER_BLOG_ID;
+				blogApiPath = apiPath.substring( "/blog".length(), apiPath.length() );
+			}
+			else if (apiPath.startsWith("/support"))
+			{
+				bloggerID = BLOGGER_SUPPORT_ID;
+				blogApiPath = apiPath.substring( "/support".length(), apiPath.length() );
 			}
 
-			Map<String,Object> bloggerResponse = getBloggerData(BLOGGER_BLOG_ID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
-			frontendJsonString = gson.toJson(bloggerResponse);
-			out.println(frontendJsonString);
-		} //}}}
-		else if (apiPath.equals("/support/posts")) // {{{
-		{
-			String frontendJsonString = null;
-			String pageToken = req.getParameter("pageToken");
-			String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
-
-			if (pageToken != null && !pageToken.isEmpty())
+			if (blogApiPath.equals("/posts")) // {{{
 			{
-				bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
-			}
+				String frontendJsonString = null;
 
-			Map<String,Object> bloggerResponse = getBloggerData(BLOGGER_SUPPORT_ID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
-			frontendJsonString = gson.toJson(bloggerResponse);
-			out.println(frontendJsonString);
+				// parse args
+				String pageToken = req.getParameter("pageToken");
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+
+				if (pageToken != null && !pageToken.isEmpty())
+				{
+					bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
+				}
+
+				Map<String,Object> bloggerResponse = getBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				frontendJsonString = gson.toJson(bloggerResponse);
+				out.println(frontendJsonString);
+			} //}}}
+			else if (blogApiPath.startsWith("/post/")) // {{{
+			{
+				String frontendJsonString = null;
+
+				// get post ID from request URL
+				String postID = blogApiPath.substring( "/post/".length(), blogApiPath.length() );
+
+				// parse args
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+
+				Map<String,Object> bloggerResponse = getBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+
+				if (bloggerResponse == null)
+				{
+					res.sendError(res.SC_NOT_FOUND);
+					return;
+				}
+
+				frontendJsonString = gson.toJson(bloggerResponse);
+				out.println(frontendJsonString);
+			} //}}}
 		} //}}}
 
 	// location
