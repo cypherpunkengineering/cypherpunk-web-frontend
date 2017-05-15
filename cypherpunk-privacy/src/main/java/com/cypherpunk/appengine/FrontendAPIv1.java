@@ -169,7 +169,22 @@ public class FrontendAPIv1 extends HttpServlet
 				bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
 			}
 
-			Map<String,Object> bloggerResponse = getBloggerData("/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+			Map<String,Object> bloggerResponse = getBloggerData(BLOGGER_BLOG_ID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+			frontendJsonString = gson.toJson(bloggerResponse);
+			out.println(frontendJsonString);
+		} //}}}
+		else if (apiPath.equals("/support/posts")) // {{{
+		{
+			String frontendJsonString = null;
+			String pageToken = req.getParameter("pageToken");
+			String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+
+			if (pageToken != null && !pageToken.isEmpty())
+			{
+				bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
+			}
+
+			Map<String,Object> bloggerResponse = getBloggerData(BLOGGER_SUPPORT_ID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
 			frontendJsonString = gson.toJson(bloggerResponse);
 			out.println(frontendJsonString);
 		} //}}}
@@ -404,14 +419,14 @@ public class FrontendAPIv1 extends HttpServlet
 		return headers;
 	} // }}}
 
-	private URL buildBloggerURL(String bloggerURI, String bloggerArgs) // {{{
+	private URL buildBloggerURL(String bloggerID, String bloggerURI, String bloggerArgs) // {{{
 	{
 		URL bloggerURL = null;
 		String bloggerArgsBase = "?key=" + BLOGGER_API_KEY;
 
 		try // build API request URL
 		{
-			bloggerURL = new URL(BLOGGER_API_URL + BLOGGER_BLOG_ID + bloggerURI + bloggerArgsBase + bloggerArgs);
+			bloggerURL = new URL(BLOGGER_API_URL + bloggerID + bloggerURI + bloggerArgsBase + bloggerArgs);
 		}
 		catch (MalformedURLException e)
 		{
@@ -447,9 +462,9 @@ public class FrontendAPIv1 extends HttpServlet
 		URL backendURL = buildBackendURL(backendURI);
 		return getData(backendURL, secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
-	private Map<String,Object> getBloggerData(String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getBloggerData(String bloggerID, String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
-		URL bloggerURL = buildBloggerURL(bloggerURI, bloggerArgs);
+		URL bloggerURL = buildBloggerURL(bloggerID, bloggerURI, bloggerArgs);
 		return getData(bloggerURL, secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
 	private Map<String,Object> getData(URL apiURL, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{

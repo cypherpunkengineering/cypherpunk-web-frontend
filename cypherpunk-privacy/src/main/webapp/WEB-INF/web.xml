@@ -74,6 +74,7 @@
 		<url-pattern>/api/v1/location/*</url-pattern>
 		<url-pattern>/api/v1/monitoring/*</url-pattern>
 		<url-pattern>/api/v1/subscription/*</url-pattern>
+		<url-pattern>/api/v1/support/*</url-pattern>
 		<url-pattern>/api/v1/vpn/*</url-pattern>
 
 	</servlet-mapping>
