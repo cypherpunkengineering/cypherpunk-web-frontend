@@ -174,6 +174,10 @@ const metaMap = {
     title: 'Cypherpunk Privacy Press Area',
     description: 'Information about Cypherpunk Privacy and screenshots, images and logos for press inquiries.'
   },
+  'support.html': {
+    title: 'Cypherpunk Online Privacy & Freedom Support Blog',
+    description: 'Online privacy and freedom support blog by Cypherpunk Privacy.'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_CONTENT__}}',

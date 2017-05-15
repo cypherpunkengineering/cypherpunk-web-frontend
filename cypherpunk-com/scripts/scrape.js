@@ -45,7 +45,8 @@ const routes = [
   { url: baseRoute + 'whats-my-ip-address', dirPath: baseDir + 'whats-my-ip-address.html' },
   { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
   { url: baseRoute + 'press', dirPath: baseDir + 'press.html' },
-  { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' }
+  { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' },
+  { url: baseRoute + 'support', dirPath: baseDir + 'support.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

@@ -135,6 +135,36 @@ export function blogPost(req, res) {
   else { res.json({}); }
 }
 
+export function support(req, res) {
+  if (DEV_MODE) {
+    return request(urlStart + 'api/v1/support/posts', (err, resp, body) => {
+      let retval = JSON.parse(body);
+      return res.json(retval);
+    });
+  }
+  else { res.json({}); }
+}
+
+export function supportPost(req, res) {
+  let postId = req.params.postId;
+  if (postId === 'test') {
+    return res.json({
+      id: 'test',
+      title: '{{__SUPPORT_TITLE__}}',
+      content: '{{__SUPPORT_CONTENT__}}',
+      published: '{{__SUPPORT_DATE__}}',
+      images: [ { url: '{{__SUPPORT_IMAGE__}}' } ]
+    });
+  }
+  else if (DEV_MODE) {
+    return request(urlStart + 'api/v1/support/post/' + postId, (err, resp, body) => {
+      let retval = JSON.parse(body);
+      return res.json(retval);
+    });
+  }
+  else { res.json({}); }
+}
+
 export function locations(req, res) {
   if (DEV_MODE) { return request(urlStart + 'api/v0/location/list/premium').pipe(res); }
   else { res.json({}); }

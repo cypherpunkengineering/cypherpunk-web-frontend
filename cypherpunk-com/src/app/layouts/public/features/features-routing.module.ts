@@ -16,31 +16,31 @@ export class RedirectComponent {
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'features', component: FeaturesComponent },
-      {
-        path: 'freedom',
-        component: RedirectComponent,
-        data: { fragment: 'freedom' },
-        pathMatch: 'full'
-      },
-      {
-        path: 'privacy',
-        component: RedirectComponent,
-        data: { fragment: 'privacy' },
-        pathMatch: 'full'
-      },
-      {
-        path: 'security',
-        component: RedirectComponent,
-        data: { fragment: 'security' },
-        pathMatch: 'full'
-      },
-      {
-        path: 'support',
-        component: RedirectComponent,
-        data: { fragment: 'support' },
-        pathMatch: 'full'
-      }
+      { path: 'features', component: FeaturesComponent }
+      // {
+      //   path: 'freedom',
+      //   component: RedirectComponent,
+      //   data: { fragment: 'freedom' },
+      //   pathMatch: 'full'
+      // },
+      // {
+      //   path: 'privacy',
+      //   component: RedirectComponent,
+      //   data: { fragment: 'privacy' },
+      //   pathMatch: 'full'
+      // },
+      // {
+      //   path: 'security',
+      //   component: RedirectComponent,
+      //   data: { fragment: 'security' },
+      //   pathMatch: 'full'
+      // },
+      // {
+      //   path: 'support',
+      //   component: RedirectComponent,
+      //   data: { fragment: 'support' },
+      //   pathMatch: 'full'
+      // }
     ])
   ]
 })

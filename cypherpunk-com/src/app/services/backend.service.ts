@@ -149,6 +149,18 @@ export class BackendService {
     .map(res => res.json());
   }
 
+  supportPosts() {
+    let url = this.backend + '/api/v1/support/posts';
+    return this.http.get(url)
+    .map(res => res.json());
+  }
+
+  supportPost(postId) {
+    let url = this.backend + '/api/v1/support/post/' + postId;
+    return this.http.get(url)
+    .map(res => res.json());
+  }
+
   // public apis
 
   networkStatus() {

@@ -33,6 +33,7 @@ import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
 import { SignupModule } from './layouts/public/signup/signup.module';
 import { PressModule } from './layouts/public/press/press.module';
 import { PublicResetModule } from './layouts/public/reset/reset.module';
+import { SupportHomeModule } from './layouts/public/support/home/support-home.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -83,6 +84,7 @@ import { BackendService } from './services/backend.service';
     SignupModule,
     PressModule,
     PublicResetModule,
+    SupportHomeModule,
 
     DashboardModule,
     BillingModule,

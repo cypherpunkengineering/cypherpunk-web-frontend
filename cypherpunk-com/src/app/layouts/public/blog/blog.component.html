@@ -39,7 +39,7 @@
       <div class="articles">
         <template ngFor let-post [ngForOf]="posts" let-i="index">
           <div class="full" *ngIf="i === 0">
-            <div class="header">
+            <div class="header white">
               {{post.title}}
               <div class="right">{{ post.published | date: "MM/dd/yyyy" }}</div>
             </div>
