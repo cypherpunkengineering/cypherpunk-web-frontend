@@ -135,29 +135,36 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
 
-		if (apiPath.startsWith("/hello")) // {{{
+		if (apiPath.equals("/hello")) // {{{
 		{
 			out.println("hello");
 		} // }}}
 
-		// account
-		else if (apiPath.equals("/account/status")) // {{{
-		{
-			String frontendJsonString;
-			String backendResponse = fetchBackendData(HTTPMethod.GET, reqURI, getSafeHeadersFromRequest(req));
+		else if (apiPath.startsWith("/account/")) // {{{
 
-			if (backendResponse == null)
+			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
+
+			if (accountApiPath.equals("/status")) // {{{
 			{
-				res.sendError(503);
-				return;
-			}
+				String frontendJsonString;
+				String backendResponse = fetchBackendData(HTTPMethod.GET, reqURI, getSafeHeadersFromRequest(req));
 
-			frontendJsonString = gson.toJson(backendResponse);
+				if (backendResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
 
-			out.println(frontendJsonString);
-		} //}}}
+				frontendJsonString = gson.toJson(backendResponse);
 
-		// blog
+				out.println(frontendJsonString);
+			} //}}}
+			else if (accountApiPath.equals("/logout")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+		} // }}}
+
 		else if (apiPath.startsWith("/blog/") || apiPath.startsWith("/support/")) // {{{
 		{
 			// get blog content depending on request URL
@@ -217,43 +224,50 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 		} //}}}
 
-		// location
-		else if (apiPath.startsWith("/location/world")) // {{{
-		{
-			String frontendJsonString;
-			Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
+		else if (apiPath.startsWith("/location/")) // {{{
 
-			if (backendResponse == null)
+			String locationApiPath = apiPath.substring( "/location".length(), apiPath.length() );
+
+			if (locationApiPath.equals("/world")) // {{{
 			{
-				res.sendError(res.SC_NOT_FOUND);
-				return;
-			}
+				String frontendJsonString;
+				Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
 
-			frontendJsonString = gson.toJson(backendResponse);
+				if (backendResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
 
-			out.println(frontendJsonString);
-		} //}}}
-		else if (apiPath.startsWith("/location/list")) // {{{
-		{
-			String frontendJsonString;
-			Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
+				frontendJsonString = gson.toJson(backendResponse);
 
-			if (backendResponse == null)
+				out.println(frontendJsonString);
+			} //}}}
+			else if (locationApiPath.startsWith("/list")) // {{{
 			{
-				res.sendError(res.SC_NOT_FOUND);
-				return;
-			}
+				String frontendJsonString;
+				Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
 
-			frontendJsonString = gson.toJson(backendResponse);
+				if (backendResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
 
-			out.println(frontendJsonString);
+				frontendJsonString = gson.toJson(backendResponse);
+
+				out.println(frontendJsonString);
+			} //}}}
 		} //}}}
 
-		// network
-		else if (apiPath.equals("/network/status")) // {{{
-		{
-			String countryCode = ipdb.getCountry(reqIP);
-			out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
+		else if (apiPath.startsWith("/network/")) // {{{
+			String networkApiPath = apiPath.substring( "/network".length(), apiPath.length() );
+
+			if (networkApiPath.equals("/status")) // {{{
+			{
+				String countryCode = ipdb.getCountry(reqIP);
+				out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
+			} //}}}
 		} //}}}
 
 		else if (apiPath.equals("secretGeoDatabaseInit")) // {{{
@@ -311,21 +325,82 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
 
-		// account
-		if (apiPath.equals("/account/authenticate/password")) // {{{
+		if (apiPath.startsWith("/hello")) // {{{
 		{
-			String frontendJsonString;
-			String backendResponse = fetchBackendData(HTTPMethod.POST, reqURI, null);
+			out.println("hello");
+		} // }}}
 
-			if (backendResponse == null)
+		else if (apiPath.startsWith("/account/")) // {{{
+
+			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
+
+			else if (accountApiPath.equals("/authenticate/password")) // {{{
 			{
-				res.sendError(res.SC_NOT_FOUND);
-				return;
-			}
+				String frontendJsonString;
+				String backendResponse = fetchBackendData(HTTPMethod.POST, reqURI, null);
 
-			frontendJsonString = gson.toJson(backendResponse);
+				if (backendResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
 
-			out.println(frontendJsonString);
+				frontendJsonString = gson.toJson(backendResponse);
+
+				out.println(frontendJsonString);
+			} //}}}
+			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
+			{
+				String frontendJsonString;
+				String backendResponse = fetchBackendData(HTTPMethod.POST, reqURI, null);
+
+				if (backendResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
+
+				frontendJsonString = gson.toJson(backendResponse);
+
+				out.println(frontendJsonString);
+			} //}}}
+
+			else if (accountApiPath.equals("/confirm/email")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+
+			else if (accountApiPath.equals("/register/signup")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+
+			else if (accountApiPath.equals("/source/add")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+			else if (accountApiPath.equals("/source/default")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+
+			else if (accountApiPath.equals("/purchase/stripe")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+			else if (accountApiPath.equals("/purchase/amazon")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+			else if (accountApiPath.equals("/purchase/stripe")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+			else if (accountApiPath.equals("/purchase/stripe")) // {{{
+			{
+				res.sendError(500);
+			} // }}}
+
 		} //}}}
 
 		else // {{{ 404
