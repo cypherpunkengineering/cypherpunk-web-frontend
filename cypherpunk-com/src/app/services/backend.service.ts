@@ -10,7 +10,8 @@ export class BackendService {
 
   constructor(private http: Http) {
     if (isBrowser && !document.location.hostname.startsWith('localhost')) {
-      this.backendUrl = 'https://cypherpunk.privacy.network/api/v0/';
+      this.backend = 'https://cypherpunk.privacy.network/api/v0/';
+      this.backendUrl = this.backend + '/api/v0/';
     }
   }
 
@@ -136,13 +137,13 @@ export class BackendService {
   }
 
   blogPosts() {
-    let url = this.backendUrl + 'blog/posts';
+    let url = this.backend + '/api/v1/blog/posts';
     return this.http.get(url)
     .map(res => res.json());
   }
 
   blogPost(postId) {
-    let url = this.backendUrl + 'blog/post/' + postId;
+    let url = this.backend + '/api/v1/blog/post/' + postId;
     return this.http.get(url)
     .map(res => res.json());
   }
