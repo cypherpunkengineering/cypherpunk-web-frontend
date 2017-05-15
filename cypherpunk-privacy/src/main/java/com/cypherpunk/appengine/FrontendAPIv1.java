@@ -218,10 +218,25 @@ public class FrontendAPIv1 extends HttpServlet
 		} //}}}
 
 		// location
+		else if (apiPath.startsWith("/location/world")) // {{{
+		{
+			String frontendJsonString;
+			Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
+
+			if (backendResponse == null)
+			{
+				res.sendError(res.SC_NOT_FOUND);
+				return;
+			}
+
+			frontendJsonString = gson.toJson(backendResponse);
+
+			out.println(frontendJsonString);
+		} //}}}
 		else if (apiPath.startsWith("/location/list")) // {{{
 		{
 			String frontendJsonString;
-			Map<String,Object> backendResponse = getBackendData(apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
+			Map<String,Object> backendResponse = getBackendData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForBackend, forceUpdate);
 
 			if (backendResponse == null)
 			{
