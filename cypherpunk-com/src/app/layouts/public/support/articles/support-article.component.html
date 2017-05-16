@@ -2,17 +2,12 @@
 
   <div class="masthead">
     <app-nav></app-nav>
-
-    <h1 class="masthead-header header white">
-      Online Privacy <span>&</span> Freedom Blog
-    </h1>
   </div>
 
   <div class="page">
     <div class="page-inner">
       <div class="article">
-        <div class="article-header">{{post.title}}</div>
-        <div class="article-timestamp">{{ postDate() }}</div>
+        <h1 class="article-header header">{{post.title}}</h1>
 
         <div class="content" [innerHTML]=post.content></div>
       </div>

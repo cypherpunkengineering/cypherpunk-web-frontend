@@ -1,6 +1,5 @@
-import { DatePipe } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../../../services/backend.service';
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
@@ -12,6 +11,7 @@ export class SupportArticleComponent implements OnInit, OnDestroy {
   post = {
     id: '',
     title: '',
+    labels: [],
     content: '',
     published: '',
     images: [ { url: '' } ]
@@ -36,20 +36,6 @@ export class SupportArticleComponent implements OnInit, OnDestroy {
       .catch((err) => {
         this.router.navigate(['/support']);
       });
-    }
-  }
-
-  postDate() {
-    if (!this.post) { return; }
-    if (this.post.published === '{{__SUPPORT_DATE__}}') {
-      return this.post.published;
-    }
-    else if (!this.post.published) {
-      return this.post.published;
-    }
-    else {
-      let datePipe = new DatePipe('en-us');
-      return datePipe.transform(this.post.published, 'MM/dd/yyyy');
     }
   }
 
