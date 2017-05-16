@@ -195,7 +195,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				// parse args
 				String pageToken = req.getParameter("pageToken");
-				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader&fields=id,published,updated,title,content,labels";
 
 				if (pageToken != null && !pageToken.isEmpty())
 				{
@@ -208,9 +208,9 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 			else if (blogApiPath.startsWith("/post/")) // {{{
 			{
-				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader";
 				String frontendJsonString = null;
 				Map<String,Object> bloggerResponse = null;
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader&fields=id,published,updated,title,content,labels";
 
 				// get post ID from request URL
 				String postID = blogApiPath.substring( "/post/".length(), blogApiPath.length() );
