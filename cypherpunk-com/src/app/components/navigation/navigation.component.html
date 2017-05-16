@@ -22,7 +22,7 @@
         <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
       </li>
       <li>
-        <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
+        <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
       <li>
         <a routerLink="/signup" *ngIf="!isLoggedIn()">
@@ -74,7 +74,7 @@
           <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
         </li>
         <li>
-          <a class="nav-link last" href="https://support.cypherpunk.com/hc">Support</a>
+          <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
         </li>
         <li>
           <a routerLink="/signup" *ngIf="!isLoggedIn()">
@@ -182,7 +182,7 @@
     <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
       Download
     </div>
-    <a href="https://support.cypherpunk.com/hc">
+    <a routerLink="/support" routerLinkActive="active">
       <div class="mobile-dd-item">Support</div>
     </a>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
