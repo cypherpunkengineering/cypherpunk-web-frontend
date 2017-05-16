@@ -76,6 +76,7 @@
 		<url-pattern>/api/v1/subscription/*</url-pattern>
 		<url-pattern>/api/v1/support/*</url-pattern>
 		<url-pattern>/api/v1/vpn/*</url-pattern>
+		<url-pattern>/api/v1/zendesk/*</url-pattern>
 
 	</servlet-mapping>
 
