@@ -195,7 +195,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				// parse args
 				String pageToken = req.getParameter("pageToken");
-				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader&fields=id,published,updated,title,content,labels";
+				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader&fields=items(id,published,updated,title,content,labels)";
 
 				if (pageToken != null && !pageToken.isEmpty())
 				{
