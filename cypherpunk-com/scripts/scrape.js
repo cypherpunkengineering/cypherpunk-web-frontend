@@ -46,7 +46,8 @@ const routes = [
   { url: baseRoute + 'signup', dirPath: baseDir + 'signup.html' },
   { url: baseRoute + 'press', dirPath: baseDir + 'press.html' },
   { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' },
-  { url: baseRoute + 'support', dirPath: baseDir + 'support.html' }
+  { url: baseRoute + 'support', dirPath: baseDir + 'support.html' },
+  { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

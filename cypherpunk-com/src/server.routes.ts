@@ -47,5 +47,6 @@ export const routes: string[] = [
   'signup',
   'press',
   'reset',
-  'support'
+  'support',
+  'support/windows'
 ];

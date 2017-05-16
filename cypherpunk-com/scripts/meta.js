@@ -178,6 +178,11 @@ const metaMap = {
     title: 'Cypherpunk Online Privacy & Freedom Support Blog',
     description: 'Online privacy and freedom support blog by Cypherpunk Privacy.'
   },
+  'support:windows.html': {
+    url: 'https://cypherpunk.com/support/windows',
+    title: 'Cypherpunk Privacy Support For Windows',
+    description: 'Cypherpunk Privacy Support For Windows'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_CONTENT__}}',
