@@ -157,8 +157,8 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
-  supportPost(postId) {
-    let url = this.backend + '/api/v1/support/post/' + postId;
+  supportPost(id) {
+    let url = this.backend + '/api/v1/support/post/' + id;
     return this.http.get(url).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);

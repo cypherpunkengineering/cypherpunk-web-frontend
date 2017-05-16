@@ -41,7 +41,7 @@ export class SupportArticleComponent implements OnInit, OnDestroy {
 
   postDate() {
     if (!this.post) { return; }
-    if (this.post.published === '{{__BLOG_DATE__}}') {
+    if (this.post.published === '{{__SUPPORT_DATE__}}') {
       return this.post.published;
     }
     else if (!this.post.published) {

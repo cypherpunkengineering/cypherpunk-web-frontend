@@ -146,8 +146,8 @@ export function support(req, res) {
 }
 
 export function supportPost(req, res) {
-  let postId = req.params.postId;
-  if (postId === 'test') {
+  let id = req.params.id;
+  if (id === 'test') {
     return res.json({
       id: 'test',
       title: '{{__SUPPORT_TITLE__}}',
@@ -157,7 +157,7 @@ export function supportPost(req, res) {
     });
   }
   else if (DEV_MODE) {
-    return request(urlStart + 'api/v1/support/post/' + postId, (err, resp, body) => {
+    return request(urlStart + 'api/v1/support/post/' + id, (err, resp, body) => {
       try { return res.json(JSON.parse(body)); }
       catch (e) { return res.send(404); }
     });

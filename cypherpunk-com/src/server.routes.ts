@@ -48,5 +48,7 @@ export const routes: string[] = [
   'press',
   'reset',
   'support',
-  'support/windows'
+  'support/windows',
+  'support/articles',
+  'support/tutorials'
 ];

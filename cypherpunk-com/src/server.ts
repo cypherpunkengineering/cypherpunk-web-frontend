@@ -72,7 +72,7 @@ app.get('/api/v0/location/world', world);
 app.get('/api/v1/blog/posts', blog);
 app.get('/api/v1/blog/post/:postId', blogPost);
 app.get('/api/v1/support/posts', support);
-app.get('/api/v1/support/post/:postId', supportPost);
+app.get('/api/v1/support/post/:id', supportPost);
 app.get('/api/v0/network/status', networkStatus);
 app.post('/api/v0/account/confirm/email', confirm);
 app.post('/api/v0/account/authenticate/userpasswd', signin);

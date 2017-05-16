@@ -17,19 +17,19 @@ class MainPage(webapp2.RequestHandler):
 
     def get(self, postId):
         template_values = {
-            '__BLOG_TITLE__': 'foo',
-            '__BLOG_DATE__': 'foo',
-            '__BLOG_CONTENT__': 'foo',
-            '__BLOG_URL__': 'foo',
-            '__BLOG_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
+            '__SUPPORT_TITLE__': 'foo',
+            '__SUPPORT_DATE__': 'foo',
+            '__SUPPORT_CONTENT__': 'foo',
+            '__SUPPORT_URL__': 'foo',
+            '__SUPPORT_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
         }
 
-        template = JINJA_ENVIRONMENT.get_template('blog-article.html')
+        template = JINJA_ENVIRONMENT.get_template('support-article.html')
         self.response.write(template.render(template_values))
 # [END main_page]
 
 # [START app]
 app = webapp2.WSGIApplication([
-    ('/blog/post/([0-9]+)', MainPage),
+    ('/support/article/([0-9]+)', MainPage),
 ], debug=True)
 # [END app]

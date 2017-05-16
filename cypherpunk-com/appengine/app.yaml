@@ -422,54 +422,6 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
-- url: /freedom
-  static_files: target/features.html
-  upload: target/features.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: deny
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-- url: /privacy
-  static_files: target/features.html
-  upload: target/features.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: deny
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-- url: /security
-  static_files: target/features.html
-  upload: target/features.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: deny
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-- url: /support
-  static_files: target/features.html
-  upload: target/features.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: deny
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
 - url: /download/windows/autostart
   static_files: target/download/windows.html
   upload: target/download/windows.html
@@ -505,6 +457,16 @@ handlers: # should be ordered from most specific to least specific
 
 - url: /blog/(.*)
   script: blog.app
+  secure: always
+  login: admin
+
+- url: /support/articles/(.*)
+  script: support-article.app
+  secure: always
+  login: admin
+
+- url: /support/tutorials/(.*)
+  script: support-tutorial.app
   secure: always
   login: admin
 

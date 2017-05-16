@@ -47,8 +47,8 @@ const routes = [
   { url: baseRoute + 'press', dirPath: baseDir + 'press.html' },
   { url: baseRoute + 'reset', dirPath: baseDir + 'reset.html' },
   { url: baseRoute + 'support', dirPath: baseDir + 'support.html' },
-  { url: baseRoute + 'support/article/test', dirPath: baseDir + '../support-article.html' },
-  { url: baseRoute + 'support/tutorial/test', dirPath: baseDir + '../support-tutorial.html' },
+  { url: baseRoute + 'support/articles/test', dirPath: baseDir + '../support-article.html' },
+  { url: baseRoute + 'support/tutorials/test', dirPath: baseDir + '../support-tutorial.html' },
   { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' }
 ];
 
