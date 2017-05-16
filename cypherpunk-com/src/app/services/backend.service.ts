@@ -1,5 +1,6 @@
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import { isBrowser } from 'angular2-universal';
 import { Http, RequestOptions, Response } from '@angular/http';
 
@@ -151,14 +152,16 @@ export class BackendService {
 
   supportPosts() {
     let url = this.backend + '/api/v1/support/posts';
-    return this.http.get(url)
-    .map(res => res.json());
+    return this.http.get(url).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
   }
 
   supportPost(postId) {
     let url = this.backend + '/api/v1/support/post/' + postId;
-    return this.http.get(url)
-    .map(res => res.json());
+    return this.http.get(url).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
   }
 
   // public apis

@@ -138,8 +138,8 @@ export function blogPost(req, res) {
 export function support(req, res) {
   if (DEV_MODE) {
     return request(urlStart + 'api/v1/support/posts', (err, resp, body) => {
-      let retval = JSON.parse(body);
-      return res.json(retval);
+      try { return res.json(JSON.parse(body)); }
+      catch (e) { return res.send(500); }
     });
   }
   else { res.json({}); }
@@ -158,8 +158,8 @@ export function supportPost(req, res) {
   }
   else if (DEV_MODE) {
     return request(urlStart + 'api/v1/support/post/' + postId, (err, resp, body) => {
-      let retval = JSON.parse(body);
-      return res.json(retval);
+      try { return res.json(JSON.parse(body)); }
+      catch (e) { return res.send(404); }
     });
   }
   else { res.json({}); }

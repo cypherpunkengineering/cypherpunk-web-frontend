@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 import { BackendService } from '../../../../services/backend.service';
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
@@ -18,6 +18,7 @@ export class SupportArticleComponent implements OnInit, OnDestroy {
   };
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any
@@ -25,17 +26,21 @@ export class SupportArticleComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
-    this.backend.supportPost(id)
-    .subscribe(
-      (data: any) => {
+    if (!id) { return this.router.navigate(['/']); }
+    else {
+      this.backend.supportPost(id)
+      .then((data) => {
         this.post = data;
         this.document.title = data.title;
-      },
-      (error: any) => { console.log(error); }
-    );
+      })
+      .catch((err) => {
+        this.router.navigate(['/support']);
+      });
+    }
   }
 
   postDate() {
+    if (!this.post) { return; }
     if (this.post.published === '{{__BLOG_DATE__}}') {
       return this.post.published;
     }

@@ -17,12 +17,12 @@ export class SupportHomeComponent implements OnInit {
 
   ngOnInit() {
     this.backend.supportPosts()
-    .subscribe((data: any) => {
-        if (data.items && data.items.length) {
-          this.posts = data.items;
-        }
-    },
-    (error: any) => { console.log(error); });
+    .then((data) => {
+      if (data.items && data.items.length) {
+        this.posts = data.items;
+      }
+    })
+    .catch((err) => { console.log(err); });
   }
 
 }
