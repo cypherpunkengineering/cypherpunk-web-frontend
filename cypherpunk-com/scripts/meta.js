@@ -188,6 +188,18 @@ const metaMap = {
     description: '{{__BLOG_CONTENT__}}',
     url: '{{__BLOG_URL__}}',
     image: '{{__BLOG_IMAGE__}}'
+  },
+  'support-article.html': {
+    title: '{{__BLOG_TITLE__}}',
+    description: '{{__BLOG_CONTENT__}}',
+    url: '{{__BLOG_URL__}}',
+    image: '{{__BLOG_IMAGE__}}'
+  },
+  'support-tutorial.html': {
+    title: '{{__BLOG_TITLE__}}',
+    description: '{{__BLOG_CONTENT__}}',
+    url: '{{__BLOG_URL__}}',
+    image: '{{__BLOG_IMAGE__}}'
   }
 };
 

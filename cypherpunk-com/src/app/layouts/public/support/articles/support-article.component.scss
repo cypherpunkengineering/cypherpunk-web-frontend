@@ -1,0 +1,40 @@
+.wrapper {
+  .masthead .masthead-header {
+    margin: 20px auto 0;
+    padding: 0 0 50px;
+    span { color: #7972c4; }
+  }
+
+  .page {
+    width: 100%;
+    padding: 50px 0;
+    border-bottom: 5px solid #efeaea;
+
+    .page-inner {
+      margin: auto;
+      overflow: auto;
+      max-width: 1000px;
+
+      .article {
+        width: 100%;
+        min-height: 20px;
+        float: left;
+
+        .article-header {
+          font-size: 24px;
+          text-align: left;
+        }
+
+        .article-timestamp {
+          font-size: 18px;
+          text-align: left;
+          padding: 10px 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .wrapper .page .page-inner .article { width: 100%; padding: 0 20px 50px; }
+}

@@ -34,6 +34,7 @@ import { SignupModule } from './layouts/public/signup/signup.module';
 import { PressModule } from './layouts/public/press/press.module';
 import { PublicResetModule } from './layouts/public/reset/reset.module';
 import { SupportHomeModule } from './layouts/public/support/home/support-home.module';
+import { SupportArticleModule } from './layouts/public/support/articles/support-article.module';
 import { SupportWindowsModule } from './layouts/public/support/windows/support-windows.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
@@ -86,6 +87,7 @@ import { BackendService } from './services/backend.service';
     PressModule,
     PublicResetModule,
     SupportHomeModule,
+    SupportArticleModule,
     SupportWindowsModule,
 
     DashboardModule,
