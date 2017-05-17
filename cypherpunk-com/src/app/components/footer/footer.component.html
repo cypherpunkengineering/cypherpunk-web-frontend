@@ -83,10 +83,11 @@
           </a>
         </li>
       </ul>
-      <div class="feedback desktop" (click)="openSupportModal()">
+      <div class="feedback desktop" (click)="showContactForm.show = true">
         Leave Feedback
       </div>
     </div>
-
   </div>
 </div>
+
+<app-contact-form [(show)]="showContactForm"></app-contact-form>

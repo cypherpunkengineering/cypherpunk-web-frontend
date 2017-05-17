@@ -10,6 +10,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 })
 export class FeedbackComponent implements OnInit {
   currentTab: string;
+  showContactForm = { show: false };
 
   constructor(
     private location: Location,
@@ -36,10 +37,4 @@ export class FeedbackComponent implements OnInit {
     document.getElementById('vote').style.display = 'block';
     document.getElementById('vote-button').style.display = 'none';
   }
-
-  openFeedback() {
-    let ze = (<any>window).zE;
-    ze.activate({hideOnClose: true});
-  }
-
 }

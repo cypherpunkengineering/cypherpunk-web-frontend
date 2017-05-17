@@ -6,8 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  openSupportModal() {
-    let ze = (<any>window).zE;
-    ze.activate({hideOnClose: true});
-  }
+  showContactForm = { show: false };
 }
