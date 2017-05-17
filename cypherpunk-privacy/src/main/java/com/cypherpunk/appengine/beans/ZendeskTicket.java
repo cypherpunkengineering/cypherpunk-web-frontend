@@ -18,6 +18,7 @@ public class ZendeskTicket
 		private Requester requester;
 		private String subject;
 		private Comment comment;
+		private String group_id;
 
 		Ticket()
 		{
@@ -35,5 +36,6 @@ public class ZendeskTicket
 		this.ticket.requester.email = request.getEmail();
 		this.ticket.subject = request.getSubject();
 		this.ticket.comment.body = request.getComment();
+		this.ticket.group_id = request.getGroupID();
 	}
 }

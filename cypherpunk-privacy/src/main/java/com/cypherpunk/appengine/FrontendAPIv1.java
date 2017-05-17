@@ -428,9 +428,9 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				// curl -i https://cypherpunk.zendesk.com/api/v2/tickets.json -X POST -d '{"ticket": {"requester": {"name": "Test Customer", "email": "test18278@wiz.biz"}, "subject": "My printer is on fire!", "comment": { "body": "The smoke is very colorful." } } }' -H 'Content-type: application/json' -u 'jmaurice@cypherpunk.com/token:BoM1TUDKYVKgWpUi2O2rA6jKQ4f89jJGCkpMZJtz'
 
-				// Billing https://cypherpunk.zendesk.com/groups/33432807
-				// Business Development https://cypherpunk.zendesk.com/groups/42228188
-				// Customer Support https://cypherpunk.zendesk.com/groups/32425127
+				// Billing 33432807
+				// Business Development 42228188
+				// Customer Support 32425127
 
 				/*
 				{
