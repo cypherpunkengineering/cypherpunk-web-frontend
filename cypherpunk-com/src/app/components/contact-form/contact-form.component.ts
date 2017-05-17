@@ -17,10 +17,10 @@ export class ContactFromComponent {
 
   groups = [
     { value: '32425127', title: 'Customer Support'},
-    { value: '33432807', title: 'Billing'},
-    { value: '42228188', title: 'Business Development'},
-    { value: '42250028', title: 'Press / Medai Inquiries'},
+    { value: '33432807', title: 'Billing Question'},
     { value: '42217047', title: 'Leave Feedback'}
+    { value: '42228188', title: 'Business Development'},
+    { value: '42250028', title: 'Press / Media Inquiries'},
   ];
 
   nameTouched: boolean;

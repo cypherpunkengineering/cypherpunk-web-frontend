@@ -21,12 +21,12 @@ export class NavigationComponent {
 
   bannerModel;
   androidModel = {
-    heading: 'Cypherpunk for Android',
+    heading: 'Cypherpunk Privacy for Android',
     subheading: 'Get it free on the Play Store',
     link: 'https://play.google.com/store/apps/details?id=com.cypherpunk.privacy'
   };
   iosModel = {
-    heading: 'Cypherpunk for iOS',
+    heading: 'Cypherpunk Privacy for iOS',
     subheading: 'Get it free on the App Store',
     link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
   };

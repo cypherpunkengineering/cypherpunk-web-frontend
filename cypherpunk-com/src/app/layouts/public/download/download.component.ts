@@ -121,7 +121,7 @@ export class DownloadComponent {
     }
 
     // handle title
-    this.document.title = 'Download Cypherpunk for ' + this.headerBuild.name;
+    this.document.title = 'Download Cypherpunk Privacy for ' + this.headerBuild.name;
 
     // download file setup
     if (isBrowser) {

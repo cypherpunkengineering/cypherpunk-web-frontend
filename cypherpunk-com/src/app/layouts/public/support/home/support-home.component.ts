@@ -13,7 +13,7 @@ export class SupportHomeComponent implements OnInit {
   constructor(
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any
-  ) { this.document.title = 'Cypherpunk Online Privacy & Freedom Support Blog'; }
+  ) { this.document.title = 'Cypherpunk Privacy Support'; }
 
   ngOnInit() {
     this.backend.supportPosts()
