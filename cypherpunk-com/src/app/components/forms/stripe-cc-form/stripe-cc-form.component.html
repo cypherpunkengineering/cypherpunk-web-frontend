@@ -7,7 +7,7 @@
 
   <div class="row">
     <label>Card Number</label><br>
-    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [(ngModel)]="stripeFormData.cardNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)"/>
+    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [ngModel]="stripeFormData.cardNumber | CCNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)" (ngModelChange)="stripeFormData.cardNumber=$event"/>
     <div class="error-message" [hidden]="!(cardNumber.touched && !cardNumber.valid)">
       <div *ngIf="cardNumber.errors && cardNumber.errors['required']">
         Credit Card Number is Required

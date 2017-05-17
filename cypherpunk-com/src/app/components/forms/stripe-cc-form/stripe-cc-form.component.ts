@@ -100,7 +100,10 @@ export class StripeCCFormComponent implements OnInit {
     e.preventDefault();
     let input = e.key;
     if (!/^[0-9]+$/.test(input)) { return; }
-    if ((this.stripeFormData.cardNumber.length + 1) > 19) { return; }
+
+    let ccn = this.stripeFormData.cardNumber;
+    if ((ccn.startsWith('34') || ccn.startsWith('37')) && ((ccn.length + 1) > 15)) { return; }
+    else if ((ccn.length + 1) > 21) { return; }
     this.stripeFormData.cardNumber += input;
   }
 

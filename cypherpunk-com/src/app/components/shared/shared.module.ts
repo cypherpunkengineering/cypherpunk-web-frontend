@@ -16,6 +16,7 @@ import { BitpayComponent } from '../payment/bitpay/bitpay.component';
 import { StripeCCFormComponent } from '../forms/stripe-cc-form/stripe-cc-form.component';
 import { AccountCreationFormComponent } from '../forms/account-creation-form/account-creation-form.component';
 import { PaymentSelectionComponent } from '../payment/payment-selection/payment-selection.component';
+import { CCNumberPipe } from '../../pipes/cc-number.pipe';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -27,6 +28,7 @@ const MODULES = [
 
 const PIPES = [
   // put pipes here
+  CCNumberPipe
 ];
 
 const COMPONENTS = [
