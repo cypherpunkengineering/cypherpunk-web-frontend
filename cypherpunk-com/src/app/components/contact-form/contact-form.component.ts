@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
 import { BackendService } from '../../services/backend.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -37,8 +38,14 @@ export class ContactFromComponent {
 
   constructor(
     private alerts: AlertService,
-    private backend: BackendService
-  ) { }
+    private backend: BackendService,
+    private session: SessionService
+  ) {
+    if (session.user.account.email) {
+      this.email = session.user.account.email;
+    }
+
+  }
 
   validateName() {
     if (!this.name) { this.nameValid = false; }
