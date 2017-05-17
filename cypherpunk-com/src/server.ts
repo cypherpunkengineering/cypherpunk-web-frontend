@@ -62,7 +62,21 @@ app.use(express.static(path.join(ROOT, 'landing'), {index: false, redirect: fals
 app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
-import { subs, confirm, signin, signout, locations, world, identify, blog, blogPost, support, supportPost, networkStatus, signup } from './backend/api';
+import {
+  subs,
+  confirm,
+  signin,
+  signout,
+  locations,
+  world,
+  identify,
+  blog,
+  blogPost,
+  support,
+  supportPost,
+  networkStatus,
+  signup,
+  contactForm } from './backend/api';
 import { stripePurchase, stripeUpgrade, stripeCardList, stripeDefaultCard, stripeCreateCard } from './backend/stripe';
 import { amazonPurchase, amazonUpgrade } from './backend/amazon';
 // Our API for demos only
@@ -87,6 +101,7 @@ app.post('/api/v0/account/source/default', stripeDefaultCard);
 app.post('/api/v0/account/source/add', stripeCreateCard);
 app.post('/api/v0/account/purchase/amazon', amazonPurchase);
 app.post('/api/v0/account/upgrade/amazon', amazonUpgrade);
+app.post('/api/v1/zendesk/request/new', contactForm);
 
 function ngApp(req, res) {
   res.render('index', {

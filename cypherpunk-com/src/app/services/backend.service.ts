@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import { isBrowser } from 'angular2-universal';
 import { Http, RequestOptions, Response } from '@angular/http';
 
@@ -164,6 +163,13 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  contactForm(body) {
+    let url = this.backend + '/api/v1/zendesk/request/new';
+    return this.http.post(url, body).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
   // public apis
 
   networkStatus() {
@@ -187,9 +193,10 @@ export class BackendService {
   // helper functions
 
   parseJson(res: Response): Promise<any> {
+    if (!res['_body']) { return; } // handle empty status 200 return
     try { return res.json(); }
     catch (e) {
-      let error = this.errString + ' - ' + res;
+      let error = 'Bad Response from server - ' + res;
       return Promise.reject(error);
     }
   }

@@ -17,6 +17,7 @@ import { StripeCCFormComponent } from '../forms/stripe-cc-form/stripe-cc-form.co
 import { AccountCreationFormComponent } from '../forms/account-creation-form/account-creation-form.component';
 import { PaymentSelectionComponent } from '../payment/payment-selection/payment-selection.component';
 import { CCNumberPipe } from '../../pipes/cc-number.pipe';
+import { ContactFromComponent } from '../contact-form/contact-form.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -45,7 +46,8 @@ const COMPONENTS = [
   NoScriptComponent,
   StripeCCFormComponent,
   AccountCreationFormComponent,
-  PaymentSelectionComponent
+  PaymentSelectionComponent,
+  ContactFromComponent
 ];
 
 const PROVIDERS = [];

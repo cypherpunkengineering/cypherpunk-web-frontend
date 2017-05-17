@@ -165,6 +165,21 @@ export function supportPost(req, res) {
   else { res.json({}); }
 }
 
+export function contactForm(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/zendesk/request/new';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      valid: true,
+      account: { email: '' },
+      secret: ''
+    });
+  }
+}
+
 export function locations(req, res) {
   if (DEV_MODE) { return request(urlStart + 'api/v0/location/list/premium').pipe(res); }
   else { res.json({}); }

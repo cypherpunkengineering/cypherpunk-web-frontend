@@ -1,0 +1,52 @@
+<div class="form" [ngClass]="{'show': show.show}">
+  <div class="form-header">
+    <div class="close" (click)="close()">X</div>
+    <div class="title">Contact Us</div>
+  </div>
+
+  <div class="form-body">
+    <div class="row">
+      <label for="name">Your name</label>
+      <input type="text" name="name" [(ngModel)]="name" required (ngModelChange)="validateName()" [ngClass]="{'error-input': nameTouched && !nameValid}" (blur)="nameTouched = true">
+      <div class="error" *ngIf="nameTouched && !nameValid">Your name is required</div>
+    </div>
+
+    <div class="row">
+      <label for="email">Email address*</label>
+      <input type="text" name="email" [(ngModel)]="email" required (ngModelChange)="validateEmail()" [ngClass]="{'error-input': emailTouched && (!emailValid || !emailRequired)}" (blur)="emailTouched = true">
+      <div class="error" *ngIf="emailTouched && !emailRequired">Your email is required</div>
+      <div class="error" *ngIf="emailTouched && emailRequired && !emailValid">Invalid email format</div>
+    </div>
+
+    <div class="row">
+      <label for="subject">Subject</label>
+      <input type="text" name="subject" [(ngModel)]="subject" required (ngModelChange)="validateSubject()" [ngClass]="{'error-input': subjectTouched && !subjectValid}" (blur)="subjectTouched = true">
+      <div class="error" *ngIf="subjectTouched && !subjectValid">Subject is required</div>
+    </div>
+
+    <div class="row">
+      <label for="groupID">Department</label>
+      <select name="groupID" [(ngModel)]="groupID">
+        <option [ngValue]="group.value" *ngFor="let group of groups">{{group.title}}</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="comment">How can we help you?</label>
+      <textarea name="comment" [(ngModel)]="comment" required (ngModelChange)="validateComment()" [ngClass]="{'error-input': commentTouched && !commentValid}" (blur)="commentTouched = true"></textarea>
+      <div class="error" *ngIf="commentTouched && !commentValid">Comments are required</div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <div class="button-container">
+      <button class="send" (click)="send()">Send</button>
+      <button class="cancel" (click)="close()">Close</button>
+    </div>
+
+    <div class="error" *ngIf="error">
+      There was a problem submitting your ticket.
+    </div>
+  </div>
+
+</div>

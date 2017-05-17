@@ -8,7 +8,7 @@ import { BackendService } from '../../../../services/backend.service';
 })
 export class SupportHomeComponent implements OnInit {
   posts = [];
-  showSearch: boolean = false;
+  showContactForm = { show: false };
 
   constructor(
     private backend: BackendService,
@@ -23,6 +23,10 @@ export class SupportHomeComponent implements OnInit {
       }
     })
     .catch((err) => { console.log(err); });
+  }
+
+  contactForm() {
+    this.showContactForm.show = true;
   }
 
 }

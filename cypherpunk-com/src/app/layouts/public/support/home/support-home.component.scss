@@ -5,6 +5,42 @@
     span { color: #7972c4; }
   }
 
+  .contact {
+    width: 100%;
+
+    .contact-inner {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 0 0 60px;
+    }
+
+    .header { margin: 40px 0; }
+
+    .options {
+      text-align: center;
+
+      .option {
+        display: inline-block;
+        vertical-align: bottom;
+        width: 300px;
+        margin: 0 30px;
+        position: relative;
+
+        .text {
+          position: relative;
+          top: -63px;
+          margin: auto;
+          font-size: 30px;
+          color: #fff;
+        }
+        
+        a { cursor: pointer; }
+        img { width: 100%; }
+      }
+    }
+  }
+
   .quickstart {
     background-color: #efeaea;
     padding: 50px 0 0;
