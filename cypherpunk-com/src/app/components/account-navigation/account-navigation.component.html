@@ -1,11 +1,9 @@
 <div id="nav" class="acc-nav">
   <div class="nav-inner">
     <div class="nav-left">
-      <a routerLink="/" *ngIf="enableLinks">
+      <a routerLink="/">
         <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
       </a>
-
-      <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
     </div>
 
     <nav class="nav-right" *ngIf="enableLinks">
@@ -35,11 +33,9 @@
   <div class="acc-nav">
     <div class="nav-inner">
       <div class="nav-left">
-        <a routerLink="/" *ngIf="enableLinks">
+        <a routerLink="/">
           <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
         </a>
-
-        <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
       </div>
 
       <nav class="nav-right" *ngIf="enableLinks">
@@ -68,11 +64,9 @@
 
 <div class="mobile-nav">
   <div class="mobile-nav-left">
-    <a routerLink="/" *ngIf="enableLinks">
+    <a routerLink="/">
       <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
     </a>
-
-    <img src="/assets/logo@2x.png" class="mobile-logo" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="230" height="40" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom" *ngIf="!enableLinks">
 
     <div class="mobile-nav-right" (click)="showDropDown = !showDropDown" *ngIf="enableLinks">
       <img src="/assets/icon-menu.png" alt="Menu Button" title="Click to Open Menu">
