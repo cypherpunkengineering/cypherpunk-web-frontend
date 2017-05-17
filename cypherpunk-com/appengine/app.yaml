@@ -456,17 +456,17 @@ handlers: # should be ordered from most specific to least specific
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
 - url: /blog/(.*)
-  script: blog.app
+  script: blogger.app
   secure: always
   login: admin
 
 - url: /support/articles/(.*)
-  script: support-article.app
+  script: blogger.app
   secure: always
   login: admin
 
 - url: /support/tutorials/(.*)
-  script: support-tutorial.app
+  script: blogger.app
   secure: always
   login: admin
 

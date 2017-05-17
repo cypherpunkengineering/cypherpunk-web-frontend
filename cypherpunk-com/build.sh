@@ -50,6 +50,7 @@ fi
 
 # deploy to appengine static
 cd appengine/
+pip install --upgrade -t lib/ google-api-python-client
 gcloud config set project cypherpunk-engineering
 echo y | gcloud app deploy
 
