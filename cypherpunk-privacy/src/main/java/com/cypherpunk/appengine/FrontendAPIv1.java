@@ -5,6 +5,7 @@ import static com.google.appengine.api.urlfetch.FetchOptions.Builder.*;
 
 import com.cypherpunk.appengine.beans.*;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -146,8 +147,7 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			out.println("hello");
 		} // }}}
-
-		else if (apiPath.startsWith("/account/")) // {{{
+		else if (apiPath.startsWith("/account")) // {{{
 		{
 			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
 
@@ -170,9 +170,12 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				res.sendError(500);
 			} // }}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
 		} // }}}
-
-		else if (apiPath.startsWith("/blog/") || apiPath.startsWith("/support/")) // {{{
+		else if (apiPath.startsWith("/blog") || apiPath.startsWith("/support")) // {{{
 		{
 			// get blog content depending on request URL
 			String bloggerID = "";
@@ -222,7 +225,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				if (bloggerResponse == null)
 				{
-					res.sendError(res.SC_NOT_FOUND);
+					res.sendError(404);
 					return;
 				}
 
@@ -230,8 +233,7 @@ public class FrontendAPIv1 extends HttpServlet
 				out.println(frontendJsonString);
 			} //}}}
 		} //}}}
-
-		else if (apiPath.startsWith("/location/")) // {{{
+		else if (apiPath.startsWith("/location")) // {{{
 		{
 			String locationApiPath = apiPath.substring( "/location".length(), apiPath.length() );
 
@@ -265,9 +267,12 @@ public class FrontendAPIv1 extends HttpServlet
 
 				out.println(frontendJsonString);
 			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
 		} //}}}
-
-		else if (apiPath.startsWith("/network/")) // {{{
+		else if (apiPath.startsWith("/network")) // {{{
 		{
 			String networkApiPath = apiPath.substring( "/network".length(), apiPath.length() );
 
@@ -276,9 +281,11 @@ public class FrontendAPIv1 extends HttpServlet
 				String countryCode = ipdb.getCountry(reqIP);
 				out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
 		} //}}}
-
-
 		else if (apiPath.equals("secretGeoDatabaseInit")) // {{{
 		{
 			String chunk = req.getParameter("chunk");
@@ -291,10 +298,9 @@ public class FrontendAPIv1 extends HttpServlet
 			String countryCode = ipdb.getCountry(ip);
 			out.println(countryCode);
 		} //}}}
-
 		else // {{{ 404
 		{
-			res.sendError(res.SC_NOT_FOUND);
+			res.sendError(404);
 		} // }}}
 	}
 
@@ -334,12 +340,11 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 		// }}}
 
-		if (apiPath.startsWith("/hello")) // {{{
+		if (apiPath.equals("/hello")) // {{{
 		{
 			out.println("hello");
 		} // }}}
-
-		else if (apiPath.startsWith("/account/")) // {{{
+		else if (apiPath.startsWith("/account")) // {{{
 		{
 			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
 
@@ -409,10 +414,13 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				res.sendError(500);
 			} // }}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
 
 		} //}}}
-
-		else if (apiPath.startsWith("/zendesk/")) // {{{
+		else if (apiPath.startsWith("/zendesk")) // {{{
 		{
 			String networkApiPath = apiPath.substring( "/zendesk".length(), apiPath.length() );
 
@@ -439,29 +447,89 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 				*/
 
-				ZendeskTicket ticket = new ZendeskTicket("test cust", "4518237@wiz.biz", "test ticket", "this is a test ticket request in the zendesk api");
+				CypherpunkZendeskRequest zendeskRequestIn = null;
+				ZendeskTicket zendeskRequestOut = null;
+
+				try // parse json body as CypherpunkZendeskRequest
+				{
+					String reqBody = getBodyFromRequest(req);
+					zendeskRequestIn = gson.fromJson(reqBody, CypherpunkZendeskRequest.class);
+					zendeskRequestOut = new ZendeskTicket(zendeskRequestIn);
+				}
+				catch (Exception e)
+				{
+					LOG.log(Level.WARNING, "Unable to parse CypherpunkZendeskRequest");
+					e.printStackTrace();
+					res.sendError(400);
+					return;
+				}
 
 				String authString = ZENDESK_API_USERNAME + ":" + ZENDESK_API_PASSWORD;
-				byte[] authBase64 = Base64.encodeBase64(authString.getBytes("utf-8"));
+				byte[] authBase64 = Base64.encodeBase64(authString.getBytes("UTF-8"));
 				String authBase64String = new String(authBase64);
 
 				List<HTTPHeader> zendeskAuthHeader = new ArrayList<HTTPHeader>();
 				zendeskAuthHeader.add(new HTTPHeader("Authorization", "Basic " + authBase64String));
 
 				String zendeskURI = "/api/v2/tickets.json";
-				String zendeskTicketBody = gson.toJson(ticket);
+				String zendeskTicketBody = gson.toJson(zendeskRequestOut);
 				String zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
 
-				out.println(zendeskResponse);
+				// don't send response unless debugging
+				// out.println(zendeskResponse);
 			} // }}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
 
 		} // }}}
-
 		else // {{{ 404
 		{
-			res.sendError(res.SC_NOT_FOUND);
+			res.sendError(404);
 		} // }}}
 	}
+
+	private String getBodyFromRequest(HttpServletRequest req) // {{{
+	{
+		// read request body
+		BufferedReader reader = null;
+		StringBuffer sb = new StringBuffer();
+		String line = null;
+		try
+		{
+			reader = req.getReader();
+			while ((line = reader.readLine()) != null)
+				sb.append(line);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (reader != null)
+			{
+				try
+				{
+					reader.close();
+				}
+				catch (IOException e)
+				{
+					LOG.log(Level.WARNING, "Unable to read request body");
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+
+		// convert payload bytes to string
+		String reqBody = sb.toString();
+		//if (reqBody != null && !reqBody.isEmpty())
+		//LOG.log(Level.WARNING, "got payload: "+reqBody);
+
+		return reqBody;
+	} // }}}
 
 	private List<HTTPHeader> getSafeHeadersFromRequest(HttpServletRequest req) // {{{
 	{

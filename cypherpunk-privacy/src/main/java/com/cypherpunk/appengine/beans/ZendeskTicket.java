@@ -28,18 +28,12 @@ public class ZendeskTicket
 
 	private Ticket ticket;
 
-	public ZendeskTicket
-	(
-		String requesterName,
-		String requesterEmail,
-		String subject,
-		String commentBody
-	)
+	public ZendeskTicket (CypherpunkZendeskRequest request)
 	{
 		this.ticket = new Ticket();
-		this.ticket.requester.name = requesterName;
-		this.ticket.requester.email = requesterEmail;
-		this.ticket.subject = subject;
-		this.ticket.comment.body = commentBody;
+		this.ticket.requester.name = request.getName();
+		this.ticket.requester.email = request.getEmail();
+		this.ticket.subject = request.getSubject();
+		this.ticket.comment.body = request.getComment();
 	}
 }
