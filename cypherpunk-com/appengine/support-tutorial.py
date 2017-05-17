@@ -30,6 +30,6 @@ class MainPage(webapp2.RequestHandler):
 
 # [START app]
 app = webapp2.WSGIApplication([
-    ('/support/tutorial/([0-9]+)', MainPage),
+    ('/support/tutorials/([0-9]+)', MainPage),
 ], debug=True)
 # [END app]
