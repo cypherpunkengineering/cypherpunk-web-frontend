@@ -473,9 +473,11 @@ public class FrontendAPIv1 extends HttpServlet
 
 				String zendeskURI = "/api/v2/tickets.json";
 				String zendeskTicketBody = gson.toJson(zendeskRequestOut);
-				String zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
+				HTTPResponse zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
 
-				// don't send response unless debugging
+				// set response code directly from zendesk
+				res.setStatus(zendeskResponse.getResponseCode());
+				// but don't send response body unless debugging
 				// out.println(zendeskResponse);
 			} // }}}
 			else // {{{ 404
@@ -743,28 +745,13 @@ public class FrontendAPIv1 extends HttpServlet
 		URL cypherpunkURL = buildCypherpunkURL(cypherpunkURI);
 		return requestDataAsString(requestMethod, cypherpunkURL, headers, body);
 	} // }}}
-	private String requestZendeskData(HTTPMethod requestMethod, String zendeskURI, List<HTTPHeader> headers, String body) // {{{
+	private HTTPResponse requestZendeskData(HTTPMethod requestMethod, String zendeskURI, List<HTTPHeader> headers, String body) // {{{
 	{
 		URL zendeskURL = buildZendeskURL(zendeskURI);
-		String zendeskResponse = null;
 		HTTPResponse response = requestData(requestMethod, zendeskURL, headers, body);
 		//LOG.log(Level.WARNING, "zendesk request body: " + body);
 		LOG.log(Level.WARNING, "zendesk response code: " + response.getResponseCode());
-		// {{{ if we got response, convert to UTF-8 string
-		if (response != null)
-		{
-			try
-			{
-				zendeskResponse = new String(response.getContent(), "UTF-8");
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				LOG.log(Level.WARNING, e.toString(), e);
-				zendeskResponse = null;
-			}
-		}
-		// }}}
-		return zendeskResponse;
+		return response;
 	} // }}}
 
 	private String requestDataAsString(HTTPMethod requestMethod, URL cypherpunkURL, List<HTTPHeader> headers, String body) // {{{
