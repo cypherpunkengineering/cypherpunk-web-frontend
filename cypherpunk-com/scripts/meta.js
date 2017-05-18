@@ -195,19 +195,19 @@ const metaMap = {
   },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
-    description: '{{__BLOG_CONTENT__}}',
+    description: '{{__BLOG_DESCRIPTION__}}',
     url: '{{__BLOG_URL__}}',
     image: '{{__BLOG_IMAGE__}}'
   },
   'support-article.html': {
     title: '{{__SUPPORT_TITLE__}}',
-    description: '{{__SUPPORT_CONTENT__}}',
+    description: '{{__SUPPORT_DESCRIPTION__}}',
     url: '{{__SUPPORT_URL__}}',
     image: '{{__SUPPORT_IMAGE__}}'
   },
   'support-tutorial.html': {
     title: '{{__SUPPORT_TITLE__}}',
-    description: '{{__SUPPORT_CONTENT__}}',
+    description: '{{__SUPPORT_DESCRIPTION__}}',
     url: '{{__SUPPORT_URL__}}',
     image: '{{__SUPPORT_IMAGE__}}'
   }
