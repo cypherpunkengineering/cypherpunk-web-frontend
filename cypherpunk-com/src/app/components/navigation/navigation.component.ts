@@ -50,8 +50,8 @@ export class NavigationComponent {
 
     // detect os setup
     let os: string = platform.os.family;
-    if (os.indexOf('Android') > -1) { this.bannerModel = this.androidModel; }
-    else if (os.indexOf('iOS') > -1) { this.bannerModel = this.iosModel; }
+    if (os && os.indexOf('Android') > -1) { this.bannerModel = this.androidModel; }
+    else if (os && os.indexOf('iOS') > -1) { this.bannerModel = this.iosModel; }
   }
 
   getAccountType() {

@@ -11,6 +11,7 @@ export class DownloadBaseComponent {
     if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
     // detect os setup
     let os: string = platform.os.family;
+    os = os || '';
     if (os.indexOf('OS X') > -1) { router.navigate(['/download/mac']); }
     else if (os.indexOf('Window') > -1) { router.navigate(['/download/windows']); }
     else if (os.indexOf('Android') > -1) {

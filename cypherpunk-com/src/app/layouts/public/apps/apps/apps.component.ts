@@ -9,6 +9,7 @@ export class AppsComponent {
   constructor(private router: Router, private location: Location) {
     // detect os setup
     let os: string = platform.os.family;
+    os = os || '';
     if (os.indexOf('OS X') > -1) {
       router.navigate(['/apps/mac']);
       location.replaceState('/apps/mac');
