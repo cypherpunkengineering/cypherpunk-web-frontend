@@ -49,7 +49,9 @@ const routes = [
   { url: baseRoute + 'support', dirPath: baseDir + 'support.html' },
   { url: baseRoute + 'support/articles/test', dirPath: baseDir + '../support-article.html' },
   { url: baseRoute + 'support/tutorials/test', dirPath: baseDir + '../support-tutorial.html' },
-  { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' }
+  { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' },
+  { url: baseRoute + 'support/macos', dirPath: baseDir + 'support/macos.html' },
+  { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

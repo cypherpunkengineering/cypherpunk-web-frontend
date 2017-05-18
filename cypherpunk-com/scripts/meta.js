@@ -183,6 +183,16 @@ const metaMap = {
     title: 'Cypherpunk Privacy Support For Windows',
     description: 'Cypherpunk Privacy Support For Windows'
   },
+  'support:macos.html': {
+    url: 'https://cypherpunk.com/support/macos',
+    title: 'Cypherpunk Privacy Support For MacOS',
+    description: 'Cypherpunk Privacy Support For MacOS'
+  },
+  'support:linux.html': {
+    url: 'https://cypherpunk.com/support/linux',
+    title: 'Cypherpunk Privacy Support For Linux',
+    description: 'Cypherpunk Privacy Support For Linux'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_CONTENT__}}',

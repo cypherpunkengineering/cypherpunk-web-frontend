@@ -36,6 +36,8 @@ import { PublicResetModule } from './layouts/public/reset/reset.module';
 import { SupportHomeModule } from './layouts/public/support/home/support-home.module';
 import { SupportArticleModule } from './layouts/public/support/articles/support-article.module';
 import { SupportWindowsModule } from './layouts/public/support/windows/support-windows.module';
+import { SupportMacModule } from './layouts/public/support/mac/support-mac.module';
+import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -89,6 +91,8 @@ import { BackendService } from './services/backend.service';
     SupportHomeModule,
     SupportArticleModule,
     SupportWindowsModule,
+    SupportMacModule,
+    SupportLinuxModule,
 
     DashboardModule,
     BillingModule,
