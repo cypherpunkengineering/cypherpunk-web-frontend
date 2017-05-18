@@ -16,18 +16,17 @@
   }
   li {
     height: 50px;
-    padding: 10px 20px;
+    padding: 10px 10px;
     color: #8DFFFB;
     font-size: 16px;
     cursor: pointer;
     display: inline-block;
+    &:hover { color: #fff; }
 
     img {
       height: 100%;
       margin: 0 10px 0 0;
       vertical-align: middle;
-      &.hover { display: none; }
-      &.display { display: inline-block; }
     }
 
     &.active {
@@ -37,19 +36,15 @@
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }
-
-    &:hover { color: #fff; }
-    &:hover .hover { display: inline; }
-    &:hover .display { display: none; }
   }
 }
 
-.subnav {
+.content {
   width: 100%;
   text-align: center;
   padding: 60px 0;
 
-  .subnav-inner {
+  .content-inner {
     width: 100%;
     max-width: 1000px;
     margin: auto;
@@ -58,31 +53,25 @@
 
   .header { margin-bottom: 50px; }
 
-  .row {
+  .split {
     width: 100%;
-    max-width: 450px;
+    max-width: 1000px;
     overflow: auto;
-    margin: 0 auto 50px;
+    margin: 0 0 50px;
 
-    .cell {
-      width: 200px;
-      float: left;
-      margin-right: 50px;
-      &:last-child { margin-right: 0; }
+    img { padding: 0 10px; max-width: 100%; }
+    img.width { max-height: 550px; max-width: auto; width: auto; margin: 0 auto 50px; }
+  }
 
-      .cell-image {
-        position: relative;
-        margin: auto;
-        height: 115px;
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-          width: 148px;
-        }
-      }
+  .button-container {
+    padding: 0 10px;
+
+    .btn {
+      margin: 40px 0 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 450px;
+      &:hover { background-color: #27a5e2; }
     }
   }
 }
@@ -188,6 +177,11 @@
   }
 }
 
+@media (max-width: 1040px) {
+  .navigation li span { display: none; }
+  .navigation li img { margin: 0; }
+}
+
 @media (max-width: 1020px) {
   .features .features-inner {
     .row .image {
@@ -198,19 +192,8 @@
   }
 }
 
-@media (max-width: 1000px) {
-  .navigation li span { display: none; }
-  .navigation li img { margin: 0; }
-}
-
 @media (max-width: 710px) {
-  .subnav {
-    .row {
-      width: 100%;
-      .cell { width: 100%; margin-bottom: 60px; }
-      .cell:last-child { margin-bottom: 0px; }
-    }
-  }
+  .content .content-header { padding: 0 10px; }
 }
 
 @media (max-width: 400px) {
