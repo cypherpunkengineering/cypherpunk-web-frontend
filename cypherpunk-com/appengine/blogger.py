@@ -14,29 +14,43 @@ vendor.add('lib')
 from oauth2client import client
 from apiclient.discovery import build
 
+import HTMLParser
+
+import re
+
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 	extensions=['jinja2.ext.autoescape'],
-	autoescape=True)
+	autoescape=False)
 # [END imports]
+
+BLOGGER_API_KEY = 'AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs'
+BLOGGER_BLOG_ID = '4561014629041381755'
+BLOGGER_SUPPORT_ID = '2467816098254238300'
 
 # [START blog_post]
 class BlogPost(webapp2.RequestHandler):
 
 	def get(self, postId):
-		service = build('blogger', 'v3', developerKey='AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs')
+		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
 
 		posts = service.posts()
-		request = posts.get(blogId='4561014629041381755', postId=postId)
+		request = posts.get(blogId=BLOGGER_BLOG_ID, postId=postId)
 		post = request.execute()
+
+		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
+		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
+		description = re.sub(r'.*CypherpunkDescription: (.*)<.*', r'\1', unescapedContent, flags=re.DOTALL)
+		if '<' in description:
+			description = post['title']
 
 		template_values = {
 			'__BLOG_TITLE__': post['title'],
 			'__BLOG_DATE__': post['updated'],
-			'__BLOG_DESCRIPTION__': 'description goes here',
-			'__BLOG_CONTENT__': post['content'],
-			'__BLOG_URL__': post['url'],
-			'__BLOG_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
+			'__BLOG_DESCRIPTION__': description,
+			'__BLOG_CONTENT__': content,
+			'__BLOG_URL__': self.request.url,
+			'__BLOG_IMAGE__': 'https://' + self.request.host + '/assets/features/masthead@2x.png'
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('blog-article.html')
@@ -47,19 +61,25 @@ class BlogPost(webapp2.RequestHandler):
 class SupportArticle(webapp2.RequestHandler):
 
 	def get(self, postId):
-		service = build('blogger', 'v3', developerKey='AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs')
+		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
 
 		posts = service.posts()
-		request = posts.get(blogId='2467816098254238300', postId=postId)
+		request = posts.get(blogId=BLOGGER_SUPPORT_ID, postId=postId)
 		post = request.execute()
+
+		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
+		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
+		description = re.sub(r'.*CypherpunkDescription: (.*)<.*', r'\1', unescapedContent, flags=re.DOTALL)
+		if '<' in description:
+			description = post['title']
 
 		template_values = {
 			'__SUPPORT_TITLE__': post['title'],
 			'__SUPPORT_DATE__': post['updated'],
-			'__SUPPORT_DESCRIPTION__': 'description goes here',
-			'__SUPPORT_CONTENT__': post['content'],
-			'__SUPPORT_URL__': post['url'],
-			'__SUPPORT_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
+			'__SUPPORT_DESCRIPTION__': description,
+			'__SUPPORT_CONTENT__': content,
+			'__SUPPORT_URL__': self.request.url,
+			'__SUPPORT_IMAGE__': 'https://' + self.request.host + '/assets/features/masthead@2x.png'
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('support-article.html')
@@ -70,19 +90,25 @@ class SupportArticle(webapp2.RequestHandler):
 class SupportTutorial(webapp2.RequestHandler):
 
 	def get(self, postId):
-		service = build('blogger', 'v3', developerKey='AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs')
+		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
 
 		posts = service.posts()
-		request = posts.get(blogId='2467816098254238300', postId=postId)
+		request = posts.get(blogId=BLOGGER_SUPPORT_ID, postId=postId)
 		post = request.execute()
+
+		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
+		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
+		description = re.sub(r'.*CypherpunkDescription: (.*)<.*', r'\1', unescapedContent, flags=re.DOTALL)
+		if '<' in description:
+			description = post['title']
 
 		template_values = {
 			'__SUPPORT_TITLE__': post['title'],
 			'__SUPPORT_DATE__': post['updated'],
-			'__SUPPORT_DESCRIPTION__': 'description goes here',
-			'__SUPPORT_CONTENT__': post['content'],
-			'__SUPPORT_URL__': post['url'],
-			'__SUPPORT_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
+			'__SUPPORT_DESCRIPTION__': description,
+			'__SUPPORT_CONTENT__': content,
+			'__SUPPORT_URL__': self.request.url,
+			'__SUPPORT_IMAGE__': 'https://' + self.request.host + '/assets/features/masthead@2x.png'
 		}
 
 		template = JINJA_ENVIRONMENT.get_template('support-tutorial.html')
