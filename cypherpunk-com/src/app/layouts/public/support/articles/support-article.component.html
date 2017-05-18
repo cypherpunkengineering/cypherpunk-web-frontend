@@ -9,7 +9,13 @@
       <div class="article">
         <h1 class="article-header header">{{post.title}}</h1>
 
-        <div class="content" [innerHTML]=post.content></div>
+        <ul>
+          <li *ngFor="let link of pageLinks">
+            <a [routerLink]="baseRoute" [fragment]="link.hash">{{link.title}}</a>
+          </li>
+        </ul>
+
+        <div class="content" [innerHTML]="post.content"></div>
       </div>
     </div>
   </div>
