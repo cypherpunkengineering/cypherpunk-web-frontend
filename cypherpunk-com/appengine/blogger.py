@@ -33,6 +33,7 @@ class BlogPost(webapp2.RequestHandler):
 		template_values = {
 			'__BLOG_TITLE__': post['title'],
 			'__BLOG_DATE__': post['updated'],
+			'__BLOG_DESCRIPTION__': 'description goes here',
 			'__BLOG_CONTENT__': post['content'],
 			'__BLOG_URL__': post['url'],
 			'__BLOG_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
@@ -55,6 +56,7 @@ class SupportArticle(webapp2.RequestHandler):
 		template_values = {
 			'__SUPPORT_TITLE__': post['title'],
 			'__SUPPORT_DATE__': post['updated'],
+			'__SUPPORT_DESCRIPTION__': 'description goes here',
 			'__SUPPORT_CONTENT__': post['content'],
 			'__SUPPORT_URL__': post['url'],
 			'__SUPPORT_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
@@ -77,6 +79,7 @@ class SupportTutorial(webapp2.RequestHandler):
 		template_values = {
 			'__SUPPORT_TITLE__': post['title'],
 			'__SUPPORT_DATE__': post['updated'],
+			'__SUPPORT_DESCRIPTION__': 'description goes here',
 			'__SUPPORT_CONTENT__': post['content'],
 			'__SUPPORT_URL__': post['url'],
 			'__SUPPORT_IMAGE__': 'https://cypherpunk.com/assets/features/masthead@2x.png'
