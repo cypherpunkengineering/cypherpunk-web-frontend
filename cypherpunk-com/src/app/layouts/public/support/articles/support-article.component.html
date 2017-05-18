@@ -18,10 +18,27 @@
         </ul>
 
         <div class="content" [innerHTML]="post.content"></div>
+
+        <div class="to-top">
+          <a [routerLink]="baseRoute" fragment="top">Back to top</a>
+        </div>
       </div>
 
-      <div class="to-top">
-        <a [routerLink]="baseRoute" [fragment]="top">Back to top</a>
+      <div class="related">
+        <div class="pane">
+          <div class="pane-header">Related Articles</div>
+
+          <div class="pane-body">
+            <ul>
+              <li><a href="#">Related Article 1</a></li>
+              <li><a href="#">Related Article 2</a></li>
+              <li><a href="#">Related Article 3</a></li>
+              <li><a href="#">Related Article 4</a></li>
+            </ul>
+          </div>
+
+          <div class="pane-footer"></div>
+        </div>
       </div>
     </div>
   </div>

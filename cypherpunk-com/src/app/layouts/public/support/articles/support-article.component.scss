@@ -1,10 +1,4 @@
 .wrapper {
-  .masthead .masthead-header {
-    margin: 20px auto 0;
-    padding: 0 0 50px;
-    span { color: #7972c4; }
-  }
-
   .page {
     width: 100%;
     padding: 50px 0;
@@ -14,19 +8,65 @@
       margin: auto;
       overflow: auto;
       max-width: 1000px;
+    }
 
-      .article {
-        width: 100%;
-        min-height: 20px;
+    .article {
+      width: 70%;
+      padding: 0 10px 0;
+      min-height: 20px;
+      float: left;
 
-        .article-header { text-align: left; }
-        ul { list-style-type: none; }
-        .content { padding: 0 0 20px; }
-      }
+      .article-header { margin-top: 0; text-align: left; }
+
+      ul { list-style-type: none; }
+
+      .content { padding: 0 0 20px; }
 
       .to-top {
         text-align: center;
         padding: 20px 0;
+      }
+    }
+
+    .related {
+      width: 30%;
+      float: left;
+      padding: 0 10px 0;
+
+      .pane {
+        width: 100%;
+        color: #fff;
+        border: 2px solid #163138;
+        border-radius: 5px;
+
+        .pane-header {
+          padding: 10px;
+          font-size: 22px;
+          text-align: center;
+          background-color: #163138;
+        }
+
+        .pane-body {
+          font-size: 14px;
+          padding: 10px;
+          color: #163138;
+          background-color: #efeaea;
+
+          ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            li {
+              padding: 0 0 5px;
+              a {
+                cursor: pointer;
+                text-decoration: none;
+                color: #163138;
+                &:hover { color: #24515d; }
+              }
+            }
+          }
+        }
       }
     }
   }
