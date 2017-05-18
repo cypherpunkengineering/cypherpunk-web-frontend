@@ -18,11 +18,15 @@
       .article {
         width: 100%;
         min-height: 20px;
-        float: left;
-
-        ul { list-style-type: none; }
 
         .article-header { text-align: left; }
+        ul { list-style-type: none; }
+        .content { padding: 0 0 20px; }
+      }
+
+      .to-top {
+        text-align: center;
+        padding: 20px 0;
       }
     }
   }
