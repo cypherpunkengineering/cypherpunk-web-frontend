@@ -1,37 +1,34 @@
 .masthead {
   border-bottom: 10px solid #efeaea;
   .masthead-header { margin: 40px auto 0; }
-  .masthead-image {
+
+  .masthead-banner {
     position: relative;
-    top: 30px;
-    width: 710px;
-    height: 273px;
-    margin: auto;
-    text-align: center;
     overflow: hidden;
 
-    img {
-      position: absolute;
-      height: 100%;
+    .masthead-image {
+      width: 1000px;
+      position: relative;
       left: 50%;
-      margin-left: -360px;
+      transform: translateX(-50%);
+      img { width: 100%; }
     }
+  }
+  .masthead-button-container {
+    position: relative;
+    height: 30px;
+    width: 230px;
+    margin: auto;
+    a { color: #fff; text-decoration: none; }
 
-    .masthead-image-text {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      color: #fff;
-      font-size: 24px;
-      font-weight: bold;
+    .masthead-button {
+      position: relative;
+      top: -20px;
       width: 230px;
-      margin: auto;
-      height: 70px;
-      padding-top: 18px;
+      color: #fff;
+      padding: 15px;
+      margin: 0;
       cursor: pointer;
-      z-index: 5;
-      a { color: #fff; text-decoration: none; }
     }
   }
 }
@@ -45,7 +42,7 @@
   a { text-decoration: none; }
 
   .version {
-    padding: 50px 0 10px;
+    padding: 20px 0 10px;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
@@ -69,119 +66,71 @@
   }
 }
 
-.choices {
-  width: 100%;
+.platforms {
   background-color: #efeaea;
   padding: 50px 0;
 
-  .inner { width: 100%; max-width: 1000px; margin: auto; }
+  .platforms-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
 
-  .row {
-    overflow: auto;
+  .platform {
+    width: 120px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 15px;
+    padding: 20px 10px;
+    border-radius: 10px;
+    cursor: pointer;
 
-    .row-header {
-      font-size: 23px;
-      text-align: center;
-      color: #ff7756;
-      margin: 40px 0;
+    &:hover {
+      background-color: #ff7857;
+      .display { display: none; }
+      .hover { display: block; }
     }
 
-    .half { float:left; width: 50%; }
-
-    .platform {
-      width: 250px;
-      height: 350px;
-      display: inline-block;
-      vertical-align: middle;
-      border: 2px solid #cccbcb;
-      text-align: center;
-      margin-right: -5px;
-
-      &.long { width: 500px; }
-
-      &:hover .normal { display: none; }
-      .normal {
-        padding: 15px;
-        display: block;
+    .display {
+      .image {
+        height: 100px;
+        padding: 10px 0 0;
+        img { height: 80px; }
+        img.width { width: 100%; height: auto; }
       }
 
-      &:hover .hover { display: block; }
-      .hover {
-        z-index: 5;
-        width: 100%;
-        height: 100%;
-        padding: 80px 15px 15px;
-        display: none;
-        background-color: #fff;
+      .title {
+        padding: 10px 0 0;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
 
-        a { text-decoration: none; }
+    .hover {
+      display: none;
 
-        .platform-download {
-          width: 150px;
-          height: 40px;
-          line-height: 40px;
-          background-color: #5e5a5a;
-          border-radius: 5px;
+      a { text-decoration: none; }
+
+      .download-icon {
+        height: 100px;
+        img { height: 40px; }
+        .type {
+          font-size: 14px;
           color: #fff;
-          margin: 30px auto 0;
-          text-align: center;
-          font-size: 20px;
-          cursor: pointer;
-          &:hover { background-color: #787373; }
-        }
-
-        .platform-learn {
-          width: 150px;
-          height: 40px;
-          line-height: 40px;
-          background-color: #ff7756;
-          border-radius: 5px;
-          color: #fff;
-          margin: 20px auto 0;
-          text-align: center;
-          font-size: 20px;
-          cursor: pointer;
-          &:hover { background-color: #ff8c71; }
-        }
-
-        .platform-apk {
-          width: 150px;
-          height: 40px;
-          line-height: 40px;
-          background-color: #ff7756;
-          border-radius: 5px;
-          color: #fff;
-          margin: 10px auto 0;
-          text-align: center;
-          font-size: 18px;
-          cursor: pointer;
-          &:hover { background-color: #ff8c71; }
+          padding: 10px 0 0;
         }
       }
 
-      .platform-title {
-        font-size: 20px;
-        font-weight: bold;
-        padding-bottom: 5px;
-      }
-
-      .plaform-version { padding-bottom: 30px; }
-
-      .image-container {
-        width: 50%;
-        margin: 30px auto;
-        img { width: 100%; }
-      }
-      .ios-badge {
-        margin: 25px 0 0;
-        img { width: 150px; }
-      }
-      .android-badge {
-        margin: 10px 0 0;
-        img { width: 170px; }
+      .link {
+        color: #fff;
+        font-size: 18px;
+        padding: 10px 0 0;
+        text-align: center;
       }
     }
   }
+
 }
 
 .different {
@@ -213,34 +162,6 @@
   margin-bottom: 50px;
 }
 .btn.blue:hover { background-color: #27a5e2; }
-
-.modal .modal-content .modal-footer .btn { margin: 0; }
-
-.desktop { display: inline-block; }
-.mobile { display: none; }
-
-@media (max-width: 1030px) {
-  .choices .row .platform {
-    display: block;
-    margin: 0 auto 30px;
-  }
-
-  .mobile { display: block; }
-  .desktop { display: none; }
-  .choices .row .half:first-child { width: 100%; }
-}
-
-@media (max-width: 715px) {
-  .masthead .masthead-image { width: auto; }
-}
-
-@media (max-width: 700px) {
-  .content { padding: 0 10px; }
-}
-
-@media (max-width: 510px) {
-  .choices .row .platform.long { width: 90%; }
-}
 
 @media (max-width: 375px) {
   .btn { width: 280px; }

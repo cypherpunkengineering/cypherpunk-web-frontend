@@ -3,10 +3,15 @@
 
   <h1 class="masthead-header header white">Cypherpunk Privacy for {{headerBuild.name}}</h1>
 
-  <div class="masthead-image">
-    <img src="/assets/download/header-illustration@2x.png" srcset="/assets/download/header-illustration.png 500w, /assets/download/header-illustration@2x.png" alt="Download">
+  <div class="masthead-banner">
+    <div class="masthead-image">
+      <img src="/assets/download/header-illustration@2x.png" srcset="/assets/download/header-illustration.png 500w, /assets/download/header-illustration@2x.png" alt="Download">
+    </div>
+  </div>
+
+  <div class="masthead-button-container">
     <a href="{{downloadBuildLink}}" (click)="startingDownload()" target="_top">
-      <div class="masthead-image-text">
+      <div class="btn orange masthead-button">
         Download Now
       </div>
     </a>
@@ -29,320 +34,216 @@
   </a>
 </div>
 
-<div class="choices">
-  <div class="inner">
-    <div class="row">
-      <div class="row-header">
-        Also available on other platforms:
+<div class="platforms">
+  <div class="platforms-inner">
+
+    <div class="platform" *ngIf="headerBuild.name !== 'Windows'">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/windows@2x.png" srcset="/assets/download/windows.png 500w, /assets/download/windows@2x.png 1000w" alt="Windows">
+        </div>
+
+        <div class="title">Windows</div>
+      </div>
+
+      <div class="hover">
+        <a routerLink="/download/windows" target="_top">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Windows">
+            <div class="type">Windows 7+ <br>64-bit</div>
+          </div>
+
+          <div class="link">Download</div>
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="half">
-        <div class="row-header">Desktop</div>
+    <div class="platform" *ngIf="headerBuild.name !== 'Mac'">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/mac@2x.png" srcset="/assets/download/mac.png 500w, /assets/download/mac@2x.png 1000w" alt="MacOS">
+        </div>
+
+        <div class="title">MacOS</div>
       </div>
-      <div class="half desktop">
-        <div class="row-header">Mobile</div>
+
+      <div class="hover">
+        <a routerLink="/download/mac" target="_top">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Mac">
+            <div class="type"><br>MacOS</div>
+          </div>
+
+          <div class="link">Download</div>
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="platform" *ngIf="headerBuild.name !== 'Windows'">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/windows@2x.png" srcset="/assets/download/windows.png 500w, /assets/download/windows@2x.png 1000w" alt="Windows">
-          </div>
-
-          <div class="platform-title">Windows</div>
-          <div class="platform-version">Windows 7 64-bit and later</div>
+    <div class="platform" *ngIf="headerBuild.name !== 'Linux'">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/linux@2x.png" srcset="/assets/download/linux.png 500w, /assets/download/linux@2x.png 1000w" alt="Linux">
         </div>
 
-        <div class="hover">
-          <div class="platform-title">Windows</div>
-          <div class="platform-version">Windows 7 64-bit and later</div>
-
-          <a routerLink="/download/windows" target="_top">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/windows">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+        <div class="title">Linux</div>
       </div>
 
-      <div class="platform" *ngIf="headerBuild.name !== 'Mac'">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/mac@2x.png" srcset="/assets/download/mac.png 500w, /assets/download/mac@2x.png 1000w" alt="MacOS">
+      <div class="hover">
+        <a routerLink="/download/linux" target="_top">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Linux">
+            <div class="type">Debian x86_64</div>
           </div>
 
-          <div class="platform-title">MacOS</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">MacOS</div>
-
-          <a routerLink="/download/mac" target="_top">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/mac">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="platform" *ngIf="headerBuild.name !== 'Linux'">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/linux@2x.png" srcset="/assets/download/linux.png 500w, /assets/download/linux@2x.png 1000w" alt="Linux">
-          </div>
-
-          <div class="platform-title">Linux</div>
-          <div class="platform-version">Debian x86_64</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">Linux</div>
-          <div class="platform-version">Debian x86_64</div>
-
-          <a routerLink="/download/linux" target="_top">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/linux">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="row mobile">
-        <div class="row-header">Mobile</div>
-      </div>
-
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/ios@2x.png" srcset="/assets/download/ios.png 500w, /assets/download/ios@2x.png" alt="iOS">
-          </div>
-
-          <div class="platform-title">iOS</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">iOS</div>
-
-          <a href="{{builds.ios.link}}">
-            <div class="ios-badge">
-              <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
-            </div>
-          </a>
-
-          <a routerLink="/apps/ios">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/android@2x.png" srcset="/assets/download/android.png 500w, /assets/download/android@2x.png 1000w" alt="Android">
-          </div>
-
-          <div class="platform-title">Android</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">Android</div>
-
-          <a href="{{builds.android.link}}">
-            <div class="android-badge">
-              <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
-            </div>
-          </a>
-
-          <a href="{{apkUrl}}" target="_top">
-            <div class="platform-apk">Download APK</div>
-          </a>
-
-          <a routerLink="/apps/android">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+          <div class="link">Download</div>
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="row-header">Browsers</div>
-    </div>
-
-    <div class="row">
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/chrome@2x.png" srcset="/assets/download/chrome.png 500w, /assets/download/chrome@2x.png 1000w" alt="Chrome App Store">
-          </div>
-
-          <div class="platform-title">Chrome</div>
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/ios@2x.png" srcset="/assets/download/ios.png 500w, /assets/download/ios@2x.png" alt="iOS">
         </div>
 
-        <div class="hover">
-          <div class="platform-title">Chrome</div>
-
-          <a href="{{builds.chrome.link}}">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/browser">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+        <div class="title">iOS</div>
       </div>
 
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/firefox@2x.png" srcset="/assets/download/firefox.png 500w, /assets/download/firefox@2x.png 1000w" alt="Firefox">
+      <div class="hover">
+        <a href="{{builds.ios.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download iOS">
+            <div class="type"><br>iOS</div>
           </div>
 
-          <div class="platform-title">Firefox</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">Firefox</div>
-
-          <a href="{{builds.firefox.link}}">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/browser">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/opera@2x.png" srcset="/assets/download/opera.png 500w, /assets/download/opera@2x.png 1000w" alt="Opera">
-          </div>
-
-          <div class="platform-title">Opera</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">Opera</div>
-
-          <a href="{{builds.chrome.link}}">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/browser">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/vivaldi@2x.png" srcset="/assets/download/vivaldi.png 500w, /assets/download/vivaldi@2x.png 1000w" alt="Vivaldi">
-          </div>
-
-          <div class="platform-title">Vivaldi</div>
-        </div>
-
-        <div class="hover">
-          <div class="platform-title">Vivaldi</div>
-
-          <a href="{{builds.chrome.link}}">
-            <div class="platform-download">Download</div>
-          </a>
-
-          <a routerLink="/apps/browser">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+          <div class="link">Download</div>
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="row-header">Routers</div>
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/android@2x.png" srcset="/assets/download/android.png 500w, /assets/download/android@2x.png" alt="Android">
+        </div>
+
+        <div class="title">Android</div>
+      </div>
+
+      <div class="hover">
+        <a href="{{builds.android.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Android">
+            <div class="type"><br>Android</div>
+          </div>
+
+          <div class="link">Download</div>
+        </a>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/router@2x.png" srcset="/assets/download/router.png 500w, /assets/download/router@2x.png 1000w" alt="DD-WRT">
-          </div>
-
-          <div class="platform-title">DD-WRT</div>
-          <div class="platform-version">&nbsp;</div>
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/chrome@2x.png" srcset="/assets/download/chrome.png 500w, /assets/download/chrome@2x.png" alt="Chrome App Store">
         </div>
 
-        <div class="hover">
-          <div class="platform-title">DD-WRT</div>
-          <div class="platform-version">&nbsp;</div>
-
-          <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
-            <div class="platform-download">Setup</div>
-          </a>
-
-          <a routerLink="/apps/routers">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+        <div class="title">Chrome</div>
       </div>
 
-      <div class="platform">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/router@2x.png" srcset="/assets/download/router.png 500w, /assets/download/router@2x.png 1000w" alt="Tomato">
+      <div class="hover">
+        <a href="{{builds.chrome.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Chrome">
+            <div class="type"><br>Chrome</div>
           </div>
 
-          <div class="platform-title">Tomato</div>
-          <div class="platform-version">&nbsp;</div>
+          <div class="link">Download</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/firefox@2x.png" srcset="/assets/download/firefox.png 500w, /assets/download/firefox@2x.png" alt="Firefox">
         </div>
 
-        <div class="hover">
-          <div class="platform-title">Tomato</div>
-          <div class="platform-version">&nbsp;</div>
-
-          <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
-            <div class="platform-download">Setup</div>
-          </a>
-
-          <a routerLink="/apps/routers">
-            <div class="platform-learn">Learn More</div>
-          </a>
-        </div>
+        <div class="title">Firefox</div>
       </div>
 
-      <div class="platform long">
-        <div class="normal">
-          <div class="image-container">
-            <img src="/assets/download/router-big@2x.png" srcset="/assets/download/router-big.png 500w, /assets/download/router-big@2x.png 1000w" alt="VPN Routers">
+      <div class="hover">
+        <a href="{{builds.firefox.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Firefox">
+            <div class="type"><br>Firefox</div>
           </div>
 
-          <div class="platform-title">VPN Routers</div>
-          <div class="platform-version">&nbsp;</div>
+          <div class="link">Download</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/opera@2x.png" srcset="/assets/download/opera.png 500w, /assets/download/opera@2x.png" alt="Opera">
         </div>
 
-        <div class="hover">
-          <div class="platform-title">VPN Routers</div>
-          <div class="platform-version">&nbsp;</div>
+        <div class="title">Opera</div>
+      </div>
 
-          <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
-            <div class="platform-download">Setup</div>
-          </a>
+      <div class="hover">
+        <a href="{{builds.chrome.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Opera">
+            <div class="type"><br>Opera</div>
+          </div>
 
-          <a routerLink="/apps/routers">
-            <div class="platform-learn">Learn More</div>
-          </a>
+          <div class="link">Download</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img src="/assets/download/vivaldi@2x.png" srcset="/assets/download/vivaldi.png 500w, /assets/download/vivaldi@2x.png" alt="Vivaldi">
         </div>
+
+        <div class="title">Vivaldi</div>
+      </div>
+
+      <div class="hover">
+        <a href="{{builds.chrome.link}}">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Vivaldi">
+            <div class="type"><br>Vivaldi</div>
+          </div>
+
+          <div class="link">Download</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="platform">
+      <div class="display">
+        <div class="image">
+          <img class="width" src="/assets/download/router@2x.png" srcset="/assets/download/router.png 500w, /assets/download/router@2x.png" alt="Router">
+        </div>
+
+        <div class="title">Router</div>
+      </div>
+
+      <div class="hover">
+        <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
+          <div class="download-icon">
+            <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Setup Guide for Router">
+            <div class="type"><br>Routers</div>
+          </div>
+
+          <div class="link">Setup</div>
+        </a>
       </div>
     </div>
   </div>
