@@ -42,13 +42,9 @@
 
   .masthead-banner {
     position: relative;
-    overflow: hidden;
 
     .masthead-image {
-      width: 1000px;
       position: relative;
-      left: 50%;
-      transform: translateX(-50%);
       img { width: 100%; }
     }
   }
@@ -127,8 +123,6 @@
   height: 60px;
 }
 
-.mobile { display: none; }
-
 @media (max-width: 1050px) {
   .alternate {
     &.left .image, &.right .image {
@@ -144,6 +138,10 @@
     }
     &.last .text { padding-bottom: 40px; }
   }
+}
+
+@media (max-width: 850px) {
+  .cta-container .call-to-action { top: -10px; }
 }
 
 @media (max-width: 375px) {
