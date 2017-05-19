@@ -11,7 +11,7 @@
       <div class="article">
         <h1 class="article-header header">{{post.title}}</h1>
 
-        <ul>
+        <ul *ngIf="pageLinks.length > 1">
           <li *ngFor="let link of pageLinks">
             <a [routerLink]="baseRoute" [fragment]="link.hash">{{link.title}}</a>
           </li>
