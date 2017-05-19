@@ -17,6 +17,7 @@ import { StripeCCFormComponent } from '../forms/stripe-cc-form/stripe-cc-form.co
 import { AccountCreationFormComponent } from '../forms/account-creation-form/account-creation-form.component';
 import { PaymentSelectionComponent } from '../payment/payment-selection/payment-selection.component';
 import { CCNumberPipe } from '../../pipes/cc-number.pipe';
+import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 import { ContactFromComponent } from '../contact-form/contact-form.component';
 
 const MODULES = [
@@ -29,7 +30,8 @@ const MODULES = [
 
 const PIPES = [
   // put pipes here
-  CCNumberPipe
+  CCNumberPipe,
+  SafeHtmlPipe
 ];
 
 const COMPONENTS = [
