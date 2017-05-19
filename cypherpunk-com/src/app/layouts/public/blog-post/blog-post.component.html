@@ -40,7 +40,7 @@
         <div class="article-header">{{post.title}}</div>
         <div class="article-timestamp">{{ postDate() }}</div>
 
-        <div class="content" [innerHTML]=post.content></div>
+        <div class="blog content" [innerHTML]=post.content></div>
 
         <div class="cta">
           <a [routerLink]="['/signup', img.token]">
