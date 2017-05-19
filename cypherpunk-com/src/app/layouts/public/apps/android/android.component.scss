@@ -168,11 +168,6 @@
   }
 }
 
-@media (max-width: 1040px) {
-  .navigation li span { display: none; }
-  .navigation li img { margin: 0; }
-}
-
 @media (max-width: 1020px) {
   .features .features-inner {
     .row .image {
@@ -181,6 +176,11 @@
     }
     .row .text { width: 100%; text-align: center; padding: 20px 10px; }
   }
+}
+
+@media (max-width: 845px) {
+  .navigation li span { display: none; }
+  .navigation li img { margin: 0; }
 }
 
 @media (max-width: 710px) {
