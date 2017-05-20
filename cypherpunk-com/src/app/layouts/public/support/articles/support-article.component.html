@@ -17,7 +17,8 @@
           </li>
         </ul>
 
-        <div #support></div>
+        <!-- <div #support></div> -->
+        <div class="support content" [innerHTML]="post.content | safeHtml"></div>
 
         <div class="to-top">
           <a [routerLink]="baseRoute" fragment="top">Back to top</a>

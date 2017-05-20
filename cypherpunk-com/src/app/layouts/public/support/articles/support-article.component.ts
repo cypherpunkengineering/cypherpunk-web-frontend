@@ -11,7 +11,7 @@ import { Component, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgMod
   styleUrls: ['./support-article.component.css']
 })
 export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
-  @ViewChild('support', { read: ViewContainerRef }) support: ViewContainerRef;
+  // @ViewChild('support', { read: ViewContainerRef }) support: ViewContainerRef;
   contentLoaded: boolean = false;
   pageLinks = [];
   baseRoute: String;
@@ -40,14 +40,17 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     if (!id) { return this.router.navigate(['/']); }
     else {
       if (isBrowser) {
+        console.log('in browser');
         this.backend.supportPost(id)
         .then((data) => {
-          data.content = data.content.replace(/__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g, '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>');
+          // data.content = data.content.replace(/__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g, '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>');
           this.post = data;
           this.document.title = data.title;
-          this.addComponent(data.content);
+          console.log(this.post);
+          // this.addComponent(data.content);
         })
         .catch((err) => {
+          console.log(err);
           this.router.navigate(['/support']);
         });
       }
@@ -87,19 +90,26 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   }
 
   private addComponent(template: string) {
+    console.log('creating component');
     @Component({template: '<div class="support content">' + template + '</div>'})
     class TemplateComponent {
       componentLocation = { hostname: '', display: true };
     }
 
+    console.log('creating module');
+
     @NgModule({imports: [SharedModule], declarations: [TemplateComponent]})
     class TemplateModule {}
 
+
+    console.log('compiling');
     const mod = this.compiler.compileModuleAndAllComponentsSync(TemplateModule);
+    console.log('factorizing');
     const factory = mod.componentFactories.find((comp) =>
       comp.componentType === TemplateComponent
     );
-    this.support.createComponent(factory);
+    console.log('creating component');
+    // this.support.createComponent(factory);
   }
 
 }
