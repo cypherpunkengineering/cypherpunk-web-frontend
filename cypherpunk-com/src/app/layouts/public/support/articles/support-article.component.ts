@@ -3,13 +3,15 @@ import { isBrowser } from 'angular2-universal';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../../../services/backend.service';
-import { Component, Inject, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { SharedModule } from '../../../../components/shared/shared.module';
+import { Component, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   templateUrl: './support-article.component.html',
   styleUrls: ['./support-article.component.css']
 })
 export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
+  @ViewChild('support', { read: ViewContainerRef }) support: ViewContainerRef;
   contentLoaded: boolean = false;
   pageLinks = [];
   baseRoute: String;
@@ -22,7 +24,9 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     images: [ { url: '' } ]
   };
 
+
   constructor(
+    private compiler: Compiler,
     private router: Router,
     private location: Location,
     private route: ActivatedRoute,
@@ -40,6 +44,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
       .then((data) => {
         this.post = data;
         this.document.title = data.title;
+        this.addComponent(data.content);
       })
       .catch((err) => {
         this.router.navigate(['/support']);
@@ -77,6 +82,20 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
 
   ngOnDestroy() {
     this.document.title = 'Cypherpunk Privacy | Online Privacy &amp; Freedom Made Easy';
+  }
+
+  private addComponent(template: string) {
+    @Component({template: '<div class="support content">' + template + '</div>'})
+    class TemplateComponent {}
+
+    @NgModule({imports: [SharedModule], declarations: [TemplateComponent]})
+    class TemplateModule {}
+
+    const mod = this.compiler.compileModuleAndAllComponentsSync(TemplateModule);
+    const factory = mod.componentFactories.find((comp) =>
+      comp.componentType === TemplateComponent
+    );
+    this.support.createComponent(factory);
   }
 
 }
