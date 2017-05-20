@@ -73,5 +73,7 @@
 }
 
 @media (max-width: 1050px) {
-  .wrapper .page .page-inner .article { width: 100%; padding: 0 20px 50px; }
+  .wrapper .page .page-inner { text-align: center; }
+  .wrapper .page .page-inner .article { width: 100%; padding: 0 20px 50px; text-align: left; }
+  .wrapper .page .page-inner .related { width: 300px; float: none; display: inline-block; text-align: left; }
 }
