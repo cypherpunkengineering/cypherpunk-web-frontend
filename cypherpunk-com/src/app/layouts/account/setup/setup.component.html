@@ -36,15 +36,7 @@
     </div>
 
     <div class="location-select-container">
-      <label for="locations">Please choose a location: </label>
-      <br>
-      <select name="locations" id="ov-locations" [(ngModel)]="countrySelect" (ngModelChange)="updateProfile()">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>
+      <app-setup-hostname [(location)]="openvpnLocation" (update)="updateProfile()"></app-setup-hostname>
     </div>
 
     <div>
@@ -60,7 +52,7 @@
     </div>
 
     <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
+      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
         Download
       </button>
     </div>
@@ -85,7 +77,7 @@
     </div>
 
     <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !countrySelect">
+      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
         Download
       </button>
     </div>
@@ -101,16 +93,7 @@
       <strong>Password: </strong><br>
       <pre>{{user.privacy.password}}</pre>
       <br><br>
-      <strong>Hostname for </strong>
-      <select name="locations" id="ov-locations" [(ngModel)]="ipsecSelect">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>:
-      <br>
-      {{ipsecSelect}}<br>
+      <app-setup-hostname [(location)]="ipsecLocation" (update)="updateProfile()"></app-setup-hostname>
     </div>
   </div>
 
@@ -124,16 +107,7 @@
       <strong>Password: </strong><br>
       <pre>{{user.privacy.password}}</pre>
       <br><br>
-      <strong>Hostname for </strong>
-      <select name="locations" id="ov-locations" [(ngModel)]="ikeSelect">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>:
-      <br>
-      {{ikeSelect}}<br>
+      <app-setup-hostname [(location)]="ikeLocation" (update)="updateProfile()"></app-setup-hostname>
     </div>
   </div>
 
@@ -147,16 +121,7 @@
       <strong>Password: </strong><br>
       <pre>{{user.privacy.password}}</pre>
       <br><br>
-      <strong>Hostname for </strong>
-      <select name="locations" id="ov-locations" [(ngModel)]="httpSelect">
-        <optgroup *ngFor="let region of regionArray" [label]="region.name">
-          <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
-            {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>
-          </option>
-        </optgroup>
-      </select>:
-      <br>
-      {{httpSelect}}<br><br>
+      <app-setup-hostname [(location)]="httpLocation" (update)="updateProfile()"></app-setup-hostname>
 
       <span>
         <strong>Ports to use:</strong> <br>
@@ -164,7 +129,7 @@
         https:// -> 3128<br>
         socks5:// -> 1080<br>
         cypherplay (non-tls) -> 4<br>
-        cypherplay (tls) -> 516 
+        cypherplay (tls) -> 516
       </span>
     </div>
   </div>

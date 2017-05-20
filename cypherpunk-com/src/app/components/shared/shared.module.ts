@@ -19,6 +19,7 @@ import { PaymentSelectionComponent } from '../payment/payment-selection/payment-
 import { CCNumberPipe } from '../../pipes/cc-number.pipe';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 import { ContactFromComponent } from '../contact-form/contact-form.component';
+import { SetupHostnameComponent } from '../setup/setup-hostname/setup-hostname.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -49,7 +50,8 @@ const COMPONENTS = [
   StripeCCFormComponent,
   AccountCreationFormComponent,
   PaymentSelectionComponent,
-  ContactFromComponent
+  ContactFromComponent,
+  SetupHostnameComponent
 ];
 
 const PROVIDERS = [];

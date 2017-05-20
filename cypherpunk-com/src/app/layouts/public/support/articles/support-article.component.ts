@@ -24,7 +24,6 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     images: [ { url: '' } ]
   };
 
-
   constructor(
     private compiler: Compiler,
     private router: Router,
@@ -40,15 +39,18 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     let id = this.route.snapshot.params['id'];
     if (!id) { return this.router.navigate(['/']); }
     else {
-      this.backend.supportPost(id)
-      .then((data) => {
-        this.post = data;
-        this.document.title = data.title;
-        this.addComponent(data.content);
-      })
-      .catch((err) => {
-        this.router.navigate(['/support']);
-      });
+      if (isBrowser) {
+        this.backend.supportPost(id)
+        .then((data) => {
+          data.content = data.content.replace(/__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g, '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>');
+          this.post = data;
+          this.document.title = data.title;
+          this.addComponent(data.content);
+        })
+        .catch((err) => {
+          this.router.navigate(['/support']);
+        });
+      }
     }
   }
 
@@ -86,7 +88,9 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
 
   private addComponent(template: string) {
     @Component({template: '<div class="support content">' + template + '</div>'})
-    class TemplateComponent {}
+    class TemplateComponent {
+      componentLocation = { hostname: '', display: true };
+    }
 
     @NgModule({imports: [SharedModule], declarations: [TemplateComponent]})
     class TemplateModule {}

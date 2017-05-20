@@ -21,15 +21,15 @@ export class SetupComponent implements OnInit {
   useCypherplay: boolean = false;
   splitTextFields: boolean = false;
 
-  countrySelect: string = '';
   profile: string = '';
   profileCert: string = '';
   profilePartial: string = '';
   downloadButtonEnabled = false;
 
-  ipsecSelect: string = '';
-  ikeSelect: string = '';
-  httpSelect: string = '';
+  openvpnLocation = { hostname: '', display: false };
+  ipsecLocation = { hostname: '', display: true };
+  ikeLocation = { hostname: '', display: true };
+  httpLocation = { hostname: '', display: true };
 
   constructor(
     private router: Router,
@@ -83,17 +83,17 @@ export class SetupComponent implements OnInit {
           let location = locations[key];
           let region = this.findRegion(location.region);
           if (location.default && location.ovDefault.length) {
-            this.countrySelect = location.ipsecHostname;
-            this.ipsecSelect = location.ipsecHostname;
-            this.ikeSelect = location.ipsecHostname;
-            this.httpSelect = location.ipsecHostname;
+            this.openvpnLocation.hostname = location.ipsecHostname;
+            this.ipsecLocation.hostname = location.ipsecHostname;
+            this.ikeLocation.hostname = location.ipsecHostname;
+            this.httpLocation.hostname = location.ipsecHostname;
           }
           else if (location.default && !location.ovDefault.length) {
             let secondary = locations['newjersey'];
-            this.countrySelect = secondary.ipsecHostname;
-            this.ipsecSelect = secondary.ipsecHostname;
-            this.ikeSelect = secondary.ipsecHostname;
-            this.httpSelect = secondary.ipsecHostname;
+            this.openvpnLocation.hostname = secondary.ipsecHostname;
+            this.ipsecLocation.hostname = secondary.ipsecHostname;
+            this.ikeLocation.hostname = secondary.ipsecHostname;
+            this.httpLocation.hostname = secondary.ipsecHostname;
           }
           region.countries.push(location);
         });
@@ -131,7 +131,7 @@ export class SetupComponent implements OnInit {
   }
 
   generateProfile() {
-    let hostname = this.countrySelect;
+    let hostname = this.openvpnLocation.hostname;
     let partial = [
       'client',
       'dev tun',
@@ -255,7 +255,7 @@ export class SetupComponent implements OnInit {
     this.downloadButtonEnabled = false;
     profile = this.profile;
 
-    let hostname = this.countrySelect;
+    let hostname = this.openvpnLocation.hostname;
     let filename = hostname + '.conf.ovpn';
 
     let blob = new Blob([profile], {type: 'text/text'});
