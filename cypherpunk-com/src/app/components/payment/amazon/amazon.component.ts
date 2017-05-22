@@ -1,4 +1,5 @@
-import { isBrowser } from 'angular2-universal';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 
 @Component({
@@ -15,11 +16,14 @@ export class AmazonComponent {
 
   amazonWallet: any;
   amazonRecurring: any;
-  amazonHide: boolean = false;
+  amazonHide = false;
 
-  constructor(private zone: NgZone) {
+  constructor(
+    private zone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     // load amazon script
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       if (!document.getElementById('amazon-init')) {
         let amazonInit = document.createElement('script');
         amazonInit.setAttribute('id', 'amazon-init');

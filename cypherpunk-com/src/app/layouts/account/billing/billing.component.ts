@@ -1,8 +1,8 @@
-import { isBrowser } from 'angular2-universal';
-import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { AuthGuard } from '../../../services/auth-guard.service';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 @Component({
   templateUrl: './billing.component.html',
@@ -53,13 +53,14 @@ export class BillingComponent {
     private router: Router,
     private authGuard: AuthGuard,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Billing | Cypherpunk Privacy';
 
     // check user account
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)

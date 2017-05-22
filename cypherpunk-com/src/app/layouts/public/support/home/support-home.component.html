@@ -185,7 +185,7 @@
       <div class="header green">Recent Articles</div>
 
       <div class="articles">
-        <template ngFor let-post [ngForOf]="posts" let-i="index">
+        <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
           <div class="half">
             <a [routerLink]="['/support/post', post.id]">
             <div class="image">
@@ -200,7 +200,7 @@
               <div class="date">{{ post.published | date: "MM/dd/yyyy" }}</div>
             </div>
           </div>
-        </template>
+        </ng-template>
       </div>
     </div>
   </div>

@@ -1,22 +1,23 @@
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './recover.component.html',
   styleUrls: ['./recover.component.css']
 })
 export class RecoverComponent implements AfterViewInit {
-  email: string = '';
-  recoverButtonDisabled: boolean = false;
+  email = '';
+  recoverButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { this.document.title = 'Reset your password for Cypherpunk Privacy'; }
 
   ngAfterViewInit() {
-    if (isBrowser) { document.getElementById('recover-username').focus(); }
+    if (isPlatformBrowser(this.platformId)) { document.getElementById('recover-username').focus(); }
   }
 
   validateRecover () {

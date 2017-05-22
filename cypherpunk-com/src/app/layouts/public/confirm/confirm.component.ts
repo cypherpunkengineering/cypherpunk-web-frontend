@@ -1,7 +1,7 @@
-import { isBrowser } from 'angular2-universal';
-import { Component, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { ConfirmGuard } from '../../../services/confirm-guard.service';
 
 @Component({
@@ -14,13 +14,14 @@ export class ConfirmComponent {
     private router: Router,
     private confirmGuard: ConfirmGuard,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Confirmation | Cypherpunk Privacy';
 
     // replace history and confirm guard
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       history.replaceState({}, document.title, document.location.origin);
 
       let route = activatedRoute.snapshot;

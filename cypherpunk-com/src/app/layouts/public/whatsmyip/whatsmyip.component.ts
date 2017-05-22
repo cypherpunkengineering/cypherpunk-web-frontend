@@ -1,8 +1,8 @@
 import * as platform from 'platform';
-import { isBrowser } from 'angular2-universal';
 import country_list from '../pricing/countries';
-import { Component, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 
 @Component({
@@ -11,14 +11,15 @@ import { BackendService } from '../../../services/backend.service';
 })
 export class WhatsMyIpComponent {
   os: string;
-  ip: string = 'Loading';
+  ip = 'Loading';
   browser: string;
-  country: string = 'Loading';
+  country = 'Loading';
   countryCode: string = undefined;
 
   constructor(
     private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'What\'s My IP Address?';
@@ -28,7 +29,7 @@ export class WhatsMyIpComponent {
     this.browser = platform.description;
 
     // detect Geo-IP & country
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       this.backend.networkStatus()
       .subscribe((data: any) => {
         this.ip = data.ip;

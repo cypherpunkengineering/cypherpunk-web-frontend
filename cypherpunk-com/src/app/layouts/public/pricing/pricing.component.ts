@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { RequestOptions} from '@angular/http';
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
@@ -8,7 +8,7 @@ import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, Inject, NgZone, ViewChild } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, NgZone, ViewChild } from '@angular/core';
 import country_list from './countries';
 
 @Component({
@@ -25,10 +25,10 @@ export class PricingComponent {
   plans;
   paymentMethod = '';
   countries = country_list;
-  loading: boolean = false;
-  disablePayment: boolean = false;
+  loading = false;
+  disablePayment = false;
   modal = { show: false, header: '', body: '', link: false };
-  errHeader: string = 'Error processing your payment';
+  errHeader = 'Error processing your payment';
 
   // user variables
   accountFormData = {
@@ -58,11 +58,11 @@ export class PricingComponent {
 
   // Amazon variables
   billingAgreementId: string;
-  amazonHide: boolean = false;
-  amazonRecurringEnabled: boolean = false;
+  amazonHide = false;
+  amazonRecurringEnabled = false;
 
   // bitpay variables
-  showBTC: boolean = false;
+  showBTC = false;
 
   // Paypayl variables
   userId: string;
@@ -76,7 +76,8 @@ export class PricingComponent {
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
@@ -84,7 +85,7 @@ export class PricingComponent {
     this.plans = plansService;
 
     // redirect if user is already logged in
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       this.authGuard.shouldUpgrade()
       .then(() => {
         let redirect = true;
@@ -104,7 +105,7 @@ export class PricingComponent {
     }
 
     // load stripe js files
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       if (!document.getElementById('stripe-init')) {
         let stripeInit = document.createElement('script');
         stripeInit.setAttribute('id', 'stripe-init');
@@ -128,7 +129,7 @@ export class PricingComponent {
     }
 
     // use Geo-IP to preload CC country
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       backend.networkStatus()
       .subscribe((data: any) => {
         if (data.country === 'ZZ') { return; }

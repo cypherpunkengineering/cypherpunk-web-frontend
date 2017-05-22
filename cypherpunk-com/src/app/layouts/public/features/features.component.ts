@@ -7,14 +7,7 @@ import { Component, Inject, OnInit } from '@angular/core';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
-  currentTab: string = '';
-  cpSwitch: boolean = true;
-  mfSwitch: boolean = true;
-  pnSwitch: boolean = true;
-  psSwitch: boolean = true;
-  mepSwitch: boolean = true;
-  svSwitch: boolean = true;
-  esSwitch: boolean = true;
+  currentTab = '';
 
   constructor(
     private router: Router,

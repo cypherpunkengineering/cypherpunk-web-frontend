@@ -1,11 +1,11 @@
 import { PlansService } from './plans.service';
-import { isBrowser } from 'angular2-universal';
-import { Injectable, NgZone } from '@angular/core';
 import { BackendService } from './backend.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Injectable, Inject, PLATFORM_ID, NgZone } from '@angular/core';
 
 @Injectable()
 export class SessionService {
-  userFound: boolean = false;
+  userFound = false;
   localStorage: any;
   user = {
     privacy: { username: '', password: '' },
@@ -20,11 +20,12 @@ export class SessionService {
   constructor(
     private zone: NgZone,
     private plans: PlansService,
-    private backend: BackendService
+    private backend: BackendService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
     try {
-      if (isBrowser) {
+      if (isPlatformBrowser(this.platformId)) {
         this.localStorage = window.localStorage;
         this.user.privacy.username = this.localStorage.getItem('privacy.username') || '';
         this.user.privacy.password = this.localStorage.getItem('privacy.password') || '';

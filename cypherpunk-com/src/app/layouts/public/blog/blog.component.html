@@ -37,7 +37,7 @@
   <div class="page">
     <div class="page-inner">
       <div class="articles">
-        <template ngFor let-post [ngForOf]="posts" let-i="index">
+        <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
           <div class="full" *ngIf="i === 0">
             <div class="header white">
               {{post.title}}
@@ -82,7 +82,7 @@
               </div>
             </a>
           </div>
-        </template>
+        </ng-template>
       </div>
 
       <div class="sidebar">

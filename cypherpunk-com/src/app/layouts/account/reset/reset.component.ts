@@ -1,31 +1,32 @@
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthGuard } from '../../../services/auth-guard.service';
-import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './reset.component.html',
   styleUrls: ['./reset.component.css']
 })
 export class ResetComponent implements AfterViewInit {
-  password: string = '';
-  confirm: string = '';
+  password = '';
+  confirm = '';
   error = { message: '' };
-  resetButtonDisabled: boolean = false;
+  resetButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
     private router: Router,
     private authGuard: AuthGuard,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Reset Your Password';
 
     // check user account
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state);
@@ -33,7 +34,7 @@ export class ResetComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (isBrowser) { document.getElementById('password').focus(); }
+    if (isPlatformBrowser(this.platformId)) { document.getElementById('password').focus(); }
   }
 
   validateReset () {

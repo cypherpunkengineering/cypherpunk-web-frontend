@@ -8,7 +8,7 @@ import { BackendService } from '../../../services/backend.service';
 })
 export class BlogComponent implements OnInit {
   posts = [];
-  showSearch: boolean = false;
+  showSearch = false;
 
   constructor(
     private backend: BackendService,

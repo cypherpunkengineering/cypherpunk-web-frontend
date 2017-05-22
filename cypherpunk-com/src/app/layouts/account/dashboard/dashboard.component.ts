@@ -1,12 +1,12 @@
-import { isBrowser } from 'angular2-universal';
 import { RequestOptions } from '@angular/http';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
-import { Component, Inject, NgZone, OnInit } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 import 'rxjs/add/operator/toPromise';
 
@@ -16,20 +16,20 @@ import 'rxjs/add/operator/toPromise';
 })
 export class DashboardComponent implements OnInit {
   user: any;
-  upgrade: boolean = true;
-  loading: boolean = true;
-  showEmailModal: boolean = false;
-  showPasswordModal: boolean = false;
+  upgrade = true;
+  loading = true;
+  showEmailModal = false;
+  showPasswordModal = false;
   countries = country_list;
-  showPPWarning: boolean = false;
+  showPPWarning = false;
 
   // payment details
-  defaultCardId: string = '';
+  defaultCardId = '';
   defaultCard: any = {};
   cards = [];
-  showPaymentDetails: boolean = false;
-  showCreateCard: boolean = false;
-  ccButtonDisabled: boolean = false;
+  showPaymentDetails = false;
+  showCreateCard = false;
+  ccButtonDisabled = false;
   stripeFormData = {
     name: '',
     cardNumber: '',
@@ -48,7 +48,8 @@ export class DashboardComponent implements OnInit {
     private backend: BackendService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'My Account with Cypherpunk Privacy';
@@ -57,7 +58,7 @@ export class DashboardComponent implements OnInit {
     this.user = this.session.user;
 
     // redirect user if not logged in
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
@@ -68,7 +69,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // load stripe js files
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       if (!document.getElementById('stripe-init')) {
         let stripeInit = document.createElement('script');
         stripeInit.setAttribute('id', 'stripe-init');
@@ -92,7 +93,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // get all stripe cards for this user
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       backend.cards()
       .subscribe((data: any) => {
         this.defaultCardId = data.default_source;
@@ -110,7 +111,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // use Geo-IP to preload CC country
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       backend.networkStatus()
       .subscribe((data: any) => {
         if (data.country === 'ZZ') { return; }

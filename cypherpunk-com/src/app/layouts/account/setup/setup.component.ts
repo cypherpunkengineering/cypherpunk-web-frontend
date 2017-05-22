@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs/Rx';
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, Inject, OnInit } from '@angular/core';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { Component, PLATFORM_ID, Inject, OnInit } from '@angular/core';
 import 'rxjs/add/observable/forkJoin';
 
 @Component({
@@ -14,16 +14,16 @@ import 'rxjs/add/observable/forkJoin';
 })
 export class SetupComponent implements OnInit {
   user: any;
-  loading: boolean = true;
+  loading = true;
   regionArray = [];
-  freeAccount: boolean = true;
-  vpnSelect: string = 'openvpn';
-  useCypherplay: boolean = false;
-  splitTextFields: boolean = false;
+  freeAccount = true;
+  vpnSelect = 'openvpn';
+  useCypherplay = false;
+  splitTextFields = false;
 
-  profile: string = '';
-  profileCert: string = '';
-  profilePartial: string = '';
+  profile = '';
+  profileCert = '';
+  profilePartial = '';
   downloadButtonEnabled = false;
 
   openvpnLocation = { hostname: '', display: false };
@@ -37,7 +37,8 @@ export class SetupComponent implements OnInit {
     private session: SessionService,
     private backend: BackendService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Setup Cypherpunk Privacy';
@@ -47,7 +48,7 @@ export class SetupComponent implements OnInit {
     if (session.user.account.type === 'free') { this.freeAccount = true; }
     else { this.freeAccount = false; }
 
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)

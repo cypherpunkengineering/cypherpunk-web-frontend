@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './components/shared/shared.module';
+import { HttpModule } from '@angular/http';
 
 import { HomeModule } from './layouts/public/home/home.module';
 import { PricingModule } from './layouts/public/pricing/pricing.module';
@@ -100,7 +101,8 @@ import { BackendService } from './services/backend.service';
     SetupModule,
     ResetModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [
     CacheService,
