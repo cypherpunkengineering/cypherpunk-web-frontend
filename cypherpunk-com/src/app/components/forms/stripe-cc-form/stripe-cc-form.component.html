@@ -1,19 +1,19 @@
 <form [formGroup]="stripeForm">
   <div class="row">
     <label>Name on Card</label><br>
-    <input id="nameInput" name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name.touched && !name.valid, 'success': name.touched && name.valid}" autocomplete="cc-name"/>
-      <div class="error-message" [hidden]="!(name.touched && !name.valid)">Name is Required</div>
+    <input id="nameInput" name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name?.touched && !name?.valid, 'success': name?.touched && name?.valid}" autocomplete="cc-name"/>
+      <div class="error-message" [hidden]="!(name?.touched && !name?.valid)">Name is Required</div>
   </div>
 
   <div class="row">
     <label>Card Number</label><br>
-    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [ngModel]="stripeFormData.cardNumber | CCNumber" [ngClass]="{'error': cardNumber.touched && !cardNumber.valid, 'success': cardNumber.touched && cardNumber.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)" (ngModelChange)="stripeFormData.cardNumber=$event"/>
-    <div class="error-message" [hidden]="!(cardNumber.touched && !cardNumber.valid)">
-      <div *ngIf="cardNumber.errors && cardNumber.errors['required']">
+    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [ngModel]="stripeFormData.cardNumber | CCNumber" [ngClass]="{'error': cardNumber?.touched && !cardNumber?.valid, 'success': cardNumber?.touched && cardNumber?.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)" (ngModelChange)="stripeFormData.cardNumber=$event"/>
+    <div class="error-message" [hidden]="!(cardNumber?.touched && !cardNumber?.valid)">
+      <div *ngIf="cardNumber?.errors && cardNumber?.errors['required']">
         Credit Card Number is Required
       </div>
 
-      <div *ngIf="cardNumber.errors && cardNumber.errors['invalidCreditCardNumber'] && !cardNumber.errors['required']">
+      <div *ngIf="cardNumber?.errors && cardNumber?.errors['invalidCreditCardNumber'] && !cardNumber?.errors['required']">
         Invalid Credit Card Number
       </div>
     </div>
@@ -23,22 +23,22 @@
     <div class="half" [ngClass]="{'dashboard': small}">
       <div class="half">
         <label>Exp. Month</label><br />
-        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth.touched && !expiryMonth.valid, 'success': expiryMonth.touched && expiryMonth.valid}" autocomplete="cc-exp-month">
+        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth?.touched && !expiryMonth?.valid, 'success': expiryMonth?.touched && expiryMonth?.valid}" autocomplete="cc-exp-month">
           <option value="" selected disabled hidden>MM</option>
           <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
         </select>
-        <div class="error-message" [hidden]="!(expiryMonth.touched && !expiryMonth.valid)">
+        <div class="error-message" [hidden]="!(expiryMonth?.touched && !expiryMonth?.valid)">
           Exp Month is Required
         </div>
       </div>
 
       <div class="half">
         <label>Exp. Year</label><br />
-        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear.touched && !expiryYear.valid, 'success': expiryYear.touched && expiryYear.valid}" autocomplete="cc-exp-year">
+        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear?.touched && !expiryYear?.valid, 'success': expiryYear?.touched && expiryYear?.valid}" autocomplete="cc-exp-year">
           <option value="" selected disabled hidden>YYYY</option>
           <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
         </select>
-        <div class="error-message" [hidden]="!(expiryYear.touched && !expiryYear.valid)">
+        <div class="error-message" [hidden]="!(expiryYear?.touched && !expiryYear?.valid)">
           Exp Year is Required
         </div>
       </div>
@@ -49,15 +49,15 @@
       <img class="first" src="/assets/payment/security-code-02.png" alt="CVC">
       <img src="/assets/payment/security-code-01.png" alt="CVC">
       <span>
-        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc.touched && !cvc.valid, 'success': cvc.touched && cvc.valid}" placeholder="3 on back, Amex: 4 on front" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
+        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc?.touched && !cvc?.valid, 'success': cvc?.touched && cvc?.valid}" placeholder="3 on back, Amex: 4 on front" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
       </span>
-      <div class="error-message cvc" [hidden]="!(cvc.touched && !cvc.valid)">CVC is Required</div>
+      <div class="error-message cvc" [hidden]="!(cvc?.touched && !cvc?.valid)">CVC is Required</div>
     </div>
   </div>
 
   <div class="row">
     <label>Country</label><br>
-    <select id="country" name="country" required formControlName="country" [(ngModel)]="stripeFormData.country" [ngClass]="{'error': country.touched && !country.valid, 'success': country.touched && country.valid}">
+    <select id="country" name="country" required formControlName="country" [(ngModel)]="stripeFormData.country" [ngClass]="{'error': country?.touched && !country?.valid, 'success': country?.touched && country?.valid}">
       <option *ngFor="let country of countries" [value]="country.name">
         {{country.name}}
       </option>
@@ -66,8 +66,8 @@
 
   <div class="row" *ngIf="stripeFormData.country === 'United States' || stripeFormData.country === 'United Kingdom' || stripeFormData.country === 'Canada'">
     <label>Zip Code</label><br>
-    <input id="zipCodeSelect" name="zipCode" type="text" formControlName="zipCode" [(ngModel)]="stripeFormData.zipCode" [ngClass]="{'error': zipCode.touched && !zipCode.valid, 'success': zipCode.touched && zipCode.valid}" required>
-    <div class="error-message" [hidden]="!(zipCode.touched && !zipCode.valid)">
+    <input id="zipCodeSelect" name="zipCode" type="text" formControlName="zipCode" [(ngModel)]="stripeFormData.zipCode" [ngClass]="{'error': zipCode?.touched && !zipCode?.valid, 'success': zipCode?.touched && zipCode?.valid}" required>
+    <div class="error-message" [hidden]="!(zipCode?.touched && !zipCode?.valid)">
       Zip Code is Required
     </div>
   </div>

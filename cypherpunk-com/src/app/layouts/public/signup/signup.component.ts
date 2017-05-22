@@ -1,10 +1,10 @@
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -13,11 +13,11 @@ import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 export class SignupComponent implements AfterViewInit {
   refToken: string;
   user = { email: '', password: '' };
-  validEmail: boolean = false;
-  emailTouched: boolean = false;
-  validPassword: boolean = false;
-  passwordTouched: boolean = false;
-  signinButtonDisabled: boolean = false;
+  validEmail = false;
+  emailTouched = false;
+  validPassword = false;
+  passwordTouched = false;
+  signinButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
@@ -26,14 +26,15 @@ export class SignupComponent implements AfterViewInit {
     private route: ActivatedRoute,
     private backend: BackendService,
     private alertService: AlertService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject (PLATFORM_ID) private platformId: Object
   ) { this.document.title = 'Create Account with Cypherpunk Privacy'; }
 
   ngAfterViewInit() {
     let params = this.route.snapshot.params;
     this.refToken = params['token'];
     // if (!this.refToken) { this.router.navigate(['/']); }
-    if (isBrowser) { document.getElementById('email').focus(); }
+    if (isPlatformBrowser(this.platformId)) { document.getElementById('email').focus(); }
   }
 
   passwordRegex(password) {

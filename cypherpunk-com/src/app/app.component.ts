@@ -1,4 +1,5 @@
-import { isBrowser } from 'angular2-universal';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -11,10 +12,10 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) { }
 
   ngOnInit() {
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) { return; }
 

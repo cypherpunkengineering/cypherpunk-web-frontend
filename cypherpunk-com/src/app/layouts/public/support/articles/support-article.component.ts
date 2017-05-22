@@ -1,10 +1,10 @@
 import { Location } from '@angular/common';
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../../../services/backend.service';
 import { SharedModule } from '../../../../components/shared/shared.module';
-import { Component, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
   templateUrl: './support-article.component.html',
@@ -12,7 +12,7 @@ import { Component, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgMod
 })
 export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
   // @ViewChild('support', { read: ViewContainerRef }) support: ViewContainerRef;
-  contentLoaded: boolean = false;
+  contentLoaded = false;
   pageLinks = [];
   baseRoute: String;
   post = {
@@ -24,13 +24,18 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     images: [ { url: '' } ]
   };
 
+  CP_HOSTNAME = '__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__';
+  CPH_REGEX = /__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g;
+  CPH_COMPONENT = '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>';
+
   constructor(
     private compiler: Compiler,
     private router: Router,
     private location: Location,
     private route: ActivatedRoute,
     private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.baseRoute = location.path();
   }
@@ -39,11 +44,11 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     let id = this.route.snapshot.params['id'];
     if (!id) { return this.router.navigate(['/']); }
     else {
-      if (isBrowser) {
+      if (isPlatformBrowser(this.platformId)) {
         console.log('in browser');
         this.backend.supportPost(id)
         .then((data) => {
-          // data.content = data.content.replace(/__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g, '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>');
+          // data.content = data.content.replace(CPH_REGEX, CPH_COMPONENT);
           this.post = data;
           this.document.title = data.title;
           console.log(this.post);
@@ -59,7 +64,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
 
   ngAfterViewChecked() {
     if (this.contentLoaded) { return; }
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       // get all h3 tags
       let elements = document.querySelectorAll('h3');
       if (elements.length) { this.contentLoaded = true; }

@@ -1,7 +1,7 @@
-import { isBrowser } from 'angular2-universal';
-import { Component, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 export class DownloadPlatforms {
   static test = 'asdf';
@@ -99,16 +99,17 @@ export class DownloadComponent {
   apkUrl = '#';
 
   // download
-  isChrome: boolean = false;
-  isSafari: boolean = false;
-  downloadBuildName: string = '';
-  downloadBuildLink: string = '';
-  showDownloadSection: boolean = false;
+  isChrome = false;
+  isSafari = false;
+  downloadBuildName = '';
+  downloadBuildLink = '';
+  showDownloadSection = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // determine platform param
     let currentPlatform = route.snapshot.params['platform'];
@@ -124,6 +125,7 @@ export class DownloadComponent {
     this.document.title = 'Download Cypherpunk Privacy for ' + this.headerBuild.name;
 
     // download file setup
+    let isBrowser = isPlatformBrowser(this.platformId);
     if (isBrowser) {
       this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
       this.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
@@ -186,7 +188,7 @@ export class DownloadComponent {
     // Force file download (whether supported by server).
     if (sUrl.indexOf('?') === -1) { sUrl += '?download'; }
 
-    if (isBrowser) { window.open(sUrl, '_self'); }
+    if (isPlatformBrowser(this.platformId)) { window.open(sUrl, '_self'); }
     return true;
   };
 }

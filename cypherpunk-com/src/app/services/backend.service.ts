@@ -1,17 +1,27 @@
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
-import { isBrowser } from 'angular2-universal';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Http, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class BackendService {
-  private backend = '';
+  private backend = 'http://localhost:3000';
   private backendUrl = '/api/v0/';
-  private errString: string = 'Bad Response from server';
+  private errString = 'Bad Response from server';
 
-  constructor(private http: Http) {
-    if (isBrowser && !document.location.hostname.startsWith('localhost')) {
+  constructor(
+    private http: Http,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // live
+    if (isPlatformBrowser(platformId) && !document.location.hostname.startsWith('localhost')) {
       this.backend = 'https://cypherpunk.privacy.network';
+      this.backendUrl = this.backend + '/api/v0/';
+    }
+    // dev
+    else {
+      this.backend = 'http://localhost:3000';
       this.backendUrl = this.backend + '/api/v0/';
     }
   }

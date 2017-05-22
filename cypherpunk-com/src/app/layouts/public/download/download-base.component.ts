@@ -1,14 +1,19 @@
 import * as platform from 'platform';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { DownloadPlatforms } from './download.component';
 
 @Component({ template: '' })
 export class DownloadBaseComponent {
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     // replace history
-    if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
+    if (isPlatformBrowser(this.platformId)) {
+      history.replaceState({}, document.title, document.location.origin);
+    }
     // detect os setup
     let os: string = platform.os.family;
     os = os || '';

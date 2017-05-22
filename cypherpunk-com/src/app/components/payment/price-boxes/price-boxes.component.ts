@@ -1,6 +1,7 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { isBrowser } from 'angular2-universal';
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { PlansService } from '../../../services/plans.service';
 
@@ -20,10 +21,11 @@ export class PriceBoxesComponent {
   constructor(
     private http: Http,
     private router: Router,
-    private plansService: PlansService
+    private plansService: PlansService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // get rates for bitpay
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let url = 'https://bitpay.com/api/rates/usd';
       http.get(url)
       .map(res => res.json())

@@ -1,4 +1,3 @@
-import { isBrowser } from 'angular2-universal';
 import { Component, Input, OnInit } from '@angular/core';
 import country_list from '../../../layouts/public/pricing/countries';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
@@ -120,7 +119,7 @@ interface ValidationResult { [key: string]: boolean; }
 
 class NumberValidator {
   static validate(control: FormControl): ValidationResult {
-    if (isBrowser) {
+    if (control.value) {
       let stripe = (<any>window).Stripe;
       if (!stripe) { return { 'stripeNotFound': true }; }
 
@@ -134,7 +133,7 @@ class NumberValidator {
 
 class CvcValidator {
   static validate(control: FormControl): ValidationResult {
-    if (isBrowser) {
+    if (control.value) {
       let stripe = (<any>window).Stripe;
       if (!stripe) { return { 'stripeNotFound': true }; }
 
@@ -144,4 +143,6 @@ class CvcValidator {
     }
     else { return null; }
   }
+
+  constructor() {}
 }

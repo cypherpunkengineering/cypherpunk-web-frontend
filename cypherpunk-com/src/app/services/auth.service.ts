@@ -5,7 +5,7 @@ import { Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-  authed: boolean = false;
+  authed = false;
   redirectUrl: string;
 
   constructor(

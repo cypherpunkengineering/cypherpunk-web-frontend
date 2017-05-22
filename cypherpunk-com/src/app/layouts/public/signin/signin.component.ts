@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
-import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './signin.component.html',
@@ -15,18 +15,19 @@ export class SigninComponent implements AfterViewInit {
     email: { message: '', touched: false },
     password: { message: '', touched: false }
   };
-  signinButtonDisabled: boolean = false;
+  signinButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
     private alertService: AlertService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { this.document.title = 'Login to Cypherpunk Privacy Account'; }
 
   ngAfterViewInit() {
-    if (isBrowser) { document.getElementById('email').focus(); }
+    if (isPlatformBrowser(this.platformId)) { document.getElementById('email').focus(); }
   }
 
   validateSignin () {

@@ -1,10 +1,10 @@
-import { isBrowser } from 'angular2-universal';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './reset.component.html',
@@ -12,10 +12,10 @@ import { Component, Inject, AfterViewInit, NgZone } from '@angular/core';
 })
 export class PublicResetComponent implements AfterViewInit {
   resetToken: string;
-  password: string = '';
-  confirm: string = '';
+  password = '';
+  confirm = '';
   error = { message: '' };
-  resetButtonDisabled: boolean = false;
+  resetButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
@@ -24,13 +24,16 @@ export class PublicResetComponent implements AfterViewInit {
     private backend: BackendService,
     private session: SessionService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Reset Your Password';
 
     // replace history
-    if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
+    if (isPlatformBrowser(this.platformId)) {
+      history.replaceState({}, document.title, document.location.origin);
+    }
 
     // check resetToken exists
     let route = this.activatedRoute.snapshot;
@@ -43,7 +46,7 @@ export class PublicResetComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (isBrowser) { document.getElementById('password').focus(); }
+    if (isPlatformBrowser(this.platformId)) { document.getElementById('password').focus(); }
   }
 
   validateReset () {

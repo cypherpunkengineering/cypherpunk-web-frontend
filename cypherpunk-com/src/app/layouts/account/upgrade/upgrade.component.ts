@@ -1,5 +1,5 @@
-import { isBrowser } from 'angular2-universal';
 import { RequestOptions } from '@angular/http';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -8,7 +8,7 @@ import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, Inject, NgZone, ViewChild } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, NgZone, ViewChild } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 
 @Component({
@@ -22,12 +22,12 @@ export class UpgradeComponent {
 
   // payment options (cc, a, pp, bc)
   plans;
-  paymentMethod: string = '';
+  paymentMethod = '';
   countries = country_list;
-  loading: boolean = true;
-  disablePayment: boolean = false;
+  loading = true;
+  disablePayment = false;
   modal = { show: false, header: '', body: '' };
-  errHeader: string = 'Error processing your payment';
+  errHeader = 'Error processing your payment';
 
   // user variables
   email: string;
@@ -36,8 +36,8 @@ export class UpgradeComponent {
 
   // Stripe variables
   cards = [];
-  defaultCardId: string = '';
-  showCreateCard: boolean = false;
+  defaultCardId = '';
+  showCreateCard = false;
   stripeFormData = {
     name: '',
     cardNumber: '',
@@ -52,11 +52,11 @@ export class UpgradeComponent {
 
   // Amazon variables
   billingAgreementId: string;
-  amazonHide: boolean = false;
-  amazonRecurringEnabled: boolean = false;
+  amazonHide = false;
+  amazonRecurringEnabled = false;
 
   // bitpay variables
-  showBTC: boolean = false;
+  showBTC = false;
 
   constructor(
     private zone: NgZone,
@@ -66,9 +66,10 @@ export class UpgradeComponent {
     private session: SessionService,
     private backend: BackendService,
     private alertService: AlertService,
-    private activatedRoute: ActivatedRoute,
     private plansService: PlansService,
-    @Inject(DOCUMENT) private document: any
+    private activatedRoute: ActivatedRoute,
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // handle title
     this.document.title = 'Upgrade Cypherpunk Account';
@@ -76,7 +77,7 @@ export class UpgradeComponent {
     this.plans = plansService;
 
     // check if valid user account
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
@@ -101,7 +102,7 @@ export class UpgradeComponent {
     }
 
     // load stripe js files
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       if (!document.getElementById('stripe-init')) {
         let stripeInit = document.createElement('script');
         stripeInit.setAttribute('id', 'stripe-init');
@@ -125,7 +126,7 @@ export class UpgradeComponent {
     }
 
     // use Geo-IP to preload CC country
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       backend.networkStatus()
       .subscribe((data: any) => {
         if (data.country === 'ZZ') { return; }
@@ -139,7 +140,7 @@ export class UpgradeComponent {
     }
 
     // get all stripe cards for this user
-    if (isBrowser) {
+    if (isPlatformBrowser(this.platformId)) {
       backend.cards()
       .subscribe((data: any) => {
         this.defaultCardId = data.default_source;
