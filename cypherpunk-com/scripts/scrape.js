@@ -52,6 +52,7 @@ const routes = [
   { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' },
   { url: baseRoute + 'support/macos', dirPath: baseDir + 'support/macos.html' },
   { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' },
+  { url: baseRoute + 'support/android', dirPath: baseDir + 'support/android.html' },
   { url: baseRoute + 'partial/hostname', dirPath: baseDir + 'partial/hostname.html' },
   { url: baseRoute + 'partial/credentials', dirPath: baseDir + 'partial/credentials.html' }
 ];

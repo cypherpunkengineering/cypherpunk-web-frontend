@@ -38,6 +38,7 @@ import { SupportHomeModule } from './layouts/public/support/home/support-home.mo
 import { SupportArticleModule } from './layouts/public/support/articles/support-article.module';
 import { SupportWindowsModule } from './layouts/public/support/windows/support-windows.module';
 import { SupportMacModule } from './layouts/public/support/mac/support-mac.module';
+import { SupportAndroidModule } from './layouts/public/support/android/support-android.module';
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
@@ -95,6 +96,7 @@ import { BackendService } from './services/backend.service';
     SupportArticleModule,
     SupportWindowsModule,
     SupportMacModule,
+    SupportAndroidModule,
     SupportLinuxModule,
     HostnameSelectorModule,
     VpnCredentialsModule,
