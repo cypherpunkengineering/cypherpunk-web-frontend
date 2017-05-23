@@ -23,6 +23,6 @@ export class SetupCredentialsComponent {
 
   constructor(private session: SessionService) {
     this.user = session.user;
-    this.showWarning = !!this.user;
+    this.showWarning = !!!this.user.privacy.username;
   }
 }

@@ -1,4 +1,7 @@
 <div class="profile-container">
   <label>Certificate</label>
-  <textarea class="profile" [(ngModel)]="cert" readonly></textarea>
+  <textarea id="cert" class="profile" [(ngModel)]="cert" readonly></textarea>
+  <button class="btn blue right" (click)="copy('cert')">
+    Copy
+  </button>
 </div>

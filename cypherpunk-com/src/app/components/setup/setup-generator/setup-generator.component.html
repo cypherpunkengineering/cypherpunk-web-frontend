@@ -20,7 +20,7 @@
   </div>
 
   <div class="download-container">
-    <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
+    <button class="btn blue" (click)="downloadProfile()">
       Download
     </button>
   </div>
@@ -28,27 +28,46 @@
   <div *ngIf="!splitTextFields">
     <div class="profile-container">
       <label>Profile</label>
-      <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
+      <textarea id="profile-only" class="profile" [(ngModel)]="profile" readonly></textarea>
+    </div>
+
+    <div class="download-container">
+      <button class="btn blue" (click)="downloadProfile()">
+        Download
+      </button>
+
+      <button class="btn blue" (click)="copy('profile-only')">
+        Copy
+      </button>
     </div>
   </div>
 
   <div *ngIf="splitTextFields" class="split">
     <div class="profile-container">
       <label>Profile</label>
-      <textarea class="profile" [(ngModel)]="profilePartial" readonly></textarea>
+      <textarea id="profile-split" class="profile" [(ngModel)]="profilePartial" readonly></textarea>
     </div>
 
     <div class="profile-container">
       <label>Certificate</label>
-      <textarea class="profile" [(ngModel)]="profileCert" readonly></textarea>
+      <textarea id="cert-split" class="profile" [(ngModel)]="profileCert" readonly></textarea>
+    </div>
+
+    <div class="download-container">
+      <button class="btn blue" (click)="downloadProfile()">
+        Download
+      </button>
+
+      <button class="btn blue" (click)="copy('profile-split')">
+        Copy Profile
+      </button>
+
+      <button class="btn blue right" (click)="copy('cert-split')">
+        Copy Cert
+      </button>
     </div>
   </div>
 
-  <div class="download-container">
-    <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
-      Download
-    </button>
-  </div>
 </div>
 
 <div class="warning" *ngIf="showWarning">

@@ -71,5 +71,18 @@ export class SetupCertComponent {
     'hqHTqGsy8pZ6ir3Ro2A0jVuB28bxWzLMERP5eCNkhET37LOEio6YK9DsqdLphX7W',
     'Y8gMhSbb7NTB',
     '-----END CERTIFICATE-----',
-  ].join('\r\n');;
+  ].join('\r\n');
+
+  copy(element: string) {
+    let el = (document.getElementById(element)) as HTMLTextAreaElement;
+
+    try {
+      el.select();
+      document.execCommand('copy');
+      el.blur();
+    }
+    catch(err) {
+      alert('Please press Ctrl/Cmd + C to copy');
+    }
+  }
 }

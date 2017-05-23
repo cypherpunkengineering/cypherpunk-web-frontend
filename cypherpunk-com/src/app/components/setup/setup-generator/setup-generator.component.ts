@@ -17,7 +17,7 @@ export class SetupGeneratorComponent {
   showWarning: boolean;
 
   constructor(private session: SessionService) {
-    this.showWarning = !!this.session.user;
+    this.showWarning = !!!this.session.user.privacy.username;
   }
 
   updateProfile() { this.generateProfile(); }
@@ -143,9 +143,8 @@ export class SetupGeneratorComponent {
   }
 
   downloadProfile() {
-    let profile;
     this.downloadButtonEnabled = false;
-    profile = this.profile;
+    let profile = this.profile;
 
     let hostname = this.openvpnLocation.hostname;
     let filename = hostname + '.conf.ovpn';
@@ -164,5 +163,18 @@ export class SetupGeneratorComponent {
     }
 
     this.downloadButtonEnabled = true;
+  }
+
+  copy(element: string) {
+    let el = (document.getElementById(element)) as HTMLTextAreaElement;
+
+    try {
+      el.select();
+      document.execCommand('copy');
+      el.blur();
+    }
+    catch(err) {
+      alert('Please press Ctrl/Cmd + C to copy');
+    }
   }
 }
