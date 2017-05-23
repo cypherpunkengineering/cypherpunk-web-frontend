@@ -39,6 +39,7 @@ import { SupportArticleModule } from './layouts/public/support/articles/support-
 import { SupportWindowsModule } from './layouts/public/support/windows/support-windows.module';
 import { SupportMacModule } from './layouts/public/support/mac/support-mac.module';
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
+import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -94,6 +95,7 @@ import { BackendService } from './services/backend.service';
     SupportWindowsModule,
     SupportMacModule,
     SupportLinuxModule,
+    HostnameSelectorModule,
 
     DashboardModule,
     BillingModule,

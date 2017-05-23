@@ -51,5 +51,6 @@ export const routes: string[] = [
   'support/macos',
   'support/linux',
   'support/articles',
-  'support/tutorials'
+  'support/tutorials',
+  'partial/hostname'
 ];

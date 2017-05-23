@@ -3,15 +3,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../../../services/backend.service';
-import { SharedModule } from '../../../../components/shared/shared.module';
-import { Component, PLATFORM_ID, Inject, OnInit, OnDestroy, AfterViewChecked, Compiler, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
 
 @Component({
   templateUrl: './support-article.component.html',
   styleUrls: ['./support-article.component.css']
 })
 export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
-  // @ViewChild('support', { read: ViewContainerRef }) support: ViewContainerRef;
   contentLoaded = false;
   pageLinks = [];
   baseRoute: String;
@@ -26,10 +24,9 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
 
   CP_HOSTNAME = '__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__';
   CPH_REGEX = /__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g;
-  CPH_COMPONENT = '<app-setup-hostname [(location)]="componentLocation"></app-setup-hostname>';
+  CPH_COMPONENT = '<iframe src="/partial/hostname" style="width: 100%; height: 70px; border: 0; margin-top: 40px;"></iframe>';
 
   constructor(
-    private compiler: Compiler,
     private router: Router,
     private location: Location,
     private route: ActivatedRoute,
@@ -48,11 +45,9 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
         console.log('in browser');
         this.backend.supportPost(id)
         .then((data) => {
-          // data.content = data.content.replace(CPH_REGEX, CPH_COMPONENT);
+          data.content = data.content.replace(this.CPH_REGEX, this.CPH_COMPONENT);
           this.post = data;
           this.document.title = data.title;
-          console.log(this.post);
-          // this.addComponent(data.content);
         })
         .catch((err) => {
           console.log(err);
@@ -93,28 +88,4 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   ngOnDestroy() {
     this.document.title = 'Cypherpunk Privacy | Online Privacy &amp; Freedom Made Easy';
   }
-
-  private addComponent(template: string) {
-    console.log('creating component');
-    @Component({template: '<div class="support content">' + template + '</div>'})
-    class TemplateComponent {
-      componentLocation = { hostname: '', display: true };
-    }
-
-    console.log('creating module');
-
-    @NgModule({imports: [SharedModule], declarations: [TemplateComponent]})
-    class TemplateModule {}
-
-
-    console.log('compiling');
-    const mod = this.compiler.compileModuleAndAllComponentsSync(TemplateModule);
-    console.log('factorizing');
-    const factory = mod.componentFactories.find((comp) =>
-      comp.componentType === TemplateComponent
-    );
-    console.log('creating component');
-    // this.support.createComponent(factory);
-  }
-
 }
