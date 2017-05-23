@@ -1,6 +1,16 @@
 .masthead {
   border-bottom: 5px solid #efebeb;
   .masthead-header { margin: 45px auto 0; padding: 0 0 50px; }
+  .masthead-banner {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+
+    .masthead-image {
+      position: relative;
+      img { width: 100%; }
+    }
+  }
 }
 
 .team {
