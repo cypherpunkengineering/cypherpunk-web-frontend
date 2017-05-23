@@ -32,7 +32,6 @@ import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { AppsModule } from './layouts/public/apps/apps/apps.module';
 import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
 import { SignupModule } from './layouts/public/signup/signup.module';
-import { PressModule } from './layouts/public/press/press.module';
 import { PublicResetModule } from './layouts/public/reset/reset.module';
 import { SupportHomeModule } from './layouts/public/support/home/support-home.module';
 import { SupportArticleModule } from './layouts/public/support/articles/support-article.module';
@@ -91,7 +90,6 @@ import { BackendService } from './services/backend.service';
     AppsModule,
     WhatsMyIpModule,
     SignupModule,
-    PressModule,
     PublicResetModule,
     SupportHomeModule,
     SupportArticleModule,

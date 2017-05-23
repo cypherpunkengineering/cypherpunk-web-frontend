@@ -12,7 +12,50 @@
     </div>
   </div>
 
-  <div class="team">
+  <div class="navigation">
+    <ul>
+      <a routerLink="/about-us" fragment="who-we-are">
+        <li [ngClass]="{'active': page === 'who-we-are'}">
+          <span>Who we are</span>
+        </li>
+      </a>
+      <a routerLink="/about-us" fragment="manifesto">
+        <li [ngClass]="{'active': page === 'manifesto'}">
+          <span>Our Manifesto</span>
+        </li>
+      </a>
+      <a routerLink="/about-us" fragment="punks">
+        <li [ngClass]="{'active': page === 'punks'}">
+          <span>Meet the Punks</span>
+        </li>
+      </a>
+      <a routerLink="/about-us" fragment="facts">
+        <li [ngClass]="{'active': page === 'facts'}">
+          <span>Quick Facts</span>
+        </li>
+      </a>
+      <a routerLink="/about-us" fragment="inquiries">
+        <li [ngClass]="{'active': page === 'inquiries'}">
+          <span>Media/Press Inquiries</span>
+        </li>
+      </a>
+      <a routerLink="/about-us" fragment="assets">
+        <li [ngClass]="{'active': page === 'assets'}">
+          <span>Assets</span>
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <div class="who" *ngIf="page === 'who-we-are'">
+    <div class="header blue">Coming soon</div>
+  </div>
+
+  <div class="manifesto" *ngIf="page === 'manifesto'">
+    <div class="header blue">Coming soon</div>
+  </div>
+
+  <div class="team" *ngIf="page === 'punks'">
     <div class="teammate">
       <div class="image">
         <img src="/assets/aboutus/punk@2x.png" srcset="/assets/aboutus/punk.png 500w, /assets/aboutus/punk@2x.png 1000w" alt="Punk">
@@ -179,6 +222,126 @@
           Lorem Ipsum is simple dummy text of the printing and typesetting industry.
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="facts" *ngIf="page === 'facts'">
+    <div class="header blue">Coming soon</div>
+  </div>
+
+  <div class="inquiries" *ngIf="page === 'inquiries'">
+    <div class="header blue">Media inquiries</div>
+
+    <div class="text">
+      We love working with journalists from around the world to share and hightlight important issues concerning cyber security, web censorship, internet privacy and surveillance from a VPN service perspective. If you are a member of the media and would like to talk or test our product, please email us at press@cypherpunk.com or reach us via Twitter or Facebook.
+    </div>
+  </div>
+
+  <div class="assets" *ngIf="page === 'assets'">
+    <div class="inner">
+      <div class="row">
+        <div class="row-header">Screenshots</div>
+      </div>
+
+      <div class="row">
+        <div class="cell">
+          <div class="header-image">
+            <img src="/asssets/press/windows@2x.png" srcset="/assets/press/windows.png 500w, /assets/press/windows@2x.png" alt="Windows">
+          </div>
+
+          <div class="main-screenshot"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">
+            3 screenshots
+          </div>
+        </div>
+
+        <div class="cell">
+          <div class="header-image">
+            <img src="/asssets/press/mac@2x.png" srcset="/assets/press/mac.png 500w, /assets/press/mac@2x.png" alt="Mac">
+          </div>
+
+          <div class="main-screenshot"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">
+            5 screenshots
+          </div>
+        </div>
+
+        <div class="cell">
+          <div class="header-image">
+            <img src="/asssets/press/ios@2x.png" srcset="/assets/press/ios.png 500w, /assets/press/ios@2x.png" alt="iOS">
+          </div>
+
+          <div class="main-screenshot"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">
+            2 screenshots
+          </div>
+        </div>
+
+        <div class="cell">
+          <div class="header-image">
+            <img src="/asssets/press/android@2x.png" srcset="/assets/press/android.png 500w, /assets/press/android@2x.png" alt="Android">
+          </div>
+
+          <div class="main-screenshot"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">
+            3 screenshots
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="half">
+          <div class="row-header">Logos</div>
+        </div>
+        <div class="half">
+          <div class="row-header">Other Images</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="double-cell">
+          <div class="main-screenshot left"></div>
+          <div class="main-screenshot right"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">4 files</div>
+        </div>
+
+        <div class="double-cell">
+          <div class="main-screenshot left"></div>
+          <div class="main-screenshot right"></div>
+
+          <a href="#">
+            <div class="download">Download</div>
+          </a>
+
+          <div class="text">10 images</div>
+        </div>
+      </div>
+
     </div>
   </div>
 

@@ -42,7 +42,6 @@ export const routes: string[] = [
   'bounty',
   'whats-my-ip-address',
   'signup',
-  'press',
   'reset',
   'support',
   'support/articles/*',
