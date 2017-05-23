@@ -1,4 +1,4 @@
-<div class="vpn">
+<div class="vpn" *ngIf="!showWarning">
   <div class="privacy">
     <app-setup-credentials></app-setup-credentials>
   </div>
@@ -49,4 +49,8 @@
       Download
     </button>
   </div>
+</div>
+
+<div class="warning" *ngIf="showWarning">
+  Please sign in to view this content
 </div>

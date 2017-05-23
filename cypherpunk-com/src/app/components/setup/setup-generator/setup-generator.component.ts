@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'app-setup-generator',
@@ -13,8 +14,11 @@ export class SetupGeneratorComponent {
   splitTextFields = false;
   downloadButtonEnabled = false;
   openvpnLocation = { hostname: '', display: false };
+  showWarning: boolean;
 
-  constructor() {}
+  constructor(private session: SessionService) {
+    this.showWarning = !!this.session.user;
+  }
 
   updateProfile() { this.generateProfile(); }
 

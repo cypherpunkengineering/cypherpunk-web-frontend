@@ -21,7 +21,7 @@ export class SetupHostnameComponent implements OnInit {
   ) {
     // set user
     this.user = session.user;
-    this.freeAccount = this.user.account.type === 'free';
+    this.freeAccount = this.user.account.type === 'free' || !this.user.account.type;
   }
 
   ngOnInit() {
