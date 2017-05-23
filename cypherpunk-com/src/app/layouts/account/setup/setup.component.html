@@ -26,57 +26,7 @@
 
   <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
     <div class="subheader">OpenVPN 2.3/2.4</div>
-
-    <div class="privacy">
-      <app-setup-credentials></app-setup-credentials>
-    </div>
-
-    <div class="location-select-container">
-      <app-setup-hostname [(location)]="openvpnLocation" (update)="updateProfile()"></app-setup-hostname>
-    </div>
-
-    <div>
-      <label for="cypherplay">Use CypherPlay?
-        <input id="cypherplay" type="checkbox" [(ngModel)]="useCypherplay" (ngModelChange)="updateProfile()">
-      </label>
-    </div>
-
-    <div>
-      <label for="certs">View Certificate Separately?
-        <input id="certs" type="checkbox" [(ngModel)]="splitTextFields" (ngModelChange)="updateProfile()">
-      </label>
-    </div>
-
-    <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
-        Download
-      </button>
-    </div>
-
-    <div *ngIf="!splitTextFields">
-      <div class="profile-container">
-        <label>Profile</label>
-        <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
-      </div>
-    </div>
-
-    <div *ngIf="splitTextFields">
-      <div class="profile-container">
-        <label>Profile</label>
-        <textarea class="profile" [(ngModel)]="profilePartial" readonly></textarea>
-      </div>
-
-      <div class="profile-container">
-        <label>Certificate</label>
-        <textarea class="profile" [(ngModel)]="profileCert" readonly></textarea>
-      </div>
-    </div>
-
-    <div class="download-container">
-      <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
-        Download
-      </button>
-    </div>
+    <app-setup-generator></app-setup-generator>
   </div>
 
   <div id="ipsec" class="vpn" [ngClass]="{'show': vpnSelect === 'ipsec'}">
@@ -84,8 +34,7 @@
 
     <div class="privacy">
       <app-setup-credentials></app-setup-credentials>
-      <br><br>
-      <app-setup-hostname [(location)]="ipsecLocation" (update)="updateProfile()"></app-setup-hostname>
+      <app-setup-hostname [(location)]="ipsecLocation"></app-setup-hostname>
     </div>
   </div>
 
@@ -94,8 +43,7 @@
 
     <div class="privacy">
       <app-setup-credentials></app-setup-credentials>
-      <br><br>
-      <app-setup-hostname [(location)]="ikeLocation" (update)="updateProfile()"></app-setup-hostname>
+      <app-setup-hostname [(location)]="ikeLocation"></app-setup-hostname>
     </div>
   </div>
 
@@ -104,8 +52,7 @@
 
     <div class="privacy">
       <app-setup-credentials></app-setup-credentials>
-      <br><br>
-      <app-setup-hostname [(location)]="httpLocation" (update)="updateProfile()"></app-setup-hostname>
+      <app-setup-hostname [(location)]="httpLocation"></app-setup-hostname>
 
       <span>
         <strong>Ports to use:</strong> <br>

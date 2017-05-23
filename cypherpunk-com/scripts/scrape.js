@@ -55,7 +55,8 @@ const routes = [
   { url: baseRoute + 'support/android', dirPath: baseDir + 'support/android.html' },
   { url: baseRoute + 'partial/hostname', dirPath: baseDir + 'partial/hostname.html' },
   { url: baseRoute + 'partial/credentials', dirPath: baseDir + 'partial/credentials.html' },
-  { url: baseRoute + 'partial/cert', dirPath: baseDir + 'partial/cert.html' }
+  { url: baseRoute + 'partial/cert', dirPath: baseDir + 'partial/cert.html' },
+  { url: baseRoute + 'partial/config-generator', dirPath: baseDir + 'partial/config-generator.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

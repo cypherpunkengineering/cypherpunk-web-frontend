@@ -54,5 +54,6 @@ export const routes: string[] = [
   'support/tutorials',
   'partial/hostname',
   'partial/credentials',
-  'partial/cert'
+  'partial/cert',
+  'partial/config-generator'
 ];

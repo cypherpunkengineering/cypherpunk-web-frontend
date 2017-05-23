@@ -64,6 +64,8 @@ export class SetupHostnameComponent implements OnInit {
         this.regionArray.forEach((region) => {
           region.countries.sort(this.regionSort);
         });
+
+        this.update.emit();
       },
       (error: any) => { console.log(error); }
     );

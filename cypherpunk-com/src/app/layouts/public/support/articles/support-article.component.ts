@@ -28,6 +28,8 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   CPC_COMPONENT = '<iframe src="/partial/credentials" style="width: 100%; height: 130px; border: 0; margin-top: 40px;"></iframe>';
   CA_REGEX = /__CYPHERPUNK_OPENVPN_CA_BOX__/g;
   CA_COMPONENT = '<iframe src="/partial/cert" style="width: 100%; height: 890px; border: 0; margin-top: 40px;"></iframe>';
+  CG_REGEX = /__CYPHERPUNK_OPENVPN_CONFIG_GENERATOR__/g;
+  CG_COMPONENT = '<iframe src="/partial/config-generator" style="width: 100%; height: 740px; border: 0; margin-top: 20px;"></iframe>';
 
   constructor(
     private router: Router,
@@ -50,6 +52,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
           data.content = data.content.replace(this.CPH_REGEX, this.CPH_COMPONENT);
           data.content = data.content.replace(this.CPC_REGEX, this.CPC_COMPONENT);
           data.content = data.content.replace(this.CA_REGEX, this.CA_COMPONENT);
+          data.content = data.content.replace(this.CG_REGEX, this.CG_COMPONENT);
           this.post = data;
           this.document.title = data.title;
         })

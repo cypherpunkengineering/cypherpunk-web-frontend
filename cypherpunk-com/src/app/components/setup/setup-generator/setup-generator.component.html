@@ -1,0 +1,52 @@
+<div class="vpn">
+  <div class="privacy">
+    <app-setup-credentials></app-setup-credentials>
+  </div>
+
+  <div class="location-select-container">
+    <app-setup-hostname [(location)]="openvpnLocation" (update)="updateProfile()"></app-setup-hostname>
+  </div>
+
+  <div>
+    <label for="cypherplay">Use CypherPlay?
+      <input id="cypherplay" type="checkbox" [(ngModel)]="useCypherplay" (ngModelChange)="updateProfile()">
+    </label>
+  </div>
+
+  <div>
+    <label for="certs">View Certificate Separately?
+      <input id="certs" type="checkbox" [(ngModel)]="splitTextFields" (ngModelChange)="updateProfile()">
+    </label>
+  </div>
+
+  <div class="download-container">
+    <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
+      Download
+    </button>
+  </div>
+
+  <div *ngIf="!splitTextFields">
+    <div class="profile-container">
+      <label>Profile</label>
+      <textarea class="profile" [(ngModel)]="profile" readonly></textarea>
+    </div>
+  </div>
+
+  <div *ngIf="splitTextFields" class="split">
+    <div class="profile-container">
+      <label>Profile</label>
+      <textarea class="profile" [(ngModel)]="profilePartial" readonly></textarea>
+    </div>
+
+    <div class="profile-container">
+      <label>Certificate</label>
+      <textarea class="profile" [(ngModel)]="profileCert" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="download-container">
+    <button class="btn blue" (click)="downloadProfile()" [disabled]="!downloadButtonEnabled || !openvpnLocation.hostname">
+      Download
+    </button>
+  </div>
+</div>

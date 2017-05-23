@@ -22,6 +22,7 @@ import { ContactFromComponent } from '../contact-form/contact-form.component';
 import { SetupHostnameComponent } from '../setup/setup-hostname/setup-hostname.component';
 import { SetupCredentialsComponent } from '../setup/setup-credentials/setup-credentials.component';
 import { SetupCertComponent } from '../setup/setup-cert/setup-cert.component';
+import { SetupGeneratorComponent } from '../setup/setup-generator/setup-generator.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -55,7 +56,8 @@ const COMPONENTS = [
   ContactFromComponent,
   SetupHostnameComponent,
   SetupCredentialsComponent,
-  SetupCertComponent
+  SetupCertComponent,
+  SetupGeneratorComponent
 ];
 
 const PROVIDERS = [];

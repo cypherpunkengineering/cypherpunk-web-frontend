@@ -43,6 +43,7 @@ import { SupportLinuxModule } from './layouts/public/support/linux/support-linux
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
 import { CertModule } from './layouts/public/partial/cert/cert.module';
+import { ConfigGeneratorModule } from './layouts/public/partial/config-generator/config-generator.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -101,6 +102,7 @@ import { BackendService } from './services/backend.service';
     HostnameSelectorModule,
     VpnCredentialsModule,
     CertModule,
+    ConfigGeneratorModule,
 
     DashboardModule,
     BillingModule,
