@@ -15,7 +15,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -27,7 +27,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -40,7 +40,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -52,7 +52,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -64,7 +64,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -76,7 +76,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -88,7 +88,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -101,7 +101,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -114,7 +114,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -126,7 +126,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -139,7 +139,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -151,7 +151,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -163,7 +163,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -175,7 +175,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -187,7 +187,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -198,7 +198,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     Access-Control-Allow-Origin: "*"
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
@@ -212,7 +212,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -224,7 +224,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -236,7 +236,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -248,7 +248,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -260,7 +260,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -272,7 +272,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -284,7 +284,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -296,7 +296,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -308,7 +308,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -320,7 +320,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -333,7 +333,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -345,7 +345,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -357,7 +357,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -369,7 +369,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -381,7 +381,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -393,7 +393,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -406,7 +406,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -418,7 +418,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -429,7 +429,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -440,7 +440,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -451,7 +451,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -470,18 +470,6 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   login: admin
 
-- url: /partial/(.+)
-  static_files: target/partial/\1.html
-  upload: target/partial/(.+).html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: allow
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
 - url: /(.+)
   static_files: target/\1.html
   upload: target/(.+).html
@@ -490,7 +478,7 @@ handlers: # should be ordered from most specific to least specific
   login: admin
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
@@ -502,7 +490,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   redirect_http_response_code: 301
   http_headers:
-    X-Frame-Options: deny
+    X-Frame-Options: sameorigin
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 # [END handlers]
