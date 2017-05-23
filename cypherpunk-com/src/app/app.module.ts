@@ -42,6 +42,7 @@ import { SupportAndroidModule } from './layouts/public/support/android/support-a
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
+import { CertModule } from './layouts/public/partial/cert/cert.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -49,7 +50,6 @@ import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
 import { SetupModule } from './layouts/account/setup/setup.module';
 import { ResetModule } from './layouts/account/reset/reset.module';
 
-import { CacheService } from './components/shared/cache.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
@@ -100,6 +100,7 @@ import { BackendService } from './services/backend.service';
     SupportLinuxModule,
     HostnameSelectorModule,
     VpnCredentialsModule,
+    CertModule,
 
     DashboardModule,
     BillingModule,
@@ -111,7 +112,6 @@ import { BackendService } from './services/backend.service';
     HttpModule
   ],
   providers: [
-    CacheService,
     SessionService,
     AuthService,
     AlertService,
