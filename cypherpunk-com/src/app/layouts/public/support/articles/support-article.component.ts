@@ -22,9 +22,10 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     images: [ { url: '' } ]
   };
 
-  CP_HOSTNAME = '__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__';
   CPH_REGEX = /__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g;
   CPH_COMPONENT = '<iframe src="/partial/hostname" style="width: 100%; height: 70px; border: 0; margin-top: 40px;"></iframe>';
+  CPC_REGEX = /__CYPHERPUNK_PRIVACY_CREDENTIALS__/g;
+  CPC_COMPONENT = '<iframe src="/partial/credentials" style="width: 100%; height: 130px; border: 0; margin-top: 40px;"></iframe>';
 
   constructor(
     private router: Router,
@@ -46,6 +47,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
         this.backend.supportPost(id)
         .then((data) => {
           data.content = data.content.replace(this.CPH_REGEX, this.CPH_COMPONENT);
+          data.content = data.content.replace(this.CPC_REGEX, this.CPC_COMPONENT);
           this.post = data;
           this.document.title = data.title;
         })

@@ -51,7 +51,9 @@ const routes = [
   { url: baseRoute + 'support/tutorials/test', dirPath: baseDir + '../support-tutorial.html' },
   { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' },
   { url: baseRoute + 'support/macos', dirPath: baseDir + 'support/macos.html' },
-  { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' }
+  { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' },
+  { url: baseRoute + 'partial/hostname', dirPath: baseDir + 'partials/hostname.html' },
+  { url: baseRoute + 'partial/credentials', dirPath: baseDir + 'partials/credentials.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {

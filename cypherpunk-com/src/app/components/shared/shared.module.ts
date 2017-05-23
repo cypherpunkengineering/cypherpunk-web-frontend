@@ -20,6 +20,7 @@ import { CCNumberPipe } from '../../pipes/cc-number.pipe';
 import { SafeHtmlPipe } from '../../pipes/safe-html.pipe';
 import { ContactFromComponent } from '../contact-form/contact-form.component';
 import { SetupHostnameComponent } from '../setup/setup-hostname/setup-hostname.component';
+import { SetupCredentialsComponent } from '../setup/setup-credentials/setup-credentials.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -51,7 +52,8 @@ const COMPONENTS = [
   AccountCreationFormComponent,
   PaymentSelectionComponent,
   ContactFromComponent,
-  SetupHostnameComponent
+  SetupHostnameComponent,
+  SetupCredentialsComponent
 ];
 
 const PROVIDERS = [];

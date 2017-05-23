@@ -40,6 +40,7 @@ import { SupportWindowsModule } from './layouts/public/support/windows/support-w
 import { SupportMacModule } from './layouts/public/support/mac/support-mac.module';
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
+import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -96,6 +97,7 @@ import { BackendService } from './services/backend.service';
     SupportMacModule,
     SupportLinuxModule,
     HostnameSelectorModule,
+    VpnCredentialsModule,
 
     DashboardModule,
     BillingModule,

@@ -28,11 +28,7 @@
     <div class="subheader">OpenVPN 2.3/2.4</div>
 
     <div class="privacy">
-      <strong>Username: </strong><br>
-      <pre>{{user.privacy.username}}</pre>
-      <div></div>
-      <strong>Password: </strong><br>
-      <pre>{{user.privacy.password}}</pre>
+      <app-setup-credentials></app-setup-credentials>
     </div>
 
     <div class="location-select-container">
@@ -87,11 +83,7 @@
     <div class="subheader">IPSec VPN</div>
 
     <div class="privacy">
-      <strong>Username: </strong><br>
-      <pre>{{user.privacy.username}}</pre>
-      <div></div>
-      <strong>Password: </strong><br>
-      <pre>{{user.privacy.password}}</pre>
+      <app-setup-credentials></app-setup-credentials>
       <br><br>
       <app-setup-hostname [(location)]="ipsecLocation" (update)="updateProfile()"></app-setup-hostname>
     </div>
@@ -101,11 +93,7 @@
     <div class="subheader">IKEv2 VPN</div>
 
     <div class="privacy">
-      <strong>Username: </strong><br>
-      <pre>{{user.privacy.username}}</pre>
-      <div></div>
-      <strong>Password: </strong><br>
-      <pre>{{user.privacy.password}}</pre>
+      <app-setup-credentials></app-setup-credentials>
       <br><br>
       <app-setup-hostname [(location)]="ikeLocation" (update)="updateProfile()"></app-setup-hostname>
     </div>
@@ -115,11 +103,7 @@
     <div class="subheader">HTTP/SOCKS Proxy</div>
 
     <div class="privacy">
-      <strong>Username: </strong><br>
-      <pre>{{user.privacy.username}}</pre>
-      <div></div>
-      <strong>Password: </strong><br>
-      <pre>{{user.privacy.password}}</pre>
+      <app-setup-credentials></app-setup-credentials>
       <br><br>
       <app-setup-hostname [(location)]="httpLocation" (update)="updateProfile()"></app-setup-hostname>
 
