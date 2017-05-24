@@ -51,6 +51,7 @@ export const routes: string[] = [
   'support/linux',
   'support/articles',
   'support/tutorials',
+  'support/request/new',
   'partial/hostname',
   'partial/credentials',
   'partial/cert',

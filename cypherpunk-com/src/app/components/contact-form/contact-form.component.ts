@@ -10,6 +10,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class ContactFromComponent {
   @Input() show: { show: false };
+  @Input() exitable: boolean = true;
   name: string;
   email: string;
   subject: string;

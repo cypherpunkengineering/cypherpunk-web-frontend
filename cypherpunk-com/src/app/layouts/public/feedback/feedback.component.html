@@ -56,5 +56,8 @@
 
 </div>
 
-<app-contact-form [(show)]="showContactForm"></app-contact-form>
+<div class="floating" [ngClass]="{'show': showContactForm.show}">
+  <app-contact-form [(show)]="showContactForm"></app-contact-form>
+</div>
+
 <app-footer></app-footer>

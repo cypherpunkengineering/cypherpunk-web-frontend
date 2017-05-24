@@ -1,6 +1,6 @@
 <div class="form" [ngClass]="{'show': show.show}">
   <div class="form-header">
-    <div class="close" (click)="close()">X</div>
+    <div class="close" (click)="close()" *ngIf="exitable">X</div>
     <div class="title">Contact Us</div>
   </div>
 
@@ -12,7 +12,7 @@
     </div>
 
     <div class="row">
-      <label for="email">Email address*</label>
+      <label for="email">Email address</label>
       <input type="text" name="email" [(ngModel)]="email" required (ngModelChange)="validateEmail()" [ngClass]="{'error-input': emailTouched && (!emailValid || !emailRequired)}" (blur)="emailTouched = true">
       <div class="error" *ngIf="emailTouched && !emailRequired">Your email is required</div>
       <div class="error" *ngIf="emailTouched && emailRequired && !emailValid">Invalid email format</div>
@@ -41,7 +41,7 @@
   <div class="form-footer">
     <div class="button-container">
       <button class="send" (click)="send()">Send</button>
-      <button class="cancel" (click)="close()">Close</button>
+      <button class="cancel" (click)="close()" *ngIf="exitable">Close</button>
     </div>
 
     <div class="error" *ngIf="error">
