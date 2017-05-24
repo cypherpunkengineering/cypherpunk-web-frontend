@@ -10,6 +10,15 @@
       max-width: 1000px;
     }
 
+    .breadcrumbs {
+      margin: 0 0 15px;
+
+      .breadcrumb {
+        display: inline-block;
+        a, span { margin-right: 10px; }
+      }
+    }
+
     .article {
       width: 70%;
       padding: 0 10px 0;

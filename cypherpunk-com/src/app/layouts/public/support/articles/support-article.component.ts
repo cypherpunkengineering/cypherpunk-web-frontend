@@ -10,9 +10,10 @@ import { Component, PLATFORM_ID, Inject, OnInit, OnDestroy, AfterViewChecked } f
   styleUrls: ['./support-article.component.css']
 })
 export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
-  contentLoaded = false;
   pageLinks = [];
+  breadcrumbs = [{ title: 'Support', link: '/support'}];
   baseRoute: String;
+  contentLoaded = false;
   post = {
     id: '',
     title: '',
@@ -20,6 +21,17 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     content: '',
     published: '',
     images: [ { url: '' } ]
+  };
+  platforms = {
+    windows: { title: 'Windows', link: '/support/windows' },
+    mac: { title: 'Mac', link: '/support/macos' },
+    linux: { title: 'Linux', link: '/support/linux' },
+    android: { title: 'Android', link: '/support/android' },
+    ios: { title: 'iOS', link: '/support/ios' },
+    browsers: { title: 'Browsers', link: '/support/browsers' },
+    "windows-phone": { title: 'Windows Phone', link: '/support/windows-phone' },
+    routers: { title: 'Routers', link: '/support/routers' },
+    other: { title: 'Other', link: '/support/other' }
   };
 
   CPH_REGEX = /__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g;
@@ -38,11 +50,10 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    this.baseRoute = location.path();
-  }
+  ) { this.baseRoute = location.path(); }
 
   ngOnInit() {
+    // handle id in path param
     let id = this.route.snapshot.params['id'];
     if (!id) { return this.router.navigate(['/']); }
     else {
@@ -62,6 +73,15 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
         });
       }
     }
+
+    // handle platform for breadcrumb
+    let currentPlatform = this.route.snapshot.params['platform'];
+    currentPlatform = currentPlatform.toLowerCase();
+    if (this.platforms[currentPlatform]) {
+      this.breadcrumbs.push(this.platforms[currentPlatform]);
+    }
+    else { this.breadcrumbs.push({ title: currentPlatform, link: '' }); }
+
   }
 
   ngAfterViewChecked() {

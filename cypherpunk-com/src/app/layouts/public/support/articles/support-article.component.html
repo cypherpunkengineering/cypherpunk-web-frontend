@@ -8,6 +8,14 @@
 
   <div class="page">
     <div class="page-inner">
+      <div class="breadcrumbs">
+        <div class="breadcrumb" *ngFor="let crumb of breadcrumbs; let i = index;">
+          <a [routerLink]="crumb.link" *ngIf="crumb.link">{{ crumb.title}}</a>
+          <span *ngIf="!crumb.link">{{ crumb.title }}</span>
+          <span *ngIf="i < (breadcrumbs.length - 1)"> > </span>
+        </div>
+      </div>
+
       <div class="article">
         <h1 class="article-header header">{{post.title}}</h1>
 
