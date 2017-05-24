@@ -61,7 +61,10 @@ export class SigninComponent implements AfterViewInit {
     this.auth.signin(this.user)
     .then(() => {
       let redirectUrl = this.auth.redirectUrl;
-      if (redirectUrl) { this.router.navigate([redirectUrl]); }
+      if (redirectUrl) {
+        this.auth.redirectUrl = '';
+        this.router.navigate([redirectUrl]);
+      }
       else { this.router.navigate(['account']); }
     })
     .catch((err) => {
