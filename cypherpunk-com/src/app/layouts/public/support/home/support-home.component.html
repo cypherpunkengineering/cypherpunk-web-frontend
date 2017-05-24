@@ -3,32 +3,38 @@
   <div class="masthead">
     <app-nav></app-nav>
 
-    <h1 class="masthead-header header white">
-      Cypherpunk Privacy Support
-    </h1>
-  </div>
+    <h1 class="masthead-header header white">Support</h1>
 
-  <div class="contact">
-    <div class="contact-inner">
-      <div class="header">Contact Us</div>
+    <!-- search -->
+    <div class="search">
+      <input type="text" placeholder="search our articles">
+      <button>
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
 
-      <div class="options">
+    <!-- two icons -->
+    <div class="contact">
+      <div class="option">
         <a (click)="contactForm()">
-          <div class="option">
-            <img src="/assets/support/contact-form@2x.png" srcset="/assets/support/contact-form.png 500w, /assets/support/contact-form@2x.png 1000w" alt="Contact Form">
-            <div class="text">Contact Form</div>
-          </div>
+          <button>
+            <i class="fa fa-ticket"></i>
+            Contact Form</button>
         </a>
+      </div>
 
+      <div class="option">
         <a href="mailto:support@cypherpunk.com">
-          <div class="option">
-            <img src="/assets/support/email-us@2x.png" srcset="/assets/support/email-us.png 500w, /assets/support/email-us@2x.png 1000w" alt="Contact Us">
-            <div class="text">Email Us</div>
-          </div>
+          <button>
+            <i class="fa fa-envelope"></i>
+            Email Us
+          </button>
         </a>
       </div>
     </div>
   </div>
+
+  <support-navigation></support-navigation>
 
   <div class="quickstart">
     <div class="quickstart-inner">

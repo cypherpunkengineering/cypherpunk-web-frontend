@@ -1,0 +1,27 @@
+.navigation {
+  background-color: #163138;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    font-size: 0;
+    background-color: #0d1e26;
+
+    li {
+      color: #8DFFFB;
+      font-size: 18px;
+      padding: 20px;
+      display: inline-block;
+      cursor: pointer;
+
+      &.active {
+        color: #163238 !important;
+        background-color: #efebeb;
+      }
+
+      &:hover { color: #fff; }
+    }
+  }
+}
