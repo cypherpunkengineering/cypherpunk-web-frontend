@@ -100,7 +100,7 @@ app = webapp2.WSGIApplication([
 	('/blog/post/([0-9]+)/.*', BlogPost),
 	('/support/[a-z]*/([0-9]+)', SupportArticle),
 	('/support/[a-z]*/([0-9]+)/.*', SupportArticle),
-], debug=True)
+], debug=False)
 # [END app]
 
 # vim: softtabstop=0 noexpandtab ts=4 foldmethod=marker wrap
