@@ -25,8 +25,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 # [END imports]
 
 BLOGGER_API_KEY = 'AIzaSyBbjWAJoDWKxZ7R8DbIhf3mT595m1f5Tfs'
-BLOGGER_BLOG_ID = '4561014629041381755'
-BLOGGER_SUPPORT_ID = '2467816098254238300'
+BLOGGER_MARKETING_BLOG_ID = '4561014629041381755'
+BLOGGER_SUPPORT_BLOG_ID = '2467816098254238300'
 
 # [START blog_post]
 class BlogPost(webapp2.RequestHandler):
@@ -35,8 +35,12 @@ class BlogPost(webapp2.RequestHandler):
 		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
 
 		posts = service.posts()
-		request = posts.get(blogId=BLOGGER_BLOG_ID, postId=postId)
-		post = request.execute()
+		request = posts.get(blogId=BLOGGER_MARKETING_BLOG_ID, postId=postId)
+		try:
+			post = request.execute()
+		except Exception:
+			self.error(404)
+			return
 
 		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
 		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
@@ -64,8 +68,12 @@ class SupportArticle(webapp2.RequestHandler):
 		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
 
 		posts = service.posts()
-		request = posts.get(blogId=BLOGGER_SUPPORT_ID, postId=postId)
-		post = request.execute()
+		request = posts.get(blogId=BLOGGER_SUPPORT_BLOG_ID, postId=postId)
+		try:
+			post = request.execute()
+		except Exception:
+			self.error(404)
+			return
 
 		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
 		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
@@ -86,42 +94,12 @@ class SupportArticle(webapp2.RequestHandler):
 		self.response.write(template.render(template_values))
 # [END support_article]
 
-# [START support_tutorial]
-class SupportTutorial(webapp2.RequestHandler):
-
-	def get(self, postId):
-		service = build('blogger', 'v3', developerKey=BLOGGER_API_KEY)
-
-		posts = service.posts()
-		request = posts.get(blogId=BLOGGER_SUPPORT_ID, postId=postId)
-		post = request.execute()
-
-		unescapedContent = HTMLParser.HTMLParser().unescape(post['content'])
-		content = re.sub(r'CypherpunkDescription:.*<', r'<', unescapedContent)
-		description = re.sub(r'.*CypherpunkDescription: (.*)<.*', r'\1', unescapedContent, flags=re.DOTALL)
-		if '<' in description:
-			description = post['title']
-
-		template_values = {
-			'__SUPPORT_TITLE__': post['title'],
-			'__SUPPORT_DATE__': post['updated'],
-			'__SUPPORT_DESCRIPTION__': description,
-			'__SUPPORT_CONTENT__': content,
-			'__SUPPORT_URL__': self.request.url,
-			'__SUPPORT_IMAGE__': 'https://' + self.request.host + '/assets/features/masthead@2x.png'
-		}
-
-		template = JINJA_ENVIRONMENT.get_template('support-tutorial.html')
-		self.response.write(template.render(template_values))
-# [END support_tutorial]
-
 # [START app]
 app = webapp2.WSGIApplication([
-	('/support/articles/([0-9]+)', SupportArticle),
-	('/support/articles/([0-9]+)/.*', SupportArticle),
-	('/support/tutorials/([0-9]+)', SupportTutorial),
-	('/support/tutorials/([0-9]+)/.*', SupportTutorial),
 	('/blog/post/([0-9]+)', BlogPost),
+	('/blog/post/([0-9]+)/.*', BlogPost),
+	('/support/[a-z]*/([0-9]+)', SupportArticle),
+	('/support/[a-z]*/([0-9]+)/.*', SupportArticle),
 ], debug=True)
 # [END app]
 

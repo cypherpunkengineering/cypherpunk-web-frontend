@@ -460,12 +460,7 @@ handlers: # should be ordered from most specific to least specific
   secure: always
   login: admin
 
-- url: /support/articles/(.*)
-  script: blogger.app
-  secure: always
-  login: admin
-
-- url: /support/tutorials/(.*)
+- url: /support/([a-z]*)/(.*)
   script: blogger.app
   secure: always
   login: admin
