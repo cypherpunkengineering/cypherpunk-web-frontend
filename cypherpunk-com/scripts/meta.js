@@ -198,6 +198,11 @@ const metaMap = {
     title: 'Cypherpunk Privacy Support For Android',
     description: 'Cypherpunk Privacy Support For Android'
   },
+  'support:ios.html': {
+    url: 'https://cypherpunk.com/support/ios',
+    title: 'Cypherpunk Privacy Support For iOS',
+    description: 'Cypherpunk Privacy Support For iOS'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_DESCRIPTION__}}',

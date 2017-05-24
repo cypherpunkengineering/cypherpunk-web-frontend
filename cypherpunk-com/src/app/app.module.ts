@@ -38,6 +38,7 @@ import { SupportArticleModule } from './layouts/public/support/articles/support-
 import { SupportWindowsModule } from './layouts/public/support/windows/support-windows.module';
 import { SupportMacModule } from './layouts/public/support/mac/support-mac.module';
 import { SupportAndroidModule } from './layouts/public/support/android/support-android.module';
+import { SupportIOSModule } from './layouts/public/support/ios/support-ios.module';
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { SupportFormModule } from './layouts/public/support/support-form/support-form.module';
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
@@ -97,6 +98,7 @@ import { BackendService } from './services/backend.service';
     SupportWindowsModule,
     SupportMacModule,
     SupportAndroidModule,
+    SupportIOSModule,
     SupportLinuxModule,
     SupportFormModule,
     HostnameSelectorModule,
