@@ -203,6 +203,11 @@ const metaMap = {
     title: 'Cypherpunk Privacy Support For iOS',
     description: 'Cypherpunk Privacy Support For iOS'
   },
+  'support:browsers.html': {
+    url: 'https://cypherpunk.com/support/browsers',
+    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
+    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_DESCRIPTION__}}',
