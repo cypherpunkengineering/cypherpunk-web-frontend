@@ -29,7 +29,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     linux: { title: 'Linux', link: '/support/linux' },
     android: { title: 'Android', link: '/support/android' },
     ios: { title: 'iOS', link: '/support/ios' },
-    browsers: { title: 'Browsers', link: '/support/browsers' },
+    "browser-extension": { title: 'Browser Extensions', link: '/support/browser-extension' },
     "windows-phone": { title: 'Windows Phone', link: '/support/windows-phone' },
     routers: { title: 'Routers', link: '/support/routers' },
     other: { title: 'Other', link: '/support/other' }

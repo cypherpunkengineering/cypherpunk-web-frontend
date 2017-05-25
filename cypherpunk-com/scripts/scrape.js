@@ -53,7 +53,7 @@ const routes = [
   { url: baseRoute + 'support/mac', dirPath: baseDir + 'support/mac.html' },
   { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' },
   { url: baseRoute + 'support/android', dirPath: baseDir + 'support/android.html' },
-  { url: baseRoute + 'support/browsers', dirPath: baseDir + 'support/browsers.html' },
+  { url: baseRoute + 'support/browser-extension', dirPath: baseDir + 'support/browser-extension.html' },
   { url: baseRoute + 'support/ios', dirPath: baseDir + 'support/ios.html' },
   { url: baseRoute + 'support/request/new', dirPath: baseDir + 'support/request/new.html' },
   { url: baseRoute + 'partial/hostname', dirPath: baseDir + 'partial/hostname.html' },
