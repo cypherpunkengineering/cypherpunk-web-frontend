@@ -13,11 +13,11 @@ import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/
 export class SignupComponent implements AfterViewInit {
   refToken: string;
   user = { email: '', password: '' };
-  validEmail = false;
-  emailTouched = false;
-  validPassword = false;
-  passwordTouched = false;
-  signinButtonDisabled = false;
+  errors = {
+    email: { message: '', exists: true, touched: false },
+    password: { message: '', touched: false }
+  };
+  signupButtonDisabled = false;
 
   constructor(
     private zone: NgZone,
@@ -41,42 +41,77 @@ export class SignupComponent implements AfterViewInit {
     return /^[\x21-\x7E]*$/.test(password);
   }
 
-  validatePassword() {
-    this.passwordTouched = true;
-    if (this.user.password.length < 6) { this.validPassword = false; }
-    else if (!this.passwordRegex(this.user.password)) { this.validPassword = false; }
-    else { this.validPassword = true; }
-  }
-
-  validateEmail(): void {
-    this.emailTouched = true;
+  checkEmailExists() {
     // check if email is already taken
-    if (!this.user.email) { this.validEmail = false; return; }
+    if (!this.user.email) { return; }
+    if (!/^\S+@\S+$/.test(this.user.email)) { return; }
     let body = { email: this.user.email };
     this.backend.identifyEmail(body, {})
     .then(() => {
-      this.zone.run(() => { this.validEmail = false; });
+      this.zone.run(() => {
+        this.errors.email.exists = true;
+        this.errors.email.message = 'This Email already exists';
+      });
     })
     .catch((data) => {
       this.zone.run(() => {
-        if (data.status === 401) { this.validEmail = true; }
-        else { this.validEmail = false; }
+        if (data.status === 401) { this.errors.email.exists = false; }
+        else { this.errors.email.exists = true; }
       });
     });
   }
 
+  validateEmail() {
+    let valid = false;
+    this.errors.email.touched = true;
+
+    if (!this.user.email) {
+      this.errors.email.message = 'Email is Required';
+    }
+    else if (!/^\S+@\S+$/.test(this.user.email)) {
+      this.errors.email.message = 'Email is not properly formatted';
+    }
+    else {
+      valid = true;
+      this.errors.email.message = '';
+    }
+
+    return valid;
+  }
+
+  validatePassword() {
+    let valid = false;
+    this.errors.password.touched = true;
+
+    if (!this.user.password) {
+      this.errors.password.message = 'Password is Required';
+    }
+    else if (!this.passwordRegex(this.user.password)) {
+      this.errors.password.message = 'Password contains invalid characters';
+    }
+    else if (this.user.password.length < 6) {
+      this.errors.password.message = 'Password must be at least 6 characters';
+    }
+    else {
+      valid = true;
+      this.errors.password.message = '';
+    }
+
+    return valid;
+  }
+
   signup() {
-    this.signinButtonDisabled = true;
+    this.checkEmailExists();
+    let email = this.validateEmail();
+    let password = this.validatePassword();
+    if (!email || !password || this.errors.email.exists || this.signupButtonDisabled) { return; }
+    this.signupButtonDisabled = true;
 
     this.auth.signup(this.user)
-    .then(() => {
-      let redirectUrl = this.auth.redirectUrl;
-      if (redirectUrl) { this.router.navigate([redirectUrl]); }
-      else { this.router.navigate(['account']); }
-    })
+    .then(() => { this.router.navigate(['account']); })
     .catch((err) => {
       this.zone.run(() => {
-        this.signinButtonDisabled = false;
+        this.signupButtonDisabled = false;
         this.alertService.error('Could not sign in: ' + err.message);
       });
     });

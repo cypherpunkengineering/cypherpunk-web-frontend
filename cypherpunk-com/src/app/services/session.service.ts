@@ -122,7 +122,10 @@ export class SessionService {
       return data;
     })
     .then(this.setSnapEngageEmail)
-    .then((data) => { return { authed: true, loading: data.loading }; })
+    .then((data) => {
+      data.authed = true;
+      return data;
+    })
     .catch(() => { return { authed: false }; });
   }
 

@@ -1,35 +1,41 @@
 <div class="wrapper">
   <div class="masthead">
     <app-nav></app-nav>
-
-    <h1 class="header white">Create Account</h1>
   </div>
 
   <div>
+    <div class="encourage">
+      Sign up to get started with your 24 hour free trial account!
+    </div>
+
     <form>
-      <p>
-        <label for="username">Email</label><br>
-        <input id="email" type="email" name="username" [(ngModel)]="user.email" placeholder="Email" (blur)="validateEmail()" [ngClass]="{'error': (emailTouched && !validEmail), 'success': (emailTouched && validEmail)}" autofocus>
-      </p>
+      <div class="row">
+        <input id="email" type="email" name="username" placeholder="Email" autofocus [(ngModel)]="user.email" (blur)="this.errors.email.touched = true; checkEmailExists(); validateEmail()" [ngClass]="{'error': (this.errors.email.touched && this.errors.email.message)}">
+        <div class="error-message" [hidden]="!this.errors.email.touched">
+          {{this.errors.email.message}}
+        </div>
+      </div>
 
-      <p>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" [(ngModel)]="user.password" (keyup.enter)="signup()" (ngModelChange)="validatePassword()" (blur)="validatePassword()" [ngClass]="{'error': (passwordTouched && !validPassword), 'success': (passwordTouched && validPassword)}">
-      </p>
+      <div class="row">
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword()" (keyup.enter)="signup()" (blur)="this.errors.password.touched = true; validatePassword()">
+        <div class="error-message" [hidden]="!this.errors.password.touched">
+          {{this.errors.password.message}}
+        </div>
+      </div>
 
-      <p class="center">
-        <button class="btn blue" type="button" (click)="signup()" [disabled]="!validPassword || !validEmail || signinButtonDisabled">
+      <div class="center">
+        <button class="btn orange" type="button" (click)="signup()">
           START YOUR FREE TRIAL
         </button>
-      </p>
+      </div>
 
-      <p class="tos">
+      <div class="tos">
         By clicking this button, you agree to Cypherpunk Privacy's <a routerLink="/terms-of-service">Terms of Service</a>
-      </p>
+      </div>
 
-      <p class="center">
-        <a class="signin-link" routerLink="/recover">Forgot Password?</a>
-      </p>
+      <div class="center">
+        <a class="signin-link" routerLink="/recover">Already have an account? Sign in</a>
+      </div>
     </form>
   </div>
 </div>

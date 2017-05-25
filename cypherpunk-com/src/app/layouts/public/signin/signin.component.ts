@@ -30,10 +30,11 @@ export class SigninComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) { document.getElementById('email').focus(); }
   }
 
-  validateSignin () {
+  validateEmail() {
     let valid = false;
+    this.errors.email.touched = true;
 
-    if (!this.user.email.length) {
+    if (!this.user.email) {
       this.errors.email.message = 'Email is Required';
     }
     else if (!/^\S+@\S+$/.test(this.user.email)) {
@@ -44,7 +45,14 @@ export class SigninComponent implements AfterViewInit {
       this.errors.email.message = '';
     }
 
-    if (!this.user.password.length) {
+    return valid;
+  }
+
+  validatePassword() {
+    let valid = false;
+    this.errors.password.touched = true;
+
+    if (!this.user.password) {
       this.errors.password.message = 'Password is Required';
     }
     else {
@@ -56,6 +64,9 @@ export class SigninComponent implements AfterViewInit {
   }
 
   signin() {
+    let email = this.validateEmail();
+    let password = this.validatePassword();
+    if (!email || !password || this.signinButtonDisabled) { return; }
     this.signinButtonDisabled = true;
 
     this.auth.signin(this.user)

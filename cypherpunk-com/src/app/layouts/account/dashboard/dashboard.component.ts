@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   user: any;
   upgrade = true;
   loading = true;
+  showConfirmMessage = false;
   showEmailModal = false;
   showPasswordModal = false;
   countries = country_list;
@@ -63,7 +64,12 @@ export class DashboardComponent implements OnInit {
       let state = router.routerState.snapshot;
       this.authGuard.canActivate(route, state)
       .then((data) => {
-        this.zone.run(() => { this.loading = false; });
+        this.zone.run(() => {
+          this.loading = false;
+          if (!data.account.confirmed) {
+            alertService.warning('Your account is not confirmed! Please check your email and click on the link to confirm your account.');
+          }
+        });
       })
       .catch(() => { /* keep error from showing up in console */ });
     }
