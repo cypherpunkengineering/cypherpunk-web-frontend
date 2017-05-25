@@ -56,9 +56,9 @@
       text-rendering: optimizeLegibility;
     }
     *, *:before, *:after { box-sizing: inherit; }
-    .wrapper { min-height: 100%; margin-bottom: -367px; }
+    .wrapper { min-height: 100%; margin-bottom: -389px; }
     .wrapper:after { content: ''; display: block; }
-    .footerContainer, .wrapper:after { height: 367px;}
+    .footerContainer, .wrapper:after { height: 389px;}
 
     .scrolled-nav-container, .acc-nav, .footerContainer { background-color: #163138; }
     .masthead, .mobile-nav { width: 100%; background-color: #163138; }
@@ -255,14 +255,34 @@
 
     .modal .modal-content .modal-footer .btn { width: 130px; height: 41px; }
 
+    @media (max-width: 1110px) {
+      .wrapper { margin-bottom: -519px; }
+      .footerContainer, .wrapper:after { height: 519px; }
+    }
+
+    @media (max-width: 1000px) {
+      .wrapper { margin-bottom: -998px; }
+      .footerContainer, .wrapper:after { height: 998px; }
+    }
+
     @media (max-width: 1060px) {
       .modal .modal-content { width: 90%; }
       .modal .modal-content .modal-footer .btn { width: 49%; }
     }
 
-    @media (max-width: 1000px) {
-      .wrapper { margin-bottom: -847px; }
-      .footerContainer, .wrapper:after { height: 847px;}
+    @media (max-width: 595px) {
+      .wrapper { margin-bottom: -1128px; }
+      .footerContainer, .wrapper:after { height: 1128px; }
+    }
+
+    @media (max-width: 475px) {
+      .wrapper { margin-bottom: -1258px; }
+      .footerContainer, .wrapper:after { height: 1258px; }
+    }
+
+    @media (max-width: 365px) {
+      .wrapper { margin-bottom: -1388px; }
+      .footerContainer, .wrapper:after { height: 1388px; }
     }
   </style>
 </head>
