@@ -49,6 +49,7 @@ import { CertModule } from './layouts/public/partial/cert/cert.module';
 import { ConfigGeneratorModule } from './layouts/public/partial/config-generator/config-generator.module';
 import { GooglePlayPartialModule } from './layouts/public/partial/google-play/google-play.module';
 import { AmazonAppStorePartialModule } from './layouts/public/partial/amazon-app-store/amazon-app-store.module';
+import { ItunesPartialModule } from './layouts/public/partial/itunes/itunes.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -113,6 +114,7 @@ import { BackendService } from './services/backend.service';
     ConfigGeneratorModule,
     GooglePlayPartialModule,
     AmazonAppStorePartialModule,
+    ItunesPartialModule,
 
     DashboardModule,
     BillingModule,
