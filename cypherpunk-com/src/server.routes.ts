@@ -50,6 +50,8 @@ export const routes: string[] = [
   'support/tutorials/*',
   'support/windows',
   'support/windows/*',
+  'support/mac',
+  'support/mac/*',
   'support/macos',
   'support/macos/*',
   'support/linux',

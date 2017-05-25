@@ -6,6 +6,7 @@ import { SupportMacComponent } from './support-mac.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      { path: 'support/mac', component: SupportMacComponent },
       { path: 'support/macos', component: SupportMacComponent }
     ])
   ]
