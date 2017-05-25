@@ -42,10 +42,12 @@ import { SupportIOSModule } from './layouts/public/support/ios/support-ios.modul
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { SupportBrowsersModule } from './layouts/public/support/browsers/support-browsers.module';
 import { SupportFormModule } from './layouts/public/support/support-form/support-form.module';
+
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
 import { CertModule } from './layouts/public/partial/cert/cert.module';
 import { ConfigGeneratorModule } from './layouts/public/partial/config-generator/config-generator.module';
+import { GooglePlayPartialModule } from './layouts/public/partial/google-play/google-play.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -103,10 +105,12 @@ import { BackendService } from './services/backend.service';
     SupportIOSModule,
     SupportLinuxModule,
     SupportBrowsersModule,
+
     HostnameSelectorModule,
     VpnCredentialsModule,
     CertModule,
     ConfigGeneratorModule,
+    GooglePlayPartialModule,
 
     DashboardModule,
     BillingModule,

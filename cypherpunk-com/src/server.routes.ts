@@ -72,5 +72,6 @@ export const routes: string[] = [
   'partial/hostname',
   'partial/credentials',
   'partial/cert',
-  'partial/config-generator'
+  'partial/config-generator',
+  'partial/google-play'
 ];

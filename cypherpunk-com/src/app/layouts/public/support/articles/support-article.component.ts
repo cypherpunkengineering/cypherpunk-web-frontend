@@ -43,6 +43,8 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   CA_COMPONENT = '<iframe src="/partial/cert" style="width: 100%; height: 930px; border: 0; margin-top: 40px;"></iframe>';
   CG_REGEX = /__CYPHERPUNK_OPENVPN_CONFIG_GENERATOR__/g;
   CG_COMPONENT = '<iframe src="/partial/config-generator" style="width: 100%; height: 600px; border: 0; margin-top: 20px;"></iframe>';
+  GP_REGEX = /_CYPHERPUNK_GOOGLE_PLAY_BUTTON_/g;
+  GP_COMPONENT = '<iframe src="/partial/google-play" style="width: 100%; height: 60px; border: 0;"></iframe>';
 
   constructor(
     private router: Router,
@@ -65,6 +67,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
           data.content = data.content.replace(this.CPC_REGEX, this.CPC_COMPONENT);
           data.content = data.content.replace(this.CA_REGEX, this.CA_COMPONENT);
           data.content = data.content.replace(this.CG_REGEX, this.CG_COMPONENT);
+          data.content = data.content.replace(this.GP_REGEX, this.GP_COMPONENT);
           this.post = data;
           this.document.title = data.title;
         })
