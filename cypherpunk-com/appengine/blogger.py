@@ -98,8 +98,8 @@ class SupportArticle(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
 	('/blog/post/([0-9]+)', BlogPost),
 	('/blog/post/([0-9]+)/.*', BlogPost),
-	('/support/[a-z]*/([0-9]+)', SupportArticle),
-	('/support/[a-z]*/([0-9]+)/.*', SupportArticle),
+	('/support/[a-z0-9-_]*/([0-9]+)', SupportArticle),
+	('/support/[a-z0-9-_]*/([0-9]+)/.*', SupportArticle),
 ], debug=False)
 # [END app]
 
