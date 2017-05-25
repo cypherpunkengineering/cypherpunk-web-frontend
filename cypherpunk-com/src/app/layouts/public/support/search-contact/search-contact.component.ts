@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-contact.component.css']
 })
 export class SearchContactComponent {
+  showContactForm = { show: false };
+
   constructor() { }
+
+  contactForm() {
+    this.showContactForm.show = true;
+  }
 }

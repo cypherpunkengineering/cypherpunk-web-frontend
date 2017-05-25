@@ -5,33 +5,7 @@
 
     <h1 class="masthead-header header white">Support</h1>
 
-    <!-- search -->
-    <div class="search">
-      <input type="text" placeholder="search our articles">
-      <button>
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
-
-    <!-- two icons -->
-    <div class="contact">
-      <div class="option">
-        <a (click)="contactForm()">
-          <button>
-            <i class="fa fa-ticket"></i>
-            Contact Form</button>
-        </a>
-      </div>
-
-      <div class="option">
-        <a href="mailto:support@cypherpunk.com">
-          <button>
-            <i class="fa fa-envelope"></i>
-            Email Us
-          </button>
-        </a>
-      </div>
-    </div>
+    <search-contact></search-contact>
   </div>
 
   <support-navigation></support-navigation>
@@ -210,10 +184,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="floating" [ngClass]="{'show': showContactForm.show}">
-  <app-contact-form [(show)]="showContactForm"></app-contact-form>
 </div>
 
 <app-footer></app-footer>

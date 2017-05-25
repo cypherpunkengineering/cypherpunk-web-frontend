@@ -27,3 +27,7 @@
     </div>
   </div>
 </div>
+
+<div class="floating" [ngClass]="{'show': showContactForm.show}">
+  <app-contact-form [(show)]="showContactForm"></app-contact-form>
+</div>

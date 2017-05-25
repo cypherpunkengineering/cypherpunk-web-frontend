@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule }   from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../../components/shared/shared.module';
 import { SearchContactComponent } from './search-contact/search-contact.component';
 import { SupportNavigationComponent } from './support-navigation/support-navigation.component';
 
@@ -10,6 +11,7 @@ const MODULES = [
   CommonModule,
   RouterModule,
   FormsModule,
+  SharedModule,
   ReactiveFormsModule
 ];
 
