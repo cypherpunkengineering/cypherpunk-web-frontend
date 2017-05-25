@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule }   from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchContactComponent } from './search-contact/search-contact.component';
 import { SupportNavigationComponent } from './support-navigation/support-navigation.component';
 
 const MODULES = [
@@ -18,6 +19,7 @@ const PIPES = [
 
 const COMPONENTS = [
   // put shared components here
+  SearchContactComponent,
   SupportNavigationComponent
 ];
 
