@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SessionService } from '../../../services/session.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { SessionService } from '../../../services/session.service';
   styleUrls: ['./setup-generator.component.css']
 })
 export class SetupGeneratorComponent {
+  @Input() showCredentials: boolean;
   profile = '';
   profileCert = '';
   profilePartial = '';

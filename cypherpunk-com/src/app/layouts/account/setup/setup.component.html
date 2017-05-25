@@ -26,7 +26,7 @@
 
   <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
     <div class="subheader">OpenVPN 2.3/2.4</div>
-    <app-setup-generator></app-setup-generator>
+    <app-setup-generator [showCredentials]="true"></app-setup-generator>
   </div>
 
   <div id="ipsec" class="vpn" [ngClass]="{'show': vpnSelect === 'ipsec'}">

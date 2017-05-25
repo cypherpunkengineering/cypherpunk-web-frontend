@@ -1,9 +1,9 @@
 <div class="vpn" *ngIf="!showWarning">
-  <div class="privacy">
+  <div class="privacy" *ngIf="showCredentials">
     <app-setup-credentials></app-setup-credentials>
   </div>
 
-  <div class="location-select-container">
+  <div class="location-select-container" [ngClass]="{'no-margin': !showCredentials}">
     <app-setup-hostname [(location)]="openvpnLocation" (update)="updateProfile()"></app-setup-hostname>
   </div>
 

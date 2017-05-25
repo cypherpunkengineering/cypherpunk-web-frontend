@@ -3,19 +3,8 @@ import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'app-setup-credentials',
-  template: `
-    <div class="credentials" *ngIf="!showWarning">
-      <strong>Username: </strong><br>
-      <pre>{{user.privacy.username}}</pre>
-      <div></div>
-      <strong>Password: </strong><br>
-      <pre>{{user.privacy.password}}</pre>
-    </div>
-    <div class="warning" *ngIf="showWarning">
-      Please sign in to view this content
-    </div>
-  `,
-  styles: ['pre { margin: 5px 0 15px; } .credentials { margin-bottom: 30px; }']
+  templateUrl: 'setup-credentials.component.html',
+  styleUrls: ['setup-credentials.component.css']
 })
 export class SetupCredentialsComponent {
   user: any;
@@ -24,5 +13,18 @@ export class SetupCredentialsComponent {
   constructor(private session: SessionService) {
     this.user = session.user;
     this.showWarning = !!!this.user.privacy.username;
+  }
+
+  copy(element: string) {
+    let el = (document.getElementById(element)) as HTMLInputElement;
+
+    try {
+      el.select();
+      document.execCommand('copy');
+      el.blur();
+    }
+    catch(err) {
+      alert('Please press Ctrl/Cmd + C to copy');
+    }
   }
 }
