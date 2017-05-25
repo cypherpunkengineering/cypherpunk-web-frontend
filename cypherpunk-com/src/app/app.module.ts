@@ -48,6 +48,7 @@ import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/v
 import { CertModule } from './layouts/public/partial/cert/cert.module';
 import { ConfigGeneratorModule } from './layouts/public/partial/config-generator/config-generator.module';
 import { GooglePlayPartialModule } from './layouts/public/partial/google-play/google-play.module';
+import { AmazonAppStorePartialModule } from './layouts/public/partial/amazon-app-store/amazon-app-store.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -111,6 +112,7 @@ import { BackendService } from './services/backend.service';
     CertModule,
     ConfigGeneratorModule,
     GooglePlayPartialModule,
+    AmazonAppStorePartialModule,
 
     DashboardModule,
     BillingModule,

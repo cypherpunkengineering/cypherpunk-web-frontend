@@ -73,5 +73,6 @@ export const routes: string[] = [
   'partial/credentials',
   'partial/cert',
   'partial/config-generator',
-  'partial/google-play'
+  'partial/google-play',
+  'partial/amazon-app-store'
 ];
