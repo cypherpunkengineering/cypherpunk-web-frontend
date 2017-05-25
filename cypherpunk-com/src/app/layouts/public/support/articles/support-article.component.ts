@@ -22,6 +22,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
     published: '',
     images: [ { url: '' } ]
   };
+  currentPlatform = '';
   platforms = {
     windows: { title: 'Windows', link: '/support/windows' },
     mac: { title: 'Mac', link: '/support/macos' },
@@ -81,7 +82,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
       this.breadcrumbs.push(this.platforms[currentPlatform]);
     }
     else { this.breadcrumbs.push({ title: currentPlatform, link: '' }); }
-
+    this.currentPlatform = currentPlatform;
   }
 
   ngAfterViewChecked() {
