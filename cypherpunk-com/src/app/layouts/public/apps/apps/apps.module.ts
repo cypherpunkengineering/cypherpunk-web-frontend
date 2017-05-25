@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../../../components/shared/shared.module';
 import { AppsComponent } from './apps.component';
+import { AppsSharedModule } from '../apps-shared.module';
 import { AppsRoutingModule } from './apps-routing.module';
 
 @NgModule({
   imports: [
-    SharedModule,
+    AppsSharedModule,
     AppsRoutingModule
   ],
   declarations: [

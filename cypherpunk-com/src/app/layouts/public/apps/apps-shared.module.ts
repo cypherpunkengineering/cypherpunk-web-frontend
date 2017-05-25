@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule }   from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../../components/shared/shared.module';
 import { AppsNavigationComponent } from './apps-navigation/apps-navigation.component';
 
 const MODULES = [
@@ -9,6 +10,7 @@ const MODULES = [
   CommonModule,
   RouterModule,
   FormsModule,
+  SharedModule,
   ReactiveFormsModule
 ];
 
