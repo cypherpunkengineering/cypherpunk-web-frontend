@@ -44,9 +44,9 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   CG_REGEX = /__CYPHERPUNK_OPENVPN_CONFIG_GENERATOR__/g;
   CG_COMPONENT = '<iframe src="/partial/config-generator" style="width: 100%; height: 600px; border: 0; margin-top: 20px;"></iframe>';
   GP_REGEX = /_CYPHERPUNK_GOOGLE_PLAY_BUTTON_/g;
-  GP_COMPONENT = '<iframe src="/partial/google-play" style="width: 100%; height: 60px; border: 0;"></iframe>';
+  GP_COMPONENT = '<iframe src="/partial/google-play" style="width: 100%; height: 80px; border: 0;"></iframe>';
   AZ_REGEX = /_CYPHERPUNK_AMAZON_APP_STORE_BUTTON_/g;
-  AZ_COMPONENT = '<iframe src="/partial/amazon-app-store" style="width: 100%; height: 70px; border: 0;"></iframe>';
+  AZ_COMPONENT = '<iframe src="/partial/amazon-app-store" style="width: 100%; height: 80px; border: 0;"></iframe>';
   AP_REGEX = /_CYPHERPUNK_ITUNES_APP_STORE_BUTTON_/g;
   AP_COMPONENT = '<iframe src="/partial/itunes" style="width: 100%; height: 70px; border: 0;"></iframe>';
   CR_REGEX = /_CYPHERPUNK_CHROME_WEBSTORE_BUTTON_/g;
