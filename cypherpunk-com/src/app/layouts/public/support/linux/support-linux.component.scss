@@ -14,14 +14,19 @@
       padding: 0 10px;
     }
 
+    .breadcrumbs {
+      margin: 0 0 15px;
+
+      .breadcrumb {
+        display: inline-block;
+        a, span { margin-right: 10px; text-decoration: none; }
+      }
+    }
+
     .page-top {
       text-align: center;
       img { width: 100px; }
       .header { margin: 10px 0 0; }
-
-      .btn-container {
-
-      }
 
       .btn {
         min-width: 240px;
