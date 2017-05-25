@@ -3,10 +3,10 @@ import { Component, Inject } from '@angular/core';
 import { BackendService } from '../../../../services/backend.service';
 
 @Component({
-  templateUrl: './support-browsers.component.html',
-  styleUrls: ['./support-browsers.component.css']
+  templateUrl: './support-browser-extension.component.html',
+  styleUrls: ['./support-browser-extension.component.css']
 })
-export class SupportBrowsersComponent {
+export class SupportBrowserExtensionComponent {
 
   constructor(
     private backend: BackendService,
