@@ -1,0 +1,36 @@
+.navigation {
+  width: 100%;
+  padding: 20px 0 0;
+  text-align: center;
+  background-color: #163138;
+
+  ul {
+    padding: 0;
+    margin: auto;
+    list-style-type: none;
+    font-size: 0;
+  }
+  li {
+    height: 50px;
+    padding: 10px 10px;
+    color: #8DFFFB;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    &:hover { color: #fff; }
+
+    img {
+      height: 100%;
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+    }
+
+    &.active {
+      color: #163138 !important;
+      cursor: default;
+      background-color: #fff;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+  }
+}

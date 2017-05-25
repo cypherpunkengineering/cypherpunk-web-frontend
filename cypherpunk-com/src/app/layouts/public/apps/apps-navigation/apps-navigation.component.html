@@ -1,0 +1,46 @@
+<div class="navigation">
+  <ul>
+    <a routerLink="/apps/windows">
+      <li [ngClass]="{ 'active': page === 'windows'}">
+        <img src="/assets/apps/icons/windows@2x.png" srcset="/assets/apps/icons/windows.png 500w, /assets/apps/icons/windows@2x.png 1000w" alt="Windows">
+        <span>Windows</span>
+      </li>
+    </a>
+    <a routerLink="/apps/mac">
+      <li [ngClass]="{ 'active': page === 'mac'}">
+        <img src="/assets/apps/icons/mac@2x.png" srcset="/assets/apps/icons/mac.png 500w, /assets/apps/icons/mac@2x.png 1000w" alt="Mac">
+        <span>Mac</span>
+      </li>
+    </a>
+    <a routerLink="/apps/linux">
+      <li [ngClass]="{ 'active': page === 'linux'}">
+        <img src="/assets/apps/icons/linux@2x.png" srcset="/assets/apps/icons/linux.png 500w, /assets/apps/icons/linux@2x.png 1000w" alt="Linux">
+        <span>Linux</span>
+      </li>
+    </a>
+    <a routerLink="/apps/ios">
+      <li [ngClass]="{ 'active': page === 'ios'}">
+        <img src="/assets/apps/icons/ios@2x.png" srcset="/assets/apps/icons/ios.png 500w, /assets/apps/icons/ios@2x.png 1000w" alt="iOS">
+        <span>iOS</span>
+      </li>
+    </a>
+    <a routerLink="/apps/android">
+      <li [ngClass]="{ 'active': page === 'android'}">
+        <img src="/assets/apps/icons/android@2x.png" srcset="/assets/apps/icons/android.png 500w, /assets/apps/icons/android@2x.png 1000w" alt="Android">
+        <span>Android</span>
+      </li>
+    </a>
+    <a routerLink="/apps/browser">
+      <li [ngClass]="{ 'active': page === 'browser'}">
+        <img src="/assets/apps/icons/browser@2x.png" srcset="/assets/apps/icons/browser.png 500w, /assets/apps/icons/browser@2x.png 1000w" alt="Browsers">
+        <span>Browsers</span>
+      </li>
+    </a>
+    <a routerLink="/apps/routers">
+      <li [ngClass]="{ 'active': page === 'routers'}">
+        <img src="/assets/apps/icons/router@2x.png" srcset="/assets/apps/icons/router.png 500w, /assets/apps/icons/router@2x.png 1000w" alt="Routers">
+        <span>Routers</span>
+      </li>
+    </a>
+  </ul>
+</div>

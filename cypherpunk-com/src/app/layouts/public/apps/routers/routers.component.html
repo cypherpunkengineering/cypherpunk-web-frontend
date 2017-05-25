@@ -2,50 +2,7 @@
   <app-nav></app-nav>
 </div>
 
-<div class="navigation">
-  <ul>
-    <a routerLink="/apps/windows">
-      <li>
-        <img src="/assets/apps/icons/windows@2x.png" srcset="/assets/apps/icons/windows.png 500w, /assets/apps/icons/windows@2x.png 1000w" alt="Windows">
-        <span>Windows</span>
-      </li>
-   </a>
-    <a routerLink="/apps/mac">
-      <li>
-        <img src="/assets/apps/icons/mac@2x.png" srcset="/assets/apps/icons/mac.png 500w, /assets/apps/icons/mac@2x.png 1000w" alt="Mac">
-        <span>Mac</span>
-      </li>
-    </a>
-    <a routerLink="/apps/linux">
-      <li>
-        <img src="/assets/apps/icons/linux@2x.png" srcset="/assets/apps/icons/linux.png 500w, /assets/apps/icons/linux@2x.png 1000w" alt="Linux">
-        <span>Linux</span>
-      </li>
-    </a>
-    <a routerLink="/apps/ios">
-      <li>
-        <img src="/assets/apps/icons/ios@2x.png" srcset="/assets/apps/icons/ios.png 500w, /assets/apps/icons/ios@2x.png 1000w" alt="iOS">
-        <span>iOS</span>
-      </li>
-    </a>
-    <a routerLink="/apps/android">
-      <li>
-        <img src="/assets/apps/icons/android@2x.png" srcset="/assets/apps/icons/android.png 500w, /assets/apps/icons/android@2x.png 1000w" alt="Android">
-        <span>Android</span>
-      </li>
-    </a>
-    <a routerLink="/apps/browser">
-      <li>
-        <img src="/assets/apps/icons/browser@2x.png" srcset="/assets/apps/icons/browser.png 500w, /assets/apps/icons/browser@2x.png 1000w" alt="Browsers">
-        <span>Browsers</span>
-      </li>
-    </a>
-    <li class="active">
-      <img src="/assets/apps/icons/router@2x.png" srcset="/assets/apps/icons/router.png 500w, /assets/apps/icons/router@2x.png 1000w" alt="Routers">
-      <span>Routers</span>
-    </li>
-  </ul>
-</div>
+<apps-navigation [page]="'routers'"></apps-navigation>
 
 <div class="content">
   <div class="content-inner">
