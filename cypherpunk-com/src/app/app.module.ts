@@ -50,6 +50,7 @@ import { ConfigGeneratorModule } from './layouts/public/partial/config-generator
 import { GooglePlayPartialModule } from './layouts/public/partial/google-play/google-play.module';
 import { AmazonAppStorePartialModule } from './layouts/public/partial/amazon-app-store/amazon-app-store.module';
 import { ItunesPartialModule } from './layouts/public/partial/itunes/itunes.module';
+import { ChromePartialModule } from './layouts/public/partial/chrome/chrome.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -115,6 +116,7 @@ import { BackendService } from './services/backend.service';
     GooglePlayPartialModule,
     AmazonAppStorePartialModule,
     ItunesPartialModule,
+    ChromePartialModule,
 
     DashboardModule,
     BillingModule,

@@ -49,6 +49,8 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   AZ_COMPONENT = '<iframe src="/partial/amazon-app-store" style="width: 100%; height: 70px; border: 0;"></iframe>';
   AP_REGEX = /_CYPHERPUNK_ITUNES_APP_STORE_BUTTON_/g;
   AP_COMPONENT = '<iframe src="/partial/itunes" style="width: 100%; height: 70px; border: 0;"></iframe>';
+  CR_REGEX = /_CYPHERPUNK_CHROME_WEBSTORE_BUTTON_/g;
+  CR_COMPONENT = '<iframe src="/partial/chrome" style="width: 100%; height: 70px; border: 0;"></iframe>';
 
   constructor(
     private router: Router,
@@ -74,6 +76,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
           data.content = data.content.replace(this.GP_REGEX, this.GP_COMPONENT);
           data.content = data.content.replace(this.AZ_REGEX, this.AZ_COMPONENT);
           data.content = data.content.replace(this.AP_REGEX, this.AP_COMPONENT);
+          data.content = data.content.replace(this.CR_REGEX, this.CR_COMPONENT);
           this.post = data;
           this.document.title = data.title;
         })

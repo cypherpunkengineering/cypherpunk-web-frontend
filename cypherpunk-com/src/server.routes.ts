@@ -75,5 +75,6 @@ export const routes: string[] = [
   'partial/config-generator',
   'partial/google-play',
   'partial/amazon-app-store',
-  'partial/itunes'
+  'partial/itunes',
+  'partial/chrome'
 ];

@@ -62,7 +62,8 @@ const routes = [
   { url: baseRoute + 'partial/config-generator', dirPath: baseDir + 'partial/config-generator.html' },
   { url: baseRoute + 'partial/google-play', dirPath: baseDir + 'partial/google-play.html' },
   { url: baseRoute + 'partial/amazon-app-store', dirPath: baseDir + 'partial/amazon-app-store.html' },
-  { url: baseRoute + 'partial/itunes', dirPath: baseDir + 'partial/itunes.html' }
+  { url: baseRoute + 'partial/itunes', dirPath: baseDir + 'partial/itunes.html' },
+  { url: baseRoute + 'partial/chrome', dirPath: baseDir + 'partial/chrome.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {
