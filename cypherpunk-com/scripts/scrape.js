@@ -50,6 +50,7 @@ const routes = [
   { url: baseRoute + 'support/tutorials/test', dirPath: baseDir + '../support-tutorial.html' },
   { url: baseRoute + 'support/windows', dirPath: baseDir + 'support/windows.html' },
   { url: baseRoute + 'support/macos', dirPath: baseDir + 'support/macos.html' },
+  { url: baseRoute + 'support/mac', dirPath: baseDir + 'support/mac.html' },
   { url: baseRoute + 'support/linux', dirPath: baseDir + 'support/linux.html' },
   { url: baseRoute + 'support/android', dirPath: baseDir + 'support/android.html' },
   { url: baseRoute + 'support/browsers', dirPath: baseDir + 'support/browsers.html' },

@@ -455,6 +455,18 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /support/request/new
+  static_files: target/support/request/new.html
+  upload: target/support/request/new.html
+  expiration: "10m"
+  secure: always
+  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /blog/(.*)
   script: blogger.app
   secure: always
