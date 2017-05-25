@@ -76,5 +76,6 @@ export const routes: string[] = [
   'partial/google-play',
   'partial/amazon-app-store',
   'partial/itunes',
-  'partial/chrome'
+  'partial/chrome',
+  'partial/firefox'
 ];

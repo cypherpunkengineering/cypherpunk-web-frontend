@@ -1,0 +1,11 @@
+a { text-decoration: none; }
+
+.firefox {
+  width: 206px;
+  height: 58px;
+  padding: 10px 10px;
+  color: #fff;
+  text-align: center;
+  background-color: #57bd35;
+  &:hover { background-color: #5dca92; }
+}

@@ -51,6 +51,7 @@ import { GooglePlayPartialModule } from './layouts/public/partial/google-play/go
 import { AmazonAppStorePartialModule } from './layouts/public/partial/amazon-app-store/amazon-app-store.module';
 import { ItunesPartialModule } from './layouts/public/partial/itunes/itunes.module';
 import { ChromePartialModule } from './layouts/public/partial/chrome/chrome.module';
+import { FirefoxPartialModule } from './layouts/public/partial/firefox/firefox.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { BillingModule } from './layouts/account/billing/billing.module';
@@ -117,6 +118,7 @@ import { BackendService } from './services/backend.service';
     AmazonAppStorePartialModule,
     ItunesPartialModule,
     ChromePartialModule,
+    FirefoxPartialModule,
 
     DashboardModule,
     BillingModule,
