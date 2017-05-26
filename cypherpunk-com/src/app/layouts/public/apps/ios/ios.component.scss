@@ -93,16 +93,7 @@
   padding: 0 10px;
   text-align: center;
 
-  .btn {
-    margin: 40px 0 0;
-    padding: 10px;
-    width: 100%;
-    max-width: 180px;
-    height: 55px;
-    font-size: 18px;
-    &.orange:hover { background-color: #ff8c71; }
-    &.blue:hover { background-color: #27a5e2; }
-  }
+  .apple { width: 300px; }
 }
 
 @media (max-width: 1020px) {
