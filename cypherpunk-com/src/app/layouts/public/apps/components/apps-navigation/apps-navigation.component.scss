@@ -34,3 +34,12 @@
     }
   }
 }
+
+@media (max-width: 845px) {
+  .navigation li span { display: none; }
+  .navigation li img { margin: 0; }
+}
+
+@media (max-width: 400px) {
+  .navigation li { padding: 10px 15px; font-size: 16px; }
+}

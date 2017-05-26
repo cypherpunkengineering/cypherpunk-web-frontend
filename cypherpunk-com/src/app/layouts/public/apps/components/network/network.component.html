@@ -1,0 +1,79 @@
+<div class="network">
+  <div class="network-inner">
+    <div class="header">Cypherpunk Privacy Network</div>
+
+    <div class="columns">
+      <div class="column">
+        <div class="column-image">
+          <img src="/assets/apps/mixing-traffic@2x.png" srcset="/assets/apps/mixing-traffic.png 500w, /assets/apps/mixing-traffic@2x.png 1000w" alt="Mixing Traffic">
+        </div>
+
+        <div class="column-text">
+          Anonymize your online activity by mixing it with everyone's traffic
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="column-image">
+          <img src="/assets/apps/no-logging-policy@2x.png" srcset="/assets/apps/no-logging-policy.png 500w, /assets/apps/no-logging-policy@2x.png 1000w" alt="Strict No-Loggin Policy">
+        </div>
+
+        <div class="column-header">Strict no-logging policy</div>
+
+        <div class="column-text has-header">
+          We respect and defend the privacy of your online activities
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="column-image">
+          <img class="height" src="/assets/apps/tunnel-around-the-world@2x.png" srcset="/assets/apps/tunnel-around-the-world.png 500w, /assets/apps/tunnel-around-the-world@2x.png 1000w" alt="Tunnel Around the World">
+        </div>
+
+        <div class="column-text">
+          Tunnel around the world in more than 20+ countries
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container" *ngIf="platform === 'windows' || platform === 'mac' || platform == 'linux'">
+      <a [routerLink]="downloadLink()">
+        <button class="btn orange">Download Now</button>
+      </a>
+    </div>
+
+    <div class="button-container" *ngIf="platform === 'android'">
+      <a class="android-button" href="https://play.google.com/store/apps/details?id=com.cypherpunk.privacy">
+        <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
+      </a>
+    </div>
+
+    <div class="button-container" *ngIf="platform === 'ios'">
+      <a href="https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930">
+        <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
+      </a>
+    </div>
+
+    <div class="button-container" *ngIf="platform === 'browser'">
+      <div class="cell">
+        <a href="https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj">
+          <img src="/assets/apps/browser/ChromeWebStore_BadgeWBorder_v2_206x58.png" alt="Chrome App Store" >
+        </a>
+      </div>
+
+      <div class="cell">
+        <a href="#">
+          <div class="firefox">
+            Download From Firefox Add-ons
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="button-container" *ngIf="platform === 'routers'">
+      <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047" target="_blank">
+        <button class="btn blue">Setup Guide</button>
+      </a>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,8 @@ import { CommonModule }   from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../components/shared/shared.module';
-import { AppsNavigationComponent } from './apps-navigation/apps-navigation.component';
+import { AppsNavigationComponent } from './components/apps-navigation/apps-navigation.component';
+import { NetworkComponent } from './components/network/network.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -20,6 +21,7 @@ const PIPES = [
 
 const COMPONENTS = [
   // put shared components here
+  NetworkComponent,
   AppsNavigationComponent
 ];
 
