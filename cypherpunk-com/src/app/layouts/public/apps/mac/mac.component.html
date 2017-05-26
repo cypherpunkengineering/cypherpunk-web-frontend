@@ -13,9 +13,13 @@
     </div>
 
     <div class="button-container">
-      <a routerLink="/download/mac/autostart">
-        <button class="btn blue">Download Now</button>
+      <a href="{{ downloadLink }}" (click)="startDownload()">
+        <button class="btn orange">Download Now</button>
       </a>
+
+      <div class="downloading" *ngIf="showDownloading">
+        Your download is starting...
+      </div>
     </div>
   </div>
 </div>
@@ -114,13 +118,17 @@
     </div>
 
     <div class="button-container">
-      <a routerLink="/download/mac/autostart">
-        <button class="btn blue">Download Now</button>
+      <a href="{{ downloadLink}}" (click)="startDownload()">
+        <button class="btn orange">Download Now</button>
       </a>
+
+      <div class="downloading white" *ngIf="showDownloading">
+        Your download is starting...
+      </div>
     </div>
   </div>
 </div>
 
-<apps-network [platform]="'mac'"></apps-network>
+<apps-network [platform]="'mac'" [link]="downloadLink"></apps-network>
 
 <app-footer></app-footer>

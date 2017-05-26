@@ -37,32 +37,36 @@
     </div>
 
     <div class="button-container" *ngIf="platform === 'windows' || platform === 'mac' || platform == 'linux'">
-      <a [routerLink]="downloadLink()">
+      <a href="{{ link }}" (click)="showDownloading = true;" target="_top">
         <button class="btn orange">Download Now</button>
       </a>
+
+      <div class="downloading" *ngIf="showDownloading">
+        Your download is starting...
+      </div>
     </div>
 
     <div class="button-container" *ngIf="platform === 'android'">
-      <a class="android-button" href="https://play.google.com/store/apps/details?id=com.cypherpunk.privacy">
+      <a class="android-button" href="{{ link }}">
         <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
       </a>
     </div>
 
     <div class="button-container" *ngIf="platform === 'ios'">
-      <a href="https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930">
+      <a href="{{ link }}">
         <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
       </a>
     </div>
 
     <div class="button-container" *ngIf="platform === 'browser'">
       <div class="cell">
-        <a href="https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj">
+        <a href="{{ link }}">
           <img src="/assets/apps/browser/ChromeWebStore_BadgeWBorder_v2_206x58.png" alt="Chrome App Store" >
         </a>
       </div>
 
       <div class="cell">
-        <a href="#">
+        <a href="{{ ffLink }}">
           <div class="firefox">
             Download From Firefox Add-ons
           </div>
@@ -71,8 +75,8 @@
     </div>
 
     <div class="button-container" *ngIf="platform === 'routers'">
-      <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047" target="_blank">
-        <button class="btn blue">Setup Guide</button>
+      <a routerLink="/support/routers">
+        <button class="btn orange">Setup Guide</button>
       </a>
     </div>
   </div>

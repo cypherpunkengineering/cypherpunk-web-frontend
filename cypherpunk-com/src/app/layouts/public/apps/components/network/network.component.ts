@@ -7,10 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class NetworkComponent {
   @Input() platform: string;
+  @Input() link: string;
+  @Input() ffLink: string;
+
+  showDownloading: boolean;
 
   constructor() { }
-
-  downloadLink() {
-    return `/download/${this.platform}/autostart`;
-  }
 }

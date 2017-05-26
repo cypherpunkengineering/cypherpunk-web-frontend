@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { RequestOptions} from '@angular/http';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -71,6 +72,7 @@ export class PricingComponent {
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
+    private location: Location,
     private authGuard: AuthGuard,
     private backend: BackendService,
     private session: SessionService,
@@ -97,9 +99,14 @@ export class PricingComponent {
         }
         else if (type !== 'premium') { redirect = false; }
 
-        history.replaceState({}, document.title, document.location.origin);
-        if (redirect) { router.navigate(['/account/upgrade']); }
-        else { router.navigate(['/account']); }
+        if (redirect) {
+          router.navigate(['/account/upgrade']);
+          location.replaceState('/account/upgrade');
+        }
+        else {
+          router.navigate(['/account']);
+          location.replaceState('/account');
+        }
       })
       .catch(() => { });
     }

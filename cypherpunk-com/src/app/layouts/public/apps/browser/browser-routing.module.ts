@@ -5,7 +5,8 @@ import { BrowserComponent } from './browser.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'apps/browser', component: BrowserComponent }
+      { path: 'apps/browser', component: BrowserComponent },
+      { path: 'apps/browser/autostart', component: BrowserComponent }
     ])
   ]
 })

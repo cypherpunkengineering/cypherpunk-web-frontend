@@ -100,8 +100,10 @@
     height: 55px;
     font-size: 18px;
     &.orange:hover { background-color: #ff8c71; }
-    &.blue:hover { background-color: #27a5e2; }
   }
+
+  .downloading { padding-top: 10px; font-size: 16px; }
+  .white { color: #fff; }
 }
 
 @media (max-width: 1020px) {

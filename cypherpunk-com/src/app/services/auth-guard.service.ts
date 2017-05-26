@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
@@ -7,9 +8,10 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 export class AuthGuard implements CanActivate {
 
   constructor(
+    private router: Router,
     private auth: AuthService,
-    private session: SessionService,
-    private router: Router
+    private location: Location,
+    private session: SessionService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
@@ -50,8 +52,8 @@ export class AuthGuard implements CanActivate {
         this.auth.authed = false;
         this.session.clearUserData();
         this.auth.redirectUrl = url;
-        history.replaceState({}, document.title, document.location.origin);
         this.router.navigate(['/login']);
+        this.location.replaceState('/login');
         return Promise.reject({}); // kill any extra code from executing after this level
       }
     });

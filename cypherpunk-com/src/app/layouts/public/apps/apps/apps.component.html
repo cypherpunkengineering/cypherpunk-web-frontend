@@ -1,43 +1,47 @@
 <div class="masthead">
   <app-nav></app-nav>
-
-  <h1 class="masthead-header header white">Cypherpunk Privacy for {{headerBuild.name}}</h1>
-
-  <div class="masthead-banner">
-    <div class="masthead-image">
-      <img src="/assets/download/header-illustration@2x.png" srcset="/assets/download/header-illustration.png 500w, /assets/download/header-illustration@2x.png" alt="Download">
-    </div>
-  </div>
-
-  <div class="masthead-button-container">
-    <a href="{{downloadBuildLink}}" (click)="startingDownload()" target="_top">
-      <div class="btn orange masthead-button">
-        Download Now
-      </div>
-    </a>
-  </div>
 </div>
 
-<div class="download down-arrow">
-  <div class="version">{{headerBuild.name + ' ' + headerBuild.versions}}</div>
+<apps-navigation [page]="'apps'"></apps-navigation>
 
-  <div class="prompt" *ngIf="showDownloadSection">Your download will begin shortly...</div>
+<div class="content down-arrow white">
+  <div class="content-inner">
+    <div class="header">Cypherpunk Privacy Suite</div>
 
-  <div class="screen">
-    <img src="/assets/download/windows@2x.png" alt="Windows" *ngIf="headerBuild.name === 'Windows' ">
-    <img src="/assets/download/mac@2x.png" alt="Mac" *ngIf="headerBuild.name === 'Mac' ">
-    <img src="/assets/download/linux@2x.png" alt="Linux" *ngIf="headerBuild.name === 'Linux' ">
+    <div class="split">
+      <img src="/assets/home/header-illustration@2x.png" srcset="/assets/home/header-illustration.png 500w, /assets/home/header-illustration@2x.png 1000w" alt="Cypherpunk Privacy Suite">
+    </div>
+
+    <div class="button-container" *ngIf="platform">
+      <a href="{{ downloadLink }}" (click)="startDownload()" *ngIf="platform === 'Windows' || platform === 'MacOS' || platform === 'Linux'">
+        <button class="btn orange">
+          Download Cypherpunk Privacy for {{ platform }}
+        </button>
+      </a>
+
+      <a href="{{ downloadLink }}" target="_top" *ngIf="platform === 'Android'">
+        <button class="btn orange">
+          Continue to Google Play Store
+        </button>
+      </a>
+
+      <a href="{{ downloadLink }}" target="_top" *ngIf="platform === 'iOS'">
+        <button class="btn orange">
+          Continue to App Store
+        </button>
+      </a>
+
+      <div class="downloading" *ngIf="showDownloading">
+        Your download is starting...
+      </div>
+    </div>
   </div>
-
-  <a routerLink="{{headerBuild.appLink}}">
-    <div class="learn">Learn more</div>
-  </a>
 </div>
 
 <div class="platforms">
   <div class="platforms-inner">
 
-    <div class="platform" *ngIf="headerBuild.name !== 'Windows'">
+    <div class="platform">
       <div class="display">
         <div class="image">
           <img src="/assets/download/windows@2x.png" srcset="/assets/download/windows.png 500w, /assets/download/windows@2x.png 1000w" alt="Windows">
@@ -47,18 +51,16 @@
       </div>
 
       <div class="hover">
-        <a routerLink="/download/windows" target="_top">
+        <a routerLink="/apps/windows/autostart">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Windows">
             <div class="type">Windows 7+ <br>64-bit</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
 
-    <div class="platform" *ngIf="headerBuild.name !== 'Mac'">
+    <div class="platform">
       <div class="display">
         <div class="image">
           <img src="/assets/download/mac@2x.png" srcset="/assets/download/mac.png 500w, /assets/download/mac@2x.png 1000w" alt="MacOS">
@@ -68,18 +70,16 @@
       </div>
 
       <div class="hover">
-        <a routerLink="/download/mac" target="_top">
+        <a routerLink="/apps/macos/autostart">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Mac">
             <div class="type"><br>MacOS</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
 
-    <div class="platform" *ngIf="headerBuild.name !== 'Linux'">
+    <div class="platform">
       <div class="display">
         <div class="image">
           <img src="/assets/download/linux@2x.png" srcset="/assets/download/linux.png 500w, /assets/download/linux@2x.png 1000w" alt="Linux">
@@ -89,13 +89,11 @@
       </div>
 
       <div class="hover">
-        <a routerLink="/download/linux" target="_top">
+        <a routerLink="/apps/linux/autostart">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Linux">
             <div class="type">Debian x86_64</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -110,13 +108,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.ios.link}}">
+        <a href="{{ iosDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download iOS">
             <div class="type"><br>iOS</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -131,13 +127,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.android.link}}">
+        <a href="{{ androidDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Android">
             <div class="type"><br>Android</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -152,13 +146,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.chrome.link}}">
+        <a href="{{ chromeDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Chrome">
             <div class="type"><br>Chrome</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -173,13 +165,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.firefox.link}}">
+        <a href="{{ firefoxDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Firefox">
             <div class="type"><br>Firefox</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -194,13 +184,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.chrome.link}}">
+        <a href="{{ chromeDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Opera">
             <div class="type"><br>Opera</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -215,13 +203,11 @@
       </div>
 
       <div class="hover">
-        <a href="{{builds.chrome.link}}">
+        <a href="{{ chromeDownloadLink }}">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Vivaldi">
             <div class="type"><br>Vivaldi</div>
           </div>
-
-          <div class="link">Download</div>
         </a>
       </div>
     </div>
@@ -236,31 +222,15 @@
       </div>
 
       <div class="hover">
-        <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
+        <a routerLink="/apps/routers">
           <div class="download-icon">
             <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Setup Guide for Router">
             <div class="type"><br>Routers</div>
           </div>
-
-          <div class="link">Setup</div>
         </a>
       </div>
     </div>
   </div>
-</div>
-
-<div class="different">
-  <div class="header blue">Protection for all of your devices:</div>
-
-  <div class="diff-images">
-    <img src="/assets/download/different-devices@2x.png" srcset="/assets/download/different-devices.png 500w, /assets/download/different-devices@2x.png 1000w" alt="Protection For All Of Your Devices">
-  </div>
-
-  <a href="https://support.cypherpunk.com/hc/en-us/sections/115001457047">
-    <button class="btn blue">
-      Setup Guides for all devices
-    </button>
-  </a>
 </div>
 
 <app-footer></app-footer>

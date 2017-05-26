@@ -13,7 +13,7 @@
     </div>
 
     <div class="button-container">
-      <a class="android-button" href="https://play.google.com/store/apps/details?id=com.cypherpunk.privacy">
+      <a class="android-button" href="{{ downloadLink }}">
         <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
       </a>
     </div>
@@ -113,13 +113,13 @@
     </div>
 
     <div class="button-container">
-      <a class="android-button" href="https://play.google.com/store/apps/details?id=com.cypherpunk.privacy">
+      <a class="android-button" href="{{ downloadLink }}">
         <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
       </a>
     </div>
   </div>
 </div>
 
-<apps-network [platform]="'android'"></apps-network>
+<apps-network [platform]="'android'" [link]="downloadLink"></apps-network>
 
 <app-footer></app-footer>

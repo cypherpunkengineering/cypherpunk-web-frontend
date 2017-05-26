@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-
-import { SharedModule } from '../../../components/shared/shared.module';
 import { DownloadComponent } from './download.component';
-import { DownloadBaseComponent } from './download-base.component';
 import { DownloadRoutingModule } from './download-routing.module';
+import { SharedModule } from '../../../components/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -11,8 +9,7 @@ import { DownloadRoutingModule } from './download-routing.module';
     DownloadRoutingModule
   ],
   declarations: [
-    DownloadComponent,
-    DownloadBaseComponent
+    DownloadComponent
   ]
 })
 export class DownloadModule { }

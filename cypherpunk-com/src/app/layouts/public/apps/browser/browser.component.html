@@ -14,16 +14,14 @@
 
     <div class="button-container">
       <div class="cell">
-        <a href="https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj">
+        <a href="{{ chromeDownloadLink }}">
           <img src="/assets/apps/browser/ChromeWebStore_BadgeWBorder_v2_206x58.png" alt="Chrome App Store" >
         </a>
       </div>
 
       <div class="cell">
-        <a href="#">
-          <div class="firefox">
-            Download From Firefox Add-ons
-          </div>
+        <a href="{{ firefoxDownloadLink }}">
+          <div class="firefox">Download From Firefox Add-ons</div>
         </a>
       </div>
     </div>
@@ -123,13 +121,13 @@
 
     <div class="button-container">
       <div class="cell">
-        <a href="https://chrome.google.com/webstore/detail/cypherpunk-privacy/hecalkgndmedooonidcodmcamedkpgaj">
+        <a href="{{ chromeDownloadLink }}">
           <img src="/assets/apps/browser/ChromeWebStore_BadgeWBorder_v2_206x58.png" alt="Chrome App Store" >
         </a>
       </div>
 
       <div class="cell">
-        <a href="#">
+        <a href="{{ firefoxDownloadLink }}">
           <div class="firefox">
             Download From Firefox Add-ons
           </div>
@@ -139,6 +137,6 @@
   </div>
 </div>
 
-<apps-network [platform]="'browser'"></apps-network>
+<apps-network [platform]="'browser'" [link]="chromeDownloadLink" [ffLink]="firefoxDownloadLink"></apps-network>
 
 <app-footer></app-footer>

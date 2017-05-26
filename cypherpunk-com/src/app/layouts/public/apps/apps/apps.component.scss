@@ -1,0 +1,106 @@
+.content {
+  width: 100%;
+  text-align: center;
+  padding: 60px 0;
+
+  .content-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: auto;
+  }
+
+  .header { margin-bottom: 50px; padding: 0 10px; }
+
+  .split {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 0 50px;
+
+    img { padding: 0 10px; max-width: 100%; }
+  }
+}
+
+.platforms {
+  background-color: #efeaea;
+  padding: 50px 0;
+
+  .platforms-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .platform {
+    width: 90px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 0;
+    padding: 10px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ff7857;
+      .display { display: none; }
+      .hover { display: block; }
+    }
+
+    .display {
+      .image {
+        height: 60px;
+        padding: 10px 0 0;
+        img { height: 50px; }
+        img.width { width: 100%; height: auto; }
+      }
+
+      .title {
+        padding: 20px 0 0;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+
+    .hover {
+      display: none;
+
+      a { text-decoration: none; }
+
+      .download-icon {
+        height: 100px;
+        img { height: 40px; }
+        .type {
+          font-size: 14px;
+          color: #fff;
+          padding: 10px 0 0;
+        }
+      }
+
+      .link {
+        color: #fff;
+        font-size: 18px;
+        padding: 10px 0 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.button-container {
+  padding: 0 10px;
+  text-align: center;
+
+  .btn {
+    margin: 40px 0 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 55px;
+    font-size: 18px;
+    &.orange:hover { background-color: #ff8c71; }
+    &.blue:hover { background-color: #27a5e2; }
+  }
+
+  .downloading { padding-top: 10px; }
+}

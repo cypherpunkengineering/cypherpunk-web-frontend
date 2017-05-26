@@ -1,23 +1,37 @@
 import * as platform from 'platform';
-import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { PlatformBuilds } from '../platform-builds';
 
-@Component({ template: '' })
+@Component({
+  templateUrl: './apps.component.html',
+  styleUrls: ['./apps.component.css']
+})
 export class AppsComponent {
+  apkUrl = '#';
+  platform: string;
+  downloadLink = '';
+  showDownloading = false;
+  androidDownloadLink: string;
+  iosDownloadLink: string;
+  chromeDownloadLink: string;
+  firefoxDownloadLink: string;
 
-  constructor(private router: Router, private location: Location) {
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // handle title
+    this.document.title = 'Cypherpunk Privacy Suite';
+
     // detect os setup
-    let os: string = platform.os.family;
-    os = os || '';
-    if (os.indexOf('OS X') > -1) {
-      router.navigate(['/apps/mac']);
-      location.replaceState('/apps/mac');
-    }
-    else if (os.indexOf('Window') > -1) {
-      router.navigate(['/apps/windows']);
-      location.replaceState('/apps/windows');
-    }
+    let os: string = platform.os.family || '';
+    if (os.indexOf('OS X') > -1) { this.platform = 'MacOS'; }
+    else if (os.indexOf('Window') > -1) { this.platform = 'Windows';  }
+    else if (os.indexOf('Android') > -1) { this.platform = 'Android'; }
+    else if (os.indexOf('iOS') > -1) { this.platform = 'iOS'; }
     else if (os.indexOf('Fedora') > -1 ||
              os.indexOf('Red Hat') > -1 ||
              os.indexOf('CentOS') > -1 ||
@@ -25,13 +39,22 @@ export class AppsComponent {
              os.indexOf ('Ubuntu') > -1 ||
              os.indexOf ('Kubuntu') > -1 ||
              os.indexOf ('Xubuntu') > -1 ||
-             os.indexOf('Mint')) {
-      router.navigate(['/apps/linux']);
-      location.replaceState('/apps/linux');
+             os.indexOf('Mint') > -1) {
+      this.platform = 'Linux';
     }
-    else {
-      router.navigate(['/apps/windows']);
-      location.replaceState('/apps/windows');
+
+    // determine platform build link
+    if (this.platform) {
+      let build = PlatformBuilds[this.platform.toLowerCase()];
+      if (build.name === 'Linux') { this.downloadLink = PlatformBuilds.linuxVersions[0].link; }
+      else { this.downloadLink = build.link; }
     }
+
+    this.androidDownloadLink = PlatformBuilds['android'].link;
+    this.iosDownloadLink = PlatformBuilds['ios'].link;
+    this.chromeDownloadLink = PlatformBuilds['chrome'].link;
+    this.firefoxDownloadLink = PlatformBuilds['firefox'].link;
   }
+
+  startDownload() { this.showDownloading = true; }
 }

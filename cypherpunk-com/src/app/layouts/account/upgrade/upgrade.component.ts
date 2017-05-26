@@ -1,8 +1,8 @@
 import { RequestOptions } from '@angular/http';
-import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
@@ -62,6 +62,7 @@ export class UpgradeComponent {
     private zone: NgZone,
     private router: Router,
     private auth: AuthService,
+    private location: Location,
     private authGuard: AuthGuard,
     private session: SessionService,
     private backend: BackendService,
@@ -94,8 +95,8 @@ export class UpgradeComponent {
         }
 
         if (redirect) {
-          history.replaceState({}, document.title, document.location.origin);
           router.navigate(['/account']);
+          location.replaceState('/account');
         }
       })
       .catch(() => { /* keep error from showing on console */ });

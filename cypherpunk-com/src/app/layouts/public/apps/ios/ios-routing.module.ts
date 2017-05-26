@@ -5,7 +5,8 @@ import { IosComponent } from './ios.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'apps/ios', component: IosComponent }
+      { path: 'apps/ios', component: IosComponent },
+      { path: 'apps/ios/autostart', component: IosComponent }
     ])
   ]
 })
