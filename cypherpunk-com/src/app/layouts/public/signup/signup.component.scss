@@ -7,7 +7,7 @@
   }
 
   .btn {
-    width: 400px;
+    max-width: 400px;
     height: 60px;
     margin: 0 0 25px;
     font-size: 24px;
@@ -15,24 +15,52 @@
     &:disabled { background-color: #ff7857; }
   }
 
+  .header-image {
+    max-width: 400px;
+    padding: 30px 10px 0;
+    margin: auto;
+    img { width: 100%; }
+  }
+
   .encourage {
-    padding: 40px 0 0;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 0;
     text-align: center;
+    margin: auto;
+    border-bottom: 2px solid #efebeb;
+    .header { font-size: 24px; }
+    .subheader { padding-top: 10px; }
   }
 
   form {
-    width: 400px;
+    max-width: 400px;
+    padding: 0 10px;
     margin: 40px auto 50px;
     text-align: center;
 
     .row { text-align: left; margin: 5px 0 25px; }
     .center { text-align: center; }
-    .tos { font-size: 12px; color: #3d3d3d; padding: 0 0 15px; }
+    .tos {
+      font-size: 12px;
+      color: #3d3d3d;
+      padding: 10px 0 40px;
+      border-bottom: 2px solid #efebeb;
+    }
+    .account { padding: 40px 0 20px; }
+
+    .apps {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px 10px 0;
+
+      img { padding: 20px 0; width: 100%; }
+    }
 
     label { font-size: 20px; color: #333; }
 
     input {
-      width: 400px;
+      width: 100%;
       height: 57px;
       border-radius: 4px;
       border: solid 1px #ccc;
@@ -60,10 +88,4 @@
   }
 
   .signin-link { color: #034698; }
-}
-
-@media (max-width: 430px) {
-  .wrapper form { width: 100%; padding: 0 15px; }
-  .wrapper form input { width: 100%; }
-  .wrapper .btn { width: 100%; }
 }
