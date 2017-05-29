@@ -22,10 +22,12 @@
         </a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+        <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
       <li>
-        <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
+        <a routerLink="/download">
+          <button class="btn border">DOWNLOAD</button>
+        </a>
       </li>
       <li>
         <a routerLink="/signup" *ngIf="!isLoggedIn()">
