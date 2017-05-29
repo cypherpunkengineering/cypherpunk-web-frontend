@@ -15,16 +15,18 @@
 
     <form>
       <div class="row">
-        <input id="email" type="email" name="username" placeholder="Email" autofocus [(ngModel)]="user.email" (blur)="this.errors.email.touched = true; checkEmailExists(); validateEmail()" [ngClass]="{'error': (this.errors.email.touched && this.errors.email.message)}">
-        <div class="error-message" [hidden]="!this.errors.email.touched">
-          {{this.errors.email.message}}
+        <div class="half">
+          <input id="email" type="email" name="username" placeholder="Email" autofocus [(ngModel)]="user.email" (blur)="this.errors.email.touched = true; checkEmailExists(); validateEmail()" [ngClass]="{'error': (this.errors.email.touched && this.errors.email.message)}">
+          <div class="error-message" [hidden]="!this.errors.email.touched">
+            {{this.errors.email.message}}
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword()" (keyup.enter)="signup()" (blur)="this.errors.password.touched = true; validatePassword()">
-        <div class="error-message" [hidden]="!this.errors.password.touched">
-          {{this.errors.password.message}}
+        <div class="half">
+          <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword()" (keyup.enter)="signup()" (blur)="this.errors.password.touched = true; validatePassword()">
+          <div class="error-message" [hidden]="!this.errors.password.touched">
+            {{this.errors.password.message}}
+          </div>
         </div>
       </div>
 
@@ -35,8 +37,7 @@
       </div>
 
       <div class="tos">
-        By clicking this button, <br>
-        you agree to Cypherpunk Privacy's <a routerLink="/terms-of-service">Terms of Service</a>
+        By clicking this button, you agree to Cypherpunk Privacy's <a routerLink="/terms-of-service">Terms of Service</a>
       </div>
 
       <div class="center account">
