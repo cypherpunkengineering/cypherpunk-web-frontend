@@ -35,6 +35,8 @@ export const routes: string[] = [
   'apps/browser/autostart',
   'apps/mac',
   'apps/mac/autostart',
+  'apps/macos',
+  'apps/macos/autostart',
   'apps/windows',
   'apps/windows/autostart',
   'apps/ios',
