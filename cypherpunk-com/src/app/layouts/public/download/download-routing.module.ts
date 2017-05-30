@@ -9,6 +9,7 @@ import { DownloadComponent } from './download.component';
         path: 'download',
         children: [
           { path: '', component: DownloadComponent },
+          { path: 'autostart', component: DownloadComponent },
           { path: 'windows', pathMatch: 'full', redirectTo: '/apps/windows/autostart' },
           { path: 'mac', pathMatch: 'full', redirectTo: '/apps/mac/autostart' },
           { path: 'macos', pathMatch: 'full', redirectTo: '/apps/macos/autostart' },

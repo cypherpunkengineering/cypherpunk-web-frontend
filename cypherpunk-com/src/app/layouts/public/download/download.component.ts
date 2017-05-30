@@ -11,17 +11,16 @@ export class DownloadComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // replace history
-    if (isPlatformBrowser(this.platformId)) {
-      history.replaceState({}, document.title, document.location.origin);
-    }
+    let isBrowser = isPlatformBrowser(this.platformId);
+    if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
 
     // detect os setup
-    let os: string = platform.os.family;
+    let os: string = platform.os.family, path = '/apps';
     os = os || '';
-    if (os.indexOf('OS X') > -1) { router.navigate(['/apps/macos']); }
-    else if (os.indexOf('Window') > -1) { router.navigate(['/apps/windows']); }
-    else if (os.indexOf('Android') > -1) { router.navigate(['/apps/android']); }
-    else if (os.indexOf('iOS') > -1) { router.navigate(['/apps/ios']); }
+    if (os.indexOf('OS X') > -1) { path = '/apps/macos'; }
+    else if (os.indexOf('Window') > -1) { path = '/apps/windows'; }
+    else if (os.indexOf('Android') > -1) { path = '/apps/android'; }
+    else if (os.indexOf('iOS') > -1) { path = '/apps/ios'; }
     else if (os.indexOf('Fedora') > -1 ||
              os.indexOf('Red Hat') > -1 ||
              os.indexOf('CentOS') > -1 ||
@@ -30,9 +29,11 @@ export class DownloadComponent {
              os.indexOf ('Kubuntu') > -1 ||
              os.indexOf ('Xubuntu') > -1 ||
              os.indexOf('Mint') > -1) {
-      if (platform.os.architecture === 64) { router.navigate(['/apps/linux']); }
-      else { router.navigate(['/apps']); }
+      if (platform.os.architecture === 64) { path = '/apps/linux'; }
     }
-    else { router.navigate(['/apps']); }
+
+    let url = router.routerState.snapshot.url;
+    if (url.endsWith('autostart') && isBrowser) { path = path + '/autostart'; }
+    router.navigate([path]);
   }
 }

@@ -25,7 +25,7 @@
         <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
       <li>
-        <a routerLink="/download">
+        <a routerLink="/download/autostart">
           <button class="btn border">DOWNLOAD</button>
         </a>
       </li>
@@ -79,10 +79,12 @@
           </a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/download" routerLinkActive="active">Download</a>
+          <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
         </li>
         <li>
-          <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
+          <a routerLink="/download/autostart">
+            <button class="btn border">DOWNLOAD</button>
+          </a>
         </li>
         <li>
           <a routerLink="/signup" *ngIf="!isLoggedIn()">
@@ -190,12 +192,12 @@
     <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
       Pricing
     </div>
-    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
-      Download
-    </div>
     <a routerLink="/support" routerLinkActive="active">
       <div class="mobile-dd-item">Support</div>
     </a>
+    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
+      Download
+    </div>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
     </a>
