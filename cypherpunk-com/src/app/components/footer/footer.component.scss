@@ -76,6 +76,10 @@
     &.inline:last-child { margin-right: 0; }
 
     img { height: 25px; }
+    img.facebook { height: 25px; width: 25px; }
+    img.twitter { height: 25px; width: 30px; }
+    img.youtube { height: 25px; width: 35px; }
+    img.gplus { height: 25px; width: 38px; }
     img.display { display: inline; }
     img.hover { display: none; }
     &:hover img.display { display: none; }
@@ -88,12 +92,6 @@
     }
   }
 }
-
-.fa { font-size: 22px; line-height: 1.23; }
-.fa-facebook-official { color: #3b5998; }
-.fa-twitter { color: #4ba4eb; }
-.fa-youtube-play { color: #ff0002; }
-.fa-google-plus-official { color: #ff0002; }
 
 .feedback {
   border: 1px solid #1A474C;
