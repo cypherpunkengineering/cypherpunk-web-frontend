@@ -1,6 +1,6 @@
 import * as platform from 'platform';
 import { Router } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { Location, isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({ template: '' })
@@ -8,12 +8,9 @@ export class DownloadComponent {
 
   constructor(
     private router: Router,
+    private location: Location,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // replace history
-    let isBrowser = isPlatformBrowser(this.platformId);
-    if (isBrowser) { history.replaceState({}, document.title, document.location.origin); }
-
     // detect os setup
     let os: string = platform.os.family, path = '/apps';
     os = os || '';
@@ -33,7 +30,10 @@ export class DownloadComponent {
     }
 
     let url = router.routerState.snapshot.url;
+    let isBrowser = isPlatformBrowser(this.platformId);
     if (url.endsWith('autostart') && isBrowser) { path = path + '/autostart'; }
     router.navigate([path]);
+    // replace history
+    if (isBrowser) { location.replaceState(path); }
   }
 }
