@@ -52,15 +52,17 @@
     .tos {
       font-size: 10px;
       color: #3d3d3d;
-      padding: 5px 0 40px;
+      padding: 5px 0 10px;
+    }
+    .account {
+      padding: 20px 0 30px;
       border-bottom: 2px solid #efebeb;
     }
-    .account { padding: 40px 0 20px; }
 
     .apps {
       max-width: 400px;
       margin: auto;
-      padding: 20px 10px 0;
+      padding: 30px 10px 0;
 
       img { padding: 20px 0; width: 100%; }
     }
