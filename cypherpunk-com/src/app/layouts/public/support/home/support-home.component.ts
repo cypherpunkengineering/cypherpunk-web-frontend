@@ -7,20 +7,35 @@ import { BackendService } from '../../../../services/backend.service';
   styleUrls: ['./support-home.component.css']
 })
 export class SupportHomeComponent implements OnInit {
-  posts = [];
+  switches = {
+    "privacy-security": { show: false },
+    "account-billing": { show: false },
+    "cypherpunk-privacy-features": { show: false },
+    "desktop-features": { show: false },
+    "android-features": { show: false },
+    "ios-features": { show: false },
+    "browser-extension-features": { show: false },
+    "streaming-services-cypherplay": { show: false }
+  }
+  privacySecurity: boolean = false;
 
   constructor(
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any
   ) { this.document.title = 'Cypherpunk Privacy Support'; }
 
-  ngOnInit() {
-    this.backend.supportPosts()
-    .then((data) => {
-      if (data.items && data.items.length) {
-        this.posts = data.items;
-      }
-    })
-    .catch((err) => { console.log(err); });
+  ngOnInit() { }
+
+  showSection(id) {
+    this.switches[id].show = !this.switches[id].show;
+    let el = document.getElementById(id);
+    if (this.switches[id].show) {
+      el.style['max-height'] = el.scrollHeight + 'px';
+      el.style['opacity'] = '1';
+    }
+    else {
+      el.style['max-height'] = '0';
+      el.style['opacity'] = '0';
+    }
   }
 }
