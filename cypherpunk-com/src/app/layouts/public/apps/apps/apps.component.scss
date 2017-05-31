@@ -15,7 +15,7 @@
   .split {
     width: 100%;
     max-width: 1000px;
-    margin: 0 0 50px;
+    margin-bottom: -10px;
 
     img { padding: 0 10px; max-width: 100%; }
   }
@@ -92,10 +92,10 @@
   text-align: center;
 
   .btn {
-    margin: 40px 0 0;
+    margin: -20px 0 0;
     padding: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     height: 55px;
     font-size: 18px;
     &.orange:hover { background-color: #ff8c71; }
