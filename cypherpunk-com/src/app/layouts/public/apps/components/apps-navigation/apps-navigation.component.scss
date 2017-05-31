@@ -23,6 +23,8 @@
       height: 100%;
       margin: 0 10px 0 0;
       vertical-align: middle;
+      &.display { display: inline-block; }
+      &.active { display: none; }
     }
 
     &.active {
@@ -31,6 +33,8 @@
       background-color: #fff;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+      img.display { display: none; }
+      img.active { display: inline-block; }
     }
   }
 }
