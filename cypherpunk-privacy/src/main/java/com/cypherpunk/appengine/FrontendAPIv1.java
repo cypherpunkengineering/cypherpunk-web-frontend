@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -128,6 +129,9 @@ public class FrontendAPIv1 extends HttpServlet
 		// get request URL
 		String reqURI = req.getRequestURI().toString();
 
+		// get query string
+		String queryString = req.getQueryString();
+
 		// settings to use datastore
 		boolean useDatastoreForCypherpunk = true;
 		boolean useDatastoreForBlogger = false;
@@ -153,18 +157,17 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (accountApiPath.equals("/status")) // {{{
 			{
-				String frontendJsonString;
-				String cypherpunkResponse = requestCypherpunkData(HTTPMethod.GET, reqURI, getSafeHeadersFromRequest(req), null);
+				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.GET, buildCypherpunkURL("/api/v0" + apiPath + "?" + queryString), getSafeHeadersFromRequest(req), null);
+				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 
-				if (cypherpunkResponse == null)
+				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
 				{
-					res.sendError(500);
+					res.sendError(cypherpunkResponse.getResponseCode());
 					return;
 				}
 
-				frontendJsonString = gson.toJson(cypherpunkResponse);
-
-				out.println(frontendJsonString);
+				String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+				out.println(cypherpunkResponseBody);
 			} //}}}
 			else if (accountApiPath.equals("/logout")) // {{{
 			{
@@ -544,6 +547,17 @@ public class FrontendAPIv1 extends HttpServlet
 
 		return headers;
 	} // }}}
+	private void setResponseHeadersFromBackendResponse(HttpServletResponse res1, HTTPResponse res2)
+	{
+		List<HTTPHeader> headers = res2.getHeaders();
+		String safeHeaders[] = {
+			"Set-Cookie"
+		};
+
+		for (HTTPHeader header : headers)
+			if (Arrays.asList(safeHeaders).contains(header.getName()))
+				res1.setHeader(header.getName(), header.getValue());
+	}
 
 	private URL buildBloggerURL(String bloggerID, String bloggerURI, String bloggerArgs) // {{{
 	{
@@ -750,20 +764,8 @@ public class FrontendAPIv1 extends HttpServlet
 		HTTPResponse response = requestData(requestMethod, zendeskURL, headers, body);
 		//LOG.log(Level.WARNING, "zendesk request body: " + body);
 		LOG.log(Level.WARNING, "zendesk response code: " + response.getResponseCode());
-		// {{{ if we got response, convert to UTF-8 string
 		if (response != null)
-		{
-			try
-			{
-				zendeskResponse = new String(response.getContent(), "UTF-8");
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				LOG.log(Level.WARNING, e.toString(), e);
-				zendeskResponse = null;
-			}
-		}
-		// }}}
+			zendeskResponse = responseAsString(response);
 		return zendeskResponse;
 	} // }}}
 
@@ -771,21 +773,25 @@ public class FrontendAPIv1 extends HttpServlet
 	{
 		String cypherpunkResponse = null;
 		HTTPResponse response = requestData(requestMethod, cypherpunkURL, headers, body);
-		// {{{ if we got response, convert to UTF-8 string
 		if (response != null && (response.getResponseCode() == HttpURLConnection.HTTP_OK || response.getResponseCode() == HttpURLConnection.HTTP_CREATED))
-		{
-			try
-			{
-				cypherpunkResponse = new String(response.getContent(), "UTF-8");
-			}
-			catch (UnsupportedEncodingException e)
-			{
-				LOG.log(Level.WARNING, e.toString(), e);
-				cypherpunkResponse = null;
-			}
-		}
-		// }}}
+			cypherpunkResponse = responseAsString(response);
 		return cypherpunkResponse;
+	} // }}}
+
+	private String responseAsString(HTTPResponse response) // {{{
+	{
+		String str = null;
+
+		try // if we got response, convert to UTF-8 string
+		{
+			str = new String(response.getContent(), "UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			LOG.log(Level.WARNING, e.toString(), e);
+			str = null;
+		}
+		return str;
 	} // }}}
 	private HTTPResponse requestData(HTTPMethod requestMethod, URL cypherpunkURL, List<HTTPHeader> headers, String body) // {{{
 	//throws IOException, UnsupportedEncodingException
