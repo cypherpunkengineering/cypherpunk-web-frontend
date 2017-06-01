@@ -34,7 +34,8 @@ export class DashboardComponent implements OnInit {
   stripeFormData = {
     name: '',
     cardNumber: '',
-    expiryDate: '',
+    month: '',
+    year: '',
     cvc: '',
     country: '',
     zipCode: '',
@@ -193,18 +194,12 @@ export class DashboardComponent implements OnInit {
     this.loading = true;
     this.ccButtonDisabled = true;
 
-    let month: number;
-    let year: number;
-
-    month = Number(this.stripeFormData.expiryDate.split('/')[0]);
-    year = Number(this.stripeFormData.expiryDate.split('/')[1]);
-
     // stripe params
     let stripeParams = {
       name: this.stripeFormData.name,
       number: this.stripeFormData.cardNumber,
-      exp_month: month,
-      exp_year: year,
+      exp_month: this.stripeFormData.month,
+      exp_year: this.stripeFormData.year,
       cvc: this.stripeFormData.cvc,
       address_zip: this.stripeFormData.zipCode,
       address_country: this.stripeFormData.country

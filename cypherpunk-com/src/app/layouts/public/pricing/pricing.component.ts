@@ -214,7 +214,8 @@ export class PricingComponent {
 
     // zipCode, zipCodeSelect
     if (stripeForm['controls'].zipCode.errors) {
-      document.getElementById('zipCodeSelect').focus();
+      let el = document.getElementById('zipCodeSelect');
+      if (el) { el.focus(); }
       return;
     }
 
