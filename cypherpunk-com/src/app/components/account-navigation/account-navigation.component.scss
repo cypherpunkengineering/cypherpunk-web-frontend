@@ -27,7 +27,6 @@
 
           .nav-link {
             color: #8DFFFB;
-            font-weight: bold;
             text-decoration: none;
             margin-right: 25px;
             font-size: 16px;
@@ -96,14 +95,12 @@
     max-height: 0;
     overflow-y: hidden;
     transition: max-height 0.5s ease;
-    margin: 0 0 15px;
     &.open { max-height: 220px; }
 
     .mobile-dd-item {
       border-bottom: 1px solid #f2f2f2;
       text-align: center;
       font-size: 18px;
-      font-weight: bold;
       line-height: 2.78;
       color: #034698;
       cursor: pointer;
