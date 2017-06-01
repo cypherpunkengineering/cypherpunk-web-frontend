@@ -158,7 +158,6 @@ public class FrontendAPIv1 extends HttpServlet
 			if (accountApiPath.equals("/status")) // {{{
 			{
 				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.GET, buildCypherpunkURL("/api/v0" + apiPath + "?" + queryString), getSafeHeadersFromRequest(req), null);
-				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 				CypherpunkAccountStatus accountStatus = null;
 
 				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
@@ -180,6 +179,7 @@ public class FrontendAPIv1 extends HttpServlet
 					return;
 				}
 
+				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 				String frontendJsonString = gson.toJson(accountStatus);
 				out.println(frontendJsonString);
 
@@ -385,18 +385,50 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
 			{
-				// 
-				String frontendJsonString;
-				String cypherpunkResponse = requestCypherpunkData(HTTPMethod.POST, "/api/v0" + apiPath, getSafeHeadersFromRequest(req), null);
+				// curl -X POST -H 'Content-type: application/json' -i https://cypherpunk.privacy.network/api/v1/account/authenticate/userpasswd -d '{"login":"test@test.test","password":"test123"}'
+				CypherpunkAccountAuthenticateUserpasswd cypherpunkAuth = null;
+				CypherpunkAccountStatus cypherpunkAccountStatus = null;
 
-				if (cypherpunkResponse == null)
+				try // parse json body of incoming request
 				{
+					String reqBody = getBodyFromRequest(req);
+					cypherpunkAuth = gson.fromJson(reqBody, CypherpunkAccountAuthenticateUserpasswd.class);
+				}
+				catch (Exception e)
+				{
+					LOG.log(Level.WARNING, "Unable to parse body of incoming request into CypherpunkAccountAuthenticateUserpasswd");
+					e.printStackTrace();
+					res.sendError(400);
+					return;
+				}
+
+				// convert sanitized request body back to json and send in outgoing request to backend
+				String cypherpunkRequestBody = gson.toJson(cypherpunkAuth);
+				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.POST, buildCypherpunkURL("/api/v0" + apiPath), getSafeHeadersFromRequest(req), cypherpunkRequestBody);
+
+				// check response code of outgoing request
+				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
+				{
+					res.sendError(cypherpunkResponse.getResponseCode());
+					// TODO: send json body as error response
+					return;
+				}
+				try // parse json body of outgoing request's response
+				{
+					String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+					cypherpunkAccountStatus = gson.fromJson(cypherpunkResponseBody, CypherpunkAccountStatus.class);
+				}
+				catch (Exception e)
+				{
+					LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body as CypherpunkAccountStatus object");
+					e.printStackTrace();
 					res.sendError(500);
 					return;
 				}
 
-				frontendJsonString = gson.toJson(cypherpunkResponse);
-
+				// pass outgoing request's response's headers and sanitized body to incoming request's response
+				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
+				String frontendJsonString = gson.toJson(cypherpunkAccountStatus);
 				out.println(frontendJsonString);
 			} //}}}
 
@@ -447,6 +479,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (networkApiPath.equals("/request/new")) // {{{
 			{
+				// {{{ notes
 				// curl -i https://cypherpunk.zendesk.com/api/v2/tickets.json -X POST -d '{"ticket": {"requester": {"name": "Test Customer", "email": "test18278@wiz.biz"}, "subject": "My printer is on fire!", "comment": { "body": "The smoke is very colorful." } } }' -H 'Content-type: application/json' -u 'jmaurice@cypherpunk.com/token:BoM1TUDKYVKgWpUi2O2rA6jKQ4f89jJGCkpMZJtz'
 
 				// Billing 33432807
@@ -467,7 +500,7 @@ public class FrontendAPIv1 extends HttpServlet
 				  }
 				}
 				*/
-
+				// }}}
 				CypherpunkZendeskRequest zendeskRequestIn = null;
 				ZendeskTicket zendeskRequestOut = null;
 
