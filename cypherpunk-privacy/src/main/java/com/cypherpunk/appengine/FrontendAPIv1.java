@@ -165,7 +165,7 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 				try // parse json body
 				{
-					String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+					String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 					accountStatus = gson.fromJson(cypherpunkResponseBody, CypherpunkAccountStatus.class);
 				}
 				catch (Exception e)
@@ -180,7 +180,7 @@ public class FrontendAPIv1 extends HttpServlet
 				String frontendJsonString = gson.toJson(accountStatus);
 				res.getWriter().println(frontendJsonString);
 
-				//String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+				//String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 				//res.getWriter().println(cypherpunkResponseBody);
 			} //}}}
 			else if (accountApiPath.equals("/logout")) // {{{
@@ -222,7 +222,7 @@ public class FrontendAPIv1 extends HttpServlet
 					bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
 				}
 
-				Map<String,Object> bloggerResponse = getBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				Map<String,Object> bloggerResponse = getCachedBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
 				frontendJsonString = gson.toJson(bloggerResponse);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
@@ -237,7 +237,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				if (postID != null && !postID.isEmpty())
 				{
-					bloggerResponse = getBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+					bloggerResponse = getCachedBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
 				}
 
 				if (bloggerResponse == null)
@@ -257,7 +257,7 @@ public class FrontendAPIv1 extends HttpServlet
 			if (locationApiPath.equals("/world")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCypherpunkData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
 
 				if (cypherpunkResponse == null)
 				{
@@ -272,7 +272,7 @@ public class FrontendAPIv1 extends HttpServlet
 			else if (locationApiPath.startsWith("/list")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCypherpunkData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
 
 				if (cypherpunkResponse == null)
 				{
@@ -528,7 +528,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 		try // parse json body of outgoing request's response
 		{
-			String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+			String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 			outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
 		}
 		catch (Exception e)
@@ -544,6 +544,7 @@ public class FrontendAPIv1 extends HttpServlet
 		String frontendJsonString = gson.toJson(outgoingRequestResponseData);
 		res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
 	} //}}}
+
 	private String getBodyFromRequest(HttpServletRequest req) // {{{
 	{
 		// read request body
@@ -583,6 +584,21 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "got payload: "+reqBody);
 
 		return reqBody;
+	} // }}}
+	private String getBodyFromResponse(HTTPResponse response) // {{{
+	{
+		String str = null;
+
+		try // if we got response, convert to UTF-8 string
+		{
+			str = new String(response.getContent(), "UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			LOG.log(Level.WARNING, e.toString(), e);
+			str = null;
+		}
+		return str;
 	} // }}}
 
 	private List<HTTPHeader> getSafeHeadersFromRequest(HttpServletRequest req) // {{{
@@ -663,23 +679,22 @@ public class FrontendAPIv1 extends HttpServlet
 		return zendeskURL;
 	} // }}}
 
-	private Map<String,Object> getBloggerData(String bloggerID, String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedBloggerData(String bloggerID, String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
 		URL bloggerURL = buildBloggerURL(bloggerID, bloggerURI, bloggerArgs);
-		return getData(bloggerURL, secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(bloggerURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
-	private Map<String,Object> getCypherpunkData(String cypherpunkURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedCypherpunkData(String cypherpunkURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
 		URL cypherpunkURL = buildCypherpunkURL(cypherpunkURI);
-		return getData(cypherpunkURL, secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(cypherpunkURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
-	private Map<String,Object> getZendeskData(String zendeskURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedZendeskData(String zendeskURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
 		URL zendeskURL = buildZendeskURL(zendeskURI);
-		return getData(zendeskURL, secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(zendeskURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
-
-	private Map<String,Object> getData(URL apiURL, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedData(String apiURL, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
 		String response = null;
 		Map<String,Object> responseData = null;
@@ -700,7 +715,7 @@ public class FrontendAPIv1 extends HttpServlet
 		// {{{ if not in memcache, try querying the datastore
 		if (useDatastore && !forceUpdate && responseData == null)
 		{
-			Key entityKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL.toString());
+			Key entityKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL);
 			Filter cypherpunkURLFilter = new FilterPredicate(Entity.KEY_RESERVED_PROPERTY, FilterOperator.EQUAL, entityKey);
 			response = null;
 			Entity result = null;
@@ -733,7 +748,14 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			LOG.log(Level.WARNING, "Fetching data from cypherpunk for "+apiURL);
 
-			response = requestDataAsString(HTTPMethod.GET, apiURL, null, null);
+			try
+			{
+				response = requestDataAsString(HTTPMethod.GET, new URL(apiURL), null, null);
+			}
+			catch (Exception e)
+			{
+				response = null;
+			}
 			if (response != null)
 			{
 				responseData = parseJsonData(response);
@@ -754,7 +776,7 @@ public class FrontendAPIv1 extends HttpServlet
 			}
 			if (useDatastore && !inDatastore)
 			{
-				Key cacheKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL.toString());
+				Key cacheKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL);
 				Transaction tx = DS.beginTransaction();
 				Entity cache = new Entity(cacheKey);
 				try
@@ -816,7 +838,7 @@ public class FrontendAPIv1 extends HttpServlet
 		//LOG.log(Level.WARNING, "zendesk request body: " + body);
 		LOG.log(Level.WARNING, "zendesk response code: " + response.getResponseCode());
 		if (response != null)
-			zendeskResponse = responseAsString(response);
+			zendeskResponse = getBodyFromResponse(response);
 		return zendeskResponse;
 	} // }}}
 
@@ -825,25 +847,10 @@ public class FrontendAPIv1 extends HttpServlet
 		String cypherpunkResponse = null;
 		HTTPResponse response = requestData(requestMethod, cypherpunkURL, headers, body);
 		if (response != null && (response.getResponseCode() == HttpURLConnection.HTTP_OK || response.getResponseCode() == HttpURLConnection.HTTP_CREATED))
-			cypherpunkResponse = responseAsString(response);
+			cypherpunkResponse = getBodyFromResponse(response);
 		return cypherpunkResponse;
 	} // }}}
 
-	private String responseAsString(HTTPResponse response) // {{{
-	{
-		String str = null;
-
-		try // if we got response, convert to UTF-8 string
-		{
-			str = new String(response.getContent(), "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			LOG.log(Level.WARNING, e.toString(), e);
-			str = null;
-		}
-		return str;
-	} // }}}
 	private HTTPResponse requestData(HTTPMethod requestMethod, URL cypherpunkURL, List<HTTPHeader> headers, String body) // {{{
 	//throws IOException, UnsupportedEncodingException
 	{
