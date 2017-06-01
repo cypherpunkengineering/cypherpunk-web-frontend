@@ -448,6 +448,10 @@ public class FrontendAPIv1 extends HttpServlet
 				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeApple.class, CypherpunkAccountStatus.class);
 			} // }}}
 
+		else if (accountApiPath.equals("/logout")) // {{{
+		{
+			proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, null);
+		} // }}}
 			else // {{{ 404
 			{
 				res.sendError(404);
@@ -531,23 +535,28 @@ public class FrontendAPIv1 extends HttpServlet
 		// sanitize json bodies by parsing to JSON bean objects
 		Object incomingRequestData = null;
 		Object outgoingRequestResponseData = null;
+		String cypherpunkRequestBody = null;
 
-		try // parse json body of incoming request
+		if (incomingRequestBean != null)
 		{
-			String reqBody = getBodyFromRequest(req);
-			incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
-		}
-		catch (Exception e)
-		{
-			LOG.log(Level.WARNING, "Unable to parse body of incoming request");
-			e.printStackTrace();
-			res.sendError(400);
-			// TODO: send json body as error response
-			return;
+			try // parse json body of incoming request
+			{
+				String reqBody = getBodyFromRequest(req);
+				incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
+			}
+			catch (Exception e)
+			{
+				LOG.log(Level.WARNING, "Unable to parse body of incoming request");
+				e.printStackTrace();
+				res.sendError(400);
+				// TODO: send json body as error response
+				return;
+			}
+
+			// convert sanitized request body back to json and send in outgoing request to backend
+			cypherpunkRequestBody = gson.toJson(incomingRequestData);
 		}
 
-		// convert sanitized request body back to json and send in outgoing request to backend
-		String cypherpunkRequestBody = gson.toJson(incomingRequestData);
 		HTTPResponse cypherpunkResponse = requestData(HTTPMethod.POST, buildCypherpunkURL(cypherpunkURI), getSafeHeadersFromRequest(req), cypherpunkRequestBody);
 
 		// check response code of outgoing request
@@ -561,29 +570,26 @@ public class FrontendAPIv1 extends HttpServlet
 		// pass outgoing request's response's headers
 		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 
-		if (outgoingRequestResponseBean == null)
+		if (outgoingRequestResponseBean != null)
 		{
-			// no body expected
-			return;
-		}
+			try // parse json body of outgoing request's response
+			{
+				String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
+				outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
+			}
+			catch (Exception e)
+			{
+				LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body");
+				e.printStackTrace();
+				res.sendError(500);
+				// TODO: send json body as error response
+				return;
+			}
 
-		try // parse json body of outgoing request's response
-		{
-			String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
-			outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
+			// pass sanitized body to incoming request's response
+			String frontendJsonString = gson.toJson(outgoingRequestResponseData);
+			res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
 		}
-		catch (Exception e)
-		{
-			LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body");
-			e.printStackTrace();
-			res.sendError(500);
-			// TODO: send json body as error response
-			return;
-		}
-
-		// pass sanitized body to incoming request's response
-		String frontendJsonString = gson.toJson(outgoingRequestResponseData);
-		res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
 	} //}}}
 
 	private String getBodyFromRequest(HttpServletRequest req) // {{{
