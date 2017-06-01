@@ -359,20 +359,13 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
 
-			if (accountApiPath.equals("/authenticate/password")) // {{{
+			if (accountApiPath.equals("/identify/email")) // {{{
 			{
-				String frontendJsonString;
-				String cypherpunkResponse = requestCypherpunkData(HTTPMethod.POST, reqURI, null, null);
-
-				if (cypherpunkResponse == null)
-				{
-					res.sendError(500);
-					return;
-				}
-
-				frontendJsonString = gson.toJson(cypherpunkResponse);
-
-				res.getWriter().println(frontendJsonString);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountIdentifyEmail.class, null);
+			} //}}}
+			else if (accountApiPath.equals("/authenticate/password")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountAuthenticatePassword.class, CypherpunkAccountStatus.class);
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
 			{
@@ -523,6 +516,16 @@ public class FrontendAPIv1 extends HttpServlet
 			// TODO: send json body as error response
 			return;
 		}
+
+		// pass outgoing request's response's headers
+		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
+
+		if (outgoingRequestResponseBean == null)
+		{
+			// no body expected
+			return;
+		}
+
 		try // parse json body of outgoing request's response
 		{
 			String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
@@ -537,8 +540,7 @@ public class FrontendAPIv1 extends HttpServlet
 			return;
 		}
 
-		// pass outgoing request's response's headers and sanitized body to incoming request's response
-		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
+		// pass sanitized body to incoming request's response
 		String frontendJsonString = gson.toJson(outgoingRequestResponseData);
 		res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
 	} //}}}
