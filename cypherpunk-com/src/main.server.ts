@@ -50,27 +50,27 @@ import {
   stripeCreateCard } from './backend/stripe';
 import { amazonPurchase, amazonUpgrade } from './backend/amazon';
 // Our API for demos only
-app.get('/api/v0/account/status', subs);
-app.get('/api/v0/location/list/premium', locations);
-app.get('/api/v0/location/world', world);
+app.get('/api/v1/account/status', subs);
+app.get('/api/v1/location/list/premium', locations);
+app.get('/api/v1/location/world', world);
 app.get('/api/v1/blog/posts', blog);
 app.get('/api/v1/blog/post/:postId', blogPost);
 app.get('/api/v1/support/posts', support);
 app.get('/api/v1/support/post/:id', supportPost);
-app.get('/api/v0/network/status', networkStatus);
-app.post('/api/v0/account/confirm/email', confirm);
-app.post('/api/v0/account/authenticate/userpasswd', signin);
-app.post('/api/v0/account/logout', signout);
-app.post('/api/v0/account/identify/email', identify);
-app.post('/api/v0/account/register/signup', signup);
-app.post('/api/v0/payment/amazon/billingAgreement', amazonPurchase);
-app.post('/api/v0/account/purchase/stripe', stripePurchase);
-app.post('/api/v0/account/upgrade/stripe', stripeUpgrade);
-app.get('/api/v0/account/source/list', stripeCardList);
-app.post('/api/v0/account/source/default', stripeDefaultCard);
-app.post('/api/v0/account/source/add', stripeCreateCard);
-app.post('/api/v0/account/purchase/amazon', amazonPurchase);
-app.post('/api/v0/account/upgrade/amazon', amazonUpgrade);
+app.get('/api/v1/network/status', networkStatus);
+app.post('/api/v1/account/confirm/email', confirm);
+app.post('/api/v1/account/authenticate/userpasswd', signin);
+app.post('/api/v1/account/logout', signout);
+app.post('/api/v1/account/identify/email', identify);
+app.post('/api/v1/account/register/signup', signup);
+app.post('/api/v1/payment/amazon/billingAgreement', amazonPurchase);
+app.post('/api/v1/account/purchase/stripe', stripePurchase);
+app.post('/api/v1/account/upgrade/stripe', stripeUpgrade);
+app.get('/api/v1/account/source/list', stripeCardList);
+app.post('/api/v1/account/source/default', stripeDefaultCard);
+app.post('/api/v1/account/source/add', stripeCreateCard);
+app.post('/api/v1/account/purchase/amazon', amazonPurchase);
+app.post('/api/v1/account/upgrade/amazon', amazonUpgrade);
 app.post('/api/v1/zendesk/request/new', contactForm);
 
 app.get('/', (req, res) => {
