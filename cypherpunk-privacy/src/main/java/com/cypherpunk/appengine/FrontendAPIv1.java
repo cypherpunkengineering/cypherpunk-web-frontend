@@ -386,39 +386,49 @@ public class FrontendAPIv1 extends HttpServlet
 
 			else if (accountApiPath.equals("/confirm/email")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountConfirmEmail.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 			else if (accountApiPath.equals("/register/signup")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountRegisterSignup.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 			else if (accountApiPath.equals("/source/add")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, null);
 			} // }}}
 			else if (accountApiPath.equals("/source/default")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceDefault.class, null);
 			} // }}}
 
 			else if (accountApiPath.equals("/purchase/stripe")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountPurchaseStripe.class, CypherpunkAccountStatus.class);
 			} // }}}
 			else if (accountApiPath.equals("/purchase/amazon")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountPurchaseAmazon.class, CypherpunkAccountStatus.class);
 			} // }}}
-			else if (accountApiPath.equals("/purchase/stripe")) // {{{
+
+			else if (accountApiPath.equals("/upgrade/stripe")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeStripe.class, CypherpunkAccountStatus.class);
 			} // }}}
-			else if (accountApiPath.equals("/purchase/stripe")) // {{{
+			else if (accountApiPath.equals("/upgrade/amazon")) // {{{
 			{
-				res.sendError(500);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeAmazon.class, CypherpunkAccountStatus.class);
 			} // }}}
+			else if (accountApiPath.equals("/upgrade/google")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeGoogle.class, CypherpunkAccountStatus.class);
+			} // }}}
+			else if (accountApiPath.equals("/upgrade/apple")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeApple.class, CypherpunkAccountStatus.class);
+			} // }}}
+
 			else // {{{ 404
 			{
 				res.sendError(404);
