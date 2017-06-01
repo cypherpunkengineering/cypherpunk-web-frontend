@@ -63,6 +63,8 @@ const routes = [
   { url: baseRoute + 'support/android', dirPath: baseDir + 'support/android.html' },
   { url: baseRoute + 'support/browser-extension', dirPath: baseDir + 'support/browser-extension.html' },
   { url: baseRoute + 'support/ios', dirPath: baseDir + 'support/ios.html' },
+  { url: baseRoute + 'support/routers', dirPath: baseDir + 'support/routers.html' },
+  { url: baseRoute + 'support/embedded-devices', dirPath: baseDir + 'support/embedded-devices.html' },
   { url: baseRoute + 'support/request/new', dirPath: baseDir + 'support/request/new.html' },
   { url: baseRoute + 'partial/hostname', dirPath: baseDir + 'partial/hostname.html' },
   { url: baseRoute + 'partial/credentials', dirPath: baseDir + 'partial/credentials.html' },

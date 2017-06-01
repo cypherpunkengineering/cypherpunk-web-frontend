@@ -41,7 +41,8 @@ import { SupportAndroidModule } from './layouts/public/support/android/support-a
 import { SupportIOSModule } from './layouts/public/support/ios/support-ios.module';
 import { SupportLinuxModule } from './layouts/public/support/linux/support-linux.module';
 import { SupportBrowserExtensionModule } from './layouts/public/support/browser-extension/support-browser-extension.module';
-import { SupportFormModule } from './layouts/public/support/support-form/support-form.module';
+import { SupportRoutersModule } from './layouts/public/support/routers/support-routers.module';
+import { SupportOthersModule } from './layouts/public/support/others/support-others.module';
 
 import { HostnameSelectorModule } from './layouts/public/partial/hostname-selector/hostname-selector.module';
 import { VpnCredentialsModule } from './layouts/public/partial/vpn-credentials/vpn-credentials.module';
@@ -101,7 +102,6 @@ import { BackendService } from './services/backend.service';
     SignupModule,
     PublicResetModule,
     SupportHomeModule,
-    SupportFormModule,
     SupportArticleModule,
     SupportWindowsModule,
     SupportMacModule,
@@ -109,6 +109,8 @@ import { BackendService } from './services/backend.service';
     SupportIOSModule,
     SupportLinuxModule,
     SupportBrowserExtensionModule,
+    SupportRoutersModule,
+    SupportOthersModule,
 
     HostnameSelectorModule,
     VpnCredentialsModule,

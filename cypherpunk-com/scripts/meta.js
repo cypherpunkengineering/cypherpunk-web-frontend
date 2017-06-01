@@ -208,6 +208,16 @@ const metaMap = {
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
     description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
   },
+  'support:routers.html': {
+    url: 'https://cypherpunk.com/support/routers',
+    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
+    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+  },
+  'support:embedded-devices.html': {
+    url: 'https://cypherpunk.com/support/embedded-devices',
+    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
+    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_DESCRIPTION__}}',
