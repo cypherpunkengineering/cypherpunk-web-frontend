@@ -91,6 +91,10 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final String BLOGGER_API_URL = "https://www.googleapis.com/blogger/v3/blogs/";
 	private static final String BLOGGER_BLOG_ID = "4561014629041381755";
 	private static final String BLOGGER_SUPPORT_ID = "2467816098254238300";
+
+	// init gson
+	//Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+	public static final Gson gson = new Gson();
 	// }}}
 
 	private static final class CypherpunkResponseCache // {{{
@@ -104,10 +108,6 @@ public class FrontendAPIv1 extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException
 	{
 		// {{{ init
-		// init gson
-		//Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-		Gson gson = new Gson();
-
 		// autodetect locale from Accept-Language http request header
 		Locale langLocale = req.getLocale();
 
@@ -122,9 +122,6 @@ public class FrontendAPIv1 extends HttpServlet
 
 		// set content type
 		res.setContentType("application/json; charset=UTF-8");
-
-		// get response writer
-		PrintWriter out = res.getWriter();
 
 		// get request URL
 		String reqURI = req.getRequestURI().toString();
@@ -149,7 +146,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 		if (apiPath.equals("/hello")) // {{{
 		{
-			out.println("hello");
+			res.getWriter().println("hello");
 		} // }}}
 		else if (apiPath.startsWith("/account")) // {{{
 		{
@@ -181,10 +178,10 @@ public class FrontendAPIv1 extends HttpServlet
 
 				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 				String frontendJsonString = gson.toJson(accountStatus);
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 
 				//String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
-				//out.println(cypherpunkResponseBody);
+				//res.getWriter().println(cypherpunkResponseBody);
 			} //}}}
 			else if (accountApiPath.equals("/logout")) // {{{
 			{
@@ -227,7 +224,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				Map<String,Object> bloggerResponse = getBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
 				frontendJsonString = gson.toJson(bloggerResponse);
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else if (blogApiPath.startsWith("/post/")) // {{{
 			{
@@ -250,7 +247,7 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 
 				frontendJsonString = gson.toJson(bloggerResponse);
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 			} //}}}
 		} //}}}
 		else if (apiPath.startsWith("/location")) // {{{
@@ -270,7 +267,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
 
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else if (locationApiPath.startsWith("/list")) // {{{
 			{
@@ -285,7 +282,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
 
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else // {{{ 404
 			{
@@ -299,7 +296,7 @@ public class FrontendAPIv1 extends HttpServlet
 			if (networkApiPath.equals("/status")) // {{{
 			{
 				String countryCode = ipdb.getCountry(reqIP);
-				out.println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
+				res.getWriter().println("{\"ip\": \"" + reqIP + "\", \"country\": \"" + countryCode + "\"}");
 			} //}}}
 			else // {{{ 404
 			{
@@ -310,13 +307,13 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			String chunk = req.getParameter("chunk");
 			ipdb.initDatabase(chunk);
-			out.println("ok");
+			res.getWriter().println("ok");
 		} //}}}
 		else if (apiPath.equals("secretGeoDatabaseTest")) // {{{
 		{
 			String ip = req.getParameter("ip");
 			String countryCode = ipdb.getCountry(ip);
-			out.println(countryCode);
+			res.getWriter().println(countryCode);
 		} //}}}
 		else // {{{ 404
 		{
@@ -328,9 +325,6 @@ public class FrontendAPIv1 extends HttpServlet
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException
 	{
 		// {{{ init
-		// init gson
-		Gson gson = new Gson();
-
 		// autodetect locale from Accept-Language http request header
 		Locale langLocale = req.getLocale();
 
@@ -343,9 +337,6 @@ public class FrontendAPIv1 extends HttpServlet
 
 		// set content type
 		res.setContentType("application/json; charset=UTF-8");
-
-		// get response writer
-		PrintWriter out = res.getWriter();
 
 		// get request URL
 		String reqURI = req.getRequestURI().toString();
@@ -362,7 +353,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 		if (apiPath.equals("/hello")) // {{{
 		{
-			out.println("hello");
+			res.getWriter().println("hello");
 		} // }}}
 		else if (apiPath.startsWith("/account")) // {{{
 		{
@@ -381,55 +372,11 @@ public class FrontendAPIv1 extends HttpServlet
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
 
-				out.println(frontendJsonString);
+				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
 			{
-				// curl -X POST -H 'Content-type: application/json' -i https://cypherpunk.privacy.network/api/v1/account/authenticate/userpasswd -d '{"login":"test@test.test","password":"test123"}'
-				CypherpunkAccountAuthenticateUserpasswd cypherpunkAuth = null;
-				CypherpunkAccountStatus cypherpunkAccountStatus = null;
-
-				try // parse json body of incoming request
-				{
-					String reqBody = getBodyFromRequest(req);
-					cypherpunkAuth = gson.fromJson(reqBody, CypherpunkAccountAuthenticateUserpasswd.class);
-				}
-				catch (Exception e)
-				{
-					LOG.log(Level.WARNING, "Unable to parse body of incoming request into CypherpunkAccountAuthenticateUserpasswd");
-					e.printStackTrace();
-					res.sendError(400);
-					return;
-				}
-
-				// convert sanitized request body back to json and send in outgoing request to backend
-				String cypherpunkRequestBody = gson.toJson(cypherpunkAuth);
-				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.POST, buildCypherpunkURL("/api/v0" + apiPath), getSafeHeadersFromRequest(req), cypherpunkRequestBody);
-
-				// check response code of outgoing request
-				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
-				{
-					res.sendError(cypherpunkResponse.getResponseCode());
-					// TODO: send json body as error response
-					return;
-				}
-				try // parse json body of outgoing request's response
-				{
-					String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
-					cypherpunkAccountStatus = gson.fromJson(cypherpunkResponseBody, CypherpunkAccountStatus.class);
-				}
-				catch (Exception e)
-				{
-					LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body as CypherpunkAccountStatus object");
-					e.printStackTrace();
-					res.sendError(500);
-					return;
-				}
-
-				// pass outgoing request's response's headers and sanitized body to incoming request's response
-				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
-				String frontendJsonString = gson.toJson(cypherpunkAccountStatus);
-				out.println(frontendJsonString);
+				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountAuthenticateUserpasswd.class, CypherpunkAccountStatus.class);
 			} //}}}
 
 			else if (accountApiPath.equals("/confirm/email")) // {{{
@@ -530,7 +477,7 @@ public class FrontendAPIv1 extends HttpServlet
 				String zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
 
 				// don't send response unless debugging
-				// out.println(zendeskResponse);
+				// res.getWriter().println(zendeskResponse);
 			} // }}}
 			else // {{{ 404
 			{
@@ -544,6 +491,57 @@ public class FrontendAPIv1 extends HttpServlet
 		} // }}}
 	}
 
+	private void proxyRequestToCypherpunkBackend(HttpServletRequest req, HttpServletResponse res, String cypherpunkURI, Class incomingRequestBean, Class outgoingRequestResponseBean) // {{{
+	throws IOException
+	{
+		// sanitize json bodies by parsing to JSON bean objects
+		Object incomingRequestData = null;
+		Object outgoingRequestResponseData = null;
+
+		try // parse json body of incoming request
+		{
+			String reqBody = getBodyFromRequest(req);
+			incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
+		}
+		catch (Exception e)
+		{
+			LOG.log(Level.WARNING, "Unable to parse body of incoming request");
+			e.printStackTrace();
+			res.sendError(400);
+			// TODO: send json body as error response
+			return;
+		}
+
+		// convert sanitized request body back to json and send in outgoing request to backend
+		String cypherpunkRequestBody = gson.toJson(incomingRequestData);
+		HTTPResponse cypherpunkResponse = requestData(HTTPMethod.POST, buildCypherpunkURL(cypherpunkURI), getSafeHeadersFromRequest(req), cypherpunkRequestBody);
+
+		// check response code of outgoing request
+		if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
+		{
+			res.sendError(cypherpunkResponse.getResponseCode());
+			// TODO: send json body as error response
+			return;
+		}
+		try // parse json body of outgoing request's response
+		{
+			String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+			outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
+		}
+		catch (Exception e)
+		{
+			LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body");
+			e.printStackTrace();
+			res.sendError(500);
+			// TODO: send json body as error response
+			return;
+		}
+
+		// pass outgoing request's response's headers and sanitized body to incoming request's response
+		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
+		String frontendJsonString = gson.toJson(outgoingRequestResponseData);
+		res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
+	} //}}}
 	private String getBodyFromRequest(HttpServletRequest req) // {{{
 	{
 		// read request body
