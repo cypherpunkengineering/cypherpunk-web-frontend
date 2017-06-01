@@ -151,6 +151,25 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			res.getWriter().println("hello");
 		} // }}}
+		else if (apiPath.startsWith("/app")) // {{{
+		{
+			String appApiPath = apiPath.substring( "/app".length(), apiPath.length() );
+
+			if (appApiPath.equals("/versions")) // {{{
+			{
+				// FIXME: convert to proper JSON object
+				res.getWriter().println(
+				"{"
+				+"\"windows\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"macos\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"linux\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"android\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from Google Play.\"}"
+				+",\"ios\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the iTunes App store.\"}"
+				+",\"chrome\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the Chrome webstore.\"}"
+				+",\"firefox\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the Mozilla Add-ons.\"}"
+				+"}");
+			} // }}}
+		} // }}}
 		else if (apiPath.startsWith("/account")) // {{{
 		{
 			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
