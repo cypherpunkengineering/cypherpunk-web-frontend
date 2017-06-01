@@ -258,7 +258,6 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				String frontendJsonString;
 				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
-
 				if (cypherpunkResponse == null)
 				{
 					res.sendError(500);
@@ -267,6 +266,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
 
+				setResponseCacheTime(res, 1337);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else if (locationApiPath.startsWith("/list")) // {{{
@@ -624,6 +624,12 @@ public class FrontendAPIv1 extends HttpServlet
 		for (HTTPHeader header : headers)
 			if (Arrays.asList(safeHeaders).contains(header.getName()))
 				res1.setHeader(header.getName(), header.getValue());
+	} // }}}
+
+	private void setResponseCacheTime(HttpServletResponse res, int seconds) // {{{
+	{
+		res.setDateHeader("Expires", System.currentTimeMillis() + (1000 * seconds) );
+		res.setHeader("Cache-Control", "public, max-age="+seconds);
 	} // }}}
 
 	private URL buildBloggerURL(String bloggerID, String bloggerURI, String bloggerArgs) // {{{
