@@ -74,9 +74,9 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final Logger LOG = Logger.getLogger(FrontendAPIv1.class.getName());
 	// }}}
 	// {{{ static constants
-	private static final int LOCATION_LIST_CACHE_PERIOD = (60 * 10);
-	private static final int LOCATION_WORLD_CACHE_PERIOD = (86400 * 7);
-	private static final int BLOGGER_API_CACHE_PERIOD = 2; // (60 * 1);
+	private static final int LOCATION_WORLD_CACHE_PERIOD = (60 * 60 * 1);
+	private static final int LOCATION_LIST_CACHE_PERIOD = 69; // (60 * 10);
+	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
 
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.network";
@@ -119,6 +119,9 @@ public class FrontendAPIv1 extends HttpServlet
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ")
 			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+
+		// set default cache headers
+		setResponsePrivateCacheHeaders(res, 0);
 
 		// set content type
 		res.setContentType("application/json; charset=UTF-8");
@@ -223,6 +226,8 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 
 				Map<String,Object> bloggerResponse = getCachedBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				if (!forceUpdate)
+					setResponsePublicCacheHeaders(res, BLOGGER_API_CACHE_PERIOD);
 				frontendJsonString = gson.toJson(bloggerResponse);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
@@ -246,6 +251,8 @@ public class FrontendAPIv1 extends HttpServlet
 					return;
 				}
 
+				if (!forceUpdate)
+					setResponsePublicCacheHeaders(res, BLOGGER_API_CACHE_PERIOD);
 				frontendJsonString = gson.toJson(bloggerResponse);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
@@ -266,7 +273,8 @@ public class FrontendAPIv1 extends HttpServlet
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
 
-				setResponseCacheTime(res, 1337);
+				if (!forceUpdate)
+					setResponsePublicCacheHeaders(res, LOCATION_WORLD_CACHE_PERIOD);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else if (locationApiPath.startsWith("/list")) // {{{
@@ -281,7 +289,8 @@ public class FrontendAPIv1 extends HttpServlet
 				}
 
 				frontendJsonString = gson.toJson(cypherpunkResponse);
-
+				if (!forceUpdate)
+					setResponsePublicCacheHeaders(res, LOCATION_LIST_CACHE_PERIOD);
 				res.getWriter().println(frontendJsonString);
 			} //}}}
 			else // {{{ 404
@@ -334,6 +343,9 @@ public class FrontendAPIv1 extends HttpServlet
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ")
 			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+
+		// set default cache headers
+		setResponsePrivateCacheHeaders(res, 0);
 
 		// set content type
 		res.setContentType("application/json; charset=UTF-8");
@@ -626,10 +638,15 @@ public class FrontendAPIv1 extends HttpServlet
 				res1.setHeader(header.getName(), header.getValue());
 	} // }}}
 
-	private void setResponseCacheTime(HttpServletResponse res, int seconds) // {{{
+	private void setResponsePublicCacheHeaders(HttpServletResponse res, int seconds) // {{{
 	{
 		res.setDateHeader("Expires", System.currentTimeMillis() + (1000 * seconds) );
 		res.setHeader("Cache-Control", "public, max-age="+seconds);
+	} // }}}
+	private void setResponsePrivateCacheHeaders(HttpServletResponse res, int seconds) // {{{
+	{
+		res.setDateHeader("Expires", System.currentTimeMillis() + (1000 * seconds) );
+		res.setHeader("Cache-Control", "private, max-age="+seconds);
 	} // }}}
 
 	private URL buildBloggerURL(String bloggerID, String bloggerURI, String bloggerArgs) // {{{
