@@ -159,15 +159,32 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.GET, buildCypherpunkURL("/api/v0" + apiPath + "?" + queryString), getSafeHeadersFromRequest(req), null);
 				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
+				CypherpunkAccountStatus accountStatus = null;
 
 				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
 				{
 					res.sendError(cypherpunkResponse.getResponseCode());
+					// TODO: send json body as error response
+					return;
+				}
+				try // parse json body
+				{
+					String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+					accountStatus = gson.fromJson(cypherpunkResponseBody, CypherpunkAccountStatus.class);
+				}
+				catch (Exception e)
+				{
+					LOG.log(Level.WARNING, "Unable to parse CypherpunkAccountStatus");
+					e.printStackTrace();
+					res.sendError(500);
 					return;
 				}
 
-				String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
-				out.println(cypherpunkResponseBody);
+				String frontendJsonString = gson.toJson(accountStatus);
+				out.println(frontendJsonString);
+
+				//String cypherpunkResponseBody = responseAsString(cypherpunkResponse);
+				//out.println(cypherpunkResponseBody);
 			} //}}}
 			else if (accountApiPath.equals("/logout")) // {{{
 			{
@@ -368,8 +385,9 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
 			{
+				// 
 				String frontendJsonString;
-				String cypherpunkResponse = requestCypherpunkData(HTTPMethod.POST, reqURI, null, null);
+				String cypherpunkResponse = requestCypherpunkData(HTTPMethod.POST, "/api/v0" + apiPath, getSafeHeadersFromRequest(req), null);
 
 				if (cypherpunkResponse == null)
 				{
@@ -547,7 +565,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 		return headers;
 	} // }}}
-	private void setResponseHeadersFromBackendResponse(HttpServletResponse res1, HTTPResponse res2)
+	private void setResponseHeadersFromBackendResponse(HttpServletResponse res1, HTTPResponse res2) // {{{
 	{
 		List<HTTPHeader> headers = res2.getHeaders();
 		String safeHeaders[] = {
@@ -557,7 +575,7 @@ public class FrontendAPIv1 extends HttpServlet
 		for (HTTPHeader header : headers)
 			if (Arrays.asList(safeHeaders).contains(header.getName()))
 				res1.setHeader(header.getName(), header.getValue());
-	}
+	} // }}}
 
 	private URL buildBloggerURL(String bloggerID, String bloggerURI, String bloggerArgs) // {{{
 	{
