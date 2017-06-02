@@ -176,39 +176,12 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (accountApiPath.equals("/status")) // {{{
 			{
-				HTTPResponse cypherpunkResponse = requestData(HTTPMethod.GET, buildCypherpunkURL("/api/v0" + apiPath + "?" + queryString), getSafeHeadersFromRequest(req), null);
-				CypherpunkAccountStatus accountStatus = null;
-
-				if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
-				{
-					res.sendError(cypherpunkResponse.getResponseCode());
-					// TODO: send json body as error response
-					return;
-				}
-				try // parse json body
-				{
-					String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
-					accountStatus = gson.fromJson(cypherpunkResponseBody, CypherpunkAccountStatus.class);
-				}
-				catch (Exception e)
-				{
-					LOG.log(Level.WARNING, "Unable to parse CypherpunkAccountStatus");
-					e.printStackTrace();
-					res.sendError(500);
-					return;
-				}
-
-				setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
-				String frontendJsonString = gson.toJson(accountStatus);
-				res.getWriter().println(frontendJsonString);
-
-				//String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
-				//res.getWriter().println(cypherpunkResponseBody);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountStatus.class);
 			} //}}}
-			else if (accountApiPath.equals("/logout")) // {{{
+			else if (accountApiPath.equals("/source/list")) // {{{
 			{
-				res.sendError(500);
-			} // }}}
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
+			} //}}}
 			else // {{{ 404
 			{
 				res.sendError(404);
@@ -392,65 +365,65 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (accountApiPath.equals("/identify/email")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountIdentifyEmail.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountIdentifyEmail.class, null);
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/password")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountAuthenticatePassword.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountAuthenticatePassword.class, CypherpunkAccountStatus.class);
 			} //}}}
 			else if (accountApiPath.equals("/authenticate/userpasswd")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountAuthenticateUserpasswd.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountAuthenticateUserpasswd.class, CypherpunkAccountStatus.class);
 			} //}}}
 
 			else if (accountApiPath.equals("/confirm/email")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountConfirmEmail.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountConfirmEmail.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 			else if (accountApiPath.equals("/register/signup")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountRegisterSignup.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRegisterSignup.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 			else if (accountApiPath.equals("/source/add")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, null);
 			} // }}}
 			else if (accountApiPath.equals("/source/default")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceDefault.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountSourceDefault.class, null);
 			} // }}}
 
 			else if (accountApiPath.equals("/purchase/stripe")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountPurchaseStripe.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountPurchaseStripe.class, CypherpunkAccountStatus.class);
 			} // }}}
 			else if (accountApiPath.equals("/purchase/amazon")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountPurchaseAmazon.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountPurchaseAmazon.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 			else if (accountApiPath.equals("/upgrade/stripe")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeStripe.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountUpgradeStripe.class, CypherpunkAccountStatus.class);
 			} // }}}
 			else if (accountApiPath.equals("/upgrade/amazon")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeAmazon.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountUpgradeAmazon.class, CypherpunkAccountStatus.class);
 			} // }}}
 			else if (accountApiPath.equals("/upgrade/google")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeGoogle.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountUpgradeGoogle.class, CypherpunkAccountStatus.class);
 			} // }}}
 			else if (accountApiPath.equals("/upgrade/apple")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountUpgradeApple.class, CypherpunkAccountStatus.class);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountUpgradeApple.class, CypherpunkAccountStatus.class);
 			} // }}}
 
 		else if (accountApiPath.equals("/logout")) // {{{
 		{
-			proxyRequestToCypherpunkBackend(req, res, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, null);
+			proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
 		} // }}}
 			else // {{{ 404
 			{
@@ -458,9 +431,9 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 
 		} //}}}
-		else if (apiPath.startsWith("/zendesk")) // {{{
+		else if (apiPath.startsWith("/support")) // {{{
 		{
-			String networkApiPath = apiPath.substring( "/zendesk".length(), apiPath.length() );
+			String networkApiPath = apiPath.substring( "/support".length(), apiPath.length() );
 
 			if (networkApiPath.equals("/request/new")) // {{{
 			{
@@ -529,13 +502,14 @@ public class FrontendAPIv1 extends HttpServlet
 		} // }}}
 	}
 
-	private void proxyRequestToCypherpunkBackend(HttpServletRequest req, HttpServletResponse res, String cypherpunkURI, Class incomingRequestBean, Class outgoingRequestResponseBean) // {{{
+	private void proxyRequestToCypherpunkBackend(HttpServletRequest req, HttpServletResponse res, HTTPMethod reqMethod, String cypherpunkURI, Class incomingRequestBean, Class outgoingRequestResponseBean) // {{{
 	throws IOException
 	{
 		// sanitize json bodies by parsing to JSON bean objects
 		Object incomingRequestData = null;
 		Object outgoingRequestResponseData = null;
-		String cypherpunkRequestBody = null;
+		String sanitizedReqBody = null;
+		String queryString = req.getQueryString();
 
 		if (incomingRequestBean != null)
 		{
@@ -554,13 +528,21 @@ public class FrontendAPIv1 extends HttpServlet
 			}
 
 			// convert sanitized request body back to json and send in outgoing request to backend
-			cypherpunkRequestBody = gson.toJson(incomingRequestData);
+			sanitizedReqBody = gson.toJson(incomingRequestData);
 		}
 
-		HTTPResponse cypherpunkResponse = requestData(HTTPMethod.POST, buildCypherpunkURL(cypherpunkURI), getSafeHeadersFromRequest(req), cypherpunkRequestBody);
+		String reqURI = null;
+		// TODO: sanitize query string?
+		if (queryString != null)
+			reqURI = cypherpunkURI + "?" + queryString;
+		else
+			reqURI = cypherpunkURI;
+
+		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 
 		// check response code of outgoing request
-		if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK)
+		if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK &&
+			cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_CREATED)
 		{
 			res.sendError(cypherpunkResponse.getResponseCode());
 			// TODO: send json body as error response
@@ -570,16 +552,18 @@ public class FrontendAPIv1 extends HttpServlet
 		// pass outgoing request's response's headers
 		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 
+		String cypherpunkResponseBody = null;
 		if (outgoingRequestResponseBean != null)
 		{
 			try // parse json body of outgoing request's response
 			{
-				String cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
+				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 				outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
 			}
 			catch (Exception e)
 			{
-				LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body");
+				LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body: "+e.toString());
+				LOG.log(Level.WARNING, "Response body: "+cypherpunkResponseBody);
 				e.printStackTrace();
 				res.sendError(500);
 				// TODO: send json body as error response
