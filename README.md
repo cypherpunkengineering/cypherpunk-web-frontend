@@ -40,4 +40,9 @@
 ## cypherpunk-dev: test app for any random thing
 ### Google Appengine testing
 
+# Things to try if deploy fails
+* Change version number of app in appengine-web.xml (java)
+* Delete old versions of app on Google Cloud Console (python)
+* Delete contents of GCS staging bucket: https://console.cloud.google.com/storage/browser/staging.cypherpunk-engineering.appspot.com/?project=cypherpunk-engineering&organizationId=94359002874
+
 <3
