@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 @Injectable()
 export class AlertService {
@@ -8,7 +8,7 @@ export class AlertService {
     visible: boolean
   };
 
-  constructor() {
+  constructor(private zone: NgZone) {
     this.alert = {
       header: '',
       body: '',
@@ -34,5 +34,9 @@ export class AlertService {
     this.alert.visible = true;
   }
 
-  dismiss(): void { this.alert.visible = false; }
+  dismiss(): void {
+    this.zone.run(() => {
+      this.alert.visible = false;
+    });
+  }
 }
