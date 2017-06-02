@@ -162,7 +162,7 @@ public class FrontendAPIv1 extends HttpServlet
 				"{"
 				+"\"windows\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
 				+",\"macos\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"linux\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"debian\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
 				+"}");
 			} // }}}
 		} // }}}
