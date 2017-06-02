@@ -59,7 +59,7 @@ app.post('/api/v1/account/authenticate/userpasswd', signin);
 app.post('/api/v1/account/logout', signout);
 app.post('/api/v1/account/identify/email', identify);
 app.post('/api/v1/account/register/signup', signup);
-app.post('/api/v1/account/purchase/stripe', stripePurchase);
+app.post('/api/v0/account/purchase/stripe', stripePurchase);
 app.post('/api/v1/account/upgrade/stripe', stripeUpgrade);
 app.get('/api/v1/account/source/list', stripeCardList);
 app.post('/api/v1/account/source/default', stripeDefaultCard);

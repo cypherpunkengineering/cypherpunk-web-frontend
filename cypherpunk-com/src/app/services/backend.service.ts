@@ -100,7 +100,7 @@ export class BackendService {
 
   stripeCharge(body, options): Promise<any> {
     // sets cookie
-    let url = this.backendUrl + 'account/purchase/stripe';
+    let url = this.backend + '/api/v0/account/purchase/stripe';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
