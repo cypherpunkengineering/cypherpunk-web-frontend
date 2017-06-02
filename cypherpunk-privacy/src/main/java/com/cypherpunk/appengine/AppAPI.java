@@ -61,13 +61,9 @@ public class AppAPI extends HttpServlet
 			case "versions": { // {{{
 				out.println(
 				"{"
-				+"\"windows\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"macos\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"linux\":{\"latest\":\"0.5.0-beta\",\"required\":\"0.5.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"android\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from Google Play.\"}"
-				+",\"ios\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the iTunes App store.\"}"
-				+",\"chrome\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the Chrome webstore.\"}"
-				+",\"firefox\":{\"latest\":56,\"required\":55,\"description\":\"A new version is available, please update Cypherpunk Privacy from the Mozilla Add-ons.\"}"
+				+"\"windows\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"macos\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
+				+",\"debian\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
 				+"}");
 			}
 			break; // }}}
