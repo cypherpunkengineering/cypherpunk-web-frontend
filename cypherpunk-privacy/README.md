@@ -3,7 +3,13 @@
 ## /app - static data about app versions
 
 ##### `GET /app/versions`
-Returns the latest available app versions, and the minimum required app versions.
+Returns the latest available app versions, and the minimum required app versions.  
+
+Parameters:
+```
+  (none)
+```
+Returns:
 * 200 -> OK
 ```
 {
@@ -28,8 +34,13 @@ Returns the latest available app versions, and the minimum required app versions
 ## /account - account, subscription, billing related operations
 
 ##### `GET /account/status`
-Requires authenticated session.
-Returns up-to-date account metadata for the current session.
+Requires authenticated session. Returns up-to-date account metadata for the current session.  
+
+Parameters:
+```
+  (none)
+```
+Returns:
 * 401 -> Requires valid session
 * 200 -> OK
 ```
@@ -53,7 +64,8 @@ Returns up-to-date account metadata for the current session.
 ```
 
 ##### `POST /account/identify/email`
-Creates an unauthenticated session for a given account, identified by its email address.
+Creates an unauthenticated session for a given account, identified by its email address.  
+
 Parameters:
 ```
 {
@@ -69,7 +81,8 @@ Returns:
 
 ##### `POST /account/authenticate/password`
 Requires unauthenticated session from /account/identify/* methods
-If successful, session is authenticated and can then call any other method.
+If successful, session is authenticated and can then call any other method.  
+
 Parameters:
 ```
 {
@@ -84,7 +97,8 @@ Returns:
 ```
 
 ##### `POST /account/authenticate/userpasswd`
-Creates an authenticated session for a given account, identified by its email address, and authenticated by its password.
+Creates an authenticated session for a given account, identified by its email address, and authenticated by its password.  
+
 Parameters:
 ```
 {
@@ -100,7 +114,8 @@ Returns:
 ```
 
 ##### `POST /account/confirm/email`
-Creates an authenticated session for a given account, identified by its accountId, and authenticated by its confirmationToken.
+Creates an authenticated session for a given account, identified by its accountId, and authenticated by its confirmationToken.  
+
 Parameters:
 ```
 {
@@ -116,7 +131,8 @@ Returns:
 ```
 
 ##### `POST /account/register/signup`
-Registers a new account, and starts an authenticated session for the new account.
+Registers a new account, and starts an authenticated session for the new account.  
+
 Parameters:
 ```
 {
@@ -134,7 +150,13 @@ Returns:
 
 ##### `GET /account/source/list`
 Requires authenticated session.
-Returns list of Stripe payment sources for current account.
+Retrieves the list of Stripe payment sources for current account, if any.  
+
+Parameters:
+```
+  (none)
+```
+Returns:
 * 200 -> OK
 ```
 {
@@ -153,29 +175,136 @@ Returns list of Stripe payment sources for current account.
 ```
 
 ##### `POST /account/source/add`
+Requires authenticated session.
+Attempts to add a new card to customer's stripe profile, and if successful, deletes old registered cards.  
+
+Parameters:
+```
+{
+  "token":"card_19hw7PCymPOZwO5rzXXcupS4" // card token from Stripe.js
+}
+```
+Returns:
+* 402 -> Failed to add card
 * 200 -> OK
+```
+  (same as /account/source/list)
+```
 
 ##### `POST /account/source/default`
-* 200 -> OK
+Requires authenticated session.
+Updates customer's default card to the specified card id.  
 
-##### `POST /account/upgrade/amazon`
-##### `POST /account/upgrade/apple`
-##### `POST /account/upgrade/google`
-##### `POST /account/upgrade/stripe`
+Parameters:
+```
+{
+  "default_source":"card_19hw7PCymPOZwO5rzXXcupS4" // card id from /account/source/list
+}
+```
+Returns:
+* 200 -> OK
+```
+  (same as /account/source/list)
+```
 
 ##### `POST /account/logout`
 Destroys current session, if any.
+Parameters:
+```
+  (none)
+```
+Returns:
 * 200 -> OK, logs out user
 ```
   (no body)
 ```
+
+##### `POST /account/purchase/stripe`
+Creates a Stripe customer account, card source, and recurring subscription using the specified tokenized card and given plan ID, creates a new user account, starts an authenticated session.
+
+Parameters:
+```
+{
+  "email":"test@test.test",
+  "password":"foobar",
+  "plan": "monthly",
+  "token":"card_19hw7PCymPOZwO5rzXXcupS4" // card token from Stripe.js
+}
+```
+Returns:
+* 400 -> Invalid or missing parameters
+* 402 -> Authorizing the card failed
+```
+  (TODO: add billing errors here)
+```
+* 409 -> Email already registered
+* 200 -> OK
+```
+  (same as /account/status)
+```
+
+##### `POST /account/upgrade/stripe`
+Requires authenticated session.
+
+##### `POST /account/purchase/amazon`
+Confirms the given amazon billing agreement, charges the amazon billing agreement, creates a new account, authorizes and captures the specified plan's price, and starts an authenticated session for the account.  
+
+Parameters:
+```
+{
+  "email":"test@test.test",
+  "password":"foobar",
+  "plan": "monthly",
+  "AmazonBillingAgreementId": "xxx"
+}
+```
+Returns:
+* 400 -> Invalid or missing parameters
+* 402 -> Authorizing the billing agreement failed
+```
+  (TODO: add billing errors here)
+```
+* 409 -> Email already registered
+* 200 -> OK
+```
+  (same as /account/status)
+```
+
+##### `POST /account/upgrade/amazon`
+Requires authenticated session.
+Parameters:
+```
+{
+  "AmazonBillingAgreementId": "xxx",
+  "plan": "monthly"
+}
+```
+Returns:
+* 400 -> Invalid or missing parameters
+* 200 -> OK
+```
+  (same as /account/status)
+```
+
+##### `POST /account/upgrade/apple`
+##### `POST /account/upgrade/google`
 
 ### Blog
 ##### `GET /blog/posts`
 ##### `GET /blog/post/{postId}`
 
 ### Network
+
 ##### `GET /network/status`
+Get IP address and Geo-location country of user.  
+
+Returns:
+```
+  {
+    "ip": "185.176.52.7",
+    "country": "IS"
+  }
+```
 
 ### Location
 ##### `GET /location/world`
