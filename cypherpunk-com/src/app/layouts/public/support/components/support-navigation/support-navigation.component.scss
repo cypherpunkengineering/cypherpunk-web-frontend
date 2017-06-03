@@ -16,7 +16,11 @@
       cursor: pointer;
       display: inline-block;
       vertical-align: top;
-      &:hover { color: #fff; }
+      &:hover {
+        color: #fff;
+        img.display { display: none; }
+        img.hover { display: inline-block; }
+      }
 
       img {
         height: 100%;
@@ -24,6 +28,7 @@
         vertical-align: middle;
         &.display { display: inline-block; }
         &.active { display: none; }
+        &.hover { display: none; }
       }
 
       &.active {
@@ -32,6 +37,7 @@
         background-color: #fff;
         img.display { display: none; }
         img.active { display: inline-block; }
+        img.hover { display: none; }
       }
     }
   }
