@@ -537,8 +537,8 @@ public class FrontendAPIv1 extends HttpServlet
 		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 
 		// check response code of outgoing request
-		if (cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_OK &&
-			cypherpunkResponse.getResponseCode() != HttpURLConnection.HTTP_CREATED)
+		if (cypherpunkResponse.getResponseCode() != 200 &&
+			cypherpunkResponse.getResponseCode() != 202)
 		{
 			res.sendError(cypherpunkResponse.getResponseCode());
 			// TODO: send json body as error response
