@@ -636,9 +636,15 @@ public class FrontendAPIv1 extends HttpServlet
 			,"User-Agent"
 		};
 
+		// copy headers in "safe" list above
 		for (String headerName : safeHeaders)
 			if (req.getHeader(headerName) != null)
 				headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
+
+		// add original IP header
+		String reqIP = req.getRemoteAddr();
+		HTTPHeader headerOriginalIP = new HTTPHeader("X-Original-IP", reqIP);
+		headers.add(headerOriginalIP);
 
 		return headers;
 	} // }}}
