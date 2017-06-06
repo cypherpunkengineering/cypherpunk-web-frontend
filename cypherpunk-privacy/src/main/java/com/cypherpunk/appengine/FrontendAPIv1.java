@@ -78,8 +78,12 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final int LOCATION_LIST_CACHE_PERIOD = 69; // (60 * 10);
 	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
 
+	private static final String FRONTEND_HOSTNAME_PRODUCTION = "cypherpunk.privacy.network";
+	private static final String FRONTEND_HOSTNAME_DEVELOPMENT = "api.cypherpunk.engineering";
+
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
-	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.network";
+	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
+	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://red-dragon.cypherpunk.network";
 
 	private static final String ZENDESK_API_URL = "https://cypherpunk.zendesk.com";
 	private static final String ZENDESK_API_USERNAME = "jmaurice@cypherpunk.com/token";
@@ -252,7 +256,7 @@ public class FrontendAPIv1 extends HttpServlet
 			if (locationApiPath.equals("/world")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData("/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
 				if (cypherpunkResponse == null)
 				{
 					res.sendError(500);
@@ -268,7 +272,7 @@ public class FrontendAPIv1 extends HttpServlet
 			else if (locationApiPath.startsWith("/list")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData("/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
 
 				if (cypherpunkResponse == null)
 				{
@@ -534,7 +538,7 @@ public class FrontendAPIv1 extends HttpServlet
 		else
 			reqURI = cypherpunkURI;
 
-		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
+		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 
 		// check response code of outgoing request
 		if (cypherpunkResponse.getResponseCode() != 200 &&
@@ -687,18 +691,28 @@ public class FrontendAPIv1 extends HttpServlet
 		}
 		return bloggerURL;
 	} // }}}
-	private URL buildCypherpunkURL(String cypherpunkURI) // {{{
+	private URL buildCypherpunkURL(HttpServletRequest req, String cypherpunkURI) // {{{
 	{
 		URL cypherpunkURL = null;
 
 		try // build cypherpunkURL
 		{
-			// do use TLS in production
-			String cypherpunkBaseURL = BACKEND_HOSTNAME_PRODUCTION;
+			// determine API endpoint
+			String cypherpunkBaseURL = null;
 
-			// don't use TLS when using appengine devserver
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development)
+			{
+				// for local devserver - don't use TLS
+				cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
+			}
+			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) // cloud development
+			{
 				cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT;
+			}
+			else // cloud production
+			{
+				cypherpunkBaseURL = BACKEND_HOSTNAME_PRODUCTION;
+			}
 
 			cypherpunkURL = new URL(cypherpunkBaseURL + cypherpunkURI);
 		}
@@ -729,9 +743,9 @@ public class FrontendAPIv1 extends HttpServlet
 		URL bloggerURL = buildBloggerURL(bloggerID, bloggerURI, bloggerArgs);
 		return getCachedData(bloggerURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
-	private Map<String,Object> getCachedCypherpunkData(String cypherpunkURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedCypherpunkData(HttpServletRequest req, String cypherpunkURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
 	{
-		URL cypherpunkURL = buildCypherpunkURL(cypherpunkURI);
+		URL cypherpunkURL = buildCypherpunkURL(req, cypherpunkURI);
 		return getCachedData(cypherpunkURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
 	} // }}}
 	private Map<String,Object> getCachedZendeskData(String zendeskURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
@@ -865,14 +879,15 @@ public class FrontendAPIv1 extends HttpServlet
 		return jsonData;
 	} // }}}
 
-	private String requestBloggerData(HTTPMethod requestMethod, String bloggerURI, List<HTTPHeader> headers, String body) // {{{
+	private String requestBloggerData(String bloggerURI, List<HTTPHeader> headers, String body) // {{{
 	{
-		URL bloggerURL = buildCypherpunkURL(bloggerURI);
-		return requestDataAsString(requestMethod, bloggerURL, headers, body);
+		//URL bloggerURL = buildBloggerURL(bloggerURI);
+		//return requestDataAsString(requestMethod, bloggerURL, headers, body);
+		return ""; // FIXME
 	} // }}}
-	private String requestCypherpunkData(HTTPMethod requestMethod, String cypherpunkURI, List<HTTPHeader> headers, String body) // {{{
+	private String requestCypherpunkData(HttpServletRequest req, HTTPMethod requestMethod, String cypherpunkURI, List<HTTPHeader> headers, String body) // {{{
 	{
-		URL cypherpunkURL = buildCypherpunkURL(cypherpunkURI);
+		URL cypherpunkURL = buildCypherpunkURL(req, cypherpunkURI);
 		return requestDataAsString(requestMethod, cypherpunkURL, headers, body);
 	} // }}}
 	private String requestZendeskData(HTTPMethod requestMethod, String zendeskURI, List<HTTPHeader> headers, String body) // {{{
