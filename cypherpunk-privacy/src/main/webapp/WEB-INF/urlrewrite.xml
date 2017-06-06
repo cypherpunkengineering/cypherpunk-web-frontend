@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN" "http://www.tuckey.org/res/dtds/urlrewrite2.6.dtd">
 <urlrewrite>
-
 	<!-- for API requests, if Origin header was passed, make sure it matches one of our hosts, if so let it through and add CORS headers -->
 	<rule>
 		<condition name="host" next="and">^cypherpunk.privacy.network$</condition>
@@ -26,14 +25,26 @@
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
+	<rule>
+		<condition name="host" next="and">^test-api.cypherpunk.engineering$</condition>
+		<condition name="origin">^https://test.cypherpunk.engineering$</condition>
+		<set type="response-header" name="Access-Control-Allow-Origin">https://test.cypherpunk.engineering</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST, OPTIONS</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">Access-Control-Allow-Origin, Cookie, Origin, Content-Type, Content-Range, Content-Disposition, Content-Description</set>
+		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
+		<set type="response-header" name="Access-Control-Max-Age">86400</set>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
 	<!-- for API requests without Origin header, just pass it thru -->
 	<rule>
-		<condition name="host">^cypherpunk.privacy.network$</condition>
+		<condition name="host" next="or">^cypherpunk.privacy.network$</condition>
+		<condition name="host">^test-api.cypherpunk.engineering$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; preload</set>
 		<from>^/api/v[0-2]/.*</from>
 		<to last="true">-</to>
 	</rule>
-	<!-- for API request staging/testing -->
+	<!-- for API request testing on appspot -->
 	<rule>
 		<condition name="host" next="or">^cypherpunk-privacy.appspot.com$</condition>
 		<condition name="host">cypherpunk-dev.appspot.com$</condition>
@@ -49,237 +60,10 @@
 	</rule>
 	<!-- catchall 404 for other c.p.n requests -->
 	<rule>
-		<condition name="host">^cypherpunk.privacy.network$</condition>
+		<condition name="host" next="or">^cypherpunk.privacy.network$</condition>
+		<condition name="host">^test-api.cypherpunk.engineering$</condition>
 		<from>.*</from>
 		<set type="status">404</set>
 		<to last="true">null</to>
 	</rule>
-
-	<!-- also allow API requests on .com domain, but remove this after remaining requests to cypherpunk.com/api/ are removed -->
-	<rule>
-		<condition name="host">^cypherpunk.com$</condition>
-		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; preload</set>
-		<from>^/api/v[0-2]/.*</from>
-		<to last="true">-</to>
-	</rule>
-	<!-- same as above but for development -->
-	<rule>
-		<condition name="host">^cypherpunk.engineering$</condition>
-		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; includeSubDomains</set>
-		<from>^/api/v[0-2]/.*</from>
-		<to last="true">-</to>
-	</rule>
-
-	<!-- redirect typo domains to main domain -->
-	<rule>
-		<condition name="host" operator="notequal" next="and">^cypherpunk.com$</condition>
-		<condition name="host" operator="notequal" next="and">^cypherpunk.engineering$</condition>
-		<condition name="host" operator="notequal">^localhost:8080$</condition>
-		<from>/(.*)</from>
-		<to last="true" type="permanent-redirect">https://cypherpunk.com/$1</to>
-	</rule>
-
-	<!-- set HSTS preload header for all requests to cypherpunk.com -->
-	<rule>
-		<condition name="host">^cypherpunk.(com|engineering)$</condition>
-		<set type="response-header" name="Strict-Transport-Security">max-age=13370000; preload</set>
-	</rule>
-
-	<!-- default cache-control and expiration -->
-	<rule>
-		<set type="response-header" name="Cache-Control">public, max-age=31337</set>
-		<set type="expires">31337 seconds</set>
-	</rule>
-
-    <!-- set short cache times for things that change often -->
-	<rule>
-		<from>^/[^\.]*$</from><!-- any URL without a dot, should match / and /features and /account/profile etc. -->
-		<set type="response-header" name="Cache-Control">public, max-age=1337</set>
-		<set type="expires">1337 seconds</set>
-	</rule>
-
-	<!-- rewrite appengine paths exactly as requested -->
-	<rule>
-		<from>^/_ah/(.*)</from>
-		<to last="true">-</to>
-	</rule>
-
-	<!-- spider crawler robots -->
-	<rule>
-		<method>GET</method>
-		<condition name="user-agent">(bot|spider|snippet|pinterest|crawler|archiver|flipboardproxy|mediapartners|facebookexternalhit|quora|disqus)</condition>
-		<from>/.*</from>
-		<set type="status">404</set>
-		<to last="true">null</to>
-	</rule>
-
-	<!-- publicly accessible routes, for itunes app review guys -->
-	<rule>
-		<from>^/privacy-policy(.*)</from>
-		<to last="true">/privacy-policy.html$1</to>
-	</rule>
-	<rule>
-		<from>^/terms-of-service(.*)</from>
-		<to last="true">/terms-of-service.html$1</to>
-	</rule>
-	<rule>
-		<from>^/confirm(.*)</from>
-		<to last="true">/confirm.html$1</to>
-	</rule>
-
-	<!-- route to deny page if not on access list -->
-	<rule>
-		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.48\.</condition><!-- wiz hnl -->
-		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.49\.</condition><!-- wiz hnl2 -->
-		<condition type="remote-addr" operator="notequal" next="and">^208\.111\.52\.</condition><!-- wiz tokyo -->
-		<condition type="remote-addr" operator="notequal" next="and">^185\.176\.52\.</condition><!-- cypherpunk tokyo network -->
-		<condition type="remote-addr" operator="notequal" next="and">^43\.233\.13\.</condition><!-- tokyo office -->
-		<condition type="remote-addr" operator="notequal" next="and">^2606:6000:624c:</condition><!-- jon -->
-		<condition type="remote-addr" operator="notequal" next="and">^76\.170\.54</condition><!-- jon -->
-		<condition type="remote-addr" operator="notequal" next="and">^76\.173\.255\.</condition><!-- taesup -->
-		<condition type="remote-addr" operator="notequal" next="and">^219\.164\.103\.</condition><!-- nikuhodai -->
-		<condition type="remote-addr" operator="notequal" next="and">^77\.145\.35\.</condition><!-- paris demo -->
-		<condition type="remote-addr" operator="notequal" next="and">^73\.148\.56\.</condition><!-- chris -->
-		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:0:41f8:</condition><!-- chris -->
-		<condition type="remote-addr" operator="notequal" next="and">^72\.83\.163\.</condition><!-- paul -->
-		<condition type="remote-addr" operator="notequal" next="and">^24\.224\.221\.</condition><!-- reg -->
-		<condition type="remote-addr" operator="notequal" next="and">^2605:e000:849e:db00:</condition><!-- cyphercat -->
-		<condition type="remote-addr" operator="notequal" next="and">^79\.118\.57\.</condition><!-- andrei -->
-		<condition type="remote-addr" operator="notequal" next="and">^2a02:2f08:</condition><!-- andrei -->
-		<condition type="remote-addr" operator="notequal" next="and">^2601:5cc:100</condition><!-- reg virginia -->
-		<condition type="remote-addr" operator="notequal" next="and">^73\.177\.222\.</condition><!-- virginia office -->
-		<condition type="remote-addr" operator="notequal" next="and">^173\.14\.113\.</condition><!-- virginia office -->
-		<condition type="remote-addr" operator="notequal" next="and">^72\.235\.162\.</condition><!-- slickage office -->
-		<condition type="remote-addr" operator="notequal" next="and">^74\.203\.89\.</condition><!-- slickage home -->
-		<condition type="remote-addr" operator="notequal" next="and">^88\.178\.16\.</condition><!-- aurel home -->
-		<condition type="remote-addr" operator="notequal" next="and">^2605:e000:c3c6:b300:</condition><!-- slickage anthony home -->
-		<condition type="remote-addr" operator="notequal" next="and">^78\.97\.52\.</condition><!-- andrei 2nd ip -->
-		<condition type="remote-addr" operator="notequal" next="and">^67\.172\.223\.</condition><!-- reg virginia home -->
-		<condition type="remote-addr" operator="notequal" next="and">^103\.5\.140\.</condition><!-- tommmmy -->
-		<condition type="remote-addr" operator="notequal" next="and">^172\.98\.66\.</condition><!-- virginia vpn ip -->
-		<condition type="remote-addr" operator="notequal" next="and">^23\.242\.14\.</condition><!-- jon new ip -->
-		<condition type="remote-addr" operator="notequal" next="and">^192\.154\.161</condition><!-- slickage new ip -->
-		<condition type="remote-addr" operator="notequal">^127\.</condition>
-		<from>/.*</from>
-		<to last="true">/cypherpunk.txt</to>
-	</rule>
-
-	<!-- customer control panel, requires valid session -->
-	<rule>
-		<from>^/account/upgrade(.*)</from>
-		<to last="true">/account/upgrade.html$1</to>
-	</rule>
-	<rule>
-		<from>^/account/setup(.*)</from>
-		<to last="true">/account/setup.html$1</to>
-	</rule>
-	<rule>
-		<from>^/account/reset(.*)</from>
-		<to last="true">/account/reset.html$1</to>
-	</rule>
-	<rule>
-		<from>^/account(.*)</from>
-		<to last="true">/account/account.html$1</to>
-	</rule>
-
-	<!-- public marketing content -->
-	<rule>
-		<from>^/whats-my-ip-address(.*)</from>
-		<to last="true">/whats-my-ip-address.html$1</to>
-	</rule>
-	<rule>
-		<from>^/bounty(.*)</from>
-		<to last="true">/bounty.html$1</to>
-	</rule>
-	<rule>
-		<from>^/feedback(.*)</from>
-		<to last="true">/feedback.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/browser(.*)</from>
-		<to last="true">/apps/browser.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/mac(.*)</from>
-		<to last="true">/apps/mac.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/windows(.*)</from>
-		<to last="true">/apps/windows.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/ios(.*)</from>
-		<to last="true">/apps/ios.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/android(.*)</from>
-		<to last="true">/apps/android.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/linux(.*)</from>
-		<to last="true">/apps/linux.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps/routers(.*)</from>
-		<to last="true">/apps/routers.html$1</to>
-	</rule>
-	<rule>
-		<from>^/apps(.*)</from>
-		<to last="true">/apps.html$1</to>
-	</rule>
-	<rule>
-		<from>^/download(.*)</from>
-		<to last="true">/download.html$1</to>
-	</rule>
-	<rule>
-		<from>^/pricing(.*)</from>
-		<to last="true">/pricing.html$1</to>
-	</rule>
-	<rule>
-		<from>^/login(.*)</from>
-		<to last="true">/login.html$1</to>
-	</rule>
-	<rule>
-		<from>^/recover(.*)</from>
-		<to last="true">/recover.html$1</to>
-	</rule>
-	<rule>
-		<from>^/why-you-need-online-privacy-protection(.*)</from>
-		<to last="true">/why-you-need-online-privacy-protection.html$1</to>
-	</rule>
-	<rule>
-		<from>^/features#online-privacy(.*)</from>
-		<to last="true">/features.html$1</to>
-	</rule>
-	<rule>
-		<from>^/features#online-freedom(.*)</from>
-		<to last="true">/features.html$1</to>
-	</rule>
-	<rule>
-		<from>^/features(.*)</from>
-		<to last="true">/features.html$1</to>
-	</rule>
-	<rule>
-		<from>^/network(.*)</from>
-		<to last="true">/network.html$1</to>
-	</rule>
-	<rule>
-		<from>^/about-us(.*)</from>
-		<to last="true">/about-us.html$1</to>
-	</rule>
-	<rule>
-		<from>^/home(.*)</from>
-		<to last="true">/cypherpunk-public.html$1</to>
-	</rule>
-	<rule>
-		<from>^/404(.*)</from>
-		<to last="true">/404.html$1</to>
-	</rule>
-
-	<!-- public root -->
-	<rule>
-		<from>^/$</from>
-		<to last="true">/cypherpunk-public.html</to>
-	</rule>
-
 </urlrewrite>
