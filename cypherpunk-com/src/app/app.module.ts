@@ -67,6 +67,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { ConfirmGuard } from './services/confirm-guard.service';
 import { PlansService } from './services/plans.service';
 import { BackendService } from './services/backend.service';
+import { GlobalsService } from './services/globals.service';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -138,7 +139,8 @@ import { BackendService } from './services/backend.service';
     AuthGuard,
     ConfirmGuard,
     PlansService,
-    BackendService
+    BackendService,
+    GlobalsService
   ]
 })
 export class AppModule {

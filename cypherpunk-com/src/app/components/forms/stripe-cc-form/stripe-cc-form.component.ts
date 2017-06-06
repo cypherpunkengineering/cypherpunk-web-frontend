@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { isPlatformBrowser, Location } from '@angular/common';
+import { GlobalsService } from '../../../services/globals.service';
 import country_list from '../../../layouts/public/pricing/countries';
+import { Component, PLATFORM_ID, Input, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
@@ -11,6 +13,8 @@ export class StripeCCFormComponent implements OnInit {
   @Input() stripeFormData: any;
   @Input() small: boolean;
   countries = country_list;
+  stripeDevKey = 'pk_test_V8lLSY93CP6w9SFgqCmw8FUg';
+  stripeProdKey = 'pk_live_R2Y6CVvD6azFMaYvu99eKQkh';
 
   stripeForm: FormGroup;
   name: AbstractControl;
@@ -25,7 +29,20 @@ export class StripeCCFormComponent implements OnInit {
   yearArray = [];
   monthArray = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private location: Location,
+    private globals: GlobalsService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    // load stripe js files
+    if (isPlatformBrowser(this.platformId)) {
+      // load stripe dev
+      if (globals.ENV === 'DEV') { this.loadStripe(this.stripeDevKey); }
+      // load stripe prod
+      else { this.loadStripe(this.stripeProdKey); }
+    }
+
     // generate year array
     let yearMin = new Date().getFullYear();
     for (let i = 0; i < 21; i++) {
@@ -112,6 +129,27 @@ export class StripeCCFormComponent implements OnInit {
     if (!/^[0-9]+$/.test(input)) { return; }
     if ((this.stripeFormData.cvc.length + 1) > 4) { return; }
     this.stripeFormData.cvc += input;
+  }
+
+  loadStripe(key) {
+    if (!document.getElementById('stripe-init')) {
+      let stripeInit = document.createElement('script');
+      stripeInit.setAttribute('id', 'stripe-init');
+      stripeInit.setAttribute('type', 'text/javascript');
+      stripeInit.innerHTML = `
+        window.stripeOnload = function() { Stripe.setPublishableKey('${key}'); }
+      `;
+      document.body.appendChild(stripeInit);
+    }
+
+    if (!document.getElementById('stripe-v2')) {
+      let stripe = document.createElement('script');
+      stripe.setAttribute('id', 'stripe-v2');
+      stripe.setAttribute('type', 'text/javascript');
+      stripe.setAttribute('onload', 'stripeOnload()');
+      stripe.setAttribute('src', 'https://js.stripe.com/v2/');
+      document.body.appendChild(stripe);
+    }
   }
 }
 

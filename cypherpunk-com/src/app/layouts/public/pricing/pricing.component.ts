@@ -111,30 +111,6 @@ export class PricingComponent {
       .catch(() => { });
     }
 
-    // load stripe js files
-    if (isPlatformBrowser(this.platformId)) {
-      if (!document.getElementById('stripe-init')) {
-        let stripeInit = document.createElement('script');
-        stripeInit.setAttribute('id', 'stripe-init');
-        stripeInit.setAttribute('type', 'text/javascript');
-        stripeInit.innerHTML = `
-          window.stripeOnload = function() {
-            Stripe.setPublishableKey('pk_test_V8lLSY93CP6w9SFgqCmw8FUg');
-          }
-        `;
-        document.body.appendChild(stripeInit);
-      }
-
-      if (!document.getElementById('stripe-v2')) {
-        let stripe = document.createElement('script');
-        stripe.setAttribute('id', 'stripe-v2');
-        stripe.setAttribute('type', 'text/javascript');
-        stripe.setAttribute('onload', 'stripeOnload()');
-        stripe.setAttribute('src', 'https://js.stripe.com/v2/');
-        document.body.appendChild(stripe);
-      }
-    }
-
     // use Geo-IP to preload CC country
     if (isPlatformBrowser(this.platformId)) {
       backend.networkStatus()
@@ -252,6 +228,7 @@ export class PricingComponent {
     };
 
     // load up stripe and create token
+    // Stripe should be loaded by the stripe-form component
     let stripe = (<any>window).Stripe;
     stripe.card.createToken(stripeParams, stripeCallback);
   }

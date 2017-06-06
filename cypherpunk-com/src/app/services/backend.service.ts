@@ -1,36 +1,20 @@
 import 'rxjs/add/operator/toPromise';
+import { Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { GlobalsService } from './globals.service';
 import { Http, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class BackendService {
-  private backend = 'http://localhost:3000';
-  private backendUrl = '/api/v1/';
   private errString = 'Bad Response from server';
 
-  constructor(
-    private http: Http,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    // live
-    if (isPlatformBrowser(platformId) && !document.location.hostname.startsWith('localhost')) {
-      this.backend = 'https://cypherpunk.privacy.network';
-      this.backendUrl = this.backend + '/api/v1/';
-    }
-    // dev
-    else {
-      this.backend = 'http://localhost:3000';
-      this.backendUrl = this.backend + '/api/v1/';
-    }
-  }
+  constructor( private http: Http, private globals: GlobalsService) { }
 
   // User authentication
 
   confirmToken(body, options): Promise<any> {
     // this will set cookie
-    let url = this.backendUrl + 'account/confirm/email';
+    let url = this.globals.API_URL + '/account/confirm/email';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson);
@@ -38,7 +22,7 @@ export class BackendService {
 
   signin(body, options): Promise<any> {
     // this will set cookie
-    let url = this.backendUrl + 'account/authenticate/userpasswd';
+    let url = this.globals.API_URL + '/account/authenticate/userpasswd';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -46,7 +30,7 @@ export class BackendService {
   }
 
   accountStatus(secret?: string): Promise<any> {
-    let url = this.backendUrl + 'account/status';
+    let url = this.globals.API_URL + '/account/status';
     let options = new RequestOptions({ withCredentials: true });
     if (secret) { url = url + '?secret=' + secret; }
     return this.http.get(url, options).toPromise()
@@ -54,7 +38,7 @@ export class BackendService {
   }
 
   signout(body, options): Promise<any> {
-    let url = this.backendUrl + 'account/logout';
+    let url = this.globals.API_URL + '/account/logout';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then((res: Response) => {
@@ -65,7 +49,7 @@ export class BackendService {
 
   signup(body, options): Promise<any> {
     // this will set cookie
-    let url = this.backendUrl + 'account/register/signup';
+    let url = this.globals.API_URL + '/account/register/signup';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -75,7 +59,7 @@ export class BackendService {
   // User account apis
 
   cards() {
-    let url = this.backendUrl + 'account/source/list';
+    let url = this.globals.API_URL + '/account/source/list';
     let options = new RequestOptions({ withCredentials: true });
     return this.http.get(url, options)
     .map(res => res.json());
@@ -83,7 +67,7 @@ export class BackendService {
 
   createCard(body, options): Promise<any> {
     // set cookie
-    let url = this.backendUrl + 'account/source/add';
+    let url = this.globals.API_URL + '/account/source/add';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -91,7 +75,7 @@ export class BackendService {
   }
 
   defaultCard(body, options): Promise<any> {
-    let url = this.backendUrl + 'account/source/default';
+    let url = this.globals.API_URL + '/account/source/default';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -100,7 +84,7 @@ export class BackendService {
 
   stripeCharge(body, options): Promise<any> {
     // sets cookie
-    let url = this.backendUrl + 'account/purchase/stripe';
+    let url = this.globals.API_URL + '/account/purchase/stripe';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -109,7 +93,7 @@ export class BackendService {
 
   stripeUpgrade(body, options): Promise<any> {
     // set cookie
-    let url = this.backendUrl + 'account/upgrade/stripe';
+    let url = this.globals.API_URL + '/account/upgrade/stripe';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -118,7 +102,7 @@ export class BackendService {
 
   amazonCharge(body, options): Promise<any> {
     // sets cookie
-    let url = this.backendUrl + 'account/purchase/amazon';
+    let url = this.globals.API_URL + '/account/purchase/amazon';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -126,7 +110,7 @@ export class BackendService {
   }
 
   amazonUpgrade(body, options): Promise<any> {
-    let url = this.backendUrl + 'account/upgrade/amazon';
+    let url = this.globals.API_URL + '/account/upgrade/amazon';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -135,7 +119,7 @@ export class BackendService {
 
   createAccount(body, options): Promise<any> {
     // sets cookie
-    let url = this.backendUrl + 'account/register/signup';
+    let url = this.globals.API_URL + '/account/register/signup';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -143,38 +127,38 @@ export class BackendService {
   }
 
   identifyEmail(body, options): Promise<any> {
-    let url = this.backendUrl + 'account/identify/email';
+    let url = this.globals.API_URL + '/account/identify/email';
     return this.http.post(url, body, options).toPromise();
   }
 
   blogPosts() {
-    let url = this.backend + '/api/v1/blog/posts';
+    let url = this.globals.API_URL + '/blog/posts';
     return this.http.get(url)
     .map(res => res.json());
   }
 
   blogPost(postId) {
-    let url = this.backend + '/api/v1/blog/post/' + postId;
+    let url = this.globals.API_URL + '/blog/post/' + postId;
     return this.http.get(url)
     .map(res => res.json());
   }
 
   supportPosts() {
-    let url = this.backend + '/api/v1/support/posts';
+    let url = this.globals.API_URL + '/support/posts';
     return this.http.get(url).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
   }
 
   supportPost(id) {
-    let url = this.backend + '/api/v1/support/post/' + id;
+    let url = this.globals.API_URL + '/support/post/' + id;
     return this.http.get(url).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
   }
 
   contactForm(body) {
-    let url = this.backend + '/api/v1/zendesk/request/new';
+    let url = this.globals.API_URL + '/zendesk/request/new';
     return this.http.post(url, body).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
@@ -183,19 +167,19 @@ export class BackendService {
   // public apis
 
   networkStatus() {
-    let url = this.backendUrl + 'network/status';
+    let url = this.globals.API_URL + '/network/status';
     return this.http.get(url)
     .map(res => res.json());
   }
 
   locations() {
-    let url = this.backendUrl + 'location/list/premium';
+    let url = this.globals.API_URL + '/location/list/premium';
     return this.http.get(url)
     .map(res => res.json());
   }
 
   regions() {
-    let url = this.backendUrl + 'location/world';
+    let url = this.globals.API_URL + '/location/world';
     return this.http.get(url)
     .map(res => res.json());
   }
