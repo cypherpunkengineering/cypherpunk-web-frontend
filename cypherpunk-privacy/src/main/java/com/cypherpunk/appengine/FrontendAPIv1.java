@@ -633,6 +633,7 @@ public class FrontendAPIv1 extends HttpServlet
 		List<HTTPHeader> headers = new ArrayList<HTTPHeader>();
 		String safeHeaders[] = {
 			"Cookie"
+			,"User-Agent"
 		};
 
 		for (String headerName : safeHeaders)
