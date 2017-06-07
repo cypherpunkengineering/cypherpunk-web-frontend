@@ -66,6 +66,8 @@ export class AmazonComponent {
     }
   }
 
+  // called externally from the outside the component
+  /// verify that this is still used
   init() {
     let amazon = (<any>window).amazon;
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
@@ -78,6 +80,7 @@ export class AmazonComponent {
         size:  'medium',
         authorization: () => {
           if (this.globals.ENV === 'DEV') { amazon.Login.setSandboxMode(true); }
+          else { amazon.Login.setSandboxMode(false); }
           amazon.Login.authorize({ scope: 'profile', popup: 'true' });
           this.zone.run(() => { this.createWallet(); });
         },
@@ -86,9 +89,11 @@ export class AmazonComponent {
     );
   }
 
+  // called internally in the component
   launchAmazon() {
     let amazon = (<any>window).amazon;
-    amazon.Login.setSandboxMode(true);
+    if (this.globals.ENV === 'DEV') { amazon.Login.setSandboxMode(true); }
+    else { amazon.Login.setSandboxMode(false); }
     amazon.Login.authorize({ scope: 'profile', popup: 'true' });
     this.zone.run(() => { this.createWallet(); });
   }
