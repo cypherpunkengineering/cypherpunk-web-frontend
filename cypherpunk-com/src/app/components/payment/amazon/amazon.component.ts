@@ -77,7 +77,7 @@ export class AmazonComponent {
         color: 'Gold',
         size:  'medium',
         authorization: () => {
-          amazon.Login.setSandboxMode(true);
+          if (this.globals.ENV === 'DEV') { amazon.Login.setSandboxMode(true); }
           amazon.Login.authorize({ scope: 'profile', popup: 'true' });
           this.zone.run(() => { this.createWallet(); });
         },
