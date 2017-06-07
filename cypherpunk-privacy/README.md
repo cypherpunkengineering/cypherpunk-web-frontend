@@ -228,7 +228,8 @@ Parameters:
   "email":"test@test.test",
   "password":"foobar",
   "plan": "monthly",
-  "token":"card_19hw7PCymPOZwO5rzXXcupS4" // card token from Stripe.js
+  "token":"card_19hw7PCymPOZwO5rzXXcupS4", // card token from Stripe.js
+  "referralCode":"123456"
 }
 ```
 Returns:
@@ -246,6 +247,26 @@ Returns:
 ##### `POST /account/upgrade/stripe`
 Requires authenticated session.
 
+Parameters:
+```
+{
+  "plan": "monthly",
+  "token":"card_19hw7PCymPOZwO5rzXXcupS4", // card token from Stripe.js
+  "referralCode":"123456"
+}
+```
+Returns:
+* 400 -> Invalid or missing parameters
+* 401 -> Requires valid session
+* 402 -> Authorizing the card failed
+```
+  (TODO: add billing errors here)
+```
+* 200 -> OK
+```
+  (same as /account/status)
+```
+
 ##### `POST /account/purchase/amazon`
 Confirms the given amazon billing agreement, charges the amazon billing agreement, creates a new account, authorizes and captures the specified plan's price, and starts an authenticated session for the account.  
 
@@ -255,7 +276,8 @@ Parameters:
   "email":"test@test.test",
   "password":"foobar",
   "plan": "monthly",
-  "AmazonBillingAgreementId": "xxx"
+  "AmazonBillingAgreementId": "xxx",
+  "referralCode":"123456"
 }
 ```
 Returns:
@@ -272,15 +294,18 @@ Returns:
 
 ##### `POST /account/upgrade/amazon`
 Requires authenticated session.
+
 Parameters:
 ```
 {
   "AmazonBillingAgreementId": "xxx",
-  "plan": "monthly"
+  "plan": "monthly",
+  "referralCode":"123456"
 }
 ```
 Returns:
 * 400 -> Invalid or missing parameters
+* 401 -> Requires valid session
 * 200 -> OK
 ```
   (same as /account/status)
@@ -292,6 +317,42 @@ Returns:
 ### Blog
 ##### `GET /blog/posts`
 ##### `GET /blog/post/{postId}`
+
+### /pricing - pricing for promo codes
+
+##### `POST /pricing/plans`
+Returns the pricing for a given coupon code.  
+
+Parameters:
+```
+{
+    "referralCode":"123"
+}
+```
+Returns:
+* 200 -> OK
+```
+{
+    "monthly":
+    {
+        "price": 8.99,
+        "paypalPlanId": "monthly899",
+        "bitpayPlanId": "monthly899",
+    },
+    "semiannually":
+    {
+        "price": 8.99,
+        "paypalPlanId": "monthly899",
+        "bitpayPlanId": "monthly899",
+    },
+    "annually":
+    {
+        "price": 8.99,
+        "paypalPlanId": "monthly899",
+        "bitpayPlanId": "monthly899",
+    }
+}
+```
 
 ### Network
 
