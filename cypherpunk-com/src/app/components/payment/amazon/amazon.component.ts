@@ -1,4 +1,5 @@
 import { PLATFORM_ID, Inject } from '@angular/core';
+import { GlobalsService } from '../../../services/globals.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 
@@ -17,11 +18,28 @@ export class AmazonComponent {
   amazonWallet: any;
   amazonRecurring: any;
   amazonHide = false;
+  devSellerId = 'A2FF2JPNM9GYDJ';
+  prodSellerId = 'A2FF2JPNM9GYDJ';
+  sellerId = this.devSellerId;
+  devClientId = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
+  prodClientId = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
+  clientId = this.devClientId;
+  devWidgetUrl = 'https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js';
+  prodWidgetUrl = 'https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js';
+  widgetUrl = this.devWidgetUrl;
 
   constructor(
     private zone: NgZone,
+    private globals: GlobalsService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    // Detect ENV
+    if (globals.ENV === 'PROD') {
+      this.widgetUrl = this.prodWidgetUrl;
+      this.sellerId = this.prodSellerId;
+      this.clientId = this.prodClientId;
+    }
+
     // load amazon script
     if (isPlatformBrowser(this.platformId)) {
       if (!document.getElementById('amazon-init')) {
@@ -30,7 +48,7 @@ export class AmazonComponent {
         amazonInit.setAttribute('type', 'text/javascript');
         amazonInit.innerHTML = `
           window.onAmazonLoginReady = function() {
-            var cid = 'amzn1.application-oa2-client.ecc2bfbfc6fa421b973018ecb6f4bc36';
+            var cid = '${this.clientId}';
             amazon.Login.setClientId(cid);
           };
         `;
@@ -42,7 +60,7 @@ export class AmazonComponent {
         amazon.setAttribute('id', 'amazon-widget');
         amazon.setAttribute('type', 'text/javascript');
         amazon.setAttribute('async', 'async');
-        amazon.setAttribute('src', 'https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js');
+        amazon.setAttribute('src', this.widgetUrl);
         document.body.appendChild(amazon);
       }
     }
@@ -54,7 +72,7 @@ export class AmazonComponent {
 
     OffAmazonPayments.Button(
       'AmazonPayButton',
-      'A2FF2JPNM9GYDJ', {
+      this.sellerId, {
         type:  'PwA',
         color: 'Gold',
         size:  'medium',
@@ -80,7 +98,7 @@ export class AmazonComponent {
 
     if (!this.amazonWallet) {
       new OffAmazonPayments.Widgets.Wallet({
-        sellerId: 'A2FF2JPNM9GYDJ',
+        sellerId: this.sellerId,
         onReady: (billingAgreement) => {
           this.amazonHide = true;
           this.updateAmazonHide.emit(true);
@@ -104,7 +122,7 @@ export class AmazonComponent {
 
     if (!this.amazonRecurring) {
       new OffAmazonPayments.Widgets.Consent({
-        sellerId: 'A2FF2JPNM9GYDJ',
+        sellerId: this.sellerId,
         // amazonBillingAgreementId obtained from the Amazon Address Book widget.
         amazonBillingAgreementId: this.billingAgreementId,
         design: { designMode: 'responsive' },

@@ -7,9 +7,7 @@ import { Component, Input } from '@angular/core';
 export class PaypalComponent {
   @Input() userId: string;
 
-  posData: string;
-
-  constructor() { }
+  posData = '';
 
   pay(planId) {
     this.posData = this.userId + '|' + planId;

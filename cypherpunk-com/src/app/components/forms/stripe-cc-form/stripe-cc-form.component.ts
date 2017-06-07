@@ -15,6 +15,7 @@ export class StripeCCFormComponent implements OnInit {
   countries = country_list;
   stripeDevKey = 'pk_test_V8lLSY93CP6w9SFgqCmw8FUg';
   stripeProdKey = 'pk_live_R2Y6CVvD6azFMaYvu99eKQkh';
+  stripeKey = this.stripeDevKey;
 
   stripeForm: FormGroup;
   name: AbstractControl;
@@ -38,9 +39,8 @@ export class StripeCCFormComponent implements OnInit {
     // load stripe js files
     if (isPlatformBrowser(this.platformId)) {
       // load stripe dev
-      if (globals.ENV === 'DEV') { this.loadStripe(this.stripeDevKey); }
-      // load stripe prod
-      else { this.loadStripe(this.stripeProdKey); }
+      if (globals.ENV === 'PROD') { this.stripeKey = this.stripeProdKey; }
+      this.loadStripe(this.stripeKey);
     }
 
     // generate year array

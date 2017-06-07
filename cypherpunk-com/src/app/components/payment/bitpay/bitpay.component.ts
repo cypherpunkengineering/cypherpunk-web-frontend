@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 export class BitpayComponent {
   @Input() userId: string;
 
-  posData: string = '';
+  posData = '';
 
   pay(planId) {
     let data = { id: this.userId, plan: planId };

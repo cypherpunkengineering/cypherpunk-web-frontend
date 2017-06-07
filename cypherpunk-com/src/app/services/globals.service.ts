@@ -6,8 +6,11 @@ import { isPlatformBrowser } from '@angular/common';
 export class GlobalsService {
   ENV = 'DEV';
   API_VERSION = 'v1';
-  BACKEND_HOST = 'http://localhost:3000';
+  BACKEND_HOST: string;
   API_URL = 'http://localhost:3000/api/' + this.API_VERSION;
+  private devAPI = 'http://localhost:3000';
+  private testAPI = 'https://test-api.cypherpunk.engineering';
+  private prodAPI = 'https://cypherpunk.privacy.network';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     let browser_env = isPlatformBrowser(platformId);
@@ -23,16 +26,9 @@ export class GlobalsService {
     // Detect BACKEND_HOST to use
     if (browser_env) {
       let hostname = document.location.hostname;
-      if (hostname.startsWith('localhost')) {
-        this.BACKEND_HOST = 'http://localhost:3000';
-      }
-      else if (hostname.startsWith('test.cypherpunk')) {
-        this.BACKEND_HOST = 'https://test-api.cypherpunk.engineering';
-      }
-      // use dev BACKEND_HOST url
-      else {
-        this.BACKEND_HOST = 'https://cypherpunk.privacy.network';
-      }
+      if (hostname.startsWith('localhost')) { this.BACKEND_HOST = this.devAPI; }
+      else if (hostname.startsWith('test.cypherpunk')) { this.BACKEND_HOST = this.testAPI; }
+      else { this.BACKEND_HOST = this.prodAPI; }
     }
 
     this.API_URL = this.BACKEND_HOST + '/api/' + this.API_VERSION;
