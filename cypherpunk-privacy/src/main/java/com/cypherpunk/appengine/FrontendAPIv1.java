@@ -83,7 +83,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
-	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://red-dragon.cypherpunk.network";
+	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://127.0.0.1:11080";
 
 	private static final String ZENDESK_API_URL = "https://cypherpunk.zendesk.com";
 	private static final String ZENDESK_API_USERNAME = "jmaurice@cypherpunk.com/token";
