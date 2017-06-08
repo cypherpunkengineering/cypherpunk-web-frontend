@@ -109,7 +109,8 @@ public class FrontendAPIv1 extends HttpServlet
 	} // }}}
 
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+	throws IOException
 	{
 		// {{{ init
 		// autodetect locale from Accept-Language http request header
@@ -329,7 +330,8 @@ public class FrontendAPIv1 extends HttpServlet
 	}
 
 	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException
+	public void doPost(HttpServletRequest req, HttpServletResponse res)
+	throws IOException
 	{
 		// {{{ init
 		// autodetect locale from Accept-Language http request header
@@ -582,41 +584,57 @@ public class FrontendAPIv1 extends HttpServlet
 
 		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 
-		// check response code of outgoing request
-		if (cypherpunkResponse.getResponseCode() != 200 &&
-			cypherpunkResponse.getResponseCode() != 202)
-		{
-			res.sendError(cypherpunkResponse.getResponseCode());
-			// TODO: send json body as error response
-			return;
-		}
+		// get response code of outgoing request, set on incoming request response
+		Integer resCode = cypherpunkResponse.getResponseCode();
+		res.setStatus(resCode);
 
 		// pass outgoing request's response's headers
 		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 
 		String cypherpunkResponseBody = null;
-		if (outgoingRequestResponseBean != null)
+		try // parse json body of outgoing request's response
 		{
-			try // parse json body of outgoing request's response
+			if (resCode >= 400)
+			{
+				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
+				outgoingRequestResponseData = new CypherpunkErrorResponse(resCode, null, cypherpunkResponseBody);
+			}
+			else if (outgoingRequestResponseBean != null)
 			{
 				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 				outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
 			}
-			catch (Exception e)
-			{
-				LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body: "+e.toString());
-				LOG.log(Level.WARNING, "Response body: "+cypherpunkResponseBody);
-				e.printStackTrace();
-				res.sendError(500);
-				// TODO: send json body as error response
-				return;
-			}
-
-			// pass sanitized body to incoming request's response
-			String frontendJsonString = gson.toJson(outgoingRequestResponseData);
-			res.getWriter().println(frontendJsonString); // FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
 		}
+		catch (Exception e)
+		{
+			LOG.log(Level.WARNING, "Unable to parse outgoing request's response json body: "+e.toString());
+			LOG.log(Level.WARNING, "Response body: "+cypherpunkResponseBody);
+			e.printStackTrace();
+			res.sendError(500);
+			// TODO: send json body as error response
+			return;
+		}
+
+		// send default empty response object if no body
+		if (outgoingRequestResponseData == null)
+			outgoingRequestResponseData = new CypherpunkErrorResponse(resCode);
+
+		// pass sanitized body to incoming request's response
+		sendResponse(res, outgoingRequestResponseData);
 	} //}}}
+
+	private void sendResponse(HttpServletResponse res, Object nugget) // {{{
+	throws IOException
+	{
+		String jsonString = gson.toJson(nugget);
+		res.getWriter().println(jsonString);
+		// FIXME unescape JSON encoded HTML entities? ie. & is getting sent as \u0026
+	} // }}}
+	private void sendResponse(HttpServletResponse res, String str) // {{{
+	throws IOException
+	{
+		res.getWriter().println(str);
+	} // }}}
 
 	private String getBodyFromRequest(HttpServletRequest req) // {{{
 	{
