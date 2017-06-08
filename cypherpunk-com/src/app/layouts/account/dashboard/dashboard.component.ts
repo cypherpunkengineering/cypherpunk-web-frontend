@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
-import { PlansService } from '../../../services/plans.service';
+import { PlansService, Plan } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
@@ -26,9 +26,13 @@ export class DashboardComponent implements OnInit {
   showPPWarning = false;
 
   // plan details
-  planData = {
+  planData: {
+    plans: Plan[],
+    selected: Plan,
+    referralCode: string
+  } = {
     plans: [],
-    selected: { id: '' },
+    selected: undefined,
     referralCode: ''
   };
 

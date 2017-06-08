@@ -9,7 +9,17 @@ export class Plan {
   viewable: boolean;
   bitpayData: string;
   paypalButtonId: string;
-  constructor() {}
+
+  constructor(id, price, rate, months, viewable, bitpayData, paypalButtonId) {
+    this.id = id;
+    this.price = price;
+    this.bcPrice = undefined;
+    this.rate = rate;
+    this.months = months;
+    this.viewable = viewable;
+    this.bitpayData = bitpayData;
+    this.paypalButtonId = paypalButtonId;
+  }
 }
 
 @Injectable()
