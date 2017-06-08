@@ -54,5 +54,5 @@ pip install --upgrade -t lib/ google-api-python-client
 gcloud config set project cypherpunk-engineering
 echo y | gcloud app deploy
 
-# done
+# done done
 exit 0
