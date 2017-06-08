@@ -19,9 +19,8 @@
   .split {
     width: 100%;
     max-width: 1000px;
-    margin: 0 0 50px;
 
-    img { padding: 0 10px; max-width: 100%; }
+    img { padding: 0 10px; max-width: 75%; }
     img.width { max-height: 550px; width: auto; margin: 0 auto 50px; }
   }
 }

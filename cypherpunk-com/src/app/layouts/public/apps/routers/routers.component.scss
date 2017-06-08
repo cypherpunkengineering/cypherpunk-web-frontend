@@ -19,9 +19,8 @@
   .split {
     width: 100%;
     max-width: 1000px;
-    margin: 0 0 50px;
 
-    img { padding: 0 10px; max-width: 100%; }
+    img { padding: 0 10px; max-width: 75%; }
   }
 }
 
@@ -93,7 +92,6 @@
   text-align: center;
 
   .btn {
-    margin: 40px 0 0;
     padding: 10px;
     width: 100%;
     max-width: 400px;
