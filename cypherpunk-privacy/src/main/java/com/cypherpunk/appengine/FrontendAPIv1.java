@@ -137,8 +137,14 @@ public class FrontendAPIv1 extends HttpServlet
 		String queryString = req.getQueryString();
 
 		// settings to use datastore
-		boolean useDatastoreForCypherpunk = true;
-		boolean useDatastoreForBlogger = false;
+		boolean useCacheForCypherpunk = true;
+		boolean useCacheForBlogger = false;
+		boolean isDevelopment = isDevelopmentMode(req);
+		if (isDevelopment)
+		{
+			useCacheForCypherpunk = false;
+			useCacheForBlogger = false;
+		}
 
 		// flag to force update of datastore/memcache
 		boolean forceUpdate = false;
@@ -217,7 +223,7 @@ public class FrontendAPIv1 extends HttpServlet
 					bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken); // parse as int to prevent injection attack
 				}
 
-				Map<String,Object> bloggerResponse = getCachedBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+				Map<String,Object> bloggerResponse = getCachedBloggerData(bloggerID, "/posts", bloggerArgs, BLOGGER_API_CACHE_PERIOD, useCacheForBlogger, forceUpdate);
 				if (!forceUpdate)
 					setResponsePublicCacheHeaders(res, BLOGGER_API_CACHE_PERIOD);
 				frontendJsonString = gson.toJson(bloggerResponse);
@@ -234,7 +240,7 @@ public class FrontendAPIv1 extends HttpServlet
 
 				if (postID != null && !postID.isEmpty())
 				{
-					bloggerResponse = getCachedBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useDatastoreForBlogger, forceUpdate);
+					bloggerResponse = getCachedBloggerData(bloggerID, "/posts/" + postID, bloggerArgs, BLOGGER_API_CACHE_PERIOD, useCacheForBlogger, forceUpdate);
 				}
 
 				if (bloggerResponse == null)
@@ -256,7 +262,7 @@ public class FrontendAPIv1 extends HttpServlet
 			if (locationApiPath.equals("/world")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_WORLD_CACHE_PERIOD, useCacheForCypherpunk, forceUpdate);
 				if (cypherpunkResponse == null)
 				{
 					res.sendError(500);
@@ -272,7 +278,7 @@ public class FrontendAPIv1 extends HttpServlet
 			else if (locationApiPath.startsWith("/list")) // {{{
 			{
 				String frontendJsonString;
-				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useDatastoreForCypherpunk, forceUpdate);
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, LOCATION_LIST_CACHE_PERIOD, useCacheForCypherpunk, forceUpdate);
 
 				if (cypherpunkResponse == null)
 				{
@@ -345,6 +351,17 @@ public class FrontendAPIv1 extends HttpServlet
 		// get request URL
 		String reqURI = req.getRequestURI().toString();
 
+		// settings to use datastore
+		boolean useCacheForCypherpunk = true;
+		boolean useCacheForBlogger = false;
+		boolean isDevelopment = isDevelopmentMode(req);
+		if (isDevelopment)
+		{
+			useCacheForCypherpunk = false;
+			useCacheForBlogger = false;
+		}
+
+		// flag to force update of datastore/memcache
 		boolean forceUpdate = false;
 		if (req.getParameter("forceUpdate") != null)
 			forceUpdate = true;
@@ -514,6 +531,18 @@ public class FrontendAPIv1 extends HttpServlet
 			res.sendError(404);
 		} // }}}
 	}
+
+	private boolean isDevelopmentMode(HttpServletRequest req) // {{{
+	{
+		boolean dev = false;
+
+		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development)
+			dev = true;
+		if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT))
+			dev = true;
+
+		return dev;
+	} // }}}
 
 	private void proxyRequestToCypherpunkBackend(HttpServletRequest req, HttpServletResponse res, HTTPMethod reqMethod, String cypherpunkURI, Class incomingRequestBean, Class outgoingRequestResponseBean) // {{{
 	throws IOException
@@ -751,22 +780,22 @@ public class FrontendAPIv1 extends HttpServlet
 		return zendeskURL;
 	} // }}}
 
-	private Map<String,Object> getCachedBloggerData(String bloggerID, String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedBloggerData(String bloggerID, String bloggerURI, String bloggerArgs, int secondsToMemcache, boolean useCache, boolean forceUpdate) // {{{
 	{
 		URL bloggerURL = buildBloggerURL(bloggerID, bloggerURI, bloggerArgs);
-		return getCachedData(bloggerURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(bloggerURL.toString(), secondsToMemcache, useCache, forceUpdate);
 	} // }}}
-	private Map<String,Object> getCachedCypherpunkData(HttpServletRequest req, String cypherpunkURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedCypherpunkData(HttpServletRequest req, String cypherpunkURI, int secondsToMemcache, boolean useCache, boolean forceUpdate) // {{{
 	{
 		URL cypherpunkURL = buildCypherpunkURL(req, cypherpunkURI);
-		return getCachedData(cypherpunkURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(cypherpunkURL.toString(), secondsToMemcache, useCache, forceUpdate);
 	} // }}}
-	private Map<String,Object> getCachedZendeskData(String zendeskURI, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedZendeskData(String zendeskURI, int secondsToMemcache, boolean useCache, boolean forceUpdate) // {{{
 	{
 		URL zendeskURL = buildZendeskURL(zendeskURI);
-		return getCachedData(zendeskURL.toString(), secondsToMemcache, useDatastore, forceUpdate);
+		return getCachedData(zendeskURL.toString(), secondsToMemcache, useCache, forceUpdate);
 	} // }}}
-	private Map<String,Object> getCachedData(String apiURL, int secondsToMemcache, boolean useDatastore, boolean forceUpdate) // {{{
+	private Map<String,Object> getCachedData(String apiURL, int secondsToMemcache, boolean useCache, boolean forceUpdate) // {{{
 	{
 		String response = null;
 		Map<String,Object> responseData = null;
@@ -774,7 +803,9 @@ public class FrontendAPIv1 extends HttpServlet
 		boolean inDatastore = false;
 
 		// {{{ first check memcache, use apiURL as key
-		response = (String)mc.get(apiURL);
+		if (useCache)
+			response = (String)mc.get(apiURL);
+
 		if (!forceUpdate && response != null)
 		{
 			responseData = parseJsonData(response);
@@ -785,7 +816,7 @@ public class FrontendAPIv1 extends HttpServlet
 		}
 		// }}}
 		// {{{ if not in memcache, try querying the datastore
-		if (useDatastore && !forceUpdate && responseData == null)
+		if (useCache && !forceUpdate && responseData == null)
 		{
 			Key entityKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL);
 			Filter cypherpunkURLFilter = new FilterPredicate(Entity.KEY_RESERVED_PROPERTY, FilterOperator.EQUAL, entityKey);
@@ -839,14 +870,14 @@ public class FrontendAPIv1 extends HttpServlet
 		// {{{ store in memcache/datastore for next time
 		if (response != null && responseData != null)
 		{
-			if (!inMemcache)
+			if (useCache && !inMemcache)
 			{
 				if (forceUpdate)
 					mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.SET_ALWAYS);
 				else
 					mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
 			}
-			if (useDatastore && !inDatastore)
+			if (useCache && !inDatastore)
 			{
 				Key cacheKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL);
 				Transaction tx = DS.beginTransaction();
