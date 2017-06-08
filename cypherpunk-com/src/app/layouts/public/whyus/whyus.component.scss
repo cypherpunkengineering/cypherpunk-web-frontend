@@ -17,7 +17,9 @@
       width: 100%;
       max-width: 1000px;
       position: relative;
-      top: 12px;
+      bottom: 0;
+      display: inline-block;
+      vertical-align: bottom;
     }
   }
 }
