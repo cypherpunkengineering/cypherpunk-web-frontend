@@ -6,6 +6,7 @@ import { PricingComponent } from './pricing.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      { path: 'pricing/:referralCode', component: PricingComponent },
       { path: 'pricing', component: PricingComponent }
     ])
   ]

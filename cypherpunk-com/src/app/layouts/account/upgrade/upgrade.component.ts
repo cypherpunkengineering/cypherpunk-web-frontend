@@ -19,15 +19,22 @@ export class UpgradeComponent {
   @ViewChild('amazon') amazon;
   @ViewChild('paypal') paypal;
   @ViewChild('bitpay') bitpay;
+  @ViewChild('priceBoxes') priceBoxes;
 
   // payment options (cc, a, pp, bc)
-  plans;
   paymentMethod = '';
   countries = country_list;
   loading = true;
   disablePayment = false;
   modal = { show: false, header: '', body: '' };
   errHeader = 'Error processing your payment';
+
+  // plan details
+  planData = {
+    plans: [],
+    selected: { id: '' },
+    referralCode: ''
+  };
 
   // user variables
   email: string;
@@ -75,7 +82,62 @@ export class UpgradeComponent {
     // handle title
     this.document.title = 'Upgrade Cypherpunk Account';
 
-    this.plans = plansService;
+    // Determine plans to show
+    let params = this.activatedRoute.snapshot.params;
+    this.planData.referralCode = params['referralCode'];
+    if (this.planData.referralCode) {
+      let body = { referralCode: this.planData.referralCode };
+      let options = new RequestOptions({});
+      this.backend.pricingPlans(body, options)
+      // build plans as needed
+      .then((plans) => {
+        this.planData.plans = [];
+        // monthly plan
+        this.planData.plans.push({
+          id: 'monthly',
+          price: Number(plans.monthly.price),
+          bcPrice: undefined,
+          rate: 'monthly plan',
+          months: 1,
+          viewable: true,
+          bitpayData: plans.monthly.bitpayPlanId,
+          paypalButtonId: plans.monthly.paypalPlanId
+        });
+        // annual plan
+        this.planData.plans.push({
+          id: 'annually',
+          price: Number(plans.annually.price),
+          bcPrice: undefined,
+          rate: '12 month plan',
+          months: 12,
+          viewable: true,
+          bitpayData: plans.monthly.bitpayPlanId,
+          paypalButtonId: plans.monthly.paypalPlanId
+        });
+        // semiannual plan
+        this.planData.plans.push({
+          id: 'semiannually',
+          price: Number(plans.semiannually.price),
+          bcPrice: undefined,
+          rate: '6 month plan',
+          months: 6,
+          viewable: true,
+          bitpayData: plans.semiannually.bitpayPlanId,
+          paypalButtonId: plans.semiannually.paypalPlanId
+        });
+        this.planData.selected = this.planData.plans[1];
+        this.priceBoxes.updatePlans();
+      })
+      .catch((err) => {
+        console.log('Could not pull pricing plans, defaulting');
+        this.planData.plans = plansService.plans;
+        this.planData.selected = plansService.selectedPlan;
+      });
+    }
+    else {
+      this.planData.plans = plansService.plans;
+      this.planData.selected = plansService.selectedPlan;
+    }
 
     // check if valid user account
     if (isPlatformBrowser(this.platformId)) {
@@ -262,7 +324,10 @@ export class UpgradeComponent {
   }
 
   saveToServer() {
-    let body = { plan: this.plansService.selectedPlan.id };
+    let body = {
+      plan: this.planData.selected.id,
+      referralCode: this.planData.referralCode
+    };
     let options = new RequestOptions({});
 
     // set cookie
@@ -288,7 +353,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.paypal.pay(this.plansService.selectedPlan.id);
+    this.paypal.pay(this.planData.selected.id, this.planData.referralCode);
   }
 
   // pay with amazon
@@ -311,8 +376,9 @@ export class UpgradeComponent {
     this.disablePayment = true;
 
     let body = {
-      AmazonBillingAgreementId: this.billingAgreementId,
-      plan: this.plansService.selectedPlan.id
+      plan: this.planData.selected.id,
+      referralCode: this.planData.referralCode,
+      AmazonBillingAgreementId: this.billingAgreementId
     };
     return this.backend.amazonUpgrade(body, {})
     // alert and redirect
@@ -330,7 +396,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.bitpay.pay(this.plansService.selectedPlan.id);
+    this.bitpay.pay(this.planData.selected.id, this.planData.referralCode);
   }
 
   // helper functions
@@ -350,11 +416,11 @@ export class UpgradeComponent {
     this.paymentMethod = method;
 
     // launch amazon payments
-    if (this.paymentMethod === 'a') {
+    if (method === 'a') {
       this.showBTC = false;
       setTimeout(() => { this.amazon.init(); }, 100);
     }
-    else if (this.paymentMethod === 'bc') { this.showBTC = true; }
+    else if (method === 'bc') { this.showBTC = true; }
     else { this.showBTC = false; }
   }
 

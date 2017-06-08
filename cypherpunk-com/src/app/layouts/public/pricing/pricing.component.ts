@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { RequestOptions} from '@angular/http';
-import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
 import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
@@ -21,15 +20,21 @@ export class PricingComponent {
   @ViewChild('amazon') amazon;
   @ViewChild('paypal') paypal;
   @ViewChild('bitpay') bitpay;
+  @ViewChild('priceBoxes') priceBoxes;
 
-  // payment options (cc, a, pp, bc)
-  plans;
-  paymentMethod = '';
+  paymentMethod = ''; // payment options (cc, a, pp, bc)
   countries = country_list;
   loading = false;
   disablePayment = false;
   modal = { show: false, header: '', body: '', link: false };
   errHeader = 'Error processing your payment';
+
+  // plan details
+  planData = {
+    plans: [],
+    selected: { id: '' },
+    referralCode: ''
+  };
 
   // user variables
   accountFormData = {
@@ -65,7 +70,7 @@ export class PricingComponent {
   // bitpay variables
   showBTC = false;
 
-  // Paypayl variables
+  // Paypal variables
   userId: string;
 
   constructor(
@@ -74,6 +79,7 @@ export class PricingComponent {
     private auth: AuthService,
     private location: Location,
     private authGuard: AuthGuard,
+    private route: ActivatedRoute,
     private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
@@ -84,7 +90,62 @@ export class PricingComponent {
     // handle title
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
 
-    this.plans = plansService;
+    // Determine plans to show
+    let params = this.route.snapshot.params;
+    this.planData.referralCode = params['referralCode'];
+    if (this.planData.referralCode) {
+      let body = { referralCode: this.planData.referralCode };
+      let options = new RequestOptions({});
+      this.backend.pricingPlans(body, options)
+      // build plans as needed
+      .then((plans) => {
+        this.planData.plans = [];
+        // monthly plan
+        this.planData.plans.push({
+          id: 'monthly',
+          price: Number(plans.monthly.price),
+          bcPrice: undefined,
+          rate: 'monthly plan',
+          months: 1,
+          viewable: true,
+          bitpayData: plans.monthly.bitpayPlanId,
+          paypalButtonId: plans.monthly.paypalPlanId
+        });
+        // annual plan
+        this.planData.plans.push({
+          id: 'annually',
+          price: Number(plans.annually.price),
+          bcPrice: undefined,
+          rate: '12 month plan',
+          months: 12,
+          viewable: true,
+          bitpayData: plans.monthly.bitpayPlanId,
+          paypalButtonId: plans.monthly.paypalPlanId
+        });
+        // semiannual plan
+        this.planData.plans.push({
+          id: 'semiannually',
+          price: Number(plans.semiannually.price),
+          bcPrice: undefined,
+          rate: '6 month plan',
+          months: 6,
+          viewable: true,
+          bitpayData: plans.semiannually.bitpayPlanId,
+          paypalButtonId: plans.semiannually.paypalPlanId
+        });
+        this.planData.selected = this.planData.plans[1];
+        this.priceBoxes.updatePlans();
+      })
+      .catch((err) => {
+        console.log('Could not pull pricing plans, defaulting');
+        this.planData.plans = plansService.plans;
+        this.planData.selected = plansService.selectedPlan;
+      });
+    }
+    else {
+      this.planData.plans = plansService.plans;
+      this.planData.selected = plansService.selectedPlan;
+    }
 
     // redirect if user is already logged in
     if (isPlatformBrowser(this.platformId)) {
@@ -237,9 +298,10 @@ export class PricingComponent {
     // call server at this point (using promises)
     let body = {
       token: token,
-      plan: this.plansService.selectedPlan.id,
+      plan: this.planData.selected.id,
       email: this.accountFormData.email,
-      password: this.accountFormData.password
+      password: this.accountFormData.password,
+      referralCode: this.planData.referralCode
     };
     let options = new RequestOptions({});
 
@@ -293,7 +355,7 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.paypal.pay(this.plansService.selectedPlan.id); })
+    .then(() => { this.paypal.pay(this.planData.selected.id, this.planData.referralCode); })
     .catch(error => { this.handleError(error); });
   }
 
@@ -340,10 +402,11 @@ export class PricingComponent {
 
     /* send billingAgreement to server */
     let body = {
-      AmazonBillingAgreementId: this.billingAgreementId,
-      plan: this.plansService.selectedPlan.id,
+      plan: this.planData.selected.id,
       email: this.accountFormData.email,
-      password: this.accountFormData.password
+      password: this.accountFormData.password,
+      referralCode: this.planData.referralCode,
+      AmazonBillingAgreementId: this.billingAgreementId,
     };
 
     // sets cookie
@@ -396,7 +459,7 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.bitpay.pay(this.plansService.selectedPlan.id); })
+    .then(() => { this.bitpay.pay(this.planData.selected.id, this.planData.referralCode); })
     .catch(error => { this.handleError(error); });
   }
 

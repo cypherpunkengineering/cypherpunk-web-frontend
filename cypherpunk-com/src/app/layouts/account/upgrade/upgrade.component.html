@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <app-price-boxes [btc]="showBTC"></app-price-boxes>
+      <app-price-boxes #priceBoxes [btc]="showBTC" [planData]="planData"></app-price-boxes>
     </div>
 
     <div class="payment-selection" [hidden]="amazonHide">
@@ -90,9 +90,11 @@
         </div>
 
         <div class="price tall">
-          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">
+            ${{ planData.selected.price | number:'.2-2' }}
+          </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price / planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
           </div>
         </div>
 
@@ -126,9 +128,11 @@
         </div>
 
         <div class="price">
-          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">
+            ${{ planData.selected?.price | number:'.2-2' }}
+          </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price / planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
           </div>
         </div>
 
@@ -159,9 +163,11 @@
         </div>
 
         <div class="price">
-          Order Total: <span class="total-price">${{ plans.selectedPlan.total }}</span>
+          Order Total: <span class="total-price">
+            ${{ planData.selected?.price | number:'.2-2' }}
+          </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (${{ plans.selectedPlan.price }} per month, every {{ plans.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price /planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
           </div>
         </div>
 
@@ -194,10 +200,10 @@
         <div class="price">
           Order Total:
           <span class="total-price">
-            {{ '₿ ' + plans.selectedPlan.bcTotal + ' BTC' }}
+            {{ '₿ ' + planData.selected?.bcPrice + ' BTC' }}
           </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ plans.selectedPlan.rate }} (₿  {{ plans.selectedPlan.bcPrice }} per month, every {{ plans.selectedPlan.months }} months)
+            Cypherpunk Privacy {{ planData.selected?.rate }} (₿  {{ planData.selected?.bcPrice / planData.selected?.months }} per month, every {{ planData.selected?.months }} months)
           </div>
         </div>
 

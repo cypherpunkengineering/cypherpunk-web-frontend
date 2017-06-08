@@ -5,10 +5,8 @@ import { UpgradeComponent } from './upgrade.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {
-        path: 'account/upgrade',
-        component: UpgradeComponent
-      }
+      { path: 'account/upgrade/:referralCode', component: UpgradeComponent },
+      { path: 'account/upgrade', component: UpgradeComponent }
     ])
   ]
 })

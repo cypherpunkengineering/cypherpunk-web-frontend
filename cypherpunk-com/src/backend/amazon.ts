@@ -11,7 +11,7 @@ export function amazonPurchase(req, res) {
 
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/purchase/amazon';
+    let url = urlStart + 'api/v1/account/purchase/amazon';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -38,7 +38,7 @@ export function amazonPurchase(req, res) {
 export function amazonUpgrade(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/upgrade/amazon';
+    let url = urlStart + 'api/v1/account/upgrade/amazon';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

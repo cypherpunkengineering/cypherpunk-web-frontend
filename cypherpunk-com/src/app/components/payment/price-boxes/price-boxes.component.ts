@@ -1,50 +1,46 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { Component, Input } from '@angular/core';
 import { PlansService } from '../../../services/plans.service';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { Component, Input, Inject, PLATFORM_ID, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-price-boxes',
   templateUrl: './price-boxes.component.html',
   styleUrls: ['./price-boxes.component.css']
 })
-export class PriceBoxesComponent {
+export class PriceBoxesComponent implements OnChanges {
   @Input() upgrade: boolean;
   @Input() btc: boolean;
-
+  @Input() planData;
   bpRate: number;
-  plans = this.plansService.plans;
-  selectedPlan = this.plansService.selectedPlan;
+  plans = [];
 
   constructor(
     private http: Http,
     private router: Router,
     private plansService: PlansService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {
+  ) { }
+
+  ngOnChanges() { this.updatePlans(); }
+
+  updatePlans() {
+    // load plan data
+    this.plans = this.planData.plans;
+
     // get rates for bitpay
     if (isPlatformBrowser(this.platformId)) {
       let url = 'https://bitpay.com/api/rates/usd';
-      http.get(url)
+      this.http.get(url)
       .map(res => res.json())
       .subscribe((data: any) => {
-        if (data.rate) {this.bpRate = data.rate; }
-        this.plans[0].bcPrice = this.bpConvert(this.plans[0].price);
-        this.plans[1].bcPrice = this.bpConvert(this.plans[1].price);
-        this.plans[2].bcPrice = this.bpConvert(this.plans[2].price);
-        this.plans[0].bcTotal = this.bpConvert(this.plans[0].total);
-        this.plans[1].bcTotal = this.bpConvert(this.plans[1].total);
-        this.plans[2].bcTotal = this.bpConvert(this.plans[2].total);
-        this.plans[1].bcStrikeYearly = this.bpConvert(this.plans[1].strikeYearly);
-        this.plans[2].bcStrikeYearly = this.bpConvert(this.plans[2].strikeYearly);
-        this.plans[0].bcYearly = this.plans[0].bcTotal.toString();
-        this.plans[1].bcYearly = this.plans[1].bcTotal.toString();
-        this.plans[2].bcYearly = this.plans[2].bcTotal.toString();
+        if (data.rate) { this.bpRate = data.rate; }
+        if (this.plans[0]) { this.plans[0].bcPrice = this.bpConvert(this.plans[0].price); }
+        if (this.plans[1]) { this.plans[1].bcPrice = this.bpConvert(this.plans[1].price); }
+        if (this.plans[2]) { this.plans[2].bcPrice = this.bpConvert(this.plans[2].price); }
       });
     }
-
   }
 
   bpConvert(usd: number): number {
@@ -53,12 +49,10 @@ export class PriceBoxesComponent {
   }
 
   selectPlan(plan) {
-    this.plansService.selectedPlan = plan;
-    this.selectedPlan = plan;
-
+    this.planData.selected = plan;
     if (this.upgrade) {
+      this.plansService.selectedPlan = plan;
       this.router.navigate(['/account/upgrade']);
     }
   }
-
 }

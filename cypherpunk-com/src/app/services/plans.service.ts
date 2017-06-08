@@ -4,16 +4,11 @@ export class Plan {
   id: string;
   price: number;
   bcPrice: number;
-  period: string;
-  total: number;
-  bcTotal: number;
-  yearly: string;
-  bcYearly: string;
   rate: string;
-  months: string;
-  strikeYearly: number;
-  bcStrikeYearly: number;
+  months: number;
   viewable: boolean;
+  bitpayData: string;
+  paypalButtonId: string;
   constructor() {}
 }
 
@@ -21,49 +16,34 @@ export class Plan {
 export class PlansService {
   plans: Plan[] = [
     {
-      id: 'monthly1295',
-      price: 12.95,
+      id: 'monthly',
+      price: 11.95,
       bcPrice: undefined,
-      period: 'Monthly',
-      total: 12.95,
-      bcTotal: undefined,
-      yearly: '12.95',
-      bcYearly: '',
       rate: 'monthly plan',
-      months: '1',
-      strikeYearly: 0,
-      bcStrikeYearly: 0,
-      viewable: true
+      months: 1,
+      viewable: true,
+      bitpayData: 'rDNH1y1QGetIGfRuWqjAKXLfg/M+yFmdEmL6jDfljpyiMifqDnitepwtuBM1XWsMjPjdWULKmlk0BXobcfpM9RBG2Byp1YXm0iZnzepYwsLyVc4S5mZ09m7fyS/nE+jnp5jYgj/2aYfZd0H40aBlfItmeQrDtwU7MrqGhe5/oxLCtzeKz7n8GSp2EAn8BmrLPXyeavY02cewvv0Wn5xHwhEF/GiLUGYw52SQVKmd8hKhDHPg9dzew0l4qlhKdWTZzVwmMXfksoGfieHhpWP254xslZvnNquktHQiEJjEyfTa4SQuYxHn30cREdTwM/5royrFXSbBWLQv7ilKbwZ8Mt2feiT4z7x/qvZCDc3HCy/ym6DxS+8Ydo8F4ZAKH0tup5mYwCCELWahy6A5HR/oFw==',
+      paypalButtonId: '2R5T5E59ST644'
     },
     {
-      id: 'annually9995',
-      price: 8.32,
+      id: 'annually',
+      price: 69.00,
       bcPrice: undefined,
-      period: 'Yearly',
-      total: 99.95,
-      bcTotal: undefined,
-      yearly: '99.95',
-      bcYearly: '',
       rate: '12 month plan',
-      months: '12',
-      strikeYearly: 155.4,
-      bcStrikeYearly: 0,
-      viewable: true
+      months: 12,
+      viewable: true,
+      bitpayData: 'rDNH1y1QGetIGfRuWqjAKXLfg/M+yFmdEmL6jDfljpyiMifqDnitepwtuBM1XWsMjPjdWULKmlk0BXobcfpM9RBG2Byp1YXm0iZnzepYwsK9bHfltA8K2NL6zllPKIbUbV4IJ9iGsBcNoKb464ejCfjXZBAHMuxM1rr7zfemNHJTbrp265CwdPLhwC0ESWKM9L5ZGQLD9XRbJEUtflj0YIT8V3E0wuGRJCTHx86p0ATT0bawWsXUOblqfKrBSR+J7il8P9Y+ZzOwmsBgM0zfr3jQyl3fFqBVEVqojkQG2OnH5nnXMvonhv9A1wpLzzpTgR8tmqujEdi6iIWMSOqaMFoiMC/A4iGwmt4HSvVOP6EHrLdc9rQteIUdoFyNJDzrQUm2u1NGj77quwRZlZ5p4g==',
+      paypalButtonId: '2QQP8LJGKMW66'
     },
     {
-      id: 'semiannually5995',
-      price: 9.99,
+      id: 'semiannually',
+      price: 42.00,
       bcPrice: undefined,
-      period: '6 Monthly',
-      total: 59.95,
-      bcTotal: undefined,
-      yearly: '59.95',
-      bcYearly: '',
       rate: '6 month plan',
-      months: '6',
-      strikeYearly: 77.7,
-      bcStrikeYearly: 0,
-      viewable: true
+      months: 6,
+      viewable: true,
+      bitpayData: 'rDNH1y1QGetIGfRuWqjAKXLfg/M+yFmdEmL6jDfljpyiMifqDnitepwtuBM1XWsMjPjdWULKmlk0BXobcfpM9RBG2Byp1YXm0iZnzepYwsI9crWiSZSGLIdAusz0YiYtVx6cEvkF+um2IYkK5hLpg7pV3//IaAcv3BmQrKVQq57fhxmJxDEcB9YQD34TBKJMN4HBaAulPCzjbydG6p+idrdlmOJgvqJpe7RkslU/JMSum3QAq2HHu6jptjKeqAdTyL3jlSO3xYC3Lo7Vc2yeBDbQ/YKbMlAEFAfWzcRhBT8HyveXCllF+E+T9K8JctB5vsBPk+1K5iQgl+RsUzo+48qvggrC/uX/4DTcMJQElr6mmNZvLqV7rWkP7ej0nypMXaIaUpfyuTx/Vk4ATrHuPQ==',
+      paypalButtonId: 'X2FK4838HPCJC'
     }
   ];
 

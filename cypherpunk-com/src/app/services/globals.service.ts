@@ -30,6 +30,7 @@ export class GlobalsService {
       else if (hostname.startsWith('test.cypherpunk')) { this.BACKEND_HOST = this.testAPI; }
       else { this.BACKEND_HOST = this.prodAPI; }
     }
+    else { this.BACKEND_HOST = this.devAPI; }
 
     this.API_URL = this.BACKEND_HOST + '/api/' + this.API_VERSION;
   }

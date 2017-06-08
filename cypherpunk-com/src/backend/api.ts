@@ -9,7 +9,7 @@ if (REAL_MODE) { urlStart = 'https://cypherpunk.privacy.network/'; }
 
 export function subs(req, res) {
   if (DEV_MODE) {
-    let url = urlStart + 'api/v0/account/status';
+    let url = urlStart + 'api/v1/account/status';
     return req.pipe(request({url: url, jar: true})).pipe(res);
   }
   else {
@@ -36,7 +36,7 @@ export function subs(req, res) {
 export function identify(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url =  urlStart + 'api/v0/account/identify/email';
+    let url =  urlStart + 'api/v1/account/identify/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else { return res.sendStatus(401); }
@@ -45,7 +45,7 @@ export function identify(req, res) {
 export function signup(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/register/signup';
+    let url = urlStart + 'api/v1/account/register/signup';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -61,7 +61,7 @@ export function signup(req, res) {
 export function confirm(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/confirm/email';
+    let url = urlStart + 'api/v1/account/confirm/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -76,7 +76,7 @@ export function confirm(req, res) {
 export function signin(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/authenticate/userpasswd';
+    let url = urlStart + 'api/v1/account/authenticate/userpasswd';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -92,7 +92,7 @@ export function signin(req, res) {
 export function signout(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v0/account/logout';
+    let url = urlStart + 'api/v1/account/logout';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -101,7 +101,7 @@ export function signout(req, res) {
 }
 
 export function networkStatus(req, res) {
-  if (DEV_MODE) { return request(urlStart + 'api/v0/network/status').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v1/network/status').pipe(res); }
   else { return res.json({ ip: '127.0.0.1', country: 'ZZ'}); }
 }
 
@@ -181,12 +181,12 @@ export function contactForm(req, res) {
 }
 
 export function locations(req, res) {
-  if (DEV_MODE) { return request(urlStart + 'api/v0/location/list/premium').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v1/location/list/premium').pipe(res); }
   else { res.json({}); }
 }
 
 export function world(req, res) {
-  if (DEV_MODE) { return request(urlStart + 'api/v0/location/world').pipe(res); }
+  if (DEV_MODE) { return request(urlStart + 'api/v1/location/world').pipe(res); }
   else {
     let world = {
       region: {
@@ -214,5 +214,54 @@ export function world(req, res) {
       country: { US: 'United States' }
     };
     return res.json(world);
+  }
+}
+
+export function pricingPlans(req, res) {
+  let code = req.body.referralCode;
+  if (code === 'test') {
+    return res.json({
+      monthly: {
+        price: '11.95',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      },
+      semiannually: {
+        price: '42.00',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      },
+      annually: {
+        price: '69.00',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      }
+    });
+  }
+  else if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/pricing/plans';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    let body = {
+      monthly: {
+        price: '11.95',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      },
+      semiannually: {
+        price: '42.00',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      },
+      annually: {
+        price: '69.00',
+        paypalPlanId: '',
+        bitpayPlanId: '',
+      }
+    };
+
+    return res.json(body);
   }
 }

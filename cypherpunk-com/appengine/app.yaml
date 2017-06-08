@@ -467,6 +467,30 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /pricing/(.*)
+  static_files: target/pricing/ref.html
+  upload: target/pricing/ref.html
+  expiration: "10m"
+  secure: always
+  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /account/upgrade/(.*)
+  static_files: target/account/upgrade/ref.html
+  upload: target/account/upgrade/ref.html
+  expiration: "10m"
+  secure: always
+  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /blog/(.*)
   script: blogger.app
   secure: always

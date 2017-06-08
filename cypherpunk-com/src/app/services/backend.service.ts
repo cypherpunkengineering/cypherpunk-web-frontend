@@ -8,7 +8,7 @@ import { Http, RequestOptions, Response } from '@angular/http';
 export class BackendService {
   private errString = 'Bad Response from server';
 
-  constructor( private http: Http, private globals: GlobalsService) { }
+  constructor(private http: Http, private globals: GlobalsService) { }
 
   // User authentication
 
@@ -57,6 +57,13 @@ export class BackendService {
   }
 
   // User account apis
+
+  pricingPlans(body, options): Promise<any> {
+    let url = this.globals.API_URL + '/pricing/plans';
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
 
   cards() {
     let url = this.globals.API_URL + '/account/source/list';

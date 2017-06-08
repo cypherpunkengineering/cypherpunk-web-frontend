@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
+import { PlansService } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
@@ -23,6 +24,13 @@ export class DashboardComponent implements OnInit {
   showPasswordModal = false;
   countries = country_list;
   showPPWarning = false;
+
+  // plan details
+  planData = {
+    plans: [],
+    selected: { id: '' },
+    referralCode: ''
+  };
 
   // payment details
   defaultCardId = '';
@@ -48,6 +56,7 @@ export class DashboardComponent implements OnInit {
     private authGuard: AuthGuard,
     private session: SessionService,
     private backend: BackendService,
+    private plansService: PlansService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
@@ -58,6 +67,9 @@ export class DashboardComponent implements OnInit {
 
     // set user
     this.user = this.session.user;
+
+    this.planData.plans = plansService.plans;
+    this.planData.selected = plansService.selectedPlan;
 
     // redirect user if not logged in
     if (isPlatformBrowser(this.platformId)) {

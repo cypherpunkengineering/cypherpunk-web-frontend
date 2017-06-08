@@ -17,7 +17,7 @@
       <h2 class="content-header" *ngIf="!showPPWarning">Upgrade Now!</h2>
       <h2 class="content-header" *ngIf="showPPWarning">Upgrading!</h2>
 
-      <app-price-boxes [upgrade]="upgrade" *ngIf="!showPPWarning"></app-price-boxes>
+      <app-price-boxes [upgrade]="upgrade" [planData]="planData" *ngIf="!showPPWarning"></app-price-boxes>
     </div>
   </div>
 

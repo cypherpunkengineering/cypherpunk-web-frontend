@@ -41,7 +41,8 @@ import {
   supportPost,
   networkStatus,
   signup,
-  contactForm
+  contactForm,
+  pricingPlans
 } from './backend/api';
 import { stripePurchase, stripeUpgrade, stripeCardList, stripeDefaultCard, stripeCreateCard } from './backend/stripe';
 import { amazonPurchase, amazonUpgrade } from './backend/amazon';
@@ -67,6 +68,7 @@ app.post('/api/v1/account/source/add', stripeCreateCard);
 app.post('/api/v1/account/purchase/amazon', amazonPurchase);
 app.post('/api/v1/account/upgrade/amazon', amazonUpgrade);
 app.post('/api/v1/zendesk/request/new', contactForm);
+app.post('/api/v1/pricing/plans', pricingPlans);
 
 app.get('/', (req, res) => {
   res.render('../dist/client/index.html', {
