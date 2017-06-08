@@ -79,7 +79,7 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
 
 	private static final String FRONTEND_HOSTNAME_PRODUCTION = "cypherpunk.privacy.network";
-	private static final String FRONTEND_HOSTNAME_DEVELOPMENT = "api.cypherpunk.engineering";
+	private static final String FRONTEND_HOSTNAME_DEVELOPMENT = "test-api.cypherpunk.engineering";
 
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
