@@ -1,14 +1,12 @@
 .masthead {
   border-bottom: 15px solid #efebeb;
-  .masthead-header { margin: 45px auto 0; padding: 0 0 15px; }
+  .masthead-header { margin: 40px auto 10px; }
   .masthead-subheader {
-    width: 100%;
     max-width: 700px;
     margin: auto;
     padding-bottom: 35px;
     text-align: center;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
     line-height: 1.5;
     color: #74D5D4;
   }
@@ -19,7 +17,7 @@
       width: 100%;
       max-width: 1000px;
       position: relative;
-      top: 27px;
+      top: 12px;
     }
   }
 }
