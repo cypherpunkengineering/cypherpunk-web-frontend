@@ -23,7 +23,7 @@ export class BitpayComponent implements OnChanges {
     if (this.globals.ENV === 'PROD') {
       this.monthlyData = this.planData.plans[0].bitpayData;
       this.annuallyData = this.planData.plans[1].bitpayData;
-      this.semiannuallyData = this.planData[2].bitpayData;
+      this.semiannuallyData = this.planData.plans[2].bitpayData;
     }
   }
 

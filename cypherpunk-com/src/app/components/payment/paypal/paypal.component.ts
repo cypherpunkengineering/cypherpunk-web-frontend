@@ -25,7 +25,7 @@ export class PaypalComponent implements OnChanges {
       this.env = 'PROD';
       this.monthlyButtonId = this.planData.plans[0].paypalButtonId;
       this.annuallyButtonId = this.planData.plans[1].paypalButtonId;
-      this.semiannuallyButtonId = this.planData[2].paypalButtonId;
+      this.semiannuallyButtonId = this.planData.plans[2].paypalButtonId;
     }
   }
 
