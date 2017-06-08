@@ -27,7 +27,7 @@
       padding: 20px;
       display: inline-block;
       cursor: pointer;
-      
+
       img {
         width: 24px;
         vertical-align: middle;
@@ -155,28 +155,19 @@
     .cell-header {
       font-size: 20px;
       color: #fff;
-      padding: 10px 0;
+      padding: 30px 0 10px;
     }
 
-    .cell-text {
-      color: #74D5D4;
-      padding: 0 20px;
-    }
+    .cell-text { color: #74D5D4; }
   }
 }
 
 .cta-container {
-  position: relative;
-  z-index: 25;
-  height: 40px;
+  padding: 20px;
   background-color: #163138;
-  border-top: 10px solid #efebeb;
 
   .call-to-action {
     text-align: center;
-    position: relative;
-    top: -35px;
-
     .btn { width: 341px; border-radius: 5px; }
     .btn.orange:hover { background-color: #ff8c71; }
   }
