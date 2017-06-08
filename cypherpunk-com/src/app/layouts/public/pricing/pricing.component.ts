@@ -45,7 +45,7 @@ export class PricingComponent {
     email: '',
     password: '',
     validation: {
-      email: false,
+      email: true,
       warning: false,
       disabled: false
     },
