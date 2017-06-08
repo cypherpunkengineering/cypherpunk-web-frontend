@@ -11,8 +11,8 @@ import { Component, HostListener, NgZone } from '@angular/core';
 })
 export class AccountNavigationComponent {
   user: any;
-  enableLinks: boolean = true;
-  showDropDown: boolean = false;
+  enableLinks = true;
+  showDropDown = false;
   scrolledNavElement: HTMLElement;
 
   constructor(
