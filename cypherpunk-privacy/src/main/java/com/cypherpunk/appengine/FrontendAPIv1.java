@@ -611,7 +611,7 @@ public class FrontendAPIv1 extends HttpServlet
 			sanitizedReqBody = gson.toJson(incomingRequestData);
 		}
 
-		if (incomingRequestData == null)
+		if (reqMethod == HTTPMethod.POST && incomingRequestData == null)
 		{
 			if (req.getHeader("Content-Encoding") != null)
 				LOG.log(Level.WARNING, "Content-Encoding is "+req.getHeader("Content-Encoding"));
@@ -715,7 +715,7 @@ public class FrontendAPIv1 extends HttpServlet
 					map.put(key, values[0]);
 				}
 				String jsonString = gson.toJson(map);
-				LOG.log(Level.DEBUG, "Got json string: "+jsonString);
+				LOG.log(Level.INFO, "Got json string: "+jsonString);
 				return jsonString;
 			}
 			catch (Exception e)
