@@ -202,8 +202,9 @@
           <span class="total-price">
             {{ '₿ ' + planData.selected?.bcPrice + ' BTC' }}
           </span>
+          (${{ planData.selected?.price | number:'.2-2'}})
           <div class="billing-rate">
-            Cypherpunk Privacy {{ planData.selected?.rate }} (₿  {{ planData.selected?.bcPrice / planData.selected?.months }} per month, every {{ planData.selected?.months }} months)
+            Cypherpunk Privacy {{ planData.selected?.rate }}
           </div>
         </div>
 
