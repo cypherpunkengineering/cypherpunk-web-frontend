@@ -11,9 +11,9 @@ import * as platform from 'platform';
 })
 export class NavigationComponent {
   currentTab: string;
-  isFeatures: boolean = false;
-  enableLinks: boolean = true;
-  showDropDown: boolean = false;
+  isFeatures = false;
+  enableLinks = true;
+  showDropDown = false;
   scrolledNavElement: HTMLElement;
   scrolledMobileNavElement: HTMLElement;
   featuresSubnav: HTMLElement;
@@ -21,13 +21,15 @@ export class NavigationComponent {
 
   bannerModel;
   androidModel = {
-    heading: 'Cypherpunk Privacy for Android',
+    heading: 'Cypherpunk Privacy',
     subheading: 'Get it free on the Play Store',
+    type: 'android',
     link: 'https://play.google.com/store/apps/details?id=com.cypherpunk.privacy'
   };
   iosModel = {
-    heading: 'Cypherpunk Privacy for iOS',
+    heading: 'Cypherpunk Privacy',
     subheading: 'Get it free on the App Store',
+    type: 'ios',
     link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
   };
 

@@ -228,7 +228,8 @@
       </div>
 
       <div class="right">
-        <button class="btn orange">Download</button>
+        <img class="ios" src="/assets/apple-appstore-badge.svg" alt="Apple App Store" *ngIf="bannerModel.type === 'ios'">
+        <img class="android" src="/assets/google-play-badge.png" alt="Google Play" *ngIf="bannerModel.type === 'android'">
       </div>
     </a>
   </div>

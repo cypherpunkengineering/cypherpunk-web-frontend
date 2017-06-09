@@ -159,7 +159,14 @@
     float: right;
     padding-top: 20px;
 
-    .btn { margin: 0 15px 0 0; }
+    .android {
+      width: 130px;
+      margin: -5px 4px 0 0;
+    }
+    .ios {
+      width: 120px;
+      margin-right: 10px;
+    }
   }
 }
 
