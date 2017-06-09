@@ -1,13 +1,13 @@
 import { RequestOptions } from '@angular/http';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
-import { PlansService, Plan } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
+import { PlansService, Plan } from '../../../services/plans.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Component, PLATFORM_ID, Inject, NgZone, OnInit, ViewChild } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 import 'rxjs/add/operator/toPromise';
 
@@ -16,6 +16,7 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('priceBoxes') priceBoxes;
   user: any;
   upgrade = true;
   loading = true;
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   showPasswordModal = false;
   countries = country_list;
   showPPWarning = false;
+  currentTab = '';
 
   // plan details
   planData: {
@@ -72,8 +74,51 @@ export class DashboardComponent implements OnInit {
     // set user
     this.user = this.session.user;
 
-    this.planData.plans = plansService.plans;
-    this.planData.selected = plansService.selectedPlan;
+    // Determine plans to show
+    let options = new RequestOptions({});
+    this.backend.pricingPlans('', options)
+    // build plans as needed
+    .then((plans) => {
+      // monthly plan
+      this.planData.plans.push({
+        id: 'monthly',
+        price: Number(plans.monthly.price),
+        bcPrice: undefined,
+        rate: 'monthly plan',
+        months: 1,
+        viewable: true,
+        bitpayData: plans.monthly.bitpayPlanId,
+        paypalButtonId: plans.monthly.paypalPlanId
+      });
+      // annual plan
+      this.planData.plans.push({
+        id: 'annually',
+        price: Number(plans.annually.price),
+        bcPrice: undefined,
+        rate: '12 month plan',
+        months: 12,
+        viewable: true,
+        bitpayData: plans.annually.bitpayPlanId,
+        paypalButtonId: plans.annually.paypalPlanId
+      });
+      // semiannual plan
+      this.planData.plans.push({
+        id: 'semiannually',
+        price: Number(plans.semiannually.price),
+        bcPrice: undefined,
+        rate: '6 month plan',
+        months: 6,
+        viewable: true,
+        bitpayData: plans.semiannually.bitpayPlanId,
+        paypalButtonId: plans.semiannually.paypalPlanId
+      });
+      this.planData.selected = this.planData.plans[1];
+      if (this.priceBoxes) { this.priceBoxes.updatePlans(); }
+    })
+    .catch((err) => {
+      console.log('Could not pull pricing plans, defaulting');
+      console.log(err);
+    });
 
     // redirect user if not logged in
     if (isPlatformBrowser(this.platformId)) {
@@ -125,13 +170,25 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    // handle incoming from paypal
     this.activatedRoute.queryParams.subscribe((qParams) => {
       let tx = qParams['tx'];
       let st = qParams['st'];
       if (!tx || st !== 'Completed') { return; }
       if (tx && st === 'Completed') { this.showPPWarning = true; }
     });
+
+    // handle page routing
+    let page = this.activatedRoute.snapshot.params['page'];
+    if (page === 'subscription') { this.currentTab = page; }
+    else if (page === 'billing') { this.currentTab = page; }
+    else if (page === 'refer') { this.currentTab = page; }
+    else if (page === 'dns') { this.currentTab = page; }
+    else if (page === 'config') { this.currentTab = page; }
+    else { this.currentTab = 'overview'; }
   }
+
+  changePage(page) { this.currentTab = page;  console.log(this.currentTab); }
 
   showPriceBoxes() {
     let type = this.user.account.type;
@@ -139,7 +196,8 @@ export class DashboardComponent implements OnInit {
 
     if (type === 'free') { return true; }
     else if (type === 'premium') {
-      if (renewal !== 'annually' && renewal !== 'forever') { return true; }
+      if (renewal !== 'annually' && renewal !== 'forever') { return true;
+      }
     }
     else { return false; }
   }

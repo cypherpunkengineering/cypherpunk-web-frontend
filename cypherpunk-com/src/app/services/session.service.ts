@@ -37,7 +37,6 @@ export class SessionService {
         this.user.subscription.expiration = this.localStorage.getItem('subscription.expiration') || '';
         this.user.secret = this.localStorage.getItem('secret') || '';
         this.user.status = this.localStorage.getItem('status') || '';
-        plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
         this.setExpirationString(this.user.subscription.expiration);
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
         this.setSnapEngageEmail(this.user);
@@ -110,7 +109,6 @@ export class SessionService {
     this.user.status = user.status || '';
     this.localStorage.setItem('status', this.user.status);
 
-    this.plans.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
     this.setExpirationString(this.user.subscription.expiration);
   }
 

@@ -123,11 +123,11 @@ import { GlobalsService } from './services/globals.service';
     ChromePartialModule,
     FirefoxPartialModule,
 
-    DashboardModule,
     BillingModule,
     UpgradeModule,
     SetupModule,
     ResetModule,
+    DashboardModule, // must be after other account modules
 
     AppRoutingModule,
     HttpModule

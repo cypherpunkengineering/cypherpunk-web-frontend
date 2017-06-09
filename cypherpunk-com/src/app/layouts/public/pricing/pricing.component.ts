@@ -96,59 +96,53 @@ export class PricingComponent {
 
     // Determine plans to show
     let params = this.route.snapshot.params;
-    this.planData.referralCode = params['referralCode'];
-    if (this.planData.referralCode) {
-      let body = { referralCode: this.planData.referralCode };
-      let options = new RequestOptions({});
-      this.backend.pricingPlans(body, options)
-      // build plans as needed
-      .then((plans) => {
-        // monthly plan
-        this.planData.plans.push({
-          id: 'monthly',
-          price: Number(plans.monthly.price),
-          bcPrice: undefined,
-          rate: 'monthly plan',
-          months: 1,
-          viewable: true,
-          bitpayData: plans.monthly.bitpayPlanId,
-          paypalButtonId: plans.monthly.paypalPlanId
-        });
-        // annual plan
-        this.planData.plans.push({
-          id: 'annually',
-          price: Number(plans.annually.price),
-          bcPrice: undefined,
-          rate: '12 month plan',
-          months: 12,
-          viewable: true,
-          bitpayData: plans.annually.bitpayPlanId,
-          paypalButtonId: plans.annually.paypalPlanId
-        });
-        // semiannual plan
-        this.planData.plans.push({
-          id: 'semiannually',
-          price: Number(plans.semiannually.price),
-          bcPrice: undefined,
-          rate: '6 month plan',
-          months: 6,
-          viewable: true,
-          bitpayData: plans.semiannually.bitpayPlanId,
-          paypalButtonId: plans.semiannually.paypalPlanId
-        });
-        this.planData.selected = this.planData.plans[1];
-        this.priceBoxes.updatePlans();
-      })
-      .catch((err) => {
-        console.log('Could not pull pricing plans, defaulting');
-        this.planData.plans = plansService.plans;
-        this.planData.selected = plansService.selectedPlan;
+    this.planData.referralCode = params['referralCode'] || '';
+    let body = { referralCode: this.planData.referralCode };
+    let options = new RequestOptions({});
+    this.backend.pricingPlans(this.planData.referralCode, options)
+    // build plans as needed
+    .then((plans) => {
+      // monthly plan
+      this.planData.plans.push({
+        id: 'monthly',
+        price: Number(plans.monthly.price),
+        bcPrice: undefined,
+        rate: 'monthly plan',
+        months: 1,
+        viewable: true,
+        bitpayData: plans.monthly.bitpayPlanId,
+        paypalButtonId: plans.monthly.paypalPlanId
       });
-    }
-    else {
-      this.planData.plans = plansService.plans;
-      this.planData.selected = plansService.selectedPlan;
-    }
+      // annual plan
+      this.planData.plans.push({
+        id: 'annually',
+        price: Number(plans.annually.price),
+        bcPrice: undefined,
+        rate: '12 month plan',
+        months: 12,
+        viewable: true,
+        bitpayData: plans.annually.bitpayPlanId,
+        paypalButtonId: plans.annually.paypalPlanId
+      });
+      // semiannual plan
+      this.planData.plans.push({
+        id: 'semiannually',
+        price: Number(plans.semiannually.price),
+        bcPrice: undefined,
+        rate: '6 month plan',
+        months: 6,
+        viewable: true,
+        bitpayData: plans.semiannually.bitpayPlanId,
+        paypalButtonId: plans.semiannually.paypalPlanId
+      });
+      this.planData.selected = this.planData.plans[1];
+      this.priceBoxes.updatePlans();
+      this.bitpay.update();
+      this.paypal.update();
+    })
+    .catch((err) => {
+      console.log('Could not pull pricing plans, defaulting');
+    });
 
     // redirect if user is already logged in
     if (isPlatformBrowser(this.platformId)) {

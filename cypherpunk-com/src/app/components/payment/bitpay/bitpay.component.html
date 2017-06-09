@@ -1,21 +1,21 @@
 <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'" *ngIf="env === 'DEV'">
   <input type="hidden" name="action" value="checkout" />
   <input type="hidden" name="posData" value="{{posData}}" />
-  <input type="hidden" name="data" value="{{devMonthly}}" />
+  <input type="hidden" name="data" value="{{monthlyData}}" />
   <input id="bitpayMonthly" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
 </form>
 
 <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'" *ngIf="env === 'DEV'">
   <input type="hidden" name="action" value="checkout" />
   <input type="hidden" name="posData" value="{{posData}}" />
-  <input type="hidden" name="data" value="{{devAnnually}}" />
+  <input type="hidden" name="data" value="{{annuallyData}}" />
   <input id="bitpayAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
 </form>
 
 <form ngNoForm action="https://test.bitpay.com/checkout" method="post" [style.display]="'none'" *ngIf="env === 'DEV'">
   <input type="hidden" name="action" value="checkout" />
   <input type="hidden" name="posData" value="{{posData}}" />
-  <input type="hidden" name="data" value="{{devSemiannually}}" />
+  <input type="hidden" name="data" value="{{semiannuallyData}}" />
   <input id="bitpaySemiAnnual" type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
 </form>
 

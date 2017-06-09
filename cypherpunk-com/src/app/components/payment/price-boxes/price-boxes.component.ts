@@ -1,6 +1,7 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { PlansService } from '../../../services/plans.service';
+import { SessionService } from '../../../services/session.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, Input, Inject, PLATFORM_ID, OnChanges } from '@angular/core';
 
@@ -15,10 +16,12 @@ export class PriceBoxesComponent implements OnChanges {
   @Input() planData;
   bpRate: number;
   plans = [];
+  user;
 
   constructor(
     private http: Http,
     private router: Router,
+    private session: SessionService,
     private plansService: PlansService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
@@ -27,7 +30,9 @@ export class PriceBoxesComponent implements OnChanges {
 
   updatePlans() {
     // load plan data
+    this.user = this.session.user;
     this.plans = this.planData.plans;
+    this.plansService.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
 
     // get rates for bitpay
     if (isPlatformBrowser(this.platformId)) {
@@ -51,7 +56,7 @@ export class PriceBoxesComponent implements OnChanges {
   selectPlan(plan) {
     this.planData.selected = plan;
     if (this.upgrade) {
-      this.plansService.selectedPlan = plan;
+      this.plansService.selectedPlanId = plan.id;
       this.router.navigate(['/account/upgrade']);
     }
   }

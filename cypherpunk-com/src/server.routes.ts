@@ -11,12 +11,13 @@
  **/
 export const routes: string[] = [
   'home',
-  'account',
-  'account/billing',
   'account/upgrade/*',
   'account/upgrade',
+  'account/billing',
   'account/setup',
   'account/reset',
+  'account/*',
+  'account',
   'pricing/*',
   'pricing',
   'login',

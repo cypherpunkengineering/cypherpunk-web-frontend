@@ -14,15 +14,14 @@ export class PaypalComponent implements OnChanges {
   monthlyButtonId = '';
   annuallyButtonId = '';
   semiannuallyButtonId = '';
-  monthlyDevButtonId = 'UKHCGA2VESR5A';
-  annuallyDevButtonId = 'KY8G9YVQJQYHS';
-  semiannuallyDevButtonId = 'VW88YD42G7P2L';
 
   constructor(private globals: GlobalsService) { }
 
-  ngOnChanges() {
-    if (this.globals.ENV === 'PROD') {
-      this.env = 'PROD';
+  ngOnChanges() { this.update(); }
+
+  update() {
+    if (this.globals.ENV === 'PROD') { this.env = 'PROD'; }
+    if (this.planData.plans.length) {
       this.monthlyButtonId = this.planData.plans[0].paypalButtonId;
       this.annuallyButtonId = this.planData.plans[1].paypalButtonId;
       this.semiannuallyButtonId = this.planData.plans[2].paypalButtonId;

@@ -17,7 +17,7 @@ export class SupportHomeComponent implements OnInit {
     "browser-extension-features": { show: false },
     "streaming-services-cypherplay": { show: false }
   }
-  privacySecurity: boolean = false;
+  privacySecurity = false;
 
   constructor(
     private backend: BackendService,
