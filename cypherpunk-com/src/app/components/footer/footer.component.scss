@@ -3,24 +3,24 @@
   overflow: auto;
 
   .footer {
-    max-width: 1340px;
     height: 340px;
     margin: auto;
+    padding: 0 20px 0;
     font-size: 0;
     text-align: center;
 
     .footer-column {
       display: inline-block;
       vertical-align: top;
-      padding-top: 50px;
-      margin-left: 30px;
+      padding: 50px 20px 0;
       font-size: 15px;
       text-align: left;
+      width: 18%;
+      min-width: 200px;
 
       &.logo {
-        padding-top: 45px;
-        margin-left: 15px;
-        width: 250px;
+        padding: 40px 0 0;
+        width: 25%;
         text-align: center;
         img { width: 227px; height: 45px; }
 
@@ -55,6 +55,8 @@
           }
         }
       }
+
+      &.social { padding: 50px 0 0; }
     }
   }
 }
@@ -134,7 +136,7 @@
   &.show { display: block; }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1130px) {
   .footerContainer .footer .footer-column {
     width: 50%;
     margin: 0;
