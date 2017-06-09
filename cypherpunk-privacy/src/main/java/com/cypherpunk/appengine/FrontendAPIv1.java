@@ -450,6 +450,25 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 
 		} //}}}
+		else if (apiPath.startsWith("/ipn")) // {{{
+		{
+			String ipnApiPath = apiPath.substring( "/ipn".length(), apiPath.length() );
+
+			if (ipnApiPath.equals("/bitpay")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, BitPayIPN.class, null);
+			} //}}}
+			else if (ipnApiPath.equals("/paypal")) // {{{
+			{
+				String reqBody = getBodyFromRequest(req);
+				LOG.log(Level.WARNING, "Response body: "+reqBody);
+				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
+			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
+		} //}}}
 		else if (apiPath.startsWith("/pricing")) // {{{
 		{
 			String pricingApiPath = apiPath.substring( "/pricing".length(), apiPath.length() );
