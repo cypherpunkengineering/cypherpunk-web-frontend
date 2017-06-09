@@ -72,7 +72,7 @@ html, body {
   .nav-middle {
     padding: 20px 0 0;
     text-align: center;
-    img { height: 40px; }
+    img { height: 56px; }
   }
 }
 
@@ -176,12 +176,18 @@ html, body {
 /** Confirmation Page **/
 
 .confirmation-header {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   padding: 10px 20px;
   color: #7ffffb;
-  &.no-top { padding-top: 0; }
-  &.more-bottom { padding-bottom: 60px; }
+}
+
+.confirmation-subheader {
+  font-size: 16px;
+  text-align: center;
+  padding: 10px 20px;
+  color: #7ffffb;
+  &.more-padding { padding-top: 20px; }
 }
 
 .confirmation-illustration {
@@ -191,143 +197,6 @@ html, body {
   text-align: center;
   padding: 20px 0 0;
   img { width: 100%; }
-}
-
-.confirmation-section {
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  padding: 0 15px 0;
-
-  .line {
-    height: 1px;
-    width: 100%;
-    margin: 20px 0;
-    background-color: #19474c;
-  }
-
-  .inputs-container { padding: 20px 0; overflow: auto; }
-  .inputs {
-    width: 50%;
-    input {
-      width: 100%;
-      height: 40px;
-      line-height: 40px;
-      font-size: 18px;
-      padding: 5px;
-      color: #56A8B1;
-      background-color: #0D1E26;
-      border-radius: 5px;
-      border: 3px solid #19474c;
-    }
-    label { color: #56A8B1; padding-top: 10px; }
-
-    &.left { float: left; padding-right: 10px; }
-    &.right {
-      float: right;
-      padding-left: 10px;
-      input { margin-bottom: 10px; }
-    }
-  }
-
-  .invite {
-    padding: 10px 0 60px;
-
-    button {
-      width: 100%;
-      height: 45px;
-      color: #fff;
-      font-size: 18px;
-      border: 0;
-      border-radius: 5px;
-      background-color: #FF7857;
-      cursor: pointer;
-    }
-  }
-
-  .share {
-    width: 100%;
-    max-width: 700px;
-    overflow: auto;
-    padding: 10px 0 60px;
-
-    a { text-decoration: none; color: #fff; }
-
-    .social { text-align: center; }
-    .platform {
-      display: inline-block;
-      vertical-align: top;
-      margin: 0 20px 20px;
-    }
-
-    .facebook {
-      width: 157.5px;
-      height: 45px;
-      font-size: 18px;
-      line-height: 45px;
-      padding: 0 10px;
-      border-radius: 5px;
-      background-color: #254E91;
-      .logo { display: inline-block; img { width: 30px; padding-top: 7px; margin-right: 20px; }}
-      .text { display: inline-block; vertical-align: top; }
-    }
-
-    .twitter {
-      display: inline-block;
-      width: 147.5px;
-      height: 45px;
-      font-size: 18px;
-      line-height: 45px;
-      padding: 0 10px;
-      border-radius: 5px;
-      background-color: #329ECE;
-      .logo { display: inline-block; img { width: 30px; padding-top: 10px; margin-right: 20px; }}
-      .text { display: inline-block; vertical-align: top; }
-    }
-
-    .gplus {
-      display: inline-block;
-      width: 157.5px;
-      height: 45px;
-      font-size: 18px;
-      line-height: 45px;
-      padding: 0 10px;
-      border-radius: 5px;
-      background-color: #d34836;
-      .logo { display: inline-block; img { width: 35px; padding-top: 11px; margin-right: 20px; }}
-      .text { display: inline-block; vertical-align: top; }
-    }
-
-    .share-link {
-      width: 100%;
-      text-align: center;
-    }
-
-    .copy {
-      height: 45px;
-      width: 120px;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      background-color: #FF7857;
-      border: 0;
-      color: #fff;
-      font-size: 18px;
-      position: relative;
-      cursor: pointer;
-    }
-    .copy-input {
-      width: 200px;
-      height: 46px;
-      line-height: 45px;
-      font-size: 18px;
-      padding: 5px;
-      color: #56A8B1;
-      background-color: #0D1E26;
-      border-radius: 5px;
-      border: 3px solid #19474c;
-      margin-left: -8px;
-    }
-  }
 }
 
 /** Invites Sent Page **/
@@ -369,16 +238,6 @@ html, body {
 
 @media (max-width: 780px) {
   .confirmation-illustration { padding: 20px 15px 0; }
-  .confirmation-section .share {
-    .left { width: 100%; float: left; text-align: center; padding-bottom: 10px; }
-    .right { width: 100%; float: right; padding-left: 0; text-align: center; }
-    .first { width: 100%; float: left; padding-right: 0; padding-bottom: 10px; }
-    .second { width: 100%; float: right; padding: 0; }
-
-    .facebook { margin: auto; }
-    .twitter { width: 157.5px; margin: auto; }
-    .copy-input { width: 170px; }
-  }
 }
 
 @media (max-width: 750px) {
@@ -397,7 +256,6 @@ html, body {
     text-align: center;
     height: auto;
     & > div { width: 100%; }
-    .nav-right { padding: 0 0 27px;}
   }
 
   .email {
@@ -409,22 +267,6 @@ html, body {
 @media (max-width: 575px) {
   .countdown .time { margin-bottom: 25px; }
   .countdown .time:last-child { margin-right: 20px; }
-}
-
-@media (max-width: 500px) {
-  .confirmation-section .inputs {
-    width: 100%;
-    &.left { float: left; padding: 0 0 10px; }
-    &.right {
-      float: right;
-      padding-left: 0;
-      input { margin-bottom: 10px; }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .signature img { width: 100%; height: auto; }
 }
 
 @media (max-width: 400px) {

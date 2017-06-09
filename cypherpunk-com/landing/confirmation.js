@@ -35,30 +35,6 @@ if (errorClose) {
   });
 }
 
-
-// copy share link
-function copyTextToClipboard() {
-  var input = document.getElementById('cp-share');
-  input.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    if (successful) { window.alert('The link was copied to your clipboard'); }
-    else { window.alert('Could not copy this link to your clipboard'); }
-  }
-  catch (err) {
-    window.alert('Was not able to copy to your clipboard');
-  }
-}
-
-var shareButton = document.getElementById('cp-share-button');
-if (shareButton) {
-  shareButton.addEventListener('click', function() {
-    copyTextToClipboard();
-  });
-}
-
-
 // confirmation page init code
 
 var accountId = qs.accountId;
@@ -85,75 +61,3 @@ xmlHttp.onreadystatechange = function() {
 
 xmlHttp.setRequestHeader("Content-Type", "application/json");
 xmlHttp.send(JSON.stringify({ accountId: accountId, confirmationToken: confToken }));
-
-
-// Coundown timer
-var launchDate = new Date('2017-05-15T00:00:00-0500');
-var days = document.getElementById('days');
-var hours = document.getElementById('hours');
-
-var distance = launchDate - new Date();
-if (distance < 0) {
-  days.innerHTML = '0';
-  hours.innerHTML = '0';
-}
-var daysMeasured = Math.floor(distance / (1000 * 60 * 60 * 24));
-var hoursMeasured = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-days.innerHTML = daysMeasured;
-hours.innerHTML = hoursMeasured;
-
-
-// share with friends
-
-var inviteButton = document.getElementById('invite');
-if (inviteButton) {
-  inviteButton.addEventListener('click', function() {
-    inviteOthers();
-  });
-}
-
-function inviteOthers() {
-  var hasErrors = false;
-  var name = document.getElementById('invite-name').value; // (optional)
-  var emails = document.getElementById('invite-emails').value.split(',');
-
-  // regex a-z
-  name = name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-  // limit to 20 chars for name
-  name = name.substring(0, 20);
-
-  emails.forEach(function(email, index) {
-    email = email.trim().toLowerCase();
-    var xmlHttp = new XMLHttpRequest();
-    var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaserShare';
-    xmlHttp.open("POST", url, true);
-
-    xmlHttp.onreadystatechange = function() {
-      if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-          setMessage('Success!', 'Your Invites were sent!');
-        }
-        else if (xmlHttp.status === 400) {
-          hasErrors = true;
-          setMessage('Error!', 'Missing Parameters');
-        }
-        else if (xmlHttp.status === 409) {
-          // setMessage('Error!', 'Email already exists');
-          console.log(email + ' already exits');
-        }
-        else {
-          hasErrors = true;
-          setMessage('Error!', 'There was an error sending your invite');
-        }
-
-        if (!hasErrors && index === emails.length - 1) {
-          window.location.href = '/invites-sent.html';
-        }
-      }
-    };
-
-    xmlHttp.setRequestHeader("Content-Type", "application/json");
-    xmlHttp.send(JSON.stringify({ name: name, email: email }));
-  });
-}
