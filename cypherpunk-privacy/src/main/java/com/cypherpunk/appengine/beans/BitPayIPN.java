@@ -1,19 +1,16 @@
 package com.cypherpunk.appengine.beans;
 /*
-{ id: 'HxrCXSzVnoJhxeFGP6shNo',
-  url: 'https://test.bitpay.com/invoice?id=HxrCfSzVeoJhxtFG36shNo',
-  status: 'confirmed',
-  btcPrice: '0.004371',
-  price: 5,
-  currency: 'EUR',
-  invoiceTime: 1491831282376,
-  expirationTime: 1491832182376,
-  currentTime: 1491831443317,
-  btcPaid: '0.004371',
-  btcDue: '0.000000',
-  rate: 1144.01,
-  exceptionStatus: false,
-  buyerFields: { buyerEmail: 'test@bitpay.com' } }
+{
+	"amount":"11.95",
+	"rate":"2818.94",
+	"exceptionStatus":"false",
+	"status":"confirmed",
+	"action":"invoiceStatus",
+	"btcPaid":"0.004239",
+	"invoice_id":"91KrttU8LWiw6xPwUELWvN",
+	"posData":"{\"plan\":\"annually\"}",
+	"currency":"USD"
+}
 */
 public class BitPayIPN
 {
@@ -39,6 +36,7 @@ public class BitPayIPN
 	}
 	*/
 
+	private String invoice_id;
 	private String status;
 	private boolean exceptionStatus;
 	private String amount;
