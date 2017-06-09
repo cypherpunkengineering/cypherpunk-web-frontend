@@ -74,9 +74,11 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final Logger LOG = Logger.getLogger(FrontendAPIv1.class.getName());
 	// }}}
 	// {{{ static constants
+	// google cache should be >61 seconds and < 1 week
 	private static final int LOCATION_WORLD_CACHE_PERIOD = (60 * 60 * 1);
 	private static final int LOCATION_LIST_CACHE_PERIOD = 69; // (60 * 10);
 	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
+	private static final int PRICING_PLANS_CACHE_PERIOD = 69; // (60 * 10);
 
 	private static final String FRONTEND_HOSTNAME_PRODUCTION = "cypherpunk.privacy.network";
 	private static final String FRONTEND_HOSTNAME_DEVELOPMENT = "test-api.cypherpunk.engineering";
@@ -311,6 +313,33 @@ public class FrontendAPIv1 extends HttpServlet
 				res.sendError(404);
 			} //}}}
 		} //}}}
+		else if (apiPath.startsWith("/pricing")) // {{{
+		{
+			String pricingApiPath = apiPath.substring( "/pricing".length(), apiPath.length() );
+
+			if (pricingApiPath.startsWith("/plans")) // {{{
+			{
+				String plansApiPath = pricingApiPath.substring( "/plans".length(), pricingApiPath.length() );
+
+				String frontendJsonString;
+				Map<String,Object> cypherpunkResponse = getCachedCypherpunkData(req, "/api/v0"+apiPath, PRICING_PLANS_CACHE_PERIOD, useCacheForCypherpunk, forceUpdate);
+				if (cypherpunkResponse == null)
+				{
+					res.sendError(500);
+					return;
+				}
+
+				frontendJsonString = gson.toJson(cypherpunkResponse);
+
+				if (!forceUpdate)
+					setResponsePublicCacheHeaders(res, PRICING_PLANS_CACHE_PERIOD);
+				res.getWriter().println(frontendJsonString);
+			} // }}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
+		} //}}}
 		else if (apiPath.equals("secretGeoDatabaseInit")) // {{{
 		{
 			String chunk = req.getParameter("chunk");
@@ -464,19 +493,6 @@ public class FrontendAPIv1 extends HttpServlet
 				LOG.log(Level.WARNING, "Response body: "+reqBody);
 				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
 			} //}}}
-			else // {{{ 404
-			{
-				res.sendError(404);
-			} //}}}
-		} //}}}
-		else if (apiPath.startsWith("/pricing")) // {{{
-		{
-			String pricingApiPath = apiPath.substring( "/pricing".length(), apiPath.length() );
-
-			if (pricingApiPath.equals("/plans")) // {{{
-			{
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkReferralCode.class, CypherpunkPricingPlans.class);
-			} // }}}
 			else // {{{ 404
 			{
 				res.sendError(404);

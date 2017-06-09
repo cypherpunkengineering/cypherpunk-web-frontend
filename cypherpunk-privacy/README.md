@@ -320,15 +320,10 @@ Returns:
 
 ### /pricing - pricing for promo codes
 
-##### `POST /pricing/plans`
+##### `GET /pricing/plans`
+##### `GET /pricing/plans/{referralCode}`
 Returns the pricing for a given coupon code.  
 
-Parameters:
-```
-{
-    "referralCode":"123"
-}
-```
 Returns:
 * 200 -> OK
 ```
