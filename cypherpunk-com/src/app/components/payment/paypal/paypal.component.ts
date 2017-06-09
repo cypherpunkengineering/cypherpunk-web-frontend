@@ -14,9 +14,9 @@ export class PaypalComponent implements OnChanges {
   monthlyButtonId = '';
   annuallyButtonId = '';
   semiannuallyButtonId = '';
-  monthlyDevButtonId = 'NUNG7U2CMN97W';
-  annuallyDevButtonId = 'VNBSU3MTDPNEE';
-  semiannuallyDevButtonId = 'KBUPJRS6WGBA2';
+  monthlyDevButtonId = 'UKHCGA2VESR5A';
+  annuallyDevButtonId = 'KY8G9YVQJQYHS';
+  semiannuallyDevButtonId = 'VW88YD42G7P2L';
 
   constructor(private globals: GlobalsService) { }
 
