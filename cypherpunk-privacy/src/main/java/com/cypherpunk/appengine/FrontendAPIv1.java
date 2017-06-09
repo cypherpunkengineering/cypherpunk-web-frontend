@@ -611,7 +611,7 @@ public class FrontendAPIv1 extends HttpServlet
 			sanitizedReqBody = gson.toJson(incomingRequestData);
 		}
 
-		if (reqMethod == HTTPMethod.POST && incomingRequestData == null)
+		if (reqMethod == HTTPMethod.POST && incomingRequestBean != null && incomingRequestData == null)
 		{
 			if (req.getHeader("Content-Encoding") != null)
 				LOG.log(Level.WARNING, "Content-Encoding is "+req.getHeader("Content-Encoding"));
