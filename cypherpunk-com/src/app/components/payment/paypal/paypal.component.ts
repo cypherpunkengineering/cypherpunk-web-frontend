@@ -6,7 +6,7 @@ import { GlobalsService } from '../../../services/globals.service';
   templateUrl: './paypal.component.html'
 })
 export class PaypalComponent implements OnChanges {
-  @Input() userId: string;
+  @Input() user;
   @Input() planData;
 
   env = 'DEV';
@@ -29,7 +29,7 @@ export class PaypalComponent implements OnChanges {
   }
 
   pay(planDuration, referralCode) {
-    let data = { id: this.userId, plan: planDuration, referralCode: referralCode };
+    let data = { id: this.user.account.id, plan: planDuration, referralCode: referralCode };
     if (!data.referralCode) { delete data.referralCode; }
     this.posData = JSON.stringify(data);
 

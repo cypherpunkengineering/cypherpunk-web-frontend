@@ -49,7 +49,8 @@ export class SessionService {
   }
 
   setExpirationString(expiration) {
-    // handle expiration
+    if (expiration === '0') { this.user.subscription.expirationString = 'Never'; return; }
+
     let now = new Date();
     let expirationDate = new Date(expiration);
     if (expirationDate > now) {

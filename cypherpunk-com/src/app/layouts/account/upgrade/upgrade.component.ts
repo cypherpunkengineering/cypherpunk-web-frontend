@@ -41,9 +41,7 @@ export class UpgradeComponent {
   };
 
   // user variables
-  email: string;
-  userId: string;
-  sessionUser;
+  user;
 
   // Stripe variables
   cards = [];
@@ -149,8 +147,7 @@ export class UpgradeComponent {
       this.authGuard.canActivate(route, state)
       .then((data) => { this.loading = data.loading || false; })
       .then(() => {
-        this.email = session.user.account.email;
-        this.userId = session.user.account.id;
+        this.user = session.user;
         let redirect = true;
         let type = session.user.account.type;
         let renewal = session.user.subscription.renewal;

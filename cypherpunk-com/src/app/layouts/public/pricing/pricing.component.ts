@@ -75,7 +75,7 @@ export class PricingComponent {
   showBTC = false;
 
   // Paypal variables
-  userId: string;
+  user;
 
   constructor(
     private zone: NgZone,
@@ -468,7 +468,7 @@ export class PricingComponent {
     return this.backend.createAccount(body, {})
     // set user session
     .then((data) => {
-      this.userId = data.account.id;
+      this.user = data;
       this.session.setUserData({
         account: { email: data.account.email },
         secret: data.secret
