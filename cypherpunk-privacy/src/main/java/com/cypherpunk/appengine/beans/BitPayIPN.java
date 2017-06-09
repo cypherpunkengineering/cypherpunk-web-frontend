@@ -17,6 +17,7 @@ package com.cypherpunk.appengine.beans;
 */
 public class BitPayIPN
 {
+	/*
 	private String id;
 	private String url;
 	private String status;
@@ -36,4 +37,14 @@ public class BitPayIPN
 	{
 		private String buyerEmail;
 	}
+	*/
+
+	private String status;
+	private boolean exceptionStatus;
+	private String amount;
+	private String rate;
+	private String action;
+	private String btcPaid;
+	private String currency;
+	private String posData;
 }

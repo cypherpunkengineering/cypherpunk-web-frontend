@@ -595,6 +595,7 @@ public class FrontendAPIv1 extends HttpServlet
 			try // parse json body of incoming request
 			{
 				String reqBody = getBodyFromRequest(req);
+				//LOG.log(Level.WARNING, "Got body: "+reqBody);
 				incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
 			}
 			catch (Exception e)
@@ -608,6 +609,19 @@ public class FrontendAPIv1 extends HttpServlet
 
 			// convert sanitized request body back to json and send in outgoing request to backend
 			sanitizedReqBody = gson.toJson(incomingRequestData);
+		}
+
+		if (incomingRequestData == null)
+		{
+			if (req.getHeader("Content-Encoding") != null)
+				LOG.log(Level.WARNING, "Content-Encoding is "+req.getHeader("Content-Encoding"));
+			if (req.getHeader("Content-Type") != null)
+				LOG.log(Level.WARNING, "Content-Type is "+req.getHeader("Content-Type"));
+			if (req.getHeader("Content-Length") != null)
+				LOG.log(Level.WARNING, "Content-Length is "+req.getHeader("Content-Length"));
+			LOG.log(Level.WARNING, "incomingRequestData is null!");
+			res.sendError(400);
+			return;
 		}
 
 		String reqURI = null;
@@ -671,8 +685,46 @@ public class FrontendAPIv1 extends HttpServlet
 		res.getWriter().println(str);
 	} // }}}
 
+	private Map<String, String> getQueryMap(String query) // {{{
+	{
+		String[] params = query.split("&");
+		Map<String, String> map = new HashMap<String, String>();
+		for (String param : params)
+		{
+			String name = param.split("=")[0];
+			String value = param.split("=")[1];
+			map.put(name, value);
+		}
+		return map;
+	} // }}}
 	private String getBodyFromRequest(HttpServletRequest req) // {{{
 	{
+		String contentType = req.getHeader("Content-Type");
+
+		if (contentType.equals("application/x-www-form-urlencoded"))
+		{
+			LOG.log(Level.WARNING, "Parsing as application/x-www-form-urlencoded");
+			try // convert to json string
+			{
+				Map<String, String> map = new HashMap<String,String>();
+				Map<String, String[]> parameters = req.getParameterMap();
+				for (String key : parameters.keySet())
+				{
+					String[] values = req.getParameterValues(key);
+					if (values != null)
+					map.put(key, values[0]);
+				}
+				String jsonString = gson.toJson(map);
+				LOG.log(Level.DEBUG, "Got json string: "+jsonString);
+				return jsonString;
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+		}
+
 		// read request body
 		BufferedReader reader = null;
 		StringBuffer sb = new StringBuffer();
