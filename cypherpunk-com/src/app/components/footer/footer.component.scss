@@ -167,3 +167,7 @@
   .safari-column-fix { display: block; }
   .footerContainer .footer { height: 941px; }
 }
+
+@media (max-width: 445px) {
+  .footerContainer .footer { height: 1367px; }
+}
