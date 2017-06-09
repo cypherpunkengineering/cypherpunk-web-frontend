@@ -1,6 +1,12 @@
 .masthead {
   border-bottom: 10px solid #efeaea;
-  .masthead-header { margin: 30px auto; }
+
+  .masthead-header {
+    font-size: 28px;
+    margin: 0 auto 10px;
+    padding: 0 10px;
+  }
+
   .masthead-image {
     width: 100%;
     max-width: 276px;

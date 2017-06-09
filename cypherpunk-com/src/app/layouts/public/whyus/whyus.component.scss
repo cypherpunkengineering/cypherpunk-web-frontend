@@ -1,10 +1,14 @@
 .masthead {
   border-bottom: 15px solid #efebeb;
-  .masthead-header { margin: 40px auto 10px; }
+  .masthead-header {
+    margin: 0 auto 10px;
+    padding: 0 10px;
+    font-size: 28px;
+  }
   .masthead-subheader {
     max-width: 700px;
     margin: auto;
-    padding-bottom: 35px;
+    padding: 0 10px 35px;
     text-align: center;
     font-size: 18px;
     line-height: 1.5;
@@ -103,5 +107,5 @@
 }
 
 @media (max-width: 375px) {
-  .masthead .masthead-subheader { padding: 0 10px 20px; }
+  .masthead .masthead-subheader { font-size: 14px; padding: 0 10px 20px; }
 }

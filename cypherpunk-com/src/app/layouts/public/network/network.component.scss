@@ -1,7 +1,11 @@
 .masthead {
   overflow: hidden;
 
-  .masthead-header { margin: 45px auto 0; padding: 0 0 15px; }
+  .masthead-header {
+    font-size: 28px;
+    margin: 0 auto 0;
+    padding: 0 10px 15px;
+  }
 
   .masthead-image {
     position: relative;

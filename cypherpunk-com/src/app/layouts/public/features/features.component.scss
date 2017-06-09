@@ -1,11 +1,15 @@
 .masthead {
-  .masthead-header { margin: 40px auto 0; padding: 0 0 10px; }
+  .masthead-header {
+    font-size: 28px;
+    margin: 0 auto 0;
+    padding: 0 10px 10px;
+  }
 
   .masthead-subheader {
     text-align: center;
     font-size: 18px;
     color: #74D5D4;
-    padding: 0 0 60px;
+    padding: 0 10px 60px;
   }
 }
 
@@ -234,6 +238,7 @@
 }
 
 @media (max-width: 375px) {
+  .masthead .masthead-subheader { font-size: 14px; }
   .cta-container .call-to-action .btn { width: 280px; font-size: 18px; }
   .cta-container a { padding: 0; }
 }

@@ -1,61 +1,8 @@
 .wrapper {
-  .masthead {
-    .masthead-header {
-      margin: 40px auto 0;
-      padding: 0 0 50px;
-      span { color: #7972c4; }
-    }
-
-    .search {
-      width: 100%;
-      max-width: 1000px;
-      margin: auto;
-      overflow: auto;
-      padding: 0 10px 30px;
-
-      input {
-        width: 100%;
-        padding: 10px 60px 10px 10px;
-        font-size: 16px;
-        border: 0;
-        margin: 0 -60px 0 0;
-        float: left;
-        border-radius: 5px;
-      }
-
-      button {
-        float: right;
-        height: 38px;
-        padding: 0 15px;
-        color: #fff;
-        border: 0;
-        background-color: #ff7857;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-      }
-    }
-
-    .contact {
-      max-width: 1000px;
-      margin: auto;
-      padding: 0 0 30px;
-      text-align: center;
-
-      .option {
-        display: inline-block;
-        margin: 0 20px;
-        button {
-          border: 0;
-          border-radius: 5px;
-          padding: 10px;
-          min-width: 200px;
-          background-color: #efeaea;
-          cursor: pointer;
-
-          i { margin-right: 10px; }
-        }
-      }
-    }
+  .masthead .masthead-header {
+    font-size: 28px;
+    margin: 0 auto 0;
+    padding: 0 10px 40px;
   }
 
   .quickstart {
