@@ -5,7 +5,7 @@ const DEV_MODE = process.env.DEV_MODE || false;
 const REAL_MODE = false;
 
 let urlStart = 'http://localhost:8080/';
-if (REAL_MODE) { urlStart = 'https://cypherpunk.privacy.network/'; }
+if (REAL_MODE) { urlStart = 'https://api.cypherpunk.com/'; }
 
 export function amazonPurchase(req, res) {
 

@@ -55,7 +55,7 @@ function registerEmail() {
   var password = 'test123';
   var xmlHttp = new XMLHttpRequest();
 
-  var url = 'https://cypherpunk.privacy.network/api/v0/account/register/teaser';
+  var url = 'https://api.cypherpunk.com/api/v0/account/register/teaser';
   xmlHttp.open("POST", url, true);
 
   xmlHttp.onreadystatechange = function() {

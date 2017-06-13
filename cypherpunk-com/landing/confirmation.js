@@ -44,7 +44,7 @@ var confToken = qs.confirmationToken;
 if (!accountId || !confToken) { window.location.href = '/'; }
 
 var xmlHttp = new XMLHttpRequest();
-var url = 'https://cypherpunk.privacy.network/api/v0/account/confirm/email';
+var url = 'https://api.cypherpunk.com/api/v0/account/confirm/email';
 xmlHttp.open("POST", url, true);
 
 xmlHttp.onreadystatechange = function() {

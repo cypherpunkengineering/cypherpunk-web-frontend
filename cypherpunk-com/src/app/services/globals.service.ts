@@ -10,7 +10,7 @@ export class GlobalsService {
   API_URL = 'http://localhost:3000/api/' + this.API_VERSION;
   private devAPI = 'http://localhost:3000';
   private testAPI = 'https://test-api.cypherpunk.engineering';
-  private prodAPI = 'https://cypherpunk.privacy.network';
+  private prodAPI = 'https://api.cypherpunk.com';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     let browser_env = isPlatformBrowser(platformId);
