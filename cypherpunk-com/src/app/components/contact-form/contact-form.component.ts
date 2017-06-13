@@ -10,11 +10,11 @@ import { SessionService } from '../../services/session.service';
 })
 export class ContactFromComponent {
   @Input() show: { show: false };
-  @Input() exitable: boolean = true;
+  @Input() exitable = true;
   name: string;
   email: string;
   subject: string;
-  groupID: string = '32425127';
+  groupID = '32425127';
   comment: string;
 
   groups = [
@@ -34,8 +34,8 @@ export class ContactFromComponent {
   subjectValid: boolean;
   commentTouched: boolean;
   commentValid: boolean;
-  success: boolean = false;
-  error: boolean = false;
+  success = false;
+  error = false;
 
   constructor(
     private alerts: AlertService,
