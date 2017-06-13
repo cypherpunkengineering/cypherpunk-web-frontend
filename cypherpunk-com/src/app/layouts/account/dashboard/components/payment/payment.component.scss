@@ -1,0 +1,92 @@
+.payment-details {
+  transition: all 0.5s;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  &.show { max-height: 920px; opacity: 1; }
+
+  .left {
+    width: 50%;
+    float: left;
+  }
+  .right {
+    width: 50%;
+    float: left;
+  }
+
+  .current-card {
+    width: 250px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 25px auto;
+    padding: 15px;
+    box-shadow: 1px 1px 3px 1px #ccc;
+
+    .logo { }
+    .number { padding: 40px 0 0; text-align: right; }
+    .expiry { text-align: right; }
+  }
+
+  .card-select {
+    width: 300px;
+    margin: 25px auto;
+    text-align: center;
+
+    .btn {
+      width: 200px;
+      padding: 10px;
+      margin: 25px 0 0;
+      &.blue:hover { background-color: #27a5e2; }
+    }
+
+    .privacy { padding: 10px 0 0; font-size: small; }
+  }
+
+  .create-card {
+    width: 400px;
+    padding: 0 10px;
+    margin: 20px auto;
+    overflow: hidden;
+    transition: all 0.5s;
+    max-height: 0;
+    opacity: 0;
+    &.open { max-height: 750px; opacity: 1; }
+
+    .info {
+      width: 100%;
+      .btn { margin: 20px 0 0; padding: 10px; width: 100%; }
+      .btn.blue:hover { background-color: #27a5e2; }
+    }
+
+    label { font-size: 18px; color: #61BBC3; }
+    input, select {
+      display: table-cell;
+      background-color: #fff;
+      width: 100%;
+      height: 50px;
+      border-radius: 4px;
+      margin-top: 5px;
+      font-size: 18px;
+      padding: 10px;
+      color: #61BBC3;
+      border: 2px solid #87CBD4;
+      &.error {
+        border-color: #a94442;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #ce8483;
+      }
+      &.success {
+        border-color: #3c763d;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #67b168;
+      }
+      &::-webkit-input-placeholder,
+      &::-moz-placeholder,
+      &:-ms-input-placeholder,
+      &:-moz-placeholder { color: #61BBC3; }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .payment-details .create-card.open { width: 100%; }
+}

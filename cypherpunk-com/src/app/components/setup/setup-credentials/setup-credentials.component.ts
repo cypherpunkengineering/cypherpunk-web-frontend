@@ -23,7 +23,7 @@ export class SetupCredentialsComponent {
       document.execCommand('copy');
       el.blur();
     }
-    catch(err) {
+    catch (err) {
       alert('Please press Ctrl/Cmd + C to copy');
     }
   }

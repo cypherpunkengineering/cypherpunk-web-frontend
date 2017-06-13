@@ -1,0 +1,58 @@
+<div class="content">
+  <div class="content-inner">
+    <div class="content-header">Manual VPN/proxy Setup</div>
+
+    <div class="vpn-select-container">
+      <label for="vpnSelect">Choose a vpn client:</label>
+      <select name="vpnSelect" id="vpn-select" [(ngModel)]="vpnSelect">
+        <option value="openvpn">OpenVPN 2.3/2.4</option>
+        <option value="ipsec">IPSec VPN</option>
+        <option value="ike">IKEv2 VPN</option>
+        <option value="proxy">HTTP/SOCKS Proxy</option>
+      </select>
+    </div>
+
+    <hr>
+
+    <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
+      <div class="subheader">OpenVPN 2.3/2.4</div>
+      <app-setup-generator [showCredentials]="true"></app-setup-generator>
+    </div>
+
+    <div id="ipsec" class="vpn" [ngClass]="{'show': vpnSelect === 'ipsec'}">
+      <div class="subheader">IPSec VPN</div>
+
+      <div class="privacy">
+        <app-setup-credentials></app-setup-credentials>
+        <app-setup-hostname [(location)]="ipsecLocation"></app-setup-hostname>
+      </div>
+    </div>
+
+    <div id="ike" class="vpn" [ngClass]="{'show': vpnSelect === 'ike'}">
+      <div class="subheader">IKEv2 VPN</div>
+
+      <div class="privacy">
+        <app-setup-credentials></app-setup-credentials>
+        <app-setup-hostname [(location)]="ikeLocation"></app-setup-hostname>
+      </div>
+    </div>
+
+    <div id="http" class="vpn" [ngClass]="{'show': vpnSelect === 'proxy'}">
+      <div class="subheader">HTTP/SOCKS Proxy</div>
+
+      <div class="privacy">
+        <app-setup-credentials></app-setup-credentials>
+        <app-setup-hostname [(location)]="httpLocation"></app-setup-hostname>
+
+        <span>
+          <strong>Ports to use:</strong> <br>
+          http:// -> 80<br>
+          https:// -> 3128<br>
+          socks5:// -> 1080<br>
+          cypherplay (non-tls) -> 4<br>
+          cypherplay (tls) -> 516
+        </span>
+      </div>
+    </div>    
+  </div>
+</div>

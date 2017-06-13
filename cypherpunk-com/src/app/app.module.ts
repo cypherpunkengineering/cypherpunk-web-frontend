@@ -55,9 +55,7 @@ import { ChromePartialModule } from './layouts/public/partial/chrome/chrome.modu
 import { FirefoxPartialModule } from './layouts/public/partial/firefox/firefox.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
-import { BillingModule } from './layouts/account/billing/billing.module';
 import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
-import { SetupModule } from './layouts/account/setup/setup.module';
 import { ResetModule } from './layouts/account/reset/reset.module';
 
 import { SessionService } from './services/session.service';
@@ -123,9 +121,7 @@ import { GlobalsService } from './services/globals.service';
     ChromePartialModule,
     FirefoxPartialModule,
 
-    BillingModule,
     UpgradeModule,
-    SetupModule,
     ResetModule,
     DashboardModule, // must be after other account modules
 

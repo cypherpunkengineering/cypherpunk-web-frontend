@@ -152,11 +152,6 @@ const metaMap = {
     title: 'Billing | Cypherpunk Privacy',
     description: ' '
   },
-  'account:setup.html': {
-    url: 'https://cypherpunk.com/account/setup',
-    title: 'Setup Cypherpunk Privacy',
-    description: ' '
-  },
   'account:reset.html': {
     url: 'https://cypherpunk.com/account/reset',
     title: 'Reset Your Password',

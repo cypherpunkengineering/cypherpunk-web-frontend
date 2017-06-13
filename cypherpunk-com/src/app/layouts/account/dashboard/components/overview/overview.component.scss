@@ -1,0 +1,129 @@
+.content {
+  width: 100%;
+  border-bottom: 10px solid #efeaea;
+
+  .content-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 0;
+
+    .content-header {
+      color: #ff7857;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .content-row {
+      margin: 0 auto;
+      padding: 15px;
+      width: 90%;
+      border-bottom: 1px solid #d8d8f6;
+      overflow: auto;
+      font-size: 20px;
+      color: #483c91;
+      font-size: 18px;
+      a { text-decoration: underline; color: #483c91; cursor: pointer; }
+      a:hover { color: #9c93d3; }
+      .heading { padding-left: 25px; font-weight: bold; }
+      .left { float: left; padding-left: 25px; }
+      .right { float: right; padding-right: 25px; }
+      .full { padding-left: 25px; }
+      .email { color: #7972c4; }
+      .uppercase { text-transform: uppercase; }
+      &:last-child { margin-bottom: 25px; }
+      &.clickable:hover { color: #9c93d3; }
+    }
+  }
+}
+
+.platforms {
+  padding: 50px 0;
+
+  .platforms-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .platform {
+    width: 90px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 0;
+    padding: 10px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ff7857;
+      .display { display: none; }
+      .hover { display: block; }
+    }
+
+    .display {
+      .image {
+        height: 60px;
+        padding: 10px 0 0;
+        img { height: 50px; }
+        img.width { width: 100%; height: auto; }
+      }
+
+      .title {
+        padding: 20px 0 0;
+        font-size: 18px;
+        text-align: center;
+      }
+    }
+
+    .hover {
+      display: none;
+
+      a { text-decoration: none; }
+
+      .download-icon {
+        height: 100px;
+        img { height: 40px; }
+        .type {
+          font-size: 14px;
+          color: #fff;
+          padding: 10px 0 0;
+        }
+      }
+
+      .link {
+        color: #fff;
+        font-size: 18px;
+        padding: 10px 0 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.clickable { cursor: pointer; }
+
+@media (max-width: 1060px) {
+  .wrapper {
+    .content .content-inner .content-row .full { padding: 0; }
+    .content .content-inner .content-row .heading {
+      width: 100%;
+      text-align: left;
+      padding: 0;
+    }
+    .content .content-inner .content-row .left {
+      width: 50%;
+      text-align: left;
+      padding: 0;
+    }
+    .content .content-inner .content-row .right {
+      width: 50%;
+      text-align: right;
+      padding: 0;
+    }
+  }
+}
