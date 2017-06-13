@@ -181,7 +181,7 @@
           By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
         </div>
 
-        <app-paypal [user]="user" [planData]="planData" #paypal></app-paypal>
+        <app-paypal [planData]="planData" #paypal></app-paypal>
       </div>
     </div>
 
@@ -218,7 +218,7 @@
           By continuing to BitPay you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
         </div>
 
-        <app-bitpay [user]="user" [planData]="planData" #bitpay></app-bitpay>
+        <app-bitpay [planData]="planData" #bitpay></app-bitpay>
       </div>
     </div>
   </div>

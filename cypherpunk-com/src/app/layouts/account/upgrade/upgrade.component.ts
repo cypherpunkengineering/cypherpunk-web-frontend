@@ -353,7 +353,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.paypal.pay(this.planData.selected.id, this.planData.referralCode);
+    this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
   }
 
   // pay with amazon
@@ -396,7 +396,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.bitpay.pay(this.planData.selected.id, this.planData.referralCode);
+    this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
   }
 
   // helper functions

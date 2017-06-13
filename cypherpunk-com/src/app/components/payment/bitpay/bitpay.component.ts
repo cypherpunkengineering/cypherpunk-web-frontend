@@ -6,7 +6,6 @@ import { GlobalsService } from '../../../services/globals.service';
   templateUrl: './bitpay.component.html'
 })
 export class BitpayComponent implements OnChanges {
-  @Input() user;
   @Input() planData;
 
   env = 'DEV';
@@ -28,9 +27,8 @@ export class BitpayComponent implements OnChanges {
     }
   }
 
-  pay(planDuration, referralCode) {
-    let data = { id: this.user.account.id, plan: planDuration, referralCode: referralCode };
-    console.log(data);
+  pay(userId, planDuration, referralCode) {
+    let data = { id: userId, plan: planDuration, referralCode: referralCode };
     if (!data.referralCode) { delete data.referralCode; }
     this.posData = JSON.stringify(data);
 

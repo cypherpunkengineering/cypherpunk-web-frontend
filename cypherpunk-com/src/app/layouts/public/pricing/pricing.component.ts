@@ -352,7 +352,7 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.paypal.pay(this.planData.selected.id, this.planData.referralCode); })
+    .then(() => { this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode); })
     .catch(error => { this.handleError(error); });
   }
 
@@ -456,7 +456,7 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.bitpay.pay(this.planData.selected.id, this.planData.referralCode); })
+    .then(() => { this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode); })
     .catch(error => { this.handleError(error); });
   }
 
@@ -484,6 +484,7 @@ export class PricingComponent {
       this.loading = false;
       this.disablePayment = false;
 
+      console.log(error);
       this.modal.header = this.errHeader;
       this.modal.body = error.message;
       this.modal.link = false;
