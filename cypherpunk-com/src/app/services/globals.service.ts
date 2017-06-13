@@ -10,6 +10,7 @@ export class GlobalsService {
   API_URL = 'http://localhost:3000/api/' + this.API_VERSION;
   private devAPI = 'http://localhost:3000';
   private testAPI = 'https://test-api.cypherpunk.engineering';
+  private stagingAPI = 'https://api.cypherpunk.engineering';
   private prodAPI = 'https://api.cypherpunk.com';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -28,6 +29,7 @@ export class GlobalsService {
       let hostname = document.location.hostname;
       if (hostname.startsWith('localhost')) { this.BACKEND_HOST = this.devAPI; }
       else if (hostname.startsWith('test.cypherpunk')) { this.BACKEND_HOST = this.testAPI; }
+      else if (hostname.startsWith('cypherpunk.engineering')) { this.BACKEND_HOST = this.stagingAPI; }
       else { this.BACKEND_HOST = this.prodAPI; }
     }
     else { this.BACKEND_HOST = this.devAPI; }
