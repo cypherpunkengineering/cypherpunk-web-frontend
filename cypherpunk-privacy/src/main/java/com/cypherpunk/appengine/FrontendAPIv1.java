@@ -489,9 +489,11 @@ public class FrontendAPIv1 extends HttpServlet
 			} //}}}
 			else if (ipnApiPath.equals("/paypal")) // {{{
 			{
+				/*
 				String reqBody = getBodyFromRequest(req);
 				LOG.log(Level.WARNING, "Response body: "+reqBody);
-				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
+				*/
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
 			} //}}}
 			else // {{{ 404
 			{
