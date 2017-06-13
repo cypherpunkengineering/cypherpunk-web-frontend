@@ -34,6 +34,49 @@
   .vpn {
     display: none;
     &.show { display: block; }
+
+    .info {
+      font-size: 18px;
+      margin-bottom: 50px;
+      padding: 0 10px;
+    }
+
+    .dns {
+      width: 100%;
+      text-align: center;
+      font-size: 0;
+      padding: 0 20px;
+
+      .title {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        width: 33%;
+      }
+
+      .ip {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        width: 33%;
+      }
+
+      .register {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        width: 33%;
+
+        button {
+          width: 100%;
+          max-width: 280px;
+          height: 50px;
+          font-size: 16px;
+          &:hover { background-color: #ff8c71; }
+          &:disabled { background-color: #ff7857; }
+        }
+      }
+    }
   }
 }
 

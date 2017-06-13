@@ -9,6 +9,7 @@
         <option value="ipsec">IPSec VPN</option>
         <option value="ike">IKEv2 VPN</option>
         <option value="proxy">HTTP/SOCKS Proxy</option>
+        <option value="dns">DNS Settings</option>
       </select>
     </div>
 
@@ -53,6 +54,25 @@
           cypherplay (tls) -> 516
         </span>
       </div>
-    </div>    
+    </div>
+
+    <div class="vpn" [ngClass]="{'show': vpnSelect === 'dns'}">
+      <div class="subheader">DNS Settings</div>
+
+      <h4 class="info">
+        In order to use DNS services, you must register your IP address with us so that we can recoginize you.
+      </h4>
+
+      <div class="dns">
+        <div class="title">My IP Address</div>
+
+        <div class="ip">127.0.0.1</div>
+
+        <div class="register">
+          <button class="btn orange">Register My IP</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

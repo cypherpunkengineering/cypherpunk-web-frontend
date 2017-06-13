@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'account-configs',
@@ -6,12 +6,12 @@ import { Component, PLATFORM_ID, Inject } from '@angular/core';
   styleUrls: ['./configs.component.css']
 })
 export class AccountConfigsComponent {
-  loading = true;
   vpnSelect = 'openvpn';
-  openvpnLocation = { hostname: '', display: false };
   ipsecLocation = { hostname: '', display: true };
   ikeLocation = { hostname: '', display: true };
   httpLocation = { hostname: '', display: true };
 
   constructor() { }
+
+  addIp() { }
 }

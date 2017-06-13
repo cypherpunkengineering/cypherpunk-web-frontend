@@ -30,11 +30,6 @@
           <span>Refer Friends</span>
         </li>
       </a>
-      <a routerLink="/account/dns" (click)="changePage('dns')">
-        <li [ngClass]="{'active': currentTab === 'dns'}">
-          <span>DNS Settings</span>
-        </li>
-      </a>
       <a routerLink="/account/configs" (click)="changePage('configs')">
         <li [ngClass]="{'active': currentTab === 'configs'}">
           <span>Manual Configs</span>
@@ -63,10 +58,6 @@
 
   <div class="page" *ngIf="currentTab === 'refer'">
     <account-refer></account-refer>
-  </div>
-
-  <div class="page" *ngIf="currentTab === 'dns'">
-    <account-dns></account-dns>
   </div>
 
   <div class="page" *ngIf="currentTab === 'configs'">

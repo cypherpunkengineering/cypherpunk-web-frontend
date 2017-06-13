@@ -2,7 +2,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule }   from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccountDnsComponent } from './components/dns/dns.component';
 import { SharedModule } from '../../../components/shared/shared.module';
 import { AccountReferComponent } from './components/refer/refer.component';
 import { AccountBillingComponent } from './components/billing/billing.component';
@@ -31,7 +30,6 @@ const COMPONENTS = [
   AccountSubscriptionComponent,
   AccountOverviewComponent,
   AccountReferComponent,
-  AccountDnsComponent,
   AccountConfigsComponent
 ];
 
