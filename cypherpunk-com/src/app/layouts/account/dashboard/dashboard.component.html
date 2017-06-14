@@ -42,6 +42,10 @@
     <div class="pp-warning" *ngIf="state.showPPWarning">
       Thank you for your payment. Your transaction has is being processed, and a receipt of your purchase wil be emailed to you. You may log into your account at <a href="www.paypal.com" target="blank" rel="noopener noreferrer">www.paypal.com</a> to view details of this transaction. Please visit our download page in the meantime: <a routerLink="/download">Download</a>
     </div>
+
+    <div class="pp-warning" *ngIf="state.showBPWarning">
+      Thank you for your payment. Your transaction has is being processed, and a receipt of your purchase wil be emailed to you. You may log into your account at <a href="www.bitpay.com" target="blank" rel="noopener noreferrer">www.bitpay.com</a> to view details of this transaction. Please visit our download page in the meantime: <a routerLink="/download">Download</a>
+    </div>
   </div>
 
   <div class="page" *ngIf="currentTab === 'overview'">

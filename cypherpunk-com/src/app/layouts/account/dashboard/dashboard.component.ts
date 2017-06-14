@@ -20,11 +20,13 @@ export class DashboardComponent implements OnInit {
   state: {
     user: any,
     loading: boolean,
-    showPPWarning: boolean
+    showPPWarning: boolean,
+    showBPWarning: boolean
   } = {
     user: {},
     loading: true,
-    showPPWarning: false
+    showPPWarning: false,
+    showBPWarning: false
   };
 
   constructor(
@@ -89,7 +91,13 @@ export class DashboardComponent implements OnInit {
       }
     });
 
-    // TODO: handle incoming from bitpay
+    // handle incoming from bitpay
+    if (isPlatformBrowser(this.platformId)) {
+      let ref = document.referrer;
+      if (ref.startsWith('https://bitpay.com') || ref.startsWith('https://test.bitpay.com')) {
+        this.state.showBPWarning = true;
+      }
+    }
 
     // handle page routing
     let page = this.activatedRoute.snapshot.params['page'];
