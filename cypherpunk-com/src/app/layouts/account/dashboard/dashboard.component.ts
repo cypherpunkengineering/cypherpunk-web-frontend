@@ -5,6 +5,7 @@ import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { GlobalsService } from '../../../services/globals.service';
 import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +13,7 @@ import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  env: string;
   currentTab = '';
   intervalCounter = 0;
   intervalHandler: any;
@@ -36,6 +38,7 @@ export class DashboardComponent implements OnInit {
     private authGuard: AuthGuard,
     private backend: BackendService,
     private session: SessionService,
+    private globals: GlobalsService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
@@ -44,8 +47,9 @@ export class DashboardComponent implements OnInit {
     // handle title
     this.document.title = 'My Account with Cypherpunk Privacy';
 
-    // set user
+    // set user, env, getting started
     this.state.user = this.session.user;
+    this.env = this.globals.ENV;
     this.showGettingStarted = (this.session.user.account.type !== 'free') && this.session.getGettingStarted();
 
     // redirect user if not logged in

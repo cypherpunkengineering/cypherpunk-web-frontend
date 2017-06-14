@@ -1,13 +1,12 @@
-import { RequestOptions } from '@angular/http';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
-import { PlansService, Plan } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { PlansService, Plan } from '../../../services/plans.service';
 import { Component, PLATFORM_ID, Inject, NgZone, ViewChild } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 
@@ -88,8 +87,7 @@ export class UpgradeComponent {
     let params = this.activatedRoute.snapshot.params;
     this.planData.referralCode = params['referralCode'] || '';
     let body = { referralCode: this.planData.referralCode };
-    let options = new RequestOptions({});
-    this.backend.pricingPlans(this.planData.referralCode, options)
+    this.backend.pricingPlans(this.planData.referralCode, {})
     // build plans as needed
     .then((plans) => {
       // monthly plan
@@ -287,9 +285,8 @@ export class UpgradeComponent {
 
   createCard(token) {
     let body = { token: token };
-    let options = new RequestOptions({});
     // set cookie
-    return this.backend.createCard(body, options)
+    return this.backend.createCard(body, {})
     .then((data) => { this.auth.authed = true; return data; })
     // alert and redirect
     .then((data) => {
@@ -314,8 +311,7 @@ export class UpgradeComponent {
     this.disablePayment = true;
 
     let body = { default_source: this.defaultCardId };
-    let options = new RequestOptions({});
-    return this.backend.defaultCard(body, options)
+    return this.backend.defaultCard(body, {})
     .then((data) => {
       this.defaultCardId = data.default_source;
       this.cards = data.sources;
@@ -328,10 +324,9 @@ export class UpgradeComponent {
       plan: this.planData.selected.id,
       referralCode: this.planData.referralCode
     };
-    let options = new RequestOptions({});
 
     // set cookie
-    return this.backend.stripeUpgrade(body, options)
+    return this.backend.stripeUpgrade(body, {})
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {

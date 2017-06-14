@@ -30,7 +30,7 @@
           <span>Refer Friends</span>
         </li>
       </a>
-      <a routerLink="/account/configs" (click)="changePage('configs')">
+      <a routerLink="/account/configs" (click)="changePage('configs')" *ngIf="env === 'DEV'">
         <li [ngClass]="{'active': currentTab === 'configs'}">
           <span>Manual Configs</span>
         </li>

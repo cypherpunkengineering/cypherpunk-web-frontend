@@ -21,6 +21,7 @@ export class GlobalsService {
       let hostname = document.location.hostname;
       if (hostname.startsWith('localhost')) { this.ENV = 'DEV'; }
       else if (hostname.startsWith('test.cypherpunk')) { this.ENV = 'DEV'; }
+      else if (hostname.startsWith('cypherpunk.engineering')) { this.ENV = 'STAGING'; }
       else { this.ENV = 'PROD'; }
     }
 

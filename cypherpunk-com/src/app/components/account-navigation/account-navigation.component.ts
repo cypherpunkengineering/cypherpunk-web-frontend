@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
+import { GlobalsService } from '../../services/globals.service';
 import { SessionService } from '../../services/session.service';
 import { Component, HostListener, NgZone } from '@angular/core';
 
@@ -11,6 +12,7 @@ import { Component, HostListener, NgZone } from '@angular/core';
 })
 export class AccountNavigationComponent {
   user: any;
+  env: string;
   enableLinks = true;
   showDropDown = false;
   scrolledNavElement: HTMLElement;
@@ -20,12 +22,14 @@ export class AccountNavigationComponent {
     private router: Router,
     private auth: AuthService,
     private session: SessionService,
+    private globals: GlobalsService,
     private alertService: AlertService
   ) {
     // detect route
     if (this.router.url.startsWith('/account/upgrade')) { this.enableLinks = false; }
 
     // assign user from session
+    this.env = globals.ENV;
     this.user = session.user;
   }
 

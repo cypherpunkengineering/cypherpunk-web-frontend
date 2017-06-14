@@ -2,6 +2,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
+import { GlobalsService } from '../../services/globals.service';
 import * as platform from 'platform';
 
 @Component({
@@ -10,6 +11,7 @@ import * as platform from 'platform';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  env: string;
   currentTab: string;
   isFeatures = false;
   enableLinks = true;
@@ -36,8 +38,12 @@ export class NavigationComponent {
   constructor(
     private router: Router,
     private auth: AuthService,
+    private globals: GlobalsService,
     private session: SessionService
   ) {
+    // detect env
+    this.env = globals.ENV;
+
     // detect route
     if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
     if (this.router.url.startsWith('/login')) { this.enableLinks = false; }

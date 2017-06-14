@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
           Pricing
         </a>
       </li>
@@ -35,7 +35,7 @@
         </a>
       </li>
       <li>
-        <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+        <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
           <button class="btn orange">UPGRADE</button>
         </a>
       </li>
@@ -74,7 +74,7 @@
           <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
             Pricing
           </a>
         </li>
@@ -92,7 +92,7 @@
           </a>
         </li>
         <li>
-          <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+          <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
             <button class="btn orange">UPGRADE</button>
           </a>
         </li>
@@ -189,7 +189,7 @@
     <div class="mobile-dd-item" routerLink="/apps" routerLinkActive="active">
       Apps
     </div>
-    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
       Pricing
     </div>
     <a routerLink="/support" routerLinkActive="active">
@@ -201,7 +201,7 @@
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
     </a>
-    <a routerLink="/account/upgrade" *ngIf="isLoggedIn() && getAccountType() === 'free'">
+    <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
       <div class="mobile-dd-item">UPGRADE</div>
     </a>
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
