@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   currentTab = '';
   intervalCounter = 0;
   intervalHandler: any;
+  showGettingStarted: boolean;
 
   // current site state
   state: {
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit {
 
     // set user
     this.state.user = this.session.user;
+    this.showGettingStarted = (this.session.user.account.type === 'premium') && this.session.getGettingStarted();
 
     // redirect user if not logged in
     if (isPlatformBrowser(this.platformId)) {
@@ -79,6 +81,7 @@ export class DashboardComponent implements OnInit {
           .then((data) => {
             if (data.account.type === 'premium') {
               this.session.setUserData(data);
+              this.showGettingStarted = true;
               this.state.loading = false;
               clearInterval(this.intervalHandler);
             }
@@ -110,4 +113,9 @@ export class DashboardComponent implements OnInit {
   }
 
   changePage(page) { this.currentTab = page; }
+
+  hideGettingStarted() {
+    this.session.setGettingStarted(false);
+    this.showGettingStarted = false;
+  }
 }

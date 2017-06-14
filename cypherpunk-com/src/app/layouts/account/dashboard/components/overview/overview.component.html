@@ -250,9 +250,8 @@
 
 <div class="modal" [ngClass]="{'open': showEmailModal}">
   <div class="background" (click)="showEmailModal = false" [ngClass]="{'open': showEmailModal}"></div>
-  <div class="modal-content">
-    <div class="modal-header">Change Email</div>
-    <div class="modal-line"></div>
+  <div class="modal-content" [ngClass]="{'open': showEmailModal}">
+    <div class="modal-header">Change Password</div>
 
     <div class="modal-body">
       <div class="row">
@@ -279,9 +278,8 @@
 
 <div class="modal" [ngClass]="{'open': showPasswordModal}">
   <div class="background" (click)="showPasswordModal = false" [ngClass]="{'open': showPasswordModal}"></div>
-  <div class="modal-content">
+  <div class="modal-content" [ngClass]="{'open': showPasswordModal}">
     <div class="modal-header">Change Password</div>
-    <div class="modal-line"></div>
 
     <div class="modal-body">
       <div class="row">

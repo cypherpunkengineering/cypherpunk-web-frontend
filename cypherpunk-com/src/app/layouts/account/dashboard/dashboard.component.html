@@ -72,3 +72,17 @@
 <app-footer></app-footer>
 
 <app-loading [(state)]="state.loading"></app-loading>
+
+<div class="modal" [ngClass]="{'open': showGettingStarted}">
+  <div class="background" (click)="hideGettingStarted()" [ngClass]="{'open': showGettingStarted}"></div>
+  <div class="modal-content" [ngClass]="{'open':showGettingStarted}">
+    <div class="modal-header">Getting Started</div>
+
+    <div class="modal-body">
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn teal" (click)="hideGettingStarted()">Close</button>
+    </div>
+  </div>
+</div>

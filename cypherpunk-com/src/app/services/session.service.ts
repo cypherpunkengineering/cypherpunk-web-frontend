@@ -14,7 +14,8 @@ export class SessionService {
     secret: '',
     status: '',
     priceModel: 0,
-    payOption: 0
+    payOption: 0,
+    showGettingStarted: false
   };
 
   constructor(
@@ -157,5 +158,14 @@ export class SessionService {
     this.localStorage.removeItem('subscription.expiration');
 
     this.userFound = false;
+  }
+
+  getGettingStarted() {
+    return Boolean(this.localStorage.getItem('showGettingStarted'));
+  }
+
+  setGettingStarted(enabled: boolean) {
+    this.user.showGettingStarted = enabled;
+    this.localStorage.setItem('showGettingStarted', enabled);
   }
 }

@@ -315,6 +315,7 @@ export class PricingComponent {
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {
+      this.session.setGettingStarted(true);
       this.alertService.success('Your account was created!');
       this.router.navigate(['/account']);
     })
@@ -352,7 +353,10 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode); })
+    .then(() => {
+      this.session.setGettingStarted(true);
+      this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+    })
     .catch(error => { this.handleError(error); });
   }
 
@@ -419,6 +423,7 @@ export class PricingComponent {
     .then(() => { this.auth.authed = true; })
     // alert and redirect
     .then(() => {
+      this.session.setGettingStarted(true);
       this.alertService.success('Your account was created!');
       this.router.navigate(['/account']);
     })
@@ -456,7 +461,10 @@ export class PricingComponent {
     this.accountChild.disableInputs();
 
     return this.createAccount()
-    .then(() => { this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode); })
+    .then(() => {
+      this.session.setGettingStarted(true);
+      this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+    })
     .catch(error => { this.handleError(error); });
   }
 
