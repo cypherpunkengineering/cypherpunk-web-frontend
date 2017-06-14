@@ -483,17 +483,25 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			String ipnApiPath = apiPath.substring( "/ipn".length(), apiPath.length() );
 
-			if (ipnApiPath.equals("/bitpay")) // {{{
+			if (ipnApiPath.equals("/amazon")) // {{{
+			{
+				String reqBody = getBodyFromRequest(req);
+				LOG.log(Level.WARNING, "Response body: "+reqBody);
+				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+			} //}}}
+			else if (ipnApiPath.equals("/bitpay")) // {{{
 			{
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, BitPayIPN.class, null);
 			} //}}}
 			else if (ipnApiPath.equals("/paypal")) // {{{
 			{
-				/*
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+			} //}}}
+			else if (ipnApiPath.equals("/stripe")) // {{{
+			{
 				String reqBody = getBodyFromRequest(req);
 				LOG.log(Level.WARNING, "Response body: "+reqBody);
-				*/
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
 			} //}}}
 			else // {{{ 404
 			{
