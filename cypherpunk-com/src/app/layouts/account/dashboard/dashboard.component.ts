@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
+import { BackendService } from '../../../services/backend.service';
 import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +13,8 @@ import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   currentTab = '';
+  intervalCounter = 0;
+  intervalHandler: any;
 
   // current site state
   state: {
@@ -28,6 +31,7 @@ export class DashboardComponent implements OnInit {
     private zone: NgZone,
     private router: Router,
     private authGuard: AuthGuard,
+    private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
@@ -47,7 +51,7 @@ export class DashboardComponent implements OnInit {
       this.authGuard.canActivate(route, state)
       .then((data) => {
         this.zone.run(() => {
-          this.state.loading = false;
+          if (!this.state.showPPWarning) { this.state.loading = false; }
           if (!data.account.confirmed) {
             alertService.warning('Your account is not confirmed! Please check your email and click on the link to confirm your account.');
           }
@@ -64,6 +68,25 @@ export class DashboardComponent implements OnInit {
       let st = qParams['st'];
       if (!tx || st !== 'Completed') { return; }
       if (tx && st === 'Completed') { this.state.showPPWarning = true; }
+
+      if (this.state.showPPWarning && this.state.user.account.type === 'free') {
+        this.state.loading = true;
+        this.intervalHandler = setInterval(() => {
+          this.intervalCounter++;
+          this.backend.accountStatus()
+          .then((data) => {
+            if (data.account.type === 'premium') {
+              this.session.setUserData(data);
+              this.state.loading = false;
+              clearInterval(this.intervalHandler);
+            }
+            if (this.intervalCounter > 5) {
+              this.state.loading = false;
+              clearInterval(this.intervalHandler);
+            }
+          });
+        }, 5000);
+      }
     });
 
     // TODO: handle incoming from bitpay

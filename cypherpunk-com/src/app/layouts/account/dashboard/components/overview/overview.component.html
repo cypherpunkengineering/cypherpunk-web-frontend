@@ -13,20 +13,18 @@
   </div>
 </div>
 
-<div class="content" *ngIf="showPriceBoxes()">
+<div class="content" *ngIf="showPriceBoxes() && !state.loading">
   <div class="content-inner">
     <h2 class="content-header" *ngIf="!state.showPPWarning">Upgrade Now!</h2>
     <h2 class="content-header" *ngIf="state.showPPWarning">Upgrading!</h2>
 
-    <app-price-boxes #priceBoxes [upgrade]="upgrade" [planData]="planData" *ngIf="!state.showPPWarning"></app-price-boxes>
+    <app-price-boxes #priceBoxes [upgrade]="upgrade" [planData]="planData"></app-price-boxes>
   </div>
 </div>
 
 <div class="content">
   <div class="content-inner">
-    <h2 class="content-header" *ngIf="!state.showPPWarning">
-      Download Cypherpunk Privacy for All Platforms
-    </h2>
+    <h2 class="content-header">Download Cypherpunk Privacy for All Platforms</h2>
 
     <div class="platforms">
       <div class="platforms-inner">

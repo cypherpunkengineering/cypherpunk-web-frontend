@@ -45,11 +45,11 @@
   </div>
 
   <div class="page" *ngIf="currentTab === 'overview'">
-    <account-overview [state]="state"></account-overview>
+    <account-overview [(state)]="state"></account-overview>
   </div>
 
   <div class="page" *ngIf="currentTab === 'subscription'">
-    <account-subscription [state]="state"></account-subscription>
+    <account-subscription [(state)]="state"></account-subscription>
   </div>
 
   <div class="page billing" *ngIf="currentTab === 'billing'">
@@ -67,4 +67,4 @@
 
 <app-footer></app-footer>
 
-<app-loading [state]="state.loading"></app-loading>
+<app-loading [(state)]="state.loading"></app-loading>
