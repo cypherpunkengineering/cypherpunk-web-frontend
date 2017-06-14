@@ -6,6 +6,8 @@ import static com.google.appengine.api.urlfetch.FetchOptions.Builder.*;
 import com.cypherpunk.appengine.beans.*;
 
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -485,23 +487,19 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (ipnApiPath.equals("/amazon")) // {{{
 			{
-				String reqBody = getBodyFromRequest(req);
-				LOG.log(Level.WARNING, "Response body: "+reqBody);
-				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, Map.class, null);
 			} //}}}
 			else if (ipnApiPath.equals("/bitpay")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, BitPayIPN.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, Map.class, null);
 			} //}}}
 			else if (ipnApiPath.equals("/paypal")) // {{{
 			{
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, Map.class, null);
 			} //}}}
 			else if (ipnApiPath.equals("/stripe")) // {{{
 			{
-				String reqBody = getBodyFromRequest(req);
-				LOG.log(Level.WARNING, "Response body: "+reqBody);
-				//proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, PayPalIPN.class, null);
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, Map.class, null);
 			} //}}}
 			else // {{{ 404
 			{
@@ -599,12 +597,13 @@ public class FrontendAPIv1 extends HttpServlet
 		Object outgoingRequestResponseData = null;
 		String sanitizedReqBody = null;
 		String queryString = req.getQueryString();
+		String reqBody = null;
 
 		if (incomingRequestBean != null)
 		{
 			try // parse json body of incoming request
 			{
-				String reqBody = getBodyFromRequest(req);
+				reqBody = getBodyFromRequest(req);
 				//LOG.log(Level.WARNING, "Got body: "+reqBody);
 				incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
 			}
@@ -641,7 +640,17 @@ public class FrontendAPIv1 extends HttpServlet
 		else
 			reqURI = cypherpunkURI;
 
-		HTTPResponse cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
+		HTTPResponse cypherpunkResponse = null;
+		if (incomingRequestBean == Map.class)
+		{
+			// pass original raw body to outgoing request
+			cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), reqBody);
+		}
+		else
+		{
+			// pass sanitized body to outgoing request
+			cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
+		}
 
 		// get response code of outgoing request, set on incoming request response
 		Integer resCode = cypherpunkResponse.getResponseCode();
@@ -736,14 +745,28 @@ public class FrontendAPIv1 extends HttpServlet
 		}
 
 		// read request body
-		BufferedReader reader = null;
 		StringBuffer sb = new StringBuffer();
+		InputStream inputStream = null;
+		BufferedReader reader = null;
+
 		String line = null;
 		try
 		{
-			reader = req.getReader();
-			while ((line = reader.readLine()) != null)
-				sb.append(line);
+			inputStream = req.getInputStream();
+			if (inputStream != null)
+			{
+				reader = new BufferedReader(new InputStreamReader(inputStream));
+				char[] charBuffer = new char[65535];
+				int bytesRead = -1;
+				while ((bytesRead = reader.read(charBuffer)) > 0)
+				{
+					sb.append(charBuffer, 0, bytesRead);
+				}
+			}
+			else
+			{
+				sb.append("");
+			}
 		}
 		catch (Exception e)
 		{
@@ -795,6 +818,7 @@ public class FrontendAPIv1 extends HttpServlet
 		String safeHeaders[] = {
 			"Cookie"
 			,"User-Agent"
+			,"Stripe-Signature"
 		};
 
 		// copy headers in "safe" list above
