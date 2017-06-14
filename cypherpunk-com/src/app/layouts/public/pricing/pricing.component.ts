@@ -316,7 +316,6 @@ export class PricingComponent {
     // alert and redirect
     .then(() => {
       this.session.setGettingStarted(true);
-      this.alertService.success('Your account was created!');
       this.router.navigate(['/account']);
     })
     // handle errors
@@ -424,7 +423,6 @@ export class PricingComponent {
     // alert and redirect
     .then(() => {
       this.session.setGettingStarted(true);
-      this.alertService.success('Your account was created!');
       this.router.navigate(['/account']);
     })
     // handle errors
@@ -483,8 +481,7 @@ export class PricingComponent {
       });
     })
     // turn on authed
-    .then(() => { this.auth.authed = true; })
-    .then(() => { this.alertService.success('Your account was created!'); });
+    .then(() => { this.auth.authed = true; });
   }
 
   handleError(error) {
