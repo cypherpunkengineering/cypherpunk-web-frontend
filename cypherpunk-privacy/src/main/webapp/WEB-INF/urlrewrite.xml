@@ -15,6 +15,18 @@
 		<to last="true">-</to>
 	</rule>
 	<rule>
+		<condition name="host" next="and">^api.cypherpunk.com$</condition>
+		<condition name="origin">^https://cypherpunk.engineering$</condition>
+		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; preload</set>
+		<set type="response-header" name="Access-Control-Allow-Origin">https://cypherpunk.engineering</set>
+		<set type="response-header" name="Access-Control-Allow-Methods">GET, POST, OPTIONS</set>
+		<set type="response-header" name="Access-Control-Allow-Headers">Access-Control-Allow-Origin, Cookie, Origin, Content-Type, Content-Range, Content-Disposition, Content-Description</set>
+		<set type="response-header" name="Access-Control-Allow-Credentials">true</set>
+		<set type="response-header" name="Access-Control-Max-Age">86400</set>
+		<from>^/api/v[0-2]/.*</from>
+		<to last="true">-</to>
+	</rule>
+	<rule>
 		<condition name="host" next="and">^api.cypherpunk.engineering$</condition>
 		<condition name="origin">^https://cypherpunk.engineering$</condition>
 		<set type="response-header" name="Strict-Transport-Security">max-age=10886400; preload</set>
