@@ -121,6 +121,10 @@
     vertical-align: top;
     padding: 0 15px;
 
+    &.thin {
+      width: 246px;
+    }
+
     &.medium {
       width: 240px;
       height: auto;
