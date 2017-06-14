@@ -32,7 +32,7 @@ export class SessionService {
         this.user.privacy.password = this.localStorage.getItem('privacy.password') || '';
         this.user.account.id = this.localStorage.getItem('account.id') || '';
         this.user.account.email = this.localStorage.getItem('account.email') || '';
-        this.user.account.confirmed = Boolean(this.localStorage.getItem('account.confirmed')) || false;
+        this.user.account.confirmed = this.localStorage.getItem('account.confirmed') === 'true';
         this.user.account.type = this.localStorage.getItem('account.type') || '';
         this.user.subscription.renewal = this.localStorage.getItem('subscription.renewal') || '';
         this.user.subscription.expiration = this.localStorage.getItem('subscription.expiration') || '';
@@ -161,7 +161,11 @@ export class SessionService {
   }
 
   getGettingStarted() {
-    return Boolean(this.localStorage.getItem('showGettingStarted'));
+    if (isPlatformBrowser(this.platformId)) {
+      this.localStorage = window.localStorage;
+      return this.localStorage.getItem('showGettingStarted') === 'true';
+    }
+    else { return false; }
   }
 
   setGettingStarted(enabled: boolean) {

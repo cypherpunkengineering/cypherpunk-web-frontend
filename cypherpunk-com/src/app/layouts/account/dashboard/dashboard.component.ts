@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
     // set user
     this.state.user = this.session.user;
-    this.showGettingStarted = (this.session.user.account.type === 'premium') && this.session.getGettingStarted();
+    this.showGettingStarted = (this.session.user.account.type !== 'free') && this.session.getGettingStarted();
 
     // redirect user if not logged in
     if (isPlatformBrowser(this.platformId)) {
