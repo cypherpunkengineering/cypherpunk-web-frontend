@@ -2,6 +2,8 @@ package com.cypherpunk.appengine.beans;
 
 public class CypherpunkAccountStatus
 {
+	private String secret;
+
 	private static class Privacy
 	{
 		private String username;
@@ -13,16 +15,16 @@ public class CypherpunkAccountStatus
 		private String type;
 		private String id;
 		private String email;
-		private String confirmed;
+		private boolean confirmed;
 	}
 
 	private static class Subscription
 	{
+		private boolean active;
 		private String renewal;
 		private String expiration;
 	}
 
-	private String secret;
 	private Privacy privacy;
 	private Account account;
 	private Subscription subscription;
