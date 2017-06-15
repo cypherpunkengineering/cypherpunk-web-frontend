@@ -229,9 +229,11 @@ public class BucketInterface
 			return;
 		}
 
-		// hack workaround to force content-length header being sent
-		//ByteRange all = new ByteRange(1);
-		// serve directly from blobservice to avoid 32MB limit
+		// another failed workaround to try and force content-length header being sent
+		//ByteRange all = new ByteRange(0);
+		//blobstoreService.serve(blobKey, all, res);
+
+		// serve directly from blobservice to avoid 32MB limit, but missing content-length header :(
 		blobstoreService.serve(blobKey, res);
 	} // }}}
 }
