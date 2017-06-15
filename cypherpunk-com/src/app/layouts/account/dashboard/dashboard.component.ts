@@ -6,13 +6,13 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
 import { GlobalsService } from '../../../services/globals.service';
-import { Component, PLATFORM_ID, Inject, NgZone, OnInit } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   env: string;
   currentTab = '';
   intervalCounter = 0;
@@ -47,63 +47,24 @@ export class DashboardComponent implements OnInit {
     // handle title
     this.document.title = 'My Account with Cypherpunk Privacy';
 
-    // set user, env, getting started
-    this.state.user = this.session.user;
+    // set env and user
     this.env = this.globals.ENV;
-    this.showGettingStarted = (this.session.user.account.type !== 'free') && this.session.getGettingStarted();
+    this.state.user = this.session.user;
 
-    // redirect user if not logged in
-    if (isPlatformBrowser(this.platformId)) {
-      let route = activatedRoute.snapshot;
-      let state = router.routerState.snapshot;
-      this.authGuard.canActivate(route, state)
-      .then((data) => {
-        this.zone.run(() => {
-          if (!this.state.showPPWarning) { this.state.loading = false; }
-          if (!data.account.confirmed) {
-            alertService.warning('Your account is not confirmed! Please check your email and click on the link to confirm your account.');
-          }
-        });
-      })
-      .catch(() => { /* keep error from showing up in console */ });
-    }
-  }
+    // detect Getting Started
+    this.showGettingStarted = (this.state.user.account.type !== 'free') && this.session.getGettingStarted();
 
-  ngOnInit() {
-    // handle incoming from paypal
-    this.activatedRoute.queryParams.subscribe((qParams) => {
-      let tx = qParams['tx'];
-      let st = qParams['st'];
-      if (!tx || st !== 'Completed') { return; }
-      if (tx && st === 'Completed') { this.state.showPPWarning = true; }
-
-      if (this.state.showPPWarning && this.state.user.account.type === 'free') {
-        this.state.loading = true;
-        this.intervalHandler = setInterval(() => {
-          this.intervalCounter++;
-          this.backend.accountStatus()
-          .then((data) => {
-            if (data.account.type === 'premium') {
-              this.session.setUserData(data);
-              this.showGettingStarted = true;
-              this.state.loading = false;
-              clearInterval(this.intervalHandler);
-            }
-            if (this.intervalCounter > 5) {
-              this.state.loading = false;
-              clearInterval(this.intervalHandler);
-            }
-          });
-        }, 5000);
-      }
-    });
+    // detect incoming from paypal
+    let tx = this.activatedRoute.snapshot.queryParamMap['params']['tx'];
+    let st = this.activatedRoute.snapshot.queryParamMap['params']['st'];
+    if (tx && st === 'Completed') { this.state.showPPWarning = true; }
 
     // handle incoming from bitpay
     if (isPlatformBrowser(this.platformId)) {
       let ref = document.referrer;
-      if (ref.startsWith('https://bitpay.com') || ref.startsWith('https://test.bitpay.com')) {
-        this.state.showBPWarning = true;
-      }
+      let prodBitpay = ref.startsWith('https://bitpay.com');
+      let testBitpay = ref.startsWith('https://test.bitpay.com');
+      if (prodBitpay || testBitpay) { this.state.showBPWarning = true; }
     }
 
     // handle page routing
@@ -114,6 +75,45 @@ export class DashboardComponent implements OnInit {
     else if (page === 'dns') { this.currentTab = page; }
     else if (page === 'configs') { this.currentTab = page; }
     else { this.currentTab = 'overview'; }
+
+    // redirect user if not logged in
+    if (isPlatformBrowser(this.platformId)) {
+      let route = this.activatedRoute.snapshot;
+      let state = this.router.routerState.snapshot;
+      this.authGuard.canActivate(route, state)
+      .then((data) => {
+        this.zone.run(() => {
+          if (this.state.showPPWarning && this.state.user.account.type === 'free') {
+            this.intervalHandler = setInterval(() => { this.pollStatus(); }, 5000);
+          }
+          else { this.state.loading = false; }
+
+          if (!data.account.confirmed) {
+            let error = 'Your account is not confirmed! Please check your email and click on the link to confirm your account.';
+            this.alertService.warning(error);
+          }
+        });
+      })
+      .catch(() => { /* keep error from showing up in console */ });
+    }
+  }
+
+  pollStatus() {
+    console.log('called pollStatus');
+    this.intervalCounter++;
+    this.backend.accountStatus()
+    .then((data) => {
+      if (data.account.type === 'premium') {
+        this.session.setUserData(data);
+        this.showGettingStarted = true;
+        this.state.loading = false;
+        clearInterval(this.intervalHandler);
+      }
+      if (this.intervalCounter > 5) {
+        this.state.loading = false;
+        clearInterval(this.intervalHandler);
+      }
+    });
   }
 
   changePage(page) { this.currentTab = page; }
