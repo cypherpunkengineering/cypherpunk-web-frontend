@@ -21,6 +21,8 @@ export class NavigationComponent {
   featuresSubnav: HTMLElement;
   featuresMobileSubnav: HTMLElement;
 
+  link = 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.0-beta-01270.pkg';
+
   bannerModel;
   androidModel = {
     heading: 'Cypherpunk Privacy',
@@ -75,6 +77,10 @@ export class NavigationComponent {
     let sessionFound = this.session.userFound;
     if (authed || sessionFound) { loggedIn = true; }
     return loggedIn;
+  }
+
+  redirect() {
+    this.router.navigate(['/download']);
   }
 
   // on scroll,

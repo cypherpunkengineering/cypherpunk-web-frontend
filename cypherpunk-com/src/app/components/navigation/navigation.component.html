@@ -25,7 +25,7 @@
         <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
       <li>
-        <a routerLink="/download/autostart">
+        <a href="{{link}}" (click)="redirect()" target="_self">
           <button class="btn border">DOWNLOAD</button>
         </a>
       </li>
