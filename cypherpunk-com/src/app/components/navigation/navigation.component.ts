@@ -3,6 +3,7 @@ import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SessionService } from '../../services/session.service';
 import { GlobalsService } from '../../services/globals.service';
+import { PlatformBuilds } from '../../layouts/public/apps/platform-builds';
 import * as platform from 'platform';
 
 @Component({
@@ -21,20 +22,21 @@ export class NavigationComponent {
   featuresSubnav: HTMLElement;
   featuresMobileSubnav: HTMLElement;
 
-  link = 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.0-beta-01270.pkg';
+  link: string;
+  pageRedirect: string;
 
   bannerModel;
   androidModel = {
     heading: 'Cypherpunk Privacy',
     subheading: 'Get it free on the Play Store',
     type: 'android',
-    link: 'https://play.google.com/store/apps/details?id=com.cypherpunk.privacy'
+    link: PlatformBuilds.android.link
   };
   iosModel = {
     heading: 'Cypherpunk Privacy',
     subheading: 'Get it free on the App Store',
     type: 'ios',
-    link: 'https://itunes.apple.com/us/app/cypherpunk-privacy/id1174413930'
+    link: PlatformBuilds.ios.link
   };
 
   constructor(
@@ -51,6 +53,7 @@ export class NavigationComponent {
     if (this.router.url.startsWith('/login')) { this.enableLinks = false; }
     if (this.router.url.startsWith('/features')) { this.isFeatures = true; }
 
+    // parse currentTab (features)
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) { return; }
 
@@ -59,9 +62,33 @@ export class NavigationComponent {
     });
 
     // detect os setup
-    let os: string = platform.os.family;
-    if (os && os.indexOf('Android') > -1) { this.bannerModel = this.androidModel; }
-    else if (os && os.indexOf('iOS') > -1) { this.bannerModel = this.iosModel; }
+    let os = platform.os.family || '';
+    if (os.indexOf('OS X') > -1) {
+      this.link = PlatformBuilds.macos.link;
+      this.pageRedirect = '/apps/macos/download';
+    }
+    else if (os.indexOf('Window') > -1) {
+      this.link = PlatformBuilds.windows.link;
+      this.pageRedirect = '/apps/windows/download';
+    }
+    else if (os.indexOf('Android') > -1) { this.link = PlatformBuilds.android.link; }
+    else if (os.indexOf('iOS') > -1) { this.link = PlatformBuilds.ios.link; }
+    else if (os.indexOf('Fedora') > -1 ||
+             os.indexOf('Red Hat') > -1 ||
+             os.indexOf('CentOS') > -1 ||
+             os.indexOf('Debian') > -1 ||
+             os.indexOf ('Ubuntu') > -1 ||
+             os.indexOf ('Kubuntu') > -1 ||
+             os.indexOf ('Xubuntu') > -1 ||
+             os.indexOf('Mint') > -1) {
+      this.link = PlatformBuilds.linuxVersions[0].link;
+      this.pageRedirect = '/apps/linux/download';
+    }
+    else { this.link = '#'; }
+
+    // handle mobile banner modal
+    if (os.indexOf('Android') > -1) { this.bannerModel = this.androidModel; }
+    else if (os.indexOf('iOS') > -1) { this.bannerModel = this.iosModel; }
   }
 
   getAccountType() {
@@ -80,7 +107,7 @@ export class NavigationComponent {
   }
 
   redirect() {
-    this.router.navigate(['/download']);
+    this.router.navigate([this.pageRedirect]);
   }
 
   // on scroll,

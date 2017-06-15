@@ -6,7 +6,8 @@ import { LinuxComponent } from './linux.component';
   imports: [
     RouterModule.forChild([
       { path: 'apps/linux', component: LinuxComponent },
-      { path: 'apps/linux/autostart', component: LinuxComponent }
+      { path: 'apps/linux/autostart', component: LinuxComponent },
+      { path: 'apps/linux/download', component: LinuxComponent }
     ])
   ]
 })

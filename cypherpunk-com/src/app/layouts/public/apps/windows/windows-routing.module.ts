@@ -6,7 +6,8 @@ import { WindowsComponent } from './windows.component';
   imports: [
     RouterModule.forChild([
       { path: 'apps/windows', component: WindowsComponent },
-      { path: 'apps/windows/autostart', component: WindowsComponent }
+      { path: 'apps/windows/autostart', component: WindowsComponent },
+      { path: 'apps/windows/download', component: WindowsComponent }
     ])
   ]
 })

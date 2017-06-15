@@ -82,7 +82,7 @@
           <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
         </li>
         <li>
-          <a routerLink="/download/autostart">
+          <a href="{{link}}" (click)="redirect()" target="_self">
             <button class="btn border">DOWNLOAD</button>
           </a>
         </li>
@@ -195,8 +195,8 @@
     <a routerLink="/support" routerLinkActive="active">
       <div class="mobile-dd-item">Support</div>
     </a>
-    <div class="mobile-dd-item" routerLink="/download" routerLinkActive="active">
-      Download
+    <div class="mobile-dd-item">
+      <a href="{{link}}" (click)="redirect()" target="_self">Download</a>
     </div>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>

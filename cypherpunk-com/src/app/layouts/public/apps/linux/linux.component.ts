@@ -27,6 +27,7 @@ export class LinuxComponent {
       this.showDownloading = true;
       PlatformBuilds.downloadFile(this.downloadLink, isBrowser);
     }
+    if (url.endsWith('download') && isBrowser) { this.showDownloading = true; }
   }
 
   startDownload() { this.showDownloading = true; }

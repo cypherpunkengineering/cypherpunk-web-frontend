@@ -10,16 +10,22 @@ import { PlatformBuilds } from '../platform-builds';
   styleUrls: ['./apps.component.css']
 })
 export class AppsComponent {
-  apkUrl = '#';
   platform: string;
   downloadLink = '';
   showDownloading = false;
+  windowsDownloadLink: string;
+  macosDownloadLink: string;
+  linuxDownloadLink: string;
   androidDownloadLink: string;
   iosDownloadLink: string;
   chromeDownloadLink: string;
   firefoxDownloadLink: string;
+  windowsRedirectLink: string;
+  macosRedirectLink: string;
+  linuxRedirectLink: string;
 
   constructor(
+    private router: Router,
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -50,10 +56,20 @@ export class AppsComponent {
       else { this.downloadLink = build.link; }
     }
 
+    this.windowsDownloadLink = PlatformBuilds.windows.link;
+    this.macosDownloadLink = PlatformBuilds.macos.link;
+    this.linuxDownloadLink = PlatformBuilds.linuxVersions[0].link;
     this.androidDownloadLink = PlatformBuilds['android'].link;
     this.iosDownloadLink = PlatformBuilds['ios'].link;
     this.chromeDownloadLink = PlatformBuilds['chrome'].link;
     this.firefoxDownloadLink = PlatformBuilds['firefox'].link;
+    this.windowsRedirectLink = '/apps/windows/download';
+    this.macosRedirectLink = '/apps/macos/download';
+    this.linuxRedirectLink = '/apps/linux/download';
+  }
+
+  pageRedirect(url) {
+    this.router.navigate([url]);
   }
 
   startDownload() { this.showDownloading = true; }
