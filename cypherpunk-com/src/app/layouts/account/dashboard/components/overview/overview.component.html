@@ -39,7 +39,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/windows/autostart">
+            <a href="{{ windowsDownloadLink }}" (click)="pageRedirect(windowsRedirectLink)">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Windows">
                 <div class="type">Windows 7+ <br>64-bit</div>
@@ -58,7 +58,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/macos/autostart">
+            <a href="{{ macosDownloadLink }}" (click)="pageRedirect(macosRedirectLink)">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Mac">
                 <div class="type"><br>MacOS</div>
@@ -77,7 +77,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/linux/autostart">
+            <a href="{{ linuxDownloadLink }}" (click)="pageRedirect(linuxRedirectLink)">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Linux">
                 <div class="type">Debian x86_64</div>
@@ -96,7 +96,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/ios/autostart">
+            <a href="{{ iosDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download iOS">
                 <div class="type"><br>iOS</div>
@@ -115,7 +115,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/android/autostart">
+            <a href="{{ androidDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Android">
                 <div class="type"><br>Android</div>
@@ -134,7 +134,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/browser">
+            <a href="{{ chromeDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Chrome">
                 <div class="type"><br>Chrome</div>
@@ -153,7 +153,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/browser">
+            <a href="{{ firefoxDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Firefox">
                 <div class="type"><br>Firefox</div>
@@ -172,7 +172,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/browser">
+            <a href="{{ chromeDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Opera">
                 <div class="type"><br>Opera</div>
@@ -191,7 +191,7 @@
           </div>
 
           <div class="hover">
-            <a routerLink="/apps/browser">
+            <a href="{{ chromeDownloadLink }}">
               <div class="download-icon">
                 <img src="/assets/download/download@2x.png" srcset="/assets/download/download.png 500w, /assets/download/download@2x.png 1000w" alt="Download Vivaldi">
                 <div class="type"><br>Vivaldi</div>

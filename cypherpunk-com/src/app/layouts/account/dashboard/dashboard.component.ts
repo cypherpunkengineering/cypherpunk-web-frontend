@@ -99,7 +99,6 @@ export class DashboardComponent {
   }
 
   pollStatus() {
-    console.log('called pollStatus');
     this.intervalCounter++;
     this.backend.accountStatus()
     .then((data) => {
