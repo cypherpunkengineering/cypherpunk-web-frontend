@@ -119,7 +119,9 @@ export class DashboardComponent implements OnInit {
   changePage(page) { this.currentTab = page; }
 
   hideGettingStarted() {
-    this.session.setGettingStarted(false);
-    this.showGettingStarted = false;
+    this.zone.run(() => {
+      this.session.setGettingStarted(false);
+      this.showGettingStarted = false;
+    });
   }
 }
