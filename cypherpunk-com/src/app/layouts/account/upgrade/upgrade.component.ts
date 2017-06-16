@@ -353,19 +353,20 @@ export class UpgradeComponent {
 
   // pay with amazon
 
-  updateBillingId(billingId) {
-    this.billingAgreementId = billingId;
-  }
+  updateBillingId(billingId) { this.billingAgreementId = billingId; }
 
-  updateAmazonHide(amazonHide) {
-    this.amazonHide = amazonHide;
-  }
+  updateAmazonHide(amazonHide) { this.amazonHide = amazonHide; }
 
   updateAmazonRecurringEnabled(amazonRecurringEnabled) {
     this.amazonRecurringEnabled = amazonRecurringEnabled;
   }
 
   payWithAmazon() {
+    if (!this.amazonRecurringEnabled) {
+      this.amazon.setRecurringError();
+      return;
+    }
+
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
