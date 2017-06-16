@@ -32,6 +32,8 @@ import {
   confirm,
   signin,
   signout,
+  changeEmail,
+  changePassword,
   locations,
   world,
   identify,
@@ -55,6 +57,8 @@ app.get('/api/v1/blog/post/:postId', blogPost);
 app.get('/api/v1/support/posts', support);
 app.get('/api/v1/support/post/:id', supportPost);
 app.get('/api/v1/network/status', networkStatus);
+app.get('/api/v1/account/source/list', stripeCardList);
+app.get('/api/v1/pricing/plans', pricingPlans);
 app.post('/api/v1/account/confirm/email', confirm);
 app.post('/api/v1/account/authenticate/userpasswd', signin);
 app.post('/api/v1/account/logout', signout);
@@ -62,13 +66,13 @@ app.post('/api/v1/account/identify/email', identify);
 app.post('/api/v1/account/register/signup', signup);
 app.post('/api/v1/account/purchase/stripe', stripePurchase);
 app.post('/api/v1/account/upgrade/stripe', stripeUpgrade);
-app.get('/api/v1/account/source/list', stripeCardList);
 app.post('/api/v1/account/source/default', stripeDefaultCard);
 app.post('/api/v1/account/source/add', stripeCreateCard);
 app.post('/api/v1/account/purchase/amazon', amazonPurchase);
 app.post('/api/v1/account/upgrade/amazon', amazonUpgrade);
 app.post('/api/v1/zendesk/request/new', contactForm);
-app.get('/api/v1/pricing/plans', pricingPlans);
+app.post('/api/v1/account/email/change', changeEmail);
+app.post('/api/v1/account/password/change', changePassword);
 
 app.get('/', (req, res) => {
   res.render('../dist/client/index.html', {

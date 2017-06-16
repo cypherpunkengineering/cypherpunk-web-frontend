@@ -251,27 +251,31 @@
 <div class="modal" [ngClass]="{'open': showEmailModal}">
   <div class="background" (click)="showEmailModal = false" [ngClass]="{'open': showEmailModal}"></div>
   <div class="modal-content" [ngClass]="{'open': showEmailModal}">
-    <div class="modal-header">Change Password</div>
+    <div class="modal-header">Change Email</div>
 
     <div class="modal-body">
-      <div class="row">
+      <div class="row spaced">
         <label>Current Email: {{state.user.account.email}}</label>
       </div>
 
       <div class="row">
-        <label for="newEmail">New Email:</label><br>
-        <input id="dashboardEmail" type="email" name="newEmail" >
+        <input id="dashboardEmail" type="email" name="newEmail" placeholder="New Email" [(ngModel)]="changeEmailUser.email" (blur)="this.changeEmailErrors.email.touched = true; checkEmailExists(); validateEmail()" [ngClass]="{'error': (this.changeEmailErrors.email.touched && this.changeEmailErrors.email.message)}">
+        <div class="error-message" [hidden]="!this.changeEmailErrors.email.touched">
+          {{this.changeEmailErrors.email.message}}
+        </div>
       </div>
 
       <div class="row">
-        <label for="newEmail">Current Password: </label><br>
-        <input type="email" name="newEmail">
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="changeEmailUser.password" [ngClass]="{'error': (this.changeEmailErrors.password.touched && this.changeEmailErrors.password.message)}" (ngModelChange)="validateChangeEmailPassword()" (keyup.enter)="changeEmail()" (blur)="this.changeEmailErrors.password.touched = true; validateChangeEmailPassword()">
+        <div class="error-message" [hidden]="!this.changeEmailErrors.password.touched">
+          {{this.changeEmailErrors.password.message}}
+        </div>
       </div>
     </div>
 
     <div class="modal-footer">
       <button class="btn teal" (click)="showEmailModal = false">Cancel</button>
-      <button class="btn blue">Change</button>
+      <button class="btn blue" (click)="changeEmail()">Change</button>
     </div>
   </div>
 </div>
@@ -283,19 +287,23 @@
 
     <div class="modal-body">
       <div class="row">
-        <label for="password">New Password</label><br>
-        <input id="dashboardPassword" type="password" name="password" >
+        <input id="dashboardPassword" type="password" name="newPassword" placeholder="New Password" [(ngModel)]="changePasswordUser.newPassword" [ngClass]="{'error': (this.changePasswordErrors.newPassword.touched && this.changePasswordErrors.newPassword.message)}" (ngModelChange)="validateChangePasswordNew()" (blur)="this.changePasswordErrors.newPassword.touched = true; validateChangePasswordNew()">
+        <div class="error-message" [hidden]="!this.changePasswordErrors.newPassword.touched">
+          {{this.changePasswordErrors.newPassword.message}}
+        </div>
       </div>
 
       <div class="row">
-        <label for="newPassword">Confirm Password</label><br>
-        <input type="password" name="newPassword">
+        <input type="password" name="oldPassword" placeholder="Confirm Password" [(ngModel)]="changePasswordUser.oldPassword" [ngClass]="{'errors': (this.changePasswordErrors.oldPassword.touched && this.changePasswordErrors.oldPassword.message)}" (ngModelChange)="validateChangePasswordOld()" (keyup.enter)="changePassword()" (blur)="this.changePasswordErrors.oldPassword.touched = true; validateChangePasswordOld()">
+        <div class="error-message" [hidden]="!this.changePasswordErrors.oldPassword.touched">
+          {{this.changePasswordErrors.oldPassword.message}}
+        </div>
       </div>
     </div>
 
     <div class="modal-footer">
       <button class="btn teal" (click)="showPasswordModal = false">Cancel</button>
-      <button class="btn blue">Change</button>
+      <button class="btn blue" (click)="changePassword()">Change</button>
     </div>
   </div>
 </div>

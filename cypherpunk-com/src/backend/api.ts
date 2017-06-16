@@ -100,6 +100,29 @@ export function signout(req, res) {
   }
 }
 
+export function changeEmail(req, res) {
+  if (DEV_MODE) {
+    console.log('change email');
+    let body = req.body;
+    let url = urlStart + 'api/v1/account/email/change';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({});
+  }
+}
+
+export function changePassword(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/account/password/change';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({});
+  }
+}
+
 export function networkStatus(req, res) {
   if (DEV_MODE) { return request(urlStart + 'api/v1/network/status').pipe(res); }
   else { return res.json({ ip: '127.0.0.1', country: 'ZZ'}); }

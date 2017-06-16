@@ -56,6 +56,25 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  changeEmail(body, options): Promise<any> {
+    // this will set cookie
+    let url = this.globals.API_URL + '/account/email/change';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
+  changePassword(body, options): Promise<any> {
+    // this will set cookie
+    let url = this.globals.API_URL + '/account/password/change';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
+
   // User account apis
 
   pricingPlans(referralCode, options): Promise<any> {
