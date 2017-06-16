@@ -16,11 +16,11 @@ html, body {
   font-family: GothamRounded;
   font-size: 16px;
   box-sizing: border-box;
-  background-color: #163439;
+  background-color: #163138;
 }
 *, *:before, *:after { box-sizing: inherit; }
 
-.container { min-height: 100%; width: 100%; max-width: 1000px; margin: 0 auto -20px; }
+.container { min-height: 100%; width: 100%; margin: 0 auto -20px; }
 .container:after { content: ''; display: block; }
 .footer { text-align: center; padding: 10px 0 50px; a { color: #fff; } }
 .footer, .container:after { height: 20px;}
@@ -69,35 +69,53 @@ html, body {
 }
 
 .navigation {
-  .nav-middle {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #0d1e26;
+
+  .nav-inner {
+    max-width: 1000px;
+    overflow: auto;
+    margin: auto;
+    height: 250px;
+    &.short { height: auto; }
+  }
+
+  .nav-left {
+    float: left;
+    width: 300px;
+    img { width: 261px; }
+  }
+
+  .nav-right {
+    float: right;
+    width: 350px;
     padding: 20px 0 0;
     text-align: center;
-    img { height: 56px; }
+    font-size: 18px;
+    color: #7ffffb;
+  }
+
+  .nav-image {
+
   }
 }
 
-.image-con {
-  width: 100%;
-  max-width: 1000px;
-  padding: 10px 15px 0;
-  text-align: center;
-  img { height: 350px; }
-}
-
-.header {
+.index-header {
   font-family: GothamRounded;
-  position: relative;
   font-size: 18px;
   text-align: center;
-  padding: 20px 20px 0;
+  padding: 50px 10px 0;
   color: #7ffffb;
-  &.subheader {
-    color: #fff;
-    padding: 10px 0;
-    font-family: GothamRounded;
-    font-size: 22px;
-    .blue { color: #7ffffb; }
-  }
+}
+
+.index-subheader {
+  color: #fff;
+  padding: 10px 10px 30px;
+  font-family: GothamRounded;
+  font-size: 22px;
+  text-align: center;
+  .blue { color: #7ffffb; }
 }
 
 .countdown {
@@ -118,6 +136,7 @@ html, body {
       line-height: 95px;
       border-radius: 5px;
       border: 3px solid #19474c;
+      &#seconds { color: #7ffffb; }
     }
     .type { font-size: 21px; padding: 15px 0 0; color: #7ffffb; }
   }
@@ -134,10 +153,9 @@ html, body {
 }
 
 .subtext {
-  position: relative;
   color: #7ffffb;
   font-size: 18px;
-  margin: 10px auto 20px;
+  margin: 10px auto 40px;
   padding: 0 20px;
   text-align: center;
 }
@@ -173,21 +191,57 @@ html, body {
   .privacy { color: #7ffffb; font-size: 12px; }
 }
 
+.signed {
+  position: relative;
+  color: #7ffffb;
+  font-size: 18px;
+  margin: 10px auto 20px;
+  padding: 0 20px;
+  text-align: center;
+  .text { padding: 0 10px 20px; }
+  img { width: 100%; max-width: 400px; }
+}
+
+/** Thanks Page **/
+
+.thanks-header {
+  font-family: GothamRounded;
+  font-size: 22px;
+  text-align: center;
+  padding: 40px 10px 20px;
+  color: #fff;
+}
+
+.thanks-bottom {
+  color: #7ffffb;
+  font-size: 18px;
+  margin: 10px auto 20px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.privacy {
+  color: #7ffffb;
+  font-size: 16px;
+  padding: 20px 10px 0;
+  text-align: center;
+}
+
 /** Confirmation Page **/
 
 .confirmation-header {
-  font-size: 20px;
+  font-family: GothamRounded;
+  font-size: 22px;
   text-align: center;
-  padding: 10px 20px;
+  padding: 50px 10px 0;
   color: #7ffffb;
 }
 
 .confirmation-subheader {
   font-size: 16px;
   text-align: center;
-  padding: 10px 20px;
+  padding: 20px 20px;
   color: #7ffffb;
-  &.more-padding { padding-top: 20px; }
 }
 
 .confirmation-illustration {
@@ -199,36 +253,15 @@ html, body {
   img { width: 100%; }
 }
 
-/** Invites Sent Page **/
-
-.invites-illustration {
-  width: 100%;
-  max-width: 750px;
-  margin: auto;
-  text-align: center;
-  padding: 40px 0 0;
-  img { width: 100%; }
-}
-
-.invites-header {
-  font-size: 22px;
-  text-align: center;
-  padding: 20px;
-  color: #fff;
-}
-
-.invites-subheader {
-  width: 100%;
-  max-width: 650px;
-  margin: auto;
+.confirmation-bottom {
   font-size: 16px;
   text-align: center;
-  padding: 0 20px;
+  padding: 40px 20px 20px;
   color: #7ffffb;
 }
 
-.invites-social {
-  padding: 20px 20px 20px;
+.confirmation-social {
+  padding: 0 20px 20px;
   text-align: center;
   .icon {
     display: inline-block;
@@ -236,27 +269,36 @@ html, body {
   }
 }
 
+
+/** Privacy Page **/
+
+.privacy-header {
+  color: #fff;
+  font-size: 22px;
+  text-align: left;
+  margin: auto;
+  padding: 40px 10px 20px;
+  max-width: 1000px;
+}
+
+.privacy-text {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 10px 0;
+  margin: auto;
+}
+
 @media (max-width: 780px) {
   .confirmation-illustration { padding: 20px 15px 0; }
 }
 
-@media (max-width: 750px) {
-  .image-con img { width: 100%; height: auto; }
+@media (max-width: 660px) {
+  .navigation .nav-left { width: 100%; text-align: center; }
+  .navigation .nav-right { width: 100%; font-size: 16px; padding: 10px 10px 20px; }
 }
 
 @media (max-width: 600px) {
-  .header {
-    font-size: 22px;
-    .subheader { font-size: 18px; }
-  }
-  .subheader { font-size: 20px; }
-  .image-con { position: relative;  img { opacity: 0.8; } }
   .countdown { padding-bottom: 0; }
-  .navigation {
-    text-align: center;
-    height: auto;
-    & > div { width: 100%; }
-  }
 
   .email {
     input { width: 270px; }

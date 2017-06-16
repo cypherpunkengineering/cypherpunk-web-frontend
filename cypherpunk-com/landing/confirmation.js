@@ -49,6 +49,7 @@ xmlHttp.open("POST", url, true);
 
 xmlHttp.onreadystatechange = function() {
   if (xmlHttp.readyState === 4) {
+
     if (xmlHttp.status === 200 || xmlHttp.status === 202) {
       setMessage('Success!', 'Your invitation has been secured!<br><br>Don\'t forget to invite your friends!');
     }
