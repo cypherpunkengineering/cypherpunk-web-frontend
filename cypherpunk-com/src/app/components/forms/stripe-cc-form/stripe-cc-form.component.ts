@@ -11,7 +11,6 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from
 })
 export class StripeCCFormComponent implements OnInit {
   @Input() stripeFormData: any;
-  @Input() small: boolean;
   countries = country_list;
   stripeDevKey = 'pk_test_V8lLSY93CP6w9SFgqCmw8FUg';
   stripeProdKey = 'pk_live_R2Y6CVvD6azFMaYvu99eKQkh';

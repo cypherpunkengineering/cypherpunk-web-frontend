@@ -13,7 +13,7 @@ export class AccountPaymentComponent {
   @Input() state;
   @Input() show: boolean;
   defaultCardId = '';
-  defaultCard: any = {};
+  defaultCard: any;
   cards = [];
   showCreateCard = false;
   ccButtonDisabled = false;
@@ -26,7 +26,8 @@ export class AccountPaymentComponent {
     cvc: '',
     country: '',
     zipCode: '',
-    form: { valid: false }
+    form: { valid: false },
+    formInstance: {}
   };
 
   constructor(
@@ -44,12 +45,6 @@ export class AccountPaymentComponent {
         this.cards.map((card) => {
           if (card.id === data.default_source) { this.defaultCard = card; }
         });
-
-        if (!this.cards.length) {
-          this.showCreateCard = true;
-          this.defaultCard.id = '';
-          this.defaultCardId = '';
-        }
       }, () => {});
     }
 
@@ -66,16 +61,6 @@ export class AccountPaymentComponent {
         });
       });
     }
-  }
-
-  setCard() {
-    if (this.defaultCard === 'Add New Card') {
-      this.cards.map((card) => {
-        if (card.id === this.defaultCardId) { this.defaultCard = card; }
-      });
-      this.showCreateCard = true;
-    }
-    else { this.showCreateCard = false; }
   }
 
   finalizeDefaultCard() {
@@ -95,6 +80,55 @@ export class AccountPaymentComponent {
   }
 
   getToken() {
+    if (this.ccButtonDisabled) { return; }
+    let stripeForm = this.stripeFormData.formInstance;
+    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
+      input.focus();
+    });
+
+    // name, nameInput
+    if (stripeForm['controls'].name.errors) {
+      document.getElementById('nameInput').focus();
+      return;
+    }
+
+    // Credit Card Number errors
+    if (stripeForm['controls'].cardNumber.errors) {
+      document.getElementById('cardNumberInput').focus();
+      return;
+    }
+
+    // expiryMonth, ccexpirymonth
+    if (stripeForm['controls'].expiryMonth.errors) {
+      document.getElementById('ccexpirymonth').focus();
+      return;
+    }
+
+    // expiryYear, ccexpiryyear
+    if (stripeForm['controls'].expiryYear.errors) {
+      document.getElementById('ccexpiryyear').focus();
+      return;
+    }
+
+    // cvc, cccvc
+    if (stripeForm['controls'].cvc.errors) {
+      document.getElementById('cccvc').focus();
+      return;
+    }
+
+    // country, country
+    if (stripeForm['controls'].country.errors) {
+      document.getElementById('country').focus();
+      return;
+    }
+
+    // zipCode, zipCodeSelect
+    if (stripeForm['controls'].zipCode.errors) {
+      let el = document.getElementById('zipCodeSelect');
+      if (el) { el.focus(); }
+      return;
+    }
+
     // show state.loading overlay
     this.state.loading = true;
     this.ccButtonDisabled = true;
@@ -131,10 +165,8 @@ export class AccountPaymentComponent {
   }
 
   createCard(token) {
-    this.ccButtonDisabled = true;
-    let body = { token: token };
     // set cookie
-    return this.backend.createCard(body, {})
+    return this.backend.createCard({ token: token }, {})
     // alert and redirect
     .then((data) => {
       this.zone.run(() => {
@@ -156,9 +188,5 @@ export class AccountPaymentComponent {
         this.alertsService.error('Error: ' + error.message);
       });
     });
-  }
-
-  isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
   }
 }

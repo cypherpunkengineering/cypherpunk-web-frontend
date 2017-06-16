@@ -20,7 +20,7 @@
   </div>
 
   <div class="row">
-    <div class="half" [ngClass]="{'dashboard': small}">
+    <div class="half">
       <div class="half">
         <label>Exp. Month</label><br />
         <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth?.touched && !expiryMonth?.valid, 'success': expiryMonth?.touched && expiryMonth?.valid}" autocomplete="cc-exp-month">
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="half" [ngClass]="{'dashboard': small}">
+    <div class="half">
       <label>Security Code</label><br>
       <img class="first" src="/assets/payment/security-code-02.png" alt="CVC">
       <img src="/assets/payment/security-code-01.png" alt="CVC">

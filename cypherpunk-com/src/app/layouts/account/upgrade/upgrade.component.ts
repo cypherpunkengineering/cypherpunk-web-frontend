@@ -183,7 +183,7 @@ export class UpgradeComponent {
         this.defaultCardId = data.default_source;
         this.cards = data.sources;
         if (!this.cards.length) { this.showCreateCard = true; }
-      }, () => {});
+      });
     }
   }
 
@@ -247,6 +247,56 @@ export class UpgradeComponent {
   // stripe upgrade with new card
 
   getToken() {
+    if (this.disablePayment) { return; }
+    let stripeForm = this.stripeFormData.formInstance;
+    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
+      input.focus();
+    });
+
+    // name, nameInput
+    if (stripeForm['controls'].name.errors) {
+      document.getElementById('nameInput').focus();
+      return;
+    }
+
+    // Credit Card Number errors
+    if (stripeForm['controls'].cardNumber.errors) {
+      document.getElementById('cardNumberInput').focus();
+      return;
+    }
+
+    // expiryMonth, ccexpirymonth
+    if (stripeForm['controls'].expiryMonth.errors) {
+      document.getElementById('ccexpirymonth').focus();
+      return;
+    }
+
+    // expiryYear, ccexpiryyear
+    if (stripeForm['controls'].expiryYear.errors) {
+      document.getElementById('ccexpiryyear').focus();
+      return;
+    }
+
+    // cvc, cccvc
+    if (stripeForm['controls'].cvc.errors) {
+      document.getElementById('cccvc').focus();
+      return;
+    }
+
+    // country, country
+    if (stripeForm['controls'].country.errors) {
+      document.getElementById('country').focus();
+      return;
+    }
+
+    // zipCode, zipCodeSelect
+    if (stripeForm['controls'].zipCode.errors) {
+      let el = document.getElementById('zipCodeSelect');
+      if (el) { el.focus(); }
+      return;
+    }
+
+
     // show loading overlay
     this.loading = true;
     this.disablePayment = true;
@@ -294,7 +344,7 @@ export class UpgradeComponent {
         this.defaultCardId = data.default_source;
         this.cards = data.sources;
       });
-      return this.saveToServer();
+      // return this.saveToServer();
     })
     // handle errors
     // error 409 -> redirect to Signin page

@@ -1,4 +1,3 @@
-import { RequestOptions} from '@angular/http';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -98,8 +97,7 @@ export class PricingComponent {
     let params = this.route.snapshot.params;
     this.planData.referralCode = params['referralCode'] || '';
     let body = { referralCode: this.planData.referralCode };
-    let options = new RequestOptions({});
-    this.backend.pricingPlans(this.planData.referralCode, options)
+    this.backend.pricingPlans(this.planData.referralCode, {})
     // build plans as needed
     .then((plans) => {
       // monthly plan
@@ -300,10 +298,9 @@ export class PricingComponent {
       password: this.accountFormData.password,
       referralCode: this.planData.referralCode
     };
-    let options = new RequestOptions({});
 
     // sets cookie
-    return this.backend.stripeCharge(body, options)
+    return this.backend.stripeCharge(body, {})
     // set user session
     .then((data) => {
       this.session.setUserData({

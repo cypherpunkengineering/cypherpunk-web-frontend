@@ -66,11 +66,6 @@
     max-height: 1000px;
     transition: opacity 0.5s linear;
   }
-  &.show-tall {
-    opacity: 1;
-    max-height: 1000px;
-    transition: opacity 0.5s linear;
-  }
 }
 
 .payment-info {
@@ -80,64 +75,6 @@
   margin: 50px auto 10px;
   padding: 30px 35px 40px;
   background-color: #fff;
-
-  .list-cards {
-    .tabs {
-      overflow: auto;
-      margin: 15px 0 0;
-      font-size: 24px;
-      color: #28434E;
-      font-weight: 600;
-      .tab {
-        width: 50%;
-        cursor: pointer;
-        padding: 10px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-      .active { background-color: #FF775A; }
-      .left { float: left; padding-left: 20px; }
-      .right { float: right; padding-right: 20px; text-align: right; }
-    }
-
-    .privacy { font-size: small; text-align: center; padding: 20px 0 10px; }
-    .no-cards {
-      text-align: center;
-      font-weight: bold;
-      div {
-        padding: 20px 0 40px;
-        a { cursor: pointer; text-decoration: underline; }
-      }
-    }
-
-    .card {
-      display: inline-block;
-      width: 32%;
-
-      &.hide { display: none; }
-      &:first-child > .card-info { margin: 20px 10px 10px; }
-
-      .card-info {
-        padding: 10px 5px;
-        margin: 10px;
-        cursor: pointer;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        &.active { background-color: RGBA(235, 131, 81, 0.58); }
-      }
-      .logo { width: 24%; display: inline-block; vertical-align: middle; }
-      .text { width: 73%; display: inline-block; vertical-align: middle; text-align: right; }
-    }
-  }
-
-  .create-card {
-    overflow: hidden;
-    transition: all 0.5s;
-    max-height: 0;
-    opacity: 0;
-    &.open { max-height: 660px; opacity: 1; }
-    .info:last-child p { margin: 10px 0 20px; }
-  }
 
   .account {
     width: 100%;
@@ -149,7 +86,46 @@
     p { margin: 10px 0 20px; }
   }
 
-  .pre-text { font-size: 14px; padding: 10px 0 40px; }
+  .card-table {
+    padding: 0 0 30px;
+
+    .card-table-row {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0;
+
+      .cell {
+        width: 220px;
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        button {
+          width: 100%;
+          height: 30px;
+          font-size: 16px;
+          margin: 10px 0;
+          &:hover { background-color: rgba(25,135,189,0.9); }
+        }
+      }
+    }
+
+    .privacy {
+      width: 90%;
+      margin: auto;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .create-card {
+    overflow: hidden;
+    transition: all 0.5s;
+    max-height: 0;
+    opacity: 0;
+    &.open { max-height: 660px; opacity: 1; }
+    .info button { font-size: 18px; height: 40px; width: 100%; }
+    .info button:hover { background-color: #27a5e2; }
+  }
 
   .leave-warning { margin: 20px 0 40px; }
 
@@ -157,7 +133,6 @@
     font-size: 18px;
     font-weight: bold;
     color: #163238;
-    &.tall { padding: 15px 0 0; }
     .total-price { color: #67b23f; }
     .billing-rate {
       margin: 10px 0 0;
