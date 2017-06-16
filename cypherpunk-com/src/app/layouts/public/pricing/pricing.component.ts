@@ -361,13 +361,9 @@ export class PricingComponent {
 
   // pay with amazon
 
-  updateBillingId(billingId) {
-    this.billingAgreementId = billingId;
-  }
+  updateBillingId(billingId) { this.billingAgreementId = billingId; }
 
-  updateAmazonHide(amazonHide) {
-    this.amazonHide = amazonHide;
-  }
+  updateAmazonHide(amazonHide) { this.amazonHide = amazonHide; }
 
   updateAmazonRecurringEnabled(amazonRecurringEnabled) {
     this.amazonRecurringEnabled = amazonRecurringEnabled;
@@ -393,6 +389,11 @@ export class PricingComponent {
     // password errors
     if (accountForm['controls'].password.errors) {
       document.getElementById('passwordInput').focus();
+      return;
+    }
+
+    if (!this.amazonRecurringEnabled) {
+      this.amazon.setRecurringError();
       return;
     }
 

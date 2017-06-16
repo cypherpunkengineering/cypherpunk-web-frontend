@@ -27,6 +27,7 @@ export class AmazonComponent {
   devWidgetUrl = 'https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js';
   prodWidgetUrl = 'https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js';
   widgetUrl = this.devWidgetUrl;
+  recurringError = false;
 
   constructor(
     private zone: NgZone,
@@ -89,6 +90,8 @@ export class AmazonComponent {
     );
   }
 
+  setRecurringError() { this.recurringError = true; }
+
   // called internally in the component
   launchAmazon() {
     let amazon = (<any>window).amazon;
@@ -135,17 +138,19 @@ export class AmazonComponent {
         onReady: (billingAgreementConsentStatus) => {
           let getStatus = billingAgreementConsentStatus.getConsentStatus;
           document.getElementById('consentWidgetDiv').style.display = 'block';
-          if (getStatus && getStatus() === 'true') {
-            this.updateAmazonRecurringEnabled.emit(true);
-          }
+          if (getStatus && getStatus() === 'true') { this.updateAmazonRecurringEnabled.emit(true); }
           else { this.updateAmazonRecurringEnabled.emit(false); }
         },
         onConsent: (billingAgreementConsentStatus) => {
           this.zone.run(() => {
             if (billingAgreementConsentStatus.getConsentStatus() === 'true') {
+              this.recurringError = false;
               this.updateAmazonRecurringEnabled.emit(true);
             }
-            else { this.updateAmazonRecurringEnabled.emit(false); }
+            else {
+              this.recurringError = true;
+              this.updateAmazonRecurringEnabled.emit(false);
+            }
           });
         },
         onError: (error) => { console.log(error); }
