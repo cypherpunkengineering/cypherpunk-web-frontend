@@ -11,7 +11,7 @@
 #word {
   bottom: 0;
   color: #fff;
-  font-size: 2em;
+  font-size: 1.5em;
   height: 2.5em;
   left: 0;
   line-height: 2em;
@@ -20,9 +20,10 @@
   position: absolute;
   text-shadow: 0 0 10px rgba(50, 255, 50, 0.5), 0 0 5px rgba(100, 255, 100, 0.5);
   top: 0;
-  width: 320px;
+  width: 240px;
   overflow: hidden;
   padding: 0 20px;
+  letter-spacing: -1px;
 }
 
 #word span {
