@@ -18,6 +18,7 @@ export class DashboardComponent {
   intervalCounter = 0;
   intervalHandler: any;
   showGettingStarted: boolean;
+  testLoading: boolean;
 
   // current site state
   state: {
@@ -57,7 +58,9 @@ export class DashboardComponent {
     // detect incoming from paypal
     let tx = this.activatedRoute.snapshot.queryParamMap['params']['tx'];
     let st = this.activatedRoute.snapshot.queryParamMap['params']['st'];
+    let testLoading = this.activatedRoute.snapshot.queryParamMap['params']['loading'];
     if (tx && st === 'Completed') { this.state.showPPWarning = true; }
+    if (testLoading) { this.testLoading = true; }
 
     // handle incoming from bitpay
     if (isPlatformBrowser(this.platformId)) {
@@ -86,6 +89,7 @@ export class DashboardComponent {
           if (this.state.showPPWarning && this.state.user.account.type === 'free') {
             this.intervalHandler = setInterval(() => { this.pollStatus(); }, 5000);
           }
+          else if (testLoading) { /* keep loading page up */ }
           else { this.state.loading = false; }
 
           if (!data.account.confirmed) {
