@@ -1,6 +1,6 @@
 import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { GlobalsService } from '../../../services/globals.service';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 
 @Component({

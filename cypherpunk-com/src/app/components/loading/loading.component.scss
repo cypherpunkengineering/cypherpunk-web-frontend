@@ -5,16 +5,44 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: rgba(238,238,238, 0.8);
+  background: radial-gradient(#222922, #000500);
 }
 
-.middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+#word {
+  bottom: 0;
+  color: #fff;
+  font-size: 2em;
+  height: 2.5em;
+  left: 0;
+  line-height: 2em;
+  margin: auto;
+  right: 0;
+  position: absolute;
+  text-shadow: 0 0 10px rgba(50, 255, 50, 0.5), 0 0 5px rgba(100, 255, 100, 0.5);
+  top: 0;
+  width: 320px;
+  overflow: hidden;
+  padding: 0 20px;
 }
 
-@media (max-width: 1250px) {
-  .alerts-container { padding: 10px 15px; }
+#word span {
+  display: inline-block;
+  transform: translateX(100%) scale(0.9);
+  transition: transform 500ms;
+}
+
+#word .done {
+  color: #8dfffc;
+  transform: translateX(0) scale(1);
+}
+
+.overlay {
+  background-image: linear-gradient(transparent 0%, rgba(26, 107, 107, 0.5) 50%);
+  background-size: 1000px 2px;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
