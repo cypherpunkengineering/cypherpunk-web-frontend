@@ -26,7 +26,7 @@ class Ticker {
   letters = [];
   letterCount: number;
   letterCurrent = 0;
-  chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+{}|[]\\;\':"<>?,./`~'.split('');
+  chars = 'abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()-_=+{}|[]\\;\':"<>?,./`~'.split('');
 
   constructor(isBrowser: boolean) {
     if (isBrowser) {
