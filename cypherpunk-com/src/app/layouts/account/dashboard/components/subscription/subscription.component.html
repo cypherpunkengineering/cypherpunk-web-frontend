@@ -4,25 +4,39 @@
 
     <section>
       <div class="content-row">
-        <div class="full">Subscriber Since: </div>
-      </div>
-
-      <div class="content-row">
-        <div class="left">Your subscription renews in/expire in:</div>
-        <div class="right">Change Plan</div>
-      </div>
-
-      <div class="content-row">
-        <div class="left">Payment method: Credit Card (ending in 3275) </div>
-        <div class="right clickable" (click)="showPaymentDetails = !showPaymentDetails">
-          View your Credit Card Info
+        <div class="full">
+          Subscriber Since: <span class="info"></span>
         </div>
       </div>
 
-      <account-payment [state]="state" [show]="showPaymentDetails"></account-payment>
+      <div class="content-row">
+        <div class="left">
+          Your subscription renews in/expire in: <span class="info"></span>
+        </div>
+        <div class="right">
+          <a>Change Plan</a>
+        </div>
+      </div>
 
       <div class="content-row">
-        <div class="full">Next billing: January 08, 2018 - $39.95</div>
+        <div class="left">
+          Payment method: <span class="info">Credit Card (ending in 3275)</span>
+          </div>
+        <div class="right">
+          <a (click)="showPaymentDetails = !showPaymentDetails">
+            View your Credit Card Info
+          </a>
+        </div>
+
+        <div class="payment">
+          <account-payment [state]="state" [show]="showPaymentDetails"></account-payment>
+        </div>
+      </div>
+
+      <div class="content-row">
+        <div class="full">
+          Next billing: <span class="info">January 08, 2018 - $39.95</span>
+          </div>
       </div>
 
       <div class="content-row">
