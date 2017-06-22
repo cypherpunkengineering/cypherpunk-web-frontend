@@ -1,46 +1,48 @@
 .content {
   width: 100%;
-  border-bottom: 10px solid #efeaea;
 
   .content-inner {
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    padding: 50px 0;
+    padding: 50px 10px;
 
     .content-header {
-      color: #ff7857;
+      color: #666;
       font-size: 28px;
       font-weight: 500;
       letter-spacing: 0.6px;
       text-align: center;
       margin-bottom: 50px;
+      &.orange { color: #ff7857; }
     }
 
     .content-row {
       margin: 0 auto;
       padding: 15px;
-      border-bottom: 1px solid #d8d8f6;
       overflow: auto;
       font-size: 20px;
-      color: #483c91;
+      color: #666;
       font-size: 18px;
-      a { text-decoration: underline; color: #483c91; cursor: pointer; }
-      a:hover { color: #9c93d3; }
-      .heading { padding-left: 25px; font-weight: bold; }
+      & + .content-row { border-top: 2px solid #ddd; }
+
+      a {
+        color: #ff7857;
+        cursor: pointer;
+        text-decoration: underline;
+        &:hover { color: #ffb5a4; }
+      }
+
+      .info { color: #1b87bb; }
       .left { float: left; padding-left: 25px; }
       .right { float: right; padding-right: 25px; }
-      .full { padding-left: 25px; }
-      .email { color: #7972c4; }
-      .uppercase { text-transform: uppercase; }
-      &:last-child { margin-bottom: 25px; }
-      &.clickable:hover { color: #9c93d3; }
+      .capitalize { text-transform: capitalize; }
     }
   }
 }
 
 .platforms {
-  padding: 50px 0;
+  padding: 0 0 50px;
 
   .platforms-inner {
     width: 100%;
@@ -197,12 +199,6 @@
 
 @media (max-width: 1060px) {
   .wrapper {
-    .content .content-inner .content-row .full { padding: 0; }
-    .content .content-inner .content-row .heading {
-      width: 100%;
-      text-align: left;
-      padding: 0;
-    }
     .content .content-inner .content-row .left {
       width: 50%;
       text-align: left;

@@ -1,15 +1,33 @@
 <div class="content">
   <div class="content-inner">
-    <section>
-      <div class="content-row">
-        <div class="left">
-          <span class="email uppercase">Account Type: {{state.user.account.type}}</span>
-        </div>
-        <div class="right">
-          <span class="email">Expiration: {{ state.user.subscription.expirationString }}</span>
-        </div>
+    <div class="content-header">Account Settings</div>
+
+    <div class="content-row">
+      <div class="left">
+        Account Type: <span class="info capitalize">{{state.user.account.type}}</span>
       </div>
-    </section>
+      <div class="right">
+        Expiration: <span class="info">{{ state.user.subscription.expirationString }}</span>
+      </div>
+    </div>
+
+    <div class="content-row">
+      <div class="left">
+        Email: <span class="info">{{state.user.account.email}}</span>
+      </div>
+      <div class="right">
+        <a (click)="openEmailModal()">Update</a>
+      </div>
+    </div>
+
+    <div class="content-row">
+      <div class="left">
+        Password: <span class="info">*******</span>
+      </div>
+      <div class="right">
+        <a (click)="openPasswordModal()">Update</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -24,7 +42,7 @@
 
 <div class="content">
   <div class="content-inner">
-    <h2 class="content-header">Download Cypherpunk Privacy for All Platforms</h2>
+    <h2 class="content-header orange">Download Cypherpunk Privacy for All Platforms</h2>
 
     <div class="platforms">
       <div class="platforms-inner">
@@ -221,30 +239,6 @@
       </div>
     </div>
 
-  </div>
-</div>
-
-<div class="content">
-  <div class="content-inner">
-    <section>
-      <div class="content-row">
-        <div class="left">
-          Email: <span class="email">{{state.user.account.email}}</span>
-        </div>
-        <div class="right">
-          <a (click)="openEmailModal()">Update</a>
-        </div>
-      </div>
-
-      <div class="content-row">
-        <div class="left">
-          Password: <span class="email">*******</span>
-        </div>
-        <div class="right">
-          <a (click)="openPasswordModal()">Update</a>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
 
