@@ -80,3 +80,9 @@ tfoot tr {
     & + .btn { margin-left: 25px; }
   }
 }
+
+@media (max-width: 1060px) {
+  .method { display: none; }
+  .return a { font-size: 14px; }
+  .overdue { display: none; }
+}
