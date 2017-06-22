@@ -18,7 +18,7 @@
         <tr *ngFor="let tran of transactions">
           <td>{{tran.date}}</td>
           <td>{{tran.plan}}</td>
-          <td>{{tran.total}}</td>
+          <td class="payment">{{tran.total}}</td>
           <td class="method">{{tran.method}}</td>
           <td><a [href]="tran.receiptUrl">Print</a></td>
         </tr>
@@ -33,24 +33,14 @@
       </tfoot>
     </table>
 
-    <div class="pagination-container">
-      <div class="pagination">
-        <div class="previous">
-          <button class="btn blue" (click)="goToTransactionsPage('previous')" [disabled]="previousTransactionsDisabled()">
-            Previous
-          </button>
-        </div>
+    <div class="pagination">
+      <button class="btn" (click)="goToTransactionsPage('previous')" [ngClass]="{ 'active': !previousTransactionsDisabled() }">
+        Previous
+      </button>
 
-        <div class="pages">
-          <button class="btn blue">{{transactionsCurrentPage}}</button>
-        </div>
-
-        <div class="next">
-          <button class="btn blue" (click)="goToTransactionsPage('next')" [disabled]="nextTransactionsDisabled()">
-            Next
-          </button>
-        </div>
-      </div>
+      <button class="btn" (click)="goToTransactionsPage('next')" [ngClass]="{ 'active': !nextTransactionsDisabled() }">
+        Next
+      </button>
     </div>
 
 
@@ -73,7 +63,7 @@
           <td class="overdue">Overdue</td>
           <td>{{invoice.date}}</td>
           <td>{{invoice.plan}}</td>
-          <td>{{invoice.total}}</td>
+          <td class="payment">{{invoice.total}}</td>
           <td class="method">{{invoice.method}}</td>
           <td><a [href]="invoice.receiptUrl">Print</a></td>
         </tr>
@@ -88,24 +78,14 @@
       </tfoot>
     </table>
 
-    <div class="pagination-container">
-      <div class="pagination">
-        <div class="previous">
-          <button class="btn blue" (click)="goToInvoicesPage('previous')" [disabled]="previousInvoicesDisabled()">
-            Previous
-          </button>
-        </div>
+    <div class="pagination">
+      <button class="btn" (click)="goToInvoicesPage('previous')" [ngClass]="{ 'active': !previousInvoicesDisabled() }">
+        Previous
+      </button>
 
-        <div class="pages">
-          <button class="btn blue">{{invoicesCurrentPage}}</button>
-        </div>
-
-        <div class="next">
-          <button class="btn blue" (click)="goToInvoicesPage('next')" [disabled]="nextInvoicesDisabled()">
-            Next
-          </button>
-        </div>
-      </div>
+      <button class="btn" (click)="goToInvoicesPage('next')" [ngClass]="{ 'active': !nextInvoicesDisabled() }">
+        Next
+      </button>
     </div>
   </div>
 </div>

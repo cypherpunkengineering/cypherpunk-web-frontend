@@ -5,18 +5,20 @@
 }
 
 .content-header {
-  color: #ff7857;
+  color: #666;
   font-size: 28px;
   font-weight: 500;
   letter-spacing: 0.6px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding: 0 10px;
 }
+
 table {
+  width: 100%;
   text-align: center;
-  width: 90%;
-  margin: 0 auto 50px;
+  margin: 0 auto 30px;
+  border-collapse: collapse;
 }
 
 thead tr {
@@ -25,10 +27,26 @@ thead tr {
   color: #999;
 }
 
+thead tr th {
+  border-bottom: 2px solid #ddd;
+}
+
 tbody tr {
   font-size: 18px;
   line-height: 2.78;
   color: #666;
+
+  td { border-bottom: 2px solid #ddd; }
+  td + td { border-left: 2px solid #ddd; }
+
+  .payment { color: #67b23f; }
+
+  a {
+    color: #1b87bb;
+    cursor: pointer;
+    text-decoration: underline;
+    &:hover { color: #3faee3; }
+  }
 }
 
 tbody tr:nth-child(odd) { background-color: #f8f9fb; }
@@ -40,19 +58,25 @@ tfoot tr {
   line-height: 2.78;
 }
 
-.overdue { color: #d0021b; }
+.overdue { color: #ff7857; }
 
-.pagination-container {
+.pagination {
   width: 100%;
-  max-width: 1000px;
-  margin-bottom: 35px;
-  overflow: auto;
-  padding-right: 25px;
+  margin-bottom: 50px;
+  text-align: center;
 
-  .pagination {
-    float: right;
-    max-width: 300px;
-    & > div { display: inline-block; }
-    .btn { padding: 10px; min-width: 30px; }
+  .btn {
+    padding: 10px;
+    min-width: 100px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    color: #999;
+    cursor: default;
+    &.active {
+      color: #1b87bb;
+      &:hover { color: #3faee3; }
+    }
+
+    & + .btn { margin-left: 25px; }
   }
 }
