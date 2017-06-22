@@ -11,7 +11,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 export class SetupHostnameComponent implements OnInit {
   user: any;
   regionArray = [];
-  freeAccount: boolean = false;
+  freeAccount = false;
   @Input() location: { hostname: '', display: false };
   @Output() update: EventEmitter<null> = new EventEmitter<null>();
 

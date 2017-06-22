@@ -1,6 +1,6 @@
 <div class="location-select-container">
-  <label for="locations">Please choose a location: </label>
   <select name="locations" [(ngModel)]="location.hostname" (ngModelChange)="updateValue()">
+    <option value="" disabled>Choose a location</option>
     <optgroup *ngFor="let region of regionArray" [label]="region.name">
       <option *ngFor="let country of region.countries" [value]="country.ipsecHostname" [disabled]="(freeAccount && country.level !== 'free') || !country.ovDefault.length">
         {{country.name}} <span *ngIf="freeAccount && country.level !== 'free'">(premium)</span>

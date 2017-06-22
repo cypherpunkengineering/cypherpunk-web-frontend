@@ -3,8 +3,8 @@
     <div class="content-header">Manual VPN/proxy Setup</div>
 
     <div class="vpn-select-container">
-      <label for="vpnSelect">Choose a vpn client:</label>
       <select name="vpnSelect" id="vpn-select" [(ngModel)]="vpnSelect">
+        <option value="" disabled>Choose a vpn client</option>
         <option value="openvpn">OpenVPN 2.3/2.4</option>
         <option value="ipsec">IPSec VPN</option>
         <option value="ike">IKEv2 VPN</option>
@@ -13,15 +13,13 @@
       </select>
     </div>
 
-    <hr>
-
     <div id="openvpn" class="vpn" [ngClass]="{'show': vpnSelect === 'openvpn'}">
-      <div class="subheader">OpenVPN 2.3/2.4</div>
+      <div class="content-header">OpenVPN 2.3/2.4</div>
       <app-setup-generator [showCredentials]="true"></app-setup-generator>
     </div>
 
     <div id="ipsec" class="vpn" [ngClass]="{'show': vpnSelect === 'ipsec'}">
-      <div class="subheader">IPSec VPN</div>
+      <div class="content-header">IPSec VPN</div>
 
       <div class="privacy">
         <app-setup-credentials></app-setup-credentials>
@@ -30,7 +28,7 @@
     </div>
 
     <div id="ike" class="vpn" [ngClass]="{'show': vpnSelect === 'ike'}">
-      <div class="subheader">IKEv2 VPN</div>
+      <div class="content-header">IKEv2 VPN</div>
 
       <div class="privacy">
         <app-setup-credentials></app-setup-credentials>
@@ -39,7 +37,7 @@
     </div>
 
     <div id="http" class="vpn" [ngClass]="{'show': vpnSelect === 'proxy'}">
-      <div class="subheader">HTTP/SOCKS Proxy</div>
+      <div class="content-header">HTTP/SOCKS Proxy</div>
 
       <div class="privacy">
         <app-setup-credentials></app-setup-credentials>
@@ -57,7 +55,7 @@
     </div>
 
     <div class="vpn" [ngClass]="{'show': vpnSelect === 'dns'}">
-      <div class="subheader">DNS Settings</div>
+      <div class="content-header">DNS Settings</div>
 
       <h4 class="info">
         In order to use DNS services, you must register your IP address with us so that we can recoginize you.

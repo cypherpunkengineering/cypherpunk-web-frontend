@@ -1,4 +1,12 @@
 .location-select-container {
   width: 100%;
   margin-bottom: 30px;
+
+  select {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+  }
 }
