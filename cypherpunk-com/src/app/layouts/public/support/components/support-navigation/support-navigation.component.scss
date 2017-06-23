@@ -43,6 +43,17 @@
   }
 }
 
+@media (max-width: 985px) {
+  .navigation li {
+    width: 25%;
+    border: 1px solid rgba(245, 245, 245, 0.2);
+    &.active { border-top-left-radius: 0; border-top-right-radius: 0; }
+  }
+  .navigation a:nth-child(-n+4) li {
+    border-top: 2px solid rgba(245, 245, 245, 0.2);
+  }
+}
+
 @media (max-width: 845px) {
   .navigation ul li span { display: none; }
   .navigation ul li img { margin: 0; }
