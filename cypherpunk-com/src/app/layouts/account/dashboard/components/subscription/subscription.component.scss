@@ -18,7 +18,7 @@
 
   .content-row {
     margin: 0 auto;
-    padding: 15px;
+    padding: 15px 0;
     overflow: auto;
     font-size: 20px;
     color: #666;
@@ -33,28 +33,20 @@
     }
 
     .info { color: #1b87bb; }
-    .left { float: left; padding-left: 25px; }
-    .right { float: right; padding-right: 25px; }
-    .full { padding-left: 25px; }
+    .left { float: left; }
+    .right { float: right; }
     .payment { width: 100%; clear: both; }
   }
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1000px) {
   .content .content-inner .content-row .left {
     width: 100%;
     text-align: left;
-    padding: 0;
+    padding: 0 0 10px;
   }
   .content .content-inner .content-row .right {
     width: 100%;
     text-align: left;
-    padding: 0;
-  }
-
-  .content .content-inner .content-row .full {
-    width: 100%;
-    text-align: left;
-    padding: 0;
   }
 }

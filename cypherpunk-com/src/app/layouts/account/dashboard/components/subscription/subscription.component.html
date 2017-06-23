@@ -4,9 +4,7 @@
 
     <section>
       <div class="content-row">
-        <div class="full">
-          Subscriber Since: <span class="info"></span>
-        </div>
+        Subscriber Since: <span class="info"></span>
       </div>
 
       <div class="content-row">
@@ -34,19 +32,15 @@
       </div>
 
       <div class="content-row">
-        <div class="full">
-          Next billing: <span class="info">January 08, 2018 - $39.95</span>
-          </div>
+        Next billing: <span class="info">January 08, 2018 - $39.95</span>
       </div>
 
       <div class="content-row">
-        <div class="full">
-          <a routerLink="/account/billing">
-            Cancel My Subscription
-          </a>
-          <div class="cancelled" *ngIf="cancelled">
-            Your automatic payments have be cancelled, but you will still be able to log in Cypherpunk Privacy until January 8, 2018.
-          </div>
+        <a routerLink="/account/billing">
+          Cancel My Subscription
+        </a>
+        <div class="cancelled" *ngIf="cancelled">
+          Your automatic payments have be cancelled, but you will still be able to log in Cypherpunk Privacy until January 8, 2018.
         </div>
       </div>
     </section>

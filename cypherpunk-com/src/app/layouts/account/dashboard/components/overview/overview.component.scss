@@ -5,6 +5,7 @@
     max-width: 1000px;
     margin: auto;
     padding: 50px 10px;
+    &.splitter { font-size: 0; }
   }
 
   .content-header {
@@ -17,11 +18,47 @@
     &.orange { color: #ff7857; }
   }
 
+  .account-section {
+    text-align: center;
+    .profile {
+      width: 100%;
+      max-width: 300px;
+      padding: 0 10px;
+      display: inline-block;
+      vertical-align: middle;
+
+      .image {
+        img { width: 150px; }
+        margin-bottom: 30px;
+      }
+
+      .account {
+        font-size: 18px;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        text-align: left;
+        .account-info {
+          & + .account-info { margin-top: 10px; }
+          .info { color: #1b87bb; }
+        }
+        .capitalize { text-transform: capitalize; }
+      }
+    }
+
+    .description {
+      width: 100%;
+      max-width: 680px;
+      padding: 0 10px 0 30px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
   .content-row {
     margin: 0 auto;
-    padding: 15px;
+    padding: 15px 0;
     overflow: auto;
-    font-size: 20px;
     color: #666;
     font-size: 18px;
     & + .content-row { border-top: 2px solid #ddd; }
@@ -30,12 +67,24 @@
       color: #ff7857;
       cursor: pointer;
       text-decoration: underline;
-      &:hover { color: #ffb5a4; }
+      &:hover {
+        color: #ffb5a4;
+        .refresh { background-color: #ffb5a4; }
+      }
+
+      .refresh {
+        color: #fff;
+        display: inline-block;
+        background-color: #ff7857;
+        padding: 0 10px;
+        margin-left: 10px;
+        border-radius: 5px;
+      }
     }
 
     .info { color: #1b87bb; }
-    .left { float: left; padding-left: 25px; }
-    .right { float: right; padding-right: 25px; }
+    .left { float: left; min-height: 31px; line-height: 31px; }
+    .right { float: right; min-height: 31px; line-height: 31px; }
     .capitalize { text-transform: capitalize; }
   }
 }
@@ -196,15 +245,20 @@
   }
 }
 
-@media (max-width: 1060px) {
-  .content .content-inner .content-row .left {
+@media (max-width: 1000px) {
+  .content .account-section .description .content-row .left {
     width: 100%;
-    text-align: left;
+    text-align: center;
+    padding: 0 0 10px;
+  }
+  .content .account-section .description .content-row .right {
+    width: 100%;
+    text-align: center;
     padding: 0;
   }
-  .content .content-inner .content-row .right {
-    width: 100%;
-    text-align: left;
-    padding: 0;
-  }
+}
+
+@media (max-width: 1000px) {
+  .content .account-section .profile { margin: 0 0 20px; }
+  .content .account-section .description { padding: 0 10px; }
 }

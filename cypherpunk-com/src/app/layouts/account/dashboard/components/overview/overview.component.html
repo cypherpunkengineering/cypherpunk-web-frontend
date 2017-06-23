@@ -1,31 +1,46 @@
 <div class="content">
-  <div class="content-inner">
+  <div class="content-inner splitter">
     <div class="content-header">Account Settings</div>
 
-    <div class="content-row">
-      <div class="left">
-        Account Type: <span class="info capitalize">{{state.user.account.type}}</span>
-      </div>
-      <div class="right">
-        Expiration: <span class="info">{{ state.user.subscription.expirationString }}</span>
-      </div>
-    </div>
+    <div class="account-section">
+      <div class="profile">
+        <div class="image">
+          <img src="/assets/ccp/free.png" srcset="/assets/ccp/free.png 500w, /assets/ccp/free@2x.png 1000w" alt="Free Account" *ngIf="state.user.account.type === 'free'">
+          <img src="/assets/ccp/premium.png" srcset="/assets/ccp/premium.png 500w, /assets/ccp/premium@2x.png 1000w" alt="Premium Account" *ngIf="state.user.account.type !== 'free'">
+        </div>
 
-    <div class="content-row">
-      <div class="left">
-        Email: <span class="info">{{state.user.account.email}}</span>
+        <div class="account">
+          <div class="account-info">
+            Account Type: <span class="info capitalize">{{state.user.account.type}}</span>
+          </div>
+          <div class="account-info">
+            Expiration: <span class="info">{{ state.user.subscription.expirationString }}</span>
+          </div>
+        </div>
       </div>
-      <div class="right">
-        <a (click)="openEmailModal()">Update</a>
-      </div>
-    </div>
 
-    <div class="content-row">
-      <div class="left">
-        Password: <span class="info">*******</span>
-      </div>
-      <div class="right">
-        <a (click)="openPasswordModal()">Update</a>
+      <div class="description">
+        <div class="content-row">
+          <div class="left">
+            Email: <span class="info">{{state.user.account.email}}</span>
+          </div>
+          <div class="right">
+            <a (click)="openEmailModal()">
+              Update<div class="refresh"><i class="fa fa-refresh"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="content-row">
+          <div class="left">
+            Password: <span class="info">*******</span>
+          </div>
+          <div class="right">
+            <a (click)="openPasswordModal()">
+              Update<div class="refresh"><i class="fa fa-refresh"></i></div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

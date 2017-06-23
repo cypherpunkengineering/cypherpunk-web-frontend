@@ -14,6 +14,8 @@ export class AccountOverviewComponent {
   @ViewChild('priceBoxes') priceBoxes;
   @Input() state;
 
+
+  // platform download links
   windowsDownloadLink: string;
   macosDownloadLink: string;
   linuxDownloadLink: string;
@@ -25,6 +27,7 @@ export class AccountOverviewComponent {
   macosRedirectLink: string;
   linuxRedirectLink: string;
 
+  // upgrade plan variables
   upgrade = true;
   showEmailModal = false;
   showPasswordModal = false;
@@ -38,6 +41,7 @@ export class AccountOverviewComponent {
     referralCode: ''
   };
 
+  // update user info variables
   changeEmailUser = { email: '', password: '' };
   changeEmailErrors = {
     email: { touched: false, exists: false, message: ''},
