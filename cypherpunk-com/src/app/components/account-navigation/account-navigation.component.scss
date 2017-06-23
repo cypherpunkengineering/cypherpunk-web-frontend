@@ -93,18 +93,18 @@
 
   .mobile-drop-down {
     width: 100%;
-    background-color: #cad8eb;
+    background-color: #0d1e26;
     max-height: 0;
     overflow-y: hidden;
     transition: max-height 0.5s ease;
     &.open { max-height: 220px; }
 
     .mobile-dd-item {
-      border-bottom: 1px solid #f2f2f2;
+      border-bottom: 1px solid #163138;
       text-align: center;
       font-size: 18px;
       line-height: 2.78;
-      color: #034698;
+      color: #74D5D4;
       cursor: pointer;
       &:last-child { border: 0; }
       &.hidden { display: none; }
