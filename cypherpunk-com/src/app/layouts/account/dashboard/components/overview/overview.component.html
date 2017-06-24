@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content down-arrow white">
   <div class="content-inner splitter">
     <div class="content-header">Account Settings</div>
 
@@ -8,18 +8,23 @@
           <img src="/assets/ccp/free.png" srcset="/assets/ccp/free.png 500w, /assets/ccp/free@2x.png 1000w" alt="Free Account" *ngIf="state.user.account.type === 'free'">
           <img src="/assets/ccp/premium.png" srcset="/assets/ccp/premium.png 500w, /assets/ccp/premium@2x.png 1000w" alt="Premium Account" *ngIf="state.user.account.type !== 'free'">
         </div>
-
-        <div class="account">
-          <div class="account-info">
-            Account Type: <span class="info capitalize">{{state.user.account.type}}</span>
-          </div>
-          <div class="account-info">
-            Expiration: <span class="info">{{ state.user.subscription.expirationString }}</span>
-          </div>
-        </div>
       </div>
 
       <div class="description">
+        <div class="content-row">
+          <div class="left">Account Type: </div>
+          <div class="right">
+            <span class="info capitalize">{{state.user.account.type}}</span>
+          </div>
+        </div>
+
+        <div class="content-row">
+          <div class="left">Expiration: </div>
+          <div class="right">
+            <span class="info">{{ state.user.subscription.expirationString }}</span>
+          </div>
+        </div>
+
         <div class="content-row">
           <div class="left">
             Email: <span class="info">{{state.user.account.email}}</span>
@@ -46,7 +51,7 @@
   </div>
 </div>
 
-<div class="content" *ngIf="showPriceBoxes() && !state.loading">
+<div class="content down-arrow white" *ngIf="showPriceBoxes() && !state.loading">
   <div class="content-inner">
     <h2 class="content-header" *ngIf="!state.showPPWarning">Upgrade Now!</h2>
     <h2 class="content-header" *ngIf="state.showPPWarning">Upgrading!</h2>
@@ -55,7 +60,7 @@
   </div>
 </div>
 
-<div class="content">
+<div class="content download">
   <div class="content-inner">
     <h2 class="content-header orange">Download Cypherpunk Privacy for All Platforms</h2>
 

@@ -1,5 +1,6 @@
 .content {
   width: 100%;
+  &.download { background-color: #efeaea; }
 
   .content-inner {
     max-width: 1000px;
@@ -30,19 +31,6 @@
       .image {
         img { width: 150px; }
         margin-bottom: 30px;
-      }
-
-      .account {
-        font-size: 18px;
-        padding: 10px;
-        border: 2px solid #ddd;
-        border-radius: 5px;
-        text-align: left;
-        .account-info {
-          & + .account-info { margin-top: 10px; }
-          .info { color: #1b87bb; }
-        }
-        .capitalize { text-transform: capitalize; }
       }
     }
 
