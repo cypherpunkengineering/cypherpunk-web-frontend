@@ -36,13 +36,13 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   };
 
   CPH_REGEX = /__CYPHERPUNK_OPENVPN_HOSTNAME_SELECTOR__/g;
-  CPH_COMPONENT = '<iframe src="/partial/hostname" style="width: 100%; height: 70px; border: 0; margin-top: 40px;"></iframe>';
+  CPH_COMPONENT = '<iframe src="/partial/hostname" style="width: 100%; height: 110px; border: 0; margin-top: 40px;"></iframe>';
   CPC_REGEX = /__CYPHERPUNK_PRIVACY_CREDENTIALS__/g;
-  CPC_COMPONENT = '<iframe src="/partial/credentials" style="width: 100%; height: 140px; border: 0; margin-top: 20px;"></iframe>';
+  CPC_COMPONENT = '<iframe src="/partial/credentials" style="width: 100%; height: 170px; border: 0; margin-top: 20px;"></iframe>';
   CA_REGEX = /__CYPHERPUNK_OPENVPN_CA_BOX__/g;
   CA_COMPONENT = '<iframe src="/partial/cert" style="width: 100%; height: 930px; border: 0; margin-top: 40px;"></iframe>';
   CG_REGEX = /__CYPHERPUNK_OPENVPN_CONFIG_GENERATOR__/g;
-  CG_COMPONENT = '<iframe src="/partial/config-generator" style="width: 100%; height: 600px; border: 0; margin-top: 20px;"></iframe>';
+  CG_COMPONENT = '<iframe src="/partial/config-generator" style="width: 100%; height: 670px; border: 0; margin-top: 20px;"></iframe>';
   GP_REGEX = /_CYPHERPUNK_GOOGLE_PLAY_BUTTON_/g;
   GP_COMPONENT = '<iframe src="/partial/google-play" style="width: 100%; height: 80px; border: 0;"></iframe>';
   AZ_REGEX = /_CYPHERPUNK_AMAZON_APP_STORE_BUTTON_/g;
