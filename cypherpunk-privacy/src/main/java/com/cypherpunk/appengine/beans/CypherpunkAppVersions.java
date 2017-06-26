@@ -33,21 +33,21 @@ public class CypherpunkAppVersions
 		this.windows = new Platform(
 			"0.8.0-beta", // latest
 			"0.8.0-beta", // required
-			"A new update is available.", // description
+			"", // description
 			"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.0-beta-01404.exe"
 		);
 
 		this.macos = new Platform(
 			"0.8.0-beta", // latest
 			"0.8.0-beta", // required
-			"A new update is available.", // description
+			"", // description
 			"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.0-beta-01404.zip"
 		);
 
 		this.debian = new Platform(
 			"0.8.0-beta", // latest
 			"0.8.0-beta", // required
-			"A new update is available.", // description
+			"", // description
 			"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.0-beta-01404.deb"
 		);
 	}
