@@ -21,8 +21,11 @@ public class CypherpunkAccountStatus
 	private static class Subscription
 	{
 		private boolean active;
-		private String renewal;
+		private boolean renews;
+		private String type;
 		private String expiration;
+		// deprecated
+		private String renewal;
 	}
 
 	private Privacy privacy;
