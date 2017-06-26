@@ -28,27 +28,55 @@ public class CypherpunkAppVersions
 	private Platform macos;
 	private Platform debian;
 
-	public CypherpunkAppVersions()
+	public CypherpunkAppVersions(String flavor)
 	{
-		this.windows = new Platform(
-			"0.8.0-beta", // latest
-			"0.8.0-beta", // required
-			"", // description
-			"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.0-beta-01404.exe"
-		);
+		if (flavor.equals("developer")) // {{{
+		{
+			this.windows = new Platform(
+				"0.8.0-beta+01404", // latest
+				"0.8.0-beta+01404", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.0-beta-01404.exe"
+			);
 
-		this.macos = new Platform(
-			"0.8.0-beta", // latest
-			"0.8.0-beta", // required
-			"", // description
-			"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.0-beta-01404.zip"
-		);
+			this.macos = new Platform(
+				"0.8.0-beta+01404", // latest
+				"0.8.0-beta+01404", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.0-beta-01404.zip"
+			);
 
-		this.debian = new Platform(
-			"0.8.0-beta", // latest
-			"0.8.0-beta", // required
-			"", // description
-			"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.0-beta-01404.deb"
-		);
+			this.debian = new Platform(
+				"0.8.0-beta+01404", // latest
+				"0.8.0-beta+01404", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.0-beta-01404.deb"
+			);
+		} // }}}
+		else // {{{ default
+		{
+			this.windows = new Platform(
+				"0.8.0-beta", // latest
+				"0.8.0-beta", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.0-beta-01404.exe"
+			);
+
+			this.macos = new Platform(
+				"0.8.0-beta", // latest
+				"0.8.0-beta", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.0-beta-01404.zip"
+			);
+
+			this.debian = new Platform(
+				"0.8.0-beta", // latest
+				"0.8.0-beta", // required
+				"", // description
+				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.0-beta-01404.deb"
+			);
+		} // }}}
 	}
 }
+
+// vim: foldmethod=marker wrap

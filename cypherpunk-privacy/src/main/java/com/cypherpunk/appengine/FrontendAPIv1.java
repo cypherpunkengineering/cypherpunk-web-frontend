@@ -171,9 +171,19 @@ public class FrontendAPIv1 extends HttpServlet
 		{
 			String appApiPath = apiPath.substring( "/app".length(), apiPath.length() );
 
-			if (appApiPath.equals("/versions")) // {{{
+			if (appApiPath.startsWith("/versions")) // {{{
 			{
-				CypherpunkAppVersions versions = new CypherpunkAppVersions();
+				String versionsFlavor = "default";
+				try
+				{
+					versionsFlavor = appApiPath.substring( "/versions/".length(), appApiPath.length() );
+				}
+				catch (Exception e)
+				{
+					versionsFlavor = "default";
+				}
+
+				CypherpunkAppVersions versions = new CypherpunkAppVersions(versionsFlavor);
 				setResponsePublicCacheHeaders(res, APP_VERSIONS_API_CACHE_PERIOD);
 				sendResponse(res, versions);
 			} // }}}
