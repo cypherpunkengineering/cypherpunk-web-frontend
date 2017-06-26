@@ -79,6 +79,7 @@ public class FrontendAPIv1 extends HttpServlet
 	// google cache should be >61 seconds and < 1 week
 	private static final int LOCATION_WORLD_CACHE_PERIOD = (60 * 60 * 1);
 	private static final int LOCATION_LIST_CACHE_PERIOD = 69; // (60 * 10);
+	private static final int APP_VERSIONS_API_CACHE_PERIOD = 69; // (60 * 2);
 	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
 	private static final int PRICING_PLANS_CACHE_PERIOD = 69; // (60 * 10);
 
@@ -172,13 +173,9 @@ public class FrontendAPIv1 extends HttpServlet
 
 			if (appApiPath.equals("/versions")) // {{{
 			{
-				// FIXME: convert to proper JSON object
-				res.getWriter().println(
-				"{"
-				+"\"windows\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"macos\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+",\"debian\":{\"latest\":\"0.8.0-beta\",\"required\":\"0.7.0-beta\",\"description\":\"A new version is available, please update Cypherpunk Privacy from https://cypherpunk.com/download\"}"
-				+"}");
+				CypherpunkAppVersions versions = new CypherpunkAppVersions();
+				setResponsePublicCacheHeaders(res, APP_VERSIONS_API_CACHE_PERIOD);
+				sendResponse(res, versions);
 			} // }}}
 		} // }}}
 		else if (apiPath.startsWith("/account")) // {{{
