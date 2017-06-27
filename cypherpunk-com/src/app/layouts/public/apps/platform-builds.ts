@@ -3,21 +3,21 @@ export class PlatformBuilds {
     name: 'MacOS',
     appLink: '/apps/macos',
     versions: '',
-    link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.0-beta-01270.pkg'
+    link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.1-beta-01412.zip'
   };
 
   static macos = {
     name: 'MacOS',
     appLink: '/apps/macos',
     versions: '',
-    link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.0-beta-01270.pkg'
+    link: 'https://download.cypherpunk.com/release/macos/cypherpunk-privacy-macos-0.8.1-beta-01412.zip'
   };
 
   static windows = {
     name: 'Windows',
     appLink: '/apps/windows',
     versions: '7 64-bit and later',
-    link: 'https://download.cypherpunk.com/release/windows/cypherpunk-privacy-windows-0.8.0-beta-01270.exe'
+    link: 'https://download.cypherpunk.com/release/windows/cypherpunk-privacy-windows-0.8.1-beta-01412.exe'
   };
 
   static linux = {
@@ -84,7 +84,7 @@ export class PlatformBuilds {
       name: 'Debian/Ubuntu/Mint',
       os: 'Debian/Ubuntu/Mint',
       version: '64-bit',
-      link: 'https://download.cypherpunk.com/release/debian/cypherpunk-privacy-linux-0.8.0-beta-01273.deb'
+      link: 'https://download.cypherpunk.com/release/debian/cypherpunk-privacy-linux-0.8.1-beta-01412.deb'
     }
   ];
 
