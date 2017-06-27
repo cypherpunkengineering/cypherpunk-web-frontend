@@ -32,7 +32,7 @@ export class PriceBoxesComponent implements OnChanges {
     // load plan data
     this.user = this.session.user;
     this.plans = this.planData.plans;
-    this.plansService.setPlanVisibility(this.user.subscription.renewal, this.user.account.type);
+    this.plansService.setPlanVisibility(this.user.subscription.type, this.user.account.type, this.user.subscription.renews);
 
     // get rates for bitpay
     if (isPlatformBrowser(this.platformId)) {

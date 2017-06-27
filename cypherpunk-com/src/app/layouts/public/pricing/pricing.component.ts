@@ -146,16 +146,18 @@ export class PricingComponent {
     if (isPlatformBrowser(this.platformId)) {
       this.authGuard.shouldUpgrade()
       .then(() => {
-        let redirect = true;
-        let type = session.user.account.type;
-        let renewal = session.user.subscription.renewal;
-        if (type === 'free') { redirect = false; }
-        else if (type === 'premium') {
-          if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
-        }
-        else if (type !== 'premium') { redirect = false; }
+        let upgrade = false;
+        let accountType = session.user.account.type;
+        let subType = session.user.subscription.type;
+        let renews = session.user.subscription.renews;
 
-        if (redirect) {
+        if (accountType === 'free' || accountType === 'expired') { upgrade = true; }
+        else if (accountType === 'premium') {
+          if (renews === false) { upgrade = true; }
+          if (subType !== 'annually' && subType !== 'forever') { upgrade = true; }
+        }
+
+        if (upgrade) {
           router.navigate(['/account/upgrade']);
           location.replaceState('/account/upgrade');
         }

@@ -8,11 +8,15 @@ export class SessionService {
   userFound = false;
   localStorage: any;
   user = {
-    privacy: { username: '', password: '' },
     account: { id: '', email: '', confirmed: false, type: '' },
-    subscription: { renewal: '', expiration: '', expirationString: '' },
+    privacy: { username: '', password: '' },
     secret: '',
-    status: '',
+    subscription: {
+      active: false,
+      renews: false,
+      type: '',
+      expiration: new Date()
+    },
     priceModel: 0,
     payOption: 0,
     showGettingStarted: false
@@ -28,18 +32,21 @@ export class SessionService {
     try {
       if (isPlatformBrowser(this.platformId)) {
         this.localStorage = window.localStorage;
-        this.user.privacy.username = this.localStorage.getItem('privacy.username') || '';
-        this.user.privacy.password = this.localStorage.getItem('privacy.password') || '';
         this.user.account.id = this.localStorage.getItem('account.id') || '';
         this.user.account.email = this.localStorage.getItem('account.email') || '';
         this.user.account.confirmed = this.localStorage.getItem('account.confirmed') === 'true';
         this.user.account.type = this.localStorage.getItem('account.type') || '';
-        this.user.subscription.renewal = this.localStorage.getItem('subscription.renewal') || '';
-        this.user.subscription.expiration = this.localStorage.getItem('subscription.expiration') || '';
+        this.user.privacy.username = this.localStorage.getItem('privacy.username') || '';
+        this.user.privacy.password = this.localStorage.getItem('privacy.password') || '';
         this.user.secret = this.localStorage.getItem('secret') || '';
-        this.user.status = this.localStorage.getItem('status') || '';
-        this.setExpirationString(this.user.subscription.expiration);
+        this.user.subscription.active = this.localStorage.getItem('subscription.active') || false;
+        this.user.subscription.renews = this.localStorage.getItem('subscription.renews') || false;
+        this.user.subscription.type = this.localStorage.getItem('subscription.type') || '';
+        let expiration = this.localStorage.getItem('subscription.expiration').replace(/"/g, '');
+        if (expiration === 'undefined') { this.user.subscription.expiration = undefined; }
+        else { this.user.subscription.expiration = new Date(expiration); }
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
+
         this.setSnapEngageEmail(this.user);
       }
     }
@@ -47,21 +54,6 @@ export class SessionService {
       this.userFound = false;
       console.log(e);
     };
-  }
-
-  setExpirationString(expiration) {
-    if (expiration === '0') { this.user.subscription.expirationString = 'Never'; return; }
-
-    let now = new Date();
-    let expirationDate = new Date(expiration);
-    if (expirationDate > now) {
-      let renewal = this.user.subscription.renewal;
-      let month = expirationDate.getMonth() + 1;
-      let day = expirationDate.getDate();
-      let year = expirationDate.getFullYear();
-      this.user.subscription.expirationString = `Renews ${renewal} on ${month}/${day}/${year}`;
-    }
-    else { this.user.subscription.expirationString = ''; }
   }
 
   setUserData(user) {
@@ -96,22 +88,27 @@ export class SessionService {
     }
 
     if (user.subscription) {
-      let renewal = user.subscription.renewal || '';
-      this.user.subscription.renewal = renewal;
-      this.localStorage.setItem('subscription.renewal', renewal);
+      let active = user.subscription.active || false;
+      this.user.subscription.active = active;
+      this.localStorage.setItem('subscription.active', active);
+
+      let renews = user.subscription.renews || false;
+      this.user.subscription.renews = renews;
+      this.localStorage.setItem('subscription.renews', renews);
+
+      let type = user.subscription.type || '';
+      this.user.subscription.type = type;
+      this.localStorage.setItem('subscription.type', type);
 
       let expiration = user.subscription.expiration;
+      if (!expiration || expiration === '0') { expiration = undefined; }
+      else { expiration = new Date(expiration); }
       this.user.subscription.expiration = expiration;
-      this.localStorage.setItem('subscription.expiration', expiration);
+      this.localStorage.setItem('subscription.expiration', JSON.stringify(expiration));
     }
 
     this.user.secret = user.secret || '';
     this.localStorage.setItem('secret', this.user.secret);
-
-    this.user.status = user.status || '';
-    this.localStorage.setItem('status', this.user.status);
-
-    this.setExpirationString(this.user.subscription.expiration);
   }
 
   pullPlanData(secret?: string): Promise<any> {
@@ -140,9 +137,6 @@ export class SessionService {
     this.user.secret = '';
     this.localStorage.removeItem('secret');
 
-    this.user.status = '';
-    this.localStorage.removeItem('status');
-
     this.user.privacy = { username: '', password: '' };
     this.localStorage.removeItem('privacy.username');
     this.localStorage.removeItem('privacy.password');
@@ -153,8 +147,15 @@ export class SessionService {
     this.localStorage.removeItem('account.confirmed');
     this.localStorage.removeItem('account.type');
 
-    this.user.subscription = { renewal: '', expiration: '', expirationString: '' };
-    this.localStorage.removeItem('subscription.renewal');
+    this.user.subscription = {
+      active: false,
+      renews: false,
+      type: '',
+      expiration: undefined
+    };
+    this.localStorage.removeItem('subscription.active');
+    this.localStorage.removeItem('subscription.renews');
+    this.localStorage.removeItem('subscription.type');
     this.localStorage.removeItem('subscription.expiration');
 
     this.userFound = false;

@@ -44,12 +44,15 @@ export class AccountNavigationComponent {
   }
 
   showPriceBoxes() {
-    let type = this.user.account.type;
-    let renewal = this.user.subscription.renewal;
+    let accountType = this.user.account.type;
+    let subType = this.user.subscription.type;
+    let renews = this.user.subscription.renews;
 
-    if (type === 'free') { return true; }
-    else if (type === 'premium') {
-      if (renewal !== 'annually' && renewal !== 'forever') { return true; }
+    if (accountType === 'free' || accountType === 'expired') { return true; }
+    else if (accountType === 'premium') {
+      if (renews === false) { return true; }
+      if (subType !== 'annually' && subType !== 'forever') { return true;
+      }
     }
     else { return false; }
   }

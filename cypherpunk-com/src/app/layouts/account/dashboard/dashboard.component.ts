@@ -96,6 +96,8 @@ export class DashboardComponent {
             let error = 'Your account is not confirmed! Please check your email and click on the link to confirm your account.';
             this.alertService.warning(error);
           }
+
+          this.session.setUserData(data);
         });
       })
       .catch(() => { /* keep error from showing up in console */ });

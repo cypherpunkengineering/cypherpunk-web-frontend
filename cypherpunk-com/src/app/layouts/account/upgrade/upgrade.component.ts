@@ -147,11 +147,14 @@ export class UpgradeComponent {
       .then(() => {
         this.user = session.user;
         let redirect = true;
-        let type = session.user.account.type;
-        let renewal = session.user.subscription.renewal;
-        if (type === 'free') { redirect = false; }
-        else if (type === 'premium') {
-          if (renewal !== 'annually' && renewal !== 'forever') { redirect = false; }
+        let accountType = session.user.account.type;
+        let subType = session.user.subscription.type;
+        let renews = session.user.subscription.renews;
+
+        if (accountType === 'free' || accountType === 'expired') { redirect = false; }
+        else if (accountType === 'premium') {
+          if (renews === false) { redirect = false; }
+          if (subType !== 'annually' && subType !== 'forever') { redirect = false; }
         }
 
         if (redirect) {

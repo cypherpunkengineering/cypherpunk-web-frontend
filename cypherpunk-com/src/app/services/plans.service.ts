@@ -29,19 +29,19 @@ export class PlansService {
 
   constructor(private zone: NgZone) { }
 
-  setPlanVisibility (planCode, userType): void {
-    if (userType === 'free') {
+  setPlanVisibility(planCode, userType, renews): void {
+    if (userType === 'free' || userType === 'expired' || !renews) {
       this.plans.map((plan) => { plan.viewable = true; });
     }
     else if (planCode === 'monthly') {
-      this.plans[0].viewable = false;
-      this.plans[1].viewable = true;
-      this.plans[2].viewable = true;
+      if (this.plans[0]) { this.plans[0].viewable = false; }
+      if (this.plans[1]) { this.plans[1].viewable = true; }
+      if (this.plans[2]) { this.plans[2].viewable = true; }
     }
     else if (planCode === 'semiannually') {
-      this.plans[0].viewable = false;
-      this.plans[1].viewable = true;
-      this.plans[2].viewable = false;
+      if (this.plans[0]) { this.plans[0].viewable = false; }
+      if (this.plans[1]) { this.plans[1].viewable = true; }
+      if (this.plans[2]) { this.plans[2].viewable = false; }
     }
     else if (planCode === 'annually') {
       this.plans.map((plan) => { plan.viewable = false; });

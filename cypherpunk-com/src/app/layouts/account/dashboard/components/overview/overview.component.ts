@@ -14,7 +14,6 @@ export class AccountOverviewComponent {
   @ViewChild('priceBoxes') priceBoxes;
   @Input() state;
 
-
   // platform download links
   windowsDownloadLink: string;
   macosDownloadLink: string;
@@ -119,13 +118,37 @@ export class AccountOverviewComponent {
 
   pageRedirect(url) { this.router.navigate([url]); }
 
-  showPriceBoxes() {
-    let type = this.state.user.account.type;
-    let renewal = this.state.user.subscription.renewal;
+  handleExpirationType() {
+    let user = this.state.user;
+    if (user.account.type === 'expired') { return 'expired'; }
+    else if (user.account.type === 'premium') {
+      if (user.subscription.renews) { return 'renews'; }
+      else if (!user.subscription.renews) { return 'expires'; }
+    }
+    else { return 'none'; }
+  }
 
-    if (type === 'free') { return true; }
-    else if (type === 'premium') {
-      if (renewal !== 'annually' && renewal !== 'forever') { return true;
+  handleExpirationOutput() {
+    let user = this.state.user;
+    let expiration = this.state.user.subscription.expiration;
+    if (expiration) {
+      let now = new Date();
+      let oneDay = 24 * 60 * 60 * 1000;
+      let days = Math.round(Math.abs((expiration.getTime() - now.getTime()) / (oneDay)));
+      return days + ' days';
+    }
+    return 'loading';
+  }
+
+  showPriceBoxes() {
+    let accountType = this.state.user.account.type;
+    let subType = this.state.user.subscription.type;
+    let renews = this.state.user.subscription.renews;
+
+    if (accountType === 'free' || accountType === 'expired') { return true; }
+    else if (accountType === 'premium') {
+      if (renews === false) { return true; }
+      if (subType !== 'annually' && subType !== 'forever') { return true;
       }
     }
     else { return false; }

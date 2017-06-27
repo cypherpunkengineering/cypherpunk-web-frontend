@@ -14,14 +14,31 @@
         <div class="content-row">
           <div class="left">Account Type: </div>
           <div class="right">
-            <span class="info capitalize">{{state.user.account.type}}</span>
+            <span class="info capitalize">{{ state.user.account.type }}</span>
           </div>
         </div>
 
-        <div class="content-row">
-          <div class="left">Expiration: </div>
+        <!-- Renews Expiration -->
+        <div class="content-row" *ngIf="handleExpirationType() === 'renews'">
+          <div class="left">Renews on: </div>
           <div class="right">
-            <span class="info">{{ state.user.subscription.expirationString }}</span>
+            <span class="info">{{ state.user.subscription.expiration | date:'mediumDate' }}</span>
+          </div>
+        </div>
+
+        <!-- Expires in Expiration -->
+        <div class="content-row" *ngIf="handleExpirationType() === 'expires'">
+          <div class="left">Expires in: </div>
+          <div class="right">
+            <span class="info">{{ handleExpirationOutput() }}</span>
+          </div>
+        </div>
+
+        <!-- Expired Expiration -->
+        <div class="content-row" *ngIf="handleExpirationType() === 'expired'">
+          <div class="left">Expired On: </div>
+          <div class="right">
+            <span class="info">{{ state.user.subscription.expiration | date:'mediumDate' }}</span>
           </div>
         </div>
 
