@@ -7,37 +7,28 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
 import { PlansService, Plan } from '../../../services/plans.service';
-import { Component, PLATFORM_ID, Inject, NgZone, ViewChild } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, NgZone, ViewChild, OnDestroy } from '@angular/core';
 import country_list from '../../public/pricing/countries';
 
 @Component({
   templateUrl: './upgrade.component.html',
   styleUrls: ['./upgrade.component.css']
 })
-export class UpgradeComponent {
+export class UpgradeComponent implements OnDestroy {
   @ViewChild('amazon') amazon;
   @ViewChild('paypal') paypal;
   @ViewChild('bitpay') bitpay;
   @ViewChild('priceBoxes') priceBoxes;
 
   // payment options (cc, a, pp, bc)
+  loading = true;
   paymentMethod = '';
   countries = country_list;
-  loading = true;
   disablePayment = false;
   modal = { show: false, header: '', body: '' };
   errHeader = 'Error processing your payment';
-
-  // plan details
-  planData: {
-    plans: Plan[],
-    selected: Plan,
-    referralCode: string
-  } = {
-    plans: [],
-    selected: undefined,
-    referralCode: ''
-  };
+  referralCode: string;
+  plansSrv;
 
   // user variables
   user;
@@ -83,60 +74,13 @@ export class UpgradeComponent {
     // handle title
     this.document.title = 'Upgrade Cypherpunk Account';
 
+    // handle plans
+    this.plansSrv = plansService;
+
     // Determine plans to show
     let params = this.activatedRoute.snapshot.params;
-    this.planData.referralCode = params['referralCode'] || '';
-    let body = { referralCode: this.planData.referralCode };
-    this.backend.pricingPlans(this.planData.referralCode, {})
-    // build plans as needed
-    .then((plans) => {
-      // monthly plan
-      this.planData.plans.push({
-        id: 'monthly',
-        price: Number(plans.monthly.price),
-        bcPrice: undefined,
-        rate: 'monthly plan',
-        months: 1,
-        viewable: true,
-        bitpayData: plans.monthly.bitpayPlanId,
-        paypalButtonId: plans.monthly.paypalPlanId
-      });
-      // annual plan
-      this.planData.plans.push({
-        id: 'annually',
-        price: Number(plans.annually.price),
-        bcPrice: undefined,
-        rate: '12 month plan',
-        months: 12,
-        viewable: true,
-        bitpayData: plans.annually.bitpayPlanId,
-        paypalButtonId: plans.annually.paypalPlanId
-      });
-      // semiannual plan
-      this.planData.plans.push({
-        id: 'semiannually',
-        price: Number(plans.semiannually.price),
-        bcPrice: undefined,
-        rate: '6 month plan',
-        months: 6,
-        viewable: true,
-        bitpayData: plans.semiannually.bitpayPlanId,
-        paypalButtonId: plans.semiannually.paypalPlanId
-      });
-      if (this.plansService.selectedPlanId === 'monthly') {
-        this.planData.selected = this.planData.plans[0];
-      }
-      else if (this.plansService.selectedPlanId === 'semiannually') {
-        this.planData.selected = this.planData.plans[2];
-      }
-      else { this.planData.selected = this.planData.plans[1]; }
-      this.priceBoxes.updatePlans();
-      this.bitpay.update();
-      this.paypal.update();
-    })
-    .catch((err) => {
-      console.log('Could not pull pricing plans, defaulting');
-    });
+    this.referralCode = params['referralCode'];
+    if (this.referralCode) { this.plansService.getPlans(this.referralCode); }
 
     // check if valid user account
     if (isPlatformBrowser(this.platformId)) {
@@ -374,8 +318,8 @@ export class UpgradeComponent {
 
   saveToServer() {
     let body = {
-      plan: this.planData.selected.id,
-      referralCode: this.planData.referralCode
+      plan: this.plansService.selectedPlan.id,
+      referralCode: this.referralCode
     };
 
     // set cookie
@@ -401,7 +345,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+    this.paypal.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
   }
 
   // pay with amazon
@@ -425,8 +369,8 @@ export class UpgradeComponent {
     this.disablePayment = true;
 
     let body = {
-      plan: this.planData.selected.id,
-      referralCode: this.planData.referralCode,
+      plan: this.plansService.selectedPlan.id,
+      referralCode: this.referralCode,
       AmazonBillingAgreementId: this.billingAgreementId
     };
     return this.backend.amazonUpgrade(body, {})
@@ -445,7 +389,7 @@ export class UpgradeComponent {
     if (this.disablePayment) { return; }
     this.loading = true;
     this.disablePayment = true;
-    this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+    this.bitpay.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
   }
 
   // helper functions
@@ -471,6 +415,10 @@ export class UpgradeComponent {
     }
     else if (method === 'bc') { this.showBTC = true; }
     else { this.showBTC = false; }
+  }
+
+  ngOnDestroy() {
+    if (this.referralCode) { this.plansService.useDefaultPlans(true); }
   }
 
 }

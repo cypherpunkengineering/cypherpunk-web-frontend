@@ -7,37 +7,28 @@ import { PlansService, Plan } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, PLATFORM_ID, Inject, NgZone, ViewChild } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, NgZone, ViewChild, OnDestroy } from '@angular/core';
 import country_list from './countries';
 
 @Component({
   templateUrl: './pricing.component.html',
   styleUrls: ['./pricing.component.css']
 })
-export class PricingComponent {
+export class PricingComponent implements OnDestroy {
   @ViewChild('accounts') accountChild;
   @ViewChild('amazon') amazon;
   @ViewChild('paypal') paypal;
   @ViewChild('bitpay') bitpay;
   @ViewChild('priceBoxes') priceBoxes;
 
-  paymentMethod = ''; // payment options (cc, a, pp, bc)
-  countries = country_list;
   loading = false;
+  paymentMethod = ''; // payment options (cc, a, pp, bc)
   disablePayment = false;
+  countries = country_list;
   modal = { show: false, header: '', body: '', link: false };
   errHeader = 'Error processing your payment';
-
-  // plan details
-  planData: {
-    plans: Plan[],
-    selected: Plan,
-    referralCode: string
-  } = {
-    plans: [],
-    selected: undefined,
-    referralCode: ''
-  };
+  referralCode: string;
+  plansSrv;
 
   // user variables
   accountFormData = {
@@ -66,8 +57,8 @@ export class PricingComponent {
   };
 
   // Amazon variables
-  billingAgreementId: string;
   amazonHide = false;
+  billingAgreementId: string;
   amazonRecurringEnabled = false;
 
   // bitpay variables
@@ -93,54 +84,13 @@ export class PricingComponent {
     // handle title
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
 
+    // handle plans
+    this.plansSrv = plansService;
+
     // Determine plans to show
     let params = this.route.snapshot.params;
-    this.planData.referralCode = params['referralCode'] || '';
-    let body = { referralCode: this.planData.referralCode };
-    this.backend.pricingPlans(this.planData.referralCode, {})
-    // build plans as needed
-    .then((plans) => {
-      // monthly plan
-      this.planData.plans.push({
-        id: 'monthly',
-        price: Number(plans.monthly.price),
-        bcPrice: undefined,
-        rate: 'monthly plan',
-        months: 1,
-        viewable: true,
-        bitpayData: plans.monthly.bitpayPlanId,
-        paypalButtonId: plans.monthly.paypalPlanId
-      });
-      // annual plan
-      this.planData.plans.push({
-        id: 'annually',
-        price: Number(plans.annually.price),
-        bcPrice: undefined,
-        rate: '12 month plan',
-        months: 12,
-        viewable: true,
-        bitpayData: plans.annually.bitpayPlanId,
-        paypalButtonId: plans.annually.paypalPlanId
-      });
-      // semiannual plan
-      this.planData.plans.push({
-        id: 'semiannually',
-        price: Number(plans.semiannually.price),
-        bcPrice: undefined,
-        rate: '6 month plan',
-        months: 6,
-        viewable: true,
-        bitpayData: plans.semiannually.bitpayPlanId,
-        paypalButtonId: plans.semiannually.paypalPlanId
-      });
-      this.planData.selected = this.planData.plans[1];
-      this.priceBoxes.updatePlans();
-      this.bitpay.update();
-      this.paypal.update();
-    })
-    .catch((err) => {
-      console.log('Could not pull pricing plans, defaulting');
-    });
+    this.referralCode = params['referralCode'];
+    if (this.referralCode) { this.plansService.getPlans(this.referralCode); }
 
     // redirect if user is already logged in
     if (isPlatformBrowser(this.platformId)) {
@@ -295,10 +245,10 @@ export class PricingComponent {
     // call server at this point (using promises)
     let body = {
       token: token,
-      plan: this.planData.selected.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.accountFormData.email,
       password: this.accountFormData.password,
-      referralCode: this.planData.referralCode
+      referralCode: this.referralCode
     };
 
     // sets cookie
@@ -353,7 +303,7 @@ export class PricingComponent {
     return this.createAccount()
     .then(() => {
       this.session.setGettingStarted(true);
-      this.paypal.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+      this.paypal.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
     })
     .catch(error => { this.handleError(error); });
   }
@@ -402,10 +352,10 @@ export class PricingComponent {
 
     /* send billingAgreement to server */
     let body = {
-      plan: this.planData.selected.id,
+      plan: this.plansService.selectedPlan.id,
       email: this.accountFormData.email,
       password: this.accountFormData.password,
-      referralCode: this.planData.referralCode,
+      referralCode: this.referralCode,
       AmazonBillingAgreementId: this.billingAgreementId,
     };
 
@@ -461,7 +411,7 @@ export class PricingComponent {
     return this.createAccount()
     .then(() => {
       this.session.setGettingStarted(true);
-      this.bitpay.pay(this.user.account.id, this.planData.selected.id, this.planData.referralCode);
+      this.bitpay.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
     })
     .catch(error => { this.handleError(error); });
   }
@@ -508,4 +458,7 @@ export class PricingComponent {
     else { this.showBTC = false; }
   }
 
+  ngOnDestroy() {
+    if (this.referralCode) { this.plansService.useDefaultPlans(true); }
+  }
 }

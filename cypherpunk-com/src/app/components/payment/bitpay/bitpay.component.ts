@@ -1,47 +1,51 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { PlansService } from '../../../services/plans.service';
 import { GlobalsService } from '../../../services/globals.service';
 
 @Component({
   selector: 'app-bitpay',
   templateUrl: './bitpay.component.html'
 })
-export class BitpayComponent implements OnChanges {
-  @Input() planData;
-
+export class BitpayComponent implements OnDestroy {
   env = 'DEV';
   posData = '';
   monthlyData = '';
   annuallyData = '';
   semiannuallyData = '';
+  planSubscriber;
 
-  constructor(private globals: GlobalsService) { }
-
-  ngOnChanges() { this.update(); }
+  constructor(private plansService: PlansService, private globals: GlobalsService) {
+    this.planSubscriber = plansService.getObservablePlans().subscribe((plans) => {
+      this.update();
+    });
+  }
 
   update() {
     if (this.globals.ENV === 'PROD' || this.globals.ENV === 'STAGING') { this.env = 'PROD'; }
-    if (this.planData.plans.length) {
-      this.monthlyData = this.planData.plans[0].bitpayData;
-      this.annuallyData = this.planData.plans[1].bitpayData;
-      this.semiannuallyData = this.planData.plans[2].bitpayData;
+    if (this.plansService.plans.length) {
+      this.monthlyData = this.plansService.plans[0].bitpayData;
+      this.annuallyData = this.plansService.plans[1].bitpayData;
+      this.semiannuallyData = this.plansService.plans[2].bitpayData;
     }
   }
 
-  pay(userId, planDuration, referralCode) {
-    let data = { id: userId, plan: planDuration, referralCode: referralCode };
+  pay(userId, plandId, referralCode) {
+    let data = { id: userId, plan: plandId, referralCode: referralCode };
     if (!data.referralCode) { delete data.referralCode; }
     this.posData = JSON.stringify(data);
 
     setTimeout(() => {
-      if (planDuration.startsWith('monthly')) {
+      if (plandId.startsWith('monthly')) {
         document.getElementById('bitpayMonthly').click();
       }
-      else if (planDuration.startsWith('annually')) {
+      else if (plandId.startsWith('annually')) {
         document.getElementById('bitpayAnnual').click();
       }
-      else if (planDuration.startsWith('semiannually')) {
+      else if (plandId.startsWith('semiannually')) {
         document.getElementById('bitpaySemiannual').click();
       }
     });
   }
+
+  ngOnDestroy() { this.planSubscriber.unsubscribe(); }
 }

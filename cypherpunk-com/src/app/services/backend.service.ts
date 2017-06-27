@@ -78,7 +78,8 @@ export class BackendService {
   // User account apis
 
   pricingPlans(referralCode, options): Promise<any> {
-    let url = this.globals.API_URL + '/pricing/plans' + referralCode;
+    let url = this.globals.API_URL + '/pricing/plans';
+    if (referralCode) { url += '/' + referralCode; }
     return this.http.get(url, options).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);

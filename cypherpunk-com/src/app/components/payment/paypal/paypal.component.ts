@@ -1,29 +1,31 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { PlansService } from '../../../services/plans.service';
 import { GlobalsService } from '../../../services/globals.service';
 
 @Component({
   selector: 'app-paypal',
   templateUrl: './paypal.component.html'
 })
-export class PaypalComponent implements OnChanges {
-  @Input() planData;
-
+export class PaypalComponent implements OnDestroy {
   env = 'DEV';
   posData = '';
   monthlyButtonId = '';
   annuallyButtonId = '';
   semiannuallyButtonId = '';
-
-  constructor(private globals: GlobalsService) { }
-
-  ngOnChanges() { this.update(); }
+  planSubscriber;
+  
+  constructor(private plansService: PlansService, private globals: GlobalsService) {
+    this.planSubscriber = plansService.getObservablePlans().subscribe((plans) => {
+      this.update();
+    });
+  }
 
   update() {
     if (this.globals.ENV === 'PROD' || this.globals.ENV === 'STAGING') { this.env = 'PROD'; }
-    if (this.planData.plans.length) {
-      this.monthlyButtonId = this.planData.plans[0].paypalButtonId;
-      this.annuallyButtonId = this.planData.plans[1].paypalButtonId;
-      this.semiannuallyButtonId = this.planData.plans[2].paypalButtonId;
+    if (this.plansService.plans.length) {
+      this.monthlyButtonId = this.plansService.plans[0].paypalButtonId;
+      this.annuallyButtonId = this.plansService.plans[1].paypalButtonId;
+      this.semiannuallyButtonId = this.plansService.plans[2].paypalButtonId;
     }
   }
 
@@ -47,4 +49,6 @@ export class PaypalComponent implements OnChanges {
       }
     });
   }
+
+  ngOnDestroy() { this.planSubscriber.unsubscribe(); }
 }

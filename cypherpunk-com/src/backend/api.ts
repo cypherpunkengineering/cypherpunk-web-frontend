@@ -241,7 +241,7 @@ export function world(req, res) {
 }
 
 export function pricingPlans(req, res) {
-  let code = req.body.referralCode;
+  let code = req.params.referralCode;
   if (code === 'test') {
     return res.json({
       monthly: {
@@ -256,7 +256,7 @@ export function pricingPlans(req, res) {
       },
       annually: {
         price: '69.00',
-        paypalPlanId: '',
+        paypalPlanId: 'referralCode',
         bitpayPlanId: '',
       }
     });

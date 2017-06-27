@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <app-price-boxes #priceBoxes [btc]="showBTC" [planData]="planData"></app-price-boxes>
+      <app-price-boxes #priceBoxes [btc]="showBTC"></app-price-boxes>
     </div>
 
     <div class="account-creation" [hidden]="amazonHide">
@@ -55,10 +55,10 @@
 
         <div class="price tall">
           Order Total: <span class="total-price">
-            ${{ planData.selected?.price | number:'.2-2' }}
+            ${{ plansSrv.selectedPlan?.price | number:'.2-2' }}
           </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price / planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
+            Cypherpunk Privacy {{ plansSrv.selectedPlan?.rate }} (${{ plansSrv.selectedPlan?.price / plansSrv.selectedPlan?.months | number:'.2-2' }} per month, every {{ plansSrv.selectedPlan?.months }} months)
           </div>
         </div>
 
@@ -88,10 +88,10 @@
 
         <div class="price">
           Order Total: <span class="total-price">
-            ${{ planData.selected?.price | number:'.2-2' }}
+            ${{ plansSrv.selectedPlan?.price | number:'.2-2' }}
           </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price / planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
+            Cypherpunk Privacy {{ plansSrv.selectedPlan?.rate }} (${{ plansSrv.selectedPlan?.price / plansSrv.selectedPlan?.months | number:'.2-2' }} per month, every {{ plansSrv.selectedPlan?.months }} months)
           </div>
         </div>
 
@@ -117,10 +117,10 @@
 
         <div class="price">
           Order Total: <span class="total-price">
-            ${{ planData.selected?.price | number:'.2-2' }}
+            ${{ plansSrv.selectedPlan?.price | number:'.2-2' }}
           </span>
           <div class="billing-rate">
-            Cypherpunk Privacy {{ planData.selected?.rate }} (${{ planData.selected?.price / planData.selected?.months | number:'.2-2' }} per month, every {{ planData.selected?.months }} months)
+            Cypherpunk Privacy {{ plansSrv.selectedPlan?.rate }} (${{ plansSrv.selectedPlan?.price / plansSrv.selectedPlan?.months | number:'.2-2' }} per month, every {{ plansSrv.selectedPlan?.months }} months)
           </div>
         </div>
 
@@ -134,7 +134,7 @@
           By continuing to PayPal you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
         </div>
 
-        <app-paypal [planData]="planData" #paypal></app-paypal>
+        <app-paypal #paypal></app-paypal>
       </div>
     </div>
 
@@ -146,11 +146,11 @@
 
         <div class="price">
           Order Total: <span class="total-price">
-            {{ '₿ ' + planData.selected?.bcPrice + ' BTC' }}
+            {{ '₿ ' + plansSrv.selectedPlan?.bcPrice + ' BTC' }}
           </span>
-          (${{ planData.selected?.price | number:'.2-2'}})
+          (${{ plansSrv.selectedPlan?.price | number:'.2-2'}})
           <div class="billing-rate">
-            Cypherpunk Privacy {{ planData.selected?.rate }}
+            Cypherpunk Privacy {{ plansSrv.selectedPlan?.rate }}
           </div>
         </div>
 
@@ -164,7 +164,7 @@
           By continuing to BitPay you agree to our <a routerLink="/terms-of-service">terms of service</a> and <a routerLink="/privacy-policy">privacy policy</a>
         </div>
 
-        <app-bitpay [planData]="planData" #bitpay></app-bitpay>
+        <app-bitpay #bitpay></app-bitpay>
       </div>
     </div>
   </div>

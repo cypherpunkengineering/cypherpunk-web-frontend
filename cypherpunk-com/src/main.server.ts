@@ -62,6 +62,7 @@ app.get('/api/v1/support/posts', support);
 app.get('/api/v1/support/post/:id', supportPost);
 app.get('/api/v1/network/status', networkStatus);
 app.get('/api/v1/account/source/list', stripeCardList);
+app.get('/api/v1/pricing/plans/:referralCode', pricingPlans);
 app.get('/api/v1/pricing/plans', pricingPlans);
 app.post('/api/v1/account/confirm/email', confirm);
 app.post('/api/v1/account/authenticate/userpasswd', signin);

@@ -1,4 +1,3 @@
-import { PlansService } from './plans.service';
 import { BackendService } from './backend.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Injectable, Inject, PLATFORM_ID, NgZone } from '@angular/core';
@@ -24,7 +23,6 @@ export class SessionService {
 
   constructor(
     private zone: NgZone,
-    private plans: PlansService,
     private backend: BackendService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -42,9 +40,9 @@ export class SessionService {
         this.user.subscription.active = this.localStorage.getItem('subscription.active') || false;
         this.user.subscription.renews = this.localStorage.getItem('subscription.renews') || false;
         this.user.subscription.type = this.localStorage.getItem('subscription.type') || '';
-        let expiration = this.localStorage.getItem('subscription.expiration').replace(/"/g, '');
+        let expiration = this.localStorage.getItem('subscription.expiration');
         if (expiration === 'undefined') { this.user.subscription.expiration = undefined; }
-        else { this.user.subscription.expiration = new Date(expiration); }
+        else { this.user.subscription.expiration = new Date(expiration.replace(/"/g, '')); }
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
 
         this.setSnapEngageEmail(this.user);

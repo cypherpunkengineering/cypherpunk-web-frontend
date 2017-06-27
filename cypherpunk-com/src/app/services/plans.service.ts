@@ -1,4 +1,6 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BackendService } from './backend.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class Plan {
   id: string;
@@ -24,10 +26,104 @@ export class Plan {
 
 @Injectable()
 export class PlansService {
-  plans: Plan[] = []
-  selectedPlanId: string;
+  plans: Plan[] = [];
+  selectedPlan: Plan;
+  defaultPlans: Plan[] = []
+  defaultSelectedPlan: Plan;
+  referralPlans: Plan[] = [];
+  referralSelectedPlan: Plan;
+  _plans: BehaviorSubject<Plan[]>;
+  referralCode = '';
 
-  constructor(private zone: NgZone) { }
+  constructor(private backend: BackendService) {
+    this._plans = new BehaviorSubject(this.plans);
+    this.getPlans();
+  }
+
+  getPlans(referralCode?) {
+    if (referralCode) { this.referralCode = referralCode; }
+    // Grab plan data from backend
+    let code = referralCode || '';
+    return this.backend.pricingPlans(code, {})
+    .then((plans) => {
+      this.insertPlans(plans, referralCode);
+      this.selectedPlan = this.plans[1];
+
+      // guard against multiple calls to plans api with referral code
+      // this should only allow the referralCode request to emit
+      let emit = false;
+      if (!this.referralCode) { emit = true }
+      else if (this.referralCode && referralCode) { emit = true; }
+      if (emit) { this._plans.next(this.plans); }
+    })
+    .catch((err) => {
+      console.log('Could not pull pricing plans, defaulting');
+      console.log(err);
+    });
+  }
+
+  getObservablePlans() {
+    return this._plans.asObservable();
+  }
+
+  private insertPlans(plans, referralCode?) {
+    let planArray = this.defaultPlans;
+    if (referralCode) { planArray = this.referralPlans; }
+
+    // clear old plans
+    while (planArray.length) { planArray.shift(); }
+
+    // monthly plan
+    planArray.push({
+      id: 'monthly',
+      price: Number(plans.monthly.price),
+      bcPrice: undefined,
+      rate: 'monthly plan',
+      months: 1,
+      viewable: true,
+      bitpayData: plans.monthly.bitpayPlanId,
+      paypalButtonId: plans.monthly.paypalPlanId
+    });
+    // annual plan
+    planArray.push({
+      id: 'annually',
+      price: Number(plans.annually.price),
+      bcPrice: undefined,
+      rate: '12 month plan',
+      months: 12,
+      viewable: true,
+      bitpayData: plans.annually.bitpayPlanId,
+      paypalButtonId: plans.annually.paypalPlanId
+    });
+    // semiannual plan
+    planArray.push({
+      id: 'semiannually',
+      price: Number(plans.semiannually.price),
+      bcPrice: undefined,
+      rate: '6 month plan',
+      months: 6,
+      viewable: true,
+      bitpayData: plans.semiannually.bitpayPlanId,
+      paypalButtonId: plans.semiannually.paypalPlanId
+    });
+
+    if (referralCode) { this.useReferralPlans(); }
+    else { this.useDefaultPlans(); }
+
+    return planArray;
+  }
+
+  useDefaultPlans(emit?: boolean) {
+    while (this.plans.length) { this.plans.shift(); }
+    this.defaultPlans.forEach((plan) => { this.plans.push(plan); });
+    if (emit) { this._plans.next(this.plans); }
+  }
+
+  useReferralPlans(emit?: boolean) {
+    while (this.plans.length) { this.plans.shift(); }
+    this.referralPlans.forEach((plan) => { this.plans.push(plan); });
+    if (emit) { this._plans.next(this.plans); }
+  }
 
   setPlanVisibility(planCode, userType, renews): void {
     if (userType === 'free' || userType === 'expired' || !renews) {
