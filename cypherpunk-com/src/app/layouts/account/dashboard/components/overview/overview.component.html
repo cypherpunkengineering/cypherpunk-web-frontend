@@ -36,9 +36,9 @@
 
         <!-- Expired Expiration -->
         <div class="content-row" *ngIf="handleExpirationType() === 'expired'">
-          <div class="left">Expired On: </div>
+          <div class="left expired">Expired On: </div>
           <div class="right">
-            <span class="info">{{ state.user.subscription.expiration | date:'mediumDate' }}</span>
+            <span class="expired">{{ state.user.subscription.expiration | date:'mediumDate' }}</span>
           </div>
         </div>
 
