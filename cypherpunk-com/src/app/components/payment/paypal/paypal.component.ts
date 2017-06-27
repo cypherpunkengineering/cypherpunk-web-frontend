@@ -19,7 +19,7 @@ export class PaypalComponent implements OnChanges {
   ngOnChanges() { this.update(); }
 
   update() {
-    if (this.globals.ENV === 'PROD') { this.env = 'PROD'; }
+    if (this.globals.ENV === 'PROD' || this.globals.ENV === 'STAGING') { this.env = 'PROD'; }
     if (this.planData.plans.length) {
       this.monthlyButtonId = this.planData.plans[0].paypalButtonId;
       this.annuallyButtonId = this.planData.plans[1].paypalButtonId;

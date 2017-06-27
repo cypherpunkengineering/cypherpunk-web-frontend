@@ -19,7 +19,7 @@ export class BitpayComponent implements OnChanges {
   ngOnChanges() { this.update(); }
 
   update() {
-    if (this.globals.ENV === 'PROD') { this.env = 'PROD'; }
+    if (this.globals.ENV === 'PROD' || this.globals.ENV === 'STAGING') { this.env = 'PROD'; }
     if (this.planData.plans.length) {
       this.monthlyData = this.planData.plans[0].bitpayData;
       this.annuallyData = this.planData.plans[1].bitpayData;
