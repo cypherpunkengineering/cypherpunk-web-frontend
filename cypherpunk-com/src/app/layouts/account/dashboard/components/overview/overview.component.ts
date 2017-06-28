@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, Input, ViewChild, NgZone } from '@angular/core';
 import { AlertService } from '../../../../../services/alert.service';
+import { GlobalsService } from '../../../../../services/globals.service';
 import { BackendService } from '../../../../../services/backend.service';
 import { PlatformBuilds } from '../../../../public/apps/platform-builds';
 
@@ -12,6 +13,9 @@ import { PlatformBuilds } from '../../../../public/apps/platform-builds';
 export class AccountOverviewComponent {
   @ViewChild('priceBoxes') priceBoxes;
   @Input() state;
+
+  // env vars
+  env: string;
 
   // platform download links
   windowsDownloadLink: string;
@@ -47,9 +51,14 @@ export class AccountOverviewComponent {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private globals: GlobalsService,
     private backend: BackendService,
     private alertService: AlertService
   ) {
+    // handle env
+    this.env = globals.ENV;
+
+    // handle download and redirect link in platforms section
     this.windowsDownloadLink = PlatformBuilds.windows.link;
     this.macosDownloadLink = PlatformBuilds.macos.link;
     this.linuxDownloadLink = PlatformBuilds.linuxVersions[0].link;

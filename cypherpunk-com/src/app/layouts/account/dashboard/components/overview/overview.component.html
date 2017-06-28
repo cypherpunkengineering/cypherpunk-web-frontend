@@ -68,7 +68,7 @@
   </div>
 </div>
 
-<div class="content down-arrow white" *ngIf="showPriceBoxes() && !state.loading">
+<div class="content down-arrow white" *ngIf="showPriceBoxes() && !state.loading && env !== 'PROD'">
   <div class="content-inner">
     <h2 class="content-header" *ngIf="!state.showPPWarning">Upgrade Now!</h2>
     <h2 class="content-header" *ngIf="state.showPPWarning">Upgrading!</h2>
