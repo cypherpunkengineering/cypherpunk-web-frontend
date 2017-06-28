@@ -207,6 +207,23 @@ public class FrontendAPIv1 extends HttpServlet
 				res.sendError(404);
 			} //}}}
 		} // }}}
+		else if (apiPath.startsWith("/billing")) // {{{
+		{
+			String billingApiPath = apiPath.substring( "/billing".length(), apiPath.length() );
+
+			if (billingApiPath.equals("/receipts")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkBillingReceipts.class);
+			} //}}}
+			else if (billingApiPath.equals("/source/list")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
+			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
+		} // }}}
 		else if (apiPath.startsWith("/blog") || apiPath.startsWith("/support")) // {{{
 		{
 			// get blog content depending on request URL
