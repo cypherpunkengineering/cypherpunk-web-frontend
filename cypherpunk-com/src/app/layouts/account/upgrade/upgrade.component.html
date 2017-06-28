@@ -64,22 +64,6 @@
             <div class="cell">
               {{ card.exp_month + ' / ' +  card.exp_year }}
             </div>
-
-            <div class="cell">
-              <button class="btn blue" (click)="showCreateCard = !showCreateCard">Update Card</button>
-            </div>
-          </div>
-
-          <div class="card-table-row" *ngIf="!cards.length">
-            <div class="cell"></div>
-
-            <div class="cell">No Card on File</div>
-
-            <div class="cell"></div>
-
-            <div class="cell">
-              <button class="btn blue" (click)="showCreateCard = !showCreateCard">Update Card</button>
-            </div>
           </div>
 
           <div class="privacy">
@@ -90,10 +74,6 @@
         <!-- show create card form -->
         <div class="create-card" [ngClass]="{'open': showCreateCard }">
           <app-stripe-cc-form [stripeFormData]="stripeFormData"></app-stripe-cc-form>
-
-          <div class="info" (click)="getToken()">
-            <button class="btn blue">Update Card</button>
-          </div>
         </div>
 
         <div class="price">
