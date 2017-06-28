@@ -83,6 +83,8 @@ public class FrontendAPIv1 extends HttpServlet
 	private static final int BLOGGER_API_CACHE_PERIOD = 69; // (60 * 2);
 	private static final int PRICING_PLANS_CACHE_PERIOD = 69; // (60 * 10);
 
+	private static final double REQUEST_DEADLINE = 15.0;
+
 	private static final String FRONTEND_HOSTNAME_PRODUCTION = "cypherpunk.privacy.network";
 	private static final String FRONTEND_HOSTNAME_DEVELOPMENT = "test-api.cypherpunk.engineering";
 
@@ -1114,7 +1116,7 @@ public class FrontendAPIv1 extends HttpServlet
 	//throws IOException, UnsupportedEncodingException
 	{
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
-		HTTPRequest request = new HTTPRequest(cypherpunkURL, requestMethod, withDefaults().setDeadline(9.0));
+		HTTPRequest request = new HTTPRequest(cypherpunkURL, requestMethod, withDefaults().setDeadline(REQUEST_DEADLINE));
 
 		HTTPResponse response = null;
 
