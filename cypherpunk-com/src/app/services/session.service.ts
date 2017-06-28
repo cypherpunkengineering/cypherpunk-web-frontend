@@ -41,7 +41,9 @@ export class SessionService {
         this.user.subscription.renews = this.localStorage.getItem('subscription.renews') || false;
         this.user.subscription.type = this.localStorage.getItem('subscription.type') || '';
         let expiration = this.localStorage.getItem('subscription.expiration');
-        if (expiration === 'undefined') { this.user.subscription.expiration = undefined; }
+        if (expiration === 'undefined' || !expiration) {
+          this.user.subscription.expiration = undefined;
+        }
         else { this.user.subscription.expiration = new Date(expiration.replace(/"/g, '')); }
         if (this.user.account.email && this.user.secret) { this.userFound = true; }
 

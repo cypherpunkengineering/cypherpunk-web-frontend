@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { RequestOptions } from '@angular/http';
 import { SessionService } from './session.service';
 import { BackendService } from './backend.service';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
@@ -19,10 +18,9 @@ export class ConfirmGuard implements CanActivate {
     let accountId = route.queryParams['accountId'];
     let confToken = route.queryParams['confirmationToken'];
     let body = { accountId: accountId, confirmationToken: confToken };
-    let options = new RequestOptions({});
 
     // this will set cookie
-    return this.backend.confirmToken(body, options)
+    return this.backend.confirmToken(body, {})
     .then((data) => {
       // set user session data
       this.session.setUserData({
