@@ -158,6 +158,14 @@ export class BackendService {
     return this.http.post(url, body, options).toPromise();
   }
 
+  billingReceipts(options): Promise<any> {
+    let url = this.globals.API_URL + '/billing/receipts';
+    options.withCredentials = true;
+    return this.http.get(url, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
   blogPosts() {
     let url = this.globals.API_URL + '/blog/posts';
     return this.http.get(url)

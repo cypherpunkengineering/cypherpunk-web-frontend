@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { BackendService } from '../../../../../services/backend.service';
 
 @Component({
   selector: 'account-billing',
@@ -6,46 +7,33 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./billing.component.css']
 })
 export class AccountBillingComponent {
-  transactions = [
-    {
-      date: '05/03/2016',
-      plan: '12 Months',
-      total: '$12.95',
-      method: 'Credit Card',
-      receiptUrl: 'http://www.google.com'
-    },
-    {
-      date: '05/03/2016',
-      plan: '12 Months',
-      total: '$12.95',
-      method: 'Credit Card',
-      receiptUrl: 'http://www.google.com'
-    },
-    {
-      date: '05/03/2016',
-      plan: '12 Months',
-      total: '$12.95',
-      method: 'Credit Card',
-      receiptUrl: 'http://www.google.com'
-    }
-  ];
-
-  invoices = [
-    {
-      date: '05/03/2016',
-      plan: '12 Months',
-      total: '$12.95',
-      method: 'Credit Card',
-      receiptUrl: 'http://www.google.com'
-    }
-  ];
+  transactions = {
+    receipts: [
+      {
+        id: '',
+        date: '05/03/2016',
+        description: '12 Months',
+        method: 'Credit Card',
+        currency: 'USD',
+        amount: '$12.95',
+        receiptUrl: 'http://www.google.com'
+      }
+    ]
+  };
 
   transactionsLastPage: number;
   transactionsCurrentPage: number;
-  invoicesLastPage: number;
-  invoicesCurrentPage: number;
 
-  constructor() { }
+  constructor(private backend: BackendService) {
+    this.backend.billingReceipts({})
+    .then((data) => {
+      this.transactions = data;
+    });
+  }
+
+  trackTransactions(index, hero) {
+    return hero ? hero.id : undefined;
+  }
 
   previousTransactionsDisabled() {
     let disabled = false;
@@ -62,21 +50,4 @@ export class AccountBillingComponent {
   goToTransactionsPage(direction: string, sortPriority?: string) {
     /* copy resolve function from resolver to here */
   }
-
-  previousInvoicesDisabled() {
-    let disabled = false;
-    if (this.invoicesCurrentPage <= 1) { disabled = true; }
-    return disabled;
-  }
-
-  nextInvoicesDisabled() {
-    let disabled = false;
-    if (this.invoicesCurrentPage >= this.invoicesLastPage) { disabled = true; }
-    return disabled;
-  }
-
-  goToInvoicesPage(direction: string, sortPriority?: string) {
-    /* copy resolve function from resolver to here */
-  }
-
 }

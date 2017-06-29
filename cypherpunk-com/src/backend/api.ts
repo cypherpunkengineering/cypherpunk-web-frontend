@@ -304,3 +304,33 @@ export function pricingPlans(req, res) {
     return res.json(body);
   }
 }
+
+export function billing(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/billing/receipts';
+    return request.get({url: url, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({
+      receipts: [
+        {
+          id: 'foo',
+          date: '2017-06-29T13:44:51.667Z',
+          description: 'Monthly subscription charges for June 2016',
+          method: 'Visa 1337',
+          currency: 'USD',
+          amount: '9.95'
+        },
+        {
+          id: 'foo2',
+          date: '2017-06-29T13:44:51.667Z',
+          description: 'Monthly subscription charges for July 2016',
+          method: 'Visa 1337',
+          currency: 'USD',
+          amount: '9.95'
+        }
+      ]
+    });
+  }
+}

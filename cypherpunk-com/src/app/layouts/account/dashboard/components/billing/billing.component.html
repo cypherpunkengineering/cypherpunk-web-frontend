@@ -15,16 +15,16 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let tran of transactions">
+        <tr *ngFor="let tran of transactions?.receipts">
           <td>{{tran.date}}</td>
-          <td>{{tran.plan}}</td>
-          <td class="payment">{{tran.total}}</td>
+          <td>{{tran.description}}</td>
+          <td class="payment">{{tran.amount}} - {{ tran.currency }}</td>
           <td class="method">{{tran.method}}</td>
           <td><a [href]="tran.receiptUrl">Print</a></td>
         </tr>
       </tbody>
 
-      <tfoot *ngIf="transactions.length === 0">
+      <tfoot *ngIf="transactions?.receipts?.length === 0">
         <tr>
           <td colspan="6">
             No transaction history
@@ -39,51 +39,6 @@
       </button>
 
       <button class="btn" (click)="goToTransactionsPage('next')" [ngClass]="{ 'active': !nextTransactionsDisabled() }">
-        Next
-      </button>
-    </div>
-
-
-    <h2 class="content-header">Invoice overdue with pay option</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th class="overdue"></th>
-          <th>Date</th>
-          <th>Plan</th>
-          <th>Total</th>
-          <th class="method">Method</th>
-          <th>Receipt</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let invoice of invoices">
-          <td class="overdue">Overdue</td>
-          <td>{{invoice.date}}</td>
-          <td>{{invoice.plan}}</td>
-          <td class="payment">{{invoice.total}}</td>
-          <td class="method">{{invoice.method}}</td>
-          <td><a [href]="invoice.receiptUrl">Print</a></td>
-        </tr>
-      </tbody>
-
-      <tfoot *ngIf="invoices.length === 0">
-        <tr>
-          <td colspan="6">
-            No overdue invoices
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-
-    <div class="pagination">
-      <button class="btn" (click)="goToInvoicesPage('previous')" [ngClass]="{ 'active': !previousInvoicesDisabled() }">
-        Previous
-      </button>
-
-      <button class="btn" (click)="goToInvoicesPage('next')" [ngClass]="{ 'active': !nextInvoicesDisabled() }">
         Next
       </button>
     </div>
