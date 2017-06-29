@@ -89,7 +89,7 @@ export class AccountOverviewComponent {
     if (expiration) {
       let now = new Date();
       let oneDay = 24 * 60 * 60 * 1000;
-      let days = Math.round(Math.abs((expiration.getTime() - now.getTime()) / (oneDay)));
+      let days = Math.ceil(Math.abs((expiration.getTime() - now.getTime()) / (oneDay)));
       return days + ' days';
     }
     return 'loading';

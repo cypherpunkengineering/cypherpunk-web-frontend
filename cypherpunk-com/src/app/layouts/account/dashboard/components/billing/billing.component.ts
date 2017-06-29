@@ -8,17 +8,7 @@ import { BackendService } from '../../../../../services/backend.service';
 })
 export class AccountBillingComponent {
   transactions = {
-    receipts: [
-      {
-        id: '',
-        date: '05/03/2016',
-        description: '12 Months',
-        method: 'Credit Card',
-        currency: 'USD',
-        amount: '$12.95',
-        receiptUrl: 'http://www.google.com'
-      }
-    ]
+    receipts: []
   };
 
   transactionsLastPage: number;
@@ -26,9 +16,7 @@ export class AccountBillingComponent {
 
   constructor(private backend: BackendService) {
     this.backend.billingReceipts({})
-    .then((data) => {
-      this.transactions = data;
-    });
+    .then((data) => { this.transactions = data; });
   }
 
   trackTransactions(index, hero) {

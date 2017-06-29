@@ -7,10 +7,9 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Plan</th>
+          <th>Description</th>
           <th>Total</th>
           <th class="method">Method</th>
-          <th>Receipt</th>
         </tr>
       </thead>
 
@@ -20,7 +19,6 @@
           <td>{{tran.description}}</td>
           <td class="payment">{{tran.amount}} - {{ tran.currency }}</td>
           <td class="method">{{tran.method}}</td>
-          <td><a [href]="tran.receiptUrl">Print</a></td>
         </tr>
       </tbody>
 
