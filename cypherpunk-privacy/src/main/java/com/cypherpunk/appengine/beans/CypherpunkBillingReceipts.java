@@ -15,6 +15,7 @@ public class CypherpunkBillingReceipts
 		private String amount;
 	}
 
+	private int receiptCount;
 	private List<Receipt> receipts;
 
 	CypherpunkBillingReceipts()
