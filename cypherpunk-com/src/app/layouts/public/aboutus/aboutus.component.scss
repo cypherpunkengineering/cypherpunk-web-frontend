@@ -47,12 +47,12 @@
 
 .who {
   min-height: 50vh;
-  .header { padding: 50px 0 0; }
+  .header { padding: 50px 10px 0; }
 }
 
 .manifesto {
   min-height: 50vh;
-  .header { padding: 50px 0 0; }
+  .header { padding: 50px 10px 0; }
 }
 
 .team {
@@ -86,7 +86,7 @@
 
 .facts {
   min-height: 50vh;
-  .header { padding: 50px 0 0; }
+  .header { padding: 50px 10px 0; }
 }
 
 .inquiries {
@@ -95,7 +95,7 @@
   margin: auto;
   padding: 0 0 50px;
 
-  .header { padding: 50px 0 0; }
+  .header { padding: 50px 10px 0; }
 
   .text {
     padding: 50px 20px 40px;
@@ -207,6 +207,35 @@
       font-size: 18px;
       margin: -10px 0 10px;
     }
+  }
+}
+
+.canary {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 50vh;
+  margin: auto;
+  padding: 0 0 100px;
+
+  .header { padding: 50px 10px; }
+
+  .illustration {
+    max-width: 1000px;
+    margin: auto;
+    img { width: 100%; }
+  }
+
+  .subheader {
+    padding: 30px 10px;
+    font-size: 22px;
+    color: #323131;
+    &.orange { color: #ff7857; }
+  }
+
+  .text {
+    color: #a8a5a5;
+    line-height: 1.3;
+    padding: 0 10px;
   }
 }
 
