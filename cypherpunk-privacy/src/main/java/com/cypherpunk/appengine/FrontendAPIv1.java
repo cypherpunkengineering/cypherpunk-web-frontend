@@ -871,7 +871,7 @@ public class FrontendAPIv1 extends HttpServlet
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ")
 			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
-		HTTPHeader headerGeoLocationCountry = new HTTPHeader("X-GeoLocation-Country", reqIP);
+		HTTPHeader headerGeoLocationCountry = new HTTPHeader("X-GeoLocation-Country", geoCountryCode);
 		headers.add(headerGeoLocationCountry);
 
 		return headers;
