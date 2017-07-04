@@ -866,6 +866,14 @@ public class FrontendAPIv1 extends HttpServlet
 		HTTPHeader headerOriginalIP = new HTTPHeader("X-Original-IP", reqIP);
 		headers.add(headerOriginalIP);
 
+		// get country of source IP in GeoLocationDB
+		GeoLocationDB ipdb = new GeoLocationDB();
+		String geoCountryCode = ipdb.getCountry(reqIP);
+		if (geoCountryCode == null || geoCountryCode == "ZZ")
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+		HTTPHeader headerGeoLocationCountry = new HTTPHeader("X-GeoLocation-Country", reqIP);
+		headers.add(headerGeoLocationCountry);
+
 		return headers;
 	} // }}}
 	private void setResponseHeadersFromBackendResponse(HttpServletResponse res1, HTTPResponse res2) // {{{
