@@ -25,9 +25,9 @@ export class SupportNavigationComponent implements AfterViewInit {
     else if (this.router.url.endsWith('linux')) { this.page = 'linux' }
     else if (this.router.url.endsWith('ios')) { this.page = 'ios' }
     else if (this.router.url.endsWith('android')) { this.page = 'android' }
-    else if (this.router.url.endsWith('browser')) { this.page = 'browser' }
+    else if (this.router.url.endsWith('browser-extension')) { this.page = 'browser-extension' }
     else if (this.router.url.endsWith('routers')) { this.page = 'routers' }
-    else if (this.router.url.endsWith('embedded')) { this.page = 'others' }
+    else if (this.router.url.endsWith('embedded-devices')) { this.page = 'others' }
   }
 
   ngAfterViewInit() {
