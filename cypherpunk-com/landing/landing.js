@@ -93,3 +93,20 @@ if (errorClose) {
     messageElement.style.display = 'none';
   });
 }
+
+// focus hack
+document.getElementById('email').addEventListener('focus', function() {
+  document.getElementById('outline').classList.add('show');
+});
+
+document.getElementById('email').addEventListener('blur', function() {
+  document.getElementById('outline').classList.remove('show');
+});
+
+document.getElementById('subscribe').addEventListener('focus', function() {
+  document.getElementById('outline').classList.add('show');
+});
+
+document.getElementById('subscribe').addEventListener('blur', function() {
+  document.getElementById('outline').classList.remove('show');
+});

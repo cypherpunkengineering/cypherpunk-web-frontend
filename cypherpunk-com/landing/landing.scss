@@ -171,6 +171,14 @@ html, body {
   position: relative;
   text-align: center;
   margin: 0 auto 40px;
+
+  .outline {
+    display: inline-block;
+    padding: 2px;
+    border-radius: 5px;
+    &.show { background: #ff7857; }
+  }
+
   input {
     color: #fedf89;
     height: 60px;
@@ -182,7 +190,7 @@ html, body {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     vertical-align: middle;
-    &:focus { outline: #ff7857 solid 3px; }
+    &:focus { outline: 0; }
   }
   button {
     height: 60px;
@@ -196,9 +204,9 @@ html, body {
     border-bottom-right-radius: 5px;
     vertical-align: middle;
     cursor: pointer;
-    &:focus { outline: #ff7857 solid 3px; }
+    &:focus { outline: 0; }
   }
-  .privacy { color: #7ffffb; font-size: 12px; }
+  .privacy { color: #7ffffb; font-size: 12px; outline: 0; }
 }
 
 .signed {
