@@ -52,6 +52,9 @@ xmlHttp.onreadystatechange = function() {
 
     if (xmlHttp.status === 200 || xmlHttp.status === 202) {
       setMessage('Success!', 'Your invitation has been secured!<br><br>Don\'t forget to invite your friends!');
+      setTimeout(function() {
+        document.getElementById('message-container').style.display = 'none';
+      }, 5000);
     }
     else if (xmlHttp.status === 400) {
       setMessage('Error!', 'Missing Parameters');

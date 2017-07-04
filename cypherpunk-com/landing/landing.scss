@@ -38,7 +38,7 @@ html, body {
 
   .messages-inner {
     width: 100%;
-    max-width: 800px;
+    max-width: 500px;
     margin: auto;
     padding: 20px;
     color: #eee;
@@ -97,7 +97,14 @@ html, body {
   }
 
   .nav-image {
-
+    height: 230px;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 475px;
+    img { height: 100%; }
   }
 }
 
@@ -175,6 +182,7 @@ html, body {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     vertical-align: middle;
+    &:focus { outline: #ff7857 solid 3px; }
   }
   button {
     height: 60px;
@@ -187,6 +195,8 @@ html, body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     vertical-align: middle;
+    cursor: pointer;
+    &:focus { outline: #ff7857 solid 3px; }
   }
   .privacy { color: #7ffffb; font-size: 12px; }
 }
