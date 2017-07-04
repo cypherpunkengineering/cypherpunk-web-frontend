@@ -33,47 +33,47 @@ public class CypherpunkAppVersions
 		if (flavor.equals("developer")) // {{{
 		{
 			this.windows = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.1-beta-01410.exe"
+				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.2-beta-01430.exe"
 			);
 
 			this.macos = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.1-beta-01410.zip"
+				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.2-beta-01430.zip"
 			);
 
 			this.debian = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.1-beta-01410.deb"
+				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.2-beta-01430.deb"
 			);
 		} // }}}
 		else // {{{ default
 		{
 			this.windows = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.1-beta-01410.exe"
+				"https://download.cypherpunk.com/builds/windows/cypherpunk-privacy-windows-0.8.2-beta-01430.exe"
 			);
 
 			this.macos = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.1-beta-01410.zip"
+				"https://download.cypherpunk.com/builds/macos/cypherpunk-privacy-macos-0.8.2-beta-01430.zip"
 			);
 
 			this.debian = new Platform(
-				"0.8.1-beta", // latest
-				"0.8.1-beta", // required
+				"0.8.2-beta", // latest
+				"0.8.2-beta", // required
 				"", // description
-				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.1-beta-01410.deb"
+				"https://download.cypherpunk.com/builds/debian/cypherpunk-privacy-linux-0.8.2-beta-01430.deb"
 			);
 		} // }}}
 	}
