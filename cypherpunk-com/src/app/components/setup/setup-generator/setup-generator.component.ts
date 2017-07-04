@@ -36,7 +36,7 @@ export class SetupGeneratorComponent {
       'mssfix 1280',
       'tls-version-min 1.2',
       'remote-cert-eku "TLS Web Server Authentication"',
-      'tls-cipher TLS-DHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256',
+      'tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384:TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256',
       'auth SHA256',
       'proto udp',
       'remote ' + hostname + ' 7133',
