@@ -13,14 +13,10 @@ import * as platform from 'platform';
 })
 export class NavigationComponent {
   env: string;
-  currentTab: string;
-  isFeatures = false;
   enableLinks = true;
   showDropDown = false;
   scrolledNavElement: HTMLElement;
   scrolledMobileNavElement: HTMLElement;
-  featuresSubnav: HTMLElement;
-  featuresMobileSubnav: HTMLElement;
 
   link: string;
   pageRedirect: string;
@@ -51,15 +47,6 @@ export class NavigationComponent {
     // detect route
     if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
     if (this.router.url.startsWith('/login')) { this.enableLinks = false; }
-    if (this.router.url.startsWith('/features')) { this.isFeatures = true; }
-
-    // parse currentTab (features)
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) { return; }
-
-      const tree = this.router.parseUrl(this.router.url);
-      if (tree.fragment) { this.currentTab = tree.fragment; }
-    });
 
     // detect os setup
     let os = platform.os.family || '';
@@ -115,9 +102,6 @@ export class NavigationComponent {
   handleScrollEvent(event) {
     this.scrolledNavElement = document.getElementById('scrolled-nav');
     this.scrolledMobileNavElement = document.getElementById('scrolled-mobile-nav');
-    this.featuresSubnav = document.getElementById('features-subnav');
-    this.featuresMobileSubnav = document.getElementById('features-mobile-subnav');
-    let featureNavigation = document.getElementById('feature-navigation');
 
     // we round here to reduce a little workload
     let currentPosition = Math.round(window.scrollY);
@@ -136,28 +120,6 @@ export class NavigationComponent {
       if (this.bannerModel && this.enableLinks) {
         this.scrolledMobileNavElement.style.opacity = '0';
         this.scrolledMobileNavElement.style.visibility = 'hidden';
-      }
-    }
-
-    if (this.isFeatures) {
-      if (currentPosition > 230 && this.featuresSubnav) {
-        this.featuresSubnav.style.opacity = '1';
-        this.featuresSubnav.style.visibility = 'visible';
-      }
-      else {
-        this.featuresSubnav.style.opacity = '0';
-        this.featuresSubnav.style.visibility = 'hidden';
-      }
-    }
-
-    if (this.isFeatures && this.featuresMobileSubnav) {
-      if (featureNavigation && currentPosition > (featureNavigation.offsetTop - 59)) {
-        this.featuresMobileSubnav.style.opacity = '1';
-        this.featuresMobileSubnav.style.visibility = 'visible';
-      }
-      else {
-        this.featuresMobileSubnav.style.opacity = '0';
-        this.featuresMobileSubnav.style.visibility = 'hidden';
       }
     }
   }
