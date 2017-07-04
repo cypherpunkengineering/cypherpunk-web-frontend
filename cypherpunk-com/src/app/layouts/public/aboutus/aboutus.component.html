@@ -12,45 +12,7 @@
     </div>
   </div>
 
-  <div class="navigation">
-    <ul>
-      <a routerLink="/about-us" fragment="who-we-are">
-        <li [ngClass]="{'active': page === 'who-we-are'}">
-          <span>Who we are</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="manifesto">
-        <li [ngClass]="{'active': page === 'manifesto'}">
-          <span>Our Manifesto</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="punks">
-        <li [ngClass]="{'active': page === 'punks'}">
-          <span>Meet the Punks</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="facts">
-        <li [ngClass]="{'active': page === 'facts'}">
-          <span>Quick Facts</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="inquiries">
-        <li [ngClass]="{'active': page === 'inquiries'}">
-          <span>Media/Press Inquiries</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="assets">
-        <li [ngClass]="{'active': page === 'assets'}">
-          <span>Assets</span>
-        </li>
-      </a>
-      <a routerLink="/about-us" fragment="canary">
-        <li [ngClass]="{'active': page === 'canary'}">
-          <span>Warrant Canary</span>
-        </li>
-      </a>
-    </ul>
-  </div>
+  <aboutus-navigation></aboutus-navigation>
 
   <div class="who" *ngIf="page === 'who-we-are'">
     <div class="header blue">Coming soon</div>

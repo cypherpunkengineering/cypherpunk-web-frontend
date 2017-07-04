@@ -1,0 +1,39 @@
+<div class="aboutus-navigation navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
+  <ul>
+    <a routerLink="/about-us" fragment="who-we-are">
+      <li [ngClass]="{'active': currentTab === 'who-we-are'}">
+        <span>Who we are</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="manifesto">
+      <li [ngClass]="{'active': currentTab === 'manifesto'}">
+        <span>Our Manifesto</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="punks">
+      <li [ngClass]="{'active': currentTab === 'punks'}">
+        <span>Meet the Punks</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="facts">
+      <li [ngClass]="{'active': currentTab === 'facts'}">
+        <span>Quick Facts</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="inquiries">
+      <li [ngClass]="{'active': currentTab === 'inquiries'}">
+        <span>Media/Press Inquiries</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="assets">
+      <li [ngClass]="{'active': currentTab === 'assets'}">
+        <span>Assets</span>
+      </li>
+    </a>
+    <a routerLink="/about-us" fragment="canary">
+      <li [ngClass]="{'active': currentTab === 'canary'}">
+        <span>Warrant Canary</span>
+      </li>
+    </a>
+  </ul>
+</div>

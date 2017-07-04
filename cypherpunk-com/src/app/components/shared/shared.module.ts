@@ -7,6 +7,7 @@ import { AppsNavigationComponent } from '../navigation/apps/apps.component';
 import { AccountNavigationComponent } from '../navigation/account/account.component';
 import { FeaturesNavigationComponent } from '../navigation/features/features.component';
 import { SupportNavigationComponent } from '../navigation/support/support.component';
+import { AboutUsNavigationComponent } from '../navigation/about/about.component';
 import { NavigationComponent } from '../navigation/main/main.component';
 
 import { AlertComponent } from '../alert/alert.component';
@@ -49,6 +50,7 @@ const COMPONENTS = [
   AppsNavigationComponent,
   FeaturesNavigationComponent,
   SupportNavigationComponent,
+  AboutUsNavigationComponent,
   AlertComponent,
   FooterComponent,
   LoadingComponent,
