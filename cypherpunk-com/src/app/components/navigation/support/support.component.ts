@@ -3,8 +3,8 @@ import { Component, Input, HostListener, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'support-navigation',
-  templateUrl: './support-navigation.component.html',
-  styleUrls: ['./support-navigation.component.css']
+  templateUrl: './support.component.html',
+  styleUrls: ['./support.component.css']
 })
 export class SupportNavigationComponent implements AfterViewInit {
   @Input() page: string;

@@ -3,11 +3,12 @@ import { CommonModule }   from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppsNavigationComponent } from '../apps-navigation/apps-navigation.component';
-import { AccountNavigationComponent } from '../account-navigation/account-navigation.component';
-import { FeaturesNavigationComponent } from '../features-navigation/features-navigation.component';
-import { SupportNavigationComponent } from '../support-navigation/support-navigation.component';
-import { NavigationComponent } from '../navigation/navigation.component';
+import { AppsNavigationComponent } from '../navigation/apps/apps.component';
+import { AccountNavigationComponent } from '../navigation/account/account.component';
+import { FeaturesNavigationComponent } from '../navigation/features/features.component';
+import { SupportNavigationComponent } from '../navigation/support/support.component';
+import { NavigationComponent } from '../navigation/main/main.component';
+
 import { AlertComponent } from '../alert/alert.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';

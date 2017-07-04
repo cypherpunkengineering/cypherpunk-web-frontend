@@ -1,14 +1,14 @@
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { AlertService } from '../../services/alert.service';
-import { GlobalsService } from '../../services/globals.service';
-import { SessionService } from '../../services/session.service';
+import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
+import { GlobalsService } from '../../../services/globals.service';
+import { SessionService } from '../../../services/session.service';
 import { Component, HostListener, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-acc-nav',
-  templateUrl: './account-navigation.component.html',
-  styleUrls: ['./account-navigation.component.css']
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.css']
 })
 export class AccountNavigationComponent {
   user: any;

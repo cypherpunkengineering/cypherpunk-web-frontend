@@ -3,8 +3,8 @@ import { Component, Input, HostListener, AfterViewInit  } from '@angular/core';
 
 @Component({
   selector: 'features-navigation',
-  templateUrl: './features-navigation.component.html',
-  styleUrls: ['./features-navigation.component.css']
+  templateUrl: './features.component.html',
+  styleUrls: ['./features.component.css']
 })
 export class FeaturesNavigationComponent implements AfterViewInit {
   @Input() inNavigation: boolean;

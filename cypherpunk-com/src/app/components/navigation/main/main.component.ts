@@ -1,15 +1,15 @@
 import { Router, NavigationEnd } from '@angular/router';
 import { Component, HostListener } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { SessionService } from '../../services/session.service';
-import { GlobalsService } from '../../services/globals.service';
-import { PlatformBuilds } from '../../layouts/public/apps/platform-builds';
+import { AuthService } from '../../../services/auth.service';
+import { SessionService } from '../../../services/session.service';
+import { GlobalsService } from '../../../services/globals.service';
+import { PlatformBuilds } from '../../../layouts/public/apps/platform-builds';
 import * as platform from 'platform';
 
 @Component({
   selector: 'app-nav',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
 export class NavigationComponent {
   env: string;
