@@ -1,5 +1,5 @@
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, Input, HostListener, ViewChild, AfterViewInit  } from '@angular/core';
+import { Component, Input, HostListener, AfterViewInit  } from '@angular/core';
 
 @Component({
   selector: 'features-navigation',
@@ -7,7 +7,6 @@ import { Component, Input, HostListener, ViewChild, AfterViewInit  } from '@angu
   styleUrls: ['./features-navigation.component.css']
 })
 export class FeaturesNavigationComponent implements AfterViewInit {
-  @ViewChild('el') el;
   @Input() inNavigation: boolean;
   @Input() inNavigationMobile: boolean;
 
@@ -36,19 +35,16 @@ export class FeaturesNavigationComponent implements AfterViewInit {
   // on scroll,
   @HostListener('window:scroll', ['$event'])
   handleScrollEvent(event) {
-    let element = this.el.nativeElement;
-    let featuresNavigation = <HTMLElement> document.querySelector('.features-navigation.page');
-
-    // we round here to reduce a little workload
     let currentPosition = Math.round(window.scrollY);
-    if (this.inNavigation && this.onPage) {
-      // masthead height - nav height
-      if (currentPosition > 125) { this.hide = false; }
-      else { this.hide = true; }
-    }
+    let nav = document.getElementById('nav');
+    let scrolledNav = document.getElementById('scrolled-mobile-nav');
+    let featuresNavigation = <HTMLElement> document.querySelector('.features-navigation.page');
+    let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
+    if (!featuresNavigation) { return; }
 
-    if (this.inNavigationMobile && this.onPage && featuresNavigation) {
-      if (currentPosition > (featuresNavigation.offsetTop - 80)) { this.hide = false; }
+    // masthead height - nav height
+    if ((this.inNavigation || this.inNavigationMobile) && this.onPage) {
+      if (currentPosition > (featuresNavigation.offsetTop - clientHeight)) { this.hide = false; }
       else { this.hide = true; }
     }
   }

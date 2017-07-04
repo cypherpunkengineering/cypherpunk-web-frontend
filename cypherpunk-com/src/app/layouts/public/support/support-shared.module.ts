@@ -4,7 +4,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../components/shared/shared.module';
 import { SearchContactComponent } from './components/search-contact/search-contact.component';
-import { SupportNavigationComponent } from './components/support-navigation/support-navigation.component';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -21,8 +20,7 @@ const PIPES = [
 
 const COMPONENTS = [
   // put shared components here
-  SearchContactComponent,
-  SupportNavigationComponent
+  SearchContactComponent
 ];
 
 const PROVIDERS = [];

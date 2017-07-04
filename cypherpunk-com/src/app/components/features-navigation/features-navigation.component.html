@@ -1,4 +1,4 @@
-<div #el class="features features-navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
+<div class="features features-navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
   <ul>
     <a routerLink="/features" fragment="privacy">
       <li [ngClass]="{'active': currentTab === 'privacy'}">

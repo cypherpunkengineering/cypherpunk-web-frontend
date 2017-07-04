@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
-import { Component, Input, HostListener, AfterViewInit  } from '@angular/core';
+import { Component, Input, HostListener, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'apps-navigation',
-  templateUrl: './apps-navigation.component.html',
-  styleUrls: ['./apps-navigation.component.css']
+  selector: 'support-navigation',
+  templateUrl: './support-navigation.component.html',
+  styleUrls: ['./support-navigation.component.css']
 })
-export class AppsNavigationComponent implements AfterViewInit {
+export class SupportNavigationComponent implements AfterViewInit {
   @Input() page: string;
   @Input() inNavigation: boolean;
   @Input() inNavigationMobile: boolean;
@@ -16,11 +16,10 @@ export class AppsNavigationComponent implements AfterViewInit {
 
   constructor(private router: Router) {
     // check if on /apps page
-    if (this.router.url.startsWith('/apps')) { this.onPage = true; }
+    if (this.router.url.startsWith('/support')) { this.onPage = true; }
 
     // set path param value
-    if (this.router.url.endsWith('apps')) { this.page = 'apps' }
-    else if (this.router.url.endsWith('windows')) { this.page = 'windows' }
+    if (this.router.url.endsWith('windows')) { this.page = 'windows' }
     else if (this.router.url.endsWith('mac')) { this.page = 'mac' }
     else if (this.router.url.endsWith('macos')) { this.page = 'macos' }
     else if (this.router.url.endsWith('linux')) { this.page = 'linux' }
@@ -28,6 +27,7 @@ export class AppsNavigationComponent implements AfterViewInit {
     else if (this.router.url.endsWith('android')) { this.page = 'android' }
     else if (this.router.url.endsWith('browser')) { this.page = 'browser' }
     else if (this.router.url.endsWith('routers')) { this.page = 'routers' }
+    else if (this.router.url.endsWith('embedded')) { this.page = 'others' }
   }
 
   ngAfterViewInit() {
@@ -41,13 +41,13 @@ export class AppsNavigationComponent implements AfterViewInit {
     let currentPosition = Math.round(window.scrollY);
     let nav = document.getElementById('nav');
     let scrolledNav = document.getElementById('scrolled-mobile-nav');
-    let appsNavigation = <HTMLElement> document.querySelector('.apps-navigation.page');
+    let supportNavigation = <HTMLElement> document.querySelector('.support-navigation.page');
     let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
-    if (!appsNavigation) { return; }
+    if (!supportNavigation) { return; }
 
+    // masthead height - nav height
     if ((this.inNavigation || this.inNavigationMobile) && this.onPage) {
-      // masthead height - nav height
-      if (currentPosition > (appsNavigation.offsetTop - clientHeight)) { this.hide = false; }
+      if (currentPosition > (supportNavigation.offsetTop - clientHeight)) { this.hide = false; }
       else { this.hide = true; }
     }
   }

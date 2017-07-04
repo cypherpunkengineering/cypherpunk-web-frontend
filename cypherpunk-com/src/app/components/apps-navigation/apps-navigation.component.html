@@ -1,4 +1,4 @@
-<div #el class="apps-navigation navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
+<div class="apps-navigation navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
   <ul>
     <a routerLink="/apps">
       <li [ngClass]="{ 'active': page === 'apps'}">

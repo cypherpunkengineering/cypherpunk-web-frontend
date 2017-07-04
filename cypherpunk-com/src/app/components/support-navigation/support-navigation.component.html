@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="support-navigation navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
   <ul>
     <a routerLink="/support/windows">
       <li [ngClass]="{'active': page === 'windows'}">
