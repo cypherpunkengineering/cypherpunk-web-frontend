@@ -3,6 +3,7 @@ import { CommonModule }   from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AppsNavigationComponent } from '../apps-navigation/apps-navigation.component';
 import { AccountNavigationComponent } from '../account-navigation/account-navigation.component';
 import { FeaturesNavigationComponent } from '../features-navigation/features-navigation.component';
 import { NavigationComponent } from '../navigation/navigation.component';
@@ -43,7 +44,7 @@ const COMPONENTS = [
   // put shared components here
   AccountNavigationComponent,
   NavigationComponent,
-  // AppsNavigationComponent,
+  AppsNavigationComponent,
   FeaturesNavigationComponent,
   AlertComponent,
   FooterComponent,
