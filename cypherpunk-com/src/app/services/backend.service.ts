@@ -58,7 +58,7 @@ export class BackendService {
 
   changeEmail(body, options): Promise<any> {
     // this will set cookie
-    let url = this.globals.API_URL + '/account/email/change';
+    let url = this.globals.API_URL + '/account/change/email';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)
@@ -67,7 +67,7 @@ export class BackendService {
 
   changePassword(body, options): Promise<any> {
     // this will set cookie
-    let url = this.globals.API_URL + '/account/password/change';
+    let url = this.globals.API_URL + '/account/change/password';
     options.withCredentials = true;
     return this.http.post(url, body, options).toPromise()
     .then(this.parseJson)

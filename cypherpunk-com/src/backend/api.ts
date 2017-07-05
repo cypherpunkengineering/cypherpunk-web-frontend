@@ -104,7 +104,7 @@ export function changeEmail(req, res) {
   if (DEV_MODE) {
     console.log('change email');
     let body = req.body;
-    let url = urlStart + 'api/v1/account/email/change';
+    let url = urlStart + 'api/v1/account/change/email';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {
@@ -115,7 +115,7 @@ export function changeEmail(req, res) {
 export function changePassword(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v1/account/password/change';
+    let url = urlStart + 'api/v1/account/change/password';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

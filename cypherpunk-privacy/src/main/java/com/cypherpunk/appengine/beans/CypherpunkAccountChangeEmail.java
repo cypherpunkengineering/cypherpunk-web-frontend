@@ -1,6 +1,6 @@
 package com.cypherpunk.appengine.beans;
 
-public class CypherpunkAccountEmailChange
+public class CypherpunkAccountChangeEmail
 {
 	private String email;
 	private String password;

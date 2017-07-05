@@ -78,8 +78,8 @@ app.post('/api/v1/account/source/add', stripeCreateCard);
 app.post('/api/v1/account/purchase/amazon', amazonPurchase);
 app.post('/api/v1/account/upgrade/amazon', amazonUpgrade);
 app.post('/api/v1/zendesk/request/new', contactForm);
-app.post('/api/v1/account/email/change', changeEmail);
-app.post('/api/v1/account/password/change', changePassword);
+app.post('/api/v1/account/change/email', changeEmail);
+app.post('/api/v1/account/change/password', changePassword);
 
 app.get('/', (req, res) => {
   res.render('../dist/client/index.html', {

@@ -41,10 +41,10 @@ export class AccountOverviewComponent {
     password: { touched: false, message: '' }
   };
   changeEmailButtonDisabled: boolean;
-  changePasswordUser = { oldPassword: '', newPassword: '' };
+  changePasswordUser = { passwordOld: '', passwordNew: '' };
   changePasswordErrors = {
-    oldPassword: { touched: false, message: '' },
-    newPassword: { touched: false, message: '' }
+    passwordOld: { touched: false, message: '' },
+    passwordNew: { touched: false, message: '' }
   };
   changePasswordButtonDisabled: boolean;
 
@@ -206,20 +206,20 @@ export class AccountOverviewComponent {
 
   validateChangePasswordNew() {
     let valid = false;
-    this.changePasswordErrors.newPassword.touched = true;
+    this.changePasswordErrors.passwordNew.touched = true;
 
-    if (!this.changePasswordUser.newPassword) {
-      this.changePasswordErrors.newPassword.message = 'Password is Required';
+    if (!this.changePasswordUser.passwordNew) {
+      this.changePasswordErrors.passwordNew.message = 'Password is Required';
     }
-    else if (!this.passwordRegex(this.changePasswordUser.newPassword)) {
-      this.changePasswordErrors.newPassword.message = 'Password contains invalid characters';
+    else if (!this.passwordRegex(this.changePasswordUser.passwordNew)) {
+      this.changePasswordErrors.passwordNew.message = 'Password contains invalid characters';
     }
-    else if (this.changePasswordUser.newPassword.length < 6) {
-      this.changePasswordErrors.newPassword.message = 'Password must be at least 6 characters';
+    else if (this.changePasswordUser.passwordNew.length < 6) {
+      this.changePasswordErrors.passwordNew.message = 'Password must be at least 6 characters';
     }
     else {
       valid = true;
-      this.changePasswordErrors.newPassword.message = '';
+      this.changePasswordErrors.passwordNew.message = '';
     }
 
     return valid;
@@ -227,29 +227,29 @@ export class AccountOverviewComponent {
 
   validateChangePasswordOld() {
     let valid = false;
-    this.changePasswordErrors.oldPassword.touched = true;
+    this.changePasswordErrors.passwordOld.touched = true;
 
-    if (!this.changePasswordUser.oldPassword) {
-      this.changePasswordErrors.oldPassword.message = 'Password is Required';
+    if (!this.changePasswordUser.passwordOld) {
+      this.changePasswordErrors.passwordOld.message = 'Password is Required';
     }
-    else if (!this.passwordRegex(this.changePasswordUser.oldPassword)) {
-      this.changePasswordErrors.oldPassword.message = 'Password contains invalid characters';
+    else if (!this.passwordRegex(this.changePasswordUser.passwordOld)) {
+      this.changePasswordErrors.passwordOld.message = 'Password contains invalid characters';
     }
-    else if (this.changePasswordUser.oldPassword.length < 6) {
-      this.changePasswordErrors.oldPassword.message = 'Password must be at least 6 characters';
+    else if (this.changePasswordUser.passwordOld.length < 6) {
+      this.changePasswordErrors.passwordOld.message = 'Password must be at least 6 characters';
     }
     else {
       valid = true;
-      this.changePasswordErrors.oldPassword.message = '';
+      this.changePasswordErrors.passwordOld.message = '';
     }
 
     return valid;
   }
 
   changePassword() {
-    let newPassword = this.validateChangePasswordNew();
-    let oldPassword = this.validateChangePasswordOld();
-    if (!newPassword || !oldPassword || this.changePasswordButtonDisabled) { return; }
+    let passwordNew = this.validateChangePasswordNew();
+    let passwordOld = this.validateChangePasswordOld();
+    if (!passwordNew || !passwordOld || this.changePasswordButtonDisabled) { return; }
     this.changePasswordButtonDisabled = true;
 
     this.backend.changePassword(this.changePasswordUser, {})
