@@ -192,6 +192,9 @@ export class AccountOverviewComponent {
     this.backend.changeEmail(this.changeEmailUser, {})
     .then(() => {
       this.zone.run(() => {
+        this.showEmailModal = false;
+        this.changeEmailUser.email = '';
+        this.changeEmailUser.password = '';
         this.changeEmailButtonDisabled = false;
         this.alertService.success('Your Email was updated');
       });
@@ -255,14 +258,17 @@ export class AccountOverviewComponent {
     this.backend.changePassword(this.changePasswordUser, {})
     .then(() => {
       this.zone.run(() => {
+        this.showPasswordModal = false;
+        this.changePasswordUser.passwordNew = '';
+        this.changePasswordUser.passwordOld = '';
         this.changePasswordButtonDisabled = false;
-        this.alertService.success('Your Email was updated');
+        this.alertService.success('Your Password was updated');
       });
     })
     .catch((err) => {
       this.zone.run(() => {
         this.changePasswordButtonDisabled = false;
-        this.alertService.error('Could not update your email: ' + err.message);
+        this.alertService.error('Could not update your password: ' + err.message);
       });
     });
   }

@@ -318,16 +318,16 @@
 
     <div class="modal-body">
       <div class="row">
-        <input id="dashboardPassword" type="password" name="passwordNew" placeholder="New Password" [(ngModel)]="changePasswordUser.passwordNew" [ngClass]="{'error': (this.changePasswordErrors.passwordNew.touched && this.changePasswordErrors.passwordNew.message)}" (ngModelChange)="validateChangePasswordNew()" (blur)="this.changePasswordErrors.passwordNew.touched = true; validateChangePasswordNew()">
-        <div class="error-message" [hidden]="!this.changePasswordErrors.passwordNew.touched">
-          {{this.changePasswordErrors.passwordNew.message}}
+        <input id="dashboardPassword" type="password" name="passwordOld" placeholder="Confirm Password" [(ngModel)]="changePasswordUser.passwordOld" [ngClass]="{'errors': (this.changePasswordErrors.passwordOld.touched && this.changePasswordErrors.passwordOld.message)}" (ngModelChange)="validateChangePasswordOld()" (blur)="this.changePasswordErrors.passwordOld.touched = true; validateChangePasswordOld()">
+        <div class="error-message" [hidden]="!this.changePasswordErrors.passwordOld.touched">
+          {{this.changePasswordErrors.passwordOld.message}}
         </div>
       </div>
 
       <div class="row">
-        <input type="password" name="passwordOld" placeholder="Confirm Password" [(ngModel)]="changePasswordUser.passwordOld" [ngClass]="{'errors': (this.changePasswordErrors.passwordOld.touched && this.changePasswordErrors.passwordOld.message)}" (ngModelChange)="validateChangePasswordOld()" (keyup.enter)="changePassword()" (blur)="this.changePasswordErrors.passwordOld.touched = true; validateChangePasswordOld()">
-        <div class="error-message" [hidden]="!this.changePasswordErrors.passwordOld.touched">
-          {{this.changePasswordErrors.passwordOld.message}}
+        <input type="password" name="passwordNew" placeholder="New Password" [(ngModel)]="changePasswordUser.passwordNew" [ngClass]="{'error': (this.changePasswordErrors.passwordNew.touched && this.changePasswordErrors.passwordNew.message)}" (ngModelChange)="validateChangePasswordNew()" (keyup.enter)="changePassword()" (blur)="this.changePasswordErrors.passwordNew.touched = true; validateChangePasswordNew()">
+        <div class="error-message" [hidden]="!this.changePasswordErrors.passwordNew.touched">
+          {{this.changePasswordErrors.passwordNew.message}}
         </div>
       </div>
     </div>
