@@ -70,14 +70,12 @@ html, body {
 
 .navigation {
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0 0;
   background-color: #0d1e26;
 
   .nav-inner {
     max-width: 1000px;
-    overflow: auto;
     margin: auto;
-    height: 250px;
     &.short { height: auto; }
   }
 
@@ -97,14 +95,23 @@ html, body {
   }
 
   .nav-image {
-    height: 230px;
-    position: absolute;
-    top: 55px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 475px;
-    img { height: 100%; }
+    position: relative;
+    clear: both;
+    height: 210px;
+
+    .window {
+      width: 100%;
+      top: -5px;
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 475px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
 }
 
