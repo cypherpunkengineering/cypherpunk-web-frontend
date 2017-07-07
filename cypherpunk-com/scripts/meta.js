@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 
 const defaultTitle = 'Cypherpunk Privacy Apps & VPN Service';
 const defaultDescription = 'Protect your online privacy and freedom with easy to use apps for every device.   Try it free for 7 days!  24/7/365 customer support.';
-const defaultImage = 'https://cypherpunk.com/assets/features/masthead@2x.png';
+const defaultImage = 'https://cypherpunk.com/assets/landing/landing@2x.png';
 
 const metaMap = {
   'cypherpunk-public.html': { url: 'https://cypherpunk.com' },
