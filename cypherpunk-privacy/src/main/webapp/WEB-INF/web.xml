@@ -41,32 +41,7 @@
 	</filter-mapping>
 
 	<servlet-mapping>
-		<servlet-name>AppAPI</servlet-name>
-		<url-pattern>/api/v0/app/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>NetworkAPI</servlet-name>
-		<url-pattern>/api/v0/network/*</url-pattern>
-		<url-pattern>/api/v1/network/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>BackendProxy</servlet-name>
-
-		<!-- API v0 resources handled by backend -->
-		<url-pattern>/api/v0/account/*</url-pattern>
-		<url-pattern>/api/v0/ipn/*</url-pattern>
-		<url-pattern>/api/v0/location/*</url-pattern>
-		<url-pattern>/api/v0/monitoring/*</url-pattern>
-		<url-pattern>/api/v0/subscription/*</url-pattern>
-		<url-pattern>/api/v0/vpn/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
 		<servlet-name>FrontendAPIv1</servlet-name>
-
-		<!-- API v1 resources handled by backend -->
 		<url-pattern>/api/v1/app/*</url-pattern>
 		<url-pattern>/api/v1/account/*</url-pattern>
 		<url-pattern>/api/v1/billing/*</url-pattern>
@@ -74,19 +49,12 @@
 		<url-pattern>/api/v1/ipn/*</url-pattern>
 		<url-pattern>/api/v1/location/*</url-pattern>
 		<url-pattern>/api/v1/monitoring/*</url-pattern>
+		<url-pattern>/api/v1/network/*</url-pattern>
 		<url-pattern>/api/v1/pricing/*</url-pattern>
 		<url-pattern>/api/v1/subscription/*</url-pattern>
 		<url-pattern>/api/v1/support/*</url-pattern>
 		<url-pattern>/api/v1/vpn/*</url-pattern>
 		<url-pattern>/api/v1/zendesk/*</url-pattern>
-
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>BloggerProxy</servlet-name>
-
-		<!-- API v0 resources handled by appengine -->
-		<url-pattern>/api/v0/blog/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
