@@ -368,6 +368,19 @@ public class FrontendAPIv1 extends HttpServlet
 				res.sendError(404);
 			} //}}}
 		} //}}}
+		else if (apiPath.startsWith("/vpn")) // {{{
+		{
+			String vpnApiPath = apiPath.substring( "/vpn".length(), apiPath.length() );
+
+			if (vpnApiPath.equals("/certificate")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkVpnCertificate.class);
+			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
+		} // }}}
 		else if (apiPath.equals("secretGeoDatabaseInit")) // {{{
 		{
 			String chunk = req.getParameter("chunk");
