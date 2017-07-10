@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -e
+
+VERSION=$1 # 0.8.5-beta
+BUILD=$2 # 01456
+
+if [ -z "$1" ] || [ -z "$2" ];then
+	echo "Usage: $0 <version> <build>"
+	echo "Example: $0 0.8.5-beta 01456"
+	exit 1
+fi
+
+for PLATFORM in windows macos debian;do
+	case "${PLATFORM}" in
+		windows)
+			PKG="cypherpunk-privacy-windows-${VERSION}-${BUILD}.exe"
+			;;
+		macos)
+			PKG="cypherpunk-privacy-macos-${VERSION}-${BUILD}.zip"
+			;;
+		debian)
+			PKG="cypherpunk-privacy-linux-${VERSION}-${BUILD}.deb"
+			;;
+	esac
+
+	SRC="gs://builds.cypherpunk.com/builds/${PLATFORM}/${PKG}"
+	DST="gs://download.cypherpunk.com/release/${PLATFORM}/${PKG}"
+
+	gsutil ls "${SRC}"
+	gsutil cp "${SRC}" "${DST}"
+	gsutil ls "${DST}"
+
+done
