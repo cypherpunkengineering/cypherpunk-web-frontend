@@ -327,6 +327,19 @@ public class FrontendAPIv1 extends HttpServlet
 				res.sendError(404);
 			} //}}}
 		} //}}}
+		else if (apiPath.startsWith("/monitoring")) // {{{
+		{
+			String monitoringApiPath = apiPath.substring( "/monitoring".length(), apiPath.length() );
+
+			if (monitoringApiPath.equals("/hello")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkMonitoringHello.class);
+			} //}}}
+			else // {{{ 404
+			{
+				res.sendError(404);
+			} //}}}
+		} //}}}
 		else if (apiPath.startsWith("/network")) // {{{
 		{
 			String networkApiPath = apiPath.substring( "/network".length(), apiPath.length() );
