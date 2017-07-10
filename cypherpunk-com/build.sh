@@ -51,6 +51,8 @@ fi
 # deploy to appengine static
 cd appengine/
 pip install --upgrade -t lib/ google-api-python-client
+
+# TODO: add switch to deploy to -com project 
 gcloud config set project cypherpunk-engineering
 echo y | gcloud app deploy
 
