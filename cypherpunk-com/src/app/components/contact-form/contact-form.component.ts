@@ -44,8 +44,10 @@ export class ContactFromComponent {
   ) {
     if (session.user.account.email) {
       this.email = session.user.account.email;
+      this.emailTouched = true;
+      this.emailRequired = true;
+      this.emailValid = true;
     }
-
   }
 
   validateName() {
