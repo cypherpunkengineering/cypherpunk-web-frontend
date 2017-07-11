@@ -70,13 +70,13 @@ html, body {
 
 .navigation {
   width: 100%;
-  padding: 10px 0 0;
+  padding: 10px 0 10px;
   background-color: #0d1e26;
 
   .nav-inner {
     max-width: 1000px;
     margin: auto;
-    &.short { height: auto; }
+    &.short { height: auto; overflow: auto; }
   }
 
   .nav-left {
@@ -97,7 +97,7 @@ html, body {
   .nav-image {
     position: relative;
     clear: both;
-    height: 210px;
+    height: 200px;
 
     .window {
       width: 100%;
