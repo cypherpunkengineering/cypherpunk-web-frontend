@@ -28,6 +28,7 @@ export const routes: string[] = [
   'recover',
   'download/*',
   'confirm',
+  'confirmchange',
   'why-use-a-vpn',
   'features',
   'network',

@@ -11,6 +11,7 @@ import { SigninModule } from './layouts/public/signin/signin.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
+import { ConfirmChangeModule } from './layouts/public/confirm-change/confirm-change.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { FeaturesModule } from './layouts/public/features/features.module';
 import { NetworkModule } from './layouts/public/network/network.module';
@@ -64,6 +65,7 @@ import { AuthService } from './services/auth.service';
 import { AlertService } from './services/alert.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { ConfirmGuard } from './services/confirm-guard.service';
+import { ConfirmChangeGuard } from './services/confirm-change-guard.service';
 import { PlansService } from './services/plans.service';
 import { BackendService } from './services/backend.service';
 import { GlobalsService } from './services/globals.service';
@@ -79,6 +81,7 @@ import { GlobalsService } from './services/globals.service';
     RecoverModule,
     DownloadModule,
     ConfirmModule,
+    ConfirmChangeModule,
     WhyusModule,
     FeaturesModule,
     NetworkModule,
@@ -136,6 +139,7 @@ import { GlobalsService } from './services/globals.service';
     AlertService,
     AuthGuard,
     ConfirmGuard,
+    ConfirmChangeGuard,
     PlansService,
     BackendService,
     GlobalsService

@@ -196,7 +196,7 @@ export class AccountOverviewComponent {
         this.changeEmailUser.email = '';
         this.changeEmailUser.password = '';
         this.changeEmailButtonDisabled = false;
-        this.alertService.success('Your Email was updated');
+        this.alertService.success(`Click on the link in your new email ${this.changeEmailUser.email} to complete the change`);
       });
     })
     .catch((err) => {

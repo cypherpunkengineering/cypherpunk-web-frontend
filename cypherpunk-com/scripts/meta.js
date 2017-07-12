@@ -130,6 +130,10 @@ const metaMap = {
     title: 'Confirmation | Cypherpunk Privacy',
     description: ' '
   },
+  'confirmChange.html': {
+    title: 'Email Change Confirmation | Cypherpunk Privacy',
+    description: ' '
+  },
   'login.html': {
     title: 'Login to Cypherpunk Privacy Account',
     description: 'Login to your account on Cypherpunk.com'
@@ -147,9 +151,34 @@ const metaMap = {
     title: 'Upgrade Cypherpunk Account',
     description: ' ',
   },
+  'account.html': {
+    url: 'https://cypherpunk.com/account',
+    title: 'My Account | Cypherpunk Privacy',
+    description: ' ',
+  },
+  'account:overview.html': {
+    url: 'https://cypherpunk.com/account/overview',
+    title: 'My Account | Cypherpunk Privacy',
+    description: ' '
+  },
+  'account:subscription.html': {
+    url: 'https://cypherpunk.com/account/overview',
+    title: 'Subscription | Cypherpunk Privacy',
+    description: ' '
+  },
   'account:billing.html': {
     url: 'https://cypherpunk.com/account/billing',
     title: 'Billing | Cypherpunk Privacy',
+    description: ' '
+  },
+  'account:refer.html': {
+    url: 'https://cypherpunk.com/account/refer',
+    title: 'Refer | Cypherpunk Privacy',
+    description: ' '
+  },
+  'account:configs.html': {
+    url: 'https://cypherpunk.com/account/configs',
+    title: 'Configuration | Cypherpunk Privacy',
     description: ' '
   },
   'account:reset.html': {

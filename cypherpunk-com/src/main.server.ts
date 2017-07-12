@@ -30,6 +30,7 @@ app.use('/', express.static('./dist/client', { index: false }));
 import {
   subs,
   confirm,
+  confirmChange,
   signin,
   signout,
   changeEmail,
@@ -69,6 +70,7 @@ app.get('/api/v1/pricing/plans/:referralCode', pricingPlans);
 app.get('/api/v1/pricing/plans', pricingPlans);
 app.get('/api/v1/billing/receipts', billing);
 app.post('/api/v1/account/confirm/email', confirm);
+app.post('/api/v1/account/confirm/emailChange', confirmChange);
 app.post('/api/v1/account/authenticate/userpasswd', signin);
 app.post('/api/v1/account/logout', signout);
 app.post('/api/v1/account/identify/email', identify);

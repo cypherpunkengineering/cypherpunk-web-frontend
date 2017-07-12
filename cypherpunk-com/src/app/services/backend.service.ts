@@ -20,6 +20,14 @@ export class BackendService {
     .then(this.parseJson);
   }
 
+  confirmChangeToken(body, options): Promise<any> {
+    // this will set cookie
+    let url = this.globals.API_URL + '/account/confirm/emailChange';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson);
+  }
+
   signin(body, options): Promise<any> {
     // this will set cookie
     let url = this.globals.API_URL + '/account/authenticate/userpasswd';

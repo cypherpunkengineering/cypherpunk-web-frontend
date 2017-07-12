@@ -1,0 +1,36 @@
+.masthead {
+  .masthead-header {
+    width: 100%;
+    margin-top: 0;
+    padding: 0 0 50px;
+  }
+}
+
+.btn {
+  width: 321px;
+  height: 60px;
+  margin: 110px auto 25px;
+  font-size: 24px;
+}
+
+form {
+  display: table;
+  margin: 50px auto 50px;
+  text-align: center;
+  min-height: 50vh;
+
+  .page-header {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.86;
+    color: #4a4a4d;
+  }
+
+  p { display: table-row;  text-align: left; }
+  p.center { text-align: center; }
+}
+
+
+@media (max-width: 375px) {
+  .btn { width: 300px; }
+}
