@@ -61,7 +61,7 @@ function registerEmail() {
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4) {
       if (xmlHttp.status === 200 || xmlHttp.status === 202) {
-        window.location.href = '/thanks.html';
+        window.location.href = '/thanks.html?email=' + email;
       }
       else if (xmlHttp.status === 409) {
         setMessage('This email has already been invited');
