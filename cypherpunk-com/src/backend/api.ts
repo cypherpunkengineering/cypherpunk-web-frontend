@@ -334,3 +334,13 @@ export function billing(req, res) {
     });
   }
 }
+
+export function invite(req, res) {
+  console.log('here');
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/account/regiser/teaserShare';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else { return res.json({}); }
+}

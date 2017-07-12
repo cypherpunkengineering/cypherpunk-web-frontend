@@ -74,6 +74,14 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  invite(body, options): Promise<any> {
+    let url = this.globals.API_URL + '/account/register/teaserShare';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
 
   // User account apis
 

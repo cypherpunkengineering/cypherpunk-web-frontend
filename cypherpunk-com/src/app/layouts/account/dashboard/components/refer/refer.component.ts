@@ -8,11 +8,16 @@ import { BackendService } from '../../../../../services/backend.service';
 })
 export class AccountReferComponent {
   invitee = { name: '', email: '' };
+  showInvitationSent = false;
 
   constructor(private backend: BackendService) {}
 
   invite() {
-    console.log(this.invitee);
+    this.backend.invite(this.invitee, {})
+    .then((data) => {
+      this.showInvitationSent = true;
+      setTimeout(() => { this.showInvitationSent = false; }, 5000);
+    });
   }
 
   copy() {
