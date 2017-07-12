@@ -25,7 +25,7 @@
 
     li {
       height: 50px;
-      padding: 15px;
+      padding: 10px 15px;
       color: #8DFFFB;
       font-size: 16px;
       cursor: pointer;
@@ -45,6 +45,8 @@
         &.active { display: none; }
         &.hover { display: none; }
       }
+
+      span { vertical-align: middle; }
 
       &.active {
         color: #163238 !important;
