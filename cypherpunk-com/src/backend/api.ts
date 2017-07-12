@@ -206,7 +206,7 @@ export function supportPost(req, res) {
 export function contactForm(req, res) {
   if (DEV_MODE) {
     let body = req.body;
-    let url = urlStart + 'api/v1/zendesk/request/new';
+    let url = urlStart + 'api/v1/support/request/new';
     return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
   }
   else {

@@ -209,7 +209,7 @@ export class BackendService {
   }
 
   contactForm(body) {
-    let url = this.globals.API_URL + '/zendesk/request/new';
+    let url = this.globals.API_URL + '/support/request/new';
     return this.http.post(url, body).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);

@@ -76,7 +76,7 @@ app.post('/api/v1/account/source/default', stripeDefaultCard);
 app.post('/api/v1/account/source/add', stripeCreateCard);
 app.post('/api/v1/account/purchase/amazon', amazonPurchase);
 app.post('/api/v1/account/upgrade/amazon', amazonUpgrade);
-app.post('/api/v1/zendesk/request/new', contactForm);
+app.post('/api/v1/support/request/new', contactForm);
 app.post('/api/v1/account/change/email', changeEmail);
 app.post('/api/v1/account/change/password', changePassword);
 app.post('/api/v1/account/register/teaserShare', invite);
