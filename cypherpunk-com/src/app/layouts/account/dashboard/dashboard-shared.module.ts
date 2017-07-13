@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../components/shared/shared.module';
 import { AccountReferComponent } from './components/refer/refer.component';
+import { AccountIssueComponent } from './components/issue/issue.component';
 import { AccountBillingComponent } from './components/billing/billing.component';
 import { AccountPaymentComponent } from './components/payment/payment.component';
 import { AccountConfigsComponent } from './components/configs/configs.component';
@@ -25,6 +26,7 @@ const PIPES = [
 
 const COMPONENTS = [
   // put shared components here
+  AccountIssueComponent,
   AccountBillingComponent,
   AccountPaymentComponent,
   AccountSubscriptionComponent,

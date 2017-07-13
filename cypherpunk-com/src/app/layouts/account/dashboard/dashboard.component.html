@@ -30,6 +30,11 @@
           <span>Refer Friends</span>
         </li>
       </a>
+      <a routerLink="/account/issue" (click)="changePage('issue')">
+        <li [ngClass]="{'active': currentTab === 'issue'}">
+          <span>Report a Bug</span>
+        </li>
+      </a>
       <a routerLink="/account/configs" (click)="changePage('configs')" *ngIf="env === 'DEV'">
         <li [ngClass]="{'active': currentTab === 'configs'}">
           <span>Manual Configs</span>
@@ -52,6 +57,10 @@
 
   <div class="page" *ngIf="currentTab === 'refer'">
     <account-refer></account-refer>
+  </div>
+
+  <div class="page" *ngIf="currentTab === 'issue'">
+    <account-issue></account-issue>
   </div>
 
   <div class="page" *ngIf="currentTab === 'configs'">

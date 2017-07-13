@@ -181,6 +181,11 @@ const metaMap = {
     title: 'Configuration | Cypherpunk Privacy',
     description: ' '
   },
+  'account:issue.html': {
+    url: 'https://cypherpunk.com/account/issue',
+    title: 'Report a Bug | Cypherpunk Privacy',
+    description: ' '
+  },
   'account:reset.html': {
     url: 'https://cypherpunk.com/account/reset',
     title: 'Reset Your Password',

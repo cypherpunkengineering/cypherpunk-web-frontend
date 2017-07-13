@@ -38,6 +38,7 @@ const routes = [
   { url: baseRoute + 'account/billing', dirPath: baseDir + 'account/billing.html' },
   { url: baseRoute + 'account/refer', dirPath: baseDir + 'account/refer.html' },
   { url: baseRoute + 'account/configs', dirPath: baseDir + 'account/configs.html' },
+  { url: baseRoute + 'account/issue', dirPath: baseDir + 'account/issue.html' },
   { url: baseRoute + 'account/reset', dirPath: baseDir + 'account/reset.html' },
   { url: baseRoute + 'apps', dirPath: baseDir + 'apps.html' },
   { url: baseRoute + 'apps/browser', dirPath: baseDir + 'apps/browser.html' },
