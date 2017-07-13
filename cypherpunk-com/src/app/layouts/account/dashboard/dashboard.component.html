@@ -15,12 +15,12 @@
           <span>Overview</span>
         </li>
       </a>
-      <a routerLink="/account/subscription" (click)="changePage('subscription')">
+      <a routerLink="/account/subscription" (click)="changePage('subscription')" *ngIf="env === 'DEV'">
         <li [ngClass]="{'active': currentTab === 'subscription'}">
           <span>Subscription</span>
         </li>
       </a>
-      <a routerLink="/account/billing" (click)="changePage('billing')" [hidden]="env === 'PROD'">
+      <a routerLink="/account/billing" (click)="changePage('billing')" *ngIf="env === 'DEV'">
         <li [ngClass]="{'active': currentTab === 'billing'}">
           <span>Billing</span>
         </li>
