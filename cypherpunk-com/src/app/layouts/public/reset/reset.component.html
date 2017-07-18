@@ -6,23 +6,25 @@
 
 <div class="content">
   <form>
-    <p>
-      <label for="password">New Password</label><br>
-      <input id="password" type="password" name="password" [(ngModel)]="password" autofocus>
-    </p>
+    <div>
+      <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (blur)="this.errors.password.touched = true; validatePassword()" autofocus>
+      <div class="error-message" [hidden]="!this.errors.password.touched">
+        {{this.errors.password.message}}
+      </div>
+    </div>
 
-    <p>
-      <label for="username">Confirm Password</label><br>
-      <input id="confirm" type="password" name="confirm" [(ngModel)]="confirm" (ngModelChange)="comparePass()">
-    </p>
+    <div>
+      <input id="confirm" type="password" name="confirm" placeholder="Confirm Password" [(ngModel)]="confirm" [ngClass]="{'error': this.errors.confirm.message && this.errors.confirm.touched}" (keyup.enter)="reset()" (ngModelChange)="validateConfirm()" (blur)="this.errors.confirm.touched = true; validateConfirm()">
+      <div class="error-message" [hidden]="!this.errors.confirm.touched">
+        {{this.errors.confirm.message}}
+      </div>
+    </div>
 
-    <div class="error" *ngIf="error.message">{{ error.message }}</div>
-
-    <p class="center">
-      <button class="btn blue" (click)="reset()" [disabled]="!validateReset() || resetButtonDisabled">
+    <div class="reset">
+      <button class="btn orange" (click)="reset()" [disabled]="resetButtonDisabled">
         Reset Password
       </button>
-    </p>
+    </div>
   </form>
 </div>
 

@@ -16,7 +16,7 @@
     <form>
       <div class="row">
         <div class="half">
-          <input id="email" type="email" name="username" placeholder="Email" autofocus [(ngModel)]="user.email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()">
+          <input id="email" type="email" name="login" placeholder="Email" autofocus [(ngModel)]="user.email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()">
           <div class="error-message" [hidden]="!this.errors.email.touched">
             {{this.errors.email.message}}
           </div>

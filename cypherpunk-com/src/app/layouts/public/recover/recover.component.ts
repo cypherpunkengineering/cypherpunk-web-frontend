@@ -8,6 +8,7 @@ import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/
 })
 export class RecoverComponent implements AfterViewInit {
   email = '';
+  errors = { email: { touched: false, message: '' } };
   recoverButtonDisabled = false;
 
   constructor(
@@ -20,13 +21,28 @@ export class RecoverComponent implements AfterViewInit {
     if (isPlatformBrowser(this.platformId)) { document.getElementById('recover-username').focus(); }
   }
 
-  validateRecover () {
-    if (!this.email.length) { return false; }
-    return true;
+  validateEmail() {
+    let valid = false;
+    this.errors.email.touched = true;
+
+    if (!this.email) {
+      this.errors.email.message = 'Email is Required';
+    }
+    else if (!/^\S+@\S+$/.test(this.email)) {
+      this.errors.email.message = 'Email is not properly formatted';
+    }
+    else {
+      valid = true;
+      this.errors.email.message = '';
+    }
+
+    return valid;
   }
 
   recover() {
+    if (!this.validateEmail()) { return; }
     this.recoverButtonDisabled = true;
     // call server here
+    console.log('recover');
   }
 }

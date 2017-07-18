@@ -14,7 +14,10 @@ export class PublicResetComponent implements AfterViewInit {
   resetToken: string;
   password = '';
   confirm = '';
-  error = { message: '' };
+  errors = {
+    password: { touched: false, message: '' },
+    confirm: { touched: false, message: '' }
+  };
   resetButtonDisabled = false;
 
   constructor(
@@ -41,43 +44,67 @@ export class PublicResetComponent implements AfterViewInit {
     if (!this.resetToken) { this.router.navigate(['/']); }
 
     // if token is not confirm, navigate to home page
-    backend.confirmToken({ token: this.resetToken }, {})
-    .catch(() => { this.router.navigate(['/']); });
+    // backend.confirmToken({ token: this.resetToken }, {})
+    // .catch(() => { this.router.navigate(['/']); });
   }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) { document.getElementById('password').focus(); }
   }
 
-  validateReset () {
-    if (!this.password.length) { return false; }
-    if (!this.confirm.length) { return false; }
-    if (this.password !== this.confirm) { return false; }
-    return true;
+  validatePassword() {
+    let valid = false;
+    this.errors.password.touched = true;
+
+    if (!this.password) {
+      this.errors.password.message = 'Password is Required';
+    }
+    else {
+      valid = true;
+      this.errors.password.message = '';
+    }
+
+    return valid;
   }
 
-  comparePass() {
-    let error = '';
-    if (this.password !== this.confirm) { error = 'Password and Confirmation do not match'; }
-    this.error.message = error;
+  validateConfirm () {
+    let valid = false;
+    this.errors.confirm.touched = true;
+
+    if (!this.confirm) {
+      this.errors.confirm.message = 'Confirmation is Required';
+    }
+    else if (this.password !== this.confirm) {
+      this.errors.confirm.message = 'Password and Confirmation do not match';
+    }
+    else {
+      valid = true;
+      this.errors.confirm.message = '';
+    }
+
+    return valid;
   }
 
   reset() {
+    let password = this.validatePassword();
+    let confirm = this.validateConfirm();
+    if (!password || !confirm) { return; }
     this.resetButtonDisabled = true;
+
     // call server here
-    let body = { resetToken: this.resetToken, password: this.password };
-    return this.backend.confirmToken(body, {})
-    .then((data) => {
-      // set user session data
-      this.session.setUserData({
-        account: { email: data['account']['email'] },
-        secret: data['secret']
-      });
-      // turn auth on
-      this.auth.authed = true;
-      // navigate to account page
-      this.router.navigate(['/']);
-    })
-    .catch(() => { this.router.navigate(['/']); });
+    // let body = { resetToken: this.resetToken, password: this.password };
+    // return this.backend.confirmToken(body, {})
+    // .then((data) => {
+    //   // set user session data
+    //   this.session.setUserData({
+    //     account: { email: data['account']['email'] },
+    //     secret: data['secret']
+    //   });
+    //   // turn auth on
+    //   this.auth.authed = true;
+    //   // navigate to account page
+    //   this.router.navigate(['/']);
+    // })
+    // .catch(() => { this.router.navigate(['/']); });
   }
 }

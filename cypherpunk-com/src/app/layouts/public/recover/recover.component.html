@@ -7,16 +7,18 @@
 
   <div class="content">
     <form>
-      <p>
-        <label for="username">Email</label><br>
-        <input id="recover-username" type="text" name="username" [(ngModel)]="email" placeholder="Username / Email" autofocus>
-      </p>
+      <div>
+        <input id="recover-username" type="email" name="login" placeholder="Email" [(ngModel)]="email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()" (keyup.enter)="recover()" autofocus>
+        <div class="error-message" [hidden]="!this.errors.email.touched">
+          {{this.errors.email.message}}
+        </div>
+      </div>
 
-      <p class="center">
-        <button class="btn blue" (click)="recover()" [disabled]="!validateRecover() || recoverButtonDisabled">
+      <div class="recover">
+        <button class="btn orange" (click)="recover()" [disabled]="recoverButtonDisabled">
           Recover Password
         </button>
-      </p>
+      </div>
     </form>
   </div>
 </div>
