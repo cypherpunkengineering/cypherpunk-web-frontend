@@ -93,7 +93,8 @@
 .button-container {
   padding: 0 10px;
   text-align: center;
-
+  font-size: 28px;
+  &.white { color: #fff; }
   .apple { width: 300px; }
 }
 
