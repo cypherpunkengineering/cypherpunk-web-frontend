@@ -106,11 +106,13 @@
       background-color: #57bd35;
       width: 206px;
       height: 58px;
-      padding: 10px 10px;
+      line-height: 58px;
+      padding: 0 10px;
       color: #fff;
       margin: auto;
       font-size: 16px;
-      &:hover { background-color: #5dca92; }
+      cursor: default;
+      // &:hover { background-color: #5dca92; }
     }
   }
 }
