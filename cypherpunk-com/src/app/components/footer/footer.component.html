@@ -56,7 +56,10 @@
     <div class="footer-column">
       <div class="footer-header">About Us</div>
       <ul class="footer-listing">
-        <li><a routerLink="/about-us">Our Team</a></li>
+        <!-- <li><a routerLink="/about-us">Our Team</a></li> -->
+        <li><a routerLink="/about-us" fragment="manifesto">Manifesto</a></li>
+        <li><a routerLink="/about-us" fragment="inquiries">Media/Press</a></li>
+        <li><a routerLink="/about-us" fragment="canary">Warrant Canary</a></li>
         <li><a routerLink="/blog" *ngIf="env === 'DEV'">Blog</a></li>
         <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
         <li><a routerLink="/terms-of-service">Terms of Service</a></li>

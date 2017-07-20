@@ -13,7 +13,7 @@ export class AboutusComponent implements OnInit {
     private router: Router,
     @Inject(DOCUMENT) private document: any
   ) {
-    this.page = 'punks';
+    this.page = 'manifesto';
     this.document.title = 'About Cypherpunk Privacy';
   }
 
