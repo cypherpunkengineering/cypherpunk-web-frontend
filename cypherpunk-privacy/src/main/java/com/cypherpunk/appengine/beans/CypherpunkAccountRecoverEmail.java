@@ -1,6 +1,6 @@
 package com.cypherpunk.appengine.beans;
 
-public class CypherpunkAccountRecover
+public class CypherpunkAccountRecoverEmail
 {
 	private String email;
 }
