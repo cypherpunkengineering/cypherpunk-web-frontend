@@ -13,6 +13,7 @@ import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/
 })
 export class PublicResetComponent implements AfterViewInit {
   resetToken: string;
+  accountId: string;
   password = '';
   confirm = '';
   errors = {
@@ -42,8 +43,9 @@ export class PublicResetComponent implements AfterViewInit {
 
     // check resetToken exists
     let route = this.activatedRoute.snapshot;
-    this.resetToken = route.queryParams['token'];
-    if (!this.resetToken) { this.router.navigate(['/']); }
+    this.resetToken = route.queryParams['recoveryToken'];
+    this.accountId = route.queryParams['accountId'];
+    if (!this.resetToken || !this.accountId) { this.router.navigate(['/']); }
   }
 
   ngAfterViewInit() {
