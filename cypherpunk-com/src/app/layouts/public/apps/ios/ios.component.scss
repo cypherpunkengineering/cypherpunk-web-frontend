@@ -21,9 +21,20 @@
   .split {
     width: 100%;
     max-width: 1000px;
+    position: relative;
 
-    img { padding: 0 10px; max-width: 75%; }
+    img { padding: 0 10px; max-width: 75%; opacity: 0.5; }
     img.width { max-height: 550px; width: auto; margin: 0 auto 50px; }
+
+    .soon {
+      font-size: 6vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: inline-block;
+      opacity: 0.5;
+      transform: translateX(-50%) translateY(-50%) scale(2);
+    }
   }
 }
 

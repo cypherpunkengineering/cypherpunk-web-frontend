@@ -52,13 +52,15 @@
       </a>
     </div>
 
+    <!--
     <div class="button-container" *ngIf="platform === 'ios'">
-      <a> <!-- href="{{ link }}" -->
-        Coming Soon!
-        <!-- <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store"> -->
+      <a href="{{ link }}">
+        <img class="apple" src="/assets/apple-appstore-badge.svg" alt="Apple App Store">
       </a>
     </div>
+    -->
 
+    <!--
     <div class="button-container" *ngIf="platform === 'browser'">
       <div class="cell">
         <a href="{{ link }}">
@@ -67,14 +69,14 @@
       </div>
 
       <div class="cell">
-        <a> <!-- href="{{ ffLink }}" -->
-          <!-- Download From Firefox Add-ons -->
+        <a href="{{ ffLink }}">
           <div class="firefox">
-            Firefox Coming Soon!
+            Download From Firefox Add-ons
           </div>
         </a>
       </div>
     </div>
+    -->
 
     <div class="button-container" *ngIf="platform === 'routers'">
       <a routerLink="/support/routers">
