@@ -7,7 +7,7 @@
 .content {
   width: 100%;
   text-align: center;
-  padding: 60px 0;
+  padding: 60px 0 0;
 
   .content-inner {
     width: 100%;
@@ -23,8 +23,8 @@
     max-width: 1000px;
     position: relative;
 
-    img { padding: 0 10px; max-width: 75%; opacity: 0.5; }
-    img.width { max-height: 550px; width: auto; margin: 0 auto 50px; }
+    img { padding: 0 10px; max-width: 90%; max-height: 280px; opacity: 0.5; }
+    img.width { max-height: 280px; width: auto; margin: 0 auto 20px; }
 
     .soon {
       font-size: 6vh;
@@ -105,6 +105,7 @@
   padding: 0 10px;
   text-align: center;
   font-size: 28px;
+  margin-bottom: 30px;
   &.white { color: #fff; }
   .apple { width: 300px; }
 }
