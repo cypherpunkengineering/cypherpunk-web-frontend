@@ -90,6 +90,21 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  recover(body, options): Promise<any> {
+    let url = this.globals.API_URL + '/account/recover/email';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
+  reset(body, options): Promise<any> {
+    let url = this.globals.API_URL + '/account/recover/reset';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
 
   // User account apis
 

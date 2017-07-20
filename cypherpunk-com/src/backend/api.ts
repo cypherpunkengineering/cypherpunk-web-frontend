@@ -358,3 +358,21 @@ export function invite(req, res) {
   }
   else { return res.json({}); }
 }
+
+export function recover(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/account/recover/email';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else { return res.json({}); }
+}
+
+export function reset(req, res) {
+  if (DEV_MODE) {
+    let body = req.body;
+    let url = urlStart + 'api/v1/account/recover/reset';
+    return request.post({url: url, body: body, json: true, jar: true }).pipe(res);
+  }
+  else { return res.json({}); }
+}

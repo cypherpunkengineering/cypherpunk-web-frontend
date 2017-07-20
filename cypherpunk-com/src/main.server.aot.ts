@@ -47,7 +47,9 @@ import {
   contactForm,
   pricingPlans,
   billing,
-  invite
+  invite,
+  recover,
+  reset
 } from './backend/api';
 import { stripePurchase, stripeUpgrade, stripeCardList, stripeDefaultCard, stripeCreateCard } from './backend/stripe';
 import { amazonPurchase, amazonUpgrade } from './backend/amazon';
@@ -80,6 +82,8 @@ app.post('/api/v1/support/request/new', contactForm);
 app.post('/api/v1/account/change/email', changeEmail);
 app.post('/api/v1/account/change/password', changePassword);
 app.post('/api/v1/account/register/teaserShare', invite);
+app.post('/api/v1/account/recover/email', recover);
+app.post('/api/v1/account/recover/reset', reset);
 
 app.get('/', (req, res) => {
   res.render('../dist/client/index.html', {

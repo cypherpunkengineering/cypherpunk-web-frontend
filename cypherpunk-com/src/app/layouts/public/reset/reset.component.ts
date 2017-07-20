@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
 import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
@@ -26,6 +27,7 @@ export class PublicResetComponent implements AfterViewInit {
     private auth: AuthService,
     private backend: BackendService,
     private session: SessionService,
+    private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -40,12 +42,8 @@ export class PublicResetComponent implements AfterViewInit {
 
     // check resetToken exists
     let route = this.activatedRoute.snapshot;
-    this.resetToken = route.queryParams['resetToken'];
+    this.resetToken = route.queryParams['token'];
     if (!this.resetToken) { this.router.navigate(['/']); }
-
-    // if token is not confirm, navigate to home page
-    // backend.confirmToken({ token: this.resetToken }, {})
-    // .catch(() => { this.router.navigate(['/']); });
   }
 
   ngAfterViewInit() {
@@ -91,20 +89,14 @@ export class PublicResetComponent implements AfterViewInit {
     if (!password || !confirm) { return; }
     this.resetButtonDisabled = true;
 
-    // call server here
-    // let body = { resetToken: this.resetToken, password: this.password };
-    // return this.backend.confirmToken(body, {})
-    // .then((data) => {
-    //   // set user session data
-    //   this.session.setUserData({
-    //     account: { email: data['account']['email'] },
-    //     secret: data['secret']
-    //   });
-    //   // turn auth on
-    //   this.auth.authed = true;
-    //   // navigate to account page
-    //   this.router.navigate(['/']);
-    // })
-    // .catch(() => { this.router.navigate(['/']); });
+    let body = { token: this.resetToken, password: this.password };
+    return this.backend.reset(body, {})
+    .then((data) => {
+      this.alertService.success('Your password has been reset, please login');
+    })
+    .catch((err) => {
+      console.log(err);
+      this.alertService.error('Could not reset your password');
+    });
   }
 }

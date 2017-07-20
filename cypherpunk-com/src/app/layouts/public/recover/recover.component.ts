@@ -1,5 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { AlertService } from '../../../services/alert.service';
+import { BackendService } from '../../../services/backend.service';
 import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
@@ -13,9 +16,18 @@ export class RecoverComponent implements AfterViewInit {
 
   constructor(
     private zone: NgZone,
+    private backend: BackendService,
+    private alertService: AlertService,
+    private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { this.document.title = 'Reset your password for Cypherpunk Privacy'; }
+  ) {
+    this.document.title = 'Reset your password for Cypherpunk Privacy';
+
+    // check if email exists
+    let route = this.activatedRoute.snapshot;
+    this.email = route.queryParams['email'];
+  }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) { document.getElementById('recover-username').focus(); }
@@ -42,7 +54,16 @@ export class RecoverComponent implements AfterViewInit {
   recover() {
     if (!this.validateEmail()) { return; }
     this.recoverButtonDisabled = true;
-    // call server here
-    console.log('recover');
+
+    this.backend.recover({ email: this.email }, {})
+    .then(() => {
+      this.alertService.success('An email with a link to recover your password has been sent.');
+    })
+    .catch((err) => {
+      this.zone.run(() => {
+        this.recoverButtonDisabled = false;
+        this.alertService.error('Could not recover your account.');
+      });
+    });
   }
 }
