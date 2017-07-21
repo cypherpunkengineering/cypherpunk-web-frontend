@@ -99,7 +99,7 @@ export class ContactFromComponent {
     this.backend.contactForm(body)
     .then((data) => {
       this.show['show'] = false;
-      this.alerts.success('Ticket Submitted!');
+      this.alerts.success('Thank you for your submission. <br><br>One of our cypherpunks will be in touch shortly!!');
     })
     .catch((err) => {
       this.error = true;
