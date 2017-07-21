@@ -91,7 +91,7 @@ export class PublicResetComponent implements AfterViewInit {
     if (!password || !confirm) { return; }
     this.resetButtonDisabled = true;
 
-    let body = { token: this.resetToken, password: this.password };
+    let body = { accountId: this.accountId, token: this.resetToken, password: this.password };
     return this.backend.reset(body, {})
     .then((data) => {
       this.alertService.success('Your password has been reset, please login');
