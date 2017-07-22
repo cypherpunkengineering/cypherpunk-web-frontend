@@ -52,7 +52,7 @@ export class RecoverComponent implements AfterViewInit {
   }
 
   recover() {
-    if (!this.validateEmail()) { return; }
+    if (!this.validateEmail() || this.recoverButtonDisabled) { return; }
     this.recoverButtonDisabled = true;
 
     this.backend.recover({ email: this.email }, {})

@@ -88,7 +88,7 @@ export class PublicResetComponent implements AfterViewInit {
   reset() {
     let password = this.validatePassword();
     let confirm = this.validateConfirm();
-    if (!password || !confirm) { return; }
+    if (!password || !confirm || this.resetButtonDisabled) { return; }
     this.resetButtonDisabled = true;
 
     let body = { accountId: this.accountId, token: this.resetToken, password: this.password };
