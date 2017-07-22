@@ -95,6 +95,7 @@ export class PublicResetComponent implements AfterViewInit {
     return this.backend.reset(body, {})
     .then((data) => {
       this.alertService.success('Your password has been reset, please login');
+      this.router.navigate(['login']);
     })
     .catch((err) => {
       console.log(err);
