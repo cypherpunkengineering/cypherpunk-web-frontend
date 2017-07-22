@@ -129,4 +129,10 @@ export class DashboardComponent {
       this.showGettingStarted = false;
     });
   }
+
+  showConfig() {
+    let type = this.session.user.account.type;
+    if (type === 'invitation' || type === 'pending' || type === 'expired') { return false; }
+    else { return true; }
+  }
 }
