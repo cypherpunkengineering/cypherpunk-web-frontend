@@ -486,6 +486,10 @@ public class FrontendAPIv1 extends HttpServlet
 			{
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountConfirmEmail.class, CypherpunkAccountStatus.class);
 			} // }}}
+			else if (accountApiPath.equals("/confirm/resend")) // {{{
+			{
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRecoverEmail.class, null);
+			} // }}}
 
 			else if (accountApiPath.equals("/change/email")) // {{{
 			{
