@@ -5,32 +5,35 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://cypherpunk.com/apps</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://cypherpunk.com/download</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cypherpunk.com/pricing</loc>
-    <priority>0.8</priority>
+    <loc>https://cypherpunk.com/features</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cypherpunk.com/why-use-a-vpn</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cypherpunk.com/features</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://cypherpunk.com/network</loc>
-  </url>
-  <url>
-    <loc>https://cypherpunk.com/whats-my-ip-address</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/about</loc>
   </url>
   <url>
-    <loc>https://cypherpunk.com/feedback</loc>
+    <loc>https://cypherpunk.com/about/manifesto</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/about/inquiries</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/about/canary</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/privacy-policy</loc>
@@ -43,6 +46,9 @@
   </url>
   <url>
     <loc>https://cypherpunk.com/apps/windows</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/apps/macos</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/apps/mac</loc>
@@ -60,12 +66,24 @@
     <loc>https://cypherpunk.com/apps/android</loc>
   </url>
   <url>
-    <loc>https://cypherpunk.com/apps/routers</loc>
-  </url>
-  <url>
     <loc>https://cypherpunk.com/login</loc>
   </url>
   <url>
     <loc>https://cypherpunk.com/recover</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/support</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/support/windows</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/support/macos</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/support/linux</loc>
+  </url>
+  <url>
+    <loc>https://cypherpunk.com/support/android</loc>
   </url>
 </urlset>
