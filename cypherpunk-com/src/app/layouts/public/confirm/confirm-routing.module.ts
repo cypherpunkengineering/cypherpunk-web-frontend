@@ -5,10 +5,8 @@ import { ConfirmComponent } from './confirm.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {
-        path: 'confirm',
-        component: ConfirmComponent
-      }
+      { path: 'confirm', component: ConfirmComponent },
+      { path: 'confirmation', component: ConfirmComponent }
     ])
   ]
 })
