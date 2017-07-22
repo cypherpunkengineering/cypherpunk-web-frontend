@@ -1,6 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
 import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
@@ -16,6 +16,7 @@ export class RecoverComponent implements AfterViewInit {
 
   constructor(
     private zone: NgZone,
+    private router: Router,
     private backend: BackendService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
@@ -58,6 +59,7 @@ export class RecoverComponent implements AfterViewInit {
     this.backend.recover({ email: this.email }, {})
     .then(() => {
       this.alertService.success('An email with a link to recover your password has been sent.');
+      this.router.navigate(['/']);
     })
     .catch((err) => {
       this.zone.run(() => {
