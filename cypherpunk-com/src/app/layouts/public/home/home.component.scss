@@ -1,8 +1,13 @@
 .masthead {
   .masthead-header {
     font-size: 28px;
-    margin: 0 auto 10px;
+    margin: 50px auto 7vh;
     padding: 0 10px;
+    letter-spacing: 0.2em;
+    font-size: 24px;
+    color: #dff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
 
   .masthead-subheader {
@@ -15,7 +20,7 @@
 
   .masthead-apps {
     margin: auto;
-    padding: 20px 0;
+    padding: 20px 0 2vh;
     text-align: center;
     position: relative;
     z-index: 15;
@@ -47,7 +52,8 @@
 
     .masthead-image {
       position: relative;
-      img { width: 100%; }
+      text-align: center;
+      img { width: 80%; }
     }
   }
 }
@@ -64,7 +70,7 @@
     left: 0;
     right: 0;
 
-    .btn { width: 341px; border-radius: 5px; }
+    .btn { border-radius: 5px; }
     .btn.orange:hover { background-color: #ff8c71; }
   }
 }
@@ -81,12 +87,12 @@
 
   &.first { padding-top: 90px; }
   &.gray {
-    background-color: #efeaea;
+    background: linear-gradient(150deg, #cfcaca, #fffafa);
     .text .text-header { color: #1b87bb; }
     .text .text-content { color: #4a4a4d; }
   }
   &.green {
-    background-color: #163138;
+    background: linear-gradient(150deg, #244, #022);
     .text .text-header { color: #FFE399; }
     .text .text-content { color: #8DFFFB; }
   }
@@ -106,9 +112,9 @@
     display: inline-block;
     vertical-align: middle;
     text-align: center;
-    img { width: 100%; }
+    img { width: 90%; }
     img.shrink { width: 85%; }
-    img.height-biased { width: auto; max-height: 300px; }
+    img.height-biased { width: auto; max-height: 250px; }
   }
 
   .text {
@@ -123,15 +129,14 @@
 
 .btn {
   font-size: 22px;
-  width: 280px;
-  height: 60px;
+  padding: 20px;
 }
 
 @media (max-width: 1050px) {
   .alternate {
     &.left .image, &.right .image {
       width: 100%;
-      img { max-width: 300px; padding: 0 15px; }
+      img { max-width: 250px; padding: 0 15px; }
       &.top { display: inline-block; }
       &.bottom { display: none; }
     }
@@ -150,5 +155,5 @@
 
 @media (max-width: 375px) {
   .masthead .masthead-subheader { font-size: 14px; }
-  .cta-container .call-to-action .btn { width: 280px; font-size: 18px; }
+  .cta-container .call-to-action .btn { font-size: 18px; }
 }
