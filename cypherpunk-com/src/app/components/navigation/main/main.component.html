@@ -164,7 +164,7 @@
 </div>
 
 <div id="scrolled-mobile-nav" class="scrolled-mobile-nav" *ngIf="bannerModel && enableLinks">
-  <div style="overflow:auto;">
+  <div style="overflow:auto;" *ngIf="bannerModal?.type === 'android'">
     <a href="{{bannerModel.link}}">
       <div class="left">
         <div class="heading">
