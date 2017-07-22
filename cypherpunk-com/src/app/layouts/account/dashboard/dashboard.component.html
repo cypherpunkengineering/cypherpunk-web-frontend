@@ -25,7 +25,7 @@
           <span>Billing</span>
         </li>
       </a>
-      <a routerLink="/account/refer" (click)="changePage('refer')">
+      <a routerLink="/account/refer" (click)="changePage('refer')" *ngIf="env === 'DEV'">
         <li [ngClass]="{'active': currentTab === 'refer'}">
           <span>Refer Friends</span>
         </li>

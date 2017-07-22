@@ -50,6 +50,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     .subscribe(
       (data: any) => {
         this.post = data;
+        this.post.content = this.post.content.replace(/CypherpunkDescription: .*/, '');
         this.document.title = data.title;
       },
       (error: any) => { console.log(error); }

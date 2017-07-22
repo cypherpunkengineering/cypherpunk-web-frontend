@@ -80,6 +80,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
           data.content = data.content.replace(this.AP_REGEX, this.AP_COMPONENT);
           data.content = data.content.replace(this.CR_REGEX, this.CR_COMPONENT);
           data.content = data.content.replace(this.FF_REGEX, this.FF_COMPONENT);
+          data.content = data.content.replace(/CypherpunkDescription: .*/, '');
           this.post = data;
           this.document.title = data.title;
         })
