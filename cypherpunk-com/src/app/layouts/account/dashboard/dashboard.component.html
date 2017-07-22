@@ -35,7 +35,7 @@
           <span>Report a Bug</span>
         </li>
       </a>
-      <a routerLink="/account/configs" (click)="changePage('configs')" *ngIf="env === 'DEV'">
+      <a routerLink="/account/configs" (click)="changePage('configs')">
         <li [ngClass]="{'active': currentTab === 'configs'}">
           <span>Manual Configs</span>
         </li>

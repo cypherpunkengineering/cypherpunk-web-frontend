@@ -95,6 +95,7 @@ export class ActivateComponent implements AfterViewInit {
     return this.backend.reset(body, {})
     .then((data) => {
       this.alertService.success('Your password has been activated, please login');
+      this.router.navigate(['account']);
     })
     .catch((err) => {
       console.log(err);
