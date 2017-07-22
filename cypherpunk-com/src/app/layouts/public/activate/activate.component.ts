@@ -94,7 +94,7 @@ export class ActivateComponent implements AfterViewInit {
     let body = { accountId: this.accountId, token: this.resetToken, password: this.password };
     return this.backend.reset(body, {})
     .then((data) => {
-      this.alertService.success('Your password has been activated, please login');
+      this.alertService.success('Congratulations! You have been granted a free preview account.');
       this.router.navigate(['account']);
     })
     .catch((err) => {
