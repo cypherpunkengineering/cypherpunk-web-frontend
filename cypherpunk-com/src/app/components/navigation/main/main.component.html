@@ -148,7 +148,7 @@
       <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">Download</a>
     </div>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
-      <div class="mobile-dd-item">START FREE</div>
+      <div class="mobile-dd-item orange">START FREE</div>
     </a>
     <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
       <div class="mobile-dd-item">UPGRADE</div>

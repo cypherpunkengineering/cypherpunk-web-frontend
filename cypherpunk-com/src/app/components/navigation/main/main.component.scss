@@ -121,6 +121,7 @@
       color: #74D5D4;
       cursor: pointer;
       &:last-child { border: 0; }
+      &.orange { color: #ff7857; }
     }
     .btn {
       width: 153.8px;
