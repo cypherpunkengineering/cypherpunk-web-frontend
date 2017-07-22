@@ -26,6 +26,7 @@ export const routes: string[] = [
   'pricing',
   'login',
   'recover',
+  'activate',
   'download/*',
   'confirm',
   'confirmchange',

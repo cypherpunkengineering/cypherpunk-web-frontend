@@ -142,6 +142,10 @@ const metaMap = {
     title: 'Reset your password for Cypherpunk Privacy',
     description: 'Forgot your password to Cypherpunk Privacy? No problem, you can reset it here.'
   },
+  'activate.html': {
+    title: 'Activate your account for Cypherpunk Privacy',
+    description: 'Welcome to your encrypted life'
+  },
   '404.html': {
     title: 'Page Not Found | Cypherpunk Privacy',
     description: '404 Error: This page does not exist.'

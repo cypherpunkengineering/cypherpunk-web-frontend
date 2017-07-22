@@ -9,6 +9,7 @@ import { HomeModule } from './layouts/public/home/home.module';
 import { PricingModule } from './layouts/public/pricing/pricing.module';
 import { SigninModule } from './layouts/public/signin/signin.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
+import { ActivateModule } from './layouts/public/activate/activate.module';
 import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { ConfirmChangeModule } from './layouts/public/confirm-change/confirm-change.module';
@@ -79,6 +80,7 @@ import { GlobalsService } from './services/globals.service';
     PricingModule,
     SigninModule,
     RecoverModule,
+    ActivateModule,
     DownloadModule,
     ConfirmModule,
     ConfirmChangeModule,

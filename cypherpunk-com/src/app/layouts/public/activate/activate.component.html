@@ -1,0 +1,31 @@
+<div class="masthead">
+  <app-nav></app-nav>
+
+  <h1 class="header white">Activate Your Account</h1>
+</div>
+
+<div class="content">
+  <form>
+    <div>
+      <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (blur)="this.errors.password.touched = true; validatePassword()" autofocus>
+      <div class="error-message" [hidden]="!this.errors.password.touched">
+        {{this.errors.password.message}}
+      </div>
+    </div>
+
+    <div>
+      <input id="confirm" type="password" name="confirm" placeholder="Confirm Password" [(ngModel)]="confirm" [ngClass]="{'error': this.errors.confirm.message && this.errors.confirm.touched}" (keyup.enter)="activate()" (ngModelChange)="validateConfirm()" (blur)="this.errors.confirm.touched = true; validateConfirm()">
+      <div class="error-message" [hidden]="!this.errors.confirm.touched">
+        {{this.errors.confirm.message}}
+      </div>
+    </div>
+
+    <div class="activate">
+      <button class="btn orange" (click)="activate()" [disabled]="activateButtonDisabled">
+        Activate Account
+      </button>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>
