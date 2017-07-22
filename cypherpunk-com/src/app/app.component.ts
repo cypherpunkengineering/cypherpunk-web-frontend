@@ -20,8 +20,7 @@ export class AppComponent implements OnInit {
         if (!(evt instanceof NavigationEnd)) { return; }
 
         const tree = this.router.parseUrl(this.router.url);
-        if (this.router.url.startsWith('/about-us')) { document.body.scrollTop = 0; }
-        else if (tree.fragment) {
+        if (tree.fragment) {
           const element = document.querySelector('#' + tree.fragment);
           if (element) { element.scrollIntoView({ behavior: 'smooth' }); }
         }

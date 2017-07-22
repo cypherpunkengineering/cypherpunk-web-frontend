@@ -18,6 +18,13 @@ import { FeaturesModule } from './layouts/public/features/features.module';
 import { NetworkModule } from './layouts/public/network/network.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
+import { ManifestoModule } from './layouts/public/aboutus/manifesto/manifesto.module';
+import { InquiriesModule } from './layouts/public/aboutus/inquiries/inquiries.module';
+import { CanaryModule } from './layouts/public/aboutus/canary/canary.module';
+import { PunksModule } from './layouts/public/aboutus/punks/punks.module';
+import { WhoModule } from './layouts/public/aboutus/who/who.module';
+import { AssetsModule } from './layouts/public/aboutus/assets/assets.module';
+import { FactsModule } from './layouts/public/aboutus/facts/facts.module';
 import { TosModule } from './layouts/public/tos/tos.module';
 import { NotFoundModule } from './layouts/public/notfound/notfound.module';
 import { BlogModule } from './layouts/public/blog/blog.module';
@@ -89,6 +96,13 @@ import { GlobalsService } from './services/globals.service';
     NetworkModule,
     PrivacyModule,
     AboutusModule,
+    ManifestoModule,
+    InquiriesModule,
+    CanaryModule,
+    PunksModule,
+    WhoModule,
+    AssetsModule,
+    FactsModule,
     TosModule,
     NotFoundModule,
     BlogModule,

@@ -102,7 +102,42 @@ const metaMap = {
     title: 'Cypherpunk VPN & Online Privacy App for Routers',
     description: 'Protect your Router with the Cypherpunk Router VPN & Online Privacy App.'
   },
-  'about-us.html': {
+  'about.html': {
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:who-we-are.html': {
+    url: 'https://cypherpunk.com/apps/who-we-are',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:manifesto.html': {
+    url: 'https://cypherpunk.com/apps/manifesto',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:punks.html': {
+    url: 'https://cypherpunk.com/apps/punks',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:facts.html': {
+    url: 'https://cypherpunk.com/apps/facts',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:inquiries.html': {
+    url: 'https://cypherpunk.com/apps/inquiries',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:assets.html': {
+    url: 'https://cypherpunk.com/apps/assets',
+    title: 'About Cypherpunk Privacy',
+    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+  },
+  'about:canary.html': {
+    url: 'https://cypherpunk.com/apps/canary',
     title: 'About Cypherpunk Privacy',
     description: 'Learn about Cypherpunk Privacy and the people behind it.'
   },

@@ -1,6 +1,6 @@
 
-import { Router, NavigationEnd } from '@angular/router';
-import { Component, Input, HostListener, AfterViewInit  } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, HostListener, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'aboutus-navigation',
@@ -15,18 +15,17 @@ export class AboutUsNavigationComponent implements AfterViewInit {
   onPage: boolean;
   currentTab: string;
 
-  constructor(private router: Router) {
-    // check if on /features page
-    if (this.router.url.startsWith('/about-us')) { this.onPage = true; }
-
-    // parse fragment into currentTab
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) { return; }
-
-      const tree = this.router.parseUrl(this.router.url);
-      if (tree.fragment) { this.currentTab = tree.fragment; }
-      else { this.currentTab = 'punks'; }
-    });
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // check if on /about page
+    if (this.router.url.startsWith('/about')) { this.onPage = true; }
+    if (this.router.url.endsWith('manifesto')) { this.currentTab = 'manifesto'; }
+    else if (this.router.url.endsWith('inquiries')) { this.currentTab = 'inquiries'; }
+    else if (this.router.url.endsWith('canary')) { this.currentTab = 'canary'; }
+    else if (this.router.url.endsWith('who-we-are')) { this.currentTab = 'who-we-are'; }
+    else if (this.router.url.endsWith('punks')) { this.currentTab = 'punks'; }
+    else if (this.router.url.endsWith('facts')) { this.currentTab = 'factsy'; }
+    else if (this.router.url.endsWith('assets')) { this.currentTab = 'assetsy'; }
+    else { this.currentTab = 'manifesto'; }
   }
 
   ngAfterViewInit() {
