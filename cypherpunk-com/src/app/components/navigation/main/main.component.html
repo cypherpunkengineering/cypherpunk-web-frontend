@@ -25,7 +25,7 @@
         <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
       <li>
-        <a href="{{link}}" (click)="redirect()" target="_self">
+        <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">
           <button class="btn border">DOWNLOAD</button>
         </a>
       </li>
@@ -82,7 +82,7 @@
           <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
         </li>
         <li>
-          <a href="{{link}}" (click)="redirect()" target="_self">
+          <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">
             <button class="btn border">DOWNLOAD</button>
           </a>
         </li>
@@ -145,7 +145,7 @@
       <div class="mobile-dd-item">Support</div>
     </a>
     <div class="mobile-dd-item">
-      <a href="{{link}}" (click)="redirect()" target="_self">Download</a>
+      <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">Download</a>
     </div>
     <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item">START FREE</div>
