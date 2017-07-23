@@ -1,10 +1,12 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <h1 class="header white">Activate Your Account</h1>
+  <h1 class="header white">Activate your Free Preview Account</h1>
 </div>
 
 <div class="content">
+  <h3 class="header">Set your password</h3>
+
   <form>
     <div>
       <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (blur)="this.errors.password.touched = true; validatePassword()" autofocus>
