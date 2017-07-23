@@ -1,36 +1,27 @@
 import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { BackendService } from '../../../../services/backend.service';
 
 @Component({
   templateUrl: './support-home.component.html',
   styleUrls: ['./support-home.component.css']
 })
-export class SupportHomeComponent implements OnInit {
+export class SupportHomeComponent {
   switches = {
-    "privacy-security": { show: false },
-    "account-billing": { show: false },
-    "cypherpunk-privacy-features": { show: false },
-    "desktop-features": { show: false },
-    "android-features": { show: false },
-    "ios-features": { show: false },
-    "browser-extension-features": { show: false },
-    "streaming-services-cypherplay": { show: false }
+    'privacy-security': { show: false },
+    'account-billing': { show: false },
+    'cypherpunk-privacy-features': { show: false },
+    'desktop-features': { show: false },
+    'android-features': { show: false },
+    'ios-features': { show: false },
+    'browser-extension-features': { show: false },
+    'streaming-services-cypherplay': { show: false }
   }
-  privacySecurity = false;
 
   constructor(
     private backend: BackendService,
     @Inject(DOCUMENT) private document: any
   ) { this.document.title = 'Cypherpunk Privacy Support'; }
-
-  ngOnInit() { }
-
-  ngAfterViewInit() {
-    for (let e of <Element[]><any>document.querySelectorAll('.collapsible.question')) {
-      e.classList.add('closed');
-    }
-  }
 
   showSection(id) {
     this.switches[id].show = !this.switches[id].show;
@@ -44,9 +35,10 @@ export class SupportHomeComponent implements OnInit {
       el.style['opacity'] = '0';
     }
   }
+
   toggle(id) {
     let el = document.getElementById(id);
-    if (!el) return;
+    if (!el) { return; }
     el.classList.toggle('closed');
   }
 }

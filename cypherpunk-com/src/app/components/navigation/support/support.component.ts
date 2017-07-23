@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
-import { Component, Input, HostListener, AfterViewInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Input, HostListener, PLATFORM_ID, Inject, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'support-navigation',
@@ -14,7 +15,7 @@ export class SupportNavigationComponent implements AfterViewInit {
   hide: boolean;
   onPage: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     // check if on /apps page
     if (this.router.url.startsWith('/support')) { this.onPage = true; }
 
@@ -33,10 +34,11 @@ export class SupportNavigationComponent implements AfterViewInit {
   ngAfterViewInit() {
     // set hide navigation
     if (this.inNavigation || this.inNavigationMobile) { this.hide = true; }
-
-    let links = document.querySelectorAll('.apps-navigation');
-    for (let i = 0; i < links.length; i++) {
-      links[i].addEventListener('touchend', this.pageChange.bind(this));
+    if (isPlatformBrowser(this.platformId)) {
+      let links = document.querySelectorAll('.apps-navigation');
+      for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('touchend', this.pageChange.bind(this));
+      }
     }
   }
 

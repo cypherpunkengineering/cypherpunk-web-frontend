@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, Input, HostListener, AfterViewInit  } from '@angular/core';
+import { Component, Input, HostListener, PLATFORM_ID, Inject, AfterViewInit  } from '@angular/core';
 
 @Component({
   selector: 'features-navigation',
@@ -20,7 +21,7 @@ export class FeaturesNavigationComponent implements AfterViewInit {
   securityActive: boolean;
   supportActive: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     // check if on /features page
     if (this.router.url.startsWith('/features')) { this.onPage = true; }
 
@@ -36,10 +37,11 @@ export class FeaturesNavigationComponent implements AfterViewInit {
   ngAfterViewInit() {
     // set hide navigation
     if (this.inNavigation || this.inNavigationMobile) { this.hide = true; }
-    let links = document.querySelectorAll('.features-navigation ul a');
-
-    for (let i = 0; i < links.length; i++) {
-      links[i].addEventListener('touchend', this.pageChange.bind(this));
+    if (isPlatformBrowser(this.platformId)) {
+      let links = document.querySelectorAll('.features-navigation ul a');
+      for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('touchend', this.pageChange.bind(this));
+      }
     }
   }
 

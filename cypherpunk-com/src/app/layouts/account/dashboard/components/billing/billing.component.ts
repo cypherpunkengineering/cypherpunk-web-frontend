@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, PLATFORM_ID, Inject, Input } from '@angular/core';
 import { BackendService } from '../../../../../services/backend.service';
 
 @Component({
@@ -14,9 +15,11 @@ export class AccountBillingComponent {
   transactionsLastPage: number;
   transactionsCurrentPage: number;
 
-  constructor(private backend: BackendService) {
-    this.backend.billingReceipts({})
-    .then((data) => { this.transactions = data; });
+  constructor(private backend: BackendService, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.backend.billingReceipts({})
+      .then((data) => { this.transactions = data; });
+    }
   }
 
   trackTransactions(index, hero) {

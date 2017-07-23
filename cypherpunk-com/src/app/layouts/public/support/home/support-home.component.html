@@ -17,7 +17,7 @@
         <div class="collapsible header" id="category-privacy" (click)="toggle('category-privacy')">Privacy Protection and Features</div>
 
         <!--
-        <div class="collapsible question" id="" (click)="toggle('')">
+        <div class="collapsible closed question" id="" (click)="toggle('')">
 
         </div>
         <div class="answer">
@@ -26,7 +26,7 @@
         -->
 
 
-        <div class="collapsible question" id="privacy-how-cypherpunk-helps" (click)="toggle('privacy-how-cypherpunk-helps')">
+        <div class="collapsible closed question" id="privacy-how-cypherpunk-helps" (click)="toggle('privacy-how-cypherpunk-helps')">
           How does Cypherpunk Privacy protect my online privacy?
         </div>
         <div class="answer">
@@ -35,7 +35,7 @@
           <p>Our apps also help secure your devices to prevent accidentally leaking your real location, and for additional protection, you can enable the content filtering features in our apps, which block ads, trackers and malware sites, making it harder for you to be tracked or attacked.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-leaks" (click)="toggle('privacy-leaks')">
+        <div class="collapsible closed question" id="privacy-leaks" (click)="toggle('privacy-leaks')">
           How does Cypherpunk Privacy protect against privacy leaks?
         </div>
         <div class="answer">
@@ -48,7 +48,7 @@
           </ul>
         </div>
 
-        <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
+        <div class="collapsible closed question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
           How anonymous am I when using Cypherpunk Privacy?
         </div>
         <div class="answer">
@@ -57,35 +57,35 @@
           <p>Further, our strict no-logging policy means we are not keeping any data that would allow anyone to trace you back through our network.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-what-is-cypherplay" (click)="toggle('privacy-what-is-cypherplay')">
+        <div class="collapsible closed question" id="privacy-what-is-cypherplay" (click)="toggle('privacy-what-is-cypherplay')">
           What is CypherPlay&trade; and when should I use it?
         </div>
         <div class="answer">
           <b>CypherPlay&trade;</b> is our proprietary technology which intelligently reroutes your traffic to the correct destination, allowing you to access your favorite content from all over the world without ever needing to switch servers. With CypherPlay&trade; you no longer need to think about the details!
         </div>
 
-        <div class="collapsible question" id="privacy-browser-extension" (click)="toggle('privacy-browser-extension')">
+        <div class="collapsible closed question" id="privacy-browser-extension" (click)="toggle('privacy-browser-extension')">
           Should I use the browser extension in addition to the desktop VPN app?
         </div>
         <div class="answer">
           While our browser extension offers a lightweight option to proxy only your web traffic through our Cypherpunk Privacy Network&trade;, it also complements the desktop app by offering specific features such as WebRTC leak protection and better blocking of ads &amp; trackers.
         </div>
-        
-        <div class="collapsible question" id="privacy-simultaneous-connections" (click)="toggle('privacy-simultaneous-connections')">
+
+        <div class="collapsible closed question" id="privacy-simultaneous-connections" (click)="toggle('privacy-simultaneous-connections')">
           How many devices can I connect to Cypherpunk Privacy at one time?
         </div>
         <div class="answer">
           You are allowed to have up to five (5) devices connected to the Cypherpunk Privacy Network&trade; simultaneously. Running the browser extension counts as one device.
         </div>
 
-        <div class="collapsible question" id="privacy-proxy-vs-vpn" (click)="toggle('privacy-proxy-vs-vpn')">
+        <div class="collapsible closed question" id="privacy-proxy-vs-vpn" (click)="toggle('privacy-proxy-vs-vpn')">
           What is the difference between a proxy and a VPN?
         </div>
         <div class="answer">
           A proxy is an application-level tunnel which lets apps route their traffic via a proxy server rather than directly to its destination, but the app must be intentionally written to be able to use a proxy. A VPN is a network-level tunnel which redirects <b>all</b> traffic on your entire machine. Apps don't need to know about or explicitly support VPNs in order to have their traffic tunneled.
         </div>
-        
-        <div class="collapsible question" id="privacy-speed" (click)="toggle('privacy-speed')">
+
+        <div class="collapsible closed question" id="privacy-speed" (click)="toggle('privacy-speed')">
           How does using a VPN or proxy affect my connection speed?
         </div>
         <div class="answer">
@@ -93,7 +93,7 @@
           <p>You can minimize this loss by always connecting to the closest available server, and if you are more concerned with speed than privacy you can also connect via an unencrypted tunnel.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-encryption-profiles" (click)="toggle('privacy-encryption-profiles')">
+        <div class="collapsible closed question" id="privacy-encryption-profiles" (click)="toggle('privacy-encryption-profiles')">
           What encryption settings do you support?
         </div>
         <div class="answer">
@@ -106,7 +106,7 @@
           <p>We will also support a wide range of other protocols and encryptions for people who prefer to connect to the Cypherpunk Privacy Network&trade; using third-party software or devices.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-killswitch" (click)="toggle('privacy-killswitch')">
+        <div class="collapsible closed question" id="privacy-killswitch" (click)="toggle('privacy-killswitch')">
           What do the different options for the Internet Killswitch mean?
         </div>
         <div class="answer">
@@ -115,7 +115,7 @@
           <p>You can choose whether LAN traffic (e.g. network-attached storage, screen casting, printers) should be allowed through the killswitch or not with the <b>Always Allow LAN Traffic</b> advanced setting.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-ports" (click)="toggle('privacy-ports')">
+        <div class="collapsible closed question" id="privacy-ports" (click)="toggle('privacy-ports')">
           What port numbers can I use for Cypherpunk Privacy?
         </div>
         <div class="answer">
@@ -123,7 +123,7 @@
           <p>In our desktop app you can also lock in the local port number used, in case you need to open/forward the port in your router.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-google" (click)="toggle('privacy-google')">
+        <div class="collapsible closed question" id="privacy-google" (click)="toggle('privacy-google')">
           Why does the Cypherpunk Privacy app make connections to Google?
         </div>
         <div class="answer">
@@ -131,7 +131,7 @@
           <p>We also optionally collect usage statistics for our desktop app via Google Analytics, but only if the user gives their explicit consent.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-ads-free" (click)="toggle('privacy-ads-free')">
+        <div class="collapsible closed question" id="privacy-ads-free" (click)="toggle('privacy-ads-free')">
           Do you serve ads or offer a free ads based version?
         </div>
         <div class="answer">
@@ -139,25 +139,25 @@
         </div>
 
       </section>
-      
+
       <section>
         <div class="collapsible header" id="category-desktop" (click)="toggle('category-desktop')">Desktop (Windows / Mac / Linux)</div>
 
-        <div class="collapsible question" id="desktop-administrator" (click)="toggle('desktop-administrator')">
+        <div class="collapsible closed question" id="desktop-administrator" (click)="toggle('desktop-administrator')">
           Do I need a root/administrator password to install Cypherpunk Privacy?
         </div>
         <div class="answer">
           Yes. Rerouting your traffic and making other necessary reconfigurations of your computer requires root/administrator privileges. You will only need to provide the password once, when you install or update Cypherpunk Privacy.
         </div>
 
-        <div class="collapsible question" id="desktop-driver" (click)="toggle('desktop-driver')">
+        <div class="collapsible closed question" id="desktop-driver" (click)="toggle('desktop-driver')">
           Why does Cypherpunk Privacy need to install a driver? (Windows)
         </div>
         <div class="answer">
           In order to reroute your Internet traffic through a tunnel on Windows, we need to install a virtual network adapter. Don't worry, if you uninstall Cypherpunk Privacy we'll remove this driver too.
         </div>
 
-        <div class="collapsible question" id="desktop-p2p" (click)="toggle('desktop-p2p')">
+        <div class="collapsible closed question" id="desktop-p2p" (click)="toggle('desktop-p2p')">
           Can I use P2P software with Cypherpunk Privacy?
         </div>
         <div class="answer">
@@ -169,7 +169,7 @@
       <section>
         <div class="collapsible header" id="category-trouble" (click)="toggle('category-trouble')">Troubleshooting</div>
 
-        <div class="collapsible question" id="trouble-blocked-site" (click)="toggle('trouble-blocked-site')">
+        <div class="collapsible closed question" id="trouble-blocked-site" (click)="toggle('trouble-blocked-site')">
           I can't access a site that used to work fine!
         </div>
         <div class="answer">
@@ -177,7 +177,7 @@
           <p>If you are using the browser extenstion, you can whitelist sites having this problem by clicking the "whitelist it" button at the bottom of the screen. If you are using the apps, try disabling the "Block Ads &amp; Trackers" setting.</p>
         </div>
 
-        <div class="collapsible question" id="trouble-cypherplay" (click)="toggle('trouble-cypherplay')">
+        <div class="collapsible closed question" id="trouble-cypherplay" (click)="toggle('trouble-cypherplay')">
           My favorite streaming site doesn't work!
         </div>
         <div class="answer">
@@ -185,7 +185,7 @@
           <p>If you are connecting with CypherPlay&trade;, try connecting directly to a location close to the site instead.</p>
         </div>
 
-        <div class="collapsible question" id="trouble-dns" (click)="toggle('trouble-dns')">
+        <div class="collapsible closed question" id="trouble-dns" (click)="toggle('trouble-dns')">
           I can't access my intranet or ISP site!
         </div>
         <div class="answer">
@@ -193,14 +193,14 @@
           <p>As a workaround, you can force the use of your existing DNS server instead (in the Configuration screen, enable <b>Show Advanced Settings</b> and then under <b>Internet Settings</b> enable <b>Use Existing DNS</b>). Note however that since several Cypherpunk Privacy features rely on our proprietary DNS server, some functionality will be disabled when this workaround is active.</p>
         </div>
 
-        <div class="collapsible question" id="trouble-apple" (click)="toggle('trouble-apple')">
+        <div class="collapsible closed question" id="trouble-apple" (click)="toggle('trouble-apple')">
           I can't connect to Apple Messages or FaceTime!
         </div>
         <div class="answer">
           Sometimes Apple apps don't work well when connecting through a VPN. As a workaround, it is possible to let Apple traffic bypass the VPN and go directly to the Internet (in the Configuration screen, enable <b>Show Advanced Settings</b> and then under <b>Internet Settings</b> and enable <b>Exempt Apple Services</b>), but note that in that case your Apple traffic won't be protected by the VPN, either.
         </div>
 
-        <div class="collapsible question" id="trouble-bricked" (click)="toggle('trouble-bricked')">
+        <div class="collapsible closed question" id="trouble-bricked" (click)="toggle('trouble-bricked')">
           I can't access the Internet at all!
         </div>
         <div class="answer">
