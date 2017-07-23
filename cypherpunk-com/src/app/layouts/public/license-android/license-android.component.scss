@@ -10,6 +10,8 @@
   margin: auto;
   padding: 60px 0 60px;
   color: #666;
+  white-space: pre-wrap;
+  font-size: 10px;
 
   .header { text-align: left; }
 
@@ -37,7 +39,7 @@
 @media (max-width: 1016px) {
   .content { padding: 30px 10px 60px; }
   .content {
-    font-size: 14px;
+    font-size: 10px;
     .header { font-size: 20px; }
     .subheader { font-size: 18px; }
   }
