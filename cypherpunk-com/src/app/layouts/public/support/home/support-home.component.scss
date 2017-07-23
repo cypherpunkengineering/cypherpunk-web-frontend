@@ -41,20 +41,78 @@
       overflow: auto;
       max-width: 1000px;
 
-      .header { margin: 0 0 30px; text-align: left; }
+      $left-margin: 40px;
+
+      .header {
+        width: auto;
+        margin: 0 0 30px $left-margin;
+        text-align: left;
+        color: #488;
+      }
+
+      .collapsible {
+        cursor: pointer;
+        &:before {
+          margin-left: -$left-margin;
+          width: $left-margin;
+          display: block;
+          font-family: 'FontAwesome';
+          font-size: 75%;
+          opacity: 0.33;
+          text-align: right;
+          padding-right: 10px;
+          float: left;
+          box-sizing: border-box;
+          line-height: 175%;
+        }
+        &:before { content: '\f147'; } // [-]
+        &.open:before { content: '\f147'; } // [-]
+        &.closed:before { content: '\f196'; } // [+]
+        &:hover:before {
+          opacity: 1;
+        }
+      }
 
       section {
         margin: 0 0 60px;
 
+        b {
+          letter-spacing: -0.05em;
+        }
+        li + li {
+          margin-top: 10px;
+        }
+
         .question {
+          display: block;
           font-size: 18px;
-          margin: 20px 0 10px;
+          margin: 20px 0 10px $left-margin;
+          color: #ff8c71;
         }
 
         .answer {
-          font-size: 16px;
+          font-size: 15px;
           line-height: 1.3;
-          margin: 0 0 50px;
+          margin: 0 0 50px $left-margin;
+          transition: all 0.5s ease-out;
+
+          p:first-child {
+            margin-top: 0;
+          }
+          p:last-child {
+            margin-bottom: 0;
+          }
+        }
+
+        .open.collapsible.question + .answer {
+          display: block;
+        }
+        .closed.collapsible.question + .answer {
+          display: none;
+        }
+
+        .closed.collapsible.header ~ * {
+          display: none;
         }
       }
 

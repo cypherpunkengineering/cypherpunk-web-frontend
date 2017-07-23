@@ -14,9 +14,116 @@
     <div class="page-inner">
 
       <section>
-        <div class="header">Privacy Protection</div>
+        <div class="collapsible header" id="category-privacy" (click)="toggle('category-privacy')">Privacy Protection and Features</div>
 
-        <div class="question">
+        <!--
+        <div class="collapsible question" id="" (click)="toggle('')">
+
+        </div>
+        <div class="answer">
+
+        </div>
+        -->
+
+
+        <div class="collapsible question" id="privacy-how-cypherpunk-helps" (click)="toggle('privacy-how-cypherpunk-helps')">
+          How does Cypherpunk Privacy protect my online privacy?
+        </div>
+        <div class="answer">
+          <p>The Cypherpunk Privacy Suite&trade; of apps will reroute your internet traffice into an encrypted VPN or proxy tunnel, which prevents your internet service provider and other untrusted third parties from inspecting, monitoring or manipulating your internet connection.</p>
+          <p>At the other end of this tunnel is the Cypherpunk Privacy Network&trade;, through which your and other users' traffic is routed until it exits back onto the Internet again. Our strict no-logging policy means that we never store any records of your online activities, and other users will only see you as coming from our network.</p>
+          <p>Our apps also help secure your devices to prevent accidentally leaking your real location, and for additional protection, you can enable the content filtering features in our apps, which block ads, trackers and malware sites, making it harder for you to be tracked or attacked.</p>
+        </div>
+
+        <div class="collapsible question" id="privacy-leaks" (click)="toggle('privacy-leaks')">
+          How does Cypherpunk Privacy protect against privacy leaks?
+        </div>
+        <div class="answer">
+          <p>Even when you are connected through our secure network, your computer or device is still aware of the physical network it is directly connected to as well, and may include information about that network <b>in</b> your communication to websites, which can compromise your privacy. Cypherpunk Privacy protects against the following kinds of leaks:</p>
+          <ul>
+            <li><b>DNS requests:</b> In order to connect to any website, your computer first needs to look up the site's address. These lookups are unencrypted and reveal a lot of information about which sites you visit. To protect your privacy, our apps instead route all DNS requests via our secure DNS server through the VPN tunnel itself, preventing anyone from listening in.</li>
+            <li><b>IPv6 traffic:</b> Our apps safely block IPv6 traffic which might otherwise escape onto the Internet directly.</li>
+            <li><b>WebRTC IP leak:</b> Our browser extension disables WebRTC, which can otherwise tell websites and other computers about your real IP address.</li>
+          </ul>
+        </div>
+
+        <div class="collapsible question" id="privacy-what-is-cypherplay" (click)="toggle('privacy-what-is-cypherplay')">
+          What is CypherPlay&trade; and when should I use it?
+        </div>
+        <div class="answer">
+          <b>CypherPlay&trade;</b> is our proprietary technology which intelligently reroutes your traffic to the correct destination, allowing you to access your favorite content from all over the world without ever needing to switch servers. With CypherPlay&trade; you no longer need to think about the details!
+        </div>
+
+        <div class="collapsible question" id="privacy-browser-extension" (click)="toggle('privacy-browser-extension')">
+          Should I use the Cypherpunk browser extension in addition to the Cypherpunk desktop VPN app?
+        </div>
+        <div class="answer">
+          While our browser extension offers a lightweight option to proxy only your web traffic through our Cypherpunk Privacy Network&trade;, it also complements the desktop app by offering specific features such as WebRTC leak protection and better blocking of ads &amp; trackers.
+        </div>
+        
+        <div class="collapsible question" id="privacy-simultaneous-connections" (click)="toggle('privacy-simultaneous-connections')">
+          How many devices can I connect to Cypherpunk Privacy at one time?
+        </div>
+        <div class="answer">
+          You are allowed to have up to five (5) devices connected to the Cypherpunk Privacy Network&trade; simultaneously. Running the browser extension counts as one device.
+        </div>
+
+        <div class="collapsible question" id="privacy-proxy-vs-vpn" (click)="toggle('privacy-proxy-vs-vpn')">
+          What is the difference between a proxy and a VPN?
+        </div>
+        <div class="answer">
+          A proxy is an application-level tunnel which lets apps route their traffic via a proxy server rather than directly to its destination, but the app must be intentionally written to be able to use a proxy. A VPN is a network-level tunnel which redirects <b>all</b> traffic on your entire machine. Apps don't need to know about or explicitly support VPNs in order to have their traffic tunneled.
+        </div>
+        
+        <div class="collapsible question" id="privacy-speed" (click)="toggle('privacy-speed')">
+          How does using a VPN or proxy affect my connection speed?
+        </div>
+        <div class="answer">
+          <p>As tunneling your traffic involves a bit of extra work to wrap and encrypt your traffic, as well as sending it on a (usually) longer route through the Internet, your connection speed is often a little slower while using a VPN, however usually only marginally so. Your latency (ping time) is usually also longer for the same reason.</p>
+          <p>You can minimize this loss by always connecting to the closest available server, and if you are more concerned with speed than privacy you can also connect via an unencrypted tunnel.</p>
+        </div>
+
+        <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
+          How anonymous am I when using Cypherpunk Privacy?
+        </div>
+        <div class="answer">
+          While there is no such thing as perfect privacy and anonymity, Cypherpunk Privacy provides you with a good level of additional protection compared to using the Internet directly. Once your traffic reaches the Cypherpunk Privacy Network&trade; it gets mixed up with other users' traffic, making it hard to profile anyone even if the exit node is monitored. Further, our strict no-logging policy means we are not keeping any data that would allow you to be traced back through our network.
+        </div>
+
+        <div class="collapsible question" id="privacy-google" (click)="toggle('privacy-google')">
+          Why does the Cypherpunk Privacy app make connections to Google?
+        </div>
+        <div class="answer">
+          <p>Cypherpunk Privacy uses Google's cloud platfrom as a caching reverse proxy to shield our servers from DDoS attacks. However, no account data is stored on Google systems.</p>
+          <p>We also optionally collect usage statistics for our desktop app via Google Analytics, but only if the user gives their explicit consent.</p>
+        </div>
+
+        <div class="collapsible question" id="privacy-ads-free" (click)="toggle('privacy-ads-free')">
+          Do you serve ads or offer a free ads based version?
+        </div>
+        <div class="answer">
+          We offer a single, uncompromising vision 
+          As cypherpunks we do not believe your privacy is something that can or should ever be compromised with. We do not serve ads, and we do not offer a free version as this would force us to make trade-offs somewhere.
+        </div>
+      </section>
+      
+      <section>
+        <div class="collapsible header">Desktop (Windows / Mac / Linux)</div>
+
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+      <!--
+        <div class="collapsible question">
           How does Cypherpunk Privacy protect my online privacy?
         </div>
 

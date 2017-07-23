@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { BackendService } from '../../../../services/backend.service';
 
 @Component({
@@ -26,6 +26,12 @@ export class SupportHomeComponent implements OnInit {
 
   ngOnInit() { }
 
+  ngAfterViewInit() {
+    for (let e of <Element[]><any>document.querySelectorAll('.collapsible.question')) {
+      e.classList.add('closed');
+    }
+  }
+
   showSection(id) {
     this.switches[id].show = !this.switches[id].show;
     let el = document.getElementById(id);
@@ -37,5 +43,10 @@ export class SupportHomeComponent implements OnInit {
       el.style['max-height'] = '0';
       el.style['opacity'] = '0';
     }
+  }
+  toggle(id) {
+    let el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('closed');
   }
 }
