@@ -63,6 +63,8 @@ import { AmazonAppStorePartialModule } from './layouts/public/partial/amazon-app
 import { ItunesPartialModule } from './layouts/public/partial/itunes/itunes.module';
 import { ChromePartialModule } from './layouts/public/partial/chrome/chrome.module';
 import { FirefoxPartialModule } from './layouts/public/partial/firefox/firefox.module';
+import { LicenseAndroidModule } from './layouts/public/license-android/license-android.module';
+import { LicenseDesktopModule } from './layouts/public/license-desktop/license-desktop.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
 import { UpgradeModule } from './layouts/account/upgrade/upgrade.module';
@@ -131,6 +133,8 @@ import { GlobalsService } from './services/globals.service';
     SupportBrowserExtensionModule,
     SupportRoutersModule,
     SupportOthersModule,
+    LicenseAndroidModule,
+    LicenseDesktopModule,
 
     HostnameSelectorModule,
     VpnCredentialsModule,

@@ -94,8 +94,8 @@ const routes = [
   { url: baseRoute + 'partial/itunes', dirPath: baseDir + 'partial/itunes.html' },
   { url: baseRoute + 'partial/chrome', dirPath: baseDir + 'partial/chrome.html' },
   { url: baseRoute + 'partial/firefox', dirPath: baseDir + 'partial/firefox.html' },
-  { url: baseRoute + 'legal/license/android', dirPath: baseDir + 'legal/license/android' },
-  { url: baseRoute + 'legal/license/desktop', dirPath: baseDir + 'legal/license/desktop' }
+  { url: baseRoute + 'legal/license/android', dirPath: baseDir + 'legal/license/android.html' },
+  { url: baseRoute + 'legal/license/desktop', dirPath: baseDir + 'legal/license/desktop.html' }
 ];
 
 return Promise.all(routes.map((routeObject) => {
