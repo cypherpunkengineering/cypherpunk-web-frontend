@@ -83,6 +83,19 @@
           <p>You can minimize this loss by always connecting to the closest available server, and if you are more concerned with speed than privacy you can also connect via an unencrypted tunnel.</p>
         </div>
 
+        <div class="collapsible question" id="privacy-encryption-profiles" (click)="toggle('privacy-encryption-profiles')">
+          What encryption settings do you support?
+        </div>
+        <div class="answer">
+          <p>The default encryption in our main VPN apps uses the AES-128 cipher, SHA-256 authentication and RSA-4096 keys. You can also tweak these settings depending on your priorities by choosing a different encryption profile in the settings:</p>
+          <ul>
+            <li><b>Max Speed:</b> Use the null cipher (i.e. no encryption), lowering the CPU overhead and maximizing speed.</li>
+            <li><b>Max Privacy:</b> Use the strongest AES-256 cipher, for your most sensitive traffic.</li>
+            <li><b>Max Stealth:</b> Anti-censorship technology for restrictive or hostile networks. In addition to being encrypted, your traffic is scrambled and masquerades as HTTPS traffic. Use this if nothing else works.</li>
+          </ul>
+          <p>We will also support a wide range of other protocols and encryptions for people who prefer to connect to the Cypherpunk Privacy Network&trade; using third-party software or devices.</p>
+        </div>
+
         <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
           How anonymous am I when using Cypherpunk Privacy?
         </div>
