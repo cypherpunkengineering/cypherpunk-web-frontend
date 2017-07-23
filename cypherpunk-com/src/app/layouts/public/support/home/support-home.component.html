@@ -44,9 +44,18 @@
             <li><b>DNS requests:</b> In order to connect to any website, your computer first needs to look up the site's address. These lookups are unencrypted and reveal a lot of information about which sites you visit. To protect your privacy, our apps instead route all DNS requests via our secure DNS server through the VPN tunnel itself, preventing anyone from listening in.</li>
             <li><b>IPv6 traffic:</b> Our apps safely block IPv6 traffic which might otherwise escape onto the Internet directly.</li>
             <li><b>WebRTC IP leak:</b> Our browser extension disables WebRTC, which can otherwise tell websites and other computers about your real IP address.</li>
-            <li><b>Disconnects:</b> If your connection to a VPN temporarily drops, your computer's default behavior is to send your traffic directly to the Internet instead. To prevent this our <b>Internet Killswitch</b> blocks all non-VPN traffic, protecting you during that time.</li>
+            <li><b>Disconnects:</b> If your VPN connection temporarily drops, your computer's default behavior is to send your traffic directly to the Internet instead. To prevent this our <b>Internet Killswitch</b> blocks all non-VPN traffic, protecting you during that time.</li>
           </ul>
           <p>In addition, our <b>Internet Killswitch</b> protects you in case of accidental disconnects, during which your computer might otherwise send traffic directly to the Internet.
+        </div>
+
+        <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
+          How anonymous am I when using Cypherpunk Privacy?
+        </div>
+        <div class="answer">
+          <p>While there is no such thing as perfect privacy and anonymity, Cypherpunk Privacy provides you with a good level of additional protection compared to using the Internet directly.</p>
+          <p>By routing your traffic through the Cypherpunk Privacy Network&trade;, your real IP address is obscured behind our public IPs, and your traffic is mixed up with traffic from other users, making it hard to profile anyone even if our servers were to be monitored.</p>
+          <p>Further, our strict no-logging policy means we are not keeping any data that would allow anyone to trace you back through our network.</p>
         </div>
 
         <div class="collapsible question" id="privacy-what-is-cypherplay" (click)="toggle('privacy-what-is-cypherplay')">
@@ -115,13 +124,6 @@
           <p>In our desktop app you can also lock in the local port number used, in case you need to open/forward the port in your router.</p>
         </div>
 
-        <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
-          How anonymous am I when using Cypherpunk Privacy?
-        </div>
-        <div class="answer">
-          While there is no such thing as perfect privacy and anonymity, Cypherpunk Privacy provides you with a good level of additional protection compared to using the Internet directly. Once your traffic reaches the Cypherpunk Privacy Network&trade; it gets mixed up with other users' traffic, making it hard to profile anyone even if the exit node is monitored. Further, our strict no-logging policy means we are not keeping any data that would allow you to be traced back through our network.
-        </div>
-
         <div class="collapsible question" id="privacy-google" (click)="toggle('privacy-google')">
           Why does the Cypherpunk Privacy app make connections to Google?
         </div>
@@ -142,6 +144,20 @@
       <section>
         <div class="collapsible header" id="category-desktop" (click)="toggle('category-desktop')">Desktop (Windows / Mac / Linux)</div>
 
+        <div class="collapsible question" id="desktop-administrator" (click)="toggle('desktop-administrator')">
+          Do I need a root/administrator password to install Cypherpunk Privacy?
+        </div>
+        <div class="answer">
+          Yes. Rerouting your traffic and making other necessary reconfigurations of your computer requires root/administrator privileges. You will only need to provide the password once, when you install or update Cypherpunk Privacy.
+        </div>
+
+        <div class="collapsible question" id="desktop-driver" (click)="toggle('desktop-driver')">
+          Why does Cypherpunk Privacy need to install a driver? (Windows)
+        </div>
+        <div class="answer">
+          In order to reroute your Internet traffic through a tunnel on Windows, we need to install a virtual network adapter. Don't worry, if you uninstall Cypherpunk Privacy we'll remove this driver too.
+        </div>
+
         <div class="collapsible question" id="desktop-p2p" (click)="toggle('desktop-p2p')">
           Can I use P2P software with Cypherpunk Privacy?
         </div>
@@ -152,486 +168,45 @@
       </section>
 
       <section>
-        <div class="collapsible header" id="category-troubleshooting" (click)="toggle('category-troubleshooting')">Troubleshooting</div>
+        <div class="collapsible header" id="category-trouble" (click)="toggle('category-trouble')">Troubleshooting</div>
 
-        <div class="collapsible question" id="troubleshooting-blocked-site" (click)="toggle('troubleshooting-blocked-site')">
-          I'm unable to access a site that used to work fine!
+        <div class="collapsible question" id="trouble-blocked-site" (click)="toggle('trouble-blocked-site')">
+          I can't access a site that used to work fine!
         </div>
         <div class="answer">
           <p>Sometimes the tracker blocking may cause certain sites to break. We do our best to eliminate these false positives, but some sites rely on trackers to function.</p>
           <p>If you are using the browser extenstion, you can whitelist sites having this problem by clicking the "whitelist it" button at the bottom of the screen. If you are using the apps, try disabling the "Block Ads &amp; Trackers" setting.</p>
         </div>
 
-        <div class="collapsible question" id="" (click)="toggle('')">
+        <div class="collapsible question" id="trouble-dns" (click)="toggle('trouble-dns')">
+          I can't access my intranet or ISP site!
+        </div>
+        <div class="answer">
+          <p>Your site may be require your existing local DNS server to be used to look it up. Since Cypherpunk Privacy by default secures your DNS requests by securely routing them to our server instead, this may have broken your site.</p>
+          <p>As a workaround, you can force the use of your existing DNS server instead (in the Configuration screen, enable <b>Show Advanced Settings</b> and then under <b>Internet Settings</b> enable <b>Use Existing DNS</b>). Note however that since several Cypherpunk Privacy features rely on our proprietary DNS server, some functionality will be disabled when this workaround is active.</p>
+        </div>
+
+        <div class="collapsible question" id="trouble-apple" (click)="toggle('trouble-apple')">
           I can't connect to Apple Messages or FaceTime!
         </div>
         <div class="answer">
-          Sometimes Apple apps don't work well when connecting through a VPN. As a workaround, it is possible to let Apple traffic bypass the VPN and go directly to the Internet (in the Configuration screen, enable <b>Show Advanced Settings</b> and then look under <b>Internet Settings</b> and enable <b>Exempt Apple Services</b>), but note that in that case your Apple traffic won't be protected by the VPN, either.
+          Sometimes Apple apps don't work well when connecting through a VPN. As a workaround, it is possible to let Apple traffic bypass the VPN and go directly to the Internet (in the Configuration screen, enable <b>Show Advanced Settings</b> and then under <b>Internet Settings</b> and enable <b>Exempt Apple Services</b>), but note that in that case your Apple traffic won't be protected by the VPN, either.
+        </div>
+
+        <div class="collapsible question" id="trouble-bricked" (click)="toggle('trouble-bricked')">
+          I can't access the Internet at all!
+        </div>
+        <div class="answer">
+          <ol>
+            <li>First, check that the <b>Internet Killswitch</b> isn't set to <b>Always On</b> (if it is, set it to <b>Automatic</b> or <b>Off</b>).</li>
+            <li>Try rebooting your computer or device.</li>
+            <li>Try quitting the Cypherpunk Privacy app and restarting it.</li>
+            <li>Try uninstalling the Cypherpunk Privacy app and reinstalling it.</li>
+          </ol>
         </div>
 
       </section>
 
-
-
-
-
-
-
-
-
-
-      <!--
-      <div class="row">
-        <section>
-          <div class="section-header" (click)="showSection('privacy-security')">
-            Privacy &amp; Security
-          </div>
-
-          <div id="privacy-security" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  How Cypherpunk Privacy helps securing my Wi-Fi connections?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you log my data?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What measures do you take to protect my data?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Anonimity on the Internet?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Can you see what I do online when I use Cypherpunk Privacy?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Why using Cypherpunk Privacy DNS servers?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What does my ISP see when I am connected to VPN?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What Encryption and protocol do you support?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Does Cypherpunk Privacy have implemented Perfect Forward Secrecy?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-header" (click)="showSection('account-billing')">
-            Account &amp; Billing
-          </div>
-
-          <div id="account-billing" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  How do I change my payment information?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  If I sign up for a free trial, can I upgrade it later?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the differences between the free trial and a purchased account ?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Can I change my subscription type?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Can I get a refund for my Cypherpunk Privacy purchase?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How does the 30-day money-back guarantee work?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>
-
-      <div class="row">
-        <section>
-          <div class="section-header" (click)="showSection('cypherpunk-privacy-features')">
-            Cypherpunk Privacy Features
-          </div>
-
-          <div id="cypherpunk-privacy-features" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  What is the Privacy firewall and Ad Blocker?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the Privacy Modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Why should I choose Cypherpunk Privacy over other VPN providers?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What is CypherPlay and when should I use it?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Difference between a Proxy and VPN
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Why should I use a Browser Add on as well as the Desktop Application?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  A website that used to work now doesn't, why?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Which Port Should I Use For Cypherpunk Privacy?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What does the ''Always On'' feature do on my Mobile device?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How many devices can i connect to cypherpunk at one time?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Untrusted Networks, How does it work?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Route Internet Traffic via VPN? Can't I Just Disconnect From The Network?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What Is Split Tunneling and How is It Useful?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How does a VPN affect Internet speed?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Why does the Cypherpunk Privacy app make connections to Google's network?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Does Cypherpunk Protect My DNS Traffic
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you have IPv6 and DNS leak protection?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What is DNS and Why Does it Need to be Protected?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Anonymity on the Internet (shared IP System)
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you serve ads or offer a free ads based version?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-header" (click)="showSection('desktop-features')">
-            Desktop Features
-          </div>
-
-          <div id="desktop-features" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  How does the killswitch work?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  (Link to /features page section explaining this feature)
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Can I Peer 2 Peer download with Cypherpunk Privacy?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What does the desktop application do?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Will Cypherpunk Privacy slow my internet connection?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you offer a free trial?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What is CypherPlay? and when shall i use it
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the privacy modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What is the Privacy firewall?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the firewall modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you have IPv6 and DNS leak protection?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What encryption parameters do you use?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>
-
-      <div class="row">
-        <section>
-          <div class="section-header" (click)="showSection('android-features')">
-            Android Features
-          </div>
-
-          <div id="android-features" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  What are the privacy modes?
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  What is the Privacy firewall?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the firewall modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you have IPv6 and DNS leak protection?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What encryption parameters do you use?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What does the mobile application do?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-header" (click)="showSection('ios-features')">
-            iOS Features
-          </div>
-
-          <div id="ios-features" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  What are the privacy modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What is the Privacy firewall?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are the firewall modes?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Do you have IPv6 and DNS leak protection?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What encryption parameters do you use?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What does the mobile application do?
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>
-
-      <div class="row">
-        <section>
-          <div class="section-header" (click)="showSection('browser-extension-features')">
-            Browser Extension Features
-          </div>
-
-          <div id="browser-extension-features" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  What does the browser extension do?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What are Privacy Filters?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  A website that used to work now doesn't, what's up?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Does Cypherpunk Privacy for browsers encrypts all my traffic?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How to stop WebRTC leaks
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  What encryption parameters do you use?
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Changing The User Agent
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-header" (click)="showSection('streaming-services-cypherplay')">
-            Streaming services with CypherPlay
-          </div>
-
-          <div id="streaming-services-cypherplay" class="links">
-            <ul>
-              <li>
-                <a href="#">
-                  How to securely watch other streaming services with CypherPlay
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How to securely watch Netflix with CypherPlay
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How to securely watch BBC with CypherPlay
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How to securely watch Amazon Prime with CypherPlay
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  How to securely watch Hulu with CypherPlay
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>
-      -->
     </div>
   </div>
 
