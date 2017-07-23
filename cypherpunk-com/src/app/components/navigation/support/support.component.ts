@@ -33,6 +33,11 @@ export class SupportNavigationComponent implements AfterViewInit {
   ngAfterViewInit() {
     // set hide navigation
     if (this.inNavigation || this.inNavigationMobile) { this.hide = true; }
+
+    let links = document.querySelectorAll('.apps-navigation');
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('touchend', this.pageChange.bind(this));
+    }
   }
 
   // on scroll,
@@ -49,6 +54,12 @@ export class SupportNavigationComponent implements AfterViewInit {
     if ((this.inNavigation || this.inNavigationMobile) && this.onPage) {
       if (currentPosition > (supportNavigation.offsetTop - clientHeight)) { this.hide = false; }
       else { this.hide = true; }
+    }
+  }
+
+  pageChange(e) {
+    if (e instanceof TouchEvent && e.target['dataset'].link) {
+      this.router.navigate(['/support/' + e.target['dataset'].link]);
     }
   }
 }

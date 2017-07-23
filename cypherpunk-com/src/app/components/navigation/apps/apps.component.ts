@@ -33,6 +33,11 @@ export class AppsNavigationComponent implements AfterViewInit {
   ngAfterViewInit() {
     // set hide navigation
     if (this.inNavigation || this.inNavigationMobile) { this.hide = true; }
+
+    let links = document.querySelectorAll('.apps-navigation');
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('touchend', this.pageChange.bind(this));
+    }
   }
 
   // on scroll,
@@ -49,6 +54,12 @@ export class AppsNavigationComponent implements AfterViewInit {
       // masthead height - nav height
       if (currentPosition > (appsNavigation.offsetTop - clientHeight)) { this.hide = false; }
       else { this.hide = true; }
+    }
+  }
+
+  pageChange(e) {
+    if (e instanceof TouchEvent && e.target['dataset'].link) {
+      this.router.navigate(['/apps/' + e.target['dataset'].link]);
     }
   }
 }

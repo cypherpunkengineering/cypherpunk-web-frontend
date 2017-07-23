@@ -1,67 +1,67 @@
 <div class="apps-navigation navigation" [ngClass]="{'hidden': hide, 'inNav': inNavigation || inNavigationMobile, 'page': !inNavigation && !inNavigationMobile}">
   <ul>
-    <a routerLink="/apps">
-      <li [ngClass]="{ 'active': page === 'apps'}">
-        <img class="display" src="/assets/apps/icons/overview@2x.png" srcset="/assets/apps/icons/overview.png 500w, /assets/apps/icons/overview@2x.png 1000w" alt="Overview">
-        <img class="hover" src="/assets/apps/icons/overview-hover@2x.png" srcset="/assets/apps/icons/overview-hover.png 500w, /assets/apps/icons/overview-hover@2x.png 1000w" alt="Overview">
-        <img class="active" src="/assets/apps/icons/overview-selected@2x.png" srcset="/assets/apps/icons/overview-selected.png 500w, /assets/apps/icons/overview-selected@2x.png 1000w" alt="Overview">
+    <a routerLink="/apps" data-link="">
+      <li [ngClass]="{ 'active': page === 'apps'}" data-link="">
+        <img class="display" src="/assets/apps/icons/overview@2x.png" srcset="/assets/apps/icons/overview.png 500w, /assets/apps/icons/overview@2x.png 1000w" alt="Overview" data-link="">
+        <img class="hover" src="/assets/apps/icons/overview-hover@2x.png" srcset="/assets/apps/icons/overview-hover.png 500w, /assets/apps/icons/overview-hover@2x.png 1000w" alt="Overview" data-link="">
+        <img class="active" src="/assets/apps/icons/overview-selected@2x.png" srcset="/assets/apps/icons/overview-selected.png 500w, /assets/apps/icons/overview-selected@2x.png 1000w" alt="Overview" data-link="">
         <span>Overview</span>
       </li>
     </a>
-    <a routerLink="/apps/windows">
-      <li [ngClass]="{ 'active': page === 'windows'}">
-        <img class="display" src="/assets/apps/icons/windows@2x.png" srcset="/assets/apps/icons/windows.png 500w, /assets/apps/icons/windows@2x.png 1000w" alt="Windows">
-        <img class="hover" src="/assets/apps/icons/windows-hover@2x.png" srcset="/assets/apps/icons/windows-hover.png 500w, /assets/apps/icons/windows-hover@2x.png 1000w" alt="Windows">
-        <img class="active" src="/assets/apps/icons/windows-selected@2x.png" srcset="/assets/apps/icons/windows-selected.png 500w, /assets/apps/icons/windows-selected@2x.png 1000w" alt="Windows">
+    <a routerLink="/apps/windows" data-link="windows">
+      <li [ngClass]="{ 'active': page === 'windows'}" data-link="windows">
+        <img class="display" src="/assets/apps/icons/windows@2x.png" srcset="/assets/apps/icons/windows.png 500w, /assets/apps/icons/windows@2x.png 1000w" alt="Windows" data-link="windows">
+        <img class="hover" src="/assets/apps/icons/windows-hover@2x.png" srcset="/assets/apps/icons/windows-hover.png 500w, /assets/apps/icons/windows-hover@2x.png 1000w" alt="Windows" data-link="windows">
+        <img class="active" src="/assets/apps/icons/windows-selected@2x.png" srcset="/assets/apps/icons/windows-selected.png 500w, /assets/apps/icons/windows-selected@2x.png 1000w" alt="Windows" data-link="windows">
         <span>Windows</span>
       </li>
     </a>
-    <a routerLink="/apps/mac">
-      <li [ngClass]="{ 'active': page === 'mac'}">
-        <img class="display" src="/assets/apps/icons/mac@2x.png" srcset="/assets/apps/icons/mac.png 500w, /assets/apps/icons/mac@2x.png 1000w" alt="Mac">
-        <img class="hover" src="/assets/apps/icons/mac-hover@2x.png" srcset="/assets/apps/icons/mac-hover.png 500w, /assets/apps/icons/mac-hover@2x.png 1000w" alt="Mac">
-        <img class="active" src="/assets/apps/icons/mac-selected@2x.png" srcset="/assets/apps/icons/mac-selected.png 500w, /assets/apps/icons/mac-selected@2x.png 1000w" alt="Mac">
+    <a routerLink="/apps/mac" data-link="mac">
+      <li [ngClass]="{ 'active': page === 'mac'}" data-link="mac">
+        <img class="display" src="/assets/apps/icons/mac@2x.png" srcset="/assets/apps/icons/mac.png 500w, /assets/apps/icons/mac@2x.png 1000w" alt="Mac" data-link="mac">
+        <img class="hover" src="/assets/apps/icons/mac-hover@2x.png" srcset="/assets/apps/icons/mac-hover.png 500w, /assets/apps/icons/mac-hover@2x.png 1000w" alt="Mac" data-link="mac">
+        <img class="active" src="/assets/apps/icons/mac-selected@2x.png" srcset="/assets/apps/icons/mac-selected.png 500w, /assets/apps/icons/mac-selected@2x.png 1000w" alt="Mac" data-link="mac">
         <span>Mac</span>
       </li>
     </a>
-    <a routerLink="/apps/linux">
-      <li [ngClass]="{ 'active': page === 'linux'}">
-        <img class="display" src="/assets/apps/icons/linux@2x.png" srcset="/assets/apps/icons/linux.png 500w, /assets/apps/icons/linux@2x.png 1000w" alt="Linux">
-        <img class="hover" src="/assets/apps/icons/linux-hover@2x.png" srcset="/assets/apps/icons/linux-hover.png 500w, /assets/apps/icons/linux-hover@2x.png 1000w" alt="Linux">
-        <img class="active" src="/assets/apps/icons/linux-selected@2x.png" srcset="/assets/apps/icons/linux-selected.png 500w, /assets/apps/icons/linux-selected@2x.png 1000w" alt="Linux">
+    <a routerLink="/apps/linux" data-link="linux">
+      <li [ngClass]="{ 'active': page === 'linux'}" data-link="linux">
+        <img class="display" src="/assets/apps/icons/linux@2x.png" srcset="/assets/apps/icons/linux.png 500w, /assets/apps/icons/linux@2x.png 1000w" alt="Linux" data-link="linux">
+        <img class="hover" src="/assets/apps/icons/linux-hover@2x.png" srcset="/assets/apps/icons/linux-hover.png 500w, /assets/apps/icons/linux-hover@2x.png 1000w" alt="Linux" data-link="linux">
+        <img class="active" src="/assets/apps/icons/linux-selected@2x.png" srcset="/assets/apps/icons/linux-selected.png 500w, /assets/apps/icons/linux-selected@2x.png 1000w" alt="Linux" data-link="linux">
         <span>Linux</span>
       </li>
     </a>
-    <a routerLink="/apps/ios">
-      <li class="dim" [ngClass]="{ 'active': page === 'ios'}">
-        <img class="display" src="/assets/apps/icons/ios@2x.png" srcset="/assets/apps/icons/ios.png 500w, /assets/apps/icons/ios@2x.png 1000w" alt="iOS">
-        <img class="hover" src="/assets/apps/icons/ios-hover@2x.png" srcset="/assets/apps/icons/ios-hover.png 500w, /assets/apps/icons/ios-hover@2x.png 1000w" alt="iOS">
-        <img class="active" src="/assets/apps/icons/ios-selected@2x.png" srcset="/assets/apps/icons/ios-selected.png 500w, /assets/apps/icons/ios-selected@2x.png 1000w" alt="iOS">
+    <a routerLink="/apps/ios" data-link="ios">
+      <li class="dim" [ngClass]="{ 'active': page === 'ios'}" data-link="ios">
+        <img class="display" src="/assets/apps/icons/ios@2x.png" srcset="/assets/apps/icons/ios.png 500w, /assets/apps/icons/ios@2x.png 1000w" alt="iOS" data-link="ios">
+        <img class="hover" src="/assets/apps/icons/ios-hover@2x.png" srcset="/assets/apps/icons/ios-hover.png 500w, /assets/apps/icons/ios-hover@2x.png 1000w" alt="iOS" data-link="ios">
+        <img class="active" src="/assets/apps/icons/ios-selected@2x.png" srcset="/assets/apps/icons/ios-selected.png 500w, /assets/apps/icons/ios-selected@2x.png 1000w" alt="iOS" data-link="ios">
         <span>iOS</span>
       </li>
     </a>
-    <a routerLink="/apps/android">
-      <li [ngClass]="{ 'active': page === 'android'}">
-        <img class="display" src="/assets/apps/icons/android@2x.png" srcset="/assets/apps/icons/android.png 500w, /assets/apps/icons/android@2x.png 1000w" alt="Android">
-        <img class="hover" src="/assets/apps/icons/android-hover@2x.png" srcset="/assets/apps/icons/android-hover.png 500w, /assets/apps/icons/android-hover@2x.png 1000w" alt="Android">
-        <img class="active" src="/assets/apps/icons/android-selected@2x.png" srcset="/assets/apps/icons/android-selected.png 500w, /assets/apps/icons/android-selected@2x.png 1000w" alt="Android">
+    <a routerLink="/apps/android" data-link="android">
+      <li [ngClass]="{ 'active': page === 'android'}" data-link="android">
+        <img class="display" src="/assets/apps/icons/android@2x.png" srcset="/assets/apps/icons/android.png 500w, /assets/apps/icons/android@2x.png 1000w" alt="Android" data-link="android">
+        <img class="hover" src="/assets/apps/icons/android-hover@2x.png" srcset="/assets/apps/icons/android-hover.png 500w, /assets/apps/icons/android-hover@2x.png 1000w" alt="Android" data-link="android">
+        <img class="active" src="/assets/apps/icons/android-selected@2x.png" srcset="/assets/apps/icons/android-selected.png 500w, /assets/apps/icons/android-selected@2x.png 1000w" alt="Android" data-link="android">
         <span>Android</span>
       </li>
     </a>
-    <a routerLink="/apps/browser">
-      <li class="dim" [ngClass]="{ 'active': page === 'browser'}">
-        <img class="display" src="/assets/apps/icons/browser@2x.png" srcset="/assets/apps/icons/browser.png 500w, /assets/apps/icons/browser@2x.png 1000w" alt="Browsers">
-        <img class="hover" src="/assets/apps/icons/browser-hover@2x.png" srcset="/assets/apps/icons/browser-hover.png 500w, /assets/apps/icons/browser-hover@2x.png 1000w" alt="Browsers">
-        <img class="active" src="/assets/apps/icons/browser-selected@2x.png" srcset="/assets/apps/icons/browser-selected.png 500w, /assets/apps/icons/browser-selected@2x.png 1000w" alt="Browsers">
+    <a routerLink="/apps/browser" data-link="browser">
+      <li class="dim" [ngClass]="{ 'active': page === 'browser'}" data-link="browser">
+        <img class="display" src="/assets/apps/icons/browser@2x.png" srcset="/assets/apps/icons/browser.png 500w, /assets/apps/icons/browser@2x.png 1000w" alt="Browsers" data-link="browser">
+        <img class="hover" src="/assets/apps/icons/browser-hover@2x.png" srcset="/assets/apps/icons/browser-hover.png 500w, /assets/apps/icons/browser-hover@2x.png 1000w" alt="Browsers" data-link="browser">
+        <img class="active" src="/assets/apps/icons/browser-selected@2x.png" srcset="/assets/apps/icons/browser-selected.png 500w, /assets/apps/icons/browser-selected@2x.png 1000w" alt="Browsers" data-link="browser">
         <span>Browsers</span>
       </li>
     </a>
     <!--
-    <a routerLink="/apps/routers">
-      <li [ngClass]="{ 'active': page === 'routers'}">
-        <img class="display" src="/assets/apps/icons/router@2x.png" srcset="/assets/apps/icons/router.png 500w, /assets/apps/icons/router@2x.png 1000w" alt="Routers">
-        <img class="hover" src="/assets/apps/icons/router-hover@2x.png" srcset="/assets/apps/icons/router-hover.png 500w, /assets/apps/icons/router-hover@2x.png 1000w" alt="Routers">
-        <img class="active" src="/assets/apps/icons/router-selected@2x.png" srcset="/assets/apps/icons/router-selected.png 500w, /assets/apps/icons/router-selected@2x.png 1000w" alt="Routers">
+    <a routerLink="/apps/routers" data-link="routers">
+      <li [ngClass]="{ 'active': page === 'routers'}" data-link="routers">
+        <img class="display" src="/assets/apps/icons/router@2x.png" srcset="/assets/apps/icons/router.png 500w, /assets/apps/icons/router@2x.png 1000w" alt="Routers" data-link="routers">
+        <img class="hover" src="/assets/apps/icons/router-hover@2x.png" srcset="/assets/apps/icons/router-hover.png 500w, /assets/apps/icons/router-hover@2x.png 1000w" alt="Routers" data-link="routers">
+        <img class="active" src="/assets/apps/icons/router-selected@2x.png" srcset="/assets/apps/icons/router-selected.png 500w, /assets/apps/icons/router-selected@2x.png 1000w" alt="Routers" data-link="routers">
         <span>Routers</span>
       </li>
     </a>

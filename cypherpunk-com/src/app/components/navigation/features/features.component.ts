@@ -36,6 +36,11 @@ export class FeaturesNavigationComponent implements AfterViewInit {
   ngAfterViewInit() {
     // set hide navigation
     if (this.inNavigation || this.inNavigationMobile) { this.hide = true; }
+    let links = document.querySelectorAll('.features-navigation ul a');
+
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('touchend', this.pageChange.bind(this));
+    }
   }
 
   // on scroll,
@@ -101,6 +106,12 @@ export class FeaturesNavigationComponent implements AfterViewInit {
        this.supportActive = true;
       }
       else { this.supportActive = false; }
+    }
+  }
+
+  pageChange(e) {
+    if (e instanceof TouchEvent && e.target['dataset'].fragment) {
+      this.router.navigate(['/features'], { fragment: e.target['dataset'].fragment});
     }
   }
 }
