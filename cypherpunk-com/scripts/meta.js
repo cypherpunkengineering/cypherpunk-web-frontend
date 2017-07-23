@@ -286,6 +286,16 @@ const metaMap = {
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
     description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
   },
+  'support:.html': {
+    url: 'https://cypherpunk.com/support/embedded-devices',
+    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
+    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+  },
+  'support:embedded-devices.html': {
+    url: 'https://cypherpunk.com/support/embedded-devices',
+    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
+    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+  },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
     description: '{{__BLOG_DESCRIPTION__}}',
@@ -303,6 +313,16 @@ const metaMap = {
     description: '{{__SUPPORT_DESCRIPTION__}}',
     url: '{{__SUPPORT_URL__}}',
     image: '{{__SUPPORT_IMAGE__}}'
+  },
+  'legal:android.html': {
+    url: 'https://cypherpunk.com/legal/license/android',
+    title: 'Cypherpunk Privacy Information',
+    description: 'Cypherpunk Privacy Information'
+  },
+  'legal:desktop.html': {
+    url: 'https://cypherpunk.com/legal/license/desktop',
+    title: 'Cypherpunk Privacy Information',
+    description: 'Cypherpunk Privacy Information'
   }
 };
 

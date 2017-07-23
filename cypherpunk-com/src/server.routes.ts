@@ -105,5 +105,7 @@ export const routes: string[] = [
   'partial/amazon-app-store',
   'partial/itunes',
   'partial/chrome',
-  'partial/firefox'
+  'partial/firefox',
+  'legal/license/android',
+  'legal/license/desktop'
 ];
