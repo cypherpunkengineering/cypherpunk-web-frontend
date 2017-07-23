@@ -77,7 +77,7 @@ export class ActivateComponent implements AfterViewInit {
     if (!this.confirm) {
       this.errors.confirm.message = 'Confirmation is Required';
     }
-    else if (this.confirm) {
+    else if (this.confirm.length < 6) {
       this.errors.confirm.message = 'Password needs to be 6 characters or longer';
     }
     else if (this.password !== this.confirm) {
@@ -94,7 +94,7 @@ export class ActivateComponent implements AfterViewInit {
   activate() {
     let password = this.validatePassword();
     let confirm = this.validateConfirm();
-    if (!password || !confirm) { return; }
+    if (!password || !confirm || this.activateButtonDisabled) { return; }
     this.activateButtonDisabled = true;
 
     let body = { accountId: this.accountId, token: this.resetToken, password: this.password };
@@ -105,6 +105,7 @@ export class ActivateComponent implements AfterViewInit {
     })
     .catch((err) => {
       console.log(err);
+      this.activateButtonDisabled = false;
       this.alertService.error('Could not activate your password');
     });
   }
