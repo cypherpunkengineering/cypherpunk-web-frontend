@@ -10,7 +10,6 @@
   margin: auto;
   padding: 60px 0 60px;
   color: #666;
-  white-space: pre-wrap;
   font-size: 10px;
 
   .header { text-align: left; }
@@ -29,6 +28,9 @@
     height: 2px;
     border: solid 1px #1973af;
     margin-bottom: 25px;
+  }
+  code {
+    white-space: pre-wrap;
   }
 
   .lead { color: #1973af; }
