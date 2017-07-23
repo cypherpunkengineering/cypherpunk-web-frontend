@@ -64,6 +64,15 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  teaserSignup(body, options): Promise<any> {
+    // this will set cookie
+    let url = this.globals.API_URL + '/account/register/teaser';
+    options.withCredentials = true;
+    return this.http.post(url, body, options).toPromise()
+    .then(this.parseJson)
+    .catch(this.catchFunction);
+  }
+
   changeEmail(body, options): Promise<any> {
     // this will set cookie
     let url = this.globals.API_URL + '/account/change/email';
