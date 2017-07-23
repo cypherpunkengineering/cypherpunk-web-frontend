@@ -39,12 +39,14 @@
           How does Cypherpunk Privacy protect against privacy leaks?
         </div>
         <div class="answer">
-          <p>Even when you are connected through our secure network, your computer or device is still aware of the physical network it is directly connected to as well, and may include information about that network <b>in</b> your communication to websites, which can compromise your privacy. Cypherpunk Privacy protects against the following kinds of leaks:</p>
+          <p>Even when you are connected through our secure network, your computer or device is still aware of the physical network it is directly connected to as well, and may include information about that network in your communication to websites, which can compromise your privacy. Cypherpunk Privacy protects against the following kinds of leaks:</p>
           <ul>
             <li><b>DNS requests:</b> In order to connect to any website, your computer first needs to look up the site's address. These lookups are unencrypted and reveal a lot of information about which sites you visit. To protect your privacy, our apps instead route all DNS requests via our secure DNS server through the VPN tunnel itself, preventing anyone from listening in.</li>
             <li><b>IPv6 traffic:</b> Our apps safely block IPv6 traffic which might otherwise escape onto the Internet directly.</li>
             <li><b>WebRTC IP leak:</b> Our browser extension disables WebRTC, which can otherwise tell websites and other computers about your real IP address.</li>
+            <li><b>Disconnects:</b> If your connection to a VPN temporarily drops, your computer's default behavior is to send your traffic directly to the Internet instead. To prevent this our <b>Internet Killswitch</b> blocks all non-VPN traffic, protecting you during that time.</li>
           </ul>
+          <p>In addition, our <b>Internet Killswitch</b> protects you in case of accidental disconnects, during which your computer might otherwise send traffic directly to the Internet.
         </div>
 
         <div class="collapsible question" id="privacy-what-is-cypherplay" (click)="toggle('privacy-what-is-cypherplay')">
@@ -55,7 +57,7 @@
         </div>
 
         <div class="collapsible question" id="privacy-browser-extension" (click)="toggle('privacy-browser-extension')">
-          Should I use the Cypherpunk browser extension in addition to the Cypherpunk desktop VPN app?
+          Should I use the browser extension in addition to the desktop VPN app?
         </div>
         <div class="answer">
           While our browser extension offers a lightweight option to proxy only your web traffic through our Cypherpunk Privacy Network&trade;, it also complements the desktop app by offering specific features such as WebRTC leak protection and better blocking of ads &amp; trackers.
@@ -96,6 +98,23 @@
           <p>We will also support a wide range of other protocols and encryptions for people who prefer to connect to the Cypherpunk Privacy Network&trade; using third-party software or devices.</p>
         </div>
 
+        <div class="collapsible question" id="privacy-killswitch" (click)="toggle('privacy-killswitch')">
+          What do the different options for the Internet Killswitch mean?
+        </div>
+        <div class="answer">
+          <p>The Internet Killswitch is a privacy safeguard that prevents your traffic from unexpectedly being routed directly to the Internet. In its default setting, the killswitch is active whenever you are connecting to the Cypherpunk Privacy Network&trade;, and will block traffic if the VPN connection unexpectedly drops. Other apps will see this as a temporary loss of Internet connectivity.</p>
+          <p>For more cautious users the killswitch can also be set to <b>Always On</b>, in which case you will <b>only</b> be able to access the Internet while you are connected to the VPN. Use this mode if it is crucial that other apps never access the Internet directly. If you are experiencing any trouble with this feature, or prioritize connectivity over privacy, the killswitch can also be turned off entirely.</p>
+          <p>You can choose whether LAN traffic (e.g. network-attached storage, screen casting, printers) should be allowed through the killswitch or not with the <b>Always Allow LAN Traffic</b> advanced setting.</p>
+        </div>
+
+        <div class="collapsible question" id="privacy-ports" (click)="toggle('privacy-ports')">
+          What port numbers can I use for Cypherpunk Privacy?
+        </div>
+        <div class="answer">
+          <p>For our VPN apps, we support connecting to our network over UDP or TCP, on ports 7933, 5060 or 53. We recommend using <b>UDP</b> as this is usually faster, but also offer TCP as this is less likely to be blocked on restrictive networks.</p>
+          <p>In our desktop app you can also lock in the local port number used, in case you need to open/forward the port in your router.</p>
+        </div>
+
         <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
           How anonymous am I when using Cypherpunk Privacy?
         </div>
@@ -107,7 +126,7 @@
           Why does the Cypherpunk Privacy app make connections to Google?
         </div>
         <div class="answer">
-          <p>Cypherpunk Privacy uses Google's cloud platfrom as a caching reverse proxy to shield our servers from DDoS attacks. However, no account data is stored on Google systems.</p>
+          <p>Cypherpunk Privacy uses Google's cloud platfrom as a caching reverse proxy to shield our servers from DDoS attacks. However, no account data is stored on Google systems, nor is any of your VPN traffic routed through them.</p>
           <p>We also optionally collect usage statistics for our desktop app via Google Analytics, but only if the user gives their explicit consent.</p>
         </div>
 
@@ -115,83 +134,51 @@
           Do you serve ads or offer a free ads based version?
         </div>
         <div class="answer">
-          We offer a single, uncompromising vision 
-          As cypherpunks we do not believe your privacy is something that can or should ever be compromised with. We do not serve ads, and we do not offer a free version as this would force us to make trade-offs somewhere.
+          As cypherpunks we do not believe your privacy is something that can or should ever be compromised with. We do not serve ads, and we do not offer a free version as this would necessarily require us to make trade-offs somewhere.
         </div>
+
       </section>
       
       <section>
-        <div class="collapsible header">Desktop (Windows / Mac / Linux)</div>
+        <div class="collapsible header" id="category-desktop" (click)="toggle('category-desktop')">Desktop (Windows / Mac / Linux)</div>
 
-      </section>
-
-
-
-
-
-
-
-
-
-
-
-      <!--
-        <div class="collapsible question">
-          How does Cypherpunk Privacy protect my online privacy?
+        <div class="collapsible question" id="desktop-p2p" (click)="toggle('desktop-p2p')">
+          Can I use P2P software with Cypherpunk Privacy?
         </div>
-
         <div class="answer">
-          The Cypherpunk Privacy Suite(tm) of apps will re-route your internet traffic into an encrypted VPN or proxy tunnel, which prevents your internet service provider and any other untrusted third parties from inspecting, monitoring, or manipulating your internet connection. At the other end of this encrypted tunnel is the Cypherpunk Privacy Network(tm). When your traffic arrives at our anonymizing servers, it gets mixed together with other internet traffic from hundreds of other users. Our strict no-logging policy means that we never store any records of your online activities. For additional protection, you can enable the content filtering features in our apps, which block ads, trackers, and malware, to prevents third parties from tracking you with cookies or other means.
+          As long as you comply with our <a href="/terms-of-service">Terms of Service</a>, we have no restrictions regarding the software you run, but we do reserve the right to perform traffic management to prevent users with a lot of traffic from negatively impacting the experience of others on our network.
         </div>
 
-        <div class="question">
-          What forms of Leak Protection are supported in Cypherpunk Privacy Suite(tm) apps?
-        </div>
-
-        <div class="answer">
-          Our VPN apps feature an Internet Killswitch, DNS Leak Protection, and IPv6 Leak Protection.
-        </div>
-
-        <div class="question">
-          What is CypherPlay(tm)?
-        </div>
-
-        <div class="answer">
-          CypherPlay(tm) is our proprietary technology that automatically routes your traffic to the correct destination to allow you to access your favorite content.  
-        </div>
-
-        <div class="question">
-          What types of encryption do you support?
-        </div>
-
-        <div class="answer">
-          We 
-        </div>
       </section>
 
       <section>
-        <div class="header">Frequently Asked Questions (FAQ)</div>
+        <div class="collapsible header" id="category-troubleshooting" (click)="toggle('category-troubleshooting')">Troubleshooting</div>
 
-        <div class="question">
-          What types of encryption do you use?
+        <div class="collapsible question" id="troubleshooting-blocked-site" (click)="toggle('troubleshooting-blocked-site')">
+          I'm unable to access a site that used to work fine!
         </div>
-
         <div class="answer">
-          We are a new VPN Company
+          <p>Sometimes the tracker blocking may cause certain sites to break. We do our best to eliminate these false positives, but some sites rely on trackers to function.</p>
+          <p>If you are using the browser extenstion, you can whitelist sites having this problem by clicking the "whitelist it" button at the bottom of the screen. If you are using the apps, try disabling the "Block Ads &amp; Trackers" setting.</p>
         </div>
+
+        <div class="collapsible question" id="" (click)="toggle('')">
+          I can't connect to Apple Messages or FaceTime!
+        </div>
+        <div class="answer">
+          
+        </div>
+
       </section>
 
-      <section>
-        <div class="header">Frequently Asked Questions (FAQ)</div>
 
-        <div class="question">
-          What is Cypherpunk?
-        </div>
 
-        <div class="answer">
-          We are a new VPN Company
-        </div>
-      </section>
+
+
+
+
+
+
 
       <!--
       <div class="row">
