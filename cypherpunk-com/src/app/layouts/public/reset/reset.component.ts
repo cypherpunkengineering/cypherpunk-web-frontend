@@ -77,9 +77,6 @@ export class PublicResetComponent implements AfterViewInit {
     if (!this.confirm) {
       this.errors.confirm.message = 'Confirmation is Required';
     }
-    else if (this.password.length < 6) {
-      this.errors.confirm.message = 'Password needs to be 6 characters or longer';
-    }
     else if (this.password !== this.confirm) {
       this.errors.confirm.message = 'Password and Confirmation do not match';
     }
