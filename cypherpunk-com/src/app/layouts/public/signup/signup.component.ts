@@ -107,12 +107,8 @@ export class SignupComponent implements AfterViewInit {
     if (!email || !password || this.errors.email.exists || this.signupButtonDisabled) { return; }
     this.signupButtonDisabled = true;
 
-
-    this.backend.teaserSignup({ email: this.user.email }, {})
-    .then(() => {
-      this.alertService.success('We have received your request, check your email for your free preview invitation.');
-      this.router.navigate(['account']);
-    })
+    this.auth.signup(this.user)
+    .then(() => { this.router.navigate(['account']); })
     .catch((err) => {
       this.zone.run(() => {
         this.signupButtonDisabled = false;
