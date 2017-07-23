@@ -30,7 +30,7 @@
           How does Cypherpunk Privacy protect my online privacy?
         </div>
         <div class="answer">
-          <p>The Cypherpunk Privacy Suite&trade; of apps will reroute your internet traffice into an encrypted VPN or proxy tunnel, which prevents your internet service provider and other untrusted third parties from inspecting, monitoring or manipulating your internet connection.</p>
+          <p>The Cypherpunk Privacy Suite&trade; of apps will reroute your internet traffic into an encrypted VPN or proxy tunnel, which prevents your internet service provider and other untrusted third parties from inspecting, monitoring or manipulating your internet connection.</p>
           <p>At the other end of this tunnel is the Cypherpunk Privacy Network&trade;, through which your and other users' traffic is routed until it exits back onto the Internet again. Our strict no-logging policy means that we never store any records of your online activities, and other users will only see you as coming from our network.</p>
           <p>Our apps also help secure your devices to prevent accidentally leaking your real location, and for additional protection, you can enable the content filtering features in our apps, which block ads, trackers and malware sites, making it harder for you to be tracked or attacked.</p>
         </div>
@@ -46,7 +46,6 @@
             <li><b>WebRTC IP leak:</b> Our browser extension disables WebRTC, which can otherwise tell websites and other computers about your real IP address.</li>
             <li><b>Disconnects:</b> If your VPN connection temporarily drops, your computer's default behavior is to send your traffic directly to the Internet instead. To prevent this our <b>Internet Killswitch</b> blocks all non-VPN traffic, protecting you during that time.</li>
           </ul>
-          <p>In addition, our <b>Internet Killswitch</b> protects you in case of accidental disconnects, during which your computer might otherwise send traffic directly to the Internet.
         </div>
 
         <div class="collapsible question" id="privacy-anonymity" (click)="toggle('privacy-anonymity')">
@@ -90,7 +89,7 @@
           How does using a VPN or proxy affect my connection speed?
         </div>
         <div class="answer">
-          <p>As tunneling your traffic involves a bit of extra work to wrap and encrypt your traffic, as well as sending it on a (usually) longer route through the Internet, your connection speed is often a little slower while using a VPN, however usually only marginally so. Your latency (ping time) is usually also longer for the same reason.</p>
+          <p>As tunneling your traffic involves a bit of extra work to wrap and encrypt your traffic, as well as sending it on a longer route through the Internet, your connection speed is often a little slower while using a VPN. Your latency (ping time) also becomes longer for the same reason.</p>
           <p>You can minimize this loss by always connecting to the closest available server, and if you are more concerned with speed than privacy you can also connect via an unencrypted tunnel.</p>
         </div>
 
@@ -197,8 +196,9 @@
           I can't access the Internet at all!
         </div>
         <div class="answer">
+          <p>Please try the following steps:</p>
           <ol>
-            <li>First, check that the <b>Internet Killswitch</b> isn't set to <b>Always On</b> (if it is, set it to <b>Automatic</b> or <b>Off</b>).</li>
+            <li>Check that the <b>Internet Killswitch</b> isn't set to <b>Always On</b> (if it is, set it to <b>Automatic</b> or <b>Off</b>).</li>
             <li>Try rebooting your computer or device.</li>
             <li>Try quitting the Cypherpunk Privacy app and restarting it.</li>
             <li>Try uninstalling the Cypherpunk Privacy app and reinstalling it.</li>
