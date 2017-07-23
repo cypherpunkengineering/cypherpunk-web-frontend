@@ -22,7 +22,7 @@ handlers: # should be ordered from most specific to least specific
 - url: /(.*\.asc)
   mime_type: application/pgp-keys
   static_files: target/\1
-  upload: target/(.*\.xpi)
+  upload: target/(.*\.asc)
   secure: always
   login: admin
   redirect_http_response_code: 301
