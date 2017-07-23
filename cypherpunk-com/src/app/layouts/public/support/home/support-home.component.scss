@@ -47,7 +47,7 @@
         width: auto;
         margin: 0 0 30px $left-margin;
         text-align: left;
-        color: #488;
+        color: #366;
       }
 
       .collapsible {
@@ -74,7 +74,7 @@
       }
 
       section {
-        margin: 0 0 60px;
+        margin: 30px 0 60px;
 
         b {
           letter-spacing: -0.05em;
@@ -85,13 +85,13 @@
 
         .question {
           display: block;
-          font-size: 18px;
+          font-size: 19px;
           margin: 20px 0 10px $left-margin;
-          color: #ff8c71;
+          color: #5aa;
         }
 
         .answer {
-          font-size: 15px;
+          font-size: 16px;
           line-height: 1.3;
           margin: 0 0 50px $left-margin;
           transition: all 0.5s ease-out;
@@ -111,6 +111,9 @@
           display: none;
         }
 
+        .closed.collapsible.header {
+          margin-bottom: -30px;
+        }
         .closed.collapsible.header ~ * {
           display: none;
         }
