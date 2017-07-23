@@ -93,8 +93,8 @@ export class DashboardComponent {
           else { this.state.loading = false; }
 
           if (data.account.type === 'pending' || data.account.type === 'invitation') {
-            let error = 'Placeholder text for pending and invitation';
-            this.alertService.warning(error);
+            let error = 'You\'ve been placed on the waitlist. Due to high popularity, we are out of Free Preview Access accounts. Your invitation request has been placed on our waitlist. We will notify you once your request is approved.';
+            this.alertService.success(error);
           }
           else if (!data.account.confirmed) {
             let error = 'Your account is not confirmed! Please check your email and click on the link to confirm your account.';
