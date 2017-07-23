@@ -32,7 +32,8 @@
       </a>
       <a routerLink="/account/issue" (click)="changePage('issue')">
         <li [ngClass]="{'active': currentTab === 'issue'}">
-          <span>Report a Bug</span>
+          <span *ngIf="state.user.account.type === 'pending' || state.user.account.type === 'invitation'">Contact Us</span>
+          <span *ngIf="state.user.account.type !== 'pending' && state.user.account.type !== 'invitation'">Report a Bug</span>
         </li>
       </a>
       <a routerLink="/account/configs" (click)="changePage('configs')" *ngIf="showConfig()">

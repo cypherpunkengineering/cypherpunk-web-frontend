@@ -92,7 +92,11 @@ export class DashboardComponent {
           else if (testLoading) { /* keep loading page up */ }
           else { this.state.loading = false; }
 
-          if (!data.account.confirmed) {
+          if (data.account.type === 'pending' || data.account.type === 'invitation') {
+            let error = 'Placeholder text for pending and invitation';
+            this.alertService.warning(error);
+          }
+          else if (!data.account.confirmed) {
             let error = 'Your account is not confirmed! Please check your email and click on the link to confirm your account.';
             this.alertService.warning(error);
           }
