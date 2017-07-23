@@ -11,7 +11,7 @@ const metaMap = {
   'cypherpunk-public.html': { url: 'https://cypherpunk.com' },
   'why-use-a-vpn.html': {
     title: 'Why You Need Cypherpunk Privacy & VPN Service',
-    description: 'Discover how Cypherpunk Privacy protects your online privacy and freedom and secures public Wi-Fi networks. Try it free for  days!'
+    description: 'Discover how Cypherpunk Privacy protects your online privacy and freedom and secures public Wi-Fi networks. Try it free for 7 days!'
   },
   'features.html': {
     title: 'Cypherpunk Privacy Features',
@@ -77,6 +77,11 @@ const metaMap = {
     title: 'Cypherpunk Mac VPN & Online Privacy App',
     description: 'Protect your Mac device with the Cypherpunk Macintosh VPN & Online Privacy App.'
   },
+  'apps:macos.html': {
+    url: 'https://cypherpunk.com/apps/macos',
+    title: 'Cypherpunk Mac VPN & Online Privacy App',
+    description: 'Protect your Mac device with the Cypherpunk Macintosh VPN & Online Privacy App.'
+  },
   'apps:linux.html': {
     url: 'https://cypherpunk.com/apps/linux',
     title: 'Cypherpunk Linux VPN & Online Privacy App',
@@ -101,6 +106,10 @@ const metaMap = {
     url: 'https://cypherpunk.com/apps/routers',
     title: 'Cypherpunk VPN & Online Privacy App for Routers',
     description: 'Protect your Router with the Cypherpunk Router VPN & Online Privacy App.'
+  },
+  'apps.html': {
+    title: 'Cypherpunk Privacy Apps &amp; VPN Servic',
+    description: 'Download apps to protect your online privacy and freedom for every device. Try it free for 7 days! 24/7/365 customer support.'
   },
   'about.html': {
     title: 'About Cypherpunk Privacy',
@@ -242,59 +251,55 @@ const metaMap = {
     title: 'Cypherpunk Privacy Press Area',
     description: 'Information about Cypherpunk Privacy and screenshots, images and logos for press inquiries.'
   },
-  'support.html': {
-    title: 'Cypherpunk Online Privacy & Freedom Support Blog',
-    description: 'Online privacy and freedom support blog by Cypherpunk Privacy.'
-  },
   'support:windows.html': {
     url: 'https://cypherpunk.com/support/windows',
     title: 'Cypherpunk Privacy Support For Windows',
-    description: 'Cypherpunk Privacy Support For Windows'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy Windows app.'
   },
   'support:macos.html': {
     url: 'https://cypherpunk.com/support/macos',
     title: 'Cypherpunk Privacy Support For MacOS',
-    description: 'Cypherpunk Privacy Support For MacOS'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy MacOS app.'
+  },
+  'support:mac.html': {
+    url: 'https://cypherpunk.com/support/mac',
+    title: 'Cypherpunk Privacy Support For MacOS',
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy MacOS app.'
   },
   'support:linux.html': {
     url: 'https://cypherpunk.com/support/linux',
     title: 'Cypherpunk Privacy Support For Linux',
-    description: 'Cypherpunk Privacy Support For Linux'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy Linux app.'
   },
   'support:android.html': {
     url: 'https://cypherpunk.com/support/android',
     title: 'Cypherpunk Privacy Support For Android',
-    description: 'Cypherpunk Privacy Support For Android'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy Android app.'
   },
   'support:ios.html': {
     url: 'https://cypherpunk.com/support/ios',
     title: 'Cypherpunk Privacy Support For iOS',
-    description: 'Cypherpunk Privacy Support For iOS'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy iOS app.'
   },
-  'support:browsers.html': {
+  'support:browser-extension.html': {
     url: 'https://cypherpunk.com/support/browsers',
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
-    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+    description: 'Help, support, download link and setup guides for the Cypherpunk Privacy Browser Extensions.'
   },
   'support:routers.html': {
     url: 'https://cypherpunk.com/support/routers',
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
-    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+    description: 'Help, support, download link and setup guides for installing Cypherpunk Privacy on Routers.'
   },
   'support:embedded-devices.html': {
     url: 'https://cypherpunk.com/support/embedded-devices',
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
-    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+    description: 'Help, support, download link and setup guides for installing Cypherpunk Privacy on embedded devices.'
   },
-  'support:.html': {
-    url: 'https://cypherpunk.com/support/embedded-devices',
+  'support.html': {
+    url: 'https://cypherpunk.com/support',
     title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
-    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
-  },
-  'support:embedded-devices.html': {
-    url: 'https://cypherpunk.com/support/embedded-devices',
-    title: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi',
-    description: 'Cypherpunk Privacy Support For Chrome, Firefox, Opera, Vivaldi'
+    description: 'Get help and support for Cypherpunk Privacy apps and service, 24/7/365.'
   },
   'blog-article.html': {
     title: '{{__BLOG_TITLE__}}',
@@ -343,14 +348,17 @@ function updateMeta(baseDir, filename) {
   let appsSwitch = false;
   let downloadSwitch = false;
   let accountSwitch = false;
+  let supportSwitch = false;
 
   if (baseDir.indexOf('download') > -1) { downloadSwitch = true; }
   else if (baseDir.indexOf('apps') > -1) { appsSwitch = true; }
   else if (baseDir.indexOf('account') > -1) { accountSwitch = true; }
+  else if (baseDir.indexOf('support') > -1) { supportSwitch = true; }
 
   if (downloadSwitch) { switchFilename = 'download:' + filename; }
   else if (appsSwitch) { switchFilename = 'apps:' + filename; }
   else if (accountSwitch) { switchFilename = 'account:' + filename; }
+  else if (supportSwitch) { switchFilename = 'support:' + filename; }
   else { switchFilename = filename; }
 
 
