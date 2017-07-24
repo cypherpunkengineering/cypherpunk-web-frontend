@@ -26,7 +26,8 @@ export class ConfirmComponent {
 
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
-      this.confirmGuard.canActivate(route, state);
+      this.confirmGuard.canActivate(route, state)
+      .then(() => { this.router.navigate(['account']); });
     }
   }
 }

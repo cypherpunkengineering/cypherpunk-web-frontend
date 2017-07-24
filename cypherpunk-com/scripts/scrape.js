@@ -18,6 +18,7 @@ const routes = [
   { url: baseRoute + 'download/android', dirPath: baseDir + 'download/android.html' },
   { url: baseRoute + 'download/ios', dirPath: baseDir + 'download/ios.html' },
   { url: baseRoute + 'confirm?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirm.html' },
+  { url: baseRoute + 'confirmation?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirmation.html' },
   { url: baseRoute + 'confirmChange?accountId=asdf&confirmationToken=asdf', dirPath: baseDir + 'confirmChange.html' },
   { url: baseRoute + 'login', dirPath: baseDir + 'login.html' },
   { url: baseRoute + 'recover', dirPath: baseDir +'recover.html' },

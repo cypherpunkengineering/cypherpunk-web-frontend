@@ -174,6 +174,10 @@ const metaMap = {
     title: 'Confirmation | Cypherpunk Privacy',
     description: ' '
   },
+  'confirmation.html': {
+    title: 'Confirmation | Cypherpunk Privacy',
+    description: ' '
+  },
   'confirmChange.html': {
     title: 'Email Change Confirmation | Cypherpunk Privacy',
     description: ' '
