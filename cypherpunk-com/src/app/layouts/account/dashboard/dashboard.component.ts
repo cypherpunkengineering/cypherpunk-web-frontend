@@ -125,7 +125,10 @@ export class DashboardComponent {
     });
   }
 
-  changePage(page) { this.currentTab = page; }
+  changePage(page) {
+    this.currentTab = page;
+    this.router.navigate(['/account/' + page]);
+  }
 
   hideGettingStarted() {
     this.zone.run(() => {
