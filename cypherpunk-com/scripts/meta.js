@@ -4,14 +4,14 @@ const walk = require('fs-walk');
 const cheerio = require('cheerio');
 
 const defaultTitle = 'Cypherpunk Privacy Apps & VPN Service';
-const defaultDescription = 'Protect your online privacy and freedom with easy to use apps for every device.   Try it free for 7 days!  24/7/365 customer support.';
+const defaultDescription = 'Protect your online privacy and freedom with easy to use apps for every device.  Try it free for a limited time only!';
 const defaultImage = 'https://cypherpunk.com/assets/landing/landing@2x.png';
 
 const metaMap = {
   'cypherpunk-public.html': { url: 'https://cypherpunk.com' },
   'why-use-a-vpn.html': {
     title: 'Why You Need Cypherpunk Privacy & VPN Service',
-    description: 'Discover how Cypherpunk Privacy protects your online privacy and freedom and secures public Wi-Fi networks. Try it free for 7 days!'
+    description: 'Discover how Cypherpunk Privacy protects your online privacy and freedom and secures public Wi-Fi networks. Try it free for a limited time only!'
   },
   'features.html': {
     title: 'Cypherpunk Privacy Features',
@@ -108,8 +108,8 @@ const metaMap = {
     description: 'Protect your Router with the Cypherpunk Router VPN & Online Privacy App.'
   },
   'apps.html': {
-    title: 'Cypherpunk Privacy Apps &amp; VPN Servic',
-    description: 'Download apps to protect your online privacy and freedom for every device. Try it free for 7 days! 24/7/365 customer support.'
+    title: 'Cypherpunk Privacy Apps &amp; VPN Service',
+    description: 'Download apps to protect your online privacy and freedom for every device. Try it free for a limited time only! 24/7/365 customer support.'
   },
   'about.html': {
     title: 'About Cypherpunk Privacy',
@@ -138,7 +138,7 @@ const metaMap = {
   'about:inquiries.html': {
     url: 'https://cypherpunk.com/apps/inquiries',
     title: 'About Cypherpunk Privacy',
-    description: 'Learn about Cypherpunk Privacy and the people behind it.'
+    description: 'If you are a member of the media and would like to talk or test our product, please use the information on this page to contact us.'
   },
   'about:assets.html': {
     url: 'https://cypherpunk.com/apps/assets',
