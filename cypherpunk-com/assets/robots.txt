@@ -7,3 +7,4 @@ Disallow: /activate
 Disallow: /partial
 Disallow: /reset
 Disallow: /confirmChange
+Disallow: /pricing
