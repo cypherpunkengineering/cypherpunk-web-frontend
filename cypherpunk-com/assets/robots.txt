@@ -1,2 +1,8 @@
 User-agent: *
 Disallow: /account
+Disallow: /blog
+Disallow: /confirm
+Disallow: /confirmation
+Disallow: /activate
+Disallow: /partial
+Disallow: /reset
