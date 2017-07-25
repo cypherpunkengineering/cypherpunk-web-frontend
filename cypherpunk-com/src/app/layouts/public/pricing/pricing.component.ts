@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
-import { PlansService, Plan } from '../../../services/plans.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
+import { GlobalsService } from '../../../services/globals.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
+import { PlansService, Plan } from '../../../services/plans.service';
 import { Component, PLATFORM_ID, Inject, NgZone, ViewChild, OnDestroy } from '@angular/core';
 import country_list from './countries';
 
@@ -74,6 +75,7 @@ export class PricingComponent implements OnDestroy {
     private location: Location,
     private authGuard: AuthGuard,
     private route: ActivatedRoute,
+    private globals: GlobalsService,
     private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
@@ -83,6 +85,9 @@ export class PricingComponent implements OnDestroy {
   ) {
     // handle title
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
+
+    // ** Hide this page from production
+    if (this.globals.ENV !== 'DEV') { this.router.navigate(['/']); }
 
     // handle plans
     this.plansSrv = plansService;

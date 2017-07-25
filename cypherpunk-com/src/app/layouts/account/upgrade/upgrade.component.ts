@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
+import { GlobalsService } from '../../../services/globals.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
 import { PlansService, Plan } from '../../../services/plans.service';
@@ -63,6 +64,7 @@ export class UpgradeComponent implements OnDestroy {
     private auth: AuthService,
     private location: Location,
     private authGuard: AuthGuard,
+    private globals: GlobalsService,
     private session: SessionService,
     private backend: BackendService,
     private alertService: AlertService,
@@ -73,6 +75,9 @@ export class UpgradeComponent implements OnDestroy {
   ) {
     // handle title
     this.document.title = 'Upgrade Cypherpunk Account';
+
+    // ** Hide this page from production
+    if (this.globals.ENV !== 'DEV') { this.router.navigate(['/']); }
 
     // handle plans
     this.plansSrv = plansService;
