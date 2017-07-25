@@ -1,4 +1,4 @@
-<div class="footerContainer">
+<div itemscope itemtype="http://schema.org/SiteNavigationElement" class="footerContainer">
   <div class="footer">
     <div class="footer-column logo">
       <div routerLink="/">
@@ -31,13 +31,13 @@
     <div class="footer-column">
       <div class="footer-header">Cypherpunk Privacy</div>
       <ul class="footer-listing">
-        <li><a routerLink="/why-use-a-vpn">Why Use a VPN?</a></li>
-        <li><a routerLink="/download">Download</a></li>
-        <li><a routerLink="/features">Features</a></li>
+        <li itemprop="name"><a itemprop="url" routerLink="/why-use-a-vpn">Why Use a VPN?</a></li>
+        <li itemprop="name"><a itemprop="url" routerLink="/download">Download</a></li>
+        <li itemprop="name"><a itemprop="url" routerLink="/features">Features</a></li>
         <li><a routerLink="/network">Network</a></li>
         <li><a routerLink="/pricing" *ngIf="env === 'DEV'">Pricing</a></li>
         <!-- <li><a routerLink="/whats-my-ip-address">What's My IP?</a></li> -->
-        <li><a routerLink="/support">Support</a></li>
+        <li itemprop="name"><a itemprop="url" routerLink="/support">Support</a></li>
         <li><a routerLink="/account">My Account</a></li>
       </ul>
     </div>
@@ -61,8 +61,8 @@
       <div class="footer-header">About Us</div>
       <ul class="footer-listing">
         <!-- <li><a routerLink="/about">Our Team</a></li> -->
-        <li><a routerLink="/about/manifesto">Manifesto</a></li>
-        <li><a routerLink="/about/inquiries">Media/Press</a></li>
+        <li itemprop="name"><a itemprop="url" routerLink="/about/manifesto">Manifesto</a></li>
+        <li itemprop="name"><a itemprop="url"routerLink="/about/inquiries">Media/Press</a></li>
         <li><a routerLink="/about/canary">Warrant Canary</a></li>
         <li><a routerLink="/blog" *ngIf="env === 'DEV'">Blog</a></li>
         <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
