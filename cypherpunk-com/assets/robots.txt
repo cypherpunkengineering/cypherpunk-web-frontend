@@ -6,3 +6,4 @@ Disallow: /confirmation
 Disallow: /activate
 Disallow: /partial
 Disallow: /reset
+Disallow: /confirmChange
