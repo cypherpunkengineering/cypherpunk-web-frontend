@@ -71,7 +71,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.document.title = 'Cypherpunk Privacy | Online Privacy &amp; Freedom Made Easy';
+    this.document.title = 'Cypherpunk Privacy | Online Privacy & Freedom Made Easy';
   }
 
 }

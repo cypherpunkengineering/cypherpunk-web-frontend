@@ -108,7 +108,7 @@ const metaMap = {
     description: 'Protect your Router with the Cypherpunk Router VPN & Online Privacy App.'
   },
   'apps.html': {
-    title: 'Cypherpunk Privacy Apps &amp; VPN Service',
+    title: 'Cypherpunk Privacy Apps & VPN Service',
     description: 'Download apps to protect your online privacy and freedom for every device. Try it free for a limited time only! 24/7/365 customer support.'
   },
   'about.html': {

@@ -130,6 +130,6 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   }
 
   ngOnDestroy() {
-    this.document.title = 'Cypherpunk Privacy | Online Privacy &amp; Freedom Made Easy';
+    this.document.title = 'Cypherpunk Privacy | Online Privacy & Freedom Made Easy';
   }
 }
