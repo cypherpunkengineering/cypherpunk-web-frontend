@@ -6,6 +6,8 @@ import { Component, Inject } from '@angular/core';
   styleUrls: ['./canary.component.css']
 })
 export class CanaryComponent {
+  now = new Date();
+
   constructor(@Inject(DOCUMENT) private document: any) {
     this.document.title = 'About Cypherpunk Privacy';
   }
