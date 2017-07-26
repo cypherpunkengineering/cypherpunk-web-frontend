@@ -54,12 +54,12 @@ pip install --upgrade -t lib/ google-api-python-client
 
 if [ "$1" = "--prod" ];then
 	cp app-prod.yaml app.yaml
+	gcloud config set project cypherpunk-com
 else
 	cp app-dev.yaml app.yaml
+	gcloud config set project cypherpunk-engineering
 fi
 
-# TODO: add switch to deploy to -com project
-gcloud config set project cypherpunk-engineering
 echo y | gcloud app deploy
 
 # done done
