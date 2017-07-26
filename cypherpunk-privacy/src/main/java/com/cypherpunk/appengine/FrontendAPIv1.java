@@ -757,6 +757,12 @@ public class FrontendAPIv1 extends HttpServlet
 			cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 		}
 
+		if (cypherpunkResponse == null) // request failed
+		{
+			res.sendError(503);
+			return;
+		}
+
 		// get response code of outgoing request, set on incoming request response
 		Integer resCode = cypherpunkResponse.getResponseCode();
 		res.setStatus(resCode);
