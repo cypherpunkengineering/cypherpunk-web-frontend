@@ -87,7 +87,10 @@ export class PricingComponent implements OnDestroy {
     this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
 
     // ** Hide this page from production
-    if (this.globals.ENV !== 'DEV') { this.router.navigate(['/']); }
+    if (this.globals.ENV !== 'DEV') {
+      this.router.navigate(['/']);
+      return;
+    }
 
     // handle plans
     this.plansSrv = plansService;

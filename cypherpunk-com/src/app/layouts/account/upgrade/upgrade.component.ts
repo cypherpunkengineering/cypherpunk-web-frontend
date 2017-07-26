@@ -77,7 +77,10 @@ export class UpgradeComponent implements OnDestroy {
     this.document.title = 'Upgrade Cypherpunk Account';
 
     // ** Hide this page from production
-    if (this.globals.ENV !== 'DEV') { this.router.navigate(['/']); }
+    if (this.globals.ENV !== 'DEV') {
+      this.router.navigate(['/']);
+      return;
+    }
 
     // handle plans
     this.plansSrv = plansService;
