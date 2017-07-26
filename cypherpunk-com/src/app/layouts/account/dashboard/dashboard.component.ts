@@ -76,6 +76,7 @@ export class DashboardComponent {
     else if (page === 'billing') { this.currentTab = page; }
     else if (page === 'refer') { this.currentTab = page; }
     else if (page === 'dns') { this.currentTab = page; }
+    else if (page === 'issue') { this.currentTab = page; }
     else if (page === 'configs') { this.currentTab = page; }
     else { this.currentTab = 'overview'; }
 

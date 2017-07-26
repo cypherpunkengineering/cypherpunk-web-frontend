@@ -100,6 +100,10 @@ export class ContactFromComponent {
     .then((data) => {
       this.show['show'] = false;
       this.alerts.success('Thank you for your submission. <br><br>One of our cypherpunks will be in touch shortly!!');
+      this.name = '';
+      this.subject = '';
+      this.groupID = '32425127';
+      this.comment = '';
     })
     .catch((err) => {
       this.error = true;
