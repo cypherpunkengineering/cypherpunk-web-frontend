@@ -5,16 +5,16 @@
 </div>
 
 <div class="content">
-  <form>
+  <form id="resetForm" ngNativeValidate>
     <div>
-      <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (blur)="this.errors.password.touched = true; validatePassword()" autofocus>
+      <input id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (blur)="this.errors.password.touched = true; validatePassword()" autofocus minlength=6 required>
       <div class="error-message" [hidden]="!this.errors.password.touched">
         {{this.errors.password.message}}
       </div>
     </div>
 
     <div>
-      <input id="confirm" type="password" name="confirm" placeholder="Confirm Password" [(ngModel)]="confirm" [ngClass]="{'error': this.errors.confirm.message && this.errors.confirm.touched}" (keyup.enter)="reset()" (ngModelChange)="validateConfirm()" (blur)="this.errors.confirm.touched = true; validateConfirm()">
+      <input id="confirm" type="password" name="confirm" placeholder="Confirm Password" [(ngModel)]="confirm" [ngClass]="{'error': this.errors.confirm.message && this.errors.confirm.touched}" (keyup.enter)="reset()" (ngModelChange)="validateConfirm()" (blur)="this.errors.confirm.touched = true; validateConfirm()" minlength=6 required>
       <div class="error-message" [hidden]="!this.errors.confirm.touched">
         {{this.errors.confirm.message}}
       </div>

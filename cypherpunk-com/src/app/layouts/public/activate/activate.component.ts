@@ -50,6 +50,10 @@ export class ActivateComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) { document.getElementById('password').focus(); }
+    if (isPlatformBrowser(this.platformId)) {
+      let form = <HTMLFormElement> document.getElementById('activateForm');
+      form.noValidate = true;
+    }
   }
 
   validatePassword() {
