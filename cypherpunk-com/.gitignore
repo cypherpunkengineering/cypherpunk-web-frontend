@@ -6,6 +6,7 @@
 npm-debug.log
 
 /dist/
+/appengine/app.yaml
 /appengine/target
 /appengine/blog-article.html
 /appengine/support-article.html
