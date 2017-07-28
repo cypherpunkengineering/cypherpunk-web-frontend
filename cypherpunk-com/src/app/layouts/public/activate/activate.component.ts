@@ -63,6 +63,9 @@ export class ActivateComponent implements AfterViewInit {
     if (!this.password) {
       this.errors.password.message = 'Password is Required';
     }
+    else if (!this.passwordRegex(this.password)) {
+      this.errors.password.message = 'Password contains invalid characters';
+    }
     else if (this.password.length < 6) {
       this.errors.password.message = 'Password needs to be 6 characters or longer';
     }
@@ -90,6 +93,10 @@ export class ActivateComponent implements AfterViewInit {
     }
 
     return valid;
+  }
+
+  passwordRegex(password) {
+    return /^[\x21-\x7E]*$/.test(password);
   }
 
   activate() {

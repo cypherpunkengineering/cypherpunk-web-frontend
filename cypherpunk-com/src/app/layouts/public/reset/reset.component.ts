@@ -81,6 +81,9 @@ export class PublicResetComponent implements AfterViewInit {
     if (!this.confirm) {
       this.errors.confirm.message = 'Confirmation is Required';
     }
+    else if (!this.passwordRegex(this.password)) {
+      this.errors.password.message = 'Password contains invalid characters';
+    }
     else if (this.password !== this.confirm) {
       this.errors.confirm.message = 'Password and Confirmation do not match';
     }
@@ -90,6 +93,10 @@ export class PublicResetComponent implements AfterViewInit {
     }
 
     return valid;
+  }
+
+  passwordRegex(password) {
+    return /^[\x21-\x7E]*$/.test(password);
   }
 
   reset() {
