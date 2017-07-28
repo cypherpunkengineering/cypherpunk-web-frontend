@@ -63,7 +63,7 @@
     .column-header {
       text-align: center;
       margin: 0 0 50px;
-      img { max-width: 360px; }
+      img { width: 100%; }
     }
 
     .column-cell {
@@ -75,7 +75,10 @@
         display: inline-block;
         vertical-align: middle;
         text-align: center;
-        img { width: 100%; }
+        img {
+          width: 100%;
+          &.height { max-height: 140px; width: auto; }
+        }
       }
 
       .cell-content {

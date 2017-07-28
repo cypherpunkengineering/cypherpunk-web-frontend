@@ -65,7 +65,10 @@
         display: inline-block;
         vertical-align: middle;
         text-align: center;
-        img { width: 100%; }
+        img {
+          width: 100%;
+          &.height { width: auto; height: 140px; }
+        }
       }
 
       .cell-content {
