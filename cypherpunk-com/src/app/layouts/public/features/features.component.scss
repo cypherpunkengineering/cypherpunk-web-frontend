@@ -68,6 +68,11 @@
     padding: 80px 0 0;
   }
 
+  .section-constrained {
+    max-width: 800px;
+    margin: auto;
+  }
+
   .cell {
     width: 330px;
     margin: 60px 0 0;
