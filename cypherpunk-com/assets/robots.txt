@@ -8,3 +8,4 @@ Disallow: /partial
 Disallow: /reset
 Disallow: /confirmChange
 Disallow: /pricing
+Disallow: /bounty.asc
