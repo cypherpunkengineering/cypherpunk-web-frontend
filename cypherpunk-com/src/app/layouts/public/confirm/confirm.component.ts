@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { ConfirmGuard } from '../../../services/confirm-guard.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   templateUrl: './confirm.component.html',
@@ -13,6 +14,7 @@ export class ConfirmComponent {
   constructor(
     private router: Router,
     private confirmGuard: ConfirmGuard,
+    private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
     @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -27,7 +29,8 @@ export class ConfirmComponent {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.confirmGuard.canActivate(route, state)
-      .then(() => { this.router.navigate(['account']); });
+      .then(() => { this.router.navigate(['account', {queryParams: {confirmed: true}}]); })
+      .catch(() => { this.alertService.error('Could not confirm your account'); });
     }
   }
 }

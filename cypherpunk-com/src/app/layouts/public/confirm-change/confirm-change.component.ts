@@ -29,10 +29,8 @@ export class ConfirmChangeComponent {
       let route = activatedRoute.snapshot;
       let state = router.routerState.snapshot;
       this.confirmChangeGuard.canActivate(route, state)
-      .then(() => {
-        this.alertService.success('Your password was updated successfully.');
-        this.router.navigate(['account']);
-      });
+      .then(() => { this.router.navigate(['account', {queryParams: {emailupdated: true}}]); })
+      .catch(() => { this.alertService.error('Could not update your email'); });
     }
   }
 }

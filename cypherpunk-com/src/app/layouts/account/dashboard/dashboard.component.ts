@@ -19,6 +19,8 @@ export class DashboardComponent {
   intervalHandler: any;
   showGettingStarted: boolean;
   testLoading: boolean;
+  confirmed: boolean;
+  emailUpdated: boolean;
 
   // current site state
   state: {
@@ -70,6 +72,12 @@ export class DashboardComponent {
       if (prodBitpay || testBitpay) { this.state.showBPWarning = true; }
     }
 
+    // handle confirmed in query params
+    if (this.activatedRoute.snapshot.queryParamMap['confirmed']) { this.confirmed = true; }
+
+    // handle email updated
+    if (this.activatedRoute.snapshot.queryParamMap['emailupdated']) { this.emailUpdated = true; }
+
     // handle page routing
     let page = this.activatedRoute.snapshot.params['page'];
     if (page === 'subscription') { this.currentTab = page; }
@@ -95,6 +103,14 @@ export class DashboardComponent {
 
           if (data.account.type === 'pending' || data.account.type === 'invitation') {
             let error = 'You\'ve been placed on the waitlist. Due to high popularity, we are out of Free Preview Access accounts. Your invitation request has been placed on our waitlist. We will notify you once your request is approved.';
+            if (this.confirmed) {
+              error = 'Your account is now confirmed<br><br>' + error;
+              this.confirmed = false;
+            }
+            if (this.emailUpdated) {
+              error = 'Your email was successfully updated<br><br>' + error;
+              this.emailUpdated = false;
+            }
             this.alertService.success(error);
           }
           else if (!data.account.confirmed) {

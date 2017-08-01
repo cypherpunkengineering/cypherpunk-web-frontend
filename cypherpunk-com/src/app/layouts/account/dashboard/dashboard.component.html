@@ -94,3 +94,33 @@
     </div>
   </div>
 </div>
+
+<div class="modal" [ngClass]="{'open': confirmed}">
+  <div class="background" (click)="confirmed = false;" [ngClass]="{'open': confirmed}"></div>
+  <div class="modal-content" [ngClass]="{'open': confirmed}">
+    <div class="modal-header">Confirmed</div>
+
+    <div class="modal-body">
+      Your account is now confirmed
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn teal" (click)="confirmed = false;">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'open': emailUpdated}">
+  <div class="background" (click)="emailUpdated = false;" [ngClass]="{'open': emailUpdated}"></div>
+  <div class="modal-content" [ngClass]="{'open': emailUpdated}">
+    <div class="modal-header">Email Updated</div>
+
+    <div class="modal-body">
+      Your email was successfully updated
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn teal" (click)="emailUpdated = false;">Close</button>
+    </div>
+  </div>
+</div>
