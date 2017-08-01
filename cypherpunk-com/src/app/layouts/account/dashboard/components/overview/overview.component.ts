@@ -96,17 +96,19 @@ export class AccountOverviewComponent {
   }
 
   showPriceBoxes() {
-    return false;
-    // let accountType = this.state.user.account.type;
-    // let subType = this.state.user.subscription.type;
-    // let renews = this.state.user.subscription.renews;
-    //
-    // if (accountType === 'free' || accountType === 'expired') { return true; }
-    // else if (accountType === 'premium') {
-    //   if (renews === false) { return true; }
-    //   if (subType !== 'annually' && subType !== 'forever') { return true; }
-    // }
-    // else { return false; }
+    if (this.env === 'PROD') { return false; }
+
+    let accountType = this.state.user.account.type;
+    let subType = this.state.user.subscription.type;
+    let renews = this.state.user.subscription.renews;
+
+    if (accountType === 'free' || accountType === 'expired') { return true; }
+    else if (accountType === 'premium') {
+      if (subType === 'forever') { return false; }
+      if (renews === false) { return true; }
+      if (subType === 'monthly' || subType === 'semiannually') { return true; }
+    }
+    else { return false; }
   }
 
   openEmailModal() {

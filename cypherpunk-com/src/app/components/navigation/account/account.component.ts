@@ -44,6 +44,7 @@ export class AccountNavigationComponent {
   }
 
   showPriceBoxes() {
+    if (this.env === 'PROD') { return false; }
     let accountType = this.user.account.type;
     let subType = this.user.subscription.type;
     let renews = this.user.subscription.renews;
