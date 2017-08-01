@@ -111,8 +111,9 @@ export class PricingComponent implements OnDestroy {
 
         if (accountType === 'free' || accountType === 'expired') { upgrade = true; }
         else if (accountType === 'premium') {
-          if (renews === false) { upgrade = true; }
-          if (subType !== 'annually' && subType !== 'forever') { upgrade = true; }
+          if (subType === 'forever') { upgrade = false; }
+          else if (renews === false) { upgrade = true; }
+          else if (subType === 'monthly' || subType === 'semiannually') { upgrade = true; }
         }
 
         if (upgrade) {
