@@ -50,9 +50,9 @@ export class AccountNavigationComponent {
 
     if (accountType === 'free' || accountType === 'expired') { return true; }
     else if (accountType === 'premium') {
-      if (subType === 'forever') { return false; }
-      else if (renews === false) { return true; }
-      else if (subType === 'monthly' || subType === 'semiannually') { return true; }
+      if (renews === false) { return true; }
+      if (subType !== 'annually' && subType !== 'forever') { return true;
+      }
     }
     else { return false; }
   }
