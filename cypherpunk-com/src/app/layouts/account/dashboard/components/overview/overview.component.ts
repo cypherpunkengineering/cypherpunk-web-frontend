@@ -78,7 +78,8 @@ export class AccountOverviewComponent {
     if (user.account.type === 'expired') { return 'expired'; }
     else if (user.account.type === 'premium') {
       if (user.subscription.renews) { return 'renews'; }
-      else if (!user.subscription.renews) { return 'expires'; }
+      else if (!user.subscription.renews && user.subscription.expiration) { return 'expires'; }
+      else { return 'none'; }
     }
     else { return 'none'; }
   }
