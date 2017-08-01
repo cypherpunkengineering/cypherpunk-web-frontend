@@ -103,8 +103,9 @@ export class AccountOverviewComponent {
     //
     // if (accountType === 'free' || accountType === 'expired') { return true; }
     // else if (accountType === 'premium') {
+    //   if (subType === 'forever') { return false; }
     //   if (renews === false) { return true; }
-    //   if (subType !== 'annually' && subType !== 'forever') { return true; }
+    //   if (subType === 'monthly' || subType === 'semiannually') { return true; }
     // }
     // else { return false; }
   }
