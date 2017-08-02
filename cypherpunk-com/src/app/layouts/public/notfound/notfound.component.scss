@@ -63,9 +63,20 @@
       height: 38px;
       padding-top: 6px;
       position: relative;
-
       border: solid 2px #034698;
       border-radius: 82px;
+      transition: all 0.2s ease-in;
+      &:hover {
+        color: #fff;
+        background-color: #034698;
+      }
+      &.highlight {
+        background-color: #ffe49a;
+        &:hover {
+          color: #ffe49a;
+          background-color: #034698;
+        }
+      }
     }
   }
 }
