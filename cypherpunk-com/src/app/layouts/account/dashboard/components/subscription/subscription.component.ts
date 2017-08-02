@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { BackendService } from '../../../../../services/backend.service';
 
 @Component({
   selector: 'account-subscription',
@@ -7,8 +9,20 @@ import { Component, Input } from '@angular/core';
 })
 export class AccountSubscriptionComponent {
   @Input() state;
+  cards = [];
   cancelled = false;
   showPaymentDetails = false;
 
-  constructor() { }
+  constructor(
+    private backend: BackendService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      backend.cards()
+      .subscribe((data: any) => {
+        console.log(data);
+        this.cards = data.sources;
+      }, () => {});
+    }
+  }
 }

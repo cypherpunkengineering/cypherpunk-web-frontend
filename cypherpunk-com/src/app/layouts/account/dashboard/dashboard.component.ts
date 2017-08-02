@@ -1,5 +1,4 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../services/seo.service';
 import { AlertService } from '../../../services/alert.service';

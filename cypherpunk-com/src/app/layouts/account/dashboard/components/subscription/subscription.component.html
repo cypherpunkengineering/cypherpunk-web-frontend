@@ -18,7 +18,8 @@
 
       <div class="content-row">
         <div class="left">
-          Payment method: <span class="info">Credit Card (ending in 3275)</span>
+          Payment method:
+          <span class="info" *ngIf="cards.length">Credit Card (ending in 3275)</span>
           </div>
         <div class="right">
           <a (click)="showPaymentDetails = !showPaymentDetails">
@@ -27,7 +28,7 @@
         </div>
 
         <div class="payment">
-          <account-payment [state]="state" [show]="showPaymentDetails"></account-payment>
+          <account-payment [cards]="cards" [state]="state" [show]="showPaymentDetails"></account-payment>
         </div>
       </div>
 

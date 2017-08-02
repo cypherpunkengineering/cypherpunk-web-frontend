@@ -11,10 +11,9 @@ import country_list from '../../../../public/pricing/countries';
 })
 export class AccountPaymentComponent {
   @Input() state;
+  @Input() cards;
   @Input() show: boolean;
-  defaultCardId = '';
   defaultCard: any;
-  cards = [];
   showCreateCard = false;
   ccButtonDisabled = false;
   countries = country_list;
@@ -36,18 +35,6 @@ export class AccountPaymentComponent {
     private alertsService: AlertService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // get all stripe cards for this user
-    if (isPlatformBrowser(this.platformId)) {
-      backend.cards()
-      .subscribe((data: any) => {
-        this.defaultCardId = data.default_source;
-        this.cards = data.sources;
-        this.cards.map((card) => {
-          if (card.id === data.default_source) { this.defaultCard = card; }
-        });
-      }, () => {});
-    }
-
     // use Geo-IP to preload CC country
     if (isPlatformBrowser(this.platformId)) {
       backend.networkStatus()
@@ -68,10 +55,8 @@ export class AccountPaymentComponent {
     let body = { default_source: this.defaultCard.id };
     return this.backend.defaultCard(body, {})
     .then((data) => {
-      this.defaultCardId = data.default_source;
       this.cards = data.sources;
       this.state.loading = false;
-      return this.defaultCardId;
     })
     .catch(() => {
       this.alertsService.error('There was an error updating your account');
@@ -170,11 +155,8 @@ export class AccountPaymentComponent {
     // alert and redirect
     .then((data) => {
       this.zone.run(() => {
-        this.defaultCardId = data.default_source;
         this.cards = data.sources;
-        this.cards.map((card) => {
-          if (card.id === data.default_source) { this.defaultCard = card; }
-        });
+        this.defaultCard = this.cards[0];
         this.state.loading = false;
         this.showCreateCard = false;
         this.ccButtonDisabled = false;
