@@ -1,12 +1,16 @@
-import { Component, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   templateUrl: './notfound.component.html',
   styleUrls: ['./notfound.component.css']
 })
 export class NotFoundComponent {
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Page Not Found | Cypherpunk Privacy';
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Page Not Found | Cypherpunk Privacy',
+      description: '404 Error: This page does not exist.',
+      url: '/404'
+    })
   }
 }

@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
@@ -25,16 +25,19 @@ export class PublicResetComponent implements AfterViewInit {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private auth: AuthService,
     private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Reset Your Password';
+    seo.updateMeta({
+      title: 'Reset Your Password',
+      description: ' ',
+      url: '/reset'
+    });
 
     // replace history
     if (isPlatformBrowser(this.platformId)) {

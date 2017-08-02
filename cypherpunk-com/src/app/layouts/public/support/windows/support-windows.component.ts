@@ -1,6 +1,5 @@
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject } from '@angular/core';
-import { BackendService } from '../../../../services/backend.service';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../../services/seo.service';
 
 @Component({
   templateUrl: './support-windows.component.html',
@@ -8,8 +7,11 @@ import { BackendService } from '../../../../services/backend.service';
 })
 export class SupportWindowsComponent {
 
-  constructor(
-    private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
-  ) { this.document.title = 'Cypherpunk Privacy Support'; }
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Cypherpunk Privacy Support For Windows',
+      description: 'Help, support, download link and setup guides for the Cypherpunk Privacy Windows app.',
+      url: '/support/windows'
+    });
+  }
 }

@@ -1,9 +1,9 @@
 import * as platform from 'platform';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { PlatformBuilds } from '../platform-builds';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../../services/seo.service';
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   templateUrl: './apps.component.html',
@@ -26,11 +26,14 @@ export class AppsComponent {
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: any,
+    private seo: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Cypherpunk Privacy Suite';
+    seo.updateMeta({
+      title: 'Cypherpunk Privacy Apps & VPN Service',
+      description: 'Download apps to protect your online privacy and freedom for every device. Try it free for a limited time only! 24/7/365 customer support.',
+      url: '/app'
+    });
 
     // detect os setup
     let os: string = platform.os.family || '';

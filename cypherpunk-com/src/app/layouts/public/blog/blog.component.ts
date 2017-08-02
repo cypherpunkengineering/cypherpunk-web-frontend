@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 import { BackendService } from '../../../services/backend.service';
 
 @Component({
@@ -11,9 +11,15 @@ export class BlogComponent implements OnInit {
   showSearch = false;
 
   constructor(
-    private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
-  ) { this.document.title = 'Cypherpunk Online Privacy & Freedom Blog'; }
+    private seo: SeoService,
+    private backend: BackendService
+  ) {
+    seo.updateMeta({
+      title: 'Cypherpunk Online Privacy & Freedom Blog',
+      description: 'Online privacy and freedom blog by Cypherpunk Privacy.',
+      url: '/blog'
+    });
+  }
 
   ngOnInit() {
     this.backend.blogPosts()

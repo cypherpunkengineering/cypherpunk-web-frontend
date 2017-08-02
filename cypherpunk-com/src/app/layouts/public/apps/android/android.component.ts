@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PlatformBuilds } from '../platform-builds';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
@@ -10,13 +10,17 @@ import { Component, PLATFORM_ID, Inject } from '@angular/core';
 })
 export class AndroidComponent {
   downloadLink: string;
-  
+
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: any,
+    private seo: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.document.title = 'Cypherpunk Android VPN & Online Privacy App';
+    seo.updateMeta({
+      title: 'Cypherpunk Android VPN & Online Privacy App',
+      description: 'Protect your Android device with the Cypherpunk Android VPN & Online Privacy App.',
+      url: '/apps/android'
+    })
 
     // determine platform param
     this.downloadLink = PlatformBuilds['android'].link;

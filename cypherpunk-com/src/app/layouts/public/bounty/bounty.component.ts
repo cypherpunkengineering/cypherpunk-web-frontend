@@ -1,12 +1,16 @@
-import { Component, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   templateUrl: './bounty.component.html',
   styleUrls: ['./bounty.component.css']
 })
 export class BountyComponent {
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Bug Bounty Program by Cypherpunk Privacy';
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Bug Bounty Program by Cypherpunk Privacy',
+      description: 'Earn money by ethically disclosing legitimate vulnerabilities to our website and apps.',
+      url: '/bounty'
+    });
   }
 }

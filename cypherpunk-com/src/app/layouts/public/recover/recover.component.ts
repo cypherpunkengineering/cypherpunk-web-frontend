@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
 import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
@@ -17,13 +17,17 @@ export class RecoverComponent implements AfterViewInit {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private backend: BackendService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.document.title = 'Reset your password for Cypherpunk Privacy';
+    seo.updateMeta({
+      title: 'Reset your password for Cypherpunk Privacy',
+      description: 'Forgot your password to Cypherpunk Privacy? No problem, you can reset it here.',
+      url: '/recover'
+    });
 
     // check if email exists
     let route = this.activatedRoute.snapshot;

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PlatformBuilds } from '../platform-builds';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
@@ -13,10 +13,14 @@ export class IosComponent {
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: any,
+    private seo: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.document.title = 'Cypherpunk iOS VPN & Online Privacy App';
+    seo.updateMeta({
+      title: 'Cypherpunk iOS VPN & Online Privacy App',
+      description: 'Protect your iOS device with the Cypherpunk iOS VPN & Online Privacy App.',
+      url: '/apps/ios'
+    });
 
     // determine platform param
     this.downloadLink = PlatformBuilds['ios'].link;

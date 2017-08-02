@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PlatformBuilds } from '../platform-builds';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
@@ -14,11 +14,9 @@ export class MacComponent {
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: any,
+    private seo: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.document.title = 'Cypherpunk Mac VPN & Online Privacy App';
-
     // determine platform param
     this.downloadLink = PlatformBuilds['macos'].link;
     let isBrowser = isPlatformBrowser(this.platformId);
@@ -28,6 +26,16 @@ export class MacComponent {
       PlatformBuilds.downloadFile(this.downloadLink, isBrowser);
     }
     if (url.endsWith('download') && isBrowser) { this.showDownloading = true; }
+
+    // handle meta tags and title
+    let seoUrl = '/apps/';
+    if (url.toLowerCase().indexOf('macos') > -1) { seoUrl = seoUrl + 'macos'; }
+    else { seoUrl = seoUrl + 'mac'; }
+    seo.updateMeta({
+      title: 'Cypherpunk Mac VPN & Online Privacy App',
+      description: 'Protect your Mac device with the Cypherpunk Macintosh VPN & Online Privacy App.',
+      url: seoUrl
+    });
   }
 
   startDownload() { this.showDownloading = true; }

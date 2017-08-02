@@ -1,8 +1,7 @@
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   templateUrl: './feedback.component.html',
@@ -13,10 +12,16 @@ export class FeedbackComponent implements OnInit {
   showContactForm = { show: false };
 
   constructor(
+    private seo: SeoService,
     private location: Location,
-    private route: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any
-  ) { this.document.title = 'Submit Feedback About Cypherpunk Privacy'; }
+    private route: ActivatedRoute
+  ) {
+    seo.updateMeta({
+      title: 'Submit Feedback About Cypherpunk Privacy',
+      description: 'Help us improve our privacy service by submitting feedback about your experience.',
+      url: '/feedback'
+    });
+  }
 
   ngOnInit() {
     let fragment = this.route.snapshot.fragment;

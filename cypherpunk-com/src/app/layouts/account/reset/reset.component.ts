@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/core';
 
@@ -17,13 +17,16 @@ export class ResetComponent implements AfterViewInit {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private authGuard: AuthGuard,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Reset Your Password';
+    seo.updateMeta({
+      title: 'Reset Your Password',
+      description: ' ',
+      url: '/account/reset'
+    });
 
     // check user account
     if (isPlatformBrowser(this.platformId)) {

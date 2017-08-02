@@ -1,6 +1,5 @@
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject } from '@angular/core';
-import { BackendService } from '../../../../services/backend.service';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../../services/seo.service';
 
 @Component({
   templateUrl: './support-home.component.html',
@@ -18,10 +17,13 @@ export class SupportHomeComponent {
     'streaming-services-cypherplay': { show: false }
   }
 
-  constructor(
-    private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
-  ) { this.document.title = 'Cypherpunk Privacy Support'; }
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Cypherpunk Privacy Support',
+      description: 'Get help and support for Cypherpunk Privacy apps and service, 24/7/365.',
+      url: '/support'
+    });
+  }
 
   showSection(id) {
     this.switches[id].show = !this.switches[id].show;

@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
@@ -22,13 +22,19 @@ export class SignupComponent implements AfterViewInit {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private auth: AuthService,
     private route: ActivatedRoute,
     private backend: BackendService,
     private alertService: AlertService,
-    @Inject(DOCUMENT) private document: any,
     @Inject (PLATFORM_ID) private platformId: Object
-  ) { this.document.title = 'Create Account with Cypherpunk Privacy'; }
+  ) {
+    seo.updateMeta({
+      title: 'Create Account with Cypherpunk Privacy',
+      description: 'Create an account with Cypherpunk Privacy',
+      url: '/signup'
+    });
+  }
 
   ngAfterViewInit() {
     let params = this.route.snapshot.params;

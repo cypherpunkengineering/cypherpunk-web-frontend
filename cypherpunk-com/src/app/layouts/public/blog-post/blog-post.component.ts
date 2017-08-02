@@ -1,14 +1,15 @@
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
+import { Component, Inject, OnInit } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.css']
 })
-export class BlogPostComponent implements OnInit, OnDestroy {
+export class BlogPostComponent implements OnInit {
   post = {
     id: '',
     title: '',
@@ -36,13 +37,22 @@ export class BlogPostComponent implements OnInit, OnDestroy {
     }
   ];
 
-  showSearch: boolean = false;
+  showSearch = false;
 
   constructor(
+    private title: Title,
+    private seo: SeoService,
     private route: ActivatedRoute,
-    private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
-  ) { this.img = this.ctaImages[Math.floor(Math.random() * this.ctaImages.length)]; }
+    private backend: BackendService
+  ) {
+    this.img = this.ctaImages[Math.floor(Math.random() * this.ctaImages.length)];
+    seo.updateMeta({
+      title: '{{__BLOG_TITLE__}}',
+      description: '{{__BLOG_DESCRIPTION__}}',
+      url: '{{__BLOG_URL__}}',
+      image: '{{__BLOG_IMAGE__}}'
+    });
+  }
 
   ngOnInit() {
     let postId = this.route.snapshot.params['postId'];
@@ -51,7 +61,7 @@ export class BlogPostComponent implements OnInit, OnDestroy {
       (data: any) => {
         this.post = data;
         this.post.content = this.post.content.replace(/CypherpunkDescription: .*/, '');
-        this.document.title = data.title;
+        this.title.setTitle(data.title);
       },
       (error: any) => { console.log(error); }
     );
@@ -69,9 +79,4 @@ export class BlogPostComponent implements OnInit, OnDestroy {
       return datePipe.transform(this.post.published, 'MM/dd/yyyy');
     }
   }
-
-  ngOnDestroy() {
-    this.document.title = 'Cypherpunk Privacy | Online Privacy & Freedom Made Easy';
-  }
-
 }

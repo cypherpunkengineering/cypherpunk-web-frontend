@@ -79,6 +79,7 @@ import { ConfirmChangeGuard } from './services/confirm-change-guard.service';
 import { PlansService } from './services/plans.service';
 import { BackendService } from './services/backend.service';
 import { GlobalsService } from './services/globals.service';
+import { SeoService } from './services/seo.service';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -162,7 +163,8 @@ import { GlobalsService } from './services/globals.service';
     ConfirmChangeGuard,
     PlansService,
     BackendService,
-    GlobalsService
+    GlobalsService,
+    SeoService
   ]
 })
 export class AppModule {

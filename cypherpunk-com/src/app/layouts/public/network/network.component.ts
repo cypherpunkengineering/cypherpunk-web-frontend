@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Rx';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 import { BackendService } from '../../../services/backend.service';
 import 'rxjs/add/observable/forkJoin';
 
@@ -12,8 +13,8 @@ import 'rxjs/add/observable/forkJoin';
 export class NetworkComponent implements OnInit {
   regionArray = [];
   locationArray = [];
-  loading: boolean = true;
-  totalServers: number = 0;
+  loading = true;
+  totalServers = 0;
 
   // Map Stuff
   pi = Math.PI;
@@ -22,11 +23,15 @@ export class NetworkComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private seo: SeoService,
     private route: ActivatedRoute,
-    private backend: BackendService,
-    @Inject(DOCUMENT) private document: any
+    private backend: BackendService
   ) {
-    this.document.title = 'Cypherpunk Privacy VPN Network';
+    seo.updateMeta({
+      title: 'Cypherpunk Privacy VPN Network',
+      description: 'Choose one of the lightning fast servers on the Cypherpunk Privacy Network to enjoy private, unrestricted internet access.',
+      url: '/network'
+    });
   }
 
   ngOnInit() {

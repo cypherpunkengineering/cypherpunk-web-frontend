@@ -1,15 +1,16 @@
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../../services/seo.service';
 import { BackendService } from '../../../../services/backend.service';
-import { Component, PLATFORM_ID, Inject, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, OnInit, AfterViewChecked } from '@angular/core';
 
 @Component({
   templateUrl: './support-article.component.html',
   styleUrls: ['./support-article.component.css']
 })
-export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDestroy {
+export class SupportArticleComponent implements OnInit, AfterViewChecked {
   pageLinks = [];
   breadcrumbs = [{ title: 'Support', link: '/support'}];
   baseRoute: String;
@@ -55,13 +56,22 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
   FF_COMPONENT = '<iframe src="/partial/firefox" style="width: 100%; height: 70px; border: 0;"></iframe>';
 
   constructor(
+    private title: Title,
     private router: Router,
+    private seo: SeoService,
     private location: Location,
     private route: ActivatedRoute,
     private backend: BackendService,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { this.baseRoute = location.path(); }
+  ) {
+    this.baseRoute = location.path();
+    seo.updateMeta({
+      title: '{{__SUPPORT_TITLE__}}',
+      description: '{{__SUPPORT_DESCRIPTION__}}',
+      url: '{{__SUPPORT_URL__}}',
+      image: '{{__SUPPORT_IMAGE__}}'
+    });
+  }
 
   ngOnInit() {
     // handle id in path param
@@ -82,7 +92,7 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
           data.content = data.content.replace(this.FF_REGEX, this.FF_COMPONENT);
           data.content = data.content.replace(/CypherpunkDescription: .*/, '');
           this.post = data;
-          this.document.title = data.title;
+          this.title.setTitle(data.title);
         })
         .catch((err) => {
           console.log(err);
@@ -127,9 +137,5 @@ export class SupportArticleComponent implements OnInit, AfterViewChecked, OnDest
         });
       }
     }
-  }
-
-  ngOnDestroy() {
-    this.document.title = 'Cypherpunk Privacy | Online Privacy & Freedom Made Easy';
   }
 }

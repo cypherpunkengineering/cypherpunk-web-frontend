@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PlatformBuilds } from '../platform-builds';
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
@@ -14,10 +14,14 @@ export class WindowsComponent {
 
   constructor(
     private router: Router,
-    @Inject(DOCUMENT) private document: any,
+    private seo: SeoService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.document.title = 'Cypherpunk Windows VPN & Online Privacy App';
+    seo.updateMeta({
+      title: 'Cypherpunk Windows VPN & Online Privacy App',
+      description: 'Protect your Windows device with the Cypherpunk Windows VPN & Online Privacy App.',
+      url: '/apps/windows'
+    })
 
     // determine platform param
     this.downloadLink = PlatformBuilds['windows'].link;

@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { AlertService } from '../../../services/alert.service';
 import { ConfirmChangeGuard } from '../../../services/confirm-change-guard.service';
@@ -13,14 +13,17 @@ export class ConfirmChangeComponent {
 
   constructor(
     private router: Router,
+    private seo: SeoService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
     private confirmChangeGuard: ConfirmChangeGuard,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Email Change Confirmation | Cypherpunk Privacy';
+    seo.updateMeta({
+      title: 'Email Change Confirmation | Cypherpunk Privacy',
+      description: ' ',
+      url: '/confirmChange'
+    });
 
     // replace history and confirm guard
     if (isPlatformBrowser(this.platformId)) {

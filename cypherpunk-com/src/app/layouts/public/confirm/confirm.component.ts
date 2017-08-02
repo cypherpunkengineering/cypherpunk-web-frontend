@@ -1,9 +1,9 @@
 import { isPlatformBrowser } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
-import { ConfirmGuard } from '../../../services/confirm-guard.service';
 import { AlertService } from '../../../services/alert.service';
+import { ConfirmGuard } from '../../../services/confirm-guard.service';
 
 @Component({
   templateUrl: './confirm.component.html',
@@ -13,14 +13,17 @@ export class ConfirmComponent {
 
   constructor(
     private router: Router,
+    private seo: SeoService,
     private confirmGuard: ConfirmGuard,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Confirmation | Cypherpunk Privacy';
+    seo.updateMeta({
+      title: 'Confirmation | Cypherpunk Privacy',
+      description: ' ',
+      url: '/confirm' // handle confirmation url?
+    });
 
     // replace history and confirm guard
     if (isPlatformBrowser(this.platformId)) {

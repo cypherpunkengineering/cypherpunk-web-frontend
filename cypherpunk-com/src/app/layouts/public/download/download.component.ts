@@ -1,5 +1,6 @@
 import * as platform from 'platform';
 import { Router } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 
@@ -8,9 +9,16 @@ export class DownloadComponent {
 
   constructor(
     private router: Router,
+    private seo: SeoService,
     private location: Location,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    seo.updateMeta({
+      title: 'Download Cypherpunk Privacy VPN Apps',
+      description: 'Download links for all of Cypherpunk Privacy & VPN Apps for Windows, Macintosh, iOS, Android, Linux, Firefox, Chrome and More.',
+      url: '/download'
+    });
+
     // detect os setup
     let os: string = platform.os.family, path = '/apps';
     os = os || '';

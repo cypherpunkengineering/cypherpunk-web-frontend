@@ -2,6 +2,7 @@ import * as platform from 'platform';
 import country_list from '../pricing/countries';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../services/seo.service';
 import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { BackendService } from '../../../services/backend.service';
 
@@ -17,12 +18,15 @@ export class WhatsMyIpComponent {
   countryCode: string = undefined;
 
   constructor(
+    private seo: SeoService,
     private backend: BackendService,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'What\'s My IP Address?';
+    seo.updateMeta({
+      title: 'What\'s My IP Address?',
+      description: 'See your current IP address and other information about you that other people can see, plus tips on how to hide that information.',
+      url: '/whats-my-ip-address'
+    });
 
     // detect os setup
     this.os = platform.os;

@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
@@ -61,6 +61,7 @@ export class UpgradeComponent implements OnDestroy {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private auth: AuthService,
     private location: Location,
     private authGuard: AuthGuard,
@@ -70,11 +71,13 @@ export class UpgradeComponent implements OnDestroy {
     private alertService: AlertService,
     private plansService: PlansService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Upgrade Cypherpunk Account';
+    seo.updateMeta({
+      title: 'Upgrade Cypherpunk Account',
+      description: ' ',
+      url: '/account/upgrade'
+    });
 
     // ** Hide this page from production
     if (this.globals.ENV !== 'DEV') {

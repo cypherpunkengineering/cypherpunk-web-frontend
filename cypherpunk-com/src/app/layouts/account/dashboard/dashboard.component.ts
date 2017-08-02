@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AlertService } from '../../../services/alert.service';
 import { AuthGuard } from '../../../services/auth-guard.service';
 import { SessionService } from '../../../services/session.service';
@@ -38,17 +39,20 @@ export class DashboardComponent {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private authGuard: AuthGuard,
     private backend: BackendService,
     private session: SessionService,
     private globals: GlobalsService,
     private alertService: AlertService,
     private activatedRoute: ActivatedRoute,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'My Account with Cypherpunk Privacy';
+    seo.updateMeta({
+      title: 'My Account | Cypherpunk Privacy',
+      description: 'Manage your account on Cypherpunk Privacy, change your email address, reset your password and more.',
+      url: '/account'
+    });
 
     // set env and user
     this.env = this.globals.ENV;

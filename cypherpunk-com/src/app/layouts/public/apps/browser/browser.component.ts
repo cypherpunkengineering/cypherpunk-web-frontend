@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { PlatformBuilds } from '../platform-builds';
-import { DOCUMENT } from '@angular/platform-browser';
+import { SeoService } from '../../../../services/seo.service';
 
 @Component({
   templateUrl: './browser.component.html',
@@ -10,8 +10,12 @@ export class BrowserComponent {
   chromeDownloadLink: string;
   firefoxDownloadLink: string;
 
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Cypherpunk VPN & Online Privacy Browser Extensions for Chrome, Firefox, Opera & Vivaldi';
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Cypherpunk VPN & Online Privacy Browser Extensions for Chrome, Firefox, Opera & Vivaldi',
+      description: 'Protect your from internet browser with Cypherpunk VPN & Online Privacy Browser Extensions',
+      url: '/apps/browser'
+    });
 
     this.chromeDownloadLink = PlatformBuilds['chrome'].link;
     this.firefoxDownloadLink = PlatformBuilds['firefox'].link;

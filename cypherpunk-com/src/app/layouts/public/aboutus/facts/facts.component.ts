@@ -1,12 +1,16 @@
-import { DOCUMENT } from '@angular/platform-browser';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../../services/seo.service';
 
 @Component({
   templateUrl: './facts.component.html',
   styleUrls: ['./facts.component.css']
 })
 export class FactsComponent {
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'About Cypherpunk Privacy';
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'About Cypherpunk Privacy',
+      description: 'Learn about Cypherpunk Privacy and the people behind it.',
+      url: '/about/facts'
+    })
   }
 }

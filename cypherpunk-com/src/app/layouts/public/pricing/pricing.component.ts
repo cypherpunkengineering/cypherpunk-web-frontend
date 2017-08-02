@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
 import { isPlatformBrowser, Location } from '@angular/common';
 import { AlertService } from '../../../services/alert.service';
@@ -71,6 +72,7 @@ export class PricingComponent implements OnDestroy {
   constructor(
     private zone: NgZone,
     private router: Router,
+    private seo: SeoService,
     private auth: AuthService,
     private location: Location,
     private authGuard: AuthGuard,
@@ -80,11 +82,13 @@ export class PricingComponent implements OnDestroy {
     private session: SessionService,
     private alertService: AlertService,
     private plansService: PlansService,
-    @Inject(DOCUMENT) private document: any,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // handle title
-    this.document.title = 'Cypherpunk Privacy & VPN Pricing and Order Form';
+    seo.updateMeta({
+      title: 'Cypherpunk Privacy & VPN Pricing and Order Form',
+      description: 'Pricing and order form for Cypherpunk Online Privacy service.',
+      url: '/pricing'
+    });
 
     // ** Hide this page from production
     if (this.globals.ENV !== 'DEV') {

@@ -1,12 +1,16 @@
-import { Component, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { SeoService } from '../../../services/seo.service';
 
 @Component({
   templateUrl: './tos.component.html',
   styleUrls: ['./tos.component.css']
 })
 export class TosComponent {
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.title = 'Cypherpunk Terms of Service';
+  constructor(private seo: SeoService) {
+    seo.updateMeta({
+      title: 'Cypherpunk Terms of Service',
+      description: 'Terms of Service for Cypherpunk privacy service, apps and website.',
+      url: '/terms-of-service'
+    });
   }
 }
