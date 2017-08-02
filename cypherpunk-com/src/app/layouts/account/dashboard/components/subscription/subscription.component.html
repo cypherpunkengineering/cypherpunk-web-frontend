@@ -20,9 +20,9 @@
       <div class="content-row">
         <div class="left">
           Payment method:
-          <div class="info" *ngIf="cards.length">
-            Credit Card (ending in <span>{{cards[0].last4}})</span>
-          </div>
+          <span class="info" *ngIf="cards.length">
+            {{ cards[0]?.brand }} (ending in <span>{{cards[0]?.last4}})</span>
+          </span>
         </div>
         <div class="right">
           <a (click)="showPaymentDetails = !showPaymentDetails">
