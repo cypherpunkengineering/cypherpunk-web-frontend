@@ -9,7 +9,7 @@
 
       <div class="content-row">
         <div class="left">
-          Your subscription renews in/expire in:
+          {{ printRenewal() }}
           <span class="info"></span>
         </div>
         <div class="right">
@@ -20,9 +20,10 @@
       <div class="content-row">
         <div class="left">
           Payment method:
-          <span class="info" *ngIf="cards.length">
+          <div class="info" *ngIf="cards.length">
             Credit Card (ending in <span>{{cards[0].last4}})</span>
           </div>
+        </div>
         <div class="right">
           <a (click)="showPaymentDetails = !showPaymentDetails">
             View your Credit Card Info
