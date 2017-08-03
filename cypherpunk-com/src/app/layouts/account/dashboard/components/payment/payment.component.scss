@@ -1,9 +1,6 @@
 .payment-details {
   transition: all 0.5s;
   overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  &.show { max-height: 920px; opacity: 1; }
 
   .card-table {
     padding: 30px 0 30px;

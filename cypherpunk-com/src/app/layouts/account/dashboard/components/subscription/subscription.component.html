@@ -24,14 +24,9 @@
             {{ cards[0]?.brand }} (ending in <span>{{cards[0]?.last4}})</span>
           </span>
         </div>
-        <div class="right">
-          <a (click)="showPaymentDetails = !showPaymentDetails">
-            View your Credit Card Info
-          </a>
-        </div>
 
         <div class="payment">
-          <account-payment [cards]="cards" [state]="state" [show]="showPaymentDetails"></account-payment>
+          <account-payment [cards]="cards" [state]="state"></account-payment>
         </div>
       </div>
 

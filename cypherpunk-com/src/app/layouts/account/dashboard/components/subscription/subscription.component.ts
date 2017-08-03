@@ -11,7 +11,6 @@ export class AccountSubscriptionComponent {
   @Input() state;
   cards = [];
   cancelled = false;
-  showPaymentDetails = false;
 
   constructor(
     private backend: BackendService,

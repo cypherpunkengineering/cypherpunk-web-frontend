@@ -12,7 +12,6 @@ import country_list from '../../../../public/pricing/countries';
 export class AccountPaymentComponent {
   @Input() state;
   @Input() cards;
-  @Input() show: boolean;
   defaultCard: any;
   showCreateCard = false;
   ccButtonDisabled = false;
