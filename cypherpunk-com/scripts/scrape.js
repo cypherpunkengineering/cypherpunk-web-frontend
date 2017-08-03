@@ -7,6 +7,7 @@ const baseRoute = 'http://localhost:3000/';
 const baseDir = './appengine/target/';
 const routes = [
   { url: baseRoute, dirPath: baseDir + 'cypherpunk-public.html' },
+  { url: baseRoute + 'pricing/preview', dirPath: baseDir + 'pricing/preview.html' },
   { url: baseRoute + 'pricing', dirPath: baseDir + 'pricing.html' },
   { url: baseRoute + 'pricing/test', dirPath: baseDir + 'pricing/ref.html' },
   { url: baseRoute + 'download', dirPath: baseDir + 'download.html' },

@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
@@ -92,7 +91,7 @@ export class PricingComponent implements OnDestroy {
 
     // ** Hide this page from production
     if (this.globals.ENV !== 'DEV') {
-      this.router.navigate(['/']);
+      this.router.navigate(['/pricing/preview']);
       return;
     }
 

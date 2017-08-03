@@ -125,7 +125,9 @@ export class PlansService {
     if (emit) { this._plans.next(this.plans); }
   }
 
-  setPlanVisibility(planCode, userType, renews): void {
+  setPlanVisibility(planCode, userType, renews, override): void {
+    if (override) { this.plans.map((plan) => { plan.viewable = true }); }
+
     if (userType === 'free' || userType === 'expired' || !renews) {
       this.plans.map((plan) => { plan.viewable = true; });
     }

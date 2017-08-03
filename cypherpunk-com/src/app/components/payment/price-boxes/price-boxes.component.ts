@@ -13,6 +13,7 @@ import { Component, Input, Inject, PLATFORM_ID, OnDestroy } from '@angular/core'
 export class PriceBoxesComponent implements OnDestroy {
   @Input() upgrade: boolean;
   @Input() btc: boolean;
+  @Input() showOverride: boolean;
 
   user;
   plansSrv;
@@ -46,7 +47,10 @@ export class PriceBoxesComponent implements OnDestroy {
 
   updatePlans() {
     // load plan data
-    this.plansService.setPlanVisibility(this.user.subscription.type, this.user.account.type, this.user.subscription.renews);
+    let subType = this.user.subscription.type;
+    let accountType = this.user.account.type;
+    let renews = this.user.subscription.renews;
+    this.plansService.setPlanVisibility(subType, accountType, renews, this.showOverride);
 
     // update bp numbers
     if (this.plans[0]) { this.plans[0].bcPrice = this.bpConvert(this.plans[0].price); }
@@ -60,6 +64,7 @@ export class PriceBoxesComponent implements OnDestroy {
   }
 
   selectPlan(plan) {
+    if (this.showOverride) { return; }
     this.plansService.selectedPlan = plan;
     if (this.upgrade) { this.router.navigate(['/account/upgrade']); }
   }

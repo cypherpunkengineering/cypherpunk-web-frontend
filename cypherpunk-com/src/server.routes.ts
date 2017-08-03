@@ -22,6 +22,7 @@ export const routes: string[] = [
   'account/reset',
   'account/*',
   'account',
+  'pricing/preview',
   'pricing/*',
   'pricing',
   'login',

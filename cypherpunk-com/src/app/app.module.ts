@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 
 import { HomeModule } from './layouts/public/home/home.module';
 import { PricingModule } from './layouts/public/pricing/pricing.module';
+import { PricingPreviewModule } from './layouts/public/pricing-preview/pricing-preview.module';
 import { SigninModule } from './layouts/public/signin/signin.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
 import { ActivateModule } from './layouts/public/activate/activate.module';
@@ -87,6 +88,7 @@ import { SeoService } from './services/seo.service';
     SharedModule,
 
     HomeModule,
+    PricingPreviewModule,
     PricingModule,
     SigninModule,
     RecoverModule,
