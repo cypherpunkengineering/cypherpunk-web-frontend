@@ -1,5 +1,5 @@
 <div class="price-boxes">
-  <div class="price-box" (click)="selectPlan(plans[0])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[0].id, 'hover': !showOverride }" *ngIf="plans[0] && plans[0].viewable">
+  <div class="price-box" (click)="selectPlan(plans[0])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[0].id, 'hover': !showOverride }" *ngIf="this.plans[0]?.viewable">
 
     <div class="box">
       <div class="checkmark"><i class="fa fa-check"></i></div>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[1].id, 'hover': !showOverride }" *ngIf="plans[1] && plans[1].viewable">
+  <div class="price-box" (click)="selectPlan(plans[1])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[1].id, 'hover': !showOverride }" *ngIf="this.plans[1]?.viewable">
 
     <div class="box buff">
       <div class="checkmark"><i class="fa fa-check"></i></div>
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <div class="price-box" (click)="selectPlan(plans[2])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[2].id, 'hover': !showOverride }" *ngIf="plans[2] && plans[2].viewable">
+  <div class="price-box" (click)="selectPlan(plans[2])" [ngClass]="{ 'active': plansSrv?.selectedPlan?.id === plans[2].id, 'hover': !showOverride }" *ngIf="this.plans[2]?.viewable">
 
     <div class="box">
       <div class="checkmark"><i class="fa fa-check"></i></div>
