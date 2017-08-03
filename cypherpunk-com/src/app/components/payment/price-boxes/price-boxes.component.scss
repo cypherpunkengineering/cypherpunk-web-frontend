@@ -10,7 +10,7 @@
     position: relative;
     &:first-child { margin-left: 0; }
     &:last-child { margin-right: 0; }
-    &:hover, &.active { .box { border-color: #00d630; } }
+    &.hover:hover, &.active { .box { border-color: #00d630; } }
     &.active .box .checkmark { display: block; }
 
     .best-value {
