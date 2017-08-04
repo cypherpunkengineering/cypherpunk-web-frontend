@@ -16,6 +16,7 @@
   padding: 60px 0 60px;
 
   .header {
+    color: #323131;
     font-size: 28px;
     margin: 0 0 60px;
   }
@@ -55,6 +56,8 @@
         color: #ff7857;
         margin-top: 25px;
       }
+
+      p { text-align: left; }
     }
 
     .jump { text-decoration: none; }
@@ -87,7 +90,9 @@
 @media (max-width: 850px) {
   .content { padding: 30px 10px 60px; }
   .content .body .column { width: 100%; margin: 0 0 100px 0; }
-  .content .body .image img { width: auto; height: 100%; }
-  .content .body .text { width: 100%; height: auto; }
-  .content .body .link { margin: auto; }
+  .content .body .image { height: auto; }
+  .content .body .image img { max-width: 400px; height: auto; }
+  .content .body .text { max-width: 400px; width:auto; height: auto; margin: 0 auto 25px; }
+  .content .body .text p { max-width: 400px; height: auto; }
+  .content .body .link { max-width: 400px; width: auto; margin: auto; }
 }
