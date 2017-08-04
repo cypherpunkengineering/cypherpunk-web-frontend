@@ -42,6 +42,7 @@ const routes = [
   { url: baseRoute + 'about/canary', dirPath: baseDir + 'about/canary.html' },
   { url: baseRoute + 'terms-of-service', dirPath: baseDir + 'terms-of-service.html' },
   { url: baseRoute + '404', dirPath: baseDir + '404.html' },
+  { url: baseRoute + '404?template=true', dirPath: baseDir + '../404-template.html' },
   { url: baseRoute + 'account', dirPath: baseDir + 'account.html' },
   { url: baseRoute + 'account/upgrade/test', dirPath: baseDir + 'account/upgrade/ref.html' },
   { url: baseRoute + 'account/upgrade', dirPath: baseDir + 'account/upgrade.html' },

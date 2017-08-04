@@ -11,6 +11,7 @@ npm-debug.log
 /appengine/blog-article.html
 /appengine/support-article.html
 /appengine/support-tutorial.html
+/appengine/404-template.html
 
 .idea
 *.ngfactory.ts
