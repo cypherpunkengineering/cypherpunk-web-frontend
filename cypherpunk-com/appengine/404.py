@@ -15,7 +15,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 # [START blog_post]
 class FileNotFound(webapp2.RequestHandler):
 
-	def get(self, postId):
+	def get(self):
 		self.error(404)
 		template = JINJA_ENVIRONMENT.get_template('404-template.html')
 		self.response.write(template.render({}))
