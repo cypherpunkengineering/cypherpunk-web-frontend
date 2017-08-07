@@ -2,7 +2,7 @@
 set -e
 
 BUILD_CYPHERPUNK_COM=false
-CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+CURRENT_BRANCH="$(echo $GIT_BRANCH|cut -d / -f2)"
 
 for i in `git diff --name-only HEAD~1`;do
 	case "$i" in
