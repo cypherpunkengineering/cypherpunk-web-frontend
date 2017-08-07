@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
       </li>
       <li>
-        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
+        <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
           Pricing
         </a>
       </li>
@@ -74,7 +74,7 @@
           <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
         </li>
         <li>
-          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
+          <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
             Pricing
           </a>
         </li>
@@ -138,7 +138,7 @@
     <div class="mobile-dd-item" routerLink="/apps" routerLinkActive="active">
       Apps
     </div>
-    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="env === 'DEV' && !isLoggedIn()">
+    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
       Pricing
     </div>
     <a routerLink="/support" routerLinkActive="active">
