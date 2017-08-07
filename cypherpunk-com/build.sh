@@ -55,9 +55,12 @@ pip install --upgrade -t lib/ google-api-python-client
 if [ "$1" = "--prod" ];then
 	cp app-prod.yaml app.yaml
 	gcloud config set project cypherpunk-com
+else if [ "$1" == "--staging" ];then
+	cp app-staging.yaml app.yaml
+	gcloud config set project cypherpunk-engineering
 else
 	cp app-dev.yaml app.yaml
-	gcloud config set project cypherpunk-engineering
+	gcloud config set project cypherpunk-test
 fi
 
 echo y | gcloud app deploy
