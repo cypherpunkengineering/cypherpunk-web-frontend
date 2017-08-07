@@ -13,7 +13,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 # [END imports]
 
 # [START blog_post]
-class 404(webapp2.RequestHandler):
+class FileNotFound(webapp2.RequestHandler):
 
 	def get(self, postId):
 		self.error(404)
@@ -23,7 +23,7 @@ class 404(webapp2.RequestHandler):
 
 # [START app]
 app = webapp2.WSGIApplication([
-	('.*', 404)
+	('.*', FileNotFound)
 ], debug=True)
 # [END app]
 
