@@ -12,7 +12,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.(appcache|manifest))
   expiration: "0m"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -24,7 +23,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.asc)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -37,7 +35,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.atom)
   expiration: "1h"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -49,7 +46,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.crx)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -61,7 +57,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.css)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -73,7 +68,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.eot)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -85,7 +79,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.htc)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -98,7 +91,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.html)
   expiration: "10m"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -111,7 +103,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.ico)
   expiration: "1d"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -123,7 +114,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.js)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -136,7 +126,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.json)
   expiration: "1h"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -148,7 +137,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.m4v)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -160,7 +148,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.mp4)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -172,7 +159,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(ogg|oga))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -184,7 +170,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.ogv)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -209,7 +194,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.rss)
   expiration: "1h"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -221,7 +205,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.safariextz)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -233,7 +216,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(svg|svgz))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -245,7 +227,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.swf)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -257,7 +238,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.ttf)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -269,7 +249,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.txt)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -281,7 +260,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.unity3d)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -293,7 +271,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.webm)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -305,7 +282,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.webp)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -317,7 +293,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.woff)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -330,7 +305,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.*\.xml)
   expiration: "1h"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -342,7 +316,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.xpi)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -354,7 +327,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(bmp|gif|ico|jpeg|jpg|png))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -366,7 +338,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(mid|midi|mp3|wav))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -378,7 +349,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(doc|exe|ppt|rtf|xls))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -390,7 +360,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.(bz2|gz|rar|tar|tgz|zip))
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -403,7 +372,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/(.+).html
   expiration: "10m"
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -415,7 +383,50 @@ handlers: # should be ordered from most specific to least specific
   upload: target/signup.html
   expiration: "10m"
   secure: always
-  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /pricing
+  static_files: target/pricing/preview.html
+  upload: target/pricing/preview.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /pricing/(.*)
+  static_files: target/404.html
+  upload: target/404.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /account/upgrade
+  static_files: target/404.html
+  upload: target/404.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /account/upgrade/(.*)
+  static_files: target/404.html
+  upload: target/404.html
+  expiration: "10m"
+  secure: always
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -460,31 +471,6 @@ handlers: # should be ordered from most specific to least specific
   upload: target/support/request/new.html
   expiration: "10m"
   secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: sameorigin
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-- url: /pricing/(.*)
-  static_files: target/pricing/ref.html
-  upload: target/pricing/ref.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: sameorigin
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-- url: /account/upgrade/(.*)
-  static_files: target/account/upgrade/ref.html
-  upload: target/account/upgrade/ref.html
-  expiration: "10m"
-  secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
@@ -494,43 +480,8 @@ handlers: # should be ordered from most specific to least specific
 - url: /blog/(.*)
   script: blogger.app
   secure: always
-  login: admin
 
 - url: /support/([a-z]*)/(.*)
   script: blogger.app
   secure: always
-  login: admin
 
-- url: /(.+)
-  static_files: target/\1.html
-  upload: target/(.+).html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: sameorigin
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-
-# site root
-- url: /
-  static_files: target/cypherpunk-public.html
-  upload: target/cypherpunk-public.html
-  expiration: "10m"
-  secure: always
-  login: admin
-  redirect_http_response_code: 301
-  http_headers:
-    X-Frame-Options: sameorigin
-    X-Content-Type-Options: nosniff
-    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
-# [END handlers]
-
-# [START libraries]
-libraries:
-- name: webapp2
-  version: latest
-- name: jinja2
-  version: latest
-# [END libraries]

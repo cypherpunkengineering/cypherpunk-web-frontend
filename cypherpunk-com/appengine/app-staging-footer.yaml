@@ -1,0 +1,21 @@
+# site root
+- url: /
+  static_files: target/cypherpunk-public.html
+  upload: target/cypherpunk-public.html
+  expiration: "10m"
+  secure: always
+  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+# [END handlers]
+
+# [START libraries]
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+# [END libraries]

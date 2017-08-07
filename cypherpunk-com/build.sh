@@ -53,15 +53,17 @@ cd appengine/
 pip install --upgrade -t lib/ google-api-python-client
 
 if [ "$1" = "--prod" ];then
-	cp app-prod.yaml app.yaml
+	(cat app-prod-header.yaml && ./generate-app-yaml.sh && cat app-prod-footer.yaml) > app.yaml
 	gcloud config set project cypherpunk-com
 elif [ "$1" == "--staging" ];then
-	cp app-staging.yaml app.yaml
+	(cat app-staging-header.yaml && ./generate-app-yaml.sh && cat app-staging-footer.yaml) > app.yaml
 	gcloud config set project cypherpunk-engineering
 else
-	cp app-dev.yaml app.yaml
+	(cat app-dev-header.yaml && ./generate-app-yaml.sh && cat app-dev-footer.yaml) > app.yaml
 	gcloud config set project cypherpunk-test
 fi
+
+cat app.yaml
 
 echo y | gcloud app deploy
 
