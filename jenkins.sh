@@ -22,8 +22,10 @@ if [ "${BUILD_CYPHERPUNK_COM}" = "true" ];then
 	case "$CURRENT_BRANCH" in
 		master)
 			(cd cypherpunk-com/ && ./build.sh --staging)
+			;;
 		develop)
 			(cd cypherpunk-com/ && ./build.sh)
+			;;
 	esac
 fi
 
