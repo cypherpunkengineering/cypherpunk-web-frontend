@@ -2,6 +2,7 @@
 set -e
 
 BUILD_CYPHERPUNK_COM=false
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 for i in `git diff --name-only HEAD~1`;do
 	case "$i" in
@@ -18,7 +19,12 @@ for i in `git diff --name-only HEAD~1`;do
 done
 
 if [ "${BUILD_CYPHERPUNK_COM}" = "true" ];then
-	(cd cypherpunk-com/ && ./build.sh)
+	case "$CURRENT_BRANCH" in
+		master)
+			(cd cypherpunk-com/ && ./build.sh --staging)
+		develop)
+			(cd cypherpunk-com/ && ./build.sh)
+	esac
 fi
 
 exit 0
