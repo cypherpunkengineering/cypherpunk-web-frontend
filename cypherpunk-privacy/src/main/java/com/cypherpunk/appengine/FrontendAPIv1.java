@@ -1214,26 +1214,28 @@ public class FrontendAPIv1 extends HttpServlet
 	} // }}}
 
 	private HTTPResponse requestData(HTTPMethod requestMethod, URL cypherpunkURL, List<HTTPHeader> headers, String body) // {{{
-	//throws IOException, UnsupportedEncodingException
 	{
-		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 		HTTPRequest request = new HTTPRequest(cypherpunkURL, requestMethod, withDefaults().setDeadline(REQUEST_DEADLINE));
-
 		HTTPResponse response = null;
 
 		try
 		{
-			if (headers != null)
-				for (HTTPHeader header : headers)
-					request.setHeader(header);
-
-			if (body != null)
+			response = requestDataFetch(request, headers, body);
+		}
+		catch (IOException e)
+		{
+			// TODO log error requesting
+			LOG.log(Level.WARNING, e.toString(), e);
+			try
 			{
-				request.setHeader(new HTTPHeader("Content-type", "application/json"));
-				request.setPayload(body.getBytes("UTF-8"));
+				response = requestDataFetch(request, headers, body);
 			}
-
-			response = urlFetchService.fetch(request);
+			catch (Exception ee)
+			{
+				// TODO log error requesting
+				response = null;
+				LOG.log(Level.WARNING, ee.toString(), ee);
+			}
 		}
 		catch (Exception e)
 		{
@@ -1243,7 +1245,23 @@ public class FrontendAPIv1 extends HttpServlet
 		}
 		return response;
 	} // }}}
+	private HTTPResponse requestDataFetch(HTTPRequest request, List<HTTPHeader> headers, String body) // {{{
+	throws IOException, UnsupportedEncodingException
+	{
+		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 
+		if (headers != null)
+			for (HTTPHeader header : headers)
+				request.setHeader(header);
+
+		if (body != null)
+		{
+			request.setHeader(new HTTPHeader("Content-type", "application/json"));
+			request.setPayload(body.getBytes("UTF-8"));
+		}
+
+		return urlFetchService.fetch(request);
+	} // }}}
 }
 
 // vim: foldmethod=marker wrap
