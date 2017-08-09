@@ -4,13 +4,13 @@ import { SeoService } from '../../../services/seo.service';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { BackendService } from '../../../services/backend.service';
-import { Component, PLATFORM_ID, Inject, ViewChild, NgZone, AfterViewInit } from '@angular/core';
+import { Component, PLATFORM_ID, Inject, ViewChild, NgZone } from '@angular/core';
 
 @Component({
   templateUrl: './pricing-preview.component.html',
   styleUrls: ['./pricing-preview.component.css']
 })
-export class PricingPreviewComponent implements AfterViewInit {
+export class PricingPreviewComponent {
   @ViewChild('priceBoxes') priceBoxes;
   refToken: string;
   user = { email: '', password: '' };
@@ -35,13 +35,6 @@ export class PricingPreviewComponent implements AfterViewInit {
       description: 'Pricing for Cypherpunk Online Privacy service.',
       url: '/pricing/previews'
     });
-  }
-
-  ngAfterViewInit() {
-    let params = this.route.snapshot.params;
-    this.refToken = params['token'];
-    // if (!this.refToken) { this.router.navigate(['/']); }
-    if (isPlatformBrowser(this.platformId)) { document.getElementById('email').focus(); }
   }
 
   passwordRegex(password) {

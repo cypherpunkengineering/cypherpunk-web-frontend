@@ -19,11 +19,20 @@
     margin: 10px auto;
     color: #000;
     &.center { text-align: center; }
+    &.smaller { font-size: 22px; }
+  }
+
+  .subtitle {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px auto;
+    color: #000;
+    &.center { text-align: center; }
   }
 
   .text {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 18px;
+    line-height: 1.3;
     color: #7f7979;
     margin: auto;
     .highlight { font-weight: bold; color: #000; }
@@ -124,10 +133,10 @@
 }
 
 .btn {
-  width: 100%;
   margin: auto;
   padding: 15px;
-  font-size: 24px;
+  font-size: 18px;
+  width: 400px;
 }
 
 .price-boxes {
@@ -302,7 +311,6 @@ form {
   background-color: #fff;
   text-align: center;
 
-
   .row { font-size: 0; }
   .half {
     width: 50%;
@@ -394,6 +402,6 @@ form {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 470px) {
   .btn { width: 100%; }
 }
