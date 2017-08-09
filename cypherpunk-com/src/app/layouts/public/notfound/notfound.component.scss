@@ -39,7 +39,10 @@
     .image {
       height: 230px;
       margin: auto;
-      img { width: 100%; }
+      img {
+        width: 100%;
+        &.height { width: auto; height: 100%; }
+      }
     }
 
     .text {

@@ -109,10 +109,11 @@ app.get('/shutdown', function(req, res) { process.exit(0); });
 
 app.get('*', function(req, res) {
   console.log('404');
-  res.setHeader('Content-Type', 'application/json');
-  let pojo = { status: 404, message: 'No Content' };
-  let json = JSON.stringify(pojo, null, 2);
-  res.status(404).send(json);
+  // res.setHeader('Content-Type', 'application/json');
+  // let pojo = { status: 404, message: 'No Content' };
+  // let json = JSON.stringify(pojo, null, 2);
+  // res.status(404).send(json);
+  res.render('../dist/client/index', { req: req, res: res });
 });
 
 // Server
