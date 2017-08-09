@@ -114,6 +114,11 @@ export class PricingPreviewComponent implements AfterViewInit {
     if (!email || !password || this.errors.email.exists || this.signupButtonDisabled) { return; }
     this.signupButtonDisabled = true;
 
+    if (isPlatformBrowser(this.platformId)) {
+      let paq = (<any>window)._paq;
+      paq.push(['trackGoal', 16]);
+    }
+
     this.auth.signup(this.user)
     .then(() => { this.router.navigate(['account']); })
     .catch((err) => {
