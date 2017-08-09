@@ -125,9 +125,9 @@
 .footer {
   width: 100%;
   background-color: #163138;
-  padding: 30px 0 50px;
+  padding: 30px 20px 50px;
 
-  .footer-inner { width: 100%; max-width: 1000px; margin: auto; }
+  .footer-inner { width: 100%; margin: auto; }
   .copy { width: 250px; text-align: center; color: #8DFFFB; }
   .footer-copyright { font-size: 14px; }
 }
@@ -371,21 +371,8 @@ form {
 }
 
 
-@media (max-width: 580px) {
-  .wrapper form .half { width: 100%; }
-  .wrapper form .half:first-child { padding: 0 5px; }
-  .wrapper form .half { padding: 0 5px; }
-}
-
-@media (max-width: 935px) {
-  .payment-options .type-container { margin: 0 20px 25px; }
-}
-
-@media (max-width: 975px) {
-  .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
-  .price-boxes .price-box.active { width: 100%; }
-  .price-boxes .price-box .box { margin: auto;}
-  .info { text-align: center; margin: 0 0 30px; }
+@media (max-width: 1130px) {
+  .footer .copy { margin: auto; }
 }
 
 @media (max-width: 1020px) {
@@ -400,6 +387,23 @@ form {
     display: block;
     margin: auto;
   }
+}
+
+@media (max-width: 975px) {
+  .price-boxes .price-box { margin: 0 0 25px; width: 100%; }
+  .price-boxes .price-box.active { width: 100%; }
+  .price-boxes .price-box .box { margin: auto;}
+  .info { text-align: center; margin: 0 0 30px; }
+}
+
+@media (max-width: 935px) {
+  .payment-options .type-container { margin: 0 20px 25px; }
+}
+
+@media (max-width: 580px) {
+  .wrapper form .half { width: 100%; }
+  .wrapper form .half:first-child { padding: 0 5px; }
+  .wrapper form .half { padding: 0 5px; }
 }
 
 @media (max-width: 470px) {
