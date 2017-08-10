@@ -304,7 +304,6 @@ handlers: # should be ordered from most specific to least specific
   static_files: target/\1
   upload: target/(.*\.woff2)
   secure: always
-  login: admin
   redirect_http_response_code: 301
   http_headers:
     X-Frame-Options: sameorigin
