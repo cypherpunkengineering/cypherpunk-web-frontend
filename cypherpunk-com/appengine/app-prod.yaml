@@ -299,6 +299,18 @@ handlers: # should be ordered from most specific to least specific
     X-Content-Type-Options: nosniff
     Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
 
+- url: /(.*\.woff2)
+  mime_type: font/woff2
+  static_files: target/\1
+  upload: target/(.*\.woff2)
+  secure: always
+  login: admin
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /(.*\.xml)
   mime_type: application/xml
   static_files: target/\1
