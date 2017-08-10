@@ -45,7 +45,8 @@ export class NavigationComponent {
     this.env = globals.ENV;
 
     // detect route
-    if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
+    if (this.router.url.startsWith('/pricing/preview')) { /* do nothing */ }
+    else if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
 
     // detect os setup
     let os = platform.os.family || '';

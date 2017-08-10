@@ -195,10 +195,11 @@
 
 .footer {
   width: 100%;
+  max-width: 1340px;
   background-color: #163138;
-  padding: 30px 0 50px;
+  padding: 30px 20px 50px;
 
-  .footer-inner { width: 100%; max-width: 1000px; margin: auto; }
+  .footer-inner { width: 100%; margin: auto; }
   .copy { width: 250px; text-align: center; color: #8DFFFB; }
   .footer-copyright { font-size: 14px; }
 }
@@ -268,6 +269,10 @@
       .btn { width: 130px; height: 41px; }
     }
   }
+}
+
+@media (max-width: 1130px) {
+  .footer .copy { margin: auto; }
 }
 
 @media (max-width: 1020px) {
