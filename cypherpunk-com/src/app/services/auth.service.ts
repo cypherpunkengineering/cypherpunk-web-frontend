@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { BackendService } from './backend.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthService {
   authed = false;
   redirectUrl: string;
+  _auth: BehaviorSubject<any>;
 
   constructor(
     private session: SessionService,
     private backend: BackendService
-  ) { }
+  ) {
+    this._auth = new BehaviorSubject({});
+  }
+
+  getAuthObservable() {
+    return this._auth.asObservable();
+  }
 
   signup(user): Promise<void> {
     let body = { email: user.email, password: user.password };
@@ -21,7 +29,8 @@ export class AuthService {
     // this will set cookie
     return this.backend.signup(body, options)
     // set user session data
-    .then((data) => { this.session.setUserData(data); })
+    .then((data) => { this.session.setUserData(data); return data; })
+    .then((data) => { this._auth.next(data); })
     // turn authed on
     .then(() => { this.authed = true; });
   }
@@ -34,7 +43,8 @@ export class AuthService {
     // this will set cookie
     return this.backend.signin(body, options)
     // set user session data
-    .then((data) => { this.session.setUserData(data); })
+    .then((data) => { this.session.setUserData(data); return data; })
+    .then((data) => { this._auth.next(data); })
     // turn authed on
     .then(() => { this.authed = true; });
   }
@@ -47,6 +57,7 @@ export class AuthService {
     return this.backend.signout(body, options)
     // clear session
     .then(() => { this.session.clearUserData(); })
+    .then(() => { this._auth.next(false); })
     // turn off authed
     .then(() => { this.authed = false; });
   }

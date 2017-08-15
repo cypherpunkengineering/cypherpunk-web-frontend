@@ -1,5 +1,6 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 import { PlansService } from '../../../services/plans.service';
 import { SessionService } from '../../../services/session.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
@@ -13,18 +14,19 @@ import { Component, Input, Inject, PLATFORM_ID, OnDestroy } from '@angular/core'
 export class PriceBoxesComponent implements OnDestroy {
   @Input() upgrade: boolean;
   @Input() btc: boolean;
-  @Input() showOverride: boolean;
 
   user;
   plansSrv;
   plans = [];
-  planSubscriber;
+  planSubscriber: any;
+  authSubscriber: any;
   bpRate: number;
   bpConvertUrl = 'https://bitpay.com/api/rates/usd';
 
   constructor(
     private http: Http,
     private router: Router,
+    private auth: AuthService,
     private session: SessionService,
     private plansService: PlansService,
     @Inject(PLATFORM_ID) private platformId: Object
@@ -35,6 +37,10 @@ export class PriceBoxesComponent implements OnDestroy {
     this.planSubscriber = plansService.getObservablePlans().subscribe((plans) => {
       this.updatePlans();
     });
+    this.authSubscriber = auth.getAuthObservable().subscribe((newUser) => {
+      this.updatePlans();
+    });
+
 
     // get rates for bitpay
     if (isPlatformBrowser(this.platformId)) {
@@ -50,7 +56,7 @@ export class PriceBoxesComponent implements OnDestroy {
     let subType = this.user.subscription.type;
     let accountType = this.user.account.type;
     let renews = this.user.subscription.renews;
-    this.plansService.setPlanVisibility(subType, accountType, renews, this.showOverride);
+    this.plansService.setPlanVisibility(subType, accountType, renews);
 
     // update bp numbers
     if (this.plans[0]) { this.plans[0].bcPrice = this.bpConvert(this.plans[0].price); }
@@ -64,10 +70,13 @@ export class PriceBoxesComponent implements OnDestroy {
   }
 
   selectPlan(plan) {
-    if (this.showOverride) { return; }
+    if (!plan.viewable) { return; }
     this.plansService.selectedPlan = plan;
     if (this.upgrade) { this.router.navigate(['/account/upgrade']); }
   }
 
-  ngOnDestroy() { this.planSubscriber.unsubscribe(); }
+  ngOnDestroy() {
+    this.planSubscriber.unsubscribe();
+    this.authSubscriber.unsubscribe();
+  }
 }

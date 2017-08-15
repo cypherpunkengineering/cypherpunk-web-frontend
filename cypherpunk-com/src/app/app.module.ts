@@ -18,6 +18,7 @@ import { WhyusModule } from './layouts/public/whyus/whyus.module';
 import { FeaturesModule } from './layouts/public/features/features.module';
 import { NetworkModule } from './layouts/public/network/network.module';
 import { PrivacyModule } from './layouts/public/privacy/privacy.module';
+import { BillingModule } from './layouts/public/billing/billing.module';
 import { AboutusModule } from './layouts/public/aboutus/aboutus.module';
 import { ManifestoModule } from './layouts/public/aboutus/manifesto/manifesto.module';
 import { InquiriesModule } from './layouts/public/aboutus/inquiries/inquiries.module';
@@ -138,6 +139,7 @@ import { SeoService } from './services/seo.service';
     SupportOthersModule,
     LicenseAndroidModule,
     LicenseDesktopModule,
+    BillingModule,
 
     HostnameSelectorModule,
     VpnCredentialsModule,

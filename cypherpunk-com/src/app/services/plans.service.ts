@@ -125,13 +125,11 @@ export class PlansService {
     if (emit) { this._plans.next(this.plans); }
   }
 
-  setPlanVisibility(planCode, userType, renews, override): void {
-    if (override) {
-      this.plans.map((plan) => { plan.viewable = true });
-      return;
+  setPlanVisibility(planCode, userType, renews): void {
+    if (planCode === 'forever') {
+      this.plans.map((plan) => { plan.viewable = false; });
     }
-
-    if (userType === 'free' || userType === 'expired' || !renews) {
+    else if (userType === 'free' || userType === 'expired' || !renews) {
       this.plans.map((plan) => { plan.viewable = true; });
     }
     else if (planCode === 'monthly') {
@@ -145,9 +143,6 @@ export class PlansService {
       if (this.plans[2]) { this.plans[2].viewable = false; }
     }
     else if (planCode === 'annually') {
-      this.plans.map((plan) => { plan.viewable = false; });
-    }
-    else if (planCode === 'forever') {
       this.plans.map((plan) => { plan.viewable = false; });
     }
     else {

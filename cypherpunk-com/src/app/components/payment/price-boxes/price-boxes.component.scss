@@ -1,3 +1,9 @@
+.user-plan {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 30px;
+}
+
 .price-boxes {
   text-align: center;
 
@@ -12,6 +18,9 @@
     &:last-child { margin-right: 0; }
     &.hover:hover, &.active { .box { border-color: #00d630; } }
     &.active .box .checkmark { display: block; }
+
+    &.grey { cursor: default; }
+    &.grey .box { background-color: #eee; }
 
     .best-value {
       width: 115px;
