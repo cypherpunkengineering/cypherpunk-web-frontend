@@ -95,6 +95,49 @@
   padding: 30px 35px 40px;
   background-color: #fff;
 
+  .account {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+    padding: 0 5px 0;
+    font-size: 24px;
+    text-align: center;
+    p { margin: 10px 0 20px; }
+  }
+
+  .card-table {
+    padding: 0 0 30px;
+
+    .card-table-row {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0;
+
+      .cell {
+        width: 250px;
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        padding-bottom: 10px;
+      }
+    }
+
+    .privacy {
+      width: 90%;
+      margin: auto;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .create-card {
+    overflow: hidden;
+    transition: all 0.5s;
+    max-height: 0;
+    opacity: 0;
+    &.open { max-height: 660px; opacity: 1; }
+  }
+
   .leave-warning { margin: 10px 0 50px; }
 
   .price {
@@ -300,5 +343,11 @@
 @media (max-width: 375px) {
   .fake-nav .nav-left { width: 100%; text-align: center; padding: 15px; }
   .payment-info { padding: 10px 10px 20px; }
+  .payment-info .list-cards .tabs { font-size: 20px; }
+  .payment-info .list-cards .card .logo { width: 100%; }
+  .payment-info .list-cards .card .text { width: 100%; }
+  .payment-info .account { font-size: 20px; }
+  .payment-info .account label { display: none; }
+  .payment-selection .payment-options .type-container { width: 100%; margin: 0 0 25px; }
   .btn { width: 100%; }
 }

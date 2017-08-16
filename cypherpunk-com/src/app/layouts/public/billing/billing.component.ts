@@ -45,6 +45,8 @@ export class BillingComponent implements OnDestroy {
   };
 
   // Stripe variables
+  cards: any[];
+  showCreateCard: boolean;
   stripeFormData = {
     name: '',
     cardNumber: '',
@@ -66,7 +68,7 @@ export class BillingComponent implements OnDestroy {
   showBTC = false;
 
   // Paypal variables
-  user;
+  user: any;
 
   constructor(
     private zone: NgZone,
@@ -97,6 +99,8 @@ export class BillingComponent implements OnDestroy {
 
     // handle plans
     this.plansSrv = plansService;
+    // handle user
+    this.user = session.user;
 
     // Determine plans to show
     let params = this.route.snapshot.params;
@@ -105,30 +109,7 @@ export class BillingComponent implements OnDestroy {
 
     // redirect if user is already logged in
     if (isPlatformBrowser(this.platformId)) {
-      this.authGuard.shouldUpgrade()
-      .then(() => {
-        let upgrade = false;
-        let accountType = session.user.account.type;
-        let subType = session.user.subscription.type;
-        let renews = session.user.subscription.renews;
-
-        // if (accountType === 'free' || accountType === 'expired') { upgrade = true; }
-        // else if (accountType === 'premium') {
-        //   if (subType === 'forever') { upgrade = false; }
-        //   else if (renews === false) { upgrade = true; }
-        //   else if (subType === 'monthly' || subType === 'semiannually') { upgrade = true; }
-        // }
-        //
-        // if (upgrade) {
-        //   router.navigate(['/account/upgrade']);
-        //   location.replaceState('/account/upgrade');
-        // }
-        // else {
-        //   router.navigate(['/account']);
-        //   location.replaceState('/account');
-        // }
-      })
-      .catch(() => { });
+      this.authGuard.shouldUpgrade().catch(() => { });
     }
 
     // use Geo-IP to preload CC country
@@ -144,83 +125,51 @@ export class BillingComponent implements OnDestroy {
         });
       });
     }
+
+    // get all stripe cards for this user
+    if (isPlatformBrowser(this.platformId)) {
+      backend.cards()
+      .subscribe((data: any) => {
+        this.cards = data.sources;
+        if (!this.cards.length) { this.showCreateCard = true; }
+      },
+      (err) => {
+        console.log(err);
+        this.showCreateCard = true;
+      });
+    }
   }
 
   // pay with stripe
 
-  getToken() {
-    if (this.disablePayment) { return; }
-    let accountForm = this.accountFormData.formInstance;
-    let stripeForm = this.stripeFormData.formInstance;
-    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
-      input.focus();
-    });
+  stripeBegin() {
+    // block double payment
+    if (this.disablePayment) { return false; }
+    else { this.disablePayment = true; }
 
-    // email errors
-    if (!this.accountFormData.validation.email) {
-      document.getElementById('emailInput').focus();
-      document.getElementById('emailInput').blur();
-      return;
+    // handle account form validation
+    let accountId = this.user.account.id;
+    if (!accountId && !this.validateAccount()) { return; }
+    else { this.accountChild.disableInputs(); }
+
+    // three way split on using stripe
+    if (!accountId) { // signup path, no account
+      if (!this.validateStripe()) { return; }
+      else { this.loading = true; }
+      return this.getToken(false); // getToken -> saveToServer
     }
-    if (accountForm['controls'].email.errors) {
-      document.getElementById('emailInput').focus();
-      return;
+    else if (accountId && this.showCreateCard) { // upgrade path with new card
+      if (!this.validateStripe()) { return; }
+      else { this.loading = true; }
+      return this.getToken(true); // getToken -> createCard -> saveToServer
     }
-    // password errors
-    if (accountForm['controls'].password.errors) {
-      document.getElementById('passwordInput').focus();
-      return;
+    else { // upgrade path, existing card
+      this.loading = true;
+      return this.stripeUpgrade(); // saveToServer
     }
+  }
 
-    // name, nameInput
-    if (stripeForm['controls'].name.errors) {
-      document.getElementById('nameInput').focus();
-      return;
-    }
-
-    // Credit Card Number errors
-    if (stripeForm['controls'].cardNumber.errors) {
-      document.getElementById('cardNumberInput').focus();
-      return;
-    }
-
-    // expiryMonth, ccexpirymonth
-    if (stripeForm['controls'].expiryMonth.errors) {
-      document.getElementById('ccexpirymonth').focus();
-      return;
-    }
-
-    // expiryYear, ccexpiryyear
-    if (stripeForm['controls'].expiryYear.errors) {
-      document.getElementById('ccexpiryyear').focus();
-      return;
-    }
-
-    // cvc, cccvc
-    if (stripeForm['controls'].cvc.errors) {
-      document.getElementById('cccvc').focus();
-      return;
-    }
-
-    // country, country
-    if (stripeForm['controls'].country.errors) {
-      document.getElementById('country').focus();
-      return;
-    }
-
-    // zipCode, zipCodeSelect
-    if (stripeForm['controls'].zipCode.errors) {
-      let el = document.getElementById('zipCodeSelect');
-      if (el) { el.focus(); }
-      return;
-    }
-
-
-    // show loading overlay
-    this.loading = true;
-    this.disablePayment = true;
-    this.accountChild.disableInputs();
-
+  getToken(upgrade: boolean) {
     // stripe params
     let stripeParams = {
       name: this.stripeFormData.name,
@@ -243,7 +192,8 @@ export class BillingComponent implements OnDestroy {
       }
       else {
         let token = response.id;
-        return this.saveToServer(token);
+        if (upgrade) { return this.createCard(token); }
+        else { return this.stripeSignup(token); }
       }
     };
 
@@ -253,8 +203,24 @@ export class BillingComponent implements OnDestroy {
     stripe.card.createToken(stripeParams, stripeCallback);
   }
 
-  saveToServer(token: string) {
-    // call server at this point (using promises)
+  createCard(token) {
+    let body = { token: token };
+    // set cookie
+    return this.backend.createCard(body, {})
+    .then((data) => { this.auth.authed = true; return data; })
+    // alert and redirect
+    .then((data) => {
+      this.zone.run(() => { this.cards = data.sources; });
+      return this.stripeUpgrade();
+    })
+    // handle errors
+    // error 409 -> redirect to Signin page
+    .catch(error => { this.handleError(error); });
+  }
+
+  // stripe upgrade with existing card
+
+  stripeSignup(token: string) {
     let body = {
       token: token,
       plan: this.plansService.selectedPlan.id,
@@ -263,62 +229,65 @@ export class BillingComponent implements OnDestroy {
       referralCode: this.referralCode
     };
 
-    // sets cookie
     return this.backend.stripeCharge(body, {})
-    // set user session
-    .then((data) => {
-      this.session.setUserData({
-        account: { email: data.account.email },
-        secret: data.secret
+    .then((data) => { this.session.setUserData(data); })
+    .then(() => { this.auth.authed = true; })
+    .then(() => { this.session.setGettingStarted(true); })
+    .then(() => { this.router.navigate(['/account']); })
+    .catch(error => { this.handleError(error); });
+  }
+
+  stripeUpgrade() {
+    let body = {
+      plan: this.plansService.selectedPlan.id,
+      referralCode: this.referralCode
+    };
+
+    // set cookie
+    return this.backend.stripeUpgrade(body, {})
+    .then(() => { this.auth.authed = true; })
+    .then(() => {
+      this.zone.run(() => {
+        this.alertService.success('You have upgraded your account');
+        this.router.navigate(['/account']);
       });
     })
-    // turn on authed
-    .then(() => { this.auth.authed = true; })
-    // alert and redirect
-    .then(() => {
-      this.session.setGettingStarted(true);
-      this.router.navigate(['/account']);
-    })
-    // handle errors
+    // error 409 -> redirect to Signin page
     .catch(error => { this.handleError(error); });
   }
 
   // pay with paypal
 
   payWithPaypal() {
-    if (this.disablePayment) { return; }
-    let accountForm = this.accountFormData.formInstance;
-    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
-      input.focus();
-    });
+    // block double payment
+    if (this.disablePayment) { return false; }
+    else { this.disablePayment = true; }
 
-    // email errors
-    if (!this.accountFormData.validation.email) {
-      document.getElementById('emailInput').focus();
-      document.getElementById('emailInput').blur();
-      return;
-    }
-    if (accountForm['controls'].email.errors) {
-      document.getElementById('emailInput').focus();
-      return;
-    }
-    // password errors
-    if (accountForm['controls'].password.errors) {
-      document.getElementById('passwordInput').focus();
-      return;
-    }
+    // handle account form validation
+    let accountId = this.user.account.id;
+    if (!accountId && !this.validateAccount()) { return; }
+    else { this.accountChild.disableInputs(); }
 
+    // enable loading screen
     this.loading = true;
-    this.disablePayment = true;
-    this.accountChild.disableInputs();
 
+    // signup or upgrade using bitpay
+    if (accountId) { return this.paypalUpgrade(accountId); }
+    else { return this.paypalSignup(accountId); }
+  }
+
+  paypalSignup(accountId) {
+    let planId = this.plansService.selectedPlan.id;
     return this.createAccount()
-    .then(() => {
-      this.session.setGettingStarted(true);
-      this.paypal.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
-    })
+    .then(() => { this.session.setGettingStarted(true); })
+    .then(() => { this.paypal.pay(accountId, planId, this.referralCode); })
     .catch(error => { this.handleError(error); });
   }
+
+  paypalUpgrade(accountId) {
+    this.paypal.pay(accountId, this.plansService.selectedPlan.id, this.referralCode);
+  }
+
 
   // pay with amazon
 
@@ -331,104 +300,166 @@ export class BillingComponent implements OnDestroy {
   }
 
   payWithAmazon() {
-    if (this.disablePayment) { return; }
-    let accountForm = this.accountFormData.formInstance;
-    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
-      input.focus();
-    });
+    // block double payment
+    if (this.disablePayment) { return false; }
+    else { this.disablePayment = true; }
 
-    // email errors
-    if (!this.accountFormData.validation.email) {
-      document.getElementById('emailInput').focus();
-      document.getElementById('emailInput').blur();
-      return;
-    }
-    if (accountForm['controls'].email.errors) {
-      document.getElementById('emailInput').focus();
-      return;
-    }
-    // password errors
-    if (accountForm['controls'].password.errors) {
-      document.getElementById('passwordInput').focus();
-      return;
-    }
+    // handle account form validation
+    let accountId = this.user.account.id;
+    if (!accountId && !this.validateAccount()) { return; }
+    else { this.accountChild.disableInputs(); }
 
-    if (!this.amazonRecurringEnabled) {
-      this.amazon.setRecurringError();
-      return;
-    }
+    // handle noncompliance with amazon recurring
+    if (!this.amazonRecurringEnabled) { return this.amazon.setRecurringError(); }
 
+    // enable loading screen
     this.loading = true;
-    this.disablePayment = true;
-    this.accountChild.disableInputs();
 
-    /* send billingAgreement to server */
-    let body = {
-      plan: this.plansService.selectedPlan.id,
-      email: this.accountFormData.email,
-      password: this.accountFormData.password,
-      referralCode: this.referralCode,
-      AmazonBillingAgreementId: this.billingAgreementId,
-    };
-
-    // sets cookie
-    return this.backend.amazonCharge(body, {})
-    // set user session
-    .then((data) => {
-      this.session.setUserData({
-        account: { email: data.account.email },
-        secret: data.secret
+    // signup or upgrade with amazon
+    if (accountId) {
+      return this.amazonUpgrade({
+        plan: this.plansService.selectedPlan.id,
+        referralCode: this.referralCode,
+        AmazonBillingAgreementId: this.billingAgreementId
       });
-    })
-    // turn on authed
-    .then(() => { this.auth.authed = true; })
-    // alert and redirect
-    .then(() => {
-      this.session.setGettingStarted(true);
-      this.router.navigate(['/account']);
-    })
-    // handle errors
+    }
+    else {
+      return this.amazonSignup({
+        plan: this.plansService.selectedPlan.id,
+        email: this.accountFormData.email,
+        password: this.accountFormData.password,
+        referralCode: this.referralCode,
+        AmazonBillingAgreementId: this.billingAgreementId,
+      });
+    }
+  }
+
+  amazonSignup(body) {
+    return this.backend.amazonCharge(body, {})
+    .then((data) => { this.session.setUserData(data); }) // set user session
+    .then(() => { this.auth.authed = true; }) // turn on authed
+    .then(() => { this.session.setGettingStarted(true); }) // show getting started
+    .then(() => { this.router.navigate(['/account']); }) // redirect to account page
     .catch(error => { this.handleError(error); });
   }
+
+  amazonUpgrade(body) {
+    return this.backend.amazonUpgrade(body, {})
+    .then(() => { this.alertService.success('You account was upgraded!'); })
+    .then(() => { this.router.navigate(['/account']); }) // redirect to account page
+    .catch(error => { this.handleError(error); });
+  }
+
 
   // pay with bitpay
 
   payWithBitpay() {
+    // block double payment
     if (this.disablePayment) { return; }
+    else { this.disablePayment = true; }
+
+    // handle account form validation
+    let accountId = this.user.account.id;
+    if (!accountId && !this.validateAccount()) { return; }
+    else { this.accountChild.disableInputs(); }
+
+    // enable loading screen
+    this.loading = true;
+
+    // signup or upgrade using bitpay
+    if (accountId) { return this.bitpayUpgrade(accountId); }
+    else { return this.bitpaySignup(accountId); }
+  }
+
+  bitpaySignup(accountId) {
+    let planId = this.plansService.selectedPlan.id;
+    return this.createAccount()
+    .then(() => { this.session.setGettingStarted(true); })
+    .then(() => { this.bitpay.pay(accountId, planId, this.referralCode); })
+    .catch(error => { this.handleError(error); });
+  }
+
+  bitpayUpgrade(accountId) {
+    this.bitpay.pay(accountId, this.plansService.selectedPlan.id, this.referralCode);
+  }
+
+
+  // helper functions
+
+  validateAccount() {
     let accountForm = this.accountFormData.formInstance;
-    Array.prototype.map.call(document.querySelectorAll('input, select'), (input) => {
-      input.focus();
-    });
+    let inputs = document.querySelectorAll('input, select');
+    Array.prototype.map.call(inputs, (input) => { input.focus(); });
 
     // email errors
     if (!this.accountFormData.validation.email) {
       document.getElementById('emailInput').focus();
       document.getElementById('emailInput').blur();
-      return;
+      return false;
     }
     if (accountForm['controls'].email.errors) {
       document.getElementById('emailInput').focus();
-      return;
+      return false;
     }
     // password errors
     if (accountForm['controls'].password.errors) {
       document.getElementById('passwordInput').focus();
-      return;
+      return false;
     }
 
-    this.loading = true;
-    this.disablePayment = true;
-    this.accountChild.disableInputs();
-
-    return this.createAccount()
-    .then(() => {
-      this.session.setGettingStarted(true);
-      this.bitpay.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
-    })
-    .catch(error => { this.handleError(error); });
+    return true;
   }
 
-  // helper functions
+  validateStripe() {
+    let stripeForm = this.stripeFormData.formInstance;
+    let inputs = document.querySelectorAll('input, select');
+    Array.prototype.map.call(inputs, (input) => { input.focus(); });
+
+    // name, nameInput
+    if (stripeForm['controls'].name.errors) {
+      document.getElementById('nameInput').focus();
+      return false;
+    }
+
+    // Credit Card Number errors
+    if (stripeForm['controls'].cardNumber.errors) {
+      document.getElementById('cardNumberInput').focus();
+      return false;
+    }
+
+    // expiryMonth, ccexpirymonth
+    if (stripeForm['controls'].expiryMonth.errors) {
+      document.getElementById('ccexpirymonth').focus();
+      return false;
+    }
+
+    // expiryYear, ccexpiryyear
+    if (stripeForm['controls'].expiryYear.errors) {
+      document.getElementById('ccexpiryyear').focus();
+      return false;
+    }
+
+    // cvc, cccvc
+    if (stripeForm['controls'].cvc.errors) {
+      document.getElementById('cccvc').focus();
+      return false;
+    }
+
+    // country, country
+    if (stripeForm['controls'].country.errors) {
+      document.getElementById('country').focus();
+      return false;
+    }
+
+    // zipCode, zipCodeSelect
+    if (stripeForm['controls'].zipCode.errors) {
+      let el = document.getElementById('zipCodeSelect');
+      if (el) { el.focus(); }
+      return false;
+    }
+
+    return true;
+  }
 
   createAccount(): Promise<void> {
     // sets cookie
