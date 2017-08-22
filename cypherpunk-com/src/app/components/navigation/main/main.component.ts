@@ -21,6 +21,9 @@ export class NavigationComponent {
   link: string;
   pageRedirect: string;
 
+  maintenanceEnabled: boolean;
+  maintenanceKey = '';
+
   bannerModel;
   androidModel = {
     heading: 'Cypherpunk Privacy',
@@ -47,6 +50,10 @@ export class NavigationComponent {
     // detect route
     if (this.router.url.startsWith('/pricing/preview')) { /* do nothing */ }
     else if (this.router.url.startsWith('/pricing')) { this.enableLinks = false; }
+
+    if (!this.router.url.startsWith('/support')) { this.maintenanceEnabled = false; }
+    else if (this.router.url.startsWith('/support') && this.maintenanceEnabled ) { this.maintenanceEnabled = true;
+    }
 
     // detect os setup
     let os = platform.os.family || '';
@@ -95,6 +102,20 @@ export class NavigationComponent {
 
   redirect() {
     this.router.navigate([this.pageRedirect]);
+  }
+
+  // on keypress
+  @HostListener('window:keypress', ['$event'])
+  handleKeyPress(event: KeyboardEvent) {
+    let reg = /^[a-zA-Z0-9_]*$/ig;
+    if (reg.test(event.key)) { this.maintenanceKey += event.key; }
+    else { this.maintenanceKey = ''; return; }
+
+    if (this.maintenanceKey === 'debug123') {
+      this.maintenanceEnabled = !this.maintenanceEnabled;
+      this.maintenanceKey = '';
+    }
+    else if (this.maintenanceKey.length > 8) { this.maintenanceKey = ''; }
   }
 
   // on scroll,

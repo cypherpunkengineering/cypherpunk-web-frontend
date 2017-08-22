@@ -16,6 +16,8 @@ export class AccountNavigationComponent {
   enableLinks = true;
   showDropDown = false;
   scrolledNavElement: HTMLElement;
+  maintenanceEnabled: boolean;
+  maintenanceKey = '';
 
   constructor(
     private zone: NgZone,
@@ -56,6 +58,20 @@ export class AccountNavigationComponent {
       }
     }
     else { return false; }
+  }
+
+  // on keypress
+  @HostListener('window:keypress', ['$event'])
+  handleKeyPress(event: KeyboardEvent) {
+    let reg = /^[a-zA-Z0-9_]*$/ig;
+    if (reg.test(event.key)) { this.maintenanceKey += event.key; }
+    else { this.maintenanceKey = ''; return; }
+
+    if (this.maintenanceKey === 'debug123') {
+      this.maintenanceEnabled = !this.maintenanceEnabled;
+      this.maintenanceKey = '';
+    }
+    else if (this.maintenanceKey.length > 8) { this.maintenanceKey = ''; }
   }
 
   // on scroll,
