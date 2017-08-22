@@ -10,6 +10,7 @@ import { SupportNavigationComponent } from '../navigation/support/support.compon
 import { AboutUsNavigationComponent } from '../navigation/about/about.component';
 import { NavigationComponent } from '../navigation/main/main.component';
 
+import { ModalComponent } from '../modal/modal.component';
 import { AlertComponent } from '../alert/alert.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../loading/loading.component';
@@ -52,6 +53,7 @@ const COMPONENTS = [
   FeaturesNavigationComponent,
   SupportNavigationComponent,
   AboutUsNavigationComponent,
+  ModalComponent,
   AlertComponent,
   FooterComponent,
   LoadingComponent,

@@ -73,9 +73,10 @@
 
 <app-loading [(state)]="state.loading"></app-loading>
 
-<div class="modal" [ngClass]="{'open': showGettingStarted}">
-  <div class="background" (click)="hideGettingStarted()" [ngClass]="{'open': showGettingStarted}"></div>
-  <div class="modal-content" [ngClass]="{'open': showGettingStarted}">
+<modal [(show)]="showGettingStarted">
+  <div modalHeader>Getting Started</div>
+
+  <div modalBody>
     <div class="pp-warning" *ngIf="state.showPPWarning">
       Thank you for your payment. Your transaction has is being processed, and a receipt of your purchase wil be emailed to you. You may log into your account at <a href="www.paypal.com" target="blank" rel="noopener noreferrer">www.paypal.com</a> to view details of this transaction. Please visit our download page in the meantime: <a routerLink="/download">Download</a>
     </div>
@@ -83,44 +84,17 @@
     <div class="pp-warning" *ngIf="state.showBPWarning">
       Thank you for your payment. Your transaction has is being processed, and a receipt of your purchase wil be emailed to you. You may log into your account at <a href="www.bitpay.com" target="blank" rel="noopener noreferrer">www.bitpay.com</a> to view details of this transaction. Please visit our download page in the meantime: <a routerLink="/download">Download</a>
     </div>
-
-    <div class="modal-header">Getting Started</div>
-
-    <div class="modal-body">
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="hideGettingStarted()">Close</button>
-    </div>
   </div>
-</div>
+</modal>
 
-<div class="modal" [ngClass]="{'open': confirmed}">
-  <div class="background" (click)="confirmed = false;" [ngClass]="{'open': confirmed}"></div>
-  <div class="modal-content" [ngClass]="{'open': confirmed}">
-    <div class="modal-header">Confirmed</div>
+<modal [(show)]="confirmed">
+  <div modalHeader>Confirmed</div>
 
-    <div class="modal-body">
-      Your account is now confirmed
-    </div>
+  <div modalBody>Your account is now confirmed</div>
+</modal>
 
-    <div class="modal-footer">
-      <button class="btn teal" (click)="confirmed = false;">Close</button>
-    </div>
-  </div>
-</div>
+<modal [(show)]="emailUpdated">
+  <div modalHeader>Email Updated</div>
 
-<div class="modal" [ngClass]="{'open': emailUpdated}">
-  <div class="background" (click)="emailUpdated = false;" [ngClass]="{'open': emailUpdated}"></div>
-  <div class="modal-content" [ngClass]="{'open': emailUpdated}">
-    <div class="modal-header">Email Updated</div>
-
-    <div class="modal-body">
-      Your email was successfully updated
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="emailUpdated = false;">Close</button>
-    </div>
-  </div>
-</div>
+  <div modalBody>Your email was successfully updated</div>
+</modal>

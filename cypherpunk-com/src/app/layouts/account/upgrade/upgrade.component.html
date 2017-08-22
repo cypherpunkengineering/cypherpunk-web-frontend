@@ -267,21 +267,10 @@
   </div>
 </div>
 
-<div class="modal" [ngClass]="{'open': modal.show}">
-  <div class="background" (click)="modal.show = false" [ngClass]="{'open': modal.show}"></div>
-  <div class="modal-content" [ngClass]="{'open': modal.show}">
-    <div class="modal-header">{{ modal.header}}</div>
+<modal [(show)]="modal.show">
+  <div modalHeader>{{ modal.header}}</div>
 
-    <div class="modal-body">
-      <p>
-        {{ modal.body}}
-      </p>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="modal.show = false">Close</button>
-    </div>
-  </div>
-</div>
+  <div modalBody>{{ modal.body}}</div>
+</modal>
 
 <app-loading [state]="loading"></app-loading>

@@ -63,19 +63,6 @@
   </div>
 </div>
 
-<div class="modal" [ngClass]="{'open': showInvitationSent}">
-  <div class="background" (click)="showInvitationSent = false" [ngClass]="{'open': showInvitationSent}"></div>
-  <div class="modal-content" [ngClass]="{'open': showInvitationSent}">
-    <div class="modal-header">Change Password</div>
-
-    <div class="modal-body">
-      <div class="row">
-        <span>Invitation Sent!</span>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="showInvitationSent = false">Close</button>
-    </div>
-  </div>
-</div>
+<modal [(show)]="showInvitationSent">
+  <div modalHeader>Invitation(s) Sent!</div>
+</modal>

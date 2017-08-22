@@ -94,73 +94,12 @@
 
 .clickable { cursor: pointer; }
 
-.modal {
-  height: 100%;
+.pp-warning {
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  transform: scale(0);
-  &.open { transform: scale(1); }
-
-  .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 0;
-    width: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.35);
-    &.open { height: 100%; width: 100%; }
-  }
-
-  .modal-content {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    color: #eee;
-    background-color: #0d1e26;
-    border-radius: 5px;
-    border: 4px solid #19474c;
-    box-shadow: -5px 5px 2px #163138;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transform: scale(0) translateY(-50%);
-    transition: all 0.35s ease-in;
-    &.open { opacity: 1; transform: scale(1) translateY(-50%); }
-
-    .pp-warning {
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-      padding: 10px 0 30px;
-      margin: 0 auto;
-      a { color: #fff; }
-    }
-
-    .modal-header {
-      color: #fff;
-      font-size: 20px;
-      letter-spacing: 0.6px;
-      padding: 0 0 20px;
-    }
-
-    .modal-body {
-      a { color: #8DFFFB; }
-    }
-
-    .modal-footer {
-      margin: 25px 0 0 ;
-      text-align: right;
-      .btn { width: 130px; height: 41px; }
-    }
-  }
+  text-align: center;
+  padding: 10px 0 30px;
+  margin: 0 auto;
+  a { color: #8DFFFB; }
 }
 
 @media (max-width: 1060px) {

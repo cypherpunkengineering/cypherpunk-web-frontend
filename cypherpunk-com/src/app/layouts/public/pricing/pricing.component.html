@@ -226,40 +226,24 @@
   </div>
 </div>
 
-<div class="modal" [ngClass]="{'open': modal.show}">
-  <div class="background" (click)="modal.show = false" [ngClass]="{'open': modal.show}"></div>
-  <div class="modal-content" [ngClass]="{'open': modal.show}">
-    <div class="modal-header">{{ modal.header}}</div>
+<modal [(show)]="modal.show">
+  <div modalHeader>{{ modal.header}}</div>
 
-    <div class="modal-body">
-      <p>
-        {{ modal.body}}
-      </p>
+  <div modalBody>
+    <p>{{ modal.body}}</p>
 
-      <a routerLink="/account" *ngIf="modal.link">My Account</a>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="modal.show = false">Close</button>
-    </div>
+    <a routerLink="/account" *ngIf="modal.link">My Account</a>
   </div>
-</div>
+</modal>
 
-<div class="modal" [ngClass]="{'open': this.accountFormData.validation.warning}">
-  <div class="background" (click)="this.accountFormData.validation.warning = false" [ngClass]="{'open': this.accountFormData.validation.warning}"></div>
-  <div class="modal-content" [ngClass]="{'open': this.accountFormData.validation.warning}">
-    <div class="modal-header">It looks like you're already a Cypherpunk!</div>
+<modal [(show)]="this.accountFormData.validation.warning">
+  <div modalHeader>It looks like you're already a Cypherpunk!</div>
 
-    <div class="modal-body">
-      <p>Why not upgrade your account here: </p>
+  <div modalBody>
+    <p>Why not upgrade your account here: </p>
 
-      <a routerLink="/account">My Account</a>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn teal" (click)="this.accountFormData.validation.warning = false">Close</button>
-    </div>
+    <a routerLink="/account">My Account</a>
   </div>
-</div>
+</modal>
 
 <app-loading [state]="loading"></app-loading>

@@ -15,49 +15,36 @@
 </div>
 
 
+<modal [(show)]="showSignin">
+  <div modalHeader>Sign into Cypherpunk Privacy</div>
 
-<div class="modal" [ngClass]="{'open': showSignin}">
-  <div class="background" (click)="showSignin = false" [ngClass]="{'open': showSignin}"></div>
-  <div class="content">
-    <div class="modal-content" [ngClass]="{'open': showSignin}">
-      <div class="modal-header">Sign into Cypherpunk Privacy</div>
-
-      <div class="modal-body">
-
-        <form>
-          <div class="row">
-            <div class="half">
-              <input id="email" type="email" name="login" placeholder="Email" autofocus [(ngModel)]="user.email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()">
-              <div class="error-message" [hidden]="!this.errors.email.touched">
-                {{this.errors.email.message}}
-              </div>
-            </div>
-
-            <div class="half">
-              <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (keyup.enter)="signin()" (ngModelChange)="validatePassword()" (blur)="this.errors.password.touched = true; validatePassword()">
-              <div class="error-message" [hidden]="!this.errors.password.touched">
-                {{this.errors.password.message}}
-              </div>
-            </div>
+  <div modalBody>
+    <form>
+      <div class="row">
+        <div class="half">
+          <input id="email" type="email" name="login" placeholder="Email" autofocus [(ngModel)]="user.email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()">
+          <div class="error-message" [hidden]="!this.errors.email.touched">
+            {{this.errors.email.message}}
           </div>
+        </div>
 
-          <div class="section margin">
-            <button class="btn orange" type="button" (click)="signin()">
-              SIGN IN
-            </button>
+        <div class="half">
+          <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': this.errors.password.message && this.errors.password.touched}" (keyup.enter)="signin()" (ngModelChange)="validatePassword()" (blur)="this.errors.password.touched = true; validatePassword()">
+          <div class="error-message" [hidden]="!this.errors.password.touched">
+            {{this.errors.password.message}}
           </div>
-
-          <div class="section">
-            <a class="signin-link" routerLink="/recover">Forgot Password?</a>
-          </div>
-
-        </form>
-
+        </div>
       </div>
 
-      <div class="modal-footer">
-        <button class="btn teal" (click)="showSignin = false">Close</button>
+      <div class="section margin">
+        <button class="btn orange" type="button" (click)="signin()">
+          SIGN IN
+        </button>
       </div>
-    </div>
+
+      <div class="section">
+        <a class="signin-link" routerLink="/recover">Forgot Password?</a>
+      </div>
+    </form>
   </div>
-</div>
+</modal>
