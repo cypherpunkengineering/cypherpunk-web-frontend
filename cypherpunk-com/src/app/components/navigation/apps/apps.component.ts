@@ -29,6 +29,7 @@ export class AppsNavigationComponent implements AfterViewInit {
     else if (this.router.url.endsWith('android')) { this.page = 'android' }
     else if (this.router.url.endsWith('browser')) { this.page = 'browser' }
     else if (this.router.url.endsWith('routers')) { this.page = 'routers' }
+    else if (this.router.url.endsWith('manual')) { this.page = 'manual' }
   }
 
   ngAfterViewInit() {

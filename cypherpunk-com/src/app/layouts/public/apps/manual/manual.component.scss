@@ -1,0 +1,39 @@
+.masthead .masthead-header {
+  margin: 0;
+  padding: 0 10px 30px;
+  font-size: 28px;
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+  padding: 60px 0;
+
+  .content-inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: auto;
+  }
+
+  .header { margin-bottom: 20px; padding: 0 10px; }
+
+  .subtitle { margin-bottom: 50px; }
+
+  img { padding: 0 10px; max-width: 90%; margin-bottom: 30px; }
+}
+
+.button-container {
+  padding: 0 10px;
+  text-align: center;
+  margin-bottom: 30px;
+
+  .btn {
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    font-size: 18px;
+    &.orange:hover { background-color: #ff8c71; }
+  }
+}

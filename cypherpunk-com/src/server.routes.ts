@@ -70,6 +70,7 @@ export const routes: string[] = [
   'apps/linux/autostart',
   'apps/linux/download',
   'apps/routers',
+  'apps/manual',
   'feedback',
   'bounty',
   'whats-my-ip-address',
