@@ -28,18 +28,18 @@ export class FeedbackComponent implements OnInit {
     this.currentTab = fragment || 'survey';
   }
 
-  updateLocation(fragment: string) {
-    this.currentTab = fragment;
-    this.location.go('/feedback#' + fragment);
-  }
+  // updateLocation(fragment: string) {
+  //   this.currentTab = fragment;
+  //   this.location.go('/feedback#' + fragment);
+  // }
 
-  showSurvey() {
-    document.getElementById('survey').style.display = 'block';
-    document.getElementById('survey-button').style.display = 'none';
-  }
-
-  showVote() {
-    document.getElementById('vote').style.display = 'block';
-    document.getElementById('vote-button').style.display = 'none';
-  }
+  // showSurvey() {
+  //   document.getElementById('survey').style.display = 'block';
+  //   document.getElementById('survey-button').style.display = 'none';
+  // }
+  //
+  // showVote() {
+  //   document.getElementById('vote').style.display = 'block';
+  //   document.getElementById('vote-button').style.display = 'none';
+  // }
 }
