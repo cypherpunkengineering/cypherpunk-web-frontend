@@ -319,7 +319,7 @@
 
   <div modalBody>
     <div class="row">
-      <input id="dashboardPassword" type="password" name="passwordOld" placeholder="Confirm Password" [(ngModel)]="changePasswordUser.passwordOld" [ngClass]="{'errors': (this.changePasswordErrors.passwordOld.touched && this.changePasswordErrors.passwordOld.message)}" (ngModelChange)="validateChangePasswordOld()" (blur)="this.changePasswordErrors.passwordOld.touched = true; validateChangePasswordOld()">
+      <input id="dashboardPassword" type="password" name="passwordOld" placeholder="Current Password" [(ngModel)]="changePasswordUser.passwordOld" [ngClass]="{'errors': (this.changePasswordErrors.passwordOld.touched && this.changePasswordErrors.passwordOld.message)}" (ngModelChange)="validateChangePasswordOld()" (blur)="this.changePasswordErrors.passwordOld.touched = true; validateChangePasswordOld()">
       <div class="error-message" [hidden]="!this.changePasswordErrors.passwordOld.touched">
         {{this.changePasswordErrors.passwordOld.message}}
       </div>
