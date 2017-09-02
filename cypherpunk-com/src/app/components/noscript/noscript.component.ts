@@ -30,11 +30,22 @@ export class NoScriptComponent implements OnInit {
         return;
       }
 
+      if (this.router.url.startsWith('/signup')) {
+        this.showNoScript = true;
+        return;
+      }
+
       switch (this.router.url) {
         case '/network':
           this.showNoScript = true;
           break;
         case '/pricing':
+          this.showNoScript = true;
+          break;
+        case '/billing':
+          this.showNoScript = true;
+          break;
+        case '/login':
           this.showNoScript = true;
           break;
         case '/feedback':

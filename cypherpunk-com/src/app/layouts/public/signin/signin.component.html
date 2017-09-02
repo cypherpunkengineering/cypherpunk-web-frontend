@@ -13,7 +13,7 @@
       <div class="subheader"></div>
     </div>
 
-    <form>
+    <div class="form">
       <div class="row">
         <div class="half">
           <input id="email" type="email" name="login" placeholder="Email" autofocus [(ngModel)]="user.email" [ngClass]="{'error': this.errors.email.message && this.errors.email.touched}" (blur)="this.errors.email.touched = true; validateEmail()">
@@ -52,8 +52,10 @@
         <div class="text">Apps available for:</div>
         <img src="/assets/signup/available-apps@2x.png" srcset="/assets/signup/available-apps.png 500w, /assets/signup/available-apps@2x.png 1000w" alt="Available Apps">
       </div>
-    </form>
+    </div>
   </div>
 </div>
+
+
 
 <app-footer></app-footer>
