@@ -13,7 +13,8 @@
     float: left;
     padding: 10px 0 10px 15px;
 
-    img { width: 261px; height: 56px; }
+    img { width: 261px; height: 56px; vertical-align: middle; }
+    img.beta { width: 35px; height: 25px; vertical-align: middle; padding-top: 5px; }
   }
 
   .nav-right {
@@ -96,8 +97,16 @@
   }
 
   .mobile-nav-left .mobile-logo {
-    width: 261px;
-    height: 56px;
+    width: 230px;
+    height: 47px;
+    vertical-align: middle;
+  }
+
+  .mobile-nav-left .beta {
+    width: 30px;
+    height: 23px;
+    vertical-align: middle;
+    padding-top: 4px;
   }
 
   .mobile-nav-right {

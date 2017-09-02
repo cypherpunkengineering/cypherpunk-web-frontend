@@ -199,7 +199,14 @@
   padding: 30px 20px 50px;
 
   .footer-inner { width: 1340px; margin: auto; }
-  .copy { width: 250px; text-align: center; color: #8DFFFB; }
+  .copy {
+    width: 2320px;
+    text-align: center;
+    color: #8DFFFB;
+    padding-left: 15px;
+    img { width: 261px; height: 56px; vertical-align: middle; }
+    img.beta { width: 35px; height: 25px; vertical-align: middle; padding-top: 5px; }
+  }
   .footer-copyright { font-size: 14px; }
 }
 
@@ -240,6 +247,7 @@ modal a { color: #8DFFFB; }
 }
 
 @media (max-width: 375px) {
+  .footer .copy { padding-left: 0; }
   .fake-nav .nav-left { width: 100%; text-align: center; padding: 15px; }
   .payment-info { padding: 10px 10px 20px; }
   .btn { width: 100%; }

@@ -22,7 +22,9 @@
         padding: 40px 0 0;
         width: 25%;
         text-align: center;
-        img { width: 261px; height: 56px; }
+        img { width: 261px; height: 56px; vertical-align: middle; }
+        img.beta { width: 35px; height: 25px; vertical-align: middle; padding-top: 5px; }
+
 
         .footer-copyright {
           font-size: 14px;
@@ -147,6 +149,9 @@
       width: 100%;
       margin-left: 0;
       padding-bottom: 25px;
+
+      img { width: 230px; height: 47px; vertical-align: middle; }
+      img.beta { width: 30px; height: 23px; vertical-align: middle; padding-top: 4px; }
     }
 
     &.social {
