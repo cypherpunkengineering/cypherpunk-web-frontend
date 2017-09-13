@@ -223,14 +223,14 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  // public apis
+
   contactForm(body) {
     let url = this.globals.API_URL + '/support/request/new';
     return this.http.post(url, body).toPromise()
     .then(this.parseJson)
     .catch(this.catchFunction);
   }
-
-  // public apis
 
   networkStatus() {
     let url = this.globals.API_URL + '/network/status';
