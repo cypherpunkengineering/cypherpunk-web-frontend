@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
         }
 
         // track each page render
-        paq.push(['disableCookies']);
         paq.push(['trackPageView']);
 
         // handle hash anchor scroll
