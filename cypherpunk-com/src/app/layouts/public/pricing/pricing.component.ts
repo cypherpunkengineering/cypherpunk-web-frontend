@@ -90,7 +90,7 @@ export class PricingComponent implements OnDestroy {
     });
 
     // ** Hide this page from production
-    if (this.globals.ENV !== 'DEV') {
+    if (this.globals.ENV !== 'DEV' && this.globals.ENV !== 'STAGING') {
       this.router.navigate(['/pricing/preview']);
       return;
     }

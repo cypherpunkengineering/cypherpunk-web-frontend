@@ -80,7 +80,9 @@ export class AmazonComponent {
         color: 'Gold',
         size:  'medium',
         authorization: () => {
-          if (this.globals.ENV === 'DEV') { amazon.Login.setSandboxMode(true); }
+          if (this.globals.ENV === 'DEV' || this.globals.ENV === 'STAGING') {
+            amazon.Login.setSandboxMode(true);
+          }
           else { amazon.Login.setSandboxMode(false); }
           amazon.Login.authorize({ scope: 'profile', popup: 'true' });
           this.zone.run(() => { this.createWallet(); });
@@ -95,7 +97,9 @@ export class AmazonComponent {
   // called internally in the component
   launchAmazon() {
     let amazon = (<any>window).amazon;
-    if (this.globals.ENV === 'DEV') { amazon.Login.setSandboxMode(true); }
+    if (this.globals.ENV === 'DEV' || this.globals.ENV === 'STAGING') {
+      amazon.Login.setSandboxMode(true);
+    }
     else { amazon.Login.setSandboxMode(false); }
     amazon.Login.authorize({ scope: 'profile', popup: 'true' });
     this.zone.run(() => { this.createWallet(); });
