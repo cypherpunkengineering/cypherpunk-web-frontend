@@ -183,6 +183,8 @@
     }
   </style>
 
+  <style>noscript p { margin: 0; background-color: #163138; }</style>
+
   <!-- Piwik -->
   <script type="text/javascript">
     var _paq = _paq || [];
@@ -195,14 +197,12 @@
       _paq.push(['setTrackerUrl', u+'cypherpunk.php']);
       _paq.push(['setSiteId', '1']);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'p.js'; s.parentNode.insertBefore(g,s);
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'cypherpunk.js'; s.parentNode.insertBefore(g,s);
     })();
   </script>
   <!-- End Piwik Code -->
 </head>
 <body>
-  <noscript><p><img src="//piwik.cypherpunk.com/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
-  
   <app-root>
     Loading Universal ...
   </app-root>
@@ -228,5 +228,6 @@
 
   <!-- __BUILD_INFO__ -->
 
+  <noscript><p><img src="//piwik.cypherpunk.com/cypherpunk.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
 </body>
 </html>
