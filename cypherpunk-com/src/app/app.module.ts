@@ -41,7 +41,7 @@ import { RoutersModule } from './layouts/public/apps/routers/routers.module';
 import { ManualModule } from './layouts/public/apps/manual/manual.module';
 import { AppsModule } from './layouts/public/apps/apps/apps.module';
 import { FeedbackModule } from './layouts/public/feedback/feedback.module';
-import { BountyModule } from './layouts/public/bounty/bounty.module';
+// import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
 import { SignupModule } from './layouts/public/signup/signup.module';
 import { PublicResetModule } from './layouts/public/reset/reset.module';
@@ -123,7 +123,7 @@ import { SeoService } from './services/seo.service';
     RoutersModule,
     ManualModule,
     FeedbackModule,
-    BountyModule,
+    // BountyModule,
     AppsModule,
     WhatsMyIpModule,
     SignupModule,
