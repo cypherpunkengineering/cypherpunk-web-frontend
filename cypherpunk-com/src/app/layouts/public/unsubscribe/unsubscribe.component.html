@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="masthead">
+    <app-nav></app-nav>
+  </div>
+
+  <div>
+    <div class="encourage">
+      <div class="header">Unsubscribing from Cypherpunk Privacy Emails</div>
+    </div>
+
+    <div class="form">
+      <div class="section success-message" *ngIf="showSuccess">
+        Success!
+      </div>
+
+      <div class="section error-message" *ngIf="showError">
+        Error unsubscribing your email, please contact support.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<app-footer></app-footer>

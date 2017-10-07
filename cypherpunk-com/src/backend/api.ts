@@ -138,6 +138,18 @@ export function changePassword(req, res) {
   }
 }
 
+export function unsubscribe(req, res) {
+  if (DEV_MODE) {
+    let path = req.url.substring(1);
+    let url = urlStart + path;
+    return request.get({url: url, json: true, jar: true }).pipe(res);
+  }
+  else {
+    return res.json({ success: 'ok' });
+  }
+}
+
+
 export function networkStatus(req, res) {
   if (DEV_MODE) { return request(urlStart + 'api/v1/network/status').pipe(res); }
   else { return res.json({ ip: '127.0.0.1', country: 'ZZ'}); }

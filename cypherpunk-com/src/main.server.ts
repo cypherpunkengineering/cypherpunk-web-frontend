@@ -49,7 +49,8 @@ import {
   billing,
   invite,
   recover,
-  reset
+  reset,
+  unsubscribe
  } from './backend/api';
 import {
   stripePurchase,
@@ -71,6 +72,7 @@ app.get('/api/v1/account/source/list', stripeCardList);
 app.get('/api/v1/pricing/plans/:referralCode', pricingPlans);
 app.get('/api/v1/pricing/plans', pricingPlans);
 app.get('/api/v1/billing/receipts', billing);
+app.get('/api/v1/emails/unsubscribe', unsubscribe);
 app.post('/api/v1/account/confirm/email', confirm);
 app.post('/api/v1/account/confirm/emailChange', confirmChange);
 app.post('/api/v1/account/authenticate/userpasswd', signin);

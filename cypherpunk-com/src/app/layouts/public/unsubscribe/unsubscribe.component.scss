@@ -1,0 +1,28 @@
+.wrapper {
+  .masthead {
+    .header.white {
+      padding: 40px 0 50px;
+      margin-top: 0;
+    }
+  }
+
+  .encourage {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 0;
+    text-align: center;
+    margin: auto;
+    .header { font-size: 24px; }
+  }
+
+  .form {
+    max-width:600px;
+    padding: 0 10px;
+    margin: 0px auto 50px;
+    text-align: center;
+    .section { text-align: center; margin: 5px 0 25px; }
+    .success-message { color: #3c763d; }
+    .error-message { color: #a94442; }
+  }
+
+}

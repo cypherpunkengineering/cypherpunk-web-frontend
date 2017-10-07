@@ -12,6 +12,13 @@ export class BackendService {
 
   // User authentication
 
+  unsubscribe(email:string, token:string): Promise<any> {
+    let url = this.globals.API_URL + `/emails/unsubscribe?email=${email}&token=${token}`;
+    let options = { withCredentials: true };
+    return this.http.get(url, options).toPromise()
+    .then(this.parseJson);
+  }
+
   confirmToken(body, options): Promise<any> {
     // this will set cookie
     let url = this.globals.API_URL + '/account/confirm/email';
