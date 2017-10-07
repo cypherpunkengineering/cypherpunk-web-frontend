@@ -1,141 +1,165 @@
 <div class="masthead">
   <app-nav></app-nav>
 
-  <h1 class="masthead-header header white">
-    More than just another VPN
-  </h1>
+  <div class="masthead-panel left">
+    <h1 class="masthead-header header">
+      More than just another VPN
+    </h1>
 
-  <div class="masthead-subheader">
-    Freedom to access the world's content<br>
-    Privacy & security protection for all your devices
-  </div>
-
-  <div class="masthead-apps">
-    <a routerLink="/apps/windows">
-      <div class="app windows"></div>
-    </a>
-    <a routerLink="/apps/mac">
-      <div class="app mac"></div>
-    </a>
-    <a routerLink="/apps/linux">
-      <div class="app linux"></div>
-    </a>
-    <a routerLink="/apps/ios">
-      <div class="app ios"></div>
-    </a>
-    <a routerLink="/apps/android">
-      <div class="app android"></div>
-    </a>
-    <a routerLink="/apps/browser">
-      <div class="app chrome"></div>
-    </a>
-    <a routerLink="/apps/browser">
-      <div class="app firefox"></div>
-    </a>
-    <a routerLink="/apps/browser">
-      <div class="app opera"></div>
-    </a>
-    <a routerLink="/apps/browser">
-      <div class="app vivaldi"></div>
-    </a>
-  </div>
-
-  <div class="masthead-banner">
-    <div class="masthead-image">
-      <img src="/assets/home/header-illustration@2x.png" srcset="/assets/home/header-illustration.png 500w, /assets/home/header-illustration@2x.png 1000w" alt="Cypherpunk Privacy">
-    </div>
-  </div>
-</div>
-
-<div class="cta-container">
-  <div class="call-to-action">
-    <a routerLink="/signup">
-      <button class="btn orange">GET MY FREE PREVIEW</button>
-    </a>
-  </div>
-</div>
-
-<div class="alternate gray left first">
-  <div class="alternate-inner">
-    <div class="image top">
-      <img src="/assets/home/access@2x.png" srcset="/assets/home/access.png 500w, /assets/home/access@2x.png 1000w" alt="Access content from anywhere">
+    <div class="masthead-subheader">
+      Freedom to access the world's content<br>
+      Privacy & security protection for all your devices
     </div>
 
-    <div class="text">
-      <div class="text-header">
-        Access content from anywhere
-      </div>
-
-      <div class="text-content">
-        Watch, listen, and stream your favorite content from anywhere in the world.
-      </div>
+    <div class="masthead-apps">
+      <a routerLink="/apps/windows">
+        <div class="app windows"></div>
+      </a>
+      <a routerLink="/apps/mac">
+        <div class="app mac"></div>
+      </a>
+      <a routerLink="/apps/linux">
+        <div class="app linux"></div>
+      </a>
+      <a routerLink="/apps/ios">
+        <div class="app ios"></div>
+      </a>
+      <a routerLink="/apps/android">
+        <div class="app android"></div>
+      </a>
+      <a routerLink="/apps/browser">
+        <div class="app chrome"></div>
+      </a>
+      <a routerLink="/apps/browser">
+        <div class="app firefox"></div>
+      </a>
+      <a routerLink="/apps/browser">
+        <div class="app opera"></div>
+      </a>
+      <a routerLink="/apps/browser">
+        <div class="app vivaldi"></div>
+      </a>
     </div>
-  </div>
-</div>
 
-<div class="alternate green right">
-  <div class="alternate-inner">
-    <div class="image top">
-      <img class="height-biased" src="/assets/home/privacy@2x.png" srcset="/assets/home/privacy.png 500w, /assets/home/privacy@2x.png 1000w" alt="Privacy Protection">
-    </div>
-
-    <div class="text">
-      <div class="text-header">
-        Privacy protection
-      </div>
-
-      <div class="text-content">
-        Don't reveal your location, encrypt your traffic, block websites from tracking you.
+    <div class="masthead-banner">
+      <div class="masthead-image">
+        <img src="/assets/home/header-illustration@2x.png" srcset="/assets/home/header-illustration.png 500w, /assets/home/header-illustration@2x.png 1000w" alt="Cypherpunk Privacy">
       </div>
     </div>
 
-    <div class="image bottom">
-      <img class="height-biased" src="/assets/home/privacy@2x.png" srcset="/assets/home/privacy.png 500w, /assets/home/privacy@2x.png 1000w" alt="Privacy Protection">
+    <div class="signup">
+      <a routerLink="/signup">
+        <button class="btn orange">GET MY FREE PREVIEW</button>
+      </a>
     </div>
   </div>
-</div>
 
-<div class="alternate gray left">
-  <div class="alternate-inner">
-    <div class="image top">
-      <img src="/assets/home/freedom@2x.png" srcset="/assets/home/freedom.png 500w, /assets/home/freedom@2x.png 1000w" alt="Freedom from internet censorship">
-    </div>
+  <div class="masthead-panel right">
+    <h1 class="masthead-header header white">
+      Sign up Now!
+    </h1>
 
-    <div class="text">
-      <div class="text-header">
-        Freedom from internet censorship
+    <div class="form">
+      <div class="row">
+        <div class="half">
+          <input id="email" type="email" name="username" placeholder="Email" autofocus [(ngModel)]="user.email" (blur)="this.errors.email.touched = true; checkEmailExists(); validateEmail()" [ngClass]="{'error': (this.errors.email.touched && this.errors.email.message)}">
+          <div class="error-message" [hidden]="!this.errors.email.touched">
+            {{this.errors.email.message}}
+          </div>
+        </div>
+
+        <div class="half">
+          <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword()" (keyup.enter)="signup()" (blur)="this.errors.password.touched = true; validatePassword()">
+          <div class="error-message" [hidden]="!this.errors.password.touched">
+            {{this.errors.password.message}}
+          </div>
+        </div>
       </div>
 
-      <div class="text-content">
-        Bypass government and enterprise network restrictions on what websites you can access.
+      <div class="center">
+        <button class="btn orange" type="button" (click)="signup()">
+          REQUEST AN INVITATION <!-- START YOUR FREE TRIAL -->
+        </button>
+      </div>
+
+      <div class="tos">
+        By clicking this button, you agree to Cypherpunk Privacy's <a routerLink="/terms-of-service">Terms of Service</a>
+      </div>
+
+      <div class="center account">
+        <a class="signin-link" routerLink="/login">Already have an account? Sign in</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="alternate green right">
-  <div class="alternate-inner">
-    <div class="image top">
-      <img class="height-biased" src="/assets/home/security@2x.png" srcset="/assets/home/security.png 500w, /assets/home/security@2x.png 1000w" alt="Security while on public networks">
-    </div>
 
-    <div class="text">
-      <div class="text-header">
-        Security while on public networks
+<div class="four-grid">
+  <div class="grid-container">
+    <div class="grid-row">
+      <div class="grid-cell">
+        <div class="image top">
+          <img src="/assets/home/access@2x.png" srcset="/assets/home/access.png 500w, /assets/home/access@2x.png 1000w" alt="Access content from anywhere">
+        </div>
+
+        <div class="text-header">
+          Access content from anywhere
+        </div>
+
+        <div class="text-content">
+          Watch, listen, and stream your favorite content from anywhere in the world.
+        </div>
       </div>
 
-      <div class="text-content">
-        Encrypt your internet traffic while connected to untrusted networks or public WiFi.
+      <div class="grid-cell">
+        <div class="image top">
+          <img class="privacy" src="/assets/home/privacy@2x.png" srcset="/assets/home/privacy.png 500w, /assets/home/privacy@2x.png 1000w" alt="Privacy Protection">
+        </div>
+
+        <div class="text-header">
+          Privacy protection
+        </div>
+
+        <div class="text-content">
+          Don't reveal your location, encrypt your traffic, block websites from tracking you.
+        </div>
       </div>
     </div>
 
-    <div class="image bottom">
-      <img class="height-biased" src="/assets/home/security@2x.png" srcset="/assets/home/security.png 500w, /assets/home/security@2x.png 1000w" alt="Security while on public networks">
+    <div class="grid-row">
+      <div class="grid-cell">
+        <div class="image top">
+          <img src="/assets/home/freedom@2x.png" srcset="/assets/home/freedom.png 500w, /assets/home/freedom@2x.png 1000w" alt="Freedom from internet censorship">
+        </div>
+
+        <div class="text-header">
+          Freedom from internet censorship
+        </div>
+
+        <div class="text-content">
+          Bypass government and enterprise network restrictions on what websites you can access.
+        </div>
+      </div>
+
+      <div class="grid-cell">
+        <div class="image top">
+          <img class="security" src="/assets/home/security@2x.png" srcset="/assets/home/security.png 500w, /assets/home/security@2x.png 1000w" alt="Security while on public networks">
+        </div>
+
+        <div class="text-header">
+          Security while on public networks
+        </div>
+
+        <div class="text-content">
+          Encrypt your internet traffic while connected to untrusted networks or public WiFi.
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="alternate gray left">
+
+<div class="alternate left">
   <div class="alternate-inner">
     <div class="image top">
       <img class="height-biased" src="/assets/home/no-logging@2x.png" srcset="/assets/home/no-logging.png 500w, /assets/home/no-logging@2x.png 1000w" alt="No Data Logging">
@@ -153,7 +177,7 @@
   </div>
 </div>
 
-<div class="alternate green right">
+<div class="alternate right">
   <div class="alternate-inner">
     <div class="image top">
       <img class="height-biased" src="/assets/home/expert@2x.png" srcset="/assets/home/expert.png 500w, /assets/home/expert@2x.png 1000w" alt="Expert 24/7/365 Support">
@@ -175,7 +199,7 @@
   </div>
 </div>
 
-<div class="alternate gray left">
+<div class="alternate left">
   <div class="alternate-inner">
     <div class="image top">
       <img class="shrink" src="/assets/home/privacy-suite@2x.png" srcset="/assets/home/privacy-suite.png 500w, /assets/home/privacy-suite@2x.png 1000w" alt="Cypherpunk Privacy Suite">
@@ -193,7 +217,7 @@
   </div>
 </div>
 
-<div class="alternate green right">
+<div class="alternate right">
   <div class="alternate-inner">
     <div class="image top">
       <img class="height-biased" src="/assets/home/privacy-network@2x.png" srcset="/assets/home/privacy-network.png 500w, /assets/home/privacy-network@2x.png 1000w" alt="Cypherpunk Privacy Network">
@@ -215,7 +239,7 @@
   </div>
 </div>
 
-<div class="alternate gray left">
+<div class="alternate left">
   <div class="alternate-inner">
     <div class="image top">
       <img src="/assets/home/cypherplay@2x.png" srcset="/assets/home/cypherplay.png 500w, /assets/home/cypherplay@2x.png 1000w" alt="CypherPlay">
@@ -233,7 +257,7 @@
   </div>
 </div>
 
-<div class="alternate green right">
+<div class="alternate right">
   <div class="alternate-inner">
     <div class="image top">
       <img src="/assets/home/cypherVPN@2x.png" srcset="/assets/home/cypherVPN.png 500w, /assets/home/cypherVPN@2x.png 1000w" alt="MaxStealth">
@@ -255,7 +279,7 @@
   </div>
 </div>
 
-<div class="alternate gray left">
+<div class="alternate left">
   <div class="alternate-inner">
     <div class="image top">
       <img src="/assets/home/privacy-filter@2x.png" srcset="/assets/home/privacy-filter.png 500w, /assets/home/privacy-filter@2x.png 1000w" alt="Cypherpunk Privacy Filter">
@@ -273,7 +297,7 @@
   </div>
 </div>
 
-<div class="alternate green right">
+<div class="alternate right">
   <div class="alternate-inner">
     <div class="image top">
       <img class="height-biased" src="/assets/home/based-in-iceland@2x.png" srcset="/assets/home/based-in-iceland.png 500w, /assets/home/based-in-iceland@2x.png 1000w" alt="Based In Iceland">
@@ -295,7 +319,7 @@
   </div>
 </div>
 
-<div class="alternate gray left last">
+<div class="alternate left last">
   <div class="alternate-inner">
     <div class="image top">
       <img class="height-biased" src="/assets/home/money-back@2x.png" srcset="/assets/home/money-back.png 500w, /assets/home/money-back@2x.png 1000w" alt="30 Day Money Back Guarantee">
