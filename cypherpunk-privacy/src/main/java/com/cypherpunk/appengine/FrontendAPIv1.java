@@ -80,7 +80,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
 	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://127.0.0.1:11080";
-  private static final String BACKEND_HOSTNAME_TESTSERVER = "http://185.80.220.41:11080";
+  private static final String BACKEND_HOSTNAME_TESTSERVER = "https://185.80.220.41";
 
 	private static final String ZENDESK_API_URL = "https://cypherpunk.zendesk.com";
 	private static final String ZENDESK_API_USERNAME = "jmaurice@cypherpunk.com/token";
@@ -839,14 +839,14 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
       // cloud development
 			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) {
-        if (cypherpunkURI.equals("/api/v1/emails/unsubscribe")) {
+        if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
           cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
         }
 				else { cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT; }
 			}
       // cloud production
 			else {
-        if (cypherpunkURI.equals("/api/v1/emails/unsubscribe")) {
+        if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
           cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
         }
         else { cypherpunkBaseURL = BACKEND_HOSTNAME_PRODUCTION; }
