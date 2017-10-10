@@ -80,7 +80,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
 	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://127.0.0.1:11080";
-  private static final String BACKEND_HOSTNAME_TESTSERVER = "https://185.80.220.41";
+  private static final String BACKEND_HOSTNAME_TESTSERVER = "https://test-dev.cypherpunk.engineering";
 
 	private static final String ZENDESK_API_URL = "https://cypherpunk.zendesk.com";
 	private static final String ZENDESK_API_USERNAME = "jmaurice@cypherpunk.com/token";
@@ -835,7 +835,7 @@ public class FrontendAPIv1 extends HttpServlet {
 
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
 				// for local devserver - don't use TLS
-				cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
+        cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
 			}
       // cloud development
 			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) {
