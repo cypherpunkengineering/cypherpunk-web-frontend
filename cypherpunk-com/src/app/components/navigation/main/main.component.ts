@@ -1,8 +1,9 @@
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { SessionService } from '../../../services/session.service';
 import { GlobalsService } from '../../../services/globals.service';
+import { Component, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { PlatformBuilds } from '../../../layouts/public/apps/platform-builds';
 import * as platform from 'platform';
 
@@ -17,6 +18,9 @@ export class NavigationComponent {
   showDropDown = false;
   scrolledNavElement: HTMLElement;
   scrolledMobileNavElement: HTMLElement;
+  showSignup: boolean;
+  viewHeight: number;
+  onHome: boolean;
 
   link: string;
   pageRedirect: string;
@@ -42,7 +46,8 @@ export class NavigationComponent {
     private router: Router,
     private auth: AuthService,
     private globals: GlobalsService,
-    private session: SessionService
+    private session: SessionService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // detect env
     this.env = globals.ENV;
@@ -53,6 +58,14 @@ export class NavigationComponent {
 
     if (!this.router.url.startsWith('/support')) { this.maintenanceEnabled = false; }
     else if (this.router.url.startsWith('/support') && this.maintenanceEnabled ) { this.maintenanceEnabled = true;
+    }
+
+    // handle disappearing signup button
+    if (this.router.url === '/') { this.onHome = true; }
+    if (isPlatformBrowser(this.platformId)) {
+      this.viewHeight = window.innerHeight
+      || document.documentElement.clientHeight
+      || document.body.clientHeight;
     }
 
     // detect os setup
@@ -126,6 +139,9 @@ export class NavigationComponent {
 
     // we round here to reduce a little workload
     let currentPosition = Math.round(window.scrollY);
+
+    if (this.viewHeight && currentPosition > this.viewHeight) { this.showSignup = true; }
+    else { this.showSignup = false; }
 
     if (currentPosition > 60) {
       this.scrolledNavElement.style.opacity = '1';

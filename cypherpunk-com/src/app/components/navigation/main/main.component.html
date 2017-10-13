@@ -34,7 +34,7 @@
           <button class="btn border">DOWNLOAD</button>
         </a>
       </li>
-      <li>
+      <li *ngIf="!onHome">
         <a routerLink="/signup" *ngIf="!isLoggedIn()">
           <button class="btn orange">START FREE</button>
         </a>
@@ -92,7 +92,7 @@
             <button class="btn border">DOWNLOAD</button>
           </a>
         </li>
-        <li>
+        <li [ngClass]="{'home': onHome, 'show': showSignup}">
           <a routerLink="/signup" *ngIf="!isLoggedIn()">
             <button class="btn orange">START FREE</button>
           </a>

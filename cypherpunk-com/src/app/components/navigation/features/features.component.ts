@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
-import { Component, Input, HostListener, PLATFORM_ID, Inject, AfterViewInit  } from '@angular/core';
+import { Component, Input, HostListener, PLATFORM_ID, Inject, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'features-navigation',

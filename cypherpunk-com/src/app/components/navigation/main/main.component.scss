@@ -19,15 +19,14 @@
 
   .nav-right {
     float: right;
-    padding: 30px 15px 0 0;
+    padding: 20px 15px 0 0;
 
     ul {
       list-style-type: none;
-      position: relative;
       margin: 0;
       padding: 0;
 
-      li { position: relative; float: left; }
+      li { display: inline-block; vertical-align: middle; }
     }
   }
 }
@@ -43,9 +42,19 @@
   &:hover { color: #fff; }
 }
 
+.home {
+  max-width: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in;
+  .btn { width: 135px; }
+  &.show {
+    max-width: 160px;
+  }
+}
+
 .btn {
   height: 38px;
-  margin: -10px 25px 0 0;
+  margin: 0px 25px 0 0;
   padding: 0 10px;
   background-color: #ff7857;
   color: #fff;
@@ -58,7 +67,6 @@
     background-color: transparent;
     border: 1px solid #1A474C;
     border-radius: 5px;
-    margin-top: -9px;
     font-weight: normal;
     font-size: 15px;
     letter-spacing: 0.8px;

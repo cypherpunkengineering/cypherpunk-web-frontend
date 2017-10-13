@@ -1,4 +1,3 @@
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, Input, HostListener, AfterViewInit } from '@angular/core';
 
