@@ -73,25 +73,18 @@
     }
   }
 
-  .signup { padding: 20px 0;  text-align: center; }
-
   .form {
     max-width: 550px;
     padding: 0 10px;
     margin: 0 auto;
     text-align: center;
 
-    .row { font-size: 0; }
-    .half {
-      width: 50%;
-      display: inline-block;
-      vertical-align: top;
-      text-align: left;
-      margin: 5px 0 25px;
-      &:first-child { padding-right: 5px; }
-      &:nth-child(2) { padding-left: 5px; }
-    }
+    .row { max-width: 360px; margin: auto; }
+    .half { margin: 5px 0 5px; height: 80px; }
+    .confirm { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.3s ease-in; }
+    .confirm.show { max-height: 80px; opacity: 1; }
     .center { text-align: center; }
+    .submit { max-width: 360px; width: 100%; }
     .tos {
       font-size: 10px;
       color: #fff;
@@ -135,7 +128,7 @@
 
     .error-message {
       color: #a94442;
-      margin: -15px 0 0;
+      margin: -20px 0 0;
       text-align: left;
       font-size: 12px;
     }

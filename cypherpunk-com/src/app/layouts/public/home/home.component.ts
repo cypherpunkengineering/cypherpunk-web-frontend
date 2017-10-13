@@ -13,10 +13,11 @@ import { Component, PLATFORM_ID, Inject, AfterViewInit, NgZone } from '@angular/
 })
 export class HomeComponent {
   refToken: string;
-  user = { email: '', password: '' };
+  user = { email: '', password: '', confirm: '' };
   errors = {
     email: { message: '', exists: true, touched: false },
-    password: { message: '', touched: false }
+    password: { message: '', touched: false },
+    confirm: { message: '', touched: false }
   };
   signupButtonDisabled = false;
 
@@ -102,11 +103,30 @@ export class HomeComponent {
     return valid;
   }
 
+  validateConfirm() {
+    let valid = false;
+    this.errors.confirm.touched = true;
+
+    if (!this.user.password) {
+      this.errors.confirm.message = 'Password is Required';
+    }
+    else if (this.user.password !== this.user.confirm) {
+      this.errors.confirm.message = 'Password and Confirmation must be the same';
+    }
+    else {
+      valid = true;
+      this.errors.confirm.message = '';
+    }
+
+    return valid;
+  }
+
   signup() {
     this.checkEmailExists();
     let email = this.validateEmail();
     let password = this.validatePassword();
-    if (!email || !password || this.errors.email.exists || this.signupButtonDisabled) { return; }
+    let confirm = this.validateConfirm();
+    if (!email || !password || confirm || this.errors.email.exists || this.signupButtonDisabled) { return; }
     this.signupButtonDisabled = true;
 
     if (isPlatformBrowser(this.platformId)) {
@@ -114,7 +134,10 @@ export class HomeComponent {
       paq.push(['trackGoal', 16]);
     }
 
-    this.auth.signup(this.user)
+    this.auth.signup({
+      emall: this.user.email,
+      password: this.user.password
+    })
     .then(() => { this.router.navigate(['account']); })
     .catch((err) => {
       this.zone.run(() => {

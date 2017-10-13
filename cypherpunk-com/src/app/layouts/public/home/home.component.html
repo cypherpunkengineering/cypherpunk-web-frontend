@@ -46,12 +46,6 @@
         <img src="/assets/home/header-illustration@2x.png" srcset="/assets/home/header-illustration.png 500w, /assets/home/header-illustration@2x.png 1000w" alt="Cypherpunk Privacy">
       </div>
     </div>
-
-    <div class="signup">
-      <a routerLink="/signup">
-        <button class="btn orange">GET MY FREE PREVIEW</button>
-      </a>
-    </div>
   </div>
 
   <div class="masthead-panel right">
@@ -69,15 +63,22 @@
         </div>
 
         <div class="half">
-          <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword()" (keyup.enter)="signup()" (blur)="this.errors.password.touched = true; validatePassword()">
+          <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password" [ngClass]="{'error': (this.errors.password.touched && this.errors.password.message)}" (ngModelChange)="validatePassword(); validateConfirm()" (blur)="this.errors.password.touched = true; validatePassword(); validateConfirm()">
           <div class="error-message" [hidden]="!this.errors.password.touched">
             {{this.errors.password.message}}
+          </div>
+        </div>
+
+        <div class="half confirm" [ngClass]="{'show': errors.password.touched }">
+          <input type="password" name="confirm" placeholder="Confirm Password" [(ngModel)]="user.confirm" [ngClass]="{'error': (this.errors.confirm.touched && this.errors.confirm.message)}" (ngModelChange)="validateConfirm()" (keyup.enter)="signup()" (blur)="this.errors.confirm.touched = true; validateConfirm()">
+          <div class="error-message" [hidden]="!this.errors.confirm.touched">
+            {{this.errors.confirm.message}}
           </div>
         </div>
       </div>
 
       <div class="center">
-        <button class="btn orange" type="button" (click)="signup()">
+        <button class="btn orange submit" type="button" (click)="signup()">
           REQUEST AN INVITATION <!-- START YOUR FREE TRIAL -->
         </button>
       </div>
