@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class Plan {
   id: string;
+  type: string;
   price: number;
   bcPrice: number;
   rate: string;
@@ -12,8 +13,9 @@ export class Plan {
   bitpayData: string;
   paypalButtonId: string;
 
-  constructor(id, price, rate, months, viewable, bitpayData, paypalButtonId) {
+  constructor(id, type, price, rate, months, viewable, bitpayData, paypalButtonId) {
     this.id = id;
+    this.type = type;
     this.price = price;
     this.bcPrice = undefined;
     this.rate = rate;
@@ -75,7 +77,8 @@ export class PlansService {
 
     // monthly plan
     planArray.push({
-      id: 'monthly',
+      id: plans.monthly.id,
+      type: 'monthly',
       price: Number(plans.monthly.price),
       bcPrice: undefined,
       rate: 'monthly plan',
@@ -86,7 +89,8 @@ export class PlansService {
     });
     // annual plan
     planArray.push({
-      id: 'annually',
+      id: plans.annually.id,
+      type: 'annually',
       price: Number(plans.annually.price),
       bcPrice: undefined,
       rate: '12 month plan',
@@ -97,7 +101,8 @@ export class PlansService {
     });
     // semiannual plan
     planArray.push({
-      id: 'semiannually',
+      id: plans.semiannually.id,
+      type: 'semiannually',
       price: Number(plans.semiannually.price),
       bcPrice: undefined,
       rate: '6 month plan',
