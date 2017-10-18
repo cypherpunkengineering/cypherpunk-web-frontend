@@ -1,5 +1,12 @@
-form { overflow: auto; }
+//form { overflow: hidden; }
+form::after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
 
+/*
 input[type="text"], input[type="email"], input[type="password"], select {
   background-color: #fff;
   width: 100%;
@@ -23,22 +30,76 @@ input[type="text"], input[type="email"], input[type="password"], select {
   &:-ms-input-placeholder,
   &:-moz-placeholder { color: #7f7979; }
 }
+*/
 
 .row {
   width: 50%;
   margin: 0;
   float: left;
   padding: 10px 5px 0;
-
-  .error-message {
-    color: #a94442;
-    text-align: left;
-    font-size: 12px;
-  }
 }
 
-.info small { font-size: 12px; color: #7f7979; }
+input[type=password].with-confirm {
+  position: relative;
+  z-index: 2;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  + input[type=password] {
+    position: relative;
+    z-index: 1;
+    margin-top: -7px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    //transition: 0.3s 0.2s transform, 0.5s opacity ease-out;
+    //opacity: 0;
+    //transform: translateY(-48px);
+  }
+  /*
+  &:focus + input[type=password], + input[type=password]:focus, &:active + input[type=password], + input[type=password]:active {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: 0.2s transform, 0.3s opacity ease-in;
+    ~ .error-message {
+      transform: translateY(0px);
+      transition: 0.2s transform;
+    }
+  }
+  ~ .error-message {
+    transform: translateY(-48px);
+    transition: 0.3s 0.2s transform;
+  }
+  */
+}
+
+.info-message {
+  color: #7f7979 !important;
+}
+.password-strength {
+  color: #7f7979 !important;
+  span {
+    display: inline-block;
+    width: 40px;
+    height: 12px;
+    border: 1px solid #9f9999;
+    border-radius: 5px;
+    padding: 1px;
+    text-align: left;
+    position: relative;
+    margin: 1px 0 -2px 0;
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      border-radius: 3px;
+    }
+  }
+  .strength-0 { border-color: orangered;   &::before { background-color: orangered;   width:  25%; } }
+  .strength-1 { border-color: orange;      &::before { background-color: orange;      width:  50%; } }
+  .strength-2 { border-color: yellowgreen; &::before { background-color: yellowgreen; width:  75%; } }
+  .strength-3 { border-color: limegreen;   &::before { background-color: limegreen;   width: 100%; } }
+}
+
 
 @media (max-width: 550px) {
-  p { width: 100%; }
+  .row { width: 100%; }
 }

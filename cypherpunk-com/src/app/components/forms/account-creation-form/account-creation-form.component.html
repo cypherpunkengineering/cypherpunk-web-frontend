@@ -1,28 +1,35 @@
-<form [formGroup]="accountForm">
+<form [formGroup]="accountForm" class="cp-form validated">
   <div class="row">
-    <input id="emailInput" name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (!email.valid || !accountFormData.validation.email)), 'success': accountFormData.validation.disabled || (email.touched && email.valid && accountFormData.validation.email)}"/>
-    <div class="error-message" [hidden]="!(email.touched && !email.valid)">
-      <div *ngIf="email.errors && email.errors['required']">
-        Email is Required
+    <input id="emailInput" name="email" type="email" placeholder="Email" required formControlName="email" [(ngModel)]="accountFormData.email" (blur)="validateEmail()" [ngClass]="{'error': !accountFormData.validation.disabled && (email.touched && (email.invalid || emailCheckResults[accountFormData.email] === false)), 'success': accountFormData.validation.disabled || (email.valid && emailCheckResults[accountFormData.email]) }"/>
+    <div class="error-message" *ngIf="email.touched && (email.invalid || emailCheckResults[accountFormData.email] === false)">
+      <div *ngIf="email.errors?.required">
+        Required
       </div>
-
-      <div *ngIf="email.errors && email.errors['invalidEmailFormat'] && !email.errors['required']">
+      <div *ngIf="!email.errors?.required && email.errors?.invalidEmailFormat">
         Invalid Email Format
       </div>
-
-    </div>
-    <div class="error-message" [hidden]="!(email.touched)">
-      <div *ngIf="email.valid && !accountFormData.validation.email">
-        Email is already being used
+      <div *ngIf="email.valid && emailCheckResults[accountFormData.email] === false">
+        Email Already in Use
       </div>
     </div>
   </div>
 
   <div class="row">
     <input id="passwordInput" name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
-    <div class="error-message" [hidden]="!(password.touched && !password.valid)">Password is Required</div>
-    <label class="info" for="password">
-      <small>at least 6 characters</small>
-    </label>
+    <!--
+    <input id="passwordInput" class="with-confirm" name="password" type="password" placeholder="Password" required formControlName="password" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+    <input id="passwordConfirm" name="confirm" type="password" placeholder="Confirm password" required formControlName="confirm" [(ngModel)]="accountFormData.password" [ngClass]="{'error': !accountFormData.validation.disabled && (password.touched && !password.valid), 'success': accountFormData.validation.disabled || (password.touched && password.valid)}"/>
+    -->
+    <div [ngClass]="{ 'error-message': true, 'info-message': !password.touched && accountFormData.password === '', 'password-strength': !(password.touched && password.invalid) && accountFormData.password !== '' }">
+      <div *ngIf="password.touched ? (password.errors?.required || password.errors?.passwordTooShort) : accountFormData.password === ''">
+        Minimum 6 Characters
+      </div>
+      <div *ngIf="password.touched && password.invalid && !password.errors?.required && password.errors?.invalidPasswordFormat">
+        Contains Invalid Characters
+      </div>
+      <div *ngIf="!(password.touched && password.invalid) && accountFormData.password !== ''">
+        Password Strength: <span [class]="measurePasswordStrength(accountFormData.password)"></span>
+      </div>
+    </div>
   </div>
 </form>
