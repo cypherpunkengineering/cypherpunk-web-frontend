@@ -130,7 +130,7 @@ export class BillingComponent implements OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       backend.cards()
       .subscribe((data: any) => {
-        this.cards = data.sources;
+        this.cards = data;
         if (!this.cards.length) { this.showCreateCard = true; }
       },
       (err) => {

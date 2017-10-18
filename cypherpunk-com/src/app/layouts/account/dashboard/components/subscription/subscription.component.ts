@@ -19,7 +19,7 @@ export class AccountSubscriptionComponent {
     if (isPlatformBrowser(this.platformId)) {
       backend.cards()
       .subscribe(
-        (data: any) => { this.cards = data.sources; },
+        (data: any) => { this.cards = data; },
         (err) => { console.log(err); }
       );
     }

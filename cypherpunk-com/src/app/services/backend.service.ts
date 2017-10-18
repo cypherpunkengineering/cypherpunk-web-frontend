@@ -137,7 +137,7 @@ export class BackendService {
   }
 
   cards() {
-    let url = this.globals.API_URL + '/account/source/list';
+    let url = this.globals.API_URL + '/account/payment/stripe/cards';
     let options = new RequestOptions({ withCredentials: true });
     return this.http.get(url, options)
     .map(res => res.json());
