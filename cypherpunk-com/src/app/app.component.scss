@@ -1,0 +1,59 @@
+form.cp-form {
+  input[type="text"], input[type="email"], input[type="password"], select {
+    border-width: 2px;
+    border-style: solid;
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 5px 0;
+    padding: 10px;    
+
+    background-color: #fff;
+    color: #7f7979;
+    border-color: #e0dede;
+
+    &:focus {
+      outline: 2px solid rgba(#e0dede, 0.5);
+      outline-offset: -4px;
+    }
+
+    // need to keep these separate, or the parser fails
+    &::-webkit-input-placeholder { color: #bfbbbb; }
+    &::-moz-placeholder { color: #bfbbbb; }
+    &:-ms-input-placeholder { color: #bfbbbb; }
+    &:-moz-placeholder { color: #bfbbbb; }
+
+    ~ .error-message {
+      //display: block;
+      color: #a94442;
+      text-align: right;
+      font-size: 12px;
+      overflow-y: visible;
+      height: 0px;
+      padding-right: 5px;
+    }
+  }
+
+  &.validated {
+    input[type="text"], input[type="email"], input[type="password"], select {
+      &.success {
+        border-color: #67b168;
+        //color: #3c763d;
+        &:focus { outline-color: rgba(#67b168, 0.5); }
+      }
+      &.error {
+        border-color: #ce8483;
+        background-color: #fce9e8;
+        color: #a94442;
+        &:focus { outline-color: rgba(#ce8483, 0.5); }
+        
+        // need to keep these separate, or the parser fails
+        &::-webkit-input-placeholder { color: #cc9999; }
+        &::-moz-placeholder { color: #cc9999; }
+        &:-ms-input-placeholder { color: #cc9999; }
+        &:-moz-placeholder { color: #cc9999; }
+      }
+    }
+  }
+}
