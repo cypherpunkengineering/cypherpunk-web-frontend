@@ -49,7 +49,7 @@ export class SupportNavigationComponent implements AfterViewInit {
     let nav = document.getElementById('nav');
     let scrolledNav = document.getElementById('scrolled-mobile-nav');
     let supportNavigation = <HTMLElement> document.querySelector('.support-navigation.page');
-    let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
+    let clientHeight = (nav && nav.clientHeight) || (scrolledNav && scrolledNav.clientHeight) || 0;
     if (!supportNavigation) { return; }
 
     // masthead height - nav height

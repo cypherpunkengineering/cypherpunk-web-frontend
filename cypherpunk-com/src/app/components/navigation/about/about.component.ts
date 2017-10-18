@@ -40,7 +40,7 @@ export class AboutUsNavigationComponent implements AfterViewInit {
     let nav = document.getElementById('nav');
     let scrolledNav = document.getElementById('scrolled-mobile-nav');
     let aboutusNavigation = <HTMLElement> document.querySelector('.aboutus-navigation.page');
-    let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
+    let clientHeight = (nav && nav.clientHeight) || (scrolledNav && scrolledNav.clientHeight) || 0;
     if (!aboutusNavigation) { return; }
 
     // masthead height - nav height
