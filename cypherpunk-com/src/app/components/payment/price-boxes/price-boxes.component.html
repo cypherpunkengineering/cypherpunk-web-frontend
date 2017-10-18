@@ -9,7 +9,7 @@
 
     <div class="box">
       <div class="checkmark"><i class="fa fa-check"></i></div>
-      <div class="period">Monthly</div>
+      <div class="period">1 Month</div>
 
       <div>
         <div class="price-area">
@@ -27,7 +27,7 @@
       </div>
 
       <div class="savings">
-        <div class="saves"></div>
+
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
 
     <div class="box buff">
       <div class="checkmark"><i class="fa fa-check"></i></div>
-      <div class="period">Yearly</div>
+      <div class="period">12 Months</div>
       <div class="best-value">
         <div class="text">Best Value</div>
       </div>
@@ -50,14 +50,14 @@
         </div>
         <div class="separator"></div>
         <div class="yearly">
-          Billed <span class="strike">{{ '$' + ((plans[0]?.price * 12) | number:'.2-2') }}</span> ${{plans[1]?.price | number:'.2-2'}} every 12 months
+          Billed <span class="strike">{{ '$' + ((plans[0]?.price * 12) | number:'.2-2') }}</span> <span class="new">${{plans[1]?.price | number:'.2-2'}}</span> every 12 months
           <br>
           30 day money-back guarantee
         </div>
       </div>
 
-      <div class="savings">
-        <div class="saves larger">Save {{ 100 - ((plans[1]?.price / (plans[1]?.price * 12)) * 100) | number:'.0-0' }}%</div>
+      <div class="savings large">
+        Save {{ 100 - ((plans[1]?.price / (plans[0]?.price * 12)) * 100) | number:'.0-0' }}%
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
 
     <div class="box">
       <div class="checkmark"><i class="fa fa-check"></i></div>
-      <div class="period">6 Monthly</div>
+      <div class="period">6 Months</div>
 
       <div>
         <div class="price-area">
@@ -77,14 +77,14 @@
         </div>
         <div class="separator"></div>
         <div class="yearly">
-          Billed <span class="strike">{{ '$' + ((plans[0]?.price * 6) | number:'.2-2') }}</span> ${{plans[2]?.price | number:'.2-2'}} every 6 months
+          Billed <span class="strike">{{ '$' + ((plans[0]?.price * 6) | number:'.2-2') }}</span> <span class="new">${{plans[2]?.price | number:'.2-2'}}</span> every 6 months
           <br>
           30 day money-back guarantee
         </div>
       </div>
 
       <div class="savings">
-        <div class="saves">Save {{ 100 - ((plans[2]?.price / (plans[2]?.price * 6)) * 100) | number:'.0-0' }}%</div>
+        Save {{ 100 - ((plans[2]?.price / (plans[0]?.price * 6)) * 100) | number:'.0-0' }}%
       </div>
     </div>
   </div>
