@@ -111,26 +111,35 @@ export class StripeCCFormComponent implements OnInit {
     });
   }
 
-  checkCCNumber(e) {
-    e.preventDefault();
-    let input = e.key;
-    if (!/^[0-9]+$/.test(input)) { return; }
+  isAmex(ccn) {
+    if (typeof ccn !== 'string') ccn = this.stripeFormData.cardNumber;
+    return ccn.startsWith('34') || ccn.startsWith('37');
+  }
 
-    let ccn = this.stripeFormData.cardNumber;
-    if ((ccn.startsWith('34') || ccn.startsWith('37')) && ((ccn.length + 1) > 15)) { return; }
-    else if ((ccn.length + 1) > 21) { return; }
-    this.stripeFormData.cardNumber += input;
+  checkCCNumber(e) {
+    do {
+      let input = e.key;
+      if (!/^[0-9]+$/.test(input)) { break; }
+      let ccn = this.stripeFormData.cardNumber;
+      if (this.isAmex(ccn) && ((ccn.length + 1) > 15)) { break; }
+      else if ((ccn.length + 1) > 21) { break; }
+      return;
+    } while (false);
+    e.preventDefault();
   }
 
   checkCVCNumber(e) {
+    do {
+      let input = e.key;
+      if (!/^[0-9]+$/.test(input)) { break; }
+      if ((this.stripeFormData.cvc.length + 1) > 4) { break; }
+      return;
+    } while (false);
     e.preventDefault();
-    let input = e.key;
-    if (!/^[0-9]+$/.test(input)) { return; }
-    if ((this.stripeFormData.cvc.length + 1) > 4) { return; }
-    this.stripeFormData.cvc += input;
   }
 
   loadStripe(key) {
+    /*
     if (!document.getElementById('stripe-init')) {
       let stripeInit = document.createElement('script');
       stripeInit.setAttribute('id', 'stripe-init');
@@ -140,13 +149,17 @@ export class StripeCCFormComponent implements OnInit {
       `;
       document.body.appendChild(stripeInit);
     }
-
+    */
     if (!document.getElementById('stripe-v2')) {
       let stripe = document.createElement('script');
       stripe.setAttribute('id', 'stripe-v2');
       stripe.setAttribute('type', 'text/javascript');
-      stripe.setAttribute('onload', 'stripeOnload()');
+      //stripe.setAttribute('onload', 'stripeOnload()');
       stripe.setAttribute('src', 'https://js.stripe.com/v2/');
+      stripe.addEventListener('load', event => {
+        (<any>window).Stripe.setPublishableKey(key);
+        this.stripeForm.markAsDirty();
+      });
       document.body.appendChild(stripe);
     }
   }
@@ -158,11 +171,12 @@ class NumberValidator {
   static validate(control: FormControl): ValidationResult {
     if (control.value) {
       let stripe = (<any>window).Stripe;
-      if (!stripe) { return { 'stripeNotFound': true }; }
-
-      let passStripeValidation = stripe.card.validateCardNumber(control.value);
-      if (passStripeValidation) { return null; }
-      else { return { 'invalidCreditCardNumber': true }; }
+      //if (!stripe) { return { 'stripeNotFound': true }; }
+      if (stripe) {
+        let passStripeValidation = stripe.card.validateCardNumber(control.value);
+        if (passStripeValidation) { return null; }
+        else { return { 'invalidCreditCardNumber': true }; }
+      }
     }
     else { return null; }
   }
@@ -172,11 +186,12 @@ class CvcValidator {
   static validate(control: FormControl): ValidationResult {
     if (control.value) {
       let stripe = (<any>window).Stripe;
-      if (!stripe) { return { 'stripeNotFound': true }; }
-
-      let passStripeValidation = stripe.card.validateCVC(control.value);
-      if (passStripeValidation) { return null; }
-      else { return { 'invalidExpiryDate': true }; }
+      //if (!stripe) { return { 'stripeNotFound': true }; }
+      if (stripe) {
+        let passStripeValidation = stripe.card.validateCVC(control.value);
+        if (passStripeValidation) { return null; }
+        else { return { 'invalidExpiryDate': true }; }
+      }
     }
     else { return null; }
   }

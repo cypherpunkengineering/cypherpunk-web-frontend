@@ -1,74 +1,78 @@
-<form [formGroup]="stripeForm">
-  <div class="row">
-    <label>Name on Card</label><br>
-    <input id="nameInput" name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name?.touched && !name?.valid, 'success': name?.touched && name?.valid}" autocomplete="cc-name"/>
-      <div class="error-message" [hidden]="!(name?.touched && !name?.valid)">Name is Required</div>
+<form [formGroup]="stripeForm" class="cp-form validated">
+
+  <div class="field name">
+    <label>Name on Card</label>
+    <input id="nameInput" name="name" type="text" required formControlName="name" [(ngModel)]="stripeFormData.name" [ngClass]="{'error': name?.touched && !name?.valid, 'success': name?.valid}" autocomplete="cc-name"/>
+    <div class="error-message" *ngIf="name?.touched && name?.invalid">
+      Required
+    </div>
   </div>
 
-  <div class="row">
-    <label>Card Number</label><br>
-    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [ngModel]="stripeFormData.cardNumber | CCNumber" [ngClass]="{'error': cardNumber?.touched && !cardNumber?.valid, 'success': cardNumber?.touched && cardNumber?.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)" (ngModelChange)="stripeFormData.cardNumber=$event"/>
-    <div class="error-message" [hidden]="!(cardNumber?.touched && !cardNumber?.valid)">
-      <div *ngIf="cardNumber?.errors && cardNumber?.errors['required']">
-        Credit Card Number is Required
+  <div class="field card">
+    <label>Card Number</label>
+    <input id="cardNumberInput" name="cardNumber" type="text" required formControlName="cardNumber" [ngModel]="stripeFormData.cardNumber | CCNumber" [ngClass]="{'error': cardNumber?.touched && !cardNumber?.valid, 'success': cardNumber?.valid}" autocomplete="cc-number" (keypress)="checkCCNumber($event)" (ngModelChange)="stripeFormData.cardNumber=$event"/>
+    <div class="error-message" *ngIf="cardNumber?.touched && cardNumber?.invalid">
+      <div *ngIf="cardNumber?.errors?.required">
+        Required
       </div>
-
-      <div *ngIf="cardNumber?.errors && cardNumber?.errors['invalidCreditCardNumber'] && !cardNumber?.errors['required']">
+      <div *ngIf="cardNumber?.errors?.invalidCreditCardNumber">
         Invalid Credit Card Number
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="half">
-      <div class="half">
-        <label>Exp. Month</label><br />
-        <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth?.touched && !expiryMonth?.valid, 'success': expiryMonth?.touched && expiryMonth?.valid}" autocomplete="cc-exp-month">
-          <option value="" selected disabled hidden>MM</option>
-          <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
-        </select>
-        <div class="error-message" [hidden]="!(expiryMonth?.touched && !expiryMonth?.valid)">
-          Exp Month is Required
-        </div>
-      </div>
-
-      <div class="half">
-        <label>Exp. Year</label><br />
-        <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear?.touched && !expiryYear?.valid, 'success': expiryYear?.touched && expiryYear?.valid}" autocomplete="cc-exp-year">
-          <option value="" selected disabled hidden>YYYY</option>
-          <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
-        </select>
-        <div class="error-message" [hidden]="!(expiryYear?.touched && !expiryYear?.valid)">
-          Exp Year is Required
-        </div>
-      </div>
-    </div>
-
-    <div class="half">
-      <label>Security Code</label><br>
-      <img class="first" src="/assets/payment/security-code-02.png" alt="CVC">
-      <img src="/assets/payment/security-code-01.png" alt="CVC">
-      <span>
-        <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc?.touched && !cvc?.valid, 'success': cvc?.touched && cvc?.valid}" placeholder="3 on back, Amex: 4 on front" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
-      </span>
-      <div class="error-message cvc" [hidden]="!(cvc?.touched && !cvc?.valid)">CVC is Required</div>
+  <div class="field month">
+    <label>Exp. Month</label>
+    <select id="ccexpirymonth" name="expiryMonth" required formControlName="expiryMonth" [(ngModel)]="stripeFormData.month" [ngClass]="{'error': expiryMonth?.touched && !expiryMonth?.valid, 'success': expiryMonth?.valid}" autocomplete="cc-exp-month">
+      <option value="" selected disabled hidden>MM</option>
+      <option *ngFor="let month of monthArray" [value]="month">{{month}}</option>
+    </select>
+    <div class="error-message" *ngIf="expiryMonth?.touched && expiryMonth?.invalid">
+      Required
     </div>
   </div>
 
-  <div class="row">
-    <label>Country</label><br>
-    <select id="country" name="country" required formControlName="country" [(ngModel)]="stripeFormData.country" [ngClass]="{'error': country?.touched && !country?.valid, 'success': country?.touched && country?.valid}">
+  <div class="field year">
+    <label>Exp. Year</label>
+    <select id="ccexpiryyear" name="expiryYear" required formControlName="expiryYear" [(ngModel)]="stripeFormData.year" [ngClass]="{'error': expiryYear?.touched && !expiryYear?.valid, 'success': expiryYear?.valid}" autocomplete="cc-exp-year">
+      <option value="" selected disabled hidden>YYYY</option>
+      <option *ngFor="let year of yearArray" [value]="year">{{year}}</option>
+    </select>
+    <div class="error-message" *ngIf="expiryYear?.touched && expiryYear?.invalid">
+      Required
+    </div>
+  </div>
+
+  <div class="field cvc">
+    <label>Security Code</label>
+    <img src="/assets/payment/security-code-02.png" alt="4 digits on front" title="4 digits on front" [hidden]="!isAmex()">
+    <img src="/assets/payment/security-code-01.png" alt="3 digits on back" title="3 digits on back" [hidden]="isAmex()">
+    <div class="align">
+      <input id="cccvc" name="cvc" type="text" required maxlength="4" formControlName="cvc" [(ngModel)]="stripeFormData.cvc" [ngClass]="{'error': cvc?.touched && !cvc?.valid, 'success': cvc?.valid}" autocomplete="cc-csc" (keypress)="checkCVCNumber($event)">
+      <div class="error-message" *ngIf="cvc?.touched && cvc?.invalid">
+        Required
+      </div>
+    </div>
+  </div>
+
+  <div class="field country">
+    <label>Country</label>
+    <select id="country" name="country" required formControlName="country" [(ngModel)]="stripeFormData.country" [ngClass]="{'error': country?.touched && !country?.valid, 'success': country?.valid}">
       <option *ngFor="let country of countries" [value]="country.name">
         {{country.name}}
       </option>
     </select>
-  </div>
-
-  <div class="row" *ngIf="stripeFormData.country === 'United States' || stripeFormData.country === 'United Kingdom' || stripeFormData.country === 'Canada'">
-    <label>Zip Code</label><br>
-    <input id="zipCodeSelect" name="zipCode" type="text" formControlName="zipCode" [(ngModel)]="stripeFormData.zipCode" [ngClass]="{'error': zipCode?.touched && !zipCode?.valid, 'success': zipCode?.touched && zipCode?.valid}" required>
-    <div class="error-message" [hidden]="!(zipCode?.touched && !zipCode?.valid)">
-      Zip Code is Required
+    <div class="error-message" *ngIf="country?.touched && country?.invalid">
+      Required
     </div>
   </div>
+
+  <div class="field zip" *ngIf="stripeFormData.country === 'United States' || stripeFormData.country === 'United Kingdom' || stripeFormData.country === 'Canada'">
+    <label>Zip Code</label>
+    <input id="zipCodeSelect" name="zipCode" type="text" formControlName="zipCode" [(ngModel)]="stripeFormData.zipCode" [ngClass]="{'error': zipCode?.touched && !zipCode?.valid, 'success': zipCode?.valid}" required>
+    <div class="error-message" *ngIf="zipCode?.touched && zipCode?.invalid">
+      Required
+    </div>
+  </div>
+
 </form>

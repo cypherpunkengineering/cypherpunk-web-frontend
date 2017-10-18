@@ -1,39 +1,27 @@
-label { font-size: 18px; color: #7f7979; }
+//label { font-size: 18px; color: #7f7979; }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
-  background-color: #fff;
-  width: 100%;
-  height: 50px;
-  border-radius: 4px;
-  font-size: 18px;
-  padding: 10px;
-  margin: 5px 0 5px;
-  color: #7f7979;
-  border: 2px solid #e0dede;
-  &.error {
-    border-color: #a94442;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #ce8483;
+.field {
+  position: relative;
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    font-size: 16px;
+    color: #9f9999;
+    overflow-x: visible;
   }
-  &.success {
-    border-color: #3c763d;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 10px #67b168;
-  }
-  &::-webkit-input-placeholder,
-  &::-moz-placeholder,
-  &:-ms-input-placeholder,
-  &:-moz-placeholder { color: #7f7979; }
-}
 
-.row {
-  padding: 0 5px 0;
-  margin: 0 0 15px 0;
-
+  /*
   .error-message {
     color: #a94442;
-    text-align: left;
+    text-align: right;
     font-size: 12px;
-    &.cvc { margin-left: 5px; }
+    position: absolute;
+    right: 0;
+    top: 100%;
+    //&.cvc { margin-left: 5px; }
   }
+  */
 
   .half {
     width: 49%;
@@ -41,7 +29,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     vertical-align: top;
     input { width: 100%; }
     img { margin: 0 10px 0; float: right; height: 50px; padding: 10px 0 0; }
-    img.first { margin: 0; }
+    img + img { margin: 0; }
     span { display: block; overflow: hidden; padding: 0 5px; }
     #cccvc { width: 100%; }
 
@@ -51,9 +39,38 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
       padding: 0 5px;
     }
   }
+
+  &.name, &.card, &.country, &.zip {
+    float: left;
+    width: 100%;
+    clear: both;
+  }
+  &.month {
+    clear: both;
+  }
+  &.month, &.year {
+    float: left;
+    width: 25%;
+    padding-right: 15px;
+  }
+  &.cvc {
+    float: left;
+    width: 50%;
+    img {
+      float: right;
+      height: 50px;
+      margin: 5px 0 5px 10px;
+      padding: 5px 0;
+    }
+    .align {
+      position: relative;
+      margin-right: 75px;
+    }
+  }
 }
 
-@media (max-width: 850px) {
-  .row .half { width: 100%; }
-  .row .half .half { margin-bottom: 15px; }
+@media (max-width: 600px) {
+  .field.month, .field.year { width: 50%; }
+  .field.year { padding-right: 0; }
+  .field.cvc { width: 100%; clear: both; }
 }
