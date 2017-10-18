@@ -10,6 +10,14 @@ export class BackendService {
 
   constructor(private http: Http, private globals: GlobalsService) { }
 
+  $get(path, params?, options?) : Promise<any> {
+    return this.http.get(this.globals.API_URL + path, Object.assign({ withCredentials: true }, options, { params })).toPromise().then(this.parseJson);
+  }
+
+  $post(path, body?, options?) : Promise<any> {
+    return this.http.post(this.globals.API_URL + path, body || {}, Object.assign({ withCredentials: true }, options)).toPromise().then(this.parseJson);
+  }
+
   // User authentication
 
   confirmToken(body, options): Promise<any> {
