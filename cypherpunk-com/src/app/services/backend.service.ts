@@ -124,6 +124,18 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  getStripeCards(body: {}, options?) : Promise<any> {
+    return this.$get('/account/payment/stripe/cards');
+  }
+
+  payWithStripe(body: { planId: string, referralCode?: string, token: string }, options?) : Promise<any> {
+    return this.$post('/account/payment/stripe', body, options);
+  }
+
+  payWithPaypal(body: { planId: string, referralCode?: string, site?: string }, options?) : Promise<any> {
+    return this.$post('/account/payment/paypal', body, options);
+  }
+
   cards() {
     let url = this.globals.API_URL + '/account/source/list';
     let options = new RequestOptions({ withCredentials: true });
