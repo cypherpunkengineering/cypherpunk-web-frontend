@@ -1,0 +1,113 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin-bottom: -162px;
+  background-color: rgba(245, 245, 245, 1);
+  .masthead { flex: 0 0; }
+  &:after { content: ''; display: block; flex: 0 0; }
+}
+.footer, .wrapper:after { height: 162px; }
+
+.page {
+  //width: 100%;
+  max-width: 800px;
+  padding: 50px 15px 50px;
+  margin: auto;
+  overflow: hidden; // contain floats
+  //flex: 1 0;
+}
+
+@keyframes icon-appear {
+  0% { opacity: 0; transform: scale(0); }
+  50% { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes icon-rotate-cog {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon {
+  $color: #477;
+  float: left;
+  margin: 40px;
+  border: 20px solid $color;
+  border-radius: 200px;
+  .fa {
+    font-size: 160px;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    color: $color;
+    padding: 10px;
+  }
+  .fa-check {
+    animation: icon-appear 2s;
+  }
+  .fa-cog {
+    animation: icon-rotate-cog 5s infinite linear;
+  }
+}
+
+.page-header {
+  text-align: left;
+  margin-top: 120px;
+  margin-left: 300px;
+
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px auto;
+    color: #000;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 14px;
+    color: #7f7979;
+    margin: 10px auto;
+    .highlight { font-weight: bold; color: #000; }
+  }
+}
+
+
+.footer {
+  width: 100%;
+  background-color: #163138;
+  padding: 30px 20px 50px;
+
+  .footer-inner { max-width: 1340px; margin: auto; }
+  .copy {
+    width: 320px;
+    text-align: center;
+    color: #8DFFFB;
+    padding-left: 15px;
+    img { width: 261px; height: 56px; vertical-align: middle; }
+    img.beta { width: 35px; height: 25px; vertical-align: middle; padding-top: 5px; }
+  }
+  .footer-copyright { font-size: 14px; }
+}
+
+.btn {
+  width: 341px;
+  height: 60px;
+  margin: 25px auto 25px;
+  font-size: 24px;
+}
+
+
+@media (max-width: 1130px) {
+  .footer .copy { margin: auto; }
+}
+
+@media (max-width: 650px) {
+  .page { padding: 30px 0; }
+  .icon { float: none; display: inline-block; margin: 0 auto; margin-left: 50%; transform: translateX(-50%); }
+  .page-header { margin: 40px auto 0; width: 90%; }
+}
+
+@media (max-width: 375px) {
+  .footer .copy { padding-left: 0; }
+  .fake-nav .nav-left { width: 100%; text-align: center; padding: 15px; }
+}

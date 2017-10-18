@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <div class="masthead">
+    <app-nav></app-nav>
+  </div>
+
+  <div class="page" *ngIf="mode === 'complete'">
+    <div class="icon"><i class="fa fa-check"></i></div>
+    <div class="page-header">
+      <div class="title">Payment successful!</div>
+
+      <div class="text">
+        You will be redirected to your <a routerLink="/account">account page</a> shortly.
+      </div>
+    </div>
+  </div>
+
+  <div class="page" *ngIf="mode === 'pending'">
+    <div class="icon"><i class="fa fa-spin fa-cog"></i></div>
+    <div class="page-header">
+      <div class="title">Payment pending</div>
+
+      <div class="text">
+        Your payment is still being processed. You will receive an email as soon as it confirms.
+      </div>
+      <div class="text">
+        <a routerLink="/account">Click here</a> to proceed to your account page.
+      </div>
+    </div>
+  </div>
+
+  <div class="page" *ngIf="mode === 'error'">
+    <div class="icon"><i class="fa fa-exclamation-circle"></i></div>
+    <div class="page-header">
+      <div class="title">A problem occurred</div>
+
+      <div class="text">
+        We're very sorry, but there was an error processing your payment.
+      </div>
+      <div class="text">
+        Please get in touch with our <a routerLink="/support">support</a> for help resolving any issue.
+      </div>
+    </div>
+  </div>
+
+  <div class="page" *ngIf="mode === 'cancel'">
+    <div class="icon"><i class="fa fa-arrow-circle-left"></i></div>
+    <div class="page-header">
+      <div class="title">Payment canceled</div>
+
+      <div class="text">
+        You will be redirected to the <a routerLink="/billing">billing page</a> shortly.
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="copy">
+      <div routerLink="/">
+        <a routerLink="/">
+          <img src="/assets/logo@2x.png" srcset="/assets/logo.png 500w, /assets/logo@2x.png 1000w" width="261" height="56" alt="Cypherpunk Privacy logo" title="Cypherpunk Privacy | Guardian of Online Privacy and Freedom">
+          <img class="beta" src="/assets/beta@2x.png" srcset="/assets/beta.png 500w, /assets/beta@2x.png 1000w" alt="Beta" title="Beta">
+        </a>
+      </div>
+
+      <div class="footer-copyright">
+        &copy; 2017 Cypherpunk Partners, slf.
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading [state]="loading"></app-loading>
