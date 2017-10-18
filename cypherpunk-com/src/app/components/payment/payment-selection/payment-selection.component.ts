@@ -9,9 +9,14 @@ export class PaymentSelectionComponent {
   @Input() paymentMethod: string;
   @Output() selectOption: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() {}
+  disabled : { [method: string]: boolean } = {};
+
+  constructor() {
+    this.disabled = { 'a': true, 'bc': true };
+  }
 
   update(method) {
+    if (this.disabled[method]) return;
     this.paymentMethod = method;
     this.selectOption.emit(this.paymentMethod);
   }
