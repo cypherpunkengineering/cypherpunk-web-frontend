@@ -15,6 +15,7 @@ export class AmazonComponent {
   @Output() updateAmazonHide: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() updateAmazonRecurringEnabled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  initialized: boolean;
   amazonWallet: any;
   amazonRecurring: any;
   amazonHide = false;
@@ -70,6 +71,9 @@ export class AmazonComponent {
   // called externally from the outside the component
   /// verify that this is still used
   init() {
+    if (this.initialized) { return; }
+    else { this.initialized = true; }
+
     let amazon = (<any>window).amazon;
     let OffAmazonPayments = (<any>window).OffAmazonPayments;
 
