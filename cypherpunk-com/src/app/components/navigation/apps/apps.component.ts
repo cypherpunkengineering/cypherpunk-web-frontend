@@ -50,7 +50,7 @@ export class AppsNavigationComponent implements AfterViewInit {
     let nav = document.getElementById('nav');
     let scrolledNav = document.getElementById('scrolled-mobile-nav');
     let appsNavigation = <HTMLElement> document.querySelector('.apps-navigation.page');
-    let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
+    let clientHeight = (nav && nav.clientHeight) || (scrolledNav && scrolledNav.clientHeight) || 0;
     if (!appsNavigation) { return; }
 
     if ((this.inNavigation || this.inNavigationMobile) && this.onPage) {

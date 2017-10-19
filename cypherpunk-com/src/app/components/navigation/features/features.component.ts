@@ -52,7 +52,7 @@ export class FeaturesNavigationComponent implements AfterViewInit {
     let nav = document.getElementById('nav');
     let scrolledNav = document.getElementById('scrolled-mobile-nav');
     let featuresNavigation = <HTMLElement> document.querySelector('.features-navigation.page');
-    let clientHeight = nav.clientHeight || scrolledNav.clientHeight;
+    let clientHeight = (nav && nav.clientHeight) || (scrolledNav && scrolledNav.clientHeight) || 0;
     if (!featuresNavigation) { return; }
 
     let inNav = document.querySelector('.features-navigation.inNav');

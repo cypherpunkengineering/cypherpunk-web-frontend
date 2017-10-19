@@ -47,7 +47,12 @@ export class PriceBoxesComponent implements OnDestroy {
       let url = 'https://bitpay.com/api/rates/usd';
       this.http.get(url)
       .map(res => res.json())
-      .subscribe((data: any) => { if (data.rate) { this.bpRate = data.rate; } });
+      .subscribe((data: any) => {
+        if (data.rate) {
+          this.bpRate = data.rate;
+          this.updatePlans();
+        }
+      });
     }
   }
 

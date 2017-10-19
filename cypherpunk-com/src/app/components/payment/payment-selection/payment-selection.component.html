@@ -1,51 +1,55 @@
 <div class="payment-options">
-  <!-- eat tabs -->
-  <input type="checkbox">
-  <input type="checkbox">
-  <input type="checkbox">
-  <input type="checkbox">
 
-  <div class="type-container" (click)="update('cc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'cc'}">
-    <img [ngClass]="{'active': paymentMethod === 'cc'}" src="/assets/payment/credit-card@2x.png" srcset="/assets/payment/credit-card.png 500w, /assets/payment/credit-card@2x.png 1000w" alt="Credit Card">
+  <div class="group">
+    <div class="type-container" (click)="update('cc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'cc', 'disabled': disabled['cc'], 'hover': !disabled['cc']}">
+      <input type="radio" name="paymentMethod" value="cc">
+      <img [ngClass]="{'active': paymentMethod === 'cc'}" src="/assets/payment/credit-card@2x.png" srcset="/assets/payment/credit-card.png 500w, /assets/payment/credit-card@2x.png 1000w" alt="Credit Card">
 
-    <div class="text">
-      <div class="circle" [ngClass]="{'checked': paymentMethod === 'cc'}">
-        <div class="circle-inner"></div>
+      <div class="text">
+        <div class="circle" [ngClass]="{'checked': paymentMethod === 'cc'}">
+          <div class="circle-inner"></div>
+        </div>
+        <label for="cc">Credit Card</label>
       </div>
-      <label for="cc">Credit Card</label>
+    </div>
+
+    <div class="type-container" (click)="update('pp')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'pp', 'disabled': disabled['pp'], 'hover': !disabled['pp']}">
+      <input type="radio" name="paymentMethod" value="pp">
+      <img [ngClass]="{'active': paymentMethod === 'pp'}" src="/assets/payment/paypal@2x.png" srcset="/assets/payment/paypal.png 500w, /assets/payment/paypal@2x.png 1000w" alt="PayPal">
+
+      <div class="text">
+        <div class="circle" [ngClass]="{'checked': paymentMethod === 'pp'}">
+          <div class="circle-inner"></div>
+        </div>
+        <label for="pp">Paypal</label>
+      </div>
     </div>
   </div>
 
-  <div class="type-container" (click)="update('pp')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'pp'}">
-    <img [ngClass]="{'active': paymentMethod === 'pp'}" src="/assets/payment/paypal@2x.png" srcset="/assets/payment/paypal.png 500w, /assets/payment/paypal@2x.png 1000w" alt="PayPal">
+  <div class="group">
+    <div class="type-container" (click)="update('a')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'a', 'disabled': disabled['a'], 'hover': !disabled['a']}">
+      <input type="radio" name="paymentMethod" value="a">
+      <img [ngClass]="{'active': paymentMethod === 'a'}" src="/assets/payment/amazon@2x.png" srcset="/assets/payment/amazon.png 500w, /assets/payment/amazon@2x.png 1000w" alt="Amazon">
 
-    <div class="text">
-      <div class="circle" [ngClass]="{'checked': paymentMethod === 'pp'}">
-        <div class="circle-inner"></div>
+      <div class="text">
+        <div class="circle" [ngClass]="{'checked': paymentMethod === 'a'}">
+          <div class="circle-inner"></div>
+        </div>
+        <label for="a">Amazon</label>
       </div>
-      <label for="pp">Paypal</label>
+    </div>
+
+    <div class="type-container" (click)="update('bc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'bc', 'disabled': disabled['bc'], 'hover': !disabled['bc']}">
+      <input type="radio" name="paymentMethod" value="bc">
+      <img [ngClass]="{'active': paymentMethod === 'bc'}" src="/assets/payment/bitcoin@2x.png" srcset="/assets/payment/bitcoin.png 500w, /assets/payment/bitcoin@2x.png 1000w" alt="BitCoin">
+
+      <div class="text">
+        <div class="circle" [ngClass]="{'checked': paymentMethod === 'bc'}">
+          <div class="circle-inner"></div>
+        </div>
+        <label for="bc">Bitcoin</label>
+      </div>
     </div>
   </div>
 
-  <div class="type-container" (click)="update('a')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'a'}">
-    <img [ngClass]="{'active': paymentMethod === 'a'}" src="/assets/payment/amazon@2x.png" srcset="/assets/payment/amazon.png 500w, /assets/payment/amazon@2x.png 1000w" alt="Amazon">
-
-    <div class="text">
-      <div class="circle" [ngClass]="{'checked': paymentMethod === 'a'}">
-        <div class="circle-inner"></div>
-      </div>
-      <label for="a">Amazon</label>
-    </div>
-  </div>
-
-  <div class="type-container" (click)="update('bc')" [ngClass]="{'fade': paymentMethod && paymentMethod !== 'bc'}">
-    <img [ngClass]="{'active': paymentMethod === 'bc'}" src="/assets/payment/bitcoin@2x.png" srcset="/assets/payment/bitcoin.png 500w, /assets/payment/bitcoin@2x.png 1000w" alt="BitCoin">
-
-    <div class="text">
-      <div class="circle" [ngClass]="{'checked': paymentMethod === 'bc'}">
-        <div class="circle-inner"></div>
-      </div>
-      <label for="bc">Bitcoin</label>
-    </div>
-  </div>
 </div>

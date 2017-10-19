@@ -1,4 +1,4 @@
-import { Component, Input, NgZone } from '@angular/core';
+import { Component, Input, NgZone, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { AlertService } from '../../../services/alert.service';
 import { SessionService } from '../../../services/session.service';
@@ -10,6 +10,7 @@ import { SessionService } from '../../../services/session.service';
 })
 export class PaymentAccountComponent {
   @Input() accountFormData: any;
+  @ViewChild('accounts') accountChild;
 
   user: any;
   errors = {
@@ -66,6 +67,14 @@ export class PaymentAccountComponent {
     }
 
     return valid;
+  }
+
+  enableInputs() {
+    if (this.accountChild) this.accountChild.enableInputs();
+  }
+
+  disableInputs() {
+    if (this.accountChild) this.accountChild.disableInputs();
   }
 
   signin() {

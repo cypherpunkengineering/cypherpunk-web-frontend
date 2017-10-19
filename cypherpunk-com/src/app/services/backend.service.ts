@@ -10,6 +10,14 @@ export class BackendService {
 
   constructor(private http: Http, private globals: GlobalsService) { }
 
+  $get(path, params?, options?) : Promise<any> {
+    return this.http.get(this.globals.API_URL + path, Object.assign({ withCredentials: true }, options, { params })).toPromise().then(this.parseJson);
+  }
+
+  $post(path, body?, options?) : Promise<any> {
+    return this.http.post(this.globals.API_URL + path, body || {}, Object.assign({ withCredentials: true }, options)).toPromise().then(this.parseJson);
+  }
+
   // User authentication
 
   unsubscribe(email:string, token:string): Promise<any> {
@@ -123,8 +131,20 @@ export class BackendService {
     .catch(this.catchFunction);
   }
 
+  getStripeCards(body: {}, options?) : Promise<any> {
+    return this.$get('/account/payment/stripe/cards');
+  }
+
+  payWithStripe(body: { planId: string, referralCode?: string, token: string }, options?) : Promise<any> {
+    return this.$post('/account/payment/stripe', body, options);
+  }
+
+  payWithPaypal(body: { planId: string, referralCode?: string, site?: string }, options?) : Promise<any> {
+    return this.$post('/account/payment/paypal', body, options);
+  }
+
   cards() {
-    let url = this.globals.API_URL + '/account/source/list';
+    let url = this.globals.API_URL + '/account/payment/stripe/cards';
     let options = new RequestOptions({ withCredentials: true });
     return this.http.get(url, options)
     .map(res => res.json());

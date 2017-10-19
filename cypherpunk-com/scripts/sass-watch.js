@@ -1,21 +1,13 @@
 var fs = require('fs');
-var sass = require('node-sass');
+var postsass = require('./sass');
 var chokidar = require('chokidar');
 
 var sassRender = (filepath) => {
   if (!filepath.endsWith('scss')) { return; }
-  var opts = { file: filepath, outputStyle: 'compressed' };
-  sass.render(opts, function(error, result) {
-    if (error) { return console.log(error); }
-    else { writeFile(filepath, result); }
-  });
-};
-
-var writeFile = (filepath, result) => {
-  filepath = filepath.replace('.scss', '.css');
-  fs.writeFile(filepath, result.css, function(err) {
-    if (err) { console.log(err); }
-    else { console.log('Updated: ' + filepath); }
+  postsass().process({ file: filepath }).then(result => {
+    console.log('wrote css to: ' + result.opts.to);
+  }, err => {
+    console.error(err);
   });
 };
 

@@ -1,17 +1,17 @@
-<div *ngIf="user.subscription.type">
+<div class="logged-in" *ngIf="user.subscription.type">
   <div class="user-email">
-    Current Account: {{ user.account.email }}
+    Current Account: <span>{{ user.account.email }}</span>
   </div>
   <div class="upgrade">
     <a (click)="signout()">Not you? Click here to change accounts or register a new one</a>
   </div>
 </div>
 
-<div *ngIf="!user.subscription.type">
+<div class="create-account" *ngIf="!user.subscription.type">
   <div class="signin">
     <a (click)="showSignin = true">Already have an account? Click here to sign in</a>
   </div>
-  <app-account-creation-form [accountFormData]="accountFormData"></app-account-creation-form>
+  <app-account-creation-form [accountFormData]="accountFormData" #accounts></app-account-creation-form>
 </div>
 
 

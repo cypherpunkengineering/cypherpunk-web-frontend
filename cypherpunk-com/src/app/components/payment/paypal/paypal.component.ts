@@ -8,6 +8,8 @@ import { GlobalsService } from '../../../services/globals.service';
 })
 export class PaypalComponent implements OnDestroy {
   env = 'DEV';
+  formAction = 'https://www.paypal.com/cgi-bin/webscr';
+  formEncrypted = '';
   posData = '';
   monthlyButtonId = '';
   annuallyButtonId = '';
@@ -29,24 +31,11 @@ export class PaypalComponent implements OnDestroy {
     }
   }
 
-  pay(userId, planDuration, referralCode) {
-    let data = { id: userId, plan: planDuration, referralCode: referralCode };
-    if (!data.referralCode) { delete data.referralCode; }
-    this.posData = JSON.stringify(data);
-
+  checkout(params: { action: string, encrypted: string }) {
+    this.formAction = params.action;
+    this.formEncrypted = params.encrypted;
     setTimeout(() => {
-      if (planDuration.startsWith('monthly')) {
-        if (this.env === 'DEV') { document.getElementById('paypalDevMonthly').click(); }
-        else { document.getElementById('paypalMonthly').click(); }
-      }
-      else if (planDuration.startsWith('annually')) {
-        if (this.env === 'DEV') { document.getElementById('paypalDevAnnual').click(); }
-        else { document.getElementById('paypalAnnual').click(); }
-      }
-      else if (planDuration.startsWith('semiannually')) {
-        if (this.env === 'DEV') { document.getElementById('paypalDevSemiannual').click(); }
-        else { document.getElementById('paypalSemiannual').click(); }
-      }
+      (<HTMLFormElement>document.getElementById('paypalForm')).submit();
     });
   }
 

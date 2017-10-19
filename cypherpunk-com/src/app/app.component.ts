@@ -1,6 +1,6 @@
 import { PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
@@ -8,7 +8,9 @@ import { Router, NavigationEnd } from '@angular/router';
   template: `
     <app-noscript></app-noscript>
     <router-outlet></router-outlet>
-  `
+  `,
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
 

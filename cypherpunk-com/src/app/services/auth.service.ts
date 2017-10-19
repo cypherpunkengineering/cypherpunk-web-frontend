@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   signup(user): Promise<void> {
-    let body = { email: user.email, password: user.password };
+    let body = user; //{ email: user.email, password: user.password };
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
 

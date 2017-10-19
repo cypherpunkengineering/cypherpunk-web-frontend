@@ -46,7 +46,7 @@ export class BillingComponent implements OnDestroy {
 
   // Stripe variables
   cards: any[];
-  showCreateCard: boolean;
+  selectedCard?: string;
   stripeFormData = {
     name: '',
     cardNumber: '',
@@ -88,7 +88,7 @@ export class BillingComponent implements OnDestroy {
     seo.updateMeta({
       title: 'Cypherpunk Privacy & VPN Pricing and Order Form',
       description: 'Pricing and order form for Cypherpunk Online Privacy service.',
-      url: '/pricing'
+      url: '/billing'
     });
 
     // ** Hide this page from production
@@ -127,21 +127,96 @@ export class BillingComponent implements OnDestroy {
     }
 
     // get all stripe cards for this user
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && this.user.account.id) {
       backend.cards()
-      .subscribe((data: any) => {
-        this.cards = data.sources;
-        if (!this.cards.length) { this.showCreateCard = true; }
-      },
-      (err) => {
+      .subscribe((data: any) => this.zone.run(() => {
+        this.cards = data;
+        this.selectedCard = this.cards.length && this.cards[0].token || null;
+      }),
+      (err) => this.zone.run(() => {
         console.log(err);
-        this.showCreateCard = true;
-      });
+        this.selectedCard = null;
+      }));
     }
   }
 
+  // If the user is logged in, instantly resolves to their id, otherwise checks
+  // the account info fields and tries to either register an account or log in,
+  // again resolving to the account id if successful.
+  ensureAccountExists() : Promise<string> {
+    // already logged in?
+    if (this.user.account.id) { return Promise.resolve(this.user.account.id); }
+
+    // check if we have valid login/register fields
+    if (!this.validateAccount()) { return Promise.reject(new Error("Invalid account details")); }
+
+    // TODO: try to login to an existing account if signup fails?
+    return this.auth.signup({ email: this.accountFormData.email, password: this.accountFormData.password, billing: true })
+    .then(() => this.zone.run(() => {
+      if (!this.user.account.id) throw new Error("Failed to create account");
+      this.session.setGettingStarted(true);
+      return this.user.account.id;
+    }));
+  }
+
+
   // pay with stripe
 
+  payWithStripe() {
+    let stripe = (<any>window).Stripe;
+    if (!stripe) { console.error("Stripe not loaded"); return; }
+
+    let accountId = this.user.account.id;
+    let planId = this.plansService.selectedPlan.id;
+
+    if (!this.selectedCard && !this.validateStripe()) { return; }
+
+    // block double payment
+    if (this.disablePayment) { return false; }
+    else { this.disablePayment = true; }
+
+    // TODO: should have a global flag to disable all fields
+    this.accountChild.disableInputs();
+    // enable loading screen
+    this.loading = true;
+
+    // check or register account
+    this.ensureAccountExists()
+    .then(id => { accountId = id; })
+    // create a card token if needed
+    .then(() => {
+      if (this.selectedCard) { return this.selectedCard; } // existing token selected
+      let stripeParams = {
+        name: this.stripeFormData.name,
+        number: this.stripeFormData.cardNumber,
+        exp_month: this.stripeFormData.month,
+        exp_year: this.stripeFormData.year,
+        cvc: this.stripeFormData.cvc,
+        address_zip: this.stripeFormData.zipCode,
+        address_country: this.stripeFormData.country
+      };
+      if (!this.stripeFormData.zipCode) { delete stripeParams.address_zip; }
+      return new Promise((resolve, reject) => stripe.card.createToken(stripeParams, (status, response) => {
+        if (response.error) { reject(response.error); }
+        else { resolve(response.id); }
+      }));
+    })
+    // register token with the account
+    .then((token: string) => this.backend.payWithStripe({ planId, referralCode: this.referralCode, token }))
+    //
+    .then(() => {
+      this.router.navigate(['/billing/complete/stripe']);
+    }, err => {
+      console.error(err);
+      // FIXME: Show an error dialog?
+      this.accountChild.enableInputs();
+      this.loading = false;
+      this.disablePayment = false;
+    });
+
+  }
+
+  /*
   stripeBegin() {
     // block double payment
     if (this.disablePayment) { return false; }
@@ -275,6 +350,7 @@ export class BillingComponent implements OnDestroy {
     // error 409 -> redirect to Signin page
     .catch(error => { this.handleError(error); });
   }
+  */
 
   // pay with paypal
 
@@ -283,11 +359,11 @@ export class BillingComponent implements OnDestroy {
     if (this.disablePayment) { return false; }
     else { this.disablePayment = true; }
 
-    // handle account form validation
     let accountId = this.user.account.id;
-    if (!accountId && !this.validateAccount()) { return; }
-    else { this.accountChild.disableInputs(); }
+    let planId = this.plansService.selectedPlan.id;
 
+    // TODO: should have a global flag to disable all fields
+    this.accountChild.disableInputs();
     // enable loading screen
     this.loading = true;
 
@@ -301,9 +377,31 @@ export class BillingComponent implements OnDestroy {
       eventValue: Math.floor(this.plansService.selectedPlan.price)
     });
 
+    // check or register account
+    this.ensureAccountExists()
+    .then(id => { accountId = id; })
+    //.then(() => new Promise(resolve => setTimeout(resolve, 10000)))
+    .then(() => this.backend.payWithPaypal({ planId, referralCode: this.referralCode, site: window.location.protocol + '//' + window.location.host }))
+    .then(data => this.paypal.checkout(data))
+    .catch(err => {
+      console.error(err);
+      // FIXME: Show an error dialog?
+      this.accountChild.enableInputs();
+      this.loading = false;
+      this.disablePayment = false;
+    });
+
+    // handle account form validation
+    //let accountId = this.user.account.id;
+    //if (!accountId && !this.validateAccount()) { return; }
+    //else { this.accountChild.disableInputs(); }
+
+    // enable loading screen
+    //this.loading = true;
+
     // signup or upgrade using bitpay
-    if (accountId) { return this.paypalUpgrade(accountId); }
-    else { return this.paypalSignup(accountId); }
+    //if (accountId) { return this.paypalUpgrade(accountId); }
+    //else { return this.paypalSignup(accountId); }
   }
 
   paypalSignup(accountId) {
@@ -513,7 +611,7 @@ export class BillingComponent implements OnDestroy {
 
   createAccount(): Promise<void> {
     // sets cookie
-    let body = { email: this.accountFormData.email, password: this.accountFormData.password };
+    let body = { email: this.accountFormData.email, password: this.accountFormData.password, billing: true };
     return this.backend.createAccount(body, {})
     // set user session
     .then((data) => {
