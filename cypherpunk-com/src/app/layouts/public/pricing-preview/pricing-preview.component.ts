@@ -108,8 +108,14 @@ export class PricingPreviewComponent {
     this.signupButtonDisabled = true;
 
     if (isPlatformBrowser(this.platformId)) {
-      let paq = (<any>window)._paq;
-      paq.push(['trackGoal', 16]);
+      let ga = (<any>window).ga;
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'SignUp',
+        eventAction: 'preview',
+        eventLabel: 'Request Free Preview',
+        eventValue: 0
+      });
     }
 
     this.auth.signup(this.user)

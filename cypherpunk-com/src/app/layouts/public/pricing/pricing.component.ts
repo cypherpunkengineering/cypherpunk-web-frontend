@@ -254,6 +254,16 @@ export class PricingComponent implements OnDestroy {
   }
 
   saveToServer(token: string) {
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     // call server at this point (using promises)
     let body = {
       token: token,
@@ -308,6 +318,16 @@ export class PricingComponent implements OnDestroy {
       return;
     }
 
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     this.loading = true;
     this.disablePayment = true;
     this.accountChild.disableInputs();
@@ -357,6 +377,16 @@ export class PricingComponent implements OnDestroy {
       this.amazon.setRecurringError();
       return;
     }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
 
     this.loading = true;
     this.disablePayment = true;
@@ -415,6 +445,16 @@ export class PricingComponent implements OnDestroy {
       document.getElementById('passwordInput').focus();
       return;
     }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
 
     this.loading = true;
     this.disablePayment = true;

@@ -221,6 +221,16 @@ export class BillingComponent implements OnDestroy {
   // stripe upgrade with existing card
 
   stripeSignup(token: string) {
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     let body = {
       token: token,
       plan: this.plansService.selectedPlan.id,
@@ -238,6 +248,16 @@ export class BillingComponent implements OnDestroy {
   }
 
   stripeUpgrade() {
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     let body = {
       plan: this.plansService.selectedPlan.id,
       referralCode: this.referralCode
@@ -270,6 +290,16 @@ export class BillingComponent implements OnDestroy {
 
     // enable loading screen
     this.loading = true;
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
 
     // signup or upgrade using bitpay
     if (accountId) { return this.paypalUpgrade(accountId); }
@@ -311,6 +341,16 @@ export class BillingComponent implements OnDestroy {
 
     // handle noncompliance with amazon recurring
     if (!this.amazonRecurringEnabled) { return this.amazon.setRecurringError(); }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
 
     // enable loading screen
     this.loading = true;
@@ -362,6 +402,16 @@ export class BillingComponent implements OnDestroy {
     let accountId = this.user.account.id;
     if (!accountId && !this.validateAccount()) { return; }
     else { this.accountChild.disableInputs(); }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
 
     // enable loading screen
     this.loading = true;

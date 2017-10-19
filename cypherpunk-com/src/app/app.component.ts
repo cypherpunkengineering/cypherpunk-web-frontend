@@ -19,17 +19,22 @@ export class AppComponent implements OnInit {
       this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) { return; }
 
-        let paq = (<any>window)._paq;
+        let ga = (<any>window).ga;
         if (evt.urlAfterRedirects === '/404') {
-          let event = 'setDocumentTitle';
-          let title = '404/URL = ';
+          let title = '404/URL=';
           title = title + encodeURIComponent(document.location.pathname + document.location.search)
-          title = title +  '/From = ' + encodeURIComponent(document.referrer);
-          paq.push([event, title]);
+          title = title +  '/From=' + encodeURIComponent(document.referrer);
+
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Error',
+            eventAction: 'Redirect',
+            eventLabel: title,
+          });
         }
 
         // track each page render
-        paq.push(['trackPageView']);
+        ga('send', 'pageview', location.pathname);
 
         // handle hash anchor scroll
         const tree = this.router.parseUrl(this.router.url);

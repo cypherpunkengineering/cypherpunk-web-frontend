@@ -280,6 +280,16 @@ export class UpgradeComponent implements OnDestroy {
   }
 
   saveToServer() {
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     let body = {
       plan: this.plansService.selectedPlan.id,
       referralCode: this.referralCode
@@ -306,6 +316,17 @@ export class UpgradeComponent implements OnDestroy {
 
   payWithPaypal() {
     if (this.disablePayment) { return; }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     this.loading = true;
     this.disablePayment = true;
     this.paypal.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
@@ -331,6 +352,16 @@ export class UpgradeComponent implements OnDestroy {
     this.loading = true;
     this.disablePayment = true;
 
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     let body = {
       plan: this.plansService.selectedPlan.id,
       referralCode: this.referralCode,
@@ -350,6 +381,17 @@ export class UpgradeComponent implements OnDestroy {
 
   payWithBitpay() {
     if (this.disablePayment) { return; }
+
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     this.loading = true;
     this.disablePayment = true;
     this.bitpay.pay(this.user.account.id, this.plansService.selectedPlan.id, this.referralCode);
