@@ -180,6 +180,16 @@ export class BillingComponent implements OnDestroy {
     // enable loading screen
     this.loading = true;
 
+    // track payment
+    let ga = (<any>window).ga;
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'Subscription',
+      eventAction: 'buy',
+      eventLabel: 'payment',
+      eventValue: Math.floor(this.plansService.selectedPlan.price)
+    });
+
     // check or register account
     this.ensureAccountExists()
     .then(id => { accountId = id; })
