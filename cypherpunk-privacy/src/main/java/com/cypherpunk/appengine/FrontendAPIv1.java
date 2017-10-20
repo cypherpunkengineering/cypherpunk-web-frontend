@@ -565,11 +565,12 @@ public class FrontendAPIv1 extends HttpServlet {
 		String queryString = req.getQueryString();
 		String reqBody = null;
 
+		reqBody = getBodyFromRequest(req);
+		//LOG.log(Level.WARNING, "Got body: "+reqBody);
+
 		if (incomingRequestBean != null) {
 			// parse json body of incoming request
 			try {
-				reqBody = getBodyFromRequest(req);
-				//LOG.log(Level.WARNING, "Got body: "+reqBody);
 				incomingRequestData = gson.fromJson(reqBody, incomingRequestBean);
 			}
 			catch (Exception e) {
@@ -608,7 +609,7 @@ public class FrontendAPIv1 extends HttpServlet {
 		else { reqURI = cypherpunkURI; }
 
 		HTTPResponse cypherpunkResponse = null;
-		if (incomingRequestBean == Map.class) {
+		if (incomingRequestBean == Map.class || incomingRequestBean == null) {
 			// pass original raw body to outgoing request
 			cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), reqBody);
 		}
@@ -633,13 +634,16 @@ public class FrontendAPIv1 extends HttpServlet {
 		String cypherpunkResponseBody = null;
 		// parse json body of outgoing request's response
 		try {
+			cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 			if (resCode >= 400) {
-				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 				outgoingRequestResponseData = new CypherpunkErrorResponse(resCode, null, cypherpunkResponseBody);
 			}
 			else if (outgoingRequestResponseBean != null) {
-				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
 				outgoingRequestResponseData = gson.fromJson(cypherpunkResponseBody, outgoingRequestResponseBean);
+				// send default empty response object if no body
+				if (outgoingRequestResponseData == null) {
+					outgoingRequestResponseData = new CypherpunkErrorResponse(resCode);
+				}
 			}
 		}
 		catch (Exception e) {
@@ -651,13 +655,12 @@ public class FrontendAPIv1 extends HttpServlet {
 			return;
 		}
 
-		// send default empty response object if no body
-		if (outgoingRequestResponseData == null) {
-			outgoingRequestResponseData = new CypherpunkErrorResponse(resCode);
-		}
-
 		// pass sanitized body to incoming request's response
-		sendResponse(res, outgoingRequestResponseData);
+		if (outgoingRequestResponseData != null) {
+			sendResponse(res, outgoingRequestResponseData);
+		} else {
+			res.getWriter().print(cypherpunkResponseBody);
+		}
 	}
 
 	private void sendResponse(HttpServletResponse res, Object nugget) throws IOException {
