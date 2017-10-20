@@ -111,7 +111,7 @@ export class StripeCCFormComponent implements OnInit {
     });
   }
 
-  isAmex(ccn) {
+  isAmex(ccn = null) {
     if (typeof ccn !== 'string') ccn = this.stripeFormData.cardNumber;
     return ccn.startsWith('34') || ccn.startsWith('37');
   }
