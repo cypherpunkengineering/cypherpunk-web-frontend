@@ -80,7 +80,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private static final String BACKEND_HOSTNAME_PRODUCTION = "https://red-dragon.cypherpunk.network";
 	private static final String BACKEND_HOSTNAME_DEVELOPMENT = "https://red-dragon.cypherpunk.engineering";
 	private static final String BACKEND_HOSTNAME_DEVSERVER = "http://127.0.0.1:11080";
-  private static final String BACKEND_HOSTNAME_TESTSERVER = "https://test-dev.cypherpunk.engineering";
+	private static final String BACKEND_HOSTNAME_TESTSERVER = "https://test-dev.cypherpunk.engineering";
 
 	private static final String ZENDESK_API_URL = "https://cypherpunk.zendesk.com";
 	private static final String ZENDESK_API_USERNAME = "jmaurice@cypherpunk.com/token";
@@ -116,8 +116,8 @@ public class FrontendAPIv1 extends HttpServlet {
 		GeoLocationDB ipdb = new GeoLocationDB();
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ") {
-      geoCountryCode = DEFAULT_GEOIP_COUNTRY;
-    }
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+		}
 
 		// set default cache headers
 		setResponsePrivateCacheHeaders(res, 0);
@@ -175,7 +175,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			else if (accountApiPath.equals("/source/list")) {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
 			}
-      // 404
+			// 404
 			else { res.sendError(404); }
 		}
 		else if (apiPath.startsWith("/billing")) {
@@ -211,7 +211,7 @@ public class FrontendAPIv1 extends HttpServlet {
 				String bloggerArgs = "&fetchBodies=false&fetchImages=false&view=reader&fields=items(id,published,updated,title,labels)";
 
 				if (pageToken != null && !pageToken.isEmpty()) {
-          // parse as int to prevent injection attack
+					// parse as int to prevent injection attack
 					bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken);
 				}
 
@@ -228,7 +228,7 @@ public class FrontendAPIv1 extends HttpServlet {
 				String bloggerArgs = "&fetchBodies=true&fetchImages=true&view=reader&fields=items(id,published,updated,title,content,images,labels)";
 
 				if (pageToken != null && !pageToken.isEmpty()) {
-          // parse as int to prevent injection attack
+					// parse as int to prevent injection attack
 					bloggerArgs += "&pageToken=" + Integer.parseInt(pageToken);
 				}
 
@@ -336,7 +336,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
 			else { res.sendError(404); }
 		}
-    else if (apiPath.startsWith("/emails")) {
+		else if (apiPath.startsWith("/emails")) {
 			String unsubApiPath = apiPath.substring( "/emails".length(), apiPath.length() );
 
 			if (unsubApiPath.equals("/unsubscribe")) {
@@ -368,8 +368,8 @@ public class FrontendAPIv1 extends HttpServlet {
 		String reqIP = req.getRemoteAddr();
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ") {
-      geoCountryCode = DEFAULT_GEOIP_COUNTRY;
-    }
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+		}
 
 		// set default cache headers
 		setResponsePrivateCacheHeaders(res, 0);
@@ -462,9 +462,9 @@ public class FrontendAPIv1 extends HttpServlet {
 			else if (accountApiPath.equals("/upgrade/apple")) {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountUpgradeApple.class, CypherpunkAccountStatus.class);
 			}
-		  else if (accountApiPath.equals("/logout")) {
-			  proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
-		  }
+			else if (accountApiPath.equals("/logout")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, null, null);
+			}
 			else { res.sendError(404); }
 		}
 		else if (apiPath.startsWith("/ipn")) {
@@ -496,24 +496,24 @@ public class FrontendAPIv1 extends HttpServlet {
 				// Customer Support 32425127
 
 				/*
-  				{
-  				  "ticket": {
-  				    "requester": {
-  				      "name": "The Customer",
-  				      "email": "thecustomer@domain.com"
-  				    },
-  				    "subject": "My printer is on fire!",
-  				    "comment": {
-  				      "body": "The smoke is very colorful."
-  				    }
-  				  }
-  				}
+					{
+						"ticket": {
+							"requester": {
+								"name": "The Customer",
+								"email": "thecustomer@domain.com"
+							},
+							"subject": "My printer is on fire!",
+							"comment": {
+								"body": "The smoke is very colorful."
+							}
+						}
+					}
 				*/
 				//
 				CypherpunkZendeskRequest zendeskRequestIn = null;
 				ZendeskTicket zendeskRequestOut = null;
 
-        // parse json body as CypherpunkZendeskRequest
+				// parse json body as CypherpunkZendeskRequest
 				try {
 					String reqBody = getBodyFromRequest(req);
 					zendeskRequestIn = gson.fromJson(reqBody, CypherpunkZendeskRequest.class);
@@ -549,8 +549,8 @@ public class FrontendAPIv1 extends HttpServlet {
 		boolean dev = false;
 
 		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
-      dev = true;
-    }
+			dev = true;
+		}
 
 		if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) { dev = true; }
 
@@ -566,7 +566,7 @@ public class FrontendAPIv1 extends HttpServlet {
 		String reqBody = null;
 
 		if (incomingRequestBean != null) {
-      // parse json body of incoming request
+			// parse json body of incoming request
 			try {
 				reqBody = getBodyFromRequest(req);
 				//LOG.log(Level.WARNING, "Got body: "+reqBody);
@@ -586,18 +586,18 @@ public class FrontendAPIv1 extends HttpServlet {
 
 		if (reqMethod == HTTPMethod.POST && incomingRequestBean != null && incomingRequestData == null) {
 			if (req.getHeader("Content-Encoding") != null) {
-        LOG.log(Level.WARNING, "Content-Encoding is "+req.getHeader("Content-Encoding"));
-      }
+				LOG.log(Level.WARNING, "Content-Encoding is "+req.getHeader("Content-Encoding"));
+			}
 
 			if (req.getHeader("Content-Type") != null) {
 				LOG.log(Level.WARNING, "Content-Type is "+req.getHeader("Content-Type"));
-      }
+			}
 
 			if (req.getHeader("Content-Length") != null) {
 				LOG.log(Level.WARNING, "Content-Length is "+req.getHeader("Content-Length"));
-      }
+			}
 
-      LOG.log(Level.WARNING, "incomingRequestData is null!");
+			LOG.log(Level.WARNING, "incomingRequestData is null!");
 			res.sendError(400);
 			return;
 		}
@@ -617,7 +617,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			cypherpunkResponse = requestData(reqMethod, buildCypherpunkURL(req, reqURI), getSafeHeadersFromRequest(req), sanitizedReqBody);
 		}
 
-    // request failed
+		// request failed
 		if (cypherpunkResponse == null) {
 			res.sendError(503);
 			return;
@@ -631,7 +631,7 @@ public class FrontendAPIv1 extends HttpServlet {
 		setResponseHeadersFromBackendResponse(res, cypherpunkResponse);
 
 		String cypherpunkResponseBody = null;
-    // parse json body of outgoing request's response
+		// parse json body of outgoing request's response
 		try {
 			if (resCode >= 400) {
 				cypherpunkResponseBody = getBodyFromResponse(cypherpunkResponse);
@@ -653,8 +653,8 @@ public class FrontendAPIv1 extends HttpServlet {
 
 		// send default empty response object if no body
 		if (outgoingRequestResponseData == null) {
-      outgoingRequestResponseData = new CypherpunkErrorResponse(resCode);
-    }
+			outgoingRequestResponseData = new CypherpunkErrorResponse(resCode);
+		}
 
 		// pass sanitized body to incoming request's response
 		sendResponse(res, outgoingRequestResponseData);
@@ -686,7 +686,7 @@ public class FrontendAPIv1 extends HttpServlet {
 
 		if (contentType.equals("application/x-www-form-urlencoded")) {
 			LOG.log(Level.WARNING, "Parsing as application/x-www-form-urlencoded");
-      // convert to json string
+			// convert to json string
 			try {
 				Map<String, String> map = new HashMap<String,String>();
 				Map<String, String[]> parameters = req.getParameterMap();
@@ -746,7 +746,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private String getBodyFromResponse(HTTPResponse response) {
 		String str = null;
 
-    // if we got response, convert to UTF-8 string
+		// if we got response, convert to UTF-8 string
 		try  { str = new String(response.getContent(), "UTF-8"); }
 		catch (UnsupportedEncodingException e) {
 			LOG.log(Level.WARNING, e.toString(), e);
@@ -765,10 +765,10 @@ public class FrontendAPIv1 extends HttpServlet {
 
 		// copy headers in "safe" list above
 		for (String headerName : safeHeaders) {
-      if (req.getHeader(headerName) != null) {
-        headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
-      }
-    }
+			if (req.getHeader(headerName) != null) {
+				headers.add(new HTTPHeader(headerName, req.getHeader(headerName)));
+			}
+		}
 
 		// add original IP header
 		String reqIP = req.getRemoteAddr();
@@ -779,8 +779,8 @@ public class FrontendAPIv1 extends HttpServlet {
 		GeoLocationDB ipdb = new GeoLocationDB();
 		String geoCountryCode = ipdb.getCountry(reqIP);
 		if (geoCountryCode == null || geoCountryCode == "ZZ") {
-      geoCountryCode = DEFAULT_GEOIP_COUNTRY;
-    }
+			geoCountryCode = DEFAULT_GEOIP_COUNTRY;
+		}
 		HTTPHeader headerGeoLocationCountry = new HTTPHeader("X-GeoLocation-Country", geoCountryCode);
 		headers.add(headerGeoLocationCountry);
 
@@ -794,10 +794,10 @@ public class FrontendAPIv1 extends HttpServlet {
 		};
 
 		for (HTTPHeader header : headers) {
-      if (Arrays.asList(safeHeaders).contains(header.getName())) {
-        res1.setHeader(header.getName(), header.getValue());
-      }
-    }
+			if (Arrays.asList(safeHeaders).contains(header.getName())) {
+				res1.setHeader(header.getName(), header.getValue());
+			}
+		}
 	}
 
 	private void setResponsePublicCacheHeaders(HttpServletResponse res, int seconds) {
@@ -814,7 +814,7 @@ public class FrontendAPIv1 extends HttpServlet {
 		URL bloggerURL = null;
 		String bloggerArgsBase = "?key=" + BLOGGER_API_KEY;
 
-    // build API request URL
+		// build API request URL
 		try {
 			bloggerURL = new URL(BLOGGER_API_URL + bloggerID + bloggerURI + bloggerArgsBase + bloggerArgs);
 		}
@@ -828,29 +828,29 @@ public class FrontendAPIv1 extends HttpServlet {
 	private URL buildCypherpunkURL(HttpServletRequest req, String cypherpunkURI) {
 		URL cypherpunkURL = null;
 
-    // build cypherpunkURL
+		// build cypherpunkURL
 		try {
 			// determine API endpoint
 			String cypherpunkBaseURL = null;
 
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
 				// for local devserver - don't use TLS
-        cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
+				cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
 			}
-      // cloud development
+			// cloud development
 			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) {
-        if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
-          cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
-        }
+				if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
+					cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
+				}
 				else { cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT; }
 			}
-      // cloud production
+			// cloud production
 			else {
-        if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
-          cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
-        }
-        else { cypherpunkBaseURL = BACKEND_HOSTNAME_PRODUCTION; }
-      }
+				if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
+					cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
+				}
+				else { cypherpunkBaseURL = BACKEND_HOSTNAME_PRODUCTION; }
+			}
 
 			cypherpunkURL = new URL(cypherpunkBaseURL + cypherpunkURI);
 		}
@@ -861,7 +861,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private URL buildZendeskURL(String zendeskURI) {
 		URL zendeskURL = null;
 
-    // build zendeskURL
+		// build zendeskURL
 		try {
 			String zendeskBaseURL = ZENDESK_API_URL;
 			zendeskURL = new URL(zendeskBaseURL + zendeskURI);
@@ -898,7 +898,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			responseData = parseJsonData(response);
 			if (responseData == null) {
 				LOG.log(Level.WARNING, "Failed parsing memcache cypherpunk response for "+apiURL);
-      }
+			}
 			else { inMemcache = true; }
 		}
 
@@ -909,7 +909,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			response = null;
 			Entity result = null;
 
-      try {
+			try {
 				Query query = new Query(CypherpunkResponseCache.KIND).setFilter(cypherpunkURLFilter);
 				PreparedQuery pq = DS.prepare(query);
 				result = pq.asSingleEntity();
@@ -926,7 +926,7 @@ public class FrontendAPIv1 extends HttpServlet {
 
 				if (responseData == null) {
 					LOG.log(Level.WARNING, "Failed parsing datastore cypherpunk response for "+apiURL);
-        }
+				}
 				else { inDatastore = true; }
 			}
 		}
@@ -942,7 +942,7 @@ public class FrontendAPIv1 extends HttpServlet {
 				responseData = parseJsonData(response);
 				if (responseData == null) {
 					LOG.log(Level.WARNING, "Failed parsing requested cypherpunk response for "+apiURL);
-        }
+				}
 			}
 		}
 
@@ -950,11 +950,11 @@ public class FrontendAPIv1 extends HttpServlet {
 		if (response != null && responseData != null) {
 			if (useCache && !inMemcache) {
 				if (forceUpdate) {
-          mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.SET_ALWAYS);
-        }
+					mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.SET_ALWAYS);
+				}
 				else {
-          mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
-        }
+					mc.put(apiURL, response, Expiration.byDeltaSeconds(secondsToMemcache), SetPolicy.ADD_ONLY_IF_NOT_PRESENT);
+				}
 			}
 			if (useCache && !inDatastore) {
 				Key cacheKey = KeyFactory.createKey(CypherpunkResponseCache.KIND, apiURL);
@@ -981,7 +981,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private Map<String,Object> parseJsonData(String jsonRaw) {
 		Map<String,Object> jsonData = null;
 
-    // parse as Json
+		// parse as Json
 		try  { jsonData = new Gson().fromJson(jsonRaw, Map.class); }
 		catch (JsonSyntaxException e) {
 			LOG.log(Level.WARNING, e.toString(), e);
@@ -1002,7 +1002,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	}
 
 	private String requestZendeskData(HTTPMethod requestMethod, String zendeskURI, List<HTTPHeader> headers, String body) {
-    String zendeskResponse = null;
+		String zendeskResponse = null;
 		URL zendeskURL = buildZendeskURL(zendeskURI);
 		HTTPResponse response = requestData(requestMethod, zendeskURL, headers, body);
 
@@ -1019,9 +1019,9 @@ public class FrontendAPIv1 extends HttpServlet {
 
 		if (response != null && (response.getResponseCode() == HttpURLConnection.HTTP_OK || response.getResponseCode() == HttpURLConnection.HTTP_CREATED)) {
 			cypherpunkResponse = getBodyFromResponse(response);
-    }
+		}
 
-    return cypherpunkResponse;
+		return cypherpunkResponse;
 	}
 
 	private HTTPResponse requestData(HTTPMethod requestMethod, URL cypherpunkURL, List<HTTPHeader> headers, String body) {
@@ -1052,10 +1052,10 @@ public class FrontendAPIv1 extends HttpServlet {
 		URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
 
 		if (headers != null) {
-      for (HTTPHeader header : headers) {
-        request.setHeader(header);
-      }
-    }
+			for (HTTPHeader header : headers) {
+				request.setHeader(header);
+			}
+		}
 
 		if (body != null) {
 			request.setHeader(new HTTPHeader("Content-type", "application/json"));
