@@ -33,7 +33,6 @@ export class BillingLandingComponent implements AfterViewInit, OnDestroy {
     private backend: BackendService,
     private session: SessionService,
     private alertService: AlertService,
-    private plansService: PlansService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     let { url, params, queryParams, parent } = this.route.snapshot;

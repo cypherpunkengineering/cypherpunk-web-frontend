@@ -18,6 +18,11 @@
   //flex: 1 0;
 }
 
+.loading .fa {
+  color: #ccc;
+  font-size: 100px;
+}
+
 @keyframes icon-appear {
   0% { opacity: 0; transform: scale(0); }
   50% { opacity: 0; transform: scale(0); }

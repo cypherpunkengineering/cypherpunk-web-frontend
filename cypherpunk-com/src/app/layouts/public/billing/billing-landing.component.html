@@ -3,6 +3,10 @@
     <app-nav></app-nav>
   </div>
 
+  <div class="page loading" *ngIf="mode === 'status'">
+    <i class="fa fa-spin fa-refresh"></i>
+  </div>
+
   <div class="page" *ngIf="mode === 'complete'">
     <div class="icon"><i class="fa fa-check"></i></div>
     <div class="page-header">

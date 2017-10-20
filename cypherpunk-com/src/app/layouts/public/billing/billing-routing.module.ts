@@ -12,6 +12,7 @@ const withProvider = [
 @NgModule({
   imports: [
     RouterModule.forChild([
+      { path: 'billing/status', children: withProvider },
       { path: 'billing/complete', children: withProvider },
       { path: 'billing/pending', children: withProvider },
       { path: 'billing/error', children: withProvider },

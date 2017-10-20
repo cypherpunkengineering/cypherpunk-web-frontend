@@ -507,6 +507,28 @@ handlers: # should be ordered from most specific to least specific
   script: blogger.app
   secure: always
 
+- url: /billing/(status|complete|pending|error|cancel)(/.*)?$
+  static_files: target/billing/status.html
+  upload: target/billing/status.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
+- url: /billing/(.*)
+  static_files: target/billing.html
+  upload: target/billing.html
+  expiration: "10m"
+  secure: always
+  redirect_http_response_code: 301
+  http_headers:
+    X-Frame-Options: sameorigin
+    X-Content-Type-Options: nosniff
+    Strict-Transport-Security: max-age=13370000; includeSubDomains; preload
+
 - url: /(.+)
   static_files: target/\1.html
   upload: target/(.+).html

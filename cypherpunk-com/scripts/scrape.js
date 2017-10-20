@@ -73,6 +73,8 @@ const routes = [
   { url: baseRoute + 'apps/linux/download', dirPath: baseDir + 'apps/linux/download.html' },
   { url: baseRoute + 'apps/routers', dirPath: baseDir + 'apps/routers.html' },
   { url: baseRoute + 'apps/manual', dirPath: baseDir + 'apps/manual.html' },
+  { url: baseRoute + 'billing', dirPath: baseDir + 'billing.html' },
+  { url: baseRoute + 'billing/status', dirPath: baseDir + 'billing/status.html' },
   { url: baseRoute + 'feedback', dirPath: baseDir + 'feedback.html' },
   { url: baseRoute + 'bounty', dirPath: baseDir + 'bounty.html' },
   { url: baseRoute + 'whats-my-ip-address', dirPath: baseDir + 'whats-my-ip-address.html' },
