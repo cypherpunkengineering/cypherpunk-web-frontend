@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -796,14 +797,15 @@ public class FrontendAPIv1 extends HttpServlet {
 		return headers;
 	}
 
+	private static HashSet<String> safeResponseHeaders = new HashSet<String>(Arrays.asList(new String[] {
+		"set-cookie"
+	}));
+
 	private void setResponseHeadersFromBackendResponse(HttpServletResponse res1, HTTPResponse res2) {
 		List<HTTPHeader> headers = res2.getHeaders();
-		String safeHeaders[] = {
-			"Set-Cookie"
-		};
 
 		for (HTTPHeader header : headers) {
-			if (Arrays.asList(safeHeaders).contains(header.getName())) {
+			if (safeResponseHeaders.contains(header.getName().toLowerCase())) {
 				res1.setHeader(header.getName(), header.getValue());
 			}
 		}
