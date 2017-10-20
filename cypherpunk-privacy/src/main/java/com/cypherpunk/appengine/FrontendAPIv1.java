@@ -842,10 +842,12 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
 			// cloud development
 			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) {
-				if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
-					cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
-				}
-				else { cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT; }
+				//if (cypherpunkURI.startsWith("/api/v1/emails/unsubscribe")) {
+				//	cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
+				//}
+				//else { cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT; }
+				cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
+				cypherpunkURI.replaceFirst("^/api/v0/", "/api/v1/");
 			}
 			// cloud production
 			else {
