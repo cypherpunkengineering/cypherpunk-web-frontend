@@ -7,7 +7,6 @@ import { AuthGuard } from '../../../services/auth-guard.service';
 import { GlobalsService } from '../../../services/globals.service';
 import { SessionService } from '../../../services/session.service';
 import { BackendService } from '../../../services/backend.service';
-import { PlansService, Plan } from '../../../services/plans.service';
 import { Component, PLATFORM_ID, Inject, NgZone, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
