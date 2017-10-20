@@ -68,6 +68,7 @@ import { ChromePartialModule } from './layouts/public/partial/chrome/chrome.modu
 import { FirefoxPartialModule } from './layouts/public/partial/firefox/firefox.module';
 import { LicenseAndroidModule } from './layouts/public/license-android/license-android.module';
 import { LicenseDesktopModule } from './layouts/public/license-desktop/license-desktop.module';
+import { LicenseIOSModule } from './layouts/public/license-ios/license-ios.module';
 import { UnsubscribeModule } from './layouts/public/unsubscribe/unsubscribe.module';
 
 import { DashboardModule } from './layouts/account/dashboard/dashboard.module';
@@ -142,6 +143,7 @@ import { SeoService } from './services/seo.service';
     SupportOthersModule,
     LicenseAndroidModule,
     LicenseDesktopModule,
+    LicenseIOSModule,
     BillingModule,
     UnsubscribeModule,
 

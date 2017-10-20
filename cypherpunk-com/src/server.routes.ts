@@ -113,5 +113,6 @@ export const routes: string[] = [
   'partial/firefox',
   'legal/license/android',
   'legal/license/desktop',
+  'legal/license/ios',
   'unsubscribe'
 ];

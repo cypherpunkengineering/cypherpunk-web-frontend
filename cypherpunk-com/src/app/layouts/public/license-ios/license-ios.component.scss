@@ -1,0 +1,48 @@
+.masthead .masthead-header {
+  font-size: 28px;
+  margin: 0 auto 0;
+  padding: 0 10px 40px;
+}
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 0 60px;
+  color: #666;
+  font-size: 10px;
+
+  .header { text-align: left; }
+
+  .subheader {
+    font-size: 22px;
+    font-weight: 500;
+    color: #1973af;
+  }
+
+  .shift {
+    padding-left: 15px;
+  }
+
+  hr {
+    height: 2px;
+    border: solid 1px #1973af;
+    margin-bottom: 25px;
+  }
+  code {
+    white-space: pre-wrap;
+  }
+
+  .lead { color: #1973af; }
+  .right { text-align: right; }
+
+}
+
+@media (max-width: 1016px) {
+  .content { padding: 30px 10px 60px; }
+  .content {
+    font-size: 10px;
+    .header { font-size: 20px; }
+    .subheader { font-size: 18px; }
+  }
+}

@@ -102,6 +102,7 @@ const routes = [
   { url: baseRoute + 'partial/firefox', dirPath: baseDir + 'partial/firefox.html' },
   { url: baseRoute + 'legal/license/android', dirPath: baseDir + 'legal/license/android.html' },
   { url: baseRoute + 'legal/license/desktop', dirPath: baseDir + 'legal/license/desktop.html' },
+  { url: baseRoute + 'legal/license/ios', dirPath: baseDir + 'legal/license/ios.html' },
   { url: baseRoute + 'unsubscribe?email=test&token=test', dirPath: baseDir + 'unsubscribe.html' }
 ];
 
