@@ -166,29 +166,6 @@ public class FrontendAPIv1 extends HttpServlet {
 				sendResponse(res, versions);
 			}
 		}
-		else if (apiPath.startsWith("/account")) {
-			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
-
-			if (accountApiPath.equals("/status")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountStatus.class);
-			}
-			else if (accountApiPath.equals("/source/list")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
-			}
-			// 404
-			else { res.sendError(404); }
-		}
-		else if (apiPath.startsWith("/billing")) {
-			String billingApiPath = apiPath.substring( "/billing".length(), apiPath.length() );
-
-			if (billingApiPath.equals("/receipts")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkBillingReceipts.class);
-			}
-			else if (billingApiPath.equals("/source/list")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
-			}
-			else { res.sendError(404); }
-		}
 		else if (apiPath.startsWith("/blog") || apiPath.startsWith("/support")) {
 			// get blog content depending on request URL
 			String bloggerID = "";
@@ -291,14 +268,6 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
 			else { res.sendError(404); }
 		}
-		else if (apiPath.startsWith("/monitoring")) {
-			String monitoringApiPath = apiPath.substring( "/monitoring".length(), apiPath.length() );
-
-			if (monitoringApiPath.equals("/hello")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkMonitoringHello.class);
-			}
-			else { res.sendError(404); }
-		}
 		else if (apiPath.startsWith("/network")) {
 			String networkApiPath = apiPath.substring( "/network".length(), apiPath.length() );
 
@@ -328,6 +297,50 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
 			else { res.sendError(404); }
 		}
+		else if (apiPath.equals("secretGeoDatabaseInit")) {
+			String chunk = req.getParameter("chunk");
+			ipdb.initDatabase(chunk);
+			res.getWriter().println("ok");
+		}
+		else if (apiPath.equals("secretGeoDatabaseTest")) {
+			String ip = req.getParameter("ip");
+			String countryCode = ipdb.getCountry(ip);
+			res.getWriter().println(countryCode);
+		}
+		else if (isDevelopment) {
+			proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, reqURI, null, null);
+		}
+		else if (apiPath.startsWith("/account")) {
+			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
+
+			if (accountApiPath.equals("/status")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountStatus.class);
+			}
+			else if (accountApiPath.equals("/source/list")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
+			}
+			// 404
+			else { res.sendError(404); }
+		}
+		else if (apiPath.startsWith("/billing")) {
+			String billingApiPath = apiPath.substring( "/billing".length(), apiPath.length() );
+
+			if (billingApiPath.equals("/receipts")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkBillingReceipts.class);
+			}
+			else if (billingApiPath.equals("/source/list")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkAccountSourceList.class);
+			}
+			else { res.sendError(404); }
+		}
+		else if (apiPath.startsWith("/monitoring")) {
+			String monitoringApiPath = apiPath.substring( "/monitoring".length(), apiPath.length() );
+
+			if (monitoringApiPath.equals("/hello")) {
+				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v0" + apiPath, null, CypherpunkMonitoringHello.class);
+			}
+			else { res.sendError(404); }
+		}
 		else if (apiPath.startsWith("/vpn")) {
 			String vpnApiPath = apiPath.substring( "/vpn".length(), apiPath.length() );
 
@@ -343,16 +356,6 @@ public class FrontendAPIv1 extends HttpServlet {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.GET, "/api/v1" + apiPath, null, CypherpunkEmailsUnsubscribe.class);
 			}
 			else { res.sendError(404); }
-		}
-		else if (apiPath.equals("secretGeoDatabaseInit")) {
-			String chunk = req.getParameter("chunk");
-			ipdb.initDatabase(chunk);
-			res.getWriter().println("ok");
-		}
-		else if (apiPath.equals("secretGeoDatabaseTest")) {
-			String ip = req.getParameter("ip");
-			String countryCode = ipdb.getCountry(ip);
-			res.getWriter().println(countryCode);
 		}
 		else { res.sendError(404); }
 	}
@@ -399,6 +402,67 @@ public class FrontendAPIv1 extends HttpServlet {
 		//LOG.log(Level.WARNING, "apiPath is "+apiPath);
 
 		if (apiPath.equals("/hello")) { res.getWriter().println("hello"); }
+		else if (apiPath.startsWith("/support")) {
+			String networkApiPath = apiPath.substring( "/support".length(), apiPath.length() );
+
+			if (networkApiPath.equals("/request/new")) {
+				// notes
+				// curl -i https://cypherpunk.zendesk.com/api/v2/tickets.json -X POST -d '{"ticket": {"requester": {"name": "Test Customer", "email": "test18278@wiz.biz"}, "subject": "My printer is on fire!", "comment": { "body": "The smoke is very colorful." } } }' -H 'Content-type: application/json' -u 'jmaurice@cypherpunk.com/token:BoM1TUDKYVKgWpUi2O2rA6jKQ4f89jJGCkpMZJtz'
+
+				// Billing 33432807
+				// Business Development 42228188
+				// Customer Support 32425127
+
+				/*
+					{
+						"ticket": {
+							"requester": {
+								"name": "The Customer",
+								"email": "thecustomer@domain.com"
+							},
+							"subject": "My printer is on fire!",
+							"comment": {
+								"body": "The smoke is very colorful."
+							}
+						}
+					}
+				*/
+				//
+				CypherpunkZendeskRequest zendeskRequestIn = null;
+				ZendeskTicket zendeskRequestOut = null;
+
+				// parse json body as CypherpunkZendeskRequest
+				try {
+					String reqBody = getBodyFromRequest(req);
+					zendeskRequestIn = gson.fromJson(reqBody, CypherpunkZendeskRequest.class);
+					zendeskRequestOut = new ZendeskTicket(zendeskRequestIn);
+				}
+				catch (Exception e) {
+					LOG.log(Level.WARNING, "Unable to parse CypherpunkZendeskRequest");
+					e.printStackTrace();
+					res.sendError(400);
+					return;
+				}
+
+				String authString = ZENDESK_API_USERNAME + ":" + ZENDESK_API_PASSWORD;
+				byte[] authBase64 = Base64.encodeBase64(authString.getBytes("UTF-8"));
+				String authBase64String = new String(authBase64);
+
+				List<HTTPHeader> zendeskAuthHeader = new ArrayList<HTTPHeader>();
+				zendeskAuthHeader.add(new HTTPHeader("Authorization", "Basic " + authBase64String));
+
+				String zendeskURI = "/api/v2/tickets.json";
+				String zendeskTicketBody = gson.toJson(zendeskRequestOut);
+				String zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
+
+				// don't send response unless debugging
+				// res.getWriter().println(zendeskResponse);
+			}
+			else { res.sendError(404); }
+		}
+		else if (isDevelopment) {
+			proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, reqURI, null, null);
+		}
 		else if (apiPath.startsWith("/account")) {
 			String accountApiPath = apiPath.substring( "/account".length(), apiPath.length() );
 
@@ -481,64 +545,6 @@ public class FrontendAPIv1 extends HttpServlet {
 			}
 			else if (ipnApiPath.equals("/stripe")) {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, Map.class, null);
-			}
-			else { res.sendError(404); }
-		}
-		else if (apiPath.startsWith("/support")) {
-			String networkApiPath = apiPath.substring( "/support".length(), apiPath.length() );
-
-			if (networkApiPath.equals("/request/new")) {
-				// notes
-				// curl -i https://cypherpunk.zendesk.com/api/v2/tickets.json -X POST -d '{"ticket": {"requester": {"name": "Test Customer", "email": "test18278@wiz.biz"}, "subject": "My printer is on fire!", "comment": { "body": "The smoke is very colorful." } } }' -H 'Content-type: application/json' -u 'jmaurice@cypherpunk.com/token:BoM1TUDKYVKgWpUi2O2rA6jKQ4f89jJGCkpMZJtz'
-
-				// Billing 33432807
-				// Business Development 42228188
-				// Customer Support 32425127
-
-				/*
-					{
-						"ticket": {
-							"requester": {
-								"name": "The Customer",
-								"email": "thecustomer@domain.com"
-							},
-							"subject": "My printer is on fire!",
-							"comment": {
-								"body": "The smoke is very colorful."
-							}
-						}
-					}
-				*/
-				//
-				CypherpunkZendeskRequest zendeskRequestIn = null;
-				ZendeskTicket zendeskRequestOut = null;
-
-				// parse json body as CypherpunkZendeskRequest
-				try {
-					String reqBody = getBodyFromRequest(req);
-					zendeskRequestIn = gson.fromJson(reqBody, CypherpunkZendeskRequest.class);
-					zendeskRequestOut = new ZendeskTicket(zendeskRequestIn);
-				}
-				catch (Exception e) {
-					LOG.log(Level.WARNING, "Unable to parse CypherpunkZendeskRequest");
-					e.printStackTrace();
-					res.sendError(400);
-					return;
-				}
-
-				String authString = ZENDESK_API_USERNAME + ":" + ZENDESK_API_PASSWORD;
-				byte[] authBase64 = Base64.encodeBase64(authString.getBytes("UTF-8"));
-				String authBase64String = new String(authBase64);
-
-				List<HTTPHeader> zendeskAuthHeader = new ArrayList<HTTPHeader>();
-				zendeskAuthHeader.add(new HTTPHeader("Authorization", "Basic " + authBase64String));
-
-				String zendeskURI = "/api/v2/tickets.json";
-				String zendeskTicketBody = gson.toJson(zendeskRequestOut);
-				String zendeskResponse = requestZendeskData(HTTPMethod.POST, zendeskURI, zendeskAuthHeader, zendeskTicketBody);
-
-				// don't send response unless debugging
-				// res.getWriter().println(zendeskResponse);
 			}
 			else { res.sendError(404); }
 		}
