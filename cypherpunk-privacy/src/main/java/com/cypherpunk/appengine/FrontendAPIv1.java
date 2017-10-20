@@ -693,7 +693,7 @@ public class FrontendAPIv1 extends HttpServlet {
 	private String getBodyFromRequest(HttpServletRequest req) {
 		String contentType = req.getHeader("Content-Type");
 
-		if (contentType.equals("application/x-www-form-urlencoded")) {
+		if (contentType != null && contentType.equals("application/x-www-form-urlencoded")) {
 			LOG.log(Level.WARNING, "Parsing as application/x-www-form-urlencoded");
 			// convert to json string
 			try {
@@ -845,6 +845,7 @@ public class FrontendAPIv1 extends HttpServlet {
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
 				// for local devserver - don't use TLS
 				cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
+				cypherpunkURI = cypherpunkURI.replaceFirst("^/api/v0/", "/api/v1/");
 			}
 			// cloud development
 			else if (req.getServerName().equals(FRONTEND_HOSTNAME_DEVELOPMENT)) {
@@ -853,7 +854,7 @@ public class FrontendAPIv1 extends HttpServlet {
 				//}
 				//else { cypherpunkBaseURL = BACKEND_HOSTNAME_DEVELOPMENT; }
 				cypherpunkBaseURL = BACKEND_HOSTNAME_TESTSERVER;
-				cypherpunkURI.replaceFirst("^/api/v0/", "/api/v1/");
+				cypherpunkURI = cypherpunkURI.replaceFirst("^/api/v0/", "/api/v1/");
 			}
 			// cloud production
 			else {
