@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="button-container" *ngIf="platform === 'windows' || platform === 'mac' || platform == 'linux'">
+    <!-- <div class="button-container" *ngIf="platform === 'windows' || platform === 'mac' || platform == 'linux'">
       <a href="{{ link }}" (click)="showDownloading = true;" target="_top">
         <button class="btn orange">Download Now</button>
       </a>
@@ -45,13 +45,13 @@
       <div class="downloading" *ngIf="showDownloading">
         Your download is starting...
       </div>
-    </div>
+    </div> -->
 
-    <div class="button-container" *ngIf="platform === 'android'">
+    <!-- <div class="button-container" *ngIf="platform === 'android'">
       <a class="android-button" href="{{ link }}">
         <img class="google" src="/assets/google-play-badge.png" alt="Google Play">
       </a>
-    </div>
+    </div> -->
 
     <!--
     <div class="button-container" *ngIf="platform === 'ios'">

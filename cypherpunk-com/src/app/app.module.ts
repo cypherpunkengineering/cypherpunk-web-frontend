@@ -11,7 +11,7 @@ import { PricingPreviewModule } from './layouts/public/pricing-preview/pricing-p
 import { SigninModule } from './layouts/public/signin/signin.module';
 import { RecoverModule } from './layouts/public/recover/recover.module';
 import { ActivateModule } from './layouts/public/activate/activate.module';
-import { DownloadModule } from './layouts/public/download/download.module';
+// import { DownloadModule } from './layouts/public/download/download.module';
 import { ConfirmModule } from './layouts/public/confirm/confirm.module';
 import { ConfirmChangeModule } from './layouts/public/confirm-change/confirm-change.module';
 import { WhyusModule } from './layouts/public/whyus/whyus.module';
@@ -43,7 +43,7 @@ import { AppsModule } from './layouts/public/apps/apps/apps.module';
 import { FeedbackModule } from './layouts/public/feedback/feedback.module';
 // import { BountyModule } from './layouts/public/bounty/bounty.module';
 import { WhatsMyIpModule } from './layouts/public/whatsmyip/whatsmyip.module';
-import { SignupModule } from './layouts/public/signup/signup.module';
+// import { SignupModule } from './layouts/public/signup/signup.module';
 import { PublicResetModule } from './layouts/public/reset/reset.module';
 import { SupportHomeModule } from './layouts/public/support/home/support-home.module';
 import { SupportFormModule } from './layouts/public/support/support-form/support-form.module';
@@ -97,7 +97,7 @@ import { SeoService } from './services/seo.service';
     SigninModule,
     RecoverModule,
     ActivateModule,
-    DownloadModule,
+    // DownloadModule,
     ConfirmModule,
     ConfirmChangeModule,
     WhyusModule,
@@ -128,7 +128,7 @@ import { SeoService } from './services/seo.service';
     // BountyModule,
     AppsModule,
     WhatsMyIpModule,
-    SignupModule,
+    // SignupModule,
     PublicResetModule,
     SupportHomeModule,
     SupportFormModule,

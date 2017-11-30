@@ -21,24 +21,24 @@
       <li>
         <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
       </li>
-      <li>
+      <!-- <li>
         <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
           Pricing
         </a>
-      </li>
+      </li> -->
       <li>
         <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">
           <button class="btn border">DOWNLOAD</button>
         </a>
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <a routerLink="/signup" *ngIf="!isLoggedIn()">
           <button class="btn orange">START FREE</button>
         </a>
-      </li>
+      </li> -->
       <li>
         <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
           <button class="btn orange">UPGRADE</button>
@@ -79,24 +79,24 @@
         <li>
           <a class="nav-link" routerLink="/apps" routerLinkActive="active">Apps</a>
         </li>
-        <li>
+        <!-- <li>
           <a class="nav-link" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
             Pricing
           </a>
-        </li>
+        </li> -->
         <li>
           <a class="nav-link last" routerLink="/support" routerLinkActive="active">Support</a>
         </li>
-        <li>
+        <!-- <li>
           <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">
             <button class="btn border">DOWNLOAD</button>
           </a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a routerLink="/signup" *ngIf="!isLoggedIn()">
             <button class="btn orange">START FREE</button>
           </a>
-        </li>
+        </li> -->
         <li>
           <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
             <button class="btn orange">UPGRADE</button>
@@ -145,21 +145,21 @@
     <div class="mobile-dd-item" routerLink="/apps" routerLinkActive="active">
       Apps
     </div>
-    <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
+    <!-- <div class="mobile-dd-item" routerLink="/pricing" routerLinkActive="active" *ngIf="!isLoggedIn()">
       Pricing
-    </div>
+    </div> -->
     <a routerLink="/support" routerLinkActive="active">
       <div class="mobile-dd-item">Support</div>
     </a>
-    <div class="mobile-dd-item">
+    <!-- <div class="mobile-dd-item">
       <a href="{{link}}" (click)="redirect()" target="_self" *ngIf="isLoggedIn()">Download</a>
-    </div>
-    <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
+    </div> -->
+    <!-- <a routerLink="/signup" routerLinkActive="active" *ngIf="!isLoggedIn()">
       <div class="mobile-dd-item orange">START FREE</div>
-    </a>
-    <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
+    </a> -->
+    <!-- <a routerLink="/account/upgrade" *ngIf="env === 'DEV' && isLoggedIn() && getAccountType() === 'free'">
       <div class="mobile-dd-item">UPGRADE</div>
-    </a>
+    </a> -->
     <div class="mobile-dd-item" *ngIf="!isLoggedIn()" routerLink="/login" routerLinkActive="active">
       SIGN IN
     </div>
