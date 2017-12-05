@@ -433,10 +433,12 @@ public class FrontendAPIv1 extends HttpServlet {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRecoverReset.class, null);
 			}
 			else if (accountApiPath.equals("/register/signup")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRegisterSignup.class, CypherpunkAccountStatus.class);
+        res.sendError(503);
+				// proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRegisterSignup.class, CypherpunkAccountStatus.class);
 			}
 			else if (accountApiPath.equals("/register/teaser")) {
-				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRegisterTeaser.class, null);
+        res.sendError(503);
+				// proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountRegisterTeaser.class, null);
 			}
 			else if (accountApiPath.equals("/source/add")) {
 				proxyRequestToCypherpunkBackend(req, res, HTTPMethod.POST, "/api/v0" + apiPath, CypherpunkAccountSourceAdd.class, CypherpunkAccountSourceList.class);
@@ -833,6 +835,9 @@ public class FrontendAPIv1 extends HttpServlet {
 			// determine API endpoint
 			String cypherpunkBaseURL = null;
 
+      System.out.println(SystemProperty.environment.value());
+      System.out.println(SystemProperty.Environment.Value.Development);
+
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
 				// for local devserver - don't use TLS
         cypherpunkBaseURL = BACKEND_HOSTNAME_DEVSERVER;
@@ -853,6 +858,8 @@ public class FrontendAPIv1 extends HttpServlet {
       }
 
 			cypherpunkURL = new URL(cypherpunkBaseURL + cypherpunkURI);
+
+      System.out.println(cypherpunkURL);
 		}
 		catch (MalformedURLException e) { cypherpunkURL = null; }
 		return cypherpunkURL;
